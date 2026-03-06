@@ -37,33 +37,36 @@
       <main class="docs-content">
         <h1>Configurateur &mdash; Gestion des pages</h1>
         <p>
-          Le panneau <strong>Pages</strong> du Configurateur affiche un arbre hi&eacute;rarchique de toutes les pages HTML du site. Il permet de cr&eacute;er, renommer, supprimer, dupliquer et organiser les pages, ainsi que de g&eacute;rer leurs m&eacute;tadonn&eacute;es (SEO, statut, code personnalis&eacute;, etc.).
+          Le panneau <strong>Pages</strong> du Configurateur affiche un arbre organis&eacute; par dossiers de toutes les pages HTML du site. Il permet de cr&eacute;er, renommer, supprimer, dupliquer et organiser les pages dans des dossiers ind&eacute;pendants, ainsi que de g&eacute;rer leurs m&eacute;tadonn&eacute;es (SEO, statut, code personnalis&eacute;, etc.).
         </p>
 
         <h2>Vue d'ensemble</h2>
         <p>
-          Le panneau Pages est accessible depuis la barre lat&eacute;rale gauche du Configurateur. Il pr&eacute;sente l'ensemble des pages du site sous forme d'arbre hi&eacute;rarchique, refl&eacute;tant la structure de dossiers du projet. Chaque page est un fichier <code>.html</code> r&eacute;f&eacute;renc&eacute; dans le registre <code>pages.json</code>.
+          Le panneau Pages est accessible depuis la barre lat&eacute;rale gauche du Configurateur. Il pr&eacute;sente l'ensemble des pages du site sous forme d'arbre organis&eacute; par dossiers, refl&eacute;tant la structure physique du projet. Chaque page est un fichier <code>.html</code> r&eacute;f&eacute;renc&eacute; dans le registre <code>pages.json</code>.
         </p>
         <p>
           S&eacute;lectionnez une page (simple clic) pour afficher son panneau de m&eacute;tadonn&eacute;es &agrave; droite.
         </p>
 
-        <h2>Arbre hi&eacute;rarchique</h2>
+        <h2>Arbre par dossiers</h2>
         <p>
           Les pages sont stock&eacute;es dans le dossier <code>pages/</code> du projet. L'arbre refl&egrave;te cette structure :
         </p>
         <ul>
-          <li><code>index.html</code> &mdash; page d'accueil (verrouill&eacute;e &agrave; la racine)</li>
-          <li><code>blog.html</code> &mdash; page parente</li>
-          <li><code>blog/article.html</code> &mdash; page enfant (template) dans <code>pages/blog/</code></li>
-          <li><code>services.html</code> &mdash; page parente</li>
-          <li><code>services/consulting.html</code> &mdash; page enfant dans <code>pages/services/</code></li>
+          <li><code>index.html</code> &mdash; page d'accueil (toujours en premier, verrouill&eacute;e)</li>
+          <li><code>blog.html</code> &mdash; page &agrave; la racine</li>
+          <li><code>confidentialite.html</code> &mdash; page &agrave; la racine</li>
+          <li>&Iacute;c&ocirc;ne dossier <code>blog/</code> &mdash; dossier ind&eacute;pendant
+            <ul>
+              <li><code>blog/article.html</code> &mdash; page dans le dossier <code>blog/</code> (template)</li>
+            </ul>
+          </li>
         </ul>
         <p>
-          Les chemins affich&eacute;s sont relatifs au dossier <code>pages/</code>. Imbriquer une page comme enfant d'une autre <strong>d&eacute;place physiquement le fichier</strong> dans le sous-dossier correspondant sur le disque.
+          Les <strong>dossiers sont ind&eacute;pendants des pages</strong> : le dossier <code>blog/</code> existe ind&eacute;pendamment de <code>blog.html</code>. On peut avoir un dossier <code>legal/</code> sans que <code>legal.html</code> n'existe, et vice versa. C'est le m&ecirc;me principe que dans VSCode.
         </p>
         <p>
-          L'ordre d'affichage peut &ecirc;tre personnalis&eacute; via le champ <strong>Ordre</strong> dans les m&eacute;tadonn&eacute;es de chaque page.
+          La hi&eacute;rarchie se d&eacute;duit uniquement du <strong>chemin physique</strong> des fichiers : <code>blog/article.html</code> est dans le dossier <code>blog/</code> car son chemin contient <code>blog/</code>.
         </p>
 
         <h3>Drag &amp; drop</h3>
@@ -71,184 +74,157 @@
           L'arbre supporte le drag &amp; drop pour r&eacute;organiser les pages :
         </p>
         <ul>
-          <li><strong>Zone haute (25%)</strong> : ins&eacute;rer la page avant la cible</li>
-          <li><strong>Zone centrale (50%)</strong> : imbriquer la page comme enfant de la cible</li>
-          <li><strong>Zone basse (25%)</strong> : ins&eacute;rer la page apr&egrave;s la cible</li>
+          <li><strong>Glisser sur un dossier</strong> : d&eacute;place la page dans ce dossier</li>
+          <li><strong>Glisser sur une page (moiti&eacute; haute)</strong> : ins&eacute;rer avant la cible</li>
+          <li><strong>Glisser sur une page (moiti&eacute; basse)</strong> : ins&eacute;rer apr&egrave;s la cible</li>
         </ul>
         <p>
-          Lorsqu'une page est imbriqu&eacute;e sous une autre, le fichier HTML est <strong>physiquement d&eacute;plac&eacute;</strong> dans un sous-dossier sur le disque. Par exemple, glisser <code>contact.html</code> sur <code>services.html</code> d&eacute;place le fichier de <code>pages/contact.html</code> vers <code>pages/services/contact.html</code>. D&eacute;-nester une page la ram&egrave;ne &agrave; la racine de <code>pages/</code>.
+          Si la cible est dans un dossier diff&eacute;rent, le fichier HTML est <strong>physiquement d&eacute;plac&eacute;</strong> sur le disque et ses chemins relatifs sont automatiquement ajust&eacute;s selon la nouvelle profondeur.
         </p>
         <p>
           La page d'accueil est <strong>verrouill&eacute;e</strong> : elle ne peut &ecirc;tre ni d&eacute;plac&eacute;e, ni imbriqu&eacute;e. Les pages templates sont &eacute;galement non-d&eacute;pla&ccedil;ables.
         </p>
+
+        <h3>Dossiers</h3>
         <p>
-          Les dossiers vides sont automatiquement supprim&eacute;s apr&egrave;s un d&eacute;placement.
+          Les dossiers apparaissent dans l'arbre avec une ic&ocirc;ne de dossier et un chevron pour expand/collapse. Ils sont :
         </p>
+        <ul>
+          <li><strong>Cliquables</strong> pour expand/collapse</li>
+          <li><strong>Droppables</strong> : glisser une page dessus la d&eacute;place dans le dossier</li>
+          <li><strong>Supprimables</strong> via clic droit (menu contextuel), uniquement s'ils sont vides</li>
+        </ul>
+        <p>Les dossiers vides ne sont <strong>pas</strong> automatiquement supprim&eacute;s.</p>
 
         <h2>Op&eacute;rations CRUD</h2>
 
         <h3>Cr&eacute;er une page</h3>
         <p>
-          Cliquez sur le bouton <strong>+</strong> dans le header du panneau. Une modale appara&icirc;t pour saisir le nom du fichier. L'extension <code>.html</code> est ajout&eacute;e automatiquement. La nouvelle page est cr&eacute;&eacute;e dans le dossier <code>pages/</code> &agrave; partir du template <code>snippets/page.html</code>, dont les chemins relatifs sont automatiquement ajust&eacute;s.
+          Cliquez sur le bouton <strong>+ Nouvelle page</strong> dans la toolbar. Une modale appara&icirc;t pour saisir le nom du fichier. L'extension <code>.html</code> est ajout&eacute;e automatiquement.
         </p>
 <pre><code>// Exemple : saisir "contact" cr&eacute;e pages/contact.html
 // Exemple : saisir "services/consulting" cr&eacute;e pages/services/consulting.html</code></pre>
 
-        <h3>Renommer une page</h3>
+        <h3>Cr&eacute;er un dossier</h3>
         <p>
-          Clic droit sur une page ou bouton <strong>Renommer</strong> dans le menu contextuel. Une modale permet de saisir le nouveau nom. Le fichier HTML est renomm&eacute; sur le disque et l'entr&eacute;e du registre <code>pages.json</code> est mise &agrave; jour.
+          Cliquez sur le bouton <strong>dossier+</strong> dans la toolbar. Une modale permet de saisir le nom du dossier. Le dossier est cr&eacute;&eacute; physiquement dans <code>pages/</code>.
         </p>
 
         <h3>Supprimer une page</h3>
         <p>
-          Clic droit sur une page ou bouton <strong>Supprimer</strong>. Une modale de confirmation appara&icirc;t. La suppression entra&icirc;ne :
+          Bouton <strong>Supprimer</strong> (ic&ocirc;ne poubelle) dans le panneau de m&eacute;tadonn&eacute;es. Une modale de confirmation appara&icirc;t. Les pages prot&eacute;g&eacute;es (<code>index.html</code>, <code>404.html</code>) ne peuvent pas &ecirc;tre supprim&eacute;es.
         </p>
-        <ul>
-          <li>La suppression du fichier HTML du disque</li>
-          <li>La suppression de l'entr&eacute;e correspondante dans <code>pages.json</code></li>
-        </ul>
-        <p>Les pages en <strong>lecture seule</strong> (<code>readOnly</code>) ne peuvent pas &ecirc;tre supprim&eacute;es.</p>
+
+        <h3>Supprimer un dossier</h3>
+        <p>
+          Clic droit sur un dossier dans l'arbre &rarr; &laquo;&nbsp;Supprimer le dossier&nbsp;&raquo;. Uniquement possible si le dossier est vide.
+        </p>
 
         <h3>Dupliquer une page</h3>
         <p>
-          Cr&eacute;e une copie du fichier HTML avec un nouveau nom. Le contenu est dupliqu&eacute; &agrave; l'identique, et une nouvelle entr&eacute;e est ajout&eacute;e au registre avec les m&ecirc;mes m&eacute;tadonn&eacute;es (sauf le slug et le chemin, qui sont adapt&eacute;s au nouveau nom).
+          Cr&eacute;e une copie du fichier HTML avec un nouveau nom et les m&ecirc;mes m&eacute;tadonn&eacute;es.
+        </p>
+
+        <h3>D&eacute;placer une page</h3>
+        <p>
+          En plus du drag &amp; drop, le panneau de m&eacute;tadonn&eacute;es affiche un champ <strong>Dossier</strong> en lecture seule avec un bouton <strong>D&eacute;placer</strong>.
         </p>
 
         <h2>Panneau de m&eacute;tadonn&eacute;es</h2>
         <p>
-          Quand une page est s&eacute;lectionn&eacute;e (simple clic), un panneau de m&eacute;tadonn&eacute;es s'affiche &agrave; droite. Il contient les champs suivants :
+          Quand une page est s&eacute;lectionn&eacute;e (simple clic), un panneau de m&eacute;tadonn&eacute;es s'affiche &agrave; droite :
         </p>
 
         <table>
           <tr><th>Champ</th><th>Type</th><th>Description</th></tr>
           <tr><td><strong>Titre de la page</strong></td><td>Texte</td><td>Titre affich&eacute; de la page (balise <code>&lt;title&gt;</code>)</td></tr>
-          <tr><td><strong>Chemin du fichier</strong></td><td>Lecture seule</td><td>Chemin relatif du fichier HTML (ex : <code>blog/article.html</code>)</td></tr>
           <tr><td><strong>Slug</strong></td><td>Texte</td><td>URL propre de la page (ex : <code>/blog/article</code>)</td></tr>
-          <tr><td><strong>Meta title</strong></td><td>Texte</td><td>Titre SEO (balise <code>&lt;meta name="title"&gt;</code>). Surcharge le titre de la page pour les moteurs de recherche.</td></tr>
-          <tr><td><strong>Meta description</strong></td><td>Texte</td><td>Description SEO (balise <code>&lt;meta name="description"&gt;</code>). R&eacute;sum&eacute; affich&eacute; dans les r&eacute;sultats de recherche.</td></tr>
-          <tr><td><strong>Image &agrave; la une</strong></td><td>Fichier</td><td>Image principale de la page (Open Graph, partage social, aper&ccedil;u).</td></tr>
-          <tr><td><strong>Statut</strong></td><td>Select</td><td><code>published</code> (publi&eacute;e) ou <code>draft</code> (brouillon). Les pages en brouillon ne sont pas accessibles publiquement.</td></tr>
-          <tr><td><strong>noindex</strong></td><td>Checkbox</td><td>Cochez pour ajouter <code>&lt;meta name="robots" content="noindex"&gt;</code> et exclure la page des moteurs de recherche.</td></tr>
-          <tr><td><strong>Ordre</strong></td><td>Nombre</td><td>Position de la page dans l'arbre hi&eacute;rarchique. Les pages sont tri&eacute;es par ordre croissant.</td></tr>
-          <tr><td><strong>Page parente</strong></td><td>Select</td><td>S&eacute;lectionnez une page parente parmi toutes les pages disponibles. Permet de r&eacute;organiser la hi&eacute;rarchie manuellement.</td></tr>
-          <tr><td><strong>Code personnalis&eacute; &lt;head&gt;</strong></td><td>Textarea</td><td>Zone de texte extensible pour injecter du HTML personnalis&eacute; dans la balise <code>&lt;head&gt;</code> (CSS, scripts, balises meta suppl&eacute;mentaires).</td></tr>
-          <tr><td><strong>Code personnalis&eacute; &lt;body&gt;</strong></td><td>Textarea</td><td>Zone de texte extensible pour injecter du HTML personnalis&eacute; avant la balise <code>&lt;/body&gt;</code> (scripts de tracking, widgets, etc.).</td></tr>
+          <tr><td><strong>Dossier</strong></td><td>Lecture seule + bouton</td><td>Dossier actuel de la page + bouton &laquo;&nbsp;D&eacute;placer&nbsp;&raquo;</td></tr>
+          <tr><td><strong>Meta title</strong></td><td>Texte</td><td>Titre SEO</td></tr>
+          <tr><td><strong>Meta description</strong></td><td>Texte</td><td>Description SEO</td></tr>
+          <tr><td><strong>Image &agrave; la une</strong></td><td>Fichier</td><td>Image principale de la page</td></tr>
+          <tr><td><strong>Statut</strong></td><td>Bouton</td><td><code>published</code> ou <code>draft</code></td></tr>
+          <tr><td><strong>noindex</strong></td><td>Checkbox</td><td>Exclure des moteurs de recherche</td></tr>
+          <tr><td><strong>Code &lt;head&gt;</strong></td><td>Textarea</td><td>Code HTML inject&eacute; dans <code>&lt;head&gt;</code></td></tr>
+          <tr><td><strong>Code &lt;body&gt;</strong></td><td>Textarea</td><td>Code HTML inject&eacute; avant <code>&lt;/body&gt;</code></td></tr>
         </table>
-
-        <h2>Pages en lecture seule</h2>
-        <p>
-          Certaines pages sont marqu&eacute;es comme <code>readOnly</code> dans le registre. Ces pages sont prot&eacute;g&eacute;es et ne peuvent pas &ecirc;tre :
-        </p>
-        <ul>
-          <li>Supprim&eacute;es</li>
-          <li>Renomm&eacute;es</li>
-        </ul>
-        <p>
-          Les pages en lecture seule ne peuvent pas &ecirc;tre supprim&eacute;es ni renomm&eacute;es, mais leurs m&eacute;tadonn&eacute;es restent modifiables. Cela concerne typiquement les pages syst&egrave;me comme <code>404.html</code>.
-        </p>
 
         <h2>Pages template</h2>
         <p>
-          Les pages templates sont d&eacute;tect&eacute;es automatiquement : une page situ&eacute;e dans un sous-dossier dont le nom correspond &agrave; une page parente de premier niveau est marqu&eacute;e comme template. Par exemple, <code>blog/article.html</code> est un template car <code>blog.html</code> existe &agrave; la racine de <code>pages/</code>.
-        </p>
-        <p>
-          Les pages template apparaissent dans l'arbre avec un indicateur visuel distinct et ne sont pas publi&eacute;es sur le site final. Elles ne peuvent pas &ecirc;tre d&eacute;plac&eacute;es via le drag &amp; drop.
+          Les pages templates sont g&eacute;r&eacute;es via le registre <code>pages.json</code> (champ <code>isTemplate</code>). Elles apparaissent avec une ic&ocirc;ne code <code>&lt;/&gt;</code> et un badge &laquo;&nbsp;Template&nbsp;&raquo;. Elles ne peuvent pas &ecirc;tre d&eacute;plac&eacute;es.
         </p>
 
-        <h2>Registre <code>pages.json</code></h2>
+        <h2>Registre <code>pages.json</code> (V2)</h2>
         <p>
-          Le fichier <code>pages.json</code> est le registre central qui stocke toutes les m&eacute;tadonn&eacute;es des pages du site. Les chemins (<code>path</code>) sont stock&eacute;s <strong>relativement au dossier <code>pages/</code></strong> (ex : <code>blog.html</code>, et non <code>pages/blog.html</code>). Le fichier r&eacute;el sur le disque se trouve &agrave; <code>pages/blog.html</code>.
-        </p>
-        <p>
-          Le registre est synchronis&eacute; automatiquement avec le syst&egrave;me de fichiers : si un fichier HTML est ajout&eacute; ou supprim&eacute; manuellement dans <code>pages/</code>, le registre est mis &agrave; jour au prochain chargement.
+          Le fichier <code>pages.json</code> est le registre central. Les chemins sont stock&eacute;s <strong>relativement au dossier <code>pages/</code></strong>.
         </p>
 
         <h3>Structure du registre</h3>
 <pre><code>{
-  "pages": [
-    {
+  "version": 2,
+  "homepage": "index.html",
+  "folders": {
+    "blog": { "order": 0, "collapsed": false }
+  },
+  "pages": {
+    "index.html": {
       "title": "Accueil",
-      "path": "index.html",
-      "slug": "/",
-      "metaTitle": "Mon Site &mdash; Accueil",
-      "metaDescription": "Bienvenue sur notre site.",
-      "featuredImage": "assets/images/hero.jpg",
+      "slug": "index",
       "status": "published",
-      "noindex": false,
-      "order": 1,
-      "parent": null,
-      "customHead": "",
-      "customBody": "",
+      "order": 0,
       "readOnly": false,
       "isTemplate": false
     },
-    {
-      "title": "Blog",
-      "path": "blog.html",
-      "slug": "/blog",
-      "metaTitle": "Blog &mdash; Mon Site",
-      "metaDescription": "Tous nos articles.",
-      "featuredImage": "",
+    "blog/article.html": {
+      "title": "Article",
+      "slug": "blog/article",
       "status": "published",
-      "noindex": false,
-      "order": 2,
-      "parent": null,
-      "customHead": "",
-      "customBody": "",
+      "order": 0,
       "readOnly": false,
-      "isTemplate": false
-    },
-    {
-      "title": "Article exemple",
-      "path": "blog/article.html",
-      "slug": "/blog/article",
-      "metaTitle": "",
-      "metaDescription": "",
-      "featuredImage": "",
-      "status": "draft",
-      "noindex": false,
-      "order": 1,
-      "parent": "blog.html",
-      "customHead": "",
-      "customBody": "",
-      "readOnly": false,
-      "isTemplate": false
+      "isTemplate": true
     }
-  ]
+  }
 }</code></pre>
 
-        <h3>Propri&eacute;t&eacute;s du registre</h3>
+        <h3>Propri&eacute;t&eacute;s d'une page</h3>
         <table>
           <tr><th>Propri&eacute;t&eacute;</th><th>Type</th><th>Description</th></tr>
           <tr><td><code>title</code></td><td>String</td><td>Titre de la page</td></tr>
-          <tr><td><code>path</code></td><td>String</td><td>Chemin relatif du fichier HTML par rapport au dossier <code>pages/</code></td></tr>
           <tr><td><code>slug</code></td><td>String</td><td>URL propre</td></tr>
           <tr><td><code>metaTitle</code></td><td>String</td><td>Titre SEO (override)</td></tr>
           <tr><td><code>metaDescription</code></td><td>String</td><td>Description SEO (override)</td></tr>
           <tr><td><code>featuredImage</code></td><td>String</td><td>Chemin de l'image &agrave; la une</td></tr>
           <tr><td><code>status</code></td><td>String</td><td><code>published</code> ou <code>draft</code></td></tr>
           <tr><td><code>noindex</code></td><td>Boolean</td><td>Exclure des moteurs de recherche</td></tr>
-          <tr><td><code>order</code></td><td>Number</td><td>Position dans l'arbre</td></tr>
-          <tr><td><code>parent</code></td><td>String|null</td><td>Chemin de la page parente</td></tr>
-          <tr><td><code>customHead</code></td><td>String</td><td>Code HTML inject&eacute; dans <code>&lt;head&gt;</code></td></tr>
-          <tr><td><code>customBody</code></td><td>String</td><td>Code HTML inject&eacute; avant <code>&lt;/body&gt;</code></td></tr>
-          <tr><td><code>readOnly</code></td><td>Boolean</td><td>Page prot&eacute;g&eacute;e (non supprimable/renommable)</td></tr>
+          <tr><td><code>order</code></td><td>Number</td><td>Position dans son dossier</td></tr>
+          <tr><td><code>customHead</code></td><td>String</td><td>Code HTML dans <code>&lt;head&gt;</code></td></tr>
+          <tr><td><code>customBody</code></td><td>String</td><td>Code HTML avant <code>&lt;/body&gt;</code></td></tr>
+          <tr><td><code>readOnly</code></td><td>Boolean</td><td>Page prot&eacute;g&eacute;e</td></tr>
           <tr><td><code>isTemplate</code></td><td>Boolean</td><td>Page servant de mod&egrave;le</td></tr>
         </table>
 
+        <h3>Propri&eacute;t&eacute;s d'un dossier</h3>
+        <table>
+          <tr><th>Propri&eacute;t&eacute;</th><th>Type</th><th>Description</th></tr>
+          <tr><td><code>order</code></td><td>Number</td><td>Position dans l'arbre</td></tr>
+          <tr><td><code>collapsed</code></td><td>Boolean</td><td>&Eacute;tat expand/collapse</td></tr>
+        </table>
+
+        <h3>Migration V1 &rarr; V2</h3>
+        <p>
+          Si le registre est en version 1 (ancien syst&egrave;me avec champ <code>parent</code>), la migration est automatique au chargement : les champs <code>parent</code> et <code>collapsed</code> sont supprim&eacute;s des pages, les dossiers sont d&eacute;tect&eacute;s depuis les chemins, et la version passe &agrave; 2.
+        </p>
+
         <h2>Module JavaScript</h2>
         <p>
-          La logique du panneau Pages est g&eacute;r&eacute;e par le module <code>configurateur-pages.js</code>. Ce module est responsable de :
+          La logique est g&eacute;r&eacute;e par <code>configurateur-pages.js</code> :
         </p>
         <ul>
-          <li>L'affichage et la mise &agrave; jour de l'arbre hi&eacute;rarchique</li>
-          <li>Les op&eacute;rations CRUD (cr&eacute;ation, renommage, suppression, duplication)</li>
-          <li>La synchronisation du registre <code>pages.json</code> avec le syst&egrave;me de fichiers</li>
-          <li>L'affichage et la sauvegarde du panneau de m&eacute;tadonn&eacute;es</li>
-          <li>La gestion du drag &amp; drop pour r&eacute;organiser l'arbre</li>
-          <li>La d&eacute;tection automatique de la hi&eacute;rarchie parent/enfant</li>
-          <li>Le d&eacute;placement physique des fichiers sur le disque via <code>movePageToDisk()</code></li>
-          <li>Le calcul des nouveaux chemins lors d'un drag &amp; drop via <code>computeNewPath()</code></li>
+          <li>Arbre organis&eacute; par dossiers (<code>buildFolderTree()</code>)</li>
+          <li>Op&eacute;rations CRUD (pages et dossiers)</li>
+          <li>Synchronisation registre/filesystem</li>
+          <li>Panneau de m&eacute;tadonn&eacute;es</li>
+          <li>Drag &amp; drop entre dossiers (<code>movePageToFolder()</code>)</li>
         </ul>
 
         <h2>Voir aussi</h2>
