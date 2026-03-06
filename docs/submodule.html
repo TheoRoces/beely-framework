@@ -49,7 +49,7 @@
           <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
           <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
             <li><a href="#reprendre-de-zero">Reprendre de z&eacute;ro</a> &mdash; retrouver les repos, recloner, reconfigurer</li>
-            <li><a href="#les-3-repos">Les 3 repos</a> &mdash; framework, builder, template</li>
+            <li><a href="#les-4-repos">Les 4 repos</a> &mdash; framework, builder, template, site-system</li>
             <li><a href="#architecture">Architecture</a> &mdash; framework dans <code>.framework/</code> + symlinks</li>
             <li><a href="#fichiers">Fichiers symlink&eacute;s vs r&eacute;els</a> &mdash; ce qui vient du framework vs ce qui est propre au projet</li>
             <li><a href="#installation">Installation</a> &mdash; cloner et initialiser un projet</li>
@@ -68,7 +68,7 @@
         <h2 id="reprendre-de-zero">Reprendre de z&eacute;ro</h2>
         <p>Si tu as perdu la main (nouveau Mac, r&eacute;installation, longue absence), voici comment tout retrouver et recloner.</p>
 
-        <h3>Les 3 repos GitHub</h3>
+        <h3>Les 4 repos GitHub</h3>
         <table>
           <tr><th>Repo</th><th>URL GitHub</th><th>Description</th></tr>
           <tr>
@@ -85,6 +85,11 @@
             <td><strong>beely-template</strong></td>
             <td><code>https://github.com/TheoRoces/beely-template</code></td>
             <td>Le template de d&eacute;part pour chaque nouveau projet client</td>
+          </tr>
+          <tr>
+            <td><strong>site-system</strong></td>
+            <td><code>https://github.com/theoanode/site-system</code></td>
+            <td>L'environnement de d&eacute;veloppement principal &mdash; regroupe tout</td>
           </tr>
         </table>
 
@@ -138,7 +143,7 @@ cp .env.example .env</code></pre>
 
         <!-- ========== LES 3 REPOS ========== -->
 
-        <h2 id="les-3-repos">Les 3 repos</h2>
+        <h2 id="les-4-repos">Les 4 repos</h2>
         <table>
           <tr><th>Repo</th><th>Contenu</th><th>Usage</th></tr>
           <tr>
@@ -156,8 +161,32 @@ cp .env.example .env</code></pre>
             <td>Starter projet client&nbsp;: pages, config, deploy, setup</td>
             <td>Clon&eacute; pour chaque nouveau client</td>
           </tr>
+          <tr>
+            <td><strong>site-system</strong></td>
+            <td>Environnement de dev&nbsp;: framework + builder + doc en ligne</td>
+            <td>Pas un submodule &mdash; c'est le repo parent</td>
+          </tr>
         </table>
         <p>Chaque repo est <strong>versionn&eacute; ind&eacute;pendamment</strong> avec des tags s&eacute;mantiques (v1.0.0, v1.1.0, etc.).</p>
+
+        <h3>Le r&ocirc;le de site-system</h3>
+        <p><code>site-system</code> n'est <strong>pas un submodule</strong> &mdash; c'est le <strong>repo de d&eacute;veloppement principal</strong>. C'est le seul endroit o&ugrave;&nbsp;:</p>
+        <ul>
+          <li>Tu modifies le <strong>framework</strong> (via le submodule <code>.framework/</code>)</li>
+          <li>Tu modifies le <strong>builder</strong> (via le submodule <code>builder/</code>)</li>
+          <li>Tu mets &agrave; jour la <strong>documentation</strong> (qui se trouve dans <code>.framework/docs/</code>)</li>
+          <li>Tu d&eacute;ploies le site <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong> (via <code>./deploy.sh prod</code>)</li>
+        </ul>
+        <p>En r&eacute;sum&eacute;&nbsp;: <code>site-system</code> = ton atelier. <code>beely-template</code> = ce que tu donnes aux projets clients.</p>
+<pre><code>site-system/
+&boxvr;&boxh;&boxh; .framework/     &larr; submodule beely-framework (tu modifies ici)
+&boxvr;&boxh;&boxh; builder/        &larr; submodule beely-builder (tu modifies ici)
+&boxvr;&boxh;&boxh; core/           &larr; symlink &rarr; .framework/core/
+&boxvr;&boxh;&boxh; docs/           &larr; symlink &rarr; .framework/docs/
+&boxvr;&boxh;&boxh; wireframes/     &larr; symlink &rarr; .framework/wireframes/
+&boxvr;&boxh;&boxh; deploy.sh       &larr; d&eacute;ploie vers framework.beely.studio
+&boxdr;&boxh;&boxh; config-site.js  &larr; config du site de doc</code></pre>
+        <p>Les projets clients ne connaissent <strong>jamais</strong> <code>site-system</code>. Ils utilisent <code>beely-template</code> qui inclut les m&ecirc;mes submodules (<code>.framework/</code> et <code>builder/</code>) mais avec leurs propres fichiers de configuration.</p>
 
         <!-- ========== ARCHITECTURE ========== -->
 
