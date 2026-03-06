@@ -20,7 +20,18 @@ registerComponent('docs-sidebar', function (slots) {
     { href: 'sitemap.html',    label: 'Sitemap',        key: 'sitemap' },
     { href: 'params.html',     label: 'Param\u00e8tres URL', key: 'params' },
     { href: 'wireframes.html', label: 'Wireframes',     key: 'wireframes' },
-    { href: 'claude.html',     label: 'Claude Code',    key: 'claude' }
+    { href: 'claude.html',     label: 'Claude Code',    key: 'claude' },
+    { cat: 'Builder' },
+    { href: 'builder-overview.html',     label: 'Vue d\'ensemble',     key: 'builder-overview' },
+    { href: 'builder-dashboard.html',    label: 'Dashboard',           key: 'builder-dashboard' },
+    { href: 'builder-pages.html',        label: 'Pages',               key: 'builder-pages' },
+    { href: 'builder-editor.html',       label: '\u00c9diteur',        key: 'builder-editor' },
+    { href: 'builder-canvas.html',       label: 'Canvas & Navigator',  key: 'builder-canvas' },
+    { href: 'builder-wireframes.html',   label: 'Wireframes',          key: 'builder-wireframes' },
+    { href: 'builder-library.html',      label: 'Biblioth\u00e8que',   key: 'builder-library' },
+    { href: 'builder-configurator.html', label: 'Configurateur',       key: 'builder-configurator' },
+    { href: 'builder-deploy.html',       label: 'D\u00e9ploiement',    key: 'builder-deploy' },
+    { href: 'builder-api.html',          label: 'API Backend',         key: 'builder-api' }
   ];
 
   var html = '<div class="docs-sidebar__title">Documentation</div>';

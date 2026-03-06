@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder — Dashboard — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+  <div data-component="header" data-site-name="SiteSystem" data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-dashboard"></nav>
+      <main class="docs-content">
+        <h1 class="anim-fade-in-up">Builder — Dashboard</h1>
+        <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
+          Le Dashboard est l'écran d'accueil du Builder. Il offre une vue d'ensemble du projet : statistiques, actions rapides et pages récentes.
+        </p>
+
+        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
+          <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
+          <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
+            <li><a href="#vue-densemble">Vue d'ensemble</a> &mdash; rôle et comportement du dashboard</li>
+            <li><a href="#statistiques">Statistiques</a> &mdash; les 3 cartes de compteurs</li>
+            <li><a href="#actions-rapides">Actions rapides</a> &mdash; les 4 raccourcis principaux</li>
+            <li><a href="#pages-recentes">Pages récentes</a> &mdash; les 5 dernières pages modifiées</li>
+            <li><a href="#rafraichissement">Rafraîchissement automatique</a> &mdash; mise à jour des données</li>
+            <li><a href="#api-javascript">API JavaScript</a> &mdash; module et méthodes exposées</li>
+          </ol>
+        </div>
+
+        <!-- ========== VUE D'ENSEMBLE ========== -->
+
+        <h2 id="vue-densemble">Vue d'ensemble</h2>
+        <p>Le Dashboard est le premier panel affiché lorsque l'utilisateur ouvre le Builder. Il centralise les informations essentielles du projet et permet d'accéder rapidement aux fonctionnalités les plus utilisées.</p>
+        <p>Toutes les données affichées sont calculées dynamiquement depuis le registre <code>pages.json</code>, qui contient la liste complète des pages du site avec leur statut, leur chemin et leur date de dernière modification.</p>
+
+        <!-- ========== STATISTIQUES ========== -->
+
+        <h2 id="statistiques">Statistiques</h2>
+        <p>Le haut du dashboard affiche <strong>3 cartes de statistiques</strong>, calculées en temps réel depuis <code>pages.json</code> :</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Carte</th>
+              <th>Donnée</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Pages totales</strong></td>
+              <td>Nombre total d'entrées</td>
+              <td>Compte toutes les pages enregistrées dans le registre, quel que soit leur statut.</td>
+            </tr>
+            <tr>
+              <td><strong>Pages publiées</strong></td>
+              <td>Pages avec statut <code>published</code></td>
+              <td>Nombre de pages actuellement publiées et accessibles en production.</td>
+            </tr>
+            <tr>
+              <td><strong>Brouillons</strong></td>
+              <td>Pages avec statut <code>draft</code></td>
+              <td>Nombre de pages en cours de rédaction, non encore publiées.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Les compteurs se mettent à jour automatiquement à chaque rafraîchissement du dashboard.</p>
+
+        <!-- ========== ACTIONS RAPIDES ========== -->
+
+        <h2 id="actions-rapides">Actions rapides</h2>
+        <p>Sous les statistiques, <strong>4 cartes cliquables</strong> permettent d'accéder aux actions les plus courantes :</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Action</th>
+              <th>Comportement</th>
+              <th>Destination</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Nouvelle page</strong></td>
+              <td>Ouvre un modal de création de page</td>
+              <td>Modal inline — permet de saisir le titre, le slug et le template de la nouvelle page.</td>
+            </tr>
+            <tr>
+              <td><strong>Configurer le site</strong></td>
+              <td>Navigue vers un autre panel</td>
+              <td>Panel <strong>Configurateur</strong> — pour modifier les tokens, la configuration globale, etc.</td>
+            </tr>
+            <tr>
+              <td><strong>Documentation</strong></td>
+              <td>Ouvre un lien externe</td>
+              <td>Redirige vers la documentation du framework (<code>docs/</code>).</td>
+            </tr>
+            <tr>
+              <td><strong>Wireframes</strong></td>
+              <td>Navigue vers un autre panel</td>
+              <td>Panel <strong>Bibliothèque &gt; Wireframes</strong> — accès aux 375+ sections prêtes à l'emploi.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>Chaque carte affiche une icône, un titre et une courte description. Au survol, un effet visuel indique que la carte est cliquable.</p>
+
+        <!-- ========== PAGES RÉCENTES ========== -->
+
+        <h2 id="pages-recentes">Pages récentes</h2>
+        <p>La section inférieure du dashboard liste les <strong>5 dernières pages modifiées</strong>. Chaque entrée affiche :</p>
+        <ul>
+          <li><strong>Titre</strong> — le nom de la page tel que défini dans le registre</li>
+          <li><strong>Chemin</strong> — le chemin relatif du fichier HTML (ex : <code>/index.html</code>, <code>/blog.html</code>)</li>
+          <li><strong>Date de modification</strong> — la date de dernière mise à jour, formatée en français (ex : <em>6 mars 2026</em>)</li>
+        </ul>
+        <p>Les pages sont triées par date de modification décroissante (la plus récente en premier). Si le registre contient moins de 5 pages, seules les pages disponibles sont affichées.</p>
+
+        <!-- ========== RAFRAÎCHISSEMENT ========== -->
+
+        <h2 id="rafraichissement">Rafraîchissement automatique</h2>
+        <p>Le dashboard se <strong>rafraîchit automatiquement</strong> à chaque fois que l'utilisateur revient sur ce panel. Cela garantit que les statistiques, les actions rapides et les pages récentes reflètent toujours l'état actuel du projet.</p>
+        <p>Le rafraîchissement recharge les données depuis <code>pages.json</code> et met à jour le DOM sans rechargement complet de la page.</p>
+
+        <!-- ========== API JAVASCRIPT ========== -->
+
+        <h2 id="api-javascript">API JavaScript</h2>
+        <p>Le dashboard est géré par le module <code>builder-dashboard.js</code>. Il expose une méthode publique via l'objet global <code>window.BuilderDashboard</code>.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Méthode</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>window.BuilderDashboard.refresh()</code></td>
+              <td>Recharge les données depuis <code>pages.json</code> et met à jour l'affichage complet du dashboard (statistiques, actions rapides, pages récentes).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Exemple d'utilisation</h3>
+<pre><code>// Rafraîchir le dashboard manuellement
+window.BuilderDashboard.refresh();
+
+// Exemple : rafraîchir après une action utilisateur
+document.querySelector('.btn-save').addEventListener('click', () => {
+  savePage().then(() => {
+    window.BuilderDashboard.refresh();
+  });
+});</code></pre>
+
+        <h3>Module source</h3>
+        <p>Le fichier source du module est <code>builder-dashboard.js</code>. Il est chargé par le Builder et initialisé automatiquement lorsque le panel Dashboard est activé.</p>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

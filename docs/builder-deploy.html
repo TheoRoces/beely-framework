@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder — Déploiement — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+  <div data-component="header" data-site-name="SiteSystem" data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-deploy"></nav>
+      <main class="docs-content">
+        <h1 class="anim-fade-in-up">Builder — Déploiement</h1>
+        <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
+          Le builder intègre un système de publication directement dans l'interface, accessible via le bouton "Publier" dans la barre supérieure.
+        </p>
+
+        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
+          <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
+          <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
+            <li><a href="#dropdown-de-publication">Dropdown de publication</a> &mdash; interface du bouton Publier</li>
+            <li><a href="#deploiement-production-pre-production">Déploiement Production / Pré-production</a> &mdash; rsync via SSH</li>
+            <li><a href="#git-commit-push">Git (commit &amp; push)</a> &mdash; versionner et pousser le code</li>
+            <li><a href="#log-de-deploiement">Log de déploiement</a> &mdash; sortie en temps réel</li>
+            <li><a href="#indicateurs-de-statut">Indicateurs de statut</a> &mdash; points vert/rouge et dates</li>
+            <li><a href="#configuration-requise">Configuration requise</a> &mdash; .deploy.env et clés SSH</li>
+            <li><a href="#module-js">Module JS</a> &mdash; API et méthodes exposées</li>
+          </ol>
+        </div>
+
+        <!-- ========== DROPDOWN DE PUBLICATION ========== -->
+
+        <h2 id="dropdown-de-publication">Dropdown de publication</h2>
+        <p>Le dropdown de publication est situé dans la <strong>topbar du builder, à droite</strong>. Il s'ouvre au clic sur le bouton <strong>"Publier"</strong>.</p>
+        <p>Une fois ouvert, il affiche <strong>3 cartes de déploiement</strong> :</p>
+        <ul>
+          <li><strong>Production</strong> — déploiement vers le serveur de production</li>
+          <li><strong>Pré-production</strong> — déploiement vers le serveur de pré-production</li>
+          <li><strong>Git</strong> — commit et push vers le dépôt distant</li>
+        </ul>
+        <p>Chaque carte affiche :</p>
+        <ul>
+          <li><strong>Statut</strong> — un point vert (succès) ou rouge (erreur / jamais déployé)</li>
+          <li><strong>Date du dernier déploiement</strong> — au format lisible</li>
+          <li><strong>URL du domaine</strong> — lien cliquable vers le site déployé</li>
+          <li><strong>Bouton d'action</strong> — "Déployer" ou "Commit &amp; Push"</li>
+        </ul>
+
+        <!-- ========== DÉPLOIEMENT PRODUCTION / PRÉ-PRODUCTION ========== -->
+
+        <h2 id="deploiement-production-pre-production">Déploiement Production / Pré-production</h2>
+        <p>Le déploiement utilise le script <code>deploy.sh</code> qui effectue un <strong>rsync via SSH</strong> vers le serveur cible.</p>
+
+        <h3>Prérequis</h3>
+        <p>Configurer le fichier <code>.deploy.env</code> avec les credentials SSH (voir la section <a href="#configuration-requise">Configuration requise</a>).</p>
+
+        <h3>Fonctionnement</h3>
+        <ol>
+          <li>L'utilisateur clique sur <strong>"Déployer"</strong> sur la carte Production ou Pré-production</li>
+          <li>Le builder exécute l'API <code>/api/deploy</code> avec le paramètre <code>target=prod</code> ou <code>target=preprod</code></li>
+          <li>Le serveur Python exécute <code>./deploy.sh &lt;target&gt;</code> en subprocess</li>
+          <li>Le résultat (<code>stdout</code> + <code>stderr</code>) est affiché dans le <a href="#log-de-deploiement">log de déploiement</a></li>
+          <li>Le statut et la date sont sauvegardés dans le registre (<code>pages.json</code> → <code>deploys.prod</code> / <code>deploys.preprod</code>)</li>
+        </ol>
+
+        <h3>Fichiers exclus du déploiement</h3>
+        <p>Le fichier <code>.rsync-exclude</code> définit les fichiers et dossiers exclus du transfert :</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Exclusion</th>
+              <th>Raison</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.git/</code></td>
+              <td>Historique Git, inutile en production</td>
+            </tr>
+            <tr>
+              <td><code>.gitignore</code></td>
+              <td>Fichier de configuration Git</td>
+            </tr>
+            <tr>
+              <td><code>CLAUDE.md</code></td>
+              <td>Directives Claude Code</td>
+            </tr>
+            <tr>
+              <td><code>.claude/</code></td>
+              <td>Configuration Claude Code</td>
+            </tr>
+            <tr>
+              <td><code>.env</code></td>
+              <td>Variables d'environnement sensibles</td>
+            </tr>
+            <tr>
+              <td><code>.deploy.env</code></td>
+              <td>Credentials SSH de déploiement</td>
+            </tr>
+            <tr>
+              <td><code>deploy.sh</code></td>
+              <td>Script de déploiement</td>
+            </tr>
+            <tr>
+              <td><code>.rsync-exclude</code></td>
+              <td>Fichier d'exclusion rsync</td>
+            </tr>
+            <tr>
+              <td><code>generate-sitemap.js</code></td>
+              <td>Outil CLI de génération de sitemap</td>
+            </tr>
+            <tr>
+              <td><code>.DS_Store</code></td>
+              <td>Fichiers système macOS</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ========== GIT (COMMIT & PUSH) ========== -->
+
+        <h2 id="git-commit-push">Git (commit &amp; push)</h2>
+        <p>La carte <strong>Git</strong> dans le dropdown de publication permet de versionner et pousser le code directement depuis le builder.</p>
+
+        <h3>Interface</h3>
+        <ul>
+          <li><strong>Champ de saisie</strong> — pour écrire le message de commit</li>
+          <li><strong>Bouton "Commit &amp; Push"</strong> — lance l'opération</li>
+        </ul>
+
+        <h3>Fonctionnement</h3>
+        <ol>
+          <li>L'utilisateur saisit un message de commit dans le champ dédié</li>
+          <li>Clic sur <strong>"Commit &amp; Push"</strong></li>
+          <li>Le builder exécute l'API <code>/api/git-push</code> avec le message</li>
+          <li>Le serveur exécute : <code>git add -A &amp;&amp; git commit -m "message" &amp;&amp; git push</code></li>
+          <li>Le résultat est affiché dans le <a href="#log-de-deploiement">log de déploiement</a></li>
+          <li>Le statut et la date sont sauvegardés dans le registre (<code>deploys.git</code>)</li>
+        </ol>
+
+        <!-- ========== LOG DE DÉPLOIEMENT ========== -->
+
+        <h2 id="log-de-deploiement">Log de déploiement</h2>
+        <p>Une <strong>zone de texte</strong> située en bas du dropdown affiche la sortie du script de déploiement en temps réel.</p>
+        <ul>
+          <li><strong>Scrollable</strong> — permet de consulter l'intégralité de la sortie</li>
+          <li><strong>Fond sombre</strong> — style terminal pour une meilleure lisibilité</li>
+          <li><strong>Persistant</strong> — le contenu reste visible pendant toute la session</li>
+        </ul>
+        <p>Le log affiche à la fois la sortie standard (<code>stdout</code>) et les erreurs (<code>stderr</code>) du processus exécuté.</p>
+
+        <!-- ========== INDICATEURS DE STATUT ========== -->
+
+        <h2 id="indicateurs-de-statut">Indicateurs de statut</h2>
+        <p>Chaque carte de déploiement affiche un <strong>indicateur visuel</strong> de l'état du dernier déploiement :</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Indicateur</th>
+              <th>Signification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Point vert</strong></td>
+              <td>Le dernier déploiement s'est terminé avec succès</td>
+            </tr>
+            <tr>
+              <td><strong>Point rouge</strong></td>
+              <td>Le dernier déploiement a échoué, ou l'environnement n'a jamais été déployé</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>La <strong>date du dernier déploiement</strong> est affichée au format lisible :</p>
+        <ul>
+          <li>Format relatif pour les déploiements récents (ex : <em>il y a 2 heures</em>)</li>
+          <li>Date complète pour les déploiements plus anciens (ex : <em>6 mars 2026 à 14:30</em>)</li>
+        </ul>
+
+        <!-- ========== CONFIGURATION REQUISE ========== -->
+
+        <h2 id="configuration-requise">Configuration requise</h2>
+        <p>Le déploiement nécessite un fichier <code>.deploy.env</code> à la racine du projet. Créez-le depuis le template <code>.deploy.env.example</code>.</p>
+
+        <h3>Variables de production</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Description</th>
+              <th>Exemple</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>PROD_HOST</code></td>
+              <td>Adresse IP ou nom de domaine du serveur</td>
+              <td><code>92.113.28.181</code></td>
+            </tr>
+            <tr>
+              <td><code>PROD_PORT</code></td>
+              <td>Port SSH du serveur</td>
+              <td><code>65002</code></td>
+            </tr>
+            <tr>
+              <td><code>PROD_USER</code></td>
+              <td>Utilisateur SSH</td>
+              <td><code>u937866772</code></td>
+            </tr>
+            <tr>
+              <td><code>PROD_PATH</code></td>
+              <td>Chemin distant vers le répertoire public</td>
+              <td><code>/home/u937866772/domains/.../public_html/</code></td>
+            </tr>
+            <tr>
+              <td><code>PROD_URL</code></td>
+              <td>URL publique du site en production</td>
+              <td><code>https://mon-site.com</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>La même structure s'applique pour la pré-production avec le préfixe <code>PREPROD_</code> (<code>PREPROD_HOST</code>, <code>PREPROD_PORT</code>, <code>PREPROD_USER</code>, <code>PREPROD_PATH</code>, <code>PREPROD_URL</code>).</p>
+
+        <h3>Clé SSH</h3>
+        <p>Une clé SSH <strong>ed25519 sans mot de passe</strong> est recommandée pour permettre le déploiement automatisé sans intervention manuelle :</p>
+<pre><code>ssh-keygen -t ed25519 -C "deploy@mon-site.com" -f ~/.ssh/id_ed25519 -N ""</code></pre>
+        <p>Ajoutez la clé publique au fichier <code>~/.ssh/authorized_keys</code> du serveur distant.</p>
+
+        <h3>Script deploy.sh</h3>
+        <p>Le script <code>deploy.sh</code> doit être exécutable :</p>
+<pre><code>chmod +x deploy.sh</code></pre>
+
+        <!-- ========== MODULE JS ========== -->
+
+        <h2 id="module-js">Module JS</h2>
+        <p>L'interface de déploiement est gérée par le module <code>builder-publish.js</code>. Il expose ses méthodes via l'objet global <code>window.BuilderPublish</code>.</p>
+
+        <h3>API utilisées</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Méthode</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>BuilderAPI.deploy(target)</code></td>
+              <td>Lance le déploiement vers la cible spécifiée (<code>"prod"</code> ou <code>"preprod"</code>). Retourne une promesse avec le résultat du script.</td>
+            </tr>
+            <tr>
+              <td><code>BuilderAPI.gitPush(message)</code></td>
+              <td>Exécute un commit &amp; push avec le message fourni. Retourne une promesse avec le résultat de la commande Git.</td>
+            </tr>
+            <tr>
+              <td><code>BuilderAPI.deployConfig()</code></td>
+              <td>Récupère la configuration de déploiement (URLs, statuts, dates des derniers déploiements).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Exemple d'utilisation</h3>
+<pre><code>// Déployer en production
+BuilderAPI.deploy('prod').then(result => {
+  console.log('Déploiement terminé :', result);
+});
+
+// Commit & push
+BuilderAPI.gitPush('Mise à jour du header').then(result => {
+  console.log('Push terminé :', result);
+});
+
+// Récupérer la config de déploiement
+BuilderAPI.deployConfig().then(config => {
+  console.log('Dernier déploiement prod :', config.deploys.prod);
+});</code></pre>
+
+        <h3>Module source</h3>
+        <p>Le fichier source du module est <code>builder-publish.js</code>. Il est chargé par le Builder et initialisé automatiquement lorsque le dropdown de publication est ouvert.</p>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

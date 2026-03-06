@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder — Bibliothèque — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+  <div data-component="header" data-site-name="SiteSystem" data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-library"></nav>
+      <main class="docs-content">
+        <h1>Builder &mdash; Biblioth&egrave;que</h1>
+        <p>
+          La biblioth&egrave;que regroupe 5 sous-panels accessibles depuis la sidebar du builder. Chaque panel offre un acc&egrave;s rapide aux ressources du framework.
+        </p>
+
+        <h2>Ic&ocirc;nes</h2>
+        <p>324 ic&ocirc;nes Heroicons disponibles en deux variantes : <strong>outline</strong> et <strong>solid</strong>.</p>
+        <ul>
+          <li>Toggle <strong>outline/solid</strong> en haut du panel pour changer la variante affich&eacute;e</li>
+          <li>Recherche en temps r&eacute;el par nom d'ic&ocirc;ne</li>
+          <li>Grille d'ic&ocirc;nes avec le nom affich&eacute; sous chaque ic&ocirc;ne</li>
+          <li>Clic sur une ic&ocirc;ne &rarr; copie le code HTML dans le presse-papier&nbsp;:</li>
+        </ul>
+<pre><code>&lt;span data-icon="nom" data-icon-type="outline" data-icon-size="24"&gt;&lt;/span&gt;</code></pre>
+        <ul>
+          <li>Les SVG sont charg&eacute;s depuis <code>/assets/icons/</code> et mis en cache c&ocirc;t&eacute; client</li>
+          <li>API utilis&eacute;e : <code>BuilderAPI.iconsList()</code></li>
+        </ul>
+
+        <h2>Composants</h2>
+        <p>Affiche les composants r&eacute;utilisables du framework (header, footer, card, etc.).</p>
+        <ul>
+          <li>Chaque composant est pr&eacute;sent&eacute; avec son code HTML d'utilisation</li>
+          <li>Clic &rarr; copie le code du composant dans le presse-papier</li>
+          <li>Les composants utilisent le syst&egrave;me de slots (<code>data-component</code>, <code>&lt;template data-slot&gt;</code>)</li>
+        </ul>
+
+        <h2>&Eacute;l&eacute;ments</h2>
+        <p>Catalogue d'&eacute;l&eacute;ments HTML interactifs du framework.</p>
+        <ul>
+          <li>Boutons, cartes, badges, tooltips, popups, accord&eacute;ons, tabs, etc.</li>
+          <li>Chaque &eacute;l&eacute;ment est pr&eacute;sent&eacute; avec un aper&ccedil;u et son code HTML</li>
+          <li>Clic &rarr; copie le snippet HTML</li>
+        </ul>
+
+        <h2>Animations</h2>
+        <p>Configurateur d'animations scroll et click.</p>
+        <ul>
+          <li>Types disponibles : <code>fade-in</code>, <code>fade-in-up</code>, <code>fade-in-down</code>, <code>fade-in-left</code>, <code>fade-in-right</code>, <code>zoom-in</code>, <code>slide-in</code>, etc.</li>
+          <li>Param&egrave;tres configurables : type d'animation, d&eacute;lai, dur&eacute;e</li>
+          <li>G&eacute;n&egrave;re les attributs <code>data-*</code> &agrave; copier sur un &eacute;l&eacute;ment HTML</li>
+          <li>Classes CSS : <code>anim-fade-in-up</code>, <code>anim-click-ripple</code>, <code>anim-click-pulse</code>, etc.</li>
+          <li>Clic &rarr; copie les attributs g&eacute;n&eacute;r&eacute;s</li>
+        </ul>
+
+        <h2>M&eacute;diath&egrave;que</h2>
+        <p>Gestionnaire de fichiers images du site.</p>
+        <ul>
+          <li>Upload par drag &amp; drop ou s&eacute;lection de fichier</li>
+          <li>Upload en base64 via l'API (<code>BuilderAPI.mediaUpload</code>)</li>
+          <li>Grille d'images avec pr&eacute;visualisation miniature</li>
+          <li>Recherche par nom de fichier</li>
+          <li>Suppression avec confirmation modale</li>
+          <li>Int&eacute;gration avec l'&eacute;diteur : le bouton &laquo;&nbsp;Parcourir&nbsp;&raquo; dans les propri&eacute;t&eacute;s d'une image ouvre un picker m&eacute;dias</li>
+          <li>Le picker m&eacute;dias affiche la m&ecirc;me grille et permet de s&eacute;lectionner une image pour remplir le champ <code>src</code></li>
+          <li>Formats support&eacute;s : JPG, PNG, GIF, SVG, WebP</li>
+          <li>Les fichiers sont stock&eacute;s dans <code>/assets/images/</code> (ou <code>/data/media/</code>)</li>
+        </ul>
+
+        <h2>Module JS</h2>
+        <p><code>builder-library.js</code> g&egrave;re les 5 sous-panels.</p>
+        <ul>
+          <li>Expos&eacute; via <code>window.BuilderLibrary.refresh(panelId)</code></li>
+          <li>Le <code>panelId</code> correspond &agrave;&nbsp;:</li>
+        </ul>
+        <table>
+          <tr><th>Panel ID</th><th>Description</th></tr>
+          <tr><td><code>lib-wireframes</code></td><td>Wireframes</td></tr>
+          <tr><td><code>lib-icons</code></td><td>Ic&ocirc;nes</td></tr>
+          <tr><td><code>lib-components</code></td><td>Composants</td></tr>
+          <tr><td><code>lib-elements</code></td><td>&Eacute;l&eacute;ments</td></tr>
+          <tr><td><code>lib-animations</code></td><td>Animations</td></tr>
+          <tr><td><code>lib-media</code></td><td>M&eacute;diath&egrave;que</td></tr>
+        </table>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

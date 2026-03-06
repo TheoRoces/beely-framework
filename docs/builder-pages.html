@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder — Pages — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+  <div data-component="header" data-site-name="SiteSystem" data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-pages"></nav>
+      <main class="docs-content">
+        <h1>Builder &mdash; Gestion des pages</h1>
+        <p>
+          Le panneau <strong>Pages</strong> du Builder affiche un arbre hi&eacute;rarchique de toutes les pages HTML du site. Il permet de cr&eacute;er, renommer, supprimer, dupliquer et organiser les pages, ainsi que de g&eacute;rer leurs m&eacute;tadonn&eacute;es (SEO, statut, code personnalis&eacute;, etc.).
+        </p>
+
+        <h2>Vue d'ensemble</h2>
+        <p>
+          Le panneau Pages est accessible depuis la barre lat&eacute;rale gauche du Builder. Il pr&eacute;sente l'ensemble des pages du site sous forme d'arbre hi&eacute;rarchique, refl&eacute;tant la structure de dossiers du projet. Chaque page est un fichier <code>.html</code> r&eacute;f&eacute;renc&eacute; dans le registre <code>pages.json</code>.
+        </p>
+        <p>
+          Double-cliquez sur une page pour l'ouvrir dans l'&eacute;diteur canvas. S&eacute;lectionnez une page (simple clic) pour afficher son panneau de m&eacute;tadonn&eacute;es &agrave; droite.
+        </p>
+
+        <h2>Arbre hi&eacute;rarchique</h2>
+        <p>
+          Les pages sont affich&eacute;es dans une arborescence qui refl&egrave;te la structure de dossiers du site. La hi&eacute;rarchie parent/enfant est auto-d&eacute;tect&eacute;e &agrave; partir du syst&egrave;me de fichiers :
+        </p>
+        <ul>
+          <li><code>index.html</code> &mdash; page racine</li>
+          <li><code>blog.html</code> &mdash; page parente</li>
+          <li><code>blog/article.html</code> &mdash; page enfant de <code>blog.html</code></li>
+          <li><code>services.html</code> &mdash; page parente</li>
+          <li><code>services/consulting.html</code> &mdash; page enfant de <code>services.html</code></li>
+        </ul>
+        <p>
+          L'ordre d'affichage peut &ecirc;tre personnalis&eacute; via le champ <strong>Ordre</strong> dans les m&eacute;tadonn&eacute;es de chaque page. La page parente peut &eacute;galement &ecirc;tre modifi&eacute;e manuellement via le champ <strong>Page parente</strong>.
+        </p>
+
+        <h2>Op&eacute;rations CRUD</h2>
+
+        <h3>Cr&eacute;er une page</h3>
+        <p>
+          Cliquez sur le bouton <strong>+</strong> dans le header du panneau. Une modale appara&icirc;t pour saisir le nom du fichier. L'extension <code>.html</code> est ajout&eacute;e automatiquement si elle n'est pas pr&eacute;cis&eacute;e. La nouvelle page est cr&eacute;&eacute;e &agrave; partir du template <code>base-index.html</code>.
+        </p>
+<pre><code>// Exemple : saisir "contact" cr&eacute;e le fichier contact.html
+// Exemple : saisir "services/consulting" cr&eacute;e le fichier services/consulting.html</code></pre>
+
+        <h3>Renommer une page</h3>
+        <p>
+          Clic droit sur une page ou bouton <strong>Renommer</strong> dans le menu contextuel. Une modale permet de saisir le nouveau nom. Le fichier HTML est renomm&eacute; sur le disque et l'entr&eacute;e du registre <code>pages.json</code> est mise &agrave; jour.
+        </p>
+
+        <h3>Supprimer une page</h3>
+        <p>
+          Clic droit sur une page ou bouton <strong>Supprimer</strong>. Une modale de confirmation appara&icirc;t. La suppression entra&icirc;ne :
+        </p>
+        <ul>
+          <li>La suppression du fichier HTML du disque</li>
+          <li>La suppression de l'entr&eacute;e correspondante dans <code>pages.json</code></li>
+        </ul>
+        <p>Les pages en <strong>lecture seule</strong> (<code>readOnly</code>) ne peuvent pas &ecirc;tre supprim&eacute;es.</p>
+
+        <h3>Dupliquer une page</h3>
+        <p>
+          Cr&eacute;e une copie du fichier HTML avec un nouveau nom. Le contenu est dupliqu&eacute; &agrave; l'identique, et une nouvelle entr&eacute;e est ajout&eacute;e au registre avec les m&ecirc;mes m&eacute;tadonn&eacute;es (sauf le slug et le chemin, qui sont adapt&eacute;s au nouveau nom).
+        </p>
+
+        <h2>&Eacute;dition d'une page</h2>
+        <p>
+          <strong>Double-cliquez</strong> sur une page dans l'arbre pour l'ouvrir dans l'&eacute;diteur canvas du Builder. L'&eacute;diteur charge le HTML de la page et permet de modifier visuellement les sections, composants et contenus.
+        </p>
+
+        <h2>Panneau de m&eacute;tadonn&eacute;es</h2>
+        <p>
+          Quand une page est s&eacute;lectionn&eacute;e (simple clic), un panneau de m&eacute;tadonn&eacute;es s'affiche &agrave; droite. Il contient les champs suivants :
+        </p>
+
+        <table>
+          <tr><th>Champ</th><th>Type</th><th>Description</th></tr>
+          <tr><td><strong>Titre de la page</strong></td><td>Texte</td><td>Titre affich&eacute; de la page (balise <code>&lt;title&gt;</code>)</td></tr>
+          <tr><td><strong>Chemin du fichier</strong></td><td>Lecture seule</td><td>Chemin relatif du fichier HTML (ex : <code>blog/article.html</code>)</td></tr>
+          <tr><td><strong>Slug</strong></td><td>Texte</td><td>URL propre de la page (ex : <code>/blog/article</code>)</td></tr>
+          <tr><td><strong>Meta title</strong></td><td>Texte</td><td>Titre SEO (balise <code>&lt;meta name="title"&gt;</code>). Surcharge le titre de la page pour les moteurs de recherche.</td></tr>
+          <tr><td><strong>Meta description</strong></td><td>Texte</td><td>Description SEO (balise <code>&lt;meta name="description"&gt;</code>). R&eacute;sum&eacute; affich&eacute; dans les r&eacute;sultats de recherche.</td></tr>
+          <tr><td><strong>Image &agrave; la une</strong></td><td>Fichier</td><td>Image principale de la page (Open Graph, partage social, aper&ccedil;u).</td></tr>
+          <tr><td><strong>Statut</strong></td><td>Select</td><td><code>published</code> (publi&eacute;e) ou <code>draft</code> (brouillon). Les pages en brouillon ne sont pas accessibles publiquement.</td></tr>
+          <tr><td><strong>noindex</strong></td><td>Checkbox</td><td>Cochez pour ajouter <code>&lt;meta name="robots" content="noindex"&gt;</code> et exclure la page des moteurs de recherche.</td></tr>
+          <tr><td><strong>Ordre</strong></td><td>Nombre</td><td>Position de la page dans l'arbre hi&eacute;rarchique. Les pages sont tri&eacute;es par ordre croissant.</td></tr>
+          <tr><td><strong>Page parente</strong></td><td>Select</td><td>S&eacute;lectionnez une page parente parmi toutes les pages disponibles. Permet de r&eacute;organiser la hi&eacute;rarchie manuellement.</td></tr>
+          <tr><td><strong>Code personnalis&eacute; &lt;head&gt;</strong></td><td>Textarea</td><td>Zone de texte extensible pour injecter du HTML personnalis&eacute; dans la balise <code>&lt;head&gt;</code> (CSS, scripts, balises meta suppl&eacute;mentaires).</td></tr>
+          <tr><td><strong>Code personnalis&eacute; &lt;body&gt;</strong></td><td>Textarea</td><td>Zone de texte extensible pour injecter du HTML personnalis&eacute; avant la balise <code>&lt;/body&gt;</code> (scripts de tracking, widgets, etc.).</td></tr>
+        </table>
+
+        <h2>Pages en lecture seule</h2>
+        <p>
+          Certaines pages sont marqu&eacute;es comme <code>readOnly</code> dans le registre. Ces pages sont prot&eacute;g&eacute;es et ne peuvent pas &ecirc;tre :
+        </p>
+        <ul>
+          <li>Supprim&eacute;es</li>
+          <li>Renomm&eacute;es</li>
+        </ul>
+        <p>
+          Les pages en lecture seule restent &eacute;ditables dans le canvas (leur contenu peut &ecirc;tre modifi&eacute;), mais leur fichier et leurs m&eacute;tadonn&eacute;es structurelles sont prot&eacute;g&eacute;s. Cela concerne typiquement les pages syst&egrave;me comme <code>404.html</code>, <code>mentions-legales.html</code> ou <code>confidentialite.html</code>.
+        </p>
+
+        <h2>Pages template</h2>
+        <p>
+          Les pages marqu&eacute;es <code>isTemplate</code> sont situ&eacute;es dans des dossiers template. Elles servent de mod&egrave;le pour la cr&eacute;ation de nouvelles pages. Par exemple, <code>base-index.html</code> est utilis&eacute; comme template par d&eacute;faut lors de la cr&eacute;ation d'une nouvelle page.
+        </p>
+        <p>
+          Les pages template apparaissent dans l'arbre avec un indicateur visuel distinct et ne sont pas publi&eacute;es sur le site final.
+        </p>
+
+        <h2>Registre <code>pages.json</code></h2>
+        <p>
+          Le fichier <code>pages.json</code> est le registre central qui stocke toutes les m&eacute;tadonn&eacute;es des pages du site. Il est synchronis&eacute; automatiquement avec le syst&egrave;me de fichiers : si un fichier HTML est ajout&eacute; ou supprim&eacute; manuellement, le registre est mis &agrave; jour au prochain chargement.
+        </p>
+
+        <h3>Structure du registre</h3>
+<pre><code>{
+  "pages": [
+    {
+      "title": "Accueil",
+      "path": "index.html",
+      "slug": "/",
+      "metaTitle": "Mon Site &mdash; Accueil",
+      "metaDescription": "Bienvenue sur notre site.",
+      "featuredImage": "assets/images/hero.jpg",
+      "status": "published",
+      "noindex": false,
+      "order": 1,
+      "parent": null,
+      "customHead": "",
+      "customBody": "",
+      "readOnly": false,
+      "isTemplate": false
+    },
+    {
+      "title": "Blog",
+      "path": "blog.html",
+      "slug": "/blog",
+      "metaTitle": "Blog &mdash; Mon Site",
+      "metaDescription": "Tous nos articles.",
+      "featuredImage": "",
+      "status": "published",
+      "noindex": false,
+      "order": 2,
+      "parent": null,
+      "customHead": "",
+      "customBody": "",
+      "readOnly": false,
+      "isTemplate": false
+    },
+    {
+      "title": "Article exemple",
+      "path": "blog/article.html",
+      "slug": "/blog/article",
+      "metaTitle": "",
+      "metaDescription": "",
+      "featuredImage": "",
+      "status": "draft",
+      "noindex": false,
+      "order": 1,
+      "parent": "blog.html",
+      "customHead": "",
+      "customBody": "",
+      "readOnly": false,
+      "isTemplate": false
+    }
+  ]
+}</code></pre>
+
+        <h3>Propri&eacute;t&eacute;s du registre</h3>
+        <table>
+          <tr><th>Propri&eacute;t&eacute;</th><th>Type</th><th>Description</th></tr>
+          <tr><td><code>title</code></td><td>String</td><td>Titre de la page</td></tr>
+          <tr><td><code>path</code></td><td>String</td><td>Chemin relatif du fichier HTML</td></tr>
+          <tr><td><code>slug</code></td><td>String</td><td>URL propre</td></tr>
+          <tr><td><code>metaTitle</code></td><td>String</td><td>Titre SEO (override)</td></tr>
+          <tr><td><code>metaDescription</code></td><td>String</td><td>Description SEO (override)</td></tr>
+          <tr><td><code>featuredImage</code></td><td>String</td><td>Chemin de l'image &agrave; la une</td></tr>
+          <tr><td><code>status</code></td><td>String</td><td><code>published</code> ou <code>draft</code></td></tr>
+          <tr><td><code>noindex</code></td><td>Boolean</td><td>Exclure des moteurs de recherche</td></tr>
+          <tr><td><code>order</code></td><td>Number</td><td>Position dans l'arbre</td></tr>
+          <tr><td><code>parent</code></td><td>String|null</td><td>Chemin de la page parente</td></tr>
+          <tr><td><code>customHead</code></td><td>String</td><td>Code HTML inject&eacute; dans <code>&lt;head&gt;</code></td></tr>
+          <tr><td><code>customBody</code></td><td>String</td><td>Code HTML inject&eacute; avant <code>&lt;/body&gt;</code></td></tr>
+          <tr><td><code>readOnly</code></td><td>Boolean</td><td>Page prot&eacute;g&eacute;e (non supprimable/renommable)</td></tr>
+          <tr><td><code>isTemplate</code></td><td>Boolean</td><td>Page servant de mod&egrave;le</td></tr>
+        </table>
+
+        <h2>Module JavaScript</h2>
+        <p>
+          La logique du panneau Pages est g&eacute;r&eacute;e par le module <code>builder-pages.js</code>. Ce module est responsable de :
+        </p>
+        <ul>
+          <li>L'affichage et la mise &agrave; jour de l'arbre hi&eacute;rarchique</li>
+          <li>Les op&eacute;rations CRUD (cr&eacute;ation, renommage, suppression, duplication)</li>
+          <li>La synchronisation du registre <code>pages.json</code> avec le syst&egrave;me de fichiers</li>
+          <li>L'affichage et la sauvegarde du panneau de m&eacute;tadonn&eacute;es</li>
+          <li>La gestion du drag &amp; drop pour r&eacute;organiser l'arbre</li>
+          <li>La d&eacute;tection automatique de la hi&eacute;rarchie parent/enfant</li>
+        </ul>
+
+        <h2>Voir aussi</h2>
+        <ul>
+          <li><a href="getting-started.html">D&eacute;marrer un projet</a></li>
+          <li><a href="components.html">Composants</a></li>
+          <li><a href="wireframes.html">Wireframes</a></li>
+        </ul>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

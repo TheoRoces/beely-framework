@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder — Configurateur — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+  <div data-component="header" data-site-name="SiteSystem" data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-configurator"></nav>
+
+      <main class="docs-content">
+        <h1>Builder &mdash; Configurateur</h1>
+        <p>
+          Le configurateur permet de modifier les fichiers de configuration du site directement depuis l&rsquo;interface du builder, sans &eacute;diter manuellement les fichiers.
+        </p>
+
+        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
+          <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
+          <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
+            <li><a href="#integration">Int&eacute;gration dans le builder</a> &mdash; chargement, styles, scripts</li>
+            <li><a href="#fichiers-configurables">Fichiers configurables</a> &mdash; config-site.js, .env, .deploy.env</li>
+            <li><a href="#site-config">SITE_CONFIG</a> &mdash; nom du site, favicon, domaines</li>
+            <li><a href="#cookies-config">COOKIES_CONFIG</a> &mdash; IDs analytics et tracking</li>
+            <li><a href="#blog-config">BLOG_CONFIG</a> &mdash; table Baserow, proxy, affichage</li>
+            <li><a href="#legal-config">LEGAL_CONFIG</a> &mdash; mentions l&eacute;gales et RGPD</li>
+            <li><a href="#env">Variables d&rsquo;environnement (.env)</a> &mdash; tokens, webhooks, credentials</li>
+            <li><a href="#deploy-env">Configuration de d&eacute;ploiement (.deploy.env)</a> &mdash; SSH prod et preprod</li>
+            <li><a href="#sauvegarde">Sauvegarde</a> &mdash; API backend, s&eacute;curit&eacute;</li>
+          </ol>
+        </div>
+
+        <!-- ========== INTÉGRATION ========== -->
+
+        <h2 id="integration">Int&eacute;gration dans le builder</h2>
+        <p>
+          Le configurateur est int&eacute;gr&eacute; nativement dans le builder &mdash; il ne s&rsquo;agit pas d&rsquo;un iframe s&eacute;par&eacute;.
+          Le fichier <code>configurator.html</code> est charg&eacute; et inject&eacute; dans le DOM du builder au moment o&ugrave; l&rsquo;utilisateur acc&egrave;de au panel de configuration.
+        </p>
+        <ul>
+          <li>Les <strong>styles sont scop&eacute;s</strong> pour &eacute;viter les conflits avec le reste du builder</li>
+          <li>Les <strong>scripts sont ex&eacute;cut&eacute;s</strong> dans le contexte du builder (acc&egrave;s au DOM principal)</li>
+          <li>Module JS : <code>builder-configurator.js</code></li>
+        </ul>
+
+        <!-- ========== FICHIERS CONFIGURABLES ========== -->
+
+        <h2 id="fichiers-configurables">Fichiers configurables</h2>
+        <p>Le configurateur permet de modifier trois fichiers de configuration distincts :</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Fichier</th>
+              <th>Description</th>
+              <th>Visibilit&eacute;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>config-site.js</code></td>
+              <td>Configuration principale du site</td>
+              <td>Public (c&ocirc;t&eacute; client)</td>
+            </tr>
+            <tr>
+              <td><code>.env</code></td>
+              <td>Variables d&rsquo;environnement sensibles (tokens API, webhooks)</td>
+              <td>Priv&eacute; (serveur uniquement)</td>
+            </tr>
+            <tr>
+              <td><code>.deploy.env</code></td>
+              <td>Configuration SSH pour le d&eacute;ploiement</td>
+              <td>Priv&eacute; (serveur uniquement)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ========== SITE_CONFIG ========== -->
+
+        <h2 id="site-config">SITE_CONFIG <small>(config-site.js)</small></h2>
+        <p>Configuration g&eacute;n&eacute;rale du site, d&eacute;finie dans l&rsquo;objet <code>window.SITE_CONFIG</code>.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Propri&eacute;t&eacute;</th>
+              <th>Description</th>
+              <th>Exemple</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>name</code></td>
+              <td>Nom du site</td>
+              <td><code>"Mon Site"</code></td>
+            </tr>
+            <tr>
+              <td><code>favicon</code></td>
+              <td>Chemin vers le favicon</td>
+              <td><code>"assets/favicon.ico"</code></td>
+            </tr>
+            <tr>
+              <td><code>domains.prod</code></td>
+              <td>URL de production</td>
+              <td><code>"https://monsite.fr"</code></td>
+            </tr>
+            <tr>
+              <td><code>domains.preprod</code></td>
+              <td>URL de pr&eacute;-production</td>
+              <td><code>"https://preprod.monsite.fr"</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+<pre><code>window.SITE_CONFIG = {
+  name: 'Mon Site',
+  favicon: 'assets/favicon.ico',
+  domains: {
+    prod: 'https://monsite.fr',
+    preprod: 'https://preprod.monsite.fr'
+  }
+};</code></pre>
+
+        <!-- ========== COOKIES_CONFIG ========== -->
+
+        <h2 id="cookies-config">COOKIES_CONFIG <small>(config-site.js)</small></h2>
+        <p>Identifiants des services de tracking et analytics, inject&eacute;s uniquement apr&egrave;s consentement RGPD.</p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Propri&eacute;t&eacute;</th>
+              <th>Description</th>
+              <th>Format</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>googleAnalytics</code></td>
+              <td>ID Google Analytics (GA4)</td>
+              <td><code>G-XXXXXXXXXX</code></td>
+            </tr>
+            <tr>
+              <td><code>googleTagManager</code></td>
+              <td>ID Google Tag Manager</td>
+              <td><code>GTM-XXXXXXX</code></td>
+            </tr>
+            <tr>
+              <td><code>facebookPixel</code></td>
+              <td>ID Facebook Pixel</td>
+              <td><code>123456789012345</code></td>
+            </tr>
+            <tr>
+              <td><code>hotjar</code></td>
+              <td>ID Hotjar</td>
+              <td><code>1234567</code></td>
+            </tr>
+            <tr>
+              <td><code>clarity</code></td>
+              <td>ID Microsoft Clarity</td>
+              <td><code>xxxxxxxxxx</code></td>
+            </tr>
+            <tr>
+              <td><code>linkedinInsight</code></td>
+              <td>ID LinkedIn Insight Tag</td>
+              <td><code>123456</code></td>
+            </tr>
+            <tr>
+              <td><code>tiktokPixel</code></td>
+              <td>ID TikTok Pixel</td>
+              <td><code>XXXXXXXXXX</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ========== BLOG_CONFIG ========== -->
+
+        <h2 id="blog-config">BLOG_CONFIG <small>(config-site.js)</small></h2>
+        <p>Configuration du blog dynamique connect&eacute; &agrave; Baserow (headless CMS).</p>
+
+        <h3>Connexion Baserow</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Propri&eacute;t&eacute;</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>baserow.tableId</code></td>
+              <td>ID de la table Baserow contenant les articles</td>
+            </tr>
+            <tr>
+              <td><code>baserow.proxyUrl</code></td>
+              <td>URL du proxy PHP &mdash; <code>/api/baserow.php</code> (le token API reste c&ocirc;t&eacute; serveur)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Options d&rsquo;affichage</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Propri&eacute;t&eacute;</th>
+              <th>Description</th>
+              <th>D&eacute;faut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>display.postsPerPage</code></td>
+              <td>Nombre d&rsquo;articles par page</td>
+              <td><code>9</code></td>
+            </tr>
+            <tr>
+              <td><code>display.showCategories</code></td>
+              <td>Afficher les cat&eacute;gories</td>
+              <td><code>true</code></td>
+            </tr>
+            <tr>
+              <td><code>display.showReadTime</code></td>
+              <td>Afficher le temps de lecture</td>
+              <td><code>true</code></td>
+            </tr>
+          </tbody>
+        </table>
+
+<pre><code>window.BLOG_CONFIG = {
+  baserow: {
+    tableId: 12345,
+    proxyUrl: '/api/baserow.php'
+  },
+  display: {
+    postsPerPage: 9,
+    showCategories: true,
+    showReadTime: true
+  }
+};</code></pre>
+
+        <!-- ========== LEGAL_CONFIG ========== -->
+
+        <h2 id="legal-config">LEGAL_CONFIG <small>(config-site.js)</small></h2>
+        <p>
+          Informations l&eacute;gales utilis&eacute;es pour g&eacute;n&eacute;rer automatiquement les pages
+          <code>mentions-legales.html</code> et <code>confidentialite.html</code>.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Propri&eacute;t&eacute;</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>companyName</code></td>
+              <td>Raison sociale de l&rsquo;entreprise</td>
+            </tr>
+            <tr>
+              <td><code>companyType</code></td>
+              <td>Forme juridique (SAS, SARL, auto-entrepreneur&hellip;)</td>
+            </tr>
+            <tr>
+              <td><code>address</code></td>
+              <td>Adresse du si&egrave;ge social</td>
+            </tr>
+            <tr>
+              <td><code>email</code></td>
+              <td>Email de contact</td>
+            </tr>
+            <tr>
+              <td><code>phone</code></td>
+              <td>Num&eacute;ro de t&eacute;l&eacute;phone</td>
+            </tr>
+            <tr>
+              <td><code>siret</code></td>
+              <td>Num&eacute;ro SIRET</td>
+            </tr>
+            <tr>
+              <td><code>tvaNumber</code></td>
+              <td>Num&eacute;ro de TVA intracommunautaire</td>
+            </tr>
+            <tr>
+              <td><code>capitalSocial</code></td>
+              <td>Capital social</td>
+            </tr>
+            <tr>
+              <td><code>hostingProvider</code></td>
+              <td>Nom de l&rsquo;h&eacute;bergeur</td>
+            </tr>
+            <tr>
+              <td><code>hostingAddress</code></td>
+              <td>Adresse de l&rsquo;h&eacute;bergeur</td>
+            </tr>
+            <tr>
+              <td><code>dpoEmail</code></td>
+              <td>Email du d&eacute;l&eacute;gu&eacute; &agrave; la protection des donn&eacute;es (DPO)</td>
+            </tr>
+          </tbody>
+        </table>
+
+<pre><code>window.LEGAL_CONFIG = {
+  companyName: 'Ma Soci&eacute;t&eacute;',
+  companyType: 'SAS',
+  address: '123 rue de Paris, 75001 Paris',
+  email: 'contact@monsite.fr',
+  phone: '+33 1 23 45 67 89',
+  siret: '123 456 789 00010',
+  tvaNumber: 'FR12345678901',
+  capitalSocial: '10 000 &euro;',
+  hostingProvider: 'Hostinger',
+  hostingAddress: 'Kaunas, Lituanie',
+  dpoEmail: 'dpo@monsite.fr'
+};</code></pre>
+
+        <!-- ========== .ENV ========== -->
+
+        <h2 id="env">Variables d&rsquo;environnement <small>(.env)</small></h2>
+        <p>
+          Fichier <code>.env</code> &agrave; la racine du projet. Contient les tokens et credentials sensibles.
+          Ce fichier n&rsquo;est <strong>jamais commit&eacute;</strong> ni <strong>jamais d&eacute;ploy&eacute;</strong> (prot&eacute;g&eacute; par <code>.gitignore</code>, <code>.rsync-exclude</code> et <code>.htaccess</code>).
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>BASEROW_TOKEN</code></td>
+              <td>Token API Baserow (lecture seule) &mdash; utilis&eacute; par <code>api/baserow.php</code></td>
+            </tr>
+            <tr>
+              <td><code>FORM_WEBHOOK_URL</code></td>
+              <td>URL du webhook Make.com pour les formulaires</td>
+            </tr>
+            <tr>
+              <td><code>FORM_NOTIFICATION_EMAIL</code></td>
+              <td>Email de notification &agrave; la r&eacute;ception d&rsquo;un formulaire</td>
+            </tr>
+            <tr>
+              <td><code>MAKE_API_KEY</code></td>
+              <td>Cl&eacute; API Make.com</td>
+            </tr>
+            <tr>
+              <td><code>MAKE_ZONE</code></td>
+              <td>Zone Make.com (ex : <code>eu1.make.com</code>)</td>
+            </tr>
+            <tr>
+              <td><code>MAKE_TEAM_ID</code></td>
+              <td>ID de l&rsquo;&eacute;quipe Make.com</td>
+            </tr>
+          </tbody>
+        </table>
+
+<pre><code># .env — ne jamais commiter ce fichier
+BASEROW_TOKEN=votre-token-baserow
+FORM_WEBHOOK_URL=https://hook.eu1.make.com/xxx
+FORM_NOTIFICATION_EMAIL=contact@monsite.fr
+MAKE_API_KEY=votre-cle-api
+MAKE_ZONE=eu1.make.com
+MAKE_TEAM_ID=12345</code></pre>
+
+        <!-- ========== .DEPLOY.ENV ========== -->
+
+        <h2 id="deploy-env">Configuration de d&eacute;ploiement <small>(.deploy.env)</small></h2>
+        <p>
+          Fichier <code>.deploy.env</code> &agrave; la racine du projet. Contient les coordonn&eacute;es SSH pour le d&eacute;ploiement via <code>deploy.sh</code>.
+          M&ecirc;me protection que <code>.env</code> : jamais commit&eacute;, jamais d&eacute;ploy&eacute;.
+        </p>
+
+        <h3>Production</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>PROD_HOST</code></td>
+              <td>Adresse IP ou hostname du serveur de production</td>
+            </tr>
+            <tr>
+              <td><code>PROD_PORT</code></td>
+              <td>Port SSH (g&eacute;n&eacute;ralement <code>22</code> ou <code>65002</code>)</td>
+            </tr>
+            <tr>
+              <td><code>PROD_USER</code></td>
+              <td>Nom d&rsquo;utilisateur SSH</td>
+            </tr>
+            <tr>
+              <td><code>PROD_PATH</code></td>
+              <td>Chemin absolu du r&eacute;pertoire distant</td>
+            </tr>
+            <tr>
+              <td><code>PROD_URL</code></td>
+              <td>URL publique du site en production</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Pr&eacute;-production</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Variable</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>PREPROD_HOST</code></td>
+              <td>Adresse IP ou hostname du serveur de pr&eacute;-production</td>
+            </tr>
+            <tr>
+              <td><code>PREPROD_PORT</code></td>
+              <td>Port SSH</td>
+            </tr>
+            <tr>
+              <td><code>PREPROD_USER</code></td>
+              <td>Nom d&rsquo;utilisateur SSH</td>
+            </tr>
+            <tr>
+              <td><code>PREPROD_PATH</code></td>
+              <td>Chemin absolu du r&eacute;pertoire distant</td>
+            </tr>
+            <tr>
+              <td><code>PREPROD_URL</code></td>
+              <td>URL publique du site en pr&eacute;-production</td>
+            </tr>
+          </tbody>
+        </table>
+
+<pre><code># .deploy.env — ne jamais commiter ce fichier
+PROD_HOST=92.113.28.181
+PROD_PORT=65002
+PROD_USER=u937866772
+PROD_PATH=/home/u937866772/domains/monsite.fr/public_html/
+PROD_URL=https://monsite.fr
+
+PREPROD_HOST=92.113.28.181
+PREPROD_PORT=65002
+PREPROD_USER=u937866772
+PREPROD_PATH=/home/u937866772/domains/preprod.monsite.fr/public_html/
+PREPROD_URL=https://preprod.monsite.fr</code></pre>
+
+        <!-- ========== SAUVEGARDE ========== -->
+
+        <h2 id="sauvegarde">Sauvegarde</h2>
+        <p>Le configurateur utilise l&rsquo;API backend du builder pour lire et &eacute;crire les fichiers de configuration.</p>
+
+        <ul>
+          <li>Chaque section dispose d&rsquo;un <strong>bouton &laquo;&nbsp;Sauvegarder&nbsp;&raquo;</strong> ind&eacute;pendant</li>
+          <li>Les fichiers sont &eacute;crits via l&rsquo;API backend : <code>BuilderAPI.cfgSave</code></li>
+          <li>La lecture se fait via <code>BuilderAPI.cfgRead</code></li>
+          <li>Les fichiers sensibles (<code>.env</code>, <code>.deploy.env</code>) ne sont <strong>jamais expos&eacute;s c&ocirc;t&eacute; client</strong> en dehors du builder local</li>
+        </ul>
+
+<pre><code>// Lecture d'un fichier de configuration
+const config = await BuilderAPI.cfgRead('config-site.js');
+
+// Sauvegarde apr&egrave;s modification
+await BuilderAPI.cfgSave('config-site.js', newContent);</code></pre>
+
+        <div style="background: var(--color-warning-bg, #fef3c7); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-warning-border, #f59e0b); margin-top: var(--space-6);">
+          <strong>S&eacute;curit&eacute;</strong><br>
+          Les fichiers <code>.env</code> et <code>.deploy.env</code> sont uniquement accessibles via le serveur Python local (port 5555).
+          Ils ne sont jamais commit&eacute;s dans git, jamais d&eacute;ploy&eacute;s via rsync, et prot&eacute;g&eacute;s par <code>.htaccess</code> c&ocirc;t&eacute; Apache.
+        </div>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

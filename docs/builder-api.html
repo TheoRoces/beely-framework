@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder — API Backend — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+  <div data-component="header" data-site-name="SiteSystem" data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-api"></nav>
+      <main class="docs-content">
+        <h1>Builder &mdash; API Backend</h1>
+        <p>
+          Le builder utilise un serveur Python l&eacute;ger (<code>configurator-server.py</code>) comme backend. Ce serveur ne d&eacute;pend d'aucune biblioth&egrave;que externe &mdash; il utilise uniquement la biblioth&egrave;que standard Python&nbsp;3.
+        </p>
+
+        <h2>Serveur Python</h2>
+        <table>
+          <tr><th>Propri&eacute;t&eacute;</th><th>Valeur</th></tr>
+          <tr><td>Fichier</td><td><code>configurator-server.py</code> (&agrave; la racine du projet)</td></tr>
+          <tr><td>Port</td><td><code>5555</code> (par d&eacute;faut)</td></tr>
+          <tr><td>Lancement</td><td><code>python3 configurator-server.py</code></td></tr>
+          <tr><td>D&eacute;pendances</td><td>Z&eacute;ro &mdash; utilise <code>http.server</code>, <code>json</code>, <code>os</code>, <code>subprocess</code> de la stdlib</td></tr>
+          <tr><td>Fichiers statiques</td><td>Sert les fichiers statiques ET g&egrave;re les endpoints POST</td></tr>
+          <tr><td>CORS</td><td>Activ&eacute; pour le d&eacute;veloppement local</td></tr>
+        </table>
+
+        <h2>Endpoints &mdash; Configuration</h2>
+        <table>
+          <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
+          <tr>
+            <td><code>/api/cfg-read</code></td>
+            <td>POST</td>
+            <td><code>{ file: "config-site.js" }</code></td>
+            <td><code>{ ok: true, content: "..." }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/cfg-save</code></td>
+            <td>POST</td>
+            <td><code>{ file: "config-site.js", content: "..." }</code></td>
+            <td><code>{ ok: true }</code></td>
+          </tr>
+        </table>
+        <p><strong>Note :</strong> Fichiers support&eacute;s : <code>config-site.js</code>, <code>.env</code>, <code>.deploy.env</code></p>
+
+        <h2>Endpoints &mdash; Pages</h2>
+        <table>
+          <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
+          <tr>
+            <td><code>/api/pages-list</code></td>
+            <td>POST</td>
+            <td><code>{}</code></td>
+            <td><code>{ ok: true, pages: [{ path, title, readOnly, isTemplate }] }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/page-read</code></td>
+            <td>POST</td>
+            <td><code>{ path: "index.html" }</code></td>
+            <td><code>{ ok: true, content: "&lt;!DOCTYPE..." }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/page-write</code></td>
+            <td>POST</td>
+            <td><code>{ path: "index.html", content: "..." }</code></td>
+            <td><code>{ ok: true }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/page-create</code></td>
+            <td>POST</td>
+            <td><code>{ filename: "contact.html" }</code></td>
+            <td><code>{ ok: true, path: "contact.html" }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/page-delete</code></td>
+            <td>POST</td>
+            <td><code>{ path: "contact.html" }</code></td>
+            <td><code>{ ok: true }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/page-rename</code></td>
+            <td>POST</td>
+            <td><code>{ path: "old.html", newName: "new.html" }</code></td>
+            <td><code>{ ok: true, newPath: "new.html" }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/page-duplicate</code></td>
+            <td>POST</td>
+            <td><code>{ path: "index.html", newName: "copie.html" }</code></td>
+            <td><code>{ ok: true, newPath: "copie.html" }</code></td>
+          </tr>
+        </table>
+
+        <h2>Endpoints &mdash; Contenu</h2>
+        <table>
+          <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
+          <tr>
+            <td><code>/api/wireframes-catalog</code></td>
+            <td>POST</td>
+            <td><code>{}</code></td>
+            <td><code>{ ok: true, categories: [{ slug, name, count, files }] }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/wireframe-read</code></td>
+            <td>POST</td>
+            <td><code>{ category: "heros", file: "hero-01.html" }</code></td>
+            <td><code>{ ok: true, content: "..." }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/icons-list</code></td>
+            <td>POST</td>
+            <td><code>{}</code></td>
+            <td><code>{ ok: true, icons: [{ name, outline, solid }] }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/media-list</code></td>
+            <td>POST</td>
+            <td><code>{}</code></td>
+            <td><code>{ ok: true, files: ["image.jpg", ...] }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/media-upload</code></td>
+            <td>POST</td>
+            <td><code>{ filename: "photo.jpg", data: "base64..." }</code></td>
+            <td><code>{ ok: true, path: "assets/images/photo.jpg" }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/media-delete</code></td>
+            <td>POST</td>
+            <td><code>{ filename: "photo.jpg" }</code></td>
+            <td><code>{ ok: true }</code></td>
+          </tr>
+        </table>
+
+        <h2>Endpoints &mdash; Registre</h2>
+        <table>
+          <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
+          <tr>
+            <td><code>/api/registry-read</code></td>
+            <td>POST</td>
+            <td><code>{}</code></td>
+            <td><code>{ ok: true, registry: { version, homepage, deploys, pages } }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/registry-write</code></td>
+            <td>POST</td>
+            <td><code>{ registry: {...} }</code></td>
+            <td><code>{ ok: true }</code></td>
+          </tr>
+        </table>
+
+        <h2>Endpoints &mdash; D&eacute;ploiement</h2>
+        <table>
+          <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
+          <tr>
+            <td><code>/api/deploy</code></td>
+            <td>POST</td>
+            <td><code>{ target: "prod" }</code></td>
+            <td><code>{ ok: true, output: "rsync output..." }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/git-push</code></td>
+            <td>POST</td>
+            <td><code>{ message: "commit message" }</code></td>
+            <td><code>{ ok: true, output: "git output..." }</code></td>
+          </tr>
+          <tr>
+            <td><code>/api/deploy-config</code></td>
+            <td>POST</td>
+            <td><code>{}</code></td>
+            <td><code>{ ok: true, prod: { configured, url }, preprod: { configured, url } }</code></td>
+          </tr>
+        </table>
+
+        <h2>Structure du registre (pages.json)</h2>
+        <p>Le fichier <code>pages.json</code> stocke la configuration de toutes les pages et l'&eacute;tat des d&eacute;ploiements :</p>
+<pre><code>{
+  "version": 1,
+  "homepage": "index.html",
+  "deploys": {
+    "prod": { "lastDeploy": "2026-03-06T12:00:00Z", "status": "success" },
+    "preprod": { "lastDeploy": null, "status": null },
+    "git": { "lastPush": "2026-03-06T12:00:00Z", "status": "success" }
+  },
+  "pages": {
+    "index.html": {
+      "title": "Accueil",
+      "slug": "index",
+      "metaTitle": "",
+      "metaDescription": "",
+      "featuredImage": "",
+      "status": "published",
+      "noindex": false,
+      "customHead": "",
+      "customBody": "",
+      "order": 0,
+      "parent": null,
+      "readOnly": false,
+      "isTemplate": false,
+      "createdAt": "2026-03-06T12:00:00Z",
+      "updatedAt": "2026-03-06T12:00:00Z"
+    }
+  }
+}</code></pre>
+
+        <h2>S&eacute;curit&eacute;</h2>
+        <ul>
+          <li><strong>Validation des chemins :</strong> tous les paths sont v&eacute;rifi&eacute;s pour emp&ecirc;cher la travers&eacute;e de r&eacute;pertoires (<code>../</code>)</li>
+          <li><strong>R&eacute;pertoires prot&eacute;g&eacute;s (lecture seule) :</strong> <code>core</code>, <code>wireframes</code>, <code>api</code>, <code>components</code>, <code>snippets</code>, <code>assets</code>, <code>builder</code>, <code>data</code>, <code>.git</code>, <code>.claude</code>, <code>.vscode</code></li>
+          <li><strong>Fichiers prot&eacute;g&eacute;s en suppression/renommage :</strong> <code>index.html</code>, <code>404.html</code>, <code>configurator.html</code>, <code>config-site.js</code>, <code>base-index.html</code></li>
+          <li><strong>Usage local uniquement :</strong> le serveur ne tourne qu'en local (d&eacute;veloppement uniquement), il ne doit <strong>JAMAIS</strong> &ecirc;tre expos&eacute; sur Internet</li>
+          <li><strong>Fichiers .env :</strong> les fichiers <code>.env</code> ne sont jamais servis en tant que fichiers statiques</li>
+        </ul>
+
+        <h2>Client JavaScript</h2>
+        <p>Le fichier <code>builder-api.js</code> encapsule tous les appels API. Toutes les m&eacute;thodes retournent des <strong>Promises</strong>.</p>
+        <h3>M&eacute;thodes disponibles</h3>
+        <table>
+          <tr><th>M&eacute;thode</th><th>Description</th></tr>
+          <tr><td><code>BuilderAPI.cfgRead(file)</code></td><td>Lire un fichier de configuration</td></tr>
+          <tr><td><code>BuilderAPI.cfgSave(file, content)</code></td><td>Sauvegarder un fichier de configuration</td></tr>
+          <tr><td><code>BuilderAPI.pagesList()</code></td><td>Lister toutes les pages</td></tr>
+          <tr><td><code>BuilderAPI.pageRead(path)</code></td><td>Lire le contenu d'une page</td></tr>
+          <tr><td><code>BuilderAPI.pageWrite(path, content)</code></td><td>&Eacute;crire le contenu d'une page</td></tr>
+          <tr><td><code>BuilderAPI.pageCreate(filename)</code></td><td>Cr&eacute;er une nouvelle page</td></tr>
+          <tr><td><code>BuilderAPI.pageDelete(path)</code></td><td>Supprimer une page</td></tr>
+          <tr><td><code>BuilderAPI.pageRename(path, newName)</code></td><td>Renommer une page</td></tr>
+          <tr><td><code>BuilderAPI.pageDuplicate(path, newName)</code></td><td>Dupliquer une page</td></tr>
+          <tr><td><code>BuilderAPI.wireframesCatalog()</code></td><td>R&eacute;cup&eacute;rer le catalogue des wireframes</td></tr>
+          <tr><td><code>BuilderAPI.wireframeRead(category, file)</code></td><td>Lire un wireframe sp&eacute;cifique</td></tr>
+          <tr><td><code>BuilderAPI.iconsList()</code></td><td>Lister toutes les ic&ocirc;nes disponibles</td></tr>
+          <tr><td><code>BuilderAPI.mediaList()</code></td><td>Lister les fichiers m&eacute;dia</td></tr>
+          <tr><td><code>BuilderAPI.mediaUpload(filename, data)</code></td><td>Uploader un fichier m&eacute;dia (base64)</td></tr>
+          <tr><td><code>BuilderAPI.mediaDelete(filename)</code></td><td>Supprimer un fichier m&eacute;dia</td></tr>
+          <tr><td><code>BuilderAPI.registryRead()</code></td><td>Lire le registre des pages</td></tr>
+          <tr><td><code>BuilderAPI.registryWrite(registry)</code></td><td>&Eacute;crire le registre des pages</td></tr>
+          <tr><td><code>BuilderAPI.deploy(target)</code></td><td>D&eacute;ployer vers prod ou preprod</td></tr>
+          <tr><td><code>BuilderAPI.gitPush(message)</code></td><td>Commit et push Git</td></tr>
+          <tr><td><code>BuilderAPI.deployConfig()</code></td><td>R&eacute;cup&eacute;rer la config de d&eacute;ploiement</td></tr>
+        </table>
+
+        <h3>Exemple d'utilisation</h3>
+<pre><code>// Lire la liste des pages
+const { pages } = await BuilderAPI.pagesList();
+
+// Lire le contenu d'une page
+const { content } = await BuilderAPI.pageRead('index.html');
+
+// Sauvegarder une page modifi&eacute;e
+await BuilderAPI.pageWrite('index.html', newContent);
+
+// D&eacute;ployer en production
+const { output } = await BuilderAPI.deploy('prod');</code></pre>
+
+      </main>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Builder &mdash; &Eacute;diteur &mdash; Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+  <div data-component="header" data-site-name="SiteSystem" data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-editor"></nav>
+      <main class="docs-content">
+        <h1 class="anim-fade-in-up">Builder &mdash; &Eacute;diteur</h1>
+        <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
+          L'&eacute;diteur est le c&oelig;ur du builder. Il permet de modifier visuellement les pages HTML.
+          On y acc&egrave;de en double-cliquant sur une page dans le panel Pages.
+        </p>
+
+        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
+          <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
+          <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
+            <li><a href="#layout-editeur">Layout de l'&eacute;diteur</a> &mdash; les 4 zones principales</li>
+            <li><a href="#responsive-viewport">Responsive viewport</a> &mdash; breakpoints, redimensionnement, saisie manuelle</li>
+            <li><a href="#panels-redimensionnables">Panels redimensionnables</a> &mdash; sidebar et panneau propri&eacute;t&eacute;s</li>
+            <li><a href="#raccourcis-clavier">Raccourcis clavier</a> &mdash; sauvegarder, annuler, r&eacute;tablir</li>
+            <li><a href="#undo-redo">Undo / Redo</a> &mdash; syst&egrave;me de snapshots</li>
+            <li><a href="#modifications-non-sauvegardees">Modifications non sauvegard&eacute;es</a> &mdash; modal de confirmation</li>
+            <li><a href="#sauvegarde-apercu">Sauvegarde et aper&ccedil;u</a> &mdash; reconstruction HTML et pr&eacute;visualisation</li>
+            <li><a href="#modules-js">Modules JS</a> &mdash; fichiers source</li>
+          </ol>
+        </div>
+
+        <!-- ========== LAYOUT DE L'ÉDITEUR ========== -->
+
+        <h2 id="layout-editeur">Layout de l'&eacute;diteur</h2>
+        <p>L'&eacute;diteur est organis&eacute; en <strong>4 zones</strong> distinctes qui fonctionnent ensemble pour offrir une exp&eacute;rience d'&eacute;dition visuelle compl&egrave;te :</p>
+
+        <h3>1. Toolbar (en haut)</h3>
+        <p>La barre d'outils horizontale occupe toute la largeur en haut de l'&eacute;diteur. Elle regroupe les actions principales :</p>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">&Eacute;l&eacute;ment</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><strong>Bouton Retour</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Revient au panel Pages. Si des modifications n'ont pas &eacute;t&eacute; sauvegard&eacute;es, un modal de confirmation s'affiche.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><strong>Nom de la page</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Affiche le nom du fichier HTML en cours d'&eacute;dition.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><strong>Toggle responsive</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Boutons pour basculer entre les diff&eacute;rents breakpoints (Desktop, Tablette, Mobile Paysage, Mobile).</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><strong>Bouton Wireframes</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Ouvre le catalogue de wireframes (panneau droit) pour ins&eacute;rer des sections pr&eacute;-faites.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><strong>Bouton Sauvegarder</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Sauvegarde la page en cours. &Eacute;quivalent au raccourci <code>Cmd+S</code> / <code>Ctrl+S</code>.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;"><strong>Lien Aper&ccedil;u</strong></td>
+              <td style="padding: 8px;">Ouvre la page dans un nouvel onglet via l'URL du serveur pour pr&eacute;visualiser le rendu final.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>2. Sidebar gauche (Navigator)</h3>
+        <p>La sidebar gauche est divis&eacute;e en deux parties :</p>
+        <ul>
+          <li><strong>Arbre DOM</strong> (partie sup&eacute;rieure) : repr&eacute;sentation hi&eacute;rarchique de la structure HTML de la page. Permet de s&eacute;lectionner, r&eacute;ordonner et identifier les &eacute;l&eacute;ments.</li>
+          <li><strong>Panneau propri&eacute;t&eacute;s</strong> (partie inf&eacute;rieure) : affiche et permet de modifier les propri&eacute;t&eacute;s de l'&eacute;l&eacute;ment s&eacute;lectionn&eacute; (texte, classes, attributs, styles).</li>
+        </ul>
+
+        <h3>3. Canvas central</h3>
+        <p>Zone principale d'&eacute;dition. Le canvas est une <code>&lt;iframe&gt;</code> qui charge la page en direct. C'est ici que les modifications sont visibles en temps r&eacute;el. Le canvas s'adapte au breakpoint s&eacute;lectionn&eacute; dans la toolbar.</p>
+
+        <h3>4. Catalogue (panneau droit, cach&eacute; par d&eacute;faut)</h3>
+        <p>Le panneau de droite affiche le <strong>catalogue de wireframes</strong>. Il s'ouvre en cliquant sur le bouton &laquo; Wireframes &raquo; dans la toolbar. Il permet de parcourir et d'ins&eacute;rer des sections HTML pr&eacute;-faites directement dans la page en cours d'&eacute;dition.</p>
+
+        <!-- ========== RESPONSIVE VIEWPORT ========== -->
+
+        <h2 id="responsive-viewport">Responsive viewport</h2>
+        <p>L'&eacute;diteur int&egrave;gre un syst&egrave;me de simulation responsive complet pour tester le rendu de la page sur diff&eacute;rents appareils.</p>
+
+        <h3>Breakpoints pr&eacute;d&eacute;finis</h3>
+        <p>4 breakpoints sont disponibles via les boutons de la toolbar :</p>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Breakpoint</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Largeur</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Custom property CSS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Desktop</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">100% (pleine largeur)</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">&mdash;</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Tablette</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">991px</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>--bp-tablet</code></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Mobile Paysage</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">767px</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>--bp-mobile-landscape</code></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;">Mobile</td>
+              <td style="padding: 8px;">478px</td>
+              <td style="padding: 8px;"><code>--bp-mobile</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Les valeurs sont lues dynamiquement depuis les <strong>CSS custom properties</strong> <code>--bp-tablet</code>, <code>--bp-mobile-landscape</code> et <code>--bp-mobile</code> d&eacute;finies dans <code>tokens.css</code>. Si vous modifiez ces tokens, les breakpoints de l'&eacute;diteur s'adaptent automatiquement.</p>
+
+        <h3>Affichage de la taille</h3>
+        <p>La taille actuelle du canvas est affich&eacute;e en pixels (<code>px</code>) en temps r&eacute;el &agrave; c&ocirc;t&eacute; des boutons de breakpoint. Cette valeur se met &agrave; jour lors du changement de breakpoint, lors du redimensionnement manuel, et lors de la saisie d'une largeur personnalis&eacute;e.</p>
+
+        <h3>Saisie manuelle</h3>
+        <p>En plus des boutons pr&eacute;d&eacute;finis, il est possible de saisir manuellement une largeur en pixels. La plage accept&eacute;e va de <strong>320px</strong> &agrave; <strong>2560px</strong>. Le canvas se redimensionne instantan&eacute;ment &agrave; la valeur saisie.</p>
+
+        <h3>Resize &agrave; la souris</h3>
+        <p>Un <strong>handle</strong> (poign&eacute;e de redimensionnement) est positionn&eacute; sur le bord droit du canvas. Il permet de glisser pour ajuster la largeur librement. La taille affich&eacute;e se met &agrave; jour en temps r&eacute;el pendant le drag.</p>
+
+        <!-- ========== PANELS REDIMENSIONNABLES ========== -->
+
+        <h2 id="panels-redimensionnables">Panels redimensionnables</h2>
+        <p>Les panels de l'&eacute;diteur peuvent &ecirc;tre redimensionn&eacute;s par l'utilisateur pour s'adapter &agrave; diff&eacute;rents &eacute;crans et workflows :</p>
+
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Panel</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Direction</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Minimum</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Maximum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Sidebar Navigator</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Horizontal (largeur)</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">200px</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">400px</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;">Panneau propri&eacute;t&eacute;s</td>
+              <td style="padding: 8px;">Vertical (hauteur)</td>
+              <td style="padding: 8px;">100px</td>
+              <td style="padding: 8px;">400px</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Le redimensionnement se fait par <strong>drag</strong> sur le bord du panel concern&eacute;. Un curseur de redimensionnement appara&icirc;t au survol de la zone de drag.</p>
+
+        <!-- ========== RACCOURCIS CLAVIER ========== -->
+
+        <h2 id="raccourcis-clavier">Raccourcis clavier</h2>
+        <p>L'&eacute;diteur supporte les raccourcis clavier suivants :</p>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Action</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">macOS</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Windows / Linux</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Sauvegarder la page</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><kbd>Cmd+S</kbd></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><kbd>Ctrl+S</kbd></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Annuler (undo)</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><kbd>Cmd+Z</kbd></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><kbd>Ctrl+Z</kbd></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;">R&eacute;tablir (redo)</td>
+              <td style="padding: 8px;"><kbd>Shift+Cmd+Z</kbd></td>
+              <td style="padding: 8px;"><kbd>Shift+Ctrl+Z</kbd></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Ces raccourcis fonctionnent &agrave; la fois dans le <strong>document principal</strong> (toolbar, sidebar) et dans l'<strong>iframe</strong> du canvas.</p>
+
+        <!-- ========== UNDO / REDO ========== -->
+
+        <h2 id="undo-redo">Undo / Redo</h2>
+        <p>L'&eacute;diteur dispose d'un syst&egrave;me d'annulation et de r&eacute;tablissement bas&eacute; sur des <strong>snapshots</strong>.</p>
+
+        <h3>Fonctionnement</h3>
+        <ul>
+          <li><strong>Source de v&eacute;rit&eacute;</strong> : le tableau <code>sections[]</code> qui repr&eacute;sente la structure compl&egrave;te de la page. Chaque snapshot est une copie de ce tableau &agrave; un instant donn&eacute;.</li>
+          <li><strong>Profondeur maximale</strong> : <strong>50 niveaux</strong> d'annulation. Au-del&agrave;, les snapshots les plus anciens sont supprim&eacute;s automatiquement.</li>
+          <li><strong>Cr&eacute;ation de snapshot</strong> : chaque mutation de la page d&eacute;clenche un nouveau snapshot. Cela inclut :
+            <ul>
+              <li>Modification de texte (contenu &eacute;ditable)</li>
+              <li>Modification de propri&eacute;t&eacute;s (classes, attributs, styles)</li>
+              <li>Drag &amp; drop (r&eacute;ordonnancement de sections)</li>
+              <li>Insertion d'une nouvelle section (depuis le catalogue wireframes)</li>
+              <li>Suppression d'une section</li>
+            </ul>
+          </li>
+          <li><strong>Restauration de la s&eacute;lection</strong> : apr&egrave;s un undo ou un redo, l'&eacute;l&eacute;ment qui &eacute;tait s&eacute;lectionn&eacute; au moment du snapshot est automatiquement re-s&eacute;lectionn&eacute; dans le Navigator et le canvas.</li>
+        </ul>
+
+        <h3>Contexte de capture</h3>
+        <p>Les raccourcis <kbd>Cmd+Z</kbd> / <kbd>Ctrl+Z</kbd> et <kbd>Shift+Cmd+Z</kbd> / <kbd>Shift+Ctrl+Z</kbd> sont &eacute;cout&eacute;s &agrave; la fois sur le document principal et dans l'iframe. Quel que soit l'endroit o&ugrave; le focus se trouve, l'action est correctement rout&eacute;e vers le syst&egrave;me d'undo/redo de l'&eacute;diteur.</p>
+
+        <!-- ========== MODIFICATIONS NON SAUVEGARDÉES ========== -->
+
+        <h2 id="modifications-non-sauvegardees">Modifications non sauvegard&eacute;es</h2>
+        <p>L'&eacute;diteur suit en permanence l'&eacute;tat des modifications via un flag interne <code>editorDirty</code>.</p>
+
+        <h3>D&eacute;tection</h3>
+        <p>Le flag <code>editorDirty</code> passe &agrave; <code>true</code> d&egrave;s qu'une modification est effectu&eacute;e sur la page (texte, propri&eacute;t&eacute;s, drag &amp; drop, insertion, suppression). Il repasse &agrave; <code>false</code> apr&egrave;s une sauvegarde r&eacute;ussie.</p>
+
+        <h3>Modal de confirmation</h3>
+        <p>Lorsque l'utilisateur tente de quitter l'&eacute;diteur (bouton Retour, navigation, etc.) alors que des modifications n'ont pas &eacute;t&eacute; sauvegard&eacute;es, un <strong>modal de confirmation</strong> s'affiche avec 3 choix :</p>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Action</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Comportement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><strong>Sauvegarder</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Sauvegarde les modifications, puis navigue vers la destination demand&eacute;e.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><strong>Abandonner</strong></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Annule toutes les modifications non sauvegard&eacute;es et navigue vers la destination.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;"><strong>Annuler</strong> (<kbd>&Eacute;chap</kbd> / clic sur l'overlay)</td>
+              <td style="padding: 8px;">Ferme le modal et reste sur l'&eacute;diteur. Aucune modification n'est perdue ni sauvegard&eacute;e.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ========== SAUVEGARDE ET APERÇU ========== -->
+
+        <h2 id="sauvegarde-apercu">Sauvegarde et aper&ccedil;u</h2>
+
+        <h3>Sauvegarde</h3>
+        <p>La sauvegarde est d&eacute;clench&eacute;e par le <strong>bouton Sauvegarder</strong> de la toolbar ou par le raccourci <kbd>Cmd+S</kbd> / <kbd>Ctrl+S</kbd>.</p>
+        <p>Le processus de sauvegarde :</p>
+        <ol>
+          <li>Le HTML complet de la page est <strong>reconstruit</strong> &agrave; partir du tableau <code>sections[]</code> (source de v&eacute;rit&eacute;).</li>
+          <li>Le HTML reconstruit est <strong>envoy&eacute; au serveur</strong> pour &eacute;craser le fichier existant.</li>
+          <li>Le flag <code>editorDirty</code> repasse &agrave; <code>false</code>.</li>
+        </ol>
+
+        <h3>Aper&ccedil;u</h3>
+        <p>Le <strong>bouton Aper&ccedil;u</strong> (ou lien dans la toolbar) ouvre la page dans un <strong>nouvel onglet</strong> via l'URL du serveur. Cela permet de voir le rendu final tel qu'il appara&icirc;tra en production, avec tous les scripts et styles charg&eacute;s normalement (en dehors du contexte de l'&eacute;diteur).</p>
+
+        <!-- ========== MODULES JS ========== -->
+
+        <h2 id="modules-js">Modules JS</h2>
+        <p>L'&eacute;diteur repose sur deux modules JavaScript principaux :</p>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Fichier</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">R&ocirc;le</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>builder-canvas.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Module principal de l'&eacute;diteur. G&egrave;re le canvas (iframe), le responsive viewport, le Navigator (arbre DOM + propri&eacute;t&eacute;s), le syst&egrave;me undo/redo, le drag &amp; drop, l'insertion de wireframes, et la sauvegarde.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;"><code>builder-app.js</code></td>
+              <td style="padding: 8px;">G&egrave;re la navigation et l'&eacute;tat global du builder. Contr&ocirc;le la transition entre les panels (Pages, &Eacute;diteur), la d&eacute;tection des modifications non sauvegard&eacute;es, et le routage interne.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="docs-see-also">
+          <div class="docs-see-also__title">Voir aussi</div>
+          <ul>
+            <li><a href="wireframes.html">Wireframes</a> &mdash; catalogue des 375+ sections disponibles</li>
+            <li><a href="tokens.html">Design Tokens</a> &mdash; custom properties CSS dont les breakpoints</li>
+            <li><a href="components.html">Composants</a> &mdash; syst&egrave;me de composants r&eacute;utilisables</li>
+          </ul>
+        </div>
+
+      </main>
+      <aside class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <div data-component="footer"
+       data-copyright="&copy; 2026 SiteSystem">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>
