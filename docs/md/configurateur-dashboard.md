@@ -4,7 +4,7 @@ Le Dashboard est l'écran d'accueil du Configurateur. Il offre une vue d'ensembl
 
 ## Vue d'ensemble
 
-Le Dashboard est le premier panel affiché lorsque l'utilisateur ouvre le Builder. Il centralise les informations essentielles du projet et permet d'accéder rapidement aux fonctionnalités les plus utilisées.
+Le Dashboard est le premier panel affiché lorsque l'utilisateur ouvre le Configurateur. Il centralise les informations essentielles du projet et permet d'accéder rapidement aux fonctionnalités les plus utilisées.
 
 Toutes les données affichées sont calculées dynamiquement depuis le registre `pages.json`, qui contient la liste complète des pages du site avec leur statut, leur chemin et leur date de dernière modification.
 
@@ -73,7 +73,7 @@ document.querySelector('.btn-save').addEventListener('click', () => {
 
 ### Module source
 
-Le fichier source du module est `builder-dashboard.js`. Il est chargé par le Builder et initialisé automatiquement lorsque le panel Dashboard est activé.
+Le fichier source du module est `builder-dashboard.js`. Il est chargé par le Configurateur et initialisé automatiquement lorsque le panel Dashboard est activé.
 
 ## Voir aussi
 

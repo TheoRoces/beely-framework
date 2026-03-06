@@ -2,12 +2,12 @@
 
 Le configurateur permet de modifier les fichiers de configuration du site directement depuis l'interface du Configurateur, sans éditer manuellement les fichiers.
 
-## Intégration dans le builder
+## Intégration dans le Configurateur
 
-Le configurateur est intégré nativement dans le builder — il ne s'agit pas d'un iframe séparé. Le fichier `configurator.html` est chargé et injecté dans le DOM du builder au moment où l'utilisateur accède au panel de configuration.
+Le configurateur est intégré nativement dans le Configurateur — il ne s'agit pas d'un iframe séparé. Le fichier `configurator.html` est chargé et injecté dans le DOM du Configurateur au moment où l'utilisateur accède au panel de configuration.
 
-- Les **styles sont scopés** pour éviter les conflits avec le reste du builder
-- Les **scripts sont exécutés** dans le contexte du builder (accès au DOM principal)
+- Les **styles sont scopés** pour éviter les conflits avec le reste du Configurateur
+- Les **scripts sont exécutés** dans le contexte du Configurateur (accès au DOM principal)
 - Module JS : `builder-configurator.js`
 
 ## Fichiers configurables
@@ -187,12 +187,12 @@ PREPROD_URL=https://preprod.monsite.fr
 
 ## Sauvegarde
 
-Le configurateur utilise l'API backend du builder pour lire et écrire les fichiers de configuration.
+Le configurateur utilise l'API backend du Configurateur pour lire et écrire les fichiers de configuration.
 
 - Chaque section dispose d'un **bouton « Sauvegarder »** indépendant
 - Les fichiers sont écrits via l'API backend : `BuilderAPI.cfgSave`
 - La lecture se fait via `BuilderAPI.cfgRead`
-- Les fichiers sensibles (`.env`, `.deploy.env`) ne sont **jamais exposés côté client** en dehors du builder local
+- Les fichiers sensibles (`.env`, `.deploy.env`) ne sont **jamais exposés côté client** en dehors du Configurateur local
 
 ```js
 // Lecture d'un fichier de configuration
@@ -206,9 +206,8 @@ await BuilderAPI.cfgSave('config-site.js', newContent);
 
 ## Voir aussi
 
-- [Builder — Vue d'ensemble](builder-overview.md)
-- [Builder — Dashboard](builder-dashboard.md)
-- [Builder — Pages](builder-pages.md)
-- [Builder — Wireframes](builder-wireframes.md)
+- [Configurateur — Vue d'ensemble](configurateur.md)
+- [Configurateur — Dashboard](configurateur-dashboard.md)
+- [Configurateur — Pages](configurateur-pages.md)
 - [Cookies & Analytics](cookies.md)
 - [Démarrer un projet](getting-started.md)

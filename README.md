@@ -39,5 +39,5 @@ Ce repo est utilisé comme **submodule Git** (dossier `.framework/`) dans chaque
 
 ## Repos liés
 
-- [beely-builder](https://github.com/TheoRoces/beely-builder) — Builder visuel et configurateur
+- [beely-builder](https://github.com/TheoRoces/beely-builder) — Configurateur (interface d'administration)
 - [beely-template](https://github.com/TheoRoces/beely-template) — Template de démarrage pour projets clients

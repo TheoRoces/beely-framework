@@ -33,7 +33,7 @@
   </div>
   <div class="container">
     <div class="docs-layout">
-      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-configurator"></nav>
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="configurateur-config"></nav>
 
       <main class="docs-content">
         <h1>Configurateur &mdash; Configuration du site</h1>
@@ -44,7 +44,7 @@
         <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
           <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
           <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
-            <li><a href="#integration">Int&eacute;gration dans le builder</a> &mdash; chargement, styles, scripts</li>
+            <li><a href="#integration">Int&eacute;gration dans le Configurateur</a> &mdash; chargement, styles, scripts</li>
             <li><a href="#fichiers-configurables">Fichiers configurables</a> &mdash; config-site.js, .env, .deploy.env</li>
             <li><a href="#site-config">SITE_CONFIG</a> &mdash; nom du site, favicon, domaines</li>
             <li><a href="#cookies-config">COOKIES_CONFIG</a> &mdash; IDs analytics et tracking</li>
@@ -58,14 +58,14 @@
 
         <!-- ========== INTÉGRATION ========== -->
 
-        <h2 id="integration">Int&eacute;gration dans le builder</h2>
+        <h2 id="integration">Int&eacute;gration dans le Configurateur</h2>
         <p>
-          Le configurateur est int&eacute;gr&eacute; nativement dans le builder &mdash; il ne s&rsquo;agit pas d&rsquo;un iframe s&eacute;par&eacute;.
-          Le fichier <code>configurator.html</code> est charg&eacute; et inject&eacute; dans le DOM du builder au moment o&ugrave; l&rsquo;utilisateur acc&egrave;de au panel de configuration.
+          Le configurateur est int&eacute;gr&eacute; nativement dans le Configurateur &mdash; il ne s&rsquo;agit pas d&rsquo;un iframe s&eacute;par&eacute;.
+          Le fichier <code>configurator.html</code> est charg&eacute; et inject&eacute; dans le DOM du Configurateur au moment o&ugrave; l&rsquo;utilisateur acc&egrave;de au panel de configuration.
         </p>
         <ul>
-          <li>Les <strong>styles sont scop&eacute;s</strong> pour &eacute;viter les conflits avec le reste du builder</li>
-          <li>Les <strong>scripts sont ex&eacute;cut&eacute;s</strong> dans le contexte du builder (acc&egrave;s au DOM principal)</li>
+          <li>Les <strong>styles sont scop&eacute;s</strong> pour &eacute;viter les conflits avec le reste du Configurateur</li>
+          <li>Les <strong>scripts sont ex&eacute;cut&eacute;s</strong> dans le contexte du Configurateur (acc&egrave;s au DOM principal)</li>
           <li>Module JS : <code>builder-configurator.js</code></li>
         </ul>
 
@@ -480,13 +480,13 @@ PREPROD_URL=https://preprod.monsite.fr</code></pre>
         <!-- ========== SAUVEGARDE ========== -->
 
         <h2 id="sauvegarde">Sauvegarde</h2>
-        <p>Le configurateur utilise l&rsquo;API backend du builder pour lire et &eacute;crire les fichiers de configuration.</p>
+        <p>Le configurateur utilise l&rsquo;API backend du Configurateur pour lire et &eacute;crire les fichiers de configuration.</p>
 
         <ul>
           <li>Chaque section dispose d&rsquo;un <strong>bouton &laquo;&nbsp;Sauvegarder&nbsp;&raquo;</strong> ind&eacute;pendant</li>
           <li>Les fichiers sont &eacute;crits via l&rsquo;API backend : <code>BuilderAPI.cfgSave</code></li>
           <li>La lecture se fait via <code>BuilderAPI.cfgRead</code></li>
-          <li>Les fichiers sensibles (<code>.env</code>, <code>.deploy.env</code>) ne sont <strong>jamais expos&eacute;s c&ocirc;t&eacute; client</strong> en dehors du builder local</li>
+          <li>Les fichiers sensibles (<code>.env</code>, <code>.deploy.env</code>) ne sont <strong>jamais expos&eacute;s c&ocirc;t&eacute; client</strong> en dehors du Configurateur local</li>
         </ul>
 
 <pre><code>// Lecture d'un fichier de configuration

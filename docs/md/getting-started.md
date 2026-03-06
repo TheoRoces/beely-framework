@@ -57,7 +57,7 @@ git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
 cd mon-projet
 ```
 
-L'option `--recursive` est importante : elle télécharge aussi le framework et le builder en même temps.
+L'option `--recursive` est importante : elle télécharge aussi le framework et le Configurateur en même temps.
 
 **Étape 2 — Lancer le setup**
 
@@ -112,7 +112,7 @@ git submodule add https://github.com/TheoRoces/beely-framework.git .framework
 
 Cela crée un dossier `.framework/` contenant tout le framework (CSS, JS, composants, icônes, wireframes, docs).
 
-**Étape 3 — Ajouter le builder (optionnel)**
+**Étape 3 — Ajouter le Configurateur (optionnel)**
 
 ```bash
 # 📂 Dossier : la racine de ton projet
@@ -120,7 +120,7 @@ Cela crée un dossier `.framework/` contenant tout le framework (CSS, JS, compos
 git submodule add https://github.com/TheoRoces/beely-builder.git builder
 ```
 
-Le builder est un éditeur visuel optionnel. Si tu ne l'utilises pas, saute cette étape.
+Le Configurateur est un éditeur visuel optionnel. Si tu ne l'utilises pas, saute cette étape.
 
 **Étape 4 — Créer les symlinks**
 

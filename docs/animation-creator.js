@@ -71,14 +71,19 @@
   function replayPreview() {
     var box = document.getElementById('animCreatorPreview');
     if (!box) return;
+    // Réinitialiser : retirer toutes les classes d'animation
     box.className = 'creator__preview-item';
+    // Forcer un reflow pour que le navigateur peigne l'état visible
     void box.offsetWidth;
+    // Ajouter les classes d'animation (opacity: 0, transforms)
     var classes = getAnimClasses();
     classes.forEach(function (cls) { box.classList.add(cls); });
+    // Forcer un reflow pour peindre l'état invisible
     void box.offsetWidth;
-    requestAnimationFrame(function () {
+    // setTimeout pour garantir un paint avant de déclencher la transition
+    setTimeout(function () {
       box.classList.add('anim--visible');
-    });
+    }, 30);
   }
 
   function copyToClipboard(text) {

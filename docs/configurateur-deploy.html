@@ -33,7 +33,7 @@
   </div>
   <div class="container">
     <div class="docs-layout">
-      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-deploy"></nav>
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="configurateur-deploy"></nav>
       <main class="docs-content">
         <h1 class="anim-fade-in-up">Configurateur &mdash; D&eacute;ploiement</h1>
         <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
@@ -56,7 +56,7 @@
         <!-- ========== DROPDOWN DE PUBLICATION ========== -->
 
         <h2 id="dropdown-de-publication">Dropdown de publication</h2>
-        <p>Le dropdown de publication est situé dans la <strong>topbar du builder, à droite</strong>. Il s'ouvre au clic sur le bouton <strong>"Publier"</strong>.</p>
+        <p>Le dropdown de publication est situé dans la <strong>topbar du Configurateur, à droite</strong>. Il s'ouvre au clic sur le bouton <strong>"Publier"</strong>.</p>
         <p>Une fois ouvert, il affiche <strong>3 cartes de déploiement</strong> :</p>
         <ul>
           <li><strong>Production</strong> — déploiement vers le serveur de production</li>
@@ -82,7 +82,7 @@
         <h3>Fonctionnement</h3>
         <ol>
           <li>L'utilisateur clique sur <strong>"Déployer"</strong> sur la carte Production ou Pré-production</li>
-          <li>Le builder exécute l'API <code>/api/deploy</code> avec le paramètre <code>target=prod</code> ou <code>target=preprod</code></li>
+          <li>Le Configurateur exécute l'API <code>/api/deploy</code> avec le paramètre <code>target=prod</code> ou <code>target=preprod</code></li>
           <li>Le serveur Python exécute <code>./deploy.sh &lt;target&gt;</code> en subprocess</li>
           <li>Le résultat (<code>stdout</code> + <code>stderr</code>) est affiché dans le <a href="#log-de-deploiement">log de déploiement</a></li>
           <li>Le statut et la date sont sauvegardés dans le registre (<code>pages.json</code> → <code>deploys.prod</code> / <code>deploys.preprod</code>)</li>
@@ -144,7 +144,7 @@
         <!-- ========== GIT (COMMIT & PUSH) ========== -->
 
         <h2 id="git-commit-push">Git (commit &amp; push)</h2>
-        <p>La carte <strong>Git</strong> dans le dropdown de publication permet de versionner et pousser le code directement depuis le builder.</p>
+        <p>La carte <strong>Git</strong> dans le dropdown de publication permet de versionner et pousser le code directement depuis le Configurateur.</p>
 
         <h3>Interface</h3>
         <ul>
@@ -156,7 +156,7 @@
         <ol>
           <li>L'utilisateur saisit un message de commit dans le champ dédié</li>
           <li>Clic sur <strong>"Commit &amp; Push"</strong></li>
-          <li>Le builder exécute l'API <code>/api/git-push</code> avec le message</li>
+          <li>Le Configurateur exécute l'API <code>/api/git-push</code> avec le message</li>
           <li>Le serveur exécute : <code>git add -A &amp;&amp; git commit -m "message" &amp;&amp; git push</code></li>
           <li>Le résultat est affiché dans le <a href="#log-de-deploiement">log de déploiement</a></li>
           <li>Le statut et la date sont sauvegardés dans le registre (<code>deploys.git</code>)</li>
@@ -303,7 +303,7 @@ BuilderAPI.deployConfig().then(config => {
 });</code></pre>
 
         <h3>Module source</h3>
-        <p>Le fichier source du module est <code>builder-publish.js</code>. Il est chargé par le Builder et initialisé automatiquement lorsque le dropdown de publication est ouvert.</p>
+        <p>Le fichier source du module est <code>builder-publish.js</code>. Il est chargé par le Configurateur et initialisé automatiquement lorsque le dropdown de publication est ouvert.</p>
 
       </main>
     </div>

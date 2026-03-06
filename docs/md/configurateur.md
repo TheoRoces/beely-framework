@@ -1,189 +1,120 @@
-# Configurateur
+# Configurateur — Vue d'ensemble
 
-Interface visuelle pour configurer l'ensemble de votre site sans éditer manuellement les fichiers de configuration.
+Le Configurateur Site System est un outil d'administration zero-dependency pour gérer les pages, la configuration du site, la médiathèque et les icônes.
 
-## Présentation
+## Introduction
 
-Le **Configurateur** est une page HTML autonome (`configurator.html`) qui génère automatiquement les 3 fichiers de configuration du framework :
+Le **Configurateur** est une interface d'administration conçue pour gérer un projet Site System sans écrire de code manuellement. Il respecte la philosophie **zero-dependency** du framework : pas de npm, pas de build tools, juste du vanilla JS et un backend Python utilisant uniquement la bibliothèque standard.
 
-| Fichier | Contenu | Commitable |
-|---|---|---|
-| `config-site.js` | Identité du site, analytics, blog, mentions légales | Oui |
-| `.env` | Tokens API, CORS, webhooks (côté serveur) | Non |
-| `.deploy.env` | Configuration SSH prod/preprod | Non |
+Le Configurateur permet de :
 
-Le configurateur est **local uniquement** — il n'est jamais déployé en production (exclu via `.rsync-exclude`).
+- Gérer les pages du projet (création, suppression, métadonnées SEO, arborescence)
+- Configurer les design tokens via le configurateur intégré
+- Gérer la médiathèque (images, dossiers, upload)
+- Parcourir les 324 icônes Heroicons avec recherche et copie rapide
+- Déployer et versionner avec git
+
+> **Note :** Les outils interactifs (créateur d'animations, créateur de grilles) sont désormais intégrés directement dans les pages de documentation correspondantes : [Animations](animations.html#animation-creator) et [Grid](grid.html#grid-creator).
 
 ## Lancement
 
-### Avec le serveur Python (recommandé)
+Le Configurateur repose sur un serveur Python léger (`configurator-server.py`) qui tourne sur le port **5555**.
 
-Le serveur Python permet l'écriture directe des fichiers de configuration sur le disque, sans manipulation manuelle.
+### 1. Démarrer le serveur
+
+Depuis la racine du projet :
 
 ```bash
-python3 configurator-server.py
+python3 builder/configurator-server.py
 ```
 
-Puis ouvrir `http://localhost:5555/configurator.html` dans votre navigateur.
+Le serveur démarre sur `http://localhost:5555`. Il utilise uniquement la bibliothèque standard Python (pas de pip install nécessaire).
 
-Le serveur :
-- Sert les fichiers statiques du projet
-- Lit automatiquement la configuration existante au chargement
-- **Auto-save** : chaque modification est écrite sur disque après 500ms d'inactivité
-- Fonctionne dans **tous les navigateurs** (Firefox, Chrome, Safari…)
-- Zero-dependency : utilise uniquement la stdlib Python 3
+### 2. Accéder au Configurateur
 
-> **Sécurité** : Le serveur n'autorise l'écriture que sur 4 fichiers : `config-site.js`, `.env`, `.deploy.env` et `.htpasswd`. Toute autre tentative retourne une erreur 403.
-
-### Sans serveur (Live Server / file://)
-
-Le configurateur fonctionne aussi sans le serveur Python, avec quelques différences :
-- Les fichiers ne sont pas modifiés automatiquement sur le disque
-- Utilisez les boutons **Télécharger** ou **Copier** pour récupérer le code généré
-- Vos saisies sont sauvegardées dans le `localStorage` du navigateur
-
-## Les 7 onglets
-
-### Site
-Configure l'objet `window.SITE_CONFIG` :
-- **Nom du site** — utilisé comme titre par défaut si `<title>` est vide
-- **Favicon** — chemin vers le favicon (`/favicon.ico`, `/assets/favicon.png`…)
-
-### Cookies & Analytics
-Configure l'objet `window.COOKIES_CONFIG` :
-- **IDs des plateformes** — GA4, GTM, Clarity, Facebook Pixel, Hotjar, LinkedIn, TikTok
-- **Bannière de consentement** — textes, durée du cookie, version, lien confidentialité
-- **Endpoint consentement** — URL du script PHP de preuve RGPD
-
-### Blog
-Configure l'objet `window.BLOG_CONFIG` :
-- **Connexion Baserow** — URL de l'instance, Table ID, token dev
-- **Proxy PHP** — URL du proxy côté serveur
-- **Affichage** — articles par page, format date, image par défaut, chemins
-
-### Mentions légales
-Configure l'objet `window.LEGAL_CONFIG` :
-- **Éditeur** — entreprise, SIRET, responsable, adresse, contact
-- **Hébergeur** — nom, adresse, site, contact
-- **Développeur** — nom, site, adresse (optionnel)
-
-### Serveur (.env)
-Génère le fichier `.env` (non commitable, non déployé) :
-- **Baserow** — token API et URL
-- **CORS** — origine autorisée
-- **Formulaires** — webhook Make.com et email de notification
-- **Make.com** — clé API, zone, team ID
-
-### Déploiement (.deploy.env)
-Génère le fichier `.deploy.env` (non commitable, non déployé) :
-- **Production** — URL, host, port, user, path SSH
-- **Pré-production** — mêmes champs pour l'environnement de test
-
-### Protection HTTP (htpasswd)
-Protège le site par mot de passe (HTTP Basic Auth) — idéal pour un staging ou préprod :
-- **Toggle** — active/désactive la protection en un clic
-- **Identifiant** — nom d'utilisateur pour l'authentification
-- **Mot de passe** — hashé en bcrypt côté serveur
-- **Message d'invite** — texte affiché dans la popup du navigateur (défaut : « Accès restreint »)
-
-Quand activé, le serveur Python génère `.htpasswd` et injecte le bloc `AuthType Basic` dans `.htaccess`. Quand désactivé, les deux sont nettoyés automatiquement.
-
-> **Note** : cet onglet nécessite le serveur Python (pas de mode téléchargement).
-
-## Fonctionnalités
-
-### Auto-save (serveur Python)
-Quand le serveur Python tourne, chaque modification d'un champ déclenche une écriture automatique du fichier concerné après 500ms. Un indicateur en haut de page confirme la connexion :
-- 🟢 **Vert** — Serveur connecté, auto-save actif
-- 🔴 **Rouge** — Serveur non détecté, mode fallback
-
-### Téléchargement
-Le bouton **Télécharger** permet de récupérer le fichier généré correspondant à l'onglet actif :
-- Onglets Site / Cookies / Blog / Légal → `config-site.js`
-- Onglet Serveur → `.env`
-- Onglet Déploiement → `.deploy.env`
-
-### Copier le code
-Chaque bloc de prévisualisation dispose d'un bouton **Copier** qui copie le code généré dans le presse-papier.
-
-### Importer une config existante
-Le bouton **Importer** permet de charger un fichier existant (`config-site.js`, `.env`, ou `.deploy.env`) pour pré-remplir tous les champs. Avec le serveur Python, la configuration existante est chargée automatiquement au premier lancement.
-
-### Persistance locale
-Toutes les valeurs saisies sont sauvegardées dans le `localStorage` du navigateur. Elles sont restaurées automatiquement à chaque ouverture du configurateur.
-
-### Prévisualisation en direct
-Chaque onglet affiche un aperçu en temps réel du code qui sera généré, mis à jour à chaque frappe.
-
-## Architecture technique
-
-### Fichiers
-
-| Fichier | Rôle | Déployé |
-|---|---|---|
-| `configurator.html` | Interface du configurateur (HTML + CSS + JS inline) | Non |
-| `configurator-server.py` | Micro-serveur Python pour l'écriture fichiers | Non |
-
-Les deux fichiers sont exclus du déploiement via `.rsync-exclude`.
-
-### Serveur Python — API
-
-Le serveur écoute sur le port **5555** et expose deux endpoints :
-
-| Méthode | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/cfg-read` | Lit le contenu d'un fichier autorisé |
-| `POST` | `/api/cfg-save` | Écrit le contenu dans un fichier autorisé |
-
-**Body JSON (read) :**
-```json
-{
-  "file": "config-site.js"
-}
-```
-
-**Body JSON (save) :**
-```json
-{
-  "file": "config-site.js",
-  "content": "// contenu du fichier..."
-}
-```
-
-**Fichiers autorisés :** `config-site.js`, `.env`, `.deploy.env`, `.htpasswd`. Tout autre fichier retourne une erreur 403.
-
-| `POST` | `/api/cfg-htpasswd` | Génère/supprime `.htpasswd` et met à jour `.htaccess` |
-
-**Body JSON (htpasswd) :**
-```json
-{
-  "enabled": true,
-  "username": "admin",
-  "password": "monmotdepasse",
-  "realm": "Accès restreint"
-}
-```
-
-### Flux de données
+Ouvrez votre navigateur et naviguez vers :
 
 ```
-Navigateur (configurator.html)
-    ↓ input (chaque frappe)
-    ↓ state JS (objet en mémoire)
-    ↓ localStorage (persistance)
-    ↓ générateur (code JS / env)
-    ↓ prévisualisation (mise à jour live)
-    ↓ POST /api/cfg-save (débouncé 500ms)
-    ↓
-Fichier sur disque (config-site.js / .env / .deploy.env)
+http://localhost:5555/builder/
 ```
 
-## Guide rapide
+Le Configurateur se charge comme une SPA (Single Page Application) avec navigation par panels.
 
-1. Lancer le serveur : `python3 configurator-server.py`
-2. Ouvrir `http://localhost:5555/configurator.html`
-3. Remplir les champs dans chaque onglet
-4. Les fichiers sont automatiquement écrits sur le disque
-5. Arrêter le serveur avec `Ctrl+C`
+## Architecture
 
-> **Astuce** : Si vous n'avez pas Python 3, vous pouvez toujours utiliser le configurateur via Live Server — les boutons Télécharger et Copier fonctionnent sans le serveur.
+Le Configurateur suit une architecture client-serveur simple :
+
+| Couche | Technologie | Rôle |
+|--------|-------------|------|
+| **Backend** | Python 3 (stdlib uniquement) | Serveur HTTP sur le port 5555, API REST pour gérer les fichiers, le registry et servir les assets |
+| **Frontend** | Vanilla JS (7 modules) | Interface SPA, gestion d'état, navigation par panels |
+
+Le backend Python sert de proxy fichier : il gère le registre des pages (`pages.json`), les opérations CRUD sur les pages et les médias, et fournit l'API de configuration. Le frontend gère toute l'interface utilisateur.
+
+## Structure des fichiers
+
+Le dossier `builder/` contient l'ensemble du code :
+
+| Fichier | Description |
+|---------|-------------|
+| `builder/index.html` | Interface HTML principale |
+| `builder/builder.css` | Styles (layout, panels, sidebar) |
+| `builder/js/builder-app.js` | Shell principal : navigation entre panels, état global, initialisation |
+| `builder/js/builder-api.js` | Client HTTP pour communiquer avec l'API backend Python |
+| `builder/js/builder-pages.js` | Gestion des pages : arborescence, création, suppression, métadonnées |
+| `builder/js/builder-library.js` | Bibliothèque : icônes et médiathèque |
+| `builder/js/builder-configurator.js` | Configurateur de design tokens |
+| `builder/js/builder-publish.js` | Déploiement en production/pré-production et gestion git |
+| `builder/js/builder-modal.js` | Système de modales : confirm, prompt, alertes |
+
+## Panels
+
+Le Configurateur est organisé en 5 panels :
+
+### Accueil (Dashboard)
+
+Vue d'accueil. Affiche un résumé du projet : nombre de pages, accès rapides aux actions fréquentes (créer une page, ouvrir le configurateur, déployer).
+
+### Pages
+
+Gestionnaire de pages du projet. Permet de :
+
+- Visualiser l'arborescence complète des pages (dossiers, sous-pages)
+- Créer, renommer, dupliquer et supprimer des pages
+- Modifier les métadonnées (titre, description SEO, slug, statut publié/brouillon)
+- Réordonner les pages par glisser-déposer
+
+### Configuration
+
+Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions légales, déploiement. Les fichiers `config-site.js`, `.env` et `.deploy.env` sont générés automatiquement.
+
+### Médiathèque
+
+Gestionnaire d'images du site avec :
+
+- Upload par drag & drop ou sélection de fichier
+- Organisation en dossiers (création, navigation, breadcrumb)
+- Popup d'édition (renommer, alt text, déplacer entre dossiers)
+- Infos fichier (type, poids, chemin)
+- Copie rapide du chemin d'une image
+
+### Icônes
+
+324 icônes Heroicons (outline + solid) avec recherche et copie rapide du code `data-icon`.
+
+## Registry (`pages.json`)
+
+Le fichier `pages.json` est le **registre central** de toutes les pages du projet. Il stocke :
+
+- Les chemins des fichiers HTML
+- Les métadonnées de chaque page (titre, description, slug, statut)
+- L'arborescence et la hiérarchie des pages
+
+Le registry est lu et écrit par le backend Python, et utilisé par le frontend pour afficher l'arborescence des pages.
+
+## Déploiement
+
+Le panel de publication permet de :
+
+- Déployer en production ou pré-production via `deploy.sh`
+- Gérer les commits git (voir les changements, commiter, pousser)

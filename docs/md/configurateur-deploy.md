@@ -4,7 +4,7 @@ Le Configurateur intègre un système de publication directement dans l'interfac
 
 ## Dropdown de publication
 
-Le dropdown de publication est situé dans la **topbar du builder, à droite**. Il s'ouvre au clic sur le bouton **"Publier"**.
+Le dropdown de publication est situé dans la **topbar du Configurateur, à droite**. Il s'ouvre au clic sur le bouton **"Publier"**.
 
 Une fois ouvert, il affiche **3 cartes de déploiement** :
 
@@ -30,7 +30,7 @@ Configurer le fichier `.deploy.env` avec les credentials SSH (voir la section [C
 ### Fonctionnement
 
 1. L'utilisateur clique sur **"Déployer"** sur la carte Production ou Pré-production
-2. Le builder exécute l'API `/api/deploy` avec le paramètre `target=prod` ou `target=preprod`
+2. Le Configurateur exécute l'API `/api/deploy` avec le paramètre `target=prod` ou `target=preprod`
 3. Le serveur Python exécute `./deploy.sh <target>` en subprocess
 4. Le résultat (`stdout` + `stderr`) est affiché dans le [log de déploiement](#log-de-déploiement)
 5. Le statut et la date sont sauvegardés dans le registre (`pages.json` → `deploys.prod` / `deploys.preprod`)
@@ -54,7 +54,7 @@ Le fichier `.rsync-exclude` définit les fichiers et dossiers exclus du transfer
 
 ## Git (commit & push)
 
-La carte **Git** dans le dropdown de publication permet de versionner et pousser le code directement depuis le builder.
+La carte **Git** dans le dropdown de publication permet de versionner et pousser le code directement depuis le Configurateur.
 
 ### Interface
 
@@ -65,7 +65,7 @@ La carte **Git** dans le dropdown de publication permet de versionner et pousser
 
 1. L'utilisateur saisit un message de commit dans le champ dédié
 2. Clic sur **"Commit & Push"**
-3. Le builder exécute l'API `/api/git-push` avec le message
+3. Le Configurateur exécute l'API `/api/git-push` avec le message
 4. Le serveur exécute : `git add -A && git commit -m "message" && git push`
 5. Le résultat est affiché dans le [log de déploiement](#log-de-déploiement)
 6. Le statut et la date sont sauvegardés dans le registre (`deploys.git`)
@@ -161,10 +161,10 @@ BuilderAPI.deployConfig().then(config => {
 
 ### Module source
 
-Le fichier source du module est `builder-publish.js`. Il est chargé par le Builder et initialisé automatiquement lorsque le dropdown de publication est ouvert.
+Le fichier source du module est `builder-publish.js`. Il est chargé par le Configurateur et initialisé automatiquement lorsque le dropdown de publication est ouvert.
 
 ## Voir aussi
 
-- [Builder — Dashboard](builder-dashboard.md)
-- [Builder — Pages](builder-pages.md)
-- [Builder — Vue d'ensemble](builder-overview.md)
+- [Configurateur — Dashboard](configurateur-dashboard.md)
+- [Configurateur — Pages](configurateur-pages.md)
+- [Configurateur — Vue d'ensemble](configurateur.md)

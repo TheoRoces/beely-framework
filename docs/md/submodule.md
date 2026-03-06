@@ -7,12 +7,12 @@ Le système Beely est organisé en **3 dépôts indépendants** connectés par d
 ## Sommaire
 
 1. [Reprendre de zéro](#reprendre-de-zero) — retrouver les repos, recloner, reconfigurer
-2. [Les 3 repos](#les-3-repos) — framework, builder, template
+2. [Les 3 repos](#les-3-repos) — framework, configurateur, template
 3. [Architecture d'un projet](#architecture-dun-projet) — structure des fichiers
 4. [Fichiers symlinkés vs réels](#fichiers-symlinkés-vs-réels) — ce qui vient du framework vs du projet
 5. [Installation d'un nouveau projet](#installation-dun-nouveau-projet) — cloner et initialiser
 6. [Modifier le framework](#modifier-le-framework) — éditer, commiter et propager
-7. [Modifier le builder](#modifier-le-builder) — éditer, commiter et propager
+7. [Modifier le Configurateur](#modifier-le-configurateur) — éditer, commiter et propager
 8. [Mettre à jour les submodules](#mettre-à-jour-les-submodules) — récupérer les dernières versions
 9. [Déploiement](#déploiement) — rsync suit les symlinks
 10. [Mise en production du framework](#mise-en-production-du-framework) — propager les changements partout
@@ -31,7 +31,7 @@ Si tu as perdu la main (nouveau Mac, réinstallation, longue absence), voici com
 | Repo | URL GitHub | Description |
 |---|---|---|
 | **beely-framework** | `https://github.com/TheoRoces/beely-framework` | Le framework : CSS, JS, composants, wireframes, docs, assets, API PHP |
-| **beely-builder** | `https://github.com/TheoRoces/beely-builder` | Le builder visuel : éditeur WYSIWYG, configurateur, serveur Python |
+| **beely-builder** | `https://github.com/TheoRoces/beely-builder` | Le Configurateur visuel : éditeur WYSIWYG, configurateur, serveur Python |
 | **beely-template** | `https://github.com/TheoRoces/beely-template` | Le template de départ pour chaque nouveau projet client |
 
 ### Recloner l'environnement complet
@@ -45,7 +45,7 @@ cd ~/Sites
 # 1. Cloner le framework (pour le modifier ou le déployer)
 git clone https://github.com/TheoRoces/beely-framework.git site-system-framework
 
-# 2. Cloner le builder (pour le modifier)
+# 2. Cloner le Configurateur (pour le modifier)
 git clone https://github.com/TheoRoces/beely-builder.git beely-builder
 
 # 3. Cloner le template (pour créer de nouveaux projets)
@@ -104,7 +104,7 @@ La documentation et le framework sont déployés sur **https://framework.beely.s
 | Repo | Contenu | Usage |
 |---|---|---|
 | **beely-framework** | Core CSS/JS, API PHP, composants, wireframes, docs, assets | Submodule `.framework/` |
-| **beely-builder** | Builder visuel, configurateur, serveur Python | Submodule `builder/` |
+| **beely-builder** | Configurateur visuel, configurateur, serveur Python | Submodule `builder/` |
 | **beely-template** | Starter projet client : pages, config, deploy, setup | Cloné pour chaque nouveau client |
 
 Chaque repo est **versionné indépendamment** avec des tags sémantiques (v1.0.0, v1.1.0, etc.).
@@ -119,7 +119,7 @@ Un projet client utilise les 2 submodules via `setup.sh` qui crée les symlinks 
 mon-projet/
 ├── .framework/              ← submodule beely-framework
 ├── builder/                 ← submodule beely-builder
-│   ├── index.html           ← Builder UI
+│   ├── index.html           ← Configurateur UI
 │   ├── builder.css
 │   ├── configurator.html    ← Configurateur intégré
 │   ├── configurator-server.py ← Serveur de dev
@@ -183,9 +183,9 @@ Propres à chaque projet, versionnés dans le dépôt du projet.
 | `.env` | Variables d'environnement sensibles |
 | `.deploy.env` | Configuration SSH |
 
-### Submodule builder
+### Submodule Configurateur
 
-Le builder est un submodule dans `builder/`. Il n'est **jamais déployé** (exclu via `.rsync-exclude`).
+Le Configurateur est un submodule dans `builder/`. Il n'est **jamais déployé** (exclu via `.rsync-exclude`).
 
 ---
 
@@ -254,7 +254,7 @@ git commit -m "Update framework submodule"
 
 ---
 
-## Modifier le builder
+## Modifier le Configurateur
 
 ```bash
 # 💻 Terminal : terminal VSCode (Ctrl+`)
@@ -288,7 +288,7 @@ git add .framework
 git commit -m "Update framework to latest version"
 ```
 
-### Mettre à jour le builder
+### Mettre à jour le Configurateur
 
 ```bash
 # 📂 Dossier : la racine d'un projet client
@@ -406,9 +406,9 @@ git push
 cd .framework && git pull && cd .. && git add .framework && git commit -m "Update framework submodule"
 ```
 
-#### Étape 4 — Faire pareil pour le builder (si modifié)
+#### Étape 4 — Faire pareil pour le Configurateur (si modifié)
 
-Si le builder a aussi été modifié :
+Si le Configurateur a aussi été modifié :
 
 ```bash
 # 📂 Dossier : la racine du projet client
@@ -482,9 +482,9 @@ Guide rapide pour savoir où aller quand tu veux modifier quelque chose :
 | Ajouter/modifier un composant (header, footer, card) | beely-framework | `components/` | `cd .framework && ...` |
 | Modifier les API PHP | beely-framework | `api/` | `cd .framework && ...` |
 | Ajouter des icônes | beely-framework | `assets/icons/` | `cd .framework && ...` |
-| Modifier le builder visuel | beely-builder | `js/` | `cd builder && ...` |
+| Modifier le Configurateur visuel | beely-builder | `js/` | `cd builder && ...` |
 | Modifier le configurateur | beely-builder | `configurator.html` | `cd builder && ...` |
-| Modifier le serveur Python du builder | beely-builder | `configurator-server.py` | `cd builder && ...` |
+| Modifier le serveur Python du Configurateur | beely-builder | `configurator-server.py` | `cd builder && ...` |
 | Modifier une page de mon site | le projet lui-même | racine | édition directe |
 | Changer la config du site (nom, analytics, etc.) | le projet lui-même | `config-site.js` | édition directe |
 | Configurer le déploiement SSH | le projet lui-même | `.deploy.env` | édition directe |
@@ -523,13 +523,13 @@ git commit -m "Pin framework to v1.2.0"
 | `git clone --recursive <url>` | Cloner un projet avec ses submodules |
 | `git submodule update --init --recursive` | Initialiser les submodules après un clone |
 | `git submodule update --remote .framework` | Mettre à jour le framework |
-| `git submodule update --remote builder` | Mettre à jour le builder |
+| `git submodule update --remote builder` | Mettre à jour le Configurateur |
 | `git submodule status` | Voir les commits des submodules |
 | `git submodule foreach git pull` | Mettre à jour tous les submodules |
 | `cd .framework && git log --oneline -5` | Derniers commits du framework |
-| `cd builder && git log --oneline -5` | Derniers commits du builder |
+| `cd builder && git log --oneline -5` | Derniers commits du Configurateur |
 | `cd .framework && git pull && cd .. && git add .framework && git commit -m "Update framework"` | Raccourci MàJ framework |
-| `cd builder && git pull && cd .. && git add builder && git commit -m "Update builder"` | Raccourci MàJ builder |
+| `cd builder && git pull && cd .. && git add builder && git commit -m "Update builder"` | Raccourci MàJ Configurateur |
 
 ---
 
@@ -538,4 +538,4 @@ git commit -m "Pin framework to v1.2.0"
 - [Démarrer un projet](getting-started.md)
 - [Configurateur](configurateur.md)
 - [Mise en production](production.md)
-- [Builder — Vue d'ensemble](builder-overview.md)
+- [Configurateur — Vue d'ensemble](configurateur.md)

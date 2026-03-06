@@ -18,6 +18,25 @@ html {
   background: var(--color-bg);
 }
 
+/* ---------- Creator shortcut buttons (header) ---------- */
+
+.header__creator-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-light);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+  text-decoration: none;
+}
+
+.header__creator-btn:hover {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
 /* ---------- Mobile nav toggle (hidden by default) ---------- */
 
 .docs-nav-toggle {

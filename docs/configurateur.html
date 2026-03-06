@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurateur &mdash; Documentation &mdash; Site System</title>
+  <title>Configurateur &mdash; Vue d'ensemble &mdash; Site System</title>
   <script src="../core/js/darkmode.js"></script>
   <script src="../config-site.js"></script>
   <script src="../core/js/site.js"></script>
@@ -40,307 +40,139 @@
       <nav class="docs-sidebar" data-component="docs-sidebar" data-active="configurateur"></nav>
 
       <main class="docs-content">
-        <h1 class="anim-fade-in-up">Configurateur</h1>
+        <h1 class="anim-fade-in-up">Configurateur &mdash; Vue d'ensemble</h1>
         <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
-          Interface visuelle pour configurer l&rsquo;ensemble de votre site sans &eacute;diter manuellement les fichiers de configuration.
+          Le Configurateur Site System est un outil d'administration zero-dependency pour g&eacute;rer les pages, la configuration du site, la m&eacute;diath&egrave;que et les ic&ocirc;nes.
         </p>
 
-
-        <!-- ═══════════════════════════════════════════════════ -->
-        <h2>Pr&eacute;sentation</h2>
-
-        <p>Le <strong>Configurateur</strong> est une page HTML autonome (<code>configurator.html</code>) qui g&eacute;n&egrave;re automatiquement les 3 fichiers de configuration du framework :</p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Fichier</th>
-              <th>Contenu</th>
-              <th>Commitable</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>config-site.js</code></td>
-              <td>Identit&eacute; du site, analytics, blog, mentions l&eacute;gales</td>
-              <td>Oui</td>
-            </tr>
-            <tr>
-              <td><code>.env</code></td>
-              <td>Tokens API, CORS, webhooks (c&ocirc;t&eacute; serveur)</td>
-              <td>Non</td>
-            </tr>
-            <tr>
-              <td><code>.deploy.env</code></td>
-              <td>Configuration SSH prod/preprod</td>
-              <td>Non</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p>Le configurateur est <strong>local uniquement</strong> &mdash; il n&rsquo;est jamais d&eacute;ploy&eacute; en production (exclu via <code>.rsync-exclude</code>).</p>
-
-
-        <!-- ═══════════════════════════════════════════════════ -->
-        <h2>Lancement</h2>
-
-        <h3>Avec le serveur Python (recommand&eacute;)</h3>
-
-        <p>Le serveur Python permet l&rsquo;&eacute;criture directe des fichiers de configuration sur le disque, sans manipulation manuelle.</p>
-
-<pre><code>python3 configurator-server.py</code></pre>
-
-        <p>Puis ouvrir <code>http://localhost:5555/configurator.html</code> dans votre navigateur.</p>
-
-        <p>Le serveur :</p>
-        <ul>
-          <li>Sert les fichiers statiques du projet</li>
-          <li>Lit automatiquement la configuration existante au chargement</li>
-          <li><strong>Auto-save</strong> : chaque modification est &eacute;crite sur disque apr&egrave;s 500ms d&rsquo;inactivit&eacute;</li>
-          <li>Fonctionne dans <strong>tous les navigateurs</strong> (Firefox, Chrome, Safari&hellip;)</li>
-          <li>Zero-dependency : utilise uniquement la stdlib Python 3</li>
-        </ul>
-
-        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin: var(--space-4) 0;">
-          <strong style="font-size: var(--text-sm);">S&eacute;curit&eacute;</strong>
-          <p style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0;">
-            Le serveur n&rsquo;autorise l&rsquo;&eacute;criture que sur 4 fichiers : <code>config-site.js</code>, <code>.env</code>, <code>.deploy.env</code> et <code>.htpasswd</code>. Toute autre tentative retourne une erreur 403.
-          </p>
-        </div>
-
-        <h3>Sans serveur (Live Server / file://)</h3>
-
-        <p>Le configurateur fonctionne aussi sans le serveur Python, avec quelques diff&eacute;rences :</p>
-        <ul>
-          <li>Les fichiers ne sont pas modifi&eacute;s automatiquement sur le disque</li>
-          <li>Utilisez les boutons <strong>T&eacute;l&eacute;charger</strong> ou <strong>Copier</strong> pour r&eacute;cup&eacute;rer le code g&eacute;n&eacute;r&eacute;</li>
-          <li>Vos saisies sont sauvegard&eacute;es dans le <code>localStorage</code> du navigateur</li>
-        </ul>
-
-
-        <!-- ═══════════════════════════════════════════════════ -->
-        <h2>Les 7 onglets</h2>
-
-        <h3>Site</h3>
-        <p>Configure l&rsquo;objet <code>window.SITE_CONFIG</code> :</p>
-        <ul>
-          <li><strong>Nom du site</strong> &mdash; utilis&eacute; comme titre par d&eacute;faut si <code>&lt;title&gt;</code> est vide</li>
-          <li><strong>Favicon</strong> &mdash; chemin vers le favicon (<code>/favicon.ico</code>, <code>/assets/favicon.png</code>&hellip;)</li>
-        </ul>
-
-        <h3>Cookies &amp; Analytics</h3>
-        <p>Configure l&rsquo;objet <code>window.COOKIES_CONFIG</code> :</p>
-        <ul>
-          <li><strong>IDs des plateformes</strong> &mdash; GA4, GTM, Clarity, Facebook Pixel, Hotjar, LinkedIn, TikTok</li>
-          <li><strong>Banni&egrave;re de consentement</strong> &mdash; textes, dur&eacute;e du cookie, version, lien confidentialit&eacute;</li>
-          <li><strong>Endpoint consentement</strong> &mdash; URL du script PHP de preuve RGPD</li>
-        </ul>
-
-        <h3>Blog</h3>
-        <p>Configure l&rsquo;objet <code>window.BLOG_CONFIG</code> :</p>
-        <ul>
-          <li><strong>Connexion Baserow</strong> &mdash; URL de l&rsquo;instance, Table ID, token dev</li>
-          <li><strong>Proxy PHP</strong> &mdash; URL du proxy c&ocirc;t&eacute; serveur</li>
-          <li><strong>Affichage</strong> &mdash; articles par page, format date, image par d&eacute;faut, chemins</li>
-        </ul>
-
-        <h3>Mentions l&eacute;gales</h3>
-        <p>Configure l&rsquo;objet <code>window.LEGAL_CONFIG</code> :</p>
-        <ul>
-          <li><strong>&Eacute;diteur</strong> &mdash; entreprise, SIRET, responsable, adresse, contact</li>
-          <li><strong>H&eacute;bergeur</strong> &mdash; nom, adresse, site, contact</li>
-          <li><strong>D&eacute;veloppeur</strong> &mdash; nom, site, adresse (optionnel)</li>
-        </ul>
-
-        <h3>Serveur (.env)</h3>
-        <p>G&eacute;n&egrave;re le fichier <code>.env</code> (non commitable, non d&eacute;ploy&eacute;) :</p>
-        <ul>
-          <li><strong>Baserow</strong> &mdash; token API et URL</li>
-          <li><strong>CORS</strong> &mdash; origine autoris&eacute;e</li>
-          <li><strong>Formulaires</strong> &mdash; webhook Make.com et email de notification</li>
-          <li><strong>Make.com</strong> &mdash; cl&eacute; API, zone, team ID</li>
-        </ul>
-
-        <h3>D&eacute;ploiement (.deploy.env)</h3>
-        <p>G&eacute;n&egrave;re le fichier <code>.deploy.env</code> (non commitable, non d&eacute;ploy&eacute;) :</p>
-        <ul>
-          <li><strong>Production</strong> &mdash; URL, host, port, user, path SSH</li>
-          <li><strong>Pr&eacute;-production</strong> &mdash; m&ecirc;mes champs pour l&rsquo;environnement de test</li>
-        </ul>
-
-        <h3>Protection HTTP (htpasswd)</h3>
-        <p>Prot&egrave;ge le site par mot de passe (HTTP Basic Auth) &mdash; id&eacute;al pour un staging ou pr&eacute;prod :</p>
-        <ul>
-          <li><strong>Toggle</strong> &mdash; active/d&eacute;sactive la protection en un clic</li>
-          <li><strong>Identifiant</strong> &mdash; nom d&rsquo;utilisateur pour l&rsquo;authentification</li>
-          <li><strong>Mot de passe</strong> &mdash; hash&eacute; en bcrypt c&ocirc;t&eacute; serveur</li>
-          <li><strong>Message d&rsquo;invite</strong> &mdash; texte affich&eacute; dans la popup du navigateur (d&eacute;faut : &laquo;&nbsp;Acc&egrave;s restreint&nbsp;&raquo;)</li>
-        </ul>
-        <p>Quand activ&eacute;, le serveur Python g&eacute;n&egrave;re <code>.htpasswd</code> et injecte le bloc <code>AuthType Basic</code> dans <code>.htaccess</code>. Quand d&eacute;sactiv&eacute;, les deux sont nettoy&eacute;s automatiquement.</p>
-        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin: var(--space-4) 0;">
+        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
           <strong style="font-size: var(--text-sm);">Note</strong>
           <p style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0;">
-            Cet onglet n&eacute;cessite le serveur Python (pas de mode t&eacute;l&eacute;chargement).
+            Les outils interactifs (cr&eacute;ateur d'animations, cr&eacute;ateur de grilles) sont d&eacute;sormais int&eacute;gr&eacute;s directement dans les pages de documentation : <a href="animations.html#animation-creator">Animations</a> et <a href="grid.html#grid-creator">Grid</a>.
           </p>
         </div>
 
+        <!-- ========== INTRODUCTION ========== -->
 
-        <!-- ═══════════════════════════════════════════════════ -->
-        <h2>Fonctionnalit&eacute;s</h2>
-
-        <h3>Auto-save (serveur Python)</h3>
-        <p>Quand le serveur Python tourne, chaque modification d&rsquo;un champ d&eacute;clenche une &eacute;criture automatique du fichier concern&eacute; apr&egrave;s 500ms. Un indicateur en haut de page confirme la connexion :</p>
+        <h2 id="introduction">Introduction</h2>
+        <p>Le <strong>Configurateur</strong> est une interface d'administration con&ccedil;ue pour g&eacute;rer un projet Site System sans &eacute;crire de code manuellement. Il respecte la philosophie <strong>zero-dependency</strong> du framework : pas de npm, pas de build tools, juste du vanilla JS et un backend Python utilisant uniquement la biblioth&egrave;que standard.</p>
+        <p>Le Configurateur permet de :</p>
         <ul>
-          <li><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--color-success); vertical-align: middle;"></span> <strong>Vert</strong> &mdash; Serveur connect&eacute;, auto-save actif</li>
-          <li><span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--color-error); vertical-align: middle;"></span> <strong>Rouge</strong> &mdash; Serveur non d&eacute;tect&eacute;, mode fallback</li>
+          <li>G&eacute;rer les pages du projet (cr&eacute;ation, suppression, m&eacute;tadonn&eacute;es SEO, arborescence)</li>
+          <li>Configurer les design tokens via le configurateur int&eacute;gr&eacute;</li>
+          <li>G&eacute;rer la m&eacute;diath&egrave;que (images, dossiers, upload)</li>
+          <li>Parcourir les 324 ic&ocirc;nes Heroicons avec recherche et copie rapide</li>
+          <li>D&eacute;ployer et versionner avec git</li>
         </ul>
 
-        <h3>T&eacute;l&eacute;chargement</h3>
-        <p>Le bouton <strong>T&eacute;l&eacute;charger</strong> permet de r&eacute;cup&eacute;rer le fichier g&eacute;n&eacute;r&eacute; correspondant &agrave; l&rsquo;onglet actif :</p>
+        <!-- ========== LANCEMENT ========== -->
+
+        <h2 id="lancement">Lancement</h2>
+        <p>Le Configurateur repose sur un serveur Python l&eacute;ger (<code>configurator-server.py</code>) qui tourne sur le port <strong>5555</strong>.</p>
+
+        <h3>1. D&eacute;marrer le serveur</h3>
+        <p>Depuis la racine du projet :</p>
+<pre><code>python3 builder/configurator-server.py</code></pre>
+        <p>Le serveur d&eacute;marre sur <code>http://localhost:5555</code>. Il utilise uniquement la biblioth&egrave;que standard Python (pas de pip install n&eacute;cessaire).</p>
+
+        <h3>2. Acc&eacute;der au Configurateur</h3>
+        <p>Ouvrez votre navigateur et naviguez vers :</p>
+<pre><code>http://localhost:5555/builder/</code></pre>
+        <p>Le Configurateur se charge comme une SPA (Single Page Application) avec navigation par panels.</p>
+
+        <!-- ========== ARCHITECTURE ========== -->
+
+        <h2 id="architecture">Architecture</h2>
+        <p>Le Configurateur suit une architecture client-serveur simple :</p>
+
+        <table>
+          <tr><th>Couche</th><th>Technologie</th><th>R&ocirc;le</th></tr>
+          <tr>
+            <td><strong>Backend</strong></td>
+            <td>Python 3 (stdlib uniquement)</td>
+            <td>Serveur HTTP sur le port 5555, API REST pour g&eacute;rer les fichiers, le registry et servir les assets</td>
+          </tr>
+          <tr>
+            <td><strong>Frontend</strong></td>
+            <td>Vanilla JS (7 modules)</td>
+            <td>Interface SPA, gestion d'&eacute;tat, navigation par panels</td>
+          </tr>
+        </table>
+
+        <p>Le backend Python sert de proxy fichier : il g&egrave;re le registre des pages (<code>pages.json</code>), les op&eacute;rations CRUD sur les pages et les m&eacute;dias, et fournit l'API de configuration. Le frontend g&egrave;re toute l'interface utilisateur.</p>
+
+        <!-- ========== STRUCTURE DES FICHIERS ========== -->
+
+        <h2 id="structure-fichiers">Structure des fichiers</h2>
+        <p>Le dossier <code>builder/</code> contient l'ensemble du code :</p>
+
+        <table>
+          <tr><th>Fichier</th><th>Description</th></tr>
+          <tr><td><code>builder/index.html</code></td><td>Interface HTML principale</td></tr>
+          <tr><td><code>builder/builder.css</code></td><td>Styles (layout, panels, sidebar)</td></tr>
+          <tr><td><code>builder/js/builder-app.js</code></td><td>Shell principal : navigation entre panels, &eacute;tat global, initialisation</td></tr>
+          <tr><td><code>builder/js/builder-api.js</code></td><td>Client HTTP pour communiquer avec l'API backend Python</td></tr>
+          <tr><td><code>builder/js/builder-pages.js</code></td><td>Gestion des pages : arborescence, cr&eacute;ation, suppression, m&eacute;tadonn&eacute;es</td></tr>
+          <tr><td><code>builder/js/builder-library.js</code></td><td>Biblioth&egrave;que : ic&ocirc;nes et m&eacute;diath&egrave;que</td></tr>
+          <tr><td><code>builder/js/builder-configurator.js</code></td><td>Configurateur de design tokens</td></tr>
+          <tr><td><code>builder/js/builder-publish.js</code></td><td>D&eacute;ploiement en production/pr&eacute;-production et gestion git</td></tr>
+          <tr><td><code>builder/js/builder-modal.js</code></td><td>Syst&egrave;me de modales : confirm, prompt, alertes</td></tr>
+        </table>
+
+        <!-- ========== PANELS ========== -->
+
+        <h2 id="panels">Panels</h2>
+        <p>Le Configurateur est organis&eacute; en 5 panels :</p>
+
+        <h3>Accueil (Dashboard)</h3>
+        <p>Vue d'accueil. Affiche un r&eacute;sum&eacute; du projet : nombre de pages, acc&egrave;s rapides aux actions fr&eacute;quentes (cr&eacute;er une page, ouvrir le configurateur, d&eacute;ployer).</p>
+
+        <h3>Pages</h3>
+        <p>Gestionnaire de pages du projet. Permet de :</p>
         <ul>
-          <li>Onglets Site / Cookies / Blog / L&eacute;gal &rarr; <code>config-site.js</code></li>
-          <li>Onglet Serveur &rarr; <code>.env</code></li>
-          <li>Onglet D&eacute;ploiement &rarr; <code>.deploy.env</code></li>
+          <li>Visualiser l'arborescence compl&egrave;te des pages (dossiers, sous-pages)</li>
+          <li>Cr&eacute;er, renommer, dupliquer et supprimer des pages</li>
+          <li>Modifier les m&eacute;tadonn&eacute;es (titre, description SEO, slug, statut publi&eacute;/brouillon)</li>
+          <li>R&eacute;ordonner les pages par glisser-d&eacute;poser</li>
         </ul>
 
-        <h3>Copier le code</h3>
-        <p>Chaque bloc de pr&eacute;visualisation dispose d&rsquo;un bouton <strong>Copier</strong> qui copie le code g&eacute;n&eacute;r&eacute; dans le presse-papier.</p>
+        <h3>Configuration</h3>
+        <p>Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions l&eacute;gales, d&eacute;ploiement. Les fichiers <code>config-site.js</code>, <code>.env</code> et <code>.deploy.env</code> sont g&eacute;n&eacute;r&eacute;s automatiquement.</p>
 
-        <h3>Importer une config existante</h3>
-        <p>Le bouton <strong>Importer</strong> permet de charger un fichier existant (<code>config-site.js</code>, <code>.env</code>, ou <code>.deploy.env</code>) pour pr&eacute;-remplir tous les champs. Avec le serveur Python, la configuration existante est charg&eacute;e automatiquement au premier lancement.</p>
+        <h3>M&eacute;diath&egrave;que</h3>
+        <p>Gestionnaire d'images du site avec :</p>
+        <ul>
+          <li>Upload par drag &amp; drop ou s&eacute;lection de fichier</li>
+          <li>Organisation en dossiers (cr&eacute;ation, navigation, breadcrumb)</li>
+          <li>Popup d'&eacute;dition (renommer, alt text, d&eacute;placer entre dossiers)</li>
+          <li>Infos fichier (type, poids, chemin)</li>
+          <li>Copie rapide du chemin d'une image</li>
+        </ul>
 
-        <h3>Persistance locale</h3>
-        <p>Toutes les valeurs saisies sont sauvegard&eacute;es dans le <code>localStorage</code> du navigateur. Elles sont restaur&eacute;es automatiquement &agrave; chaque ouverture du configurateur.</p>
+        <h3>Ic&ocirc;nes</h3>
+        <p>324 ic&ocirc;nes Heroicons (outline + solid) avec recherche et copie rapide du code <code>data-icon</code>.</p>
 
-        <h3>Pr&eacute;visualisation en direct</h3>
-        <p>Chaque onglet affiche un aper&ccedil;u en temps r&eacute;el du code qui sera g&eacute;n&eacute;r&eacute;, mis &agrave; jour &agrave; chaque frappe.</p>
+        <!-- ========== REGISTRY ========== -->
 
+        <h2 id="registry">Registry (<code>pages.json</code>)</h2>
+        <p>Le fichier <code>pages.json</code> est le <strong>registre central</strong> de toutes les pages du projet. Il stocke :</p>
+        <ul>
+          <li>Les chemins des fichiers HTML</li>
+          <li>Les m&eacute;tadonn&eacute;es de chaque page (titre, description, slug, statut)</li>
+          <li>L'arborescence et la hi&eacute;rarchie des pages</li>
+        </ul>
 
-        <!-- ═══════════════════════════════════════════════════ -->
-        <h2>Architecture technique</h2>
+        <!-- ========== DÉPLOIEMENT ========== -->
 
-        <h3>Fichiers</h3>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Fichier</th>
-              <th>R&ocirc;le</th>
-              <th>D&eacute;ploy&eacute;</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>configurator.html</code></td>
-              <td>Interface du configurateur (HTML + CSS + JS inline)</td>
-              <td>Non</td>
-            </tr>
-            <tr>
-              <td><code>configurator-server.py</code></td>
-              <td>Micro-serveur Python pour l&rsquo;&eacute;criture fichiers</td>
-              <td>Non</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p>Les deux fichiers sont exclus du d&eacute;ploiement via <code>.rsync-exclude</code>.</p>
-
-        <h3>Serveur Python &mdash; API</h3>
-
-        <p>Le serveur &eacute;coute sur le port <strong>5555</strong> et expose deux endpoints :</p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>M&eacute;thode</th>
-              <th>Endpoint</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>POST</code></td>
-              <td><code>/api/cfg-read</code></td>
-              <td>Lit le contenu d&rsquo;un fichier autoris&eacute;</td>
-            </tr>
-            <tr>
-              <td><code>POST</code></td>
-              <td><code>/api/cfg-save</code></td>
-              <td>&Eacute;crit le contenu dans un fichier autoris&eacute;</td>
-            </tr>
-            <tr>
-              <td><code>POST</code></td>
-              <td><code>/api/cfg-htpasswd</code></td>
-              <td>G&eacute;n&egrave;re/supprime <code>.htpasswd</code> et met &agrave; jour <code>.htaccess</code></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p><strong>Body JSON (read) :</strong></p>
-<pre><code>{
-  "file": "config-site.js"
-}</code></pre>
-
-        <p><strong>Body JSON (save) :</strong></p>
-<pre><code>{
-  "file": "config-site.js",
-  "content": "// contenu du fichier..."
-}</code></pre>
-
-        <p><strong>Body JSON (htpasswd) :</strong></p>
-<pre><code>{
-  "enabled": true,
-  "username": "admin",
-  "password": "monmotdepasse",
-  "realm": "Acc&egrave;s restreint"
-}</code></pre>
-
-        <p><strong>Fichiers autoris&eacute;s :</strong> <code>config-site.js</code>, <code>.env</code>, <code>.deploy.env</code>, <code>.htpasswd</code>. Tout autre fichier retourne une erreur 403.</p>
-
-        <h3>Flux de donn&eacute;es</h3>
-
-<pre><code>Navigateur (configurator.html)
-    &darr; input (chaque frappe)
-    &darr; state JS (objet en m&eacute;moire)
-    &darr; localStorage (persistance)
-    &darr; g&eacute;n&eacute;rateur (code JS / env)
-    &darr; pr&eacute;visualisation (mise &agrave; jour live)
-    &darr; POST /api/cfg-save (d&eacute;bounc&eacute; 500ms)
-    &darr;
-Fichier sur disque (config-site.js / .env / .deploy.env)</code></pre>
-
-
-        <!-- ═══════════════════════════════════════════════════ -->
-        <h2>Guide rapide</h2>
-
-        <ol>
-          <li>Lancer le serveur : <code>python3 configurator-server.py</code></li>
-          <li>Ouvrir <code>http://localhost:5555/configurator.html</code></li>
-          <li>Remplir les champs dans chaque onglet</li>
-          <li>Les fichiers sont automatiquement &eacute;crits sur le disque</li>
-          <li>Arr&ecirc;ter le serveur avec <kbd>Ctrl+C</kbd></li>
-        </ol>
-
-        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin: var(--space-4) 0;">
-          <strong style="font-size: var(--text-sm);">Astuce</strong>
-          <p style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0;">
-            Si vous n&rsquo;avez pas Python 3, vous pouvez toujours utiliser le configurateur via Live Server &mdash; les boutons T&eacute;l&eacute;charger et Copier fonctionnent sans le serveur.
-          </p>
-        </div>
+        <h2 id="deploiement">D&eacute;ploiement</h2>
+        <p>Le panel de publication permet de :</p>
+        <ul>
+          <li>D&eacute;ployer en production ou pr&eacute;-production via <code>deploy.sh</code></li>
+          <li>G&eacute;rer les commits git (voir les changements, commiter, pousser)</li>
+        </ul>
 
       </main>
-
-      <aside class="docs-toc"></aside>
     </div>
-  </div>
-
-  <div data-component="footer" data-copyright="&copy; 2026 SiteSystem">
-    <template data-slot="content">
-      <nav class="footer__links">
-        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
-        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
-      </nav>
-    </template>
   </div>
 
 </body>

@@ -159,10 +159,12 @@
     { title: 'Coming Soon', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe coming soon bientot disponible countdown timer lancement' },
     // Configurateur
     { title: 'Configurateur', section: 'Vue d\'ensemble', url: 'configurateur.html', keywords: 'configurateur configurator builder config setup paramètres configuration visuel interface' },
-    { title: 'Lancement', section: 'Configurateur', url: 'configurateur.html#lancement', keywords: 'lancement serveur python server démarrer start auto-save' },
-    { title: 'Les 6 onglets', section: 'Configurateur', url: 'configurateur.html#les-6-onglets', keywords: 'onglets tabs site cookies analytics blog légales env deploy' },
-    { title: 'Fonctionnalités', section: 'Configurateur', url: 'configurateur.html#fonctionnalites', keywords: 'auto-save téléchargement copier importer prévisualisation localStorage' },
-    { title: 'Architecture technique', section: 'Configurateur', url: 'configurateur.html#architecture-technique', keywords: 'architecture api endpoint cfg-save cfg-read python serveur port 5555' },
+    { title: 'Dashboard', section: 'Configurateur', url: 'configurateur-dashboard.html', keywords: 'dashboard tableau de bord résumé overview projet' },
+    { title: 'Pages', section: 'Configurateur', url: 'configurateur-pages.html', keywords: 'pages gestion créer supprimer éditer page' },
+    { title: 'Configuration', section: 'Configurateur', url: 'configurateur-config.html', keywords: 'configuration config paramètres réglages site' },
+    { title: 'Bibliothèque', section: 'Configurateur', url: 'configurateur-bibliotheque.html', keywords: 'bibliothèque library composants sections wireframes blocs' },
+    { title: 'Déploiement', section: 'Configurateur', url: 'configurateur-deploy.html', keywords: 'déploiement deploy production serveur mise en ligne' },
+    { title: 'API Backend', section: 'Configurateur', url: 'configurateur-api.html', keywords: 'api backend serveur python endpoints cfg-save cfg-read' },
   ];
 
   var searchOverlay = null;
@@ -414,6 +416,36 @@
   }
 
   /* =====================================================================
+     CREATOR SHORTCUT BUTTONS (header)
+     ===================================================================== */
+
+  function initCreatorButtons() {
+    var headerActions = document.querySelector('.header__actions');
+    if (!headerActions) return;
+    var themeToggle = headerActions.querySelector('[data-theme-toggle]');
+    if (!themeToggle) return;
+
+    // Bouton créateur d'animations (sparkles icon)
+    var animBtn = document.createElement('a');
+    animBtn.href = 'animations.html#animation-creator';
+    animBtn.className = 'header__creator-btn';
+    animBtn.setAttribute('aria-label', 'Créateur d\'animations');
+    animBtn.setAttribute('title', 'Créateur d\'animations');
+    animBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v1m0 16v1m-8-9H3m18 0h-1m-2.636-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707"/><circle cx="12" cy="12" r="4"/></svg>';
+
+    // Bouton créateur de grilles (grid/table icon)
+    var gridBtn = document.createElement('a');
+    gridBtn.href = 'grid.html#grid-creator';
+    gridBtn.className = 'header__creator-btn';
+    gridBtn.setAttribute('aria-label', 'Créateur de grilles');
+    gridBtn.setAttribute('title', 'Créateur de grilles');
+    gridBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>';
+
+    headerActions.insertBefore(gridBtn, themeToggle);
+    headerActions.insertBefore(animBtn, gridBtn);
+  }
+
+  /* =====================================================================
      OFF-CANVAS MOBILE NAV
      ===================================================================== */
 
@@ -486,6 +518,7 @@
   function init() {
     initCopyButtons();
     initTOC();
+    initCreatorButtons();
     initOffcanvasNav();
 
     // Keyboard shortcut Cmd+K / Ctrl+K

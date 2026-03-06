@@ -114,7 +114,7 @@
 cd ~/Sites
 git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
 cd mon-projet</code></pre>
-        <p>L'option <code>--recursive</code> est importante&nbsp;: elle t&eacute;l&eacute;charge aussi le framework et le builder en m&ecirc;me temps.</p>
+        <p>L'option <code>--recursive</code> est importante&nbsp;: elle t&eacute;l&eacute;charge aussi le framework et le Configurateur en m&ecirc;me temps.</p>
 
         <h4>&Eacute;tape 2 &mdash; Lancer le setup</h4>
 <pre><code># &#x1F4C2; Dossier : ~/Sites/mon-projet/ (la racine du projet)
@@ -153,11 +153,11 @@ git commit -m "Initial commit"</code></pre>
 git submodule add https://github.com/TheoRoces/beely-framework.git .framework</code></pre>
         <p>Cela cr&eacute;e un dossier <code>.framework/</code> contenant tout le framework (CSS, JS, composants, ic&ocirc;nes, wireframes, docs).</p>
 
-        <h4>&Eacute;tape 3 &mdash; Ajouter le builder (optionnel)</h4>
+        <h4>&Eacute;tape 3 &mdash; Ajouter le Configurateur (optionnel)</h4>
 <pre><code># &#x1F4C2; Dossier : la racine de ton projet
 
 git submodule add https://github.com/TheoRoces/beely-builder.git builder</code></pre>
-        <p>Le builder est un &eacute;diteur visuel optionnel. Si tu ne l'utilises pas, saute cette &eacute;tape.</p>
+        <p>Le Configurateur est une interface d'administration optionnelle. Si tu ne l'utilises pas, saute cette &eacute;tape.</p>
 
         <h4>&Eacute;tape 4 &mdash; Cr&eacute;er les symlinks</h4>
         <p>Tu peux copier le script <code>setup.sh</code> depuis le <a href="https://github.com/TheoRoces/beely-template/blob/main/setup.sh" target="_blank" rel="noopener">template GitHub</a> et l'ex&eacute;cuter, ou cr&eacute;er les symlinks manuellement&nbsp;:</p>

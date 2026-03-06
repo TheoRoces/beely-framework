@@ -49,12 +49,12 @@
           <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
           <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
             <li><a href="#reprendre-de-zero">Reprendre de z&eacute;ro</a> &mdash; retrouver les repos, recloner, reconfigurer</li>
-            <li><a href="#les-4-repos">Les 4 repos</a> &mdash; framework, builder, template, site-system</li>
+            <li><a href="#les-4-repos">Les 4 repos</a> &mdash; framework, Configurateur, template, site-system</li>
             <li><a href="#architecture">Architecture</a> &mdash; framework dans <code>.framework/</code> + symlinks</li>
             <li><a href="#fichiers">Fichiers symlink&eacute;s vs r&eacute;els</a> &mdash; ce qui vient du framework vs ce qui est propre au projet</li>
             <li><a href="#installation">Installation</a> &mdash; cloner et initialiser un projet</li>
             <li><a href="#modifier-framework">Modifier le framework</a> &mdash; &eacute;diter, commiter et propager</li>
-            <li><a href="#modifier-builder">Modifier le builder</a> &mdash; &eacute;diter, commiter et propager</li>
+            <li><a href="#modifier-builder">Modifier le Configurateur</a> &mdash; &eacute;diter, commiter et propager</li>
             <li><a href="#mettre-a-jour">Mettre &agrave; jour les submodules</a> &mdash; r&eacute;cup&eacute;rer les derni&egrave;res versions</li>
             <li><a href="#deploiement">D&eacute;ploiement</a> &mdash; rsync suit les symlinks</li>
             <li><a href="#mise-en-prod-framework">Mise en production du framework</a> &mdash; propager les changements partout</li>
@@ -79,7 +79,7 @@
           <tr>
             <td><strong>beely-builder</strong></td>
             <td><code>https://github.com/TheoRoces/beely-builder</code></td>
-            <td>Le builder visuel&nbsp;: &eacute;diteur WYSIWYG, configurateur, serveur Python</td>
+            <td>Le Configurateur&nbsp;: interface d'administration, configurateur, serveur Python</td>
           </tr>
           <tr>
             <td><strong>beely-template</strong></td>
@@ -102,7 +102,7 @@ cd ~/Sites
 # 1. Cloner le framework (pour le modifier ou le d&eacute;ployer)
 git clone https://github.com/TheoRoces/beely-framework.git site-system-framework
 
-# 2. Cloner le builder (pour le modifier)
+# 2. Cloner le Configurateur (pour le modifier)
 git clone https://github.com/TheoRoces/beely-builder.git beely-builder
 
 # 3. Cloner le template (pour cr&eacute;er de nouveaux projets)
@@ -153,7 +153,7 @@ cp .env.example .env</code></pre>
           </tr>
           <tr>
             <td><strong>beely-builder</strong></td>
-            <td>Builder visuel, configurateur, serveur Python</td>
+            <td>Configurateur, interface d'administration, serveur Python</td>
             <td>Submodule <code>builder/</code></td>
           </tr>
           <tr>
@@ -163,7 +163,7 @@ cp .env.example .env</code></pre>
           </tr>
           <tr>
             <td><strong>site-system</strong></td>
-            <td>Environnement de dev&nbsp;: framework + builder + doc en ligne</td>
+            <td>Environnement de dev&nbsp;: framework + Configurateur + doc en ligne</td>
             <td>Pas un submodule &mdash; c'est le repo parent</td>
           </tr>
         </table>
@@ -173,7 +173,7 @@ cp .env.example .env</code></pre>
         <p><code>site-system</code> n'est <strong>pas un submodule</strong> &mdash; c'est le <strong>repo de d&eacute;veloppement principal</strong>. C'est le seul endroit o&ugrave;&nbsp;:</p>
         <ul>
           <li>Tu modifies le <strong>framework</strong> (via le submodule <code>.framework/</code>)</li>
-          <li>Tu modifies le <strong>builder</strong> (via le submodule <code>builder/</code>)</li>
+          <li>Tu modifies le <strong>Configurateur</strong> (via le submodule <code>builder/</code>)</li>
           <li>Tu mets &agrave; jour la <strong>documentation</strong> (qui se trouve dans <code>.framework/docs/</code>)</li>
           <li>Tu d&eacute;ploies le site <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong> (via <code>./deploy.sh prod</code>)</li>
         </ul>
@@ -288,9 +288,9 @@ cd ..
 git add .framework
 git commit -m "Update framework submodule"</code></pre>
 
-        <!-- ========== MODIFIER LE BUILDER ========== -->
+        <!-- ========== MODIFIER LE CONFIGURATEUR ========== -->
 
-        <h2 id="modifier-builder">Modifier le builder</h2>
+        <h2 id="modifier-builder">Modifier le Configurateur</h2>
 <pre><code># &#x1F4BB; Terminal : terminal VSCode (Ctrl+`)
 # &#x1F4C2; Dossier : la racine d'un projet client (ex: ~/Sites/mon-projet/)
 
@@ -318,7 +318,7 @@ git submodule update --remote .framework
 git add .framework
 git commit -m "Update framework to latest version"</code></pre>
 
-        <h3>Mettre &agrave; jour le builder</h3>
+        <h3>Mettre &agrave; jour le Configurateur</h3>
 <pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
 git submodule update --remote builder
@@ -454,7 +454,7 @@ Pour CHAQUE projet client :
             <td><code>cd .framework &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td>Modifier le builder visuel</td>
+            <td>Modifier le Configurateur</td>
             <td>beely-builder</td>
             <td><code>js/</code></td>
             <td><code>cd builder &amp;&amp; &hellip;</code></td>
@@ -500,11 +500,11 @@ Pour CHAQUE projet client :
           <tr><td><code>git clone --recursive &lt;url&gt;</code></td><td>Cloner un projet avec ses submodules</td></tr>
           <tr><td><code>git submodule update --init --recursive</code></td><td>Initialiser les submodules apr&egrave;s un clone</td></tr>
           <tr><td><code>git submodule update --remote .framework</code></td><td>Mettre &agrave; jour le framework</td></tr>
-          <tr><td><code>git submodule update --remote builder</code></td><td>Mettre &agrave; jour le builder</td></tr>
+          <tr><td><code>git submodule update --remote builder</code></td><td>Mettre &agrave; jour le Configurateur</td></tr>
           <tr><td><code>git submodule status</code></td><td>Voir les commits des submodules</td></tr>
           <tr><td><code>cd .framework &amp;&amp; git log --oneline -5</code></td><td>Derniers commits du framework</td></tr>
           <tr><td><code>cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework"</code></td><td>Raccourci M&agrave;J framework</td></tr>
-          <tr><td><code>cd builder &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add builder &amp;&amp; git commit -m "Update builder"</code></td><td>Raccourci M&agrave;J builder</td></tr>
+          <tr><td><code>cd builder &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add builder &amp;&amp; git commit -m "Update builder"</code></td><td>Raccourci M&agrave;J Configurateur</td></tr>
         </table>
 
         <div class="docs-see-also">
@@ -512,7 +512,7 @@ Pour CHAQUE projet client :
           <ul>
             <li><a href="getting-started.html">D&eacute;marrer un projet</a></li>
             <li><a href="production.html">Mise en production</a></li>
-            <li><a href="builder-overview.html">Builder &mdash; Vue d'ensemble</a></li>
+            <li><a href="configurateur.html">Configurateur &mdash; Vue d'ensemble</a></li>
           </ul>
         </div>
 

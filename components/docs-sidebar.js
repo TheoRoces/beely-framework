@@ -23,13 +23,13 @@ registerComponent('docs-sidebar', function (slots) {
     { href: 'claude.html',     label: 'Claude Code',    key: 'claude' },
     { href: 'submodule.html', label: 'Architecture Submodule', key: 'submodule' },
     { cat: 'Configurateur' },
-    { href: 'builder-overview.html',     label: 'Vue d\'ensemble',     key: 'builder-overview' },
-    { href: 'builder-dashboard.html',    label: 'Dashboard',           key: 'builder-dashboard' },
-    { href: 'builder-pages.html',        label: 'Pages',               key: 'builder-pages' },
-    { href: 'builder-configurator.html', label: 'Configuration',       key: 'builder-configurator' },
-    { href: 'builder-library.html',      label: 'Biblioth\u00e8que',   key: 'builder-library' },
-    { href: 'builder-deploy.html',       label: 'D\u00e9ploiement',    key: 'builder-deploy' },
-    { href: 'builder-api.html',          label: 'API Backend',         key: 'builder-api' }
+    { href: 'configurateur.html',              label: 'Vue d\'ensemble',     key: 'configurateur' },
+    { href: 'configurateur-dashboard.html',    label: 'Dashboard',           key: 'configurateur-dashboard' },
+    { href: 'configurateur-pages.html',        label: 'Pages',               key: 'configurateur-pages' },
+    { href: 'configurateur-config.html',       label: 'Configuration',       key: 'configurateur-config' },
+    { href: 'configurateur-bibliotheque.html', label: 'Biblioth\u00e8que',   key: 'configurateur-bibliotheque' },
+    { href: 'configurateur-deploy.html',       label: 'D\u00e9ploiement',    key: 'configurateur-deploy' },
+    { href: 'configurateur-api.html',          label: 'API Backend',         key: 'configurateur-api' }
   ];
 
   var html = '<div class="docs-sidebar__title">Documentation</div>';
