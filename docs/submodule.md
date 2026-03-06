@@ -6,16 +6,96 @@ Le système Beely est organisé en **3 dépôts indépendants** connectés par d
 
 ## Sommaire
 
-1. [Les 3 repos](#les-3-repos) — framework, builder, template
-2. [Architecture d'un projet](#architecture-dun-projet) — structure des fichiers
-3. [Fichiers symlinkés vs réels](#fichiers-symlinkés-vs-réels) — ce qui vient du framework vs du projet
-4. [Installation d'un nouveau projet](#installation-dun-nouveau-projet) — cloner et initialiser
-5. [Modifier le framework](#modifier-le-framework) — éditer, commiter et propager
-6. [Modifier le builder](#modifier-le-builder) — éditer, commiter et propager
-7. [Mettre à jour les submodules](#mettre-à-jour-les-submodules) — récupérer les dernières versions
-8. [Déploiement](#déploiement) — rsync suit les symlinks
-9. [Versioning](#versioning) — tags sémantiques
-10. [Commandes utiles](#commandes-utiles) — référence rapide
+1. [Reprendre de zéro](#reprendre-de-zero) — retrouver les repos, recloner, reconfigurer
+2. [Les 3 repos](#les-3-repos) — framework, builder, template
+3. [Architecture d'un projet](#architecture-dun-projet) — structure des fichiers
+4. [Fichiers symlinkés vs réels](#fichiers-symlinkés-vs-réels) — ce qui vient du framework vs du projet
+5. [Installation d'un nouveau projet](#installation-dun-nouveau-projet) — cloner et initialiser
+6. [Modifier le framework](#modifier-le-framework) — éditer, commiter et propager
+7. [Modifier le builder](#modifier-le-builder) — éditer, commiter et propager
+8. [Mettre à jour les submodules](#mettre-à-jour-les-submodules) — récupérer les dernières versions
+9. [Déploiement](#déploiement) — rsync suit les symlinks
+10. [Mise en production du framework](#mise-en-production-du-framework) — propager les changements partout
+11. [Quel repo modifier pour quoi ?](#quel-repo-modifier-pour-quoi) — guide rapide
+12. [Versioning](#versioning) — tags sémantiques
+13. [Commandes utiles](#commandes-utiles) — référence rapide
+
+---
+
+## Reprendre de zéro {#reprendre-de-zero}
+
+Si tu as perdu la main (nouveau Mac, réinstallation, longue absence), voici comment tout retrouver et recloner.
+
+### Les 3 repos GitHub
+
+| Repo | URL GitHub | Description |
+|---|---|---|
+| **beely-framework** | `https://github.com/TheoRoces/beely-framework` | Le framework : CSS, JS, composants, wireframes, docs, assets, API PHP |
+| **beely-builder** | `https://github.com/TheoRoces/beely-builder` | Le builder visuel : éditeur WYSIWYG, configurateur, serveur Python |
+| **beely-template** | `https://github.com/TheoRoces/beely-template` | Le template de départ pour chaque nouveau projet client |
+
+### Recloner l'environnement complet
+
+```bash
+# 💻 Terminal : Terminal.app (Mac) ou terminal VSCode
+# 📂 Dossier : là où tu ranges tes sites (ex: ~/Sites/)
+
+cd ~/Sites
+
+# 1. Cloner le framework (pour le modifier ou le déployer)
+git clone https://github.com/TheoRoces/beely-framework.git site-system-framework
+
+# 2. Cloner le builder (pour le modifier)
+git clone https://github.com/TheoRoces/beely-builder.git beely-builder
+
+# 3. Cloner le template (pour créer de nouveaux projets)
+git clone --recursive https://github.com/TheoRoces/beely-template.git beely-template
+```
+
+### Recloner un projet client existant
+
+```bash
+# 💻 Terminal : Terminal.app ou terminal VSCode
+# 📂 Dossier : ~/Sites/
+
+cd ~/Sites
+git clone --recursive https://github.com/votre-org/mon-projet.git
+cd mon-projet
+./setup.sh
+```
+
+L'option `--recursive` clone automatiquement les submodules (`.framework/` et `builder/`). Le script `setup.sh` crée les symlinks.
+
+### Recréer les fichiers de config
+
+Deux fichiers ne sont pas dans git (ils contiennent des secrets). Il faut les recréer :
+
+**`.deploy.env`** (infos SSH pour le déploiement) :
+
+```bash
+# 📂 Dossier : la racine du projet
+
+cp .deploy.env.example .deploy.env
+```
+
+Puis remplir les valeurs SSH. Pour retrouver les infos serveur :
+- Connecte-toi à [Hostinger hPanel](https://hpanel.hostinger.com/)
+- Va dans **Avancé → Accès SSH**
+- Note l'IP, le port et le nom d'utilisateur
+
+**`.env`** (tokens API, webhooks) :
+
+```bash
+# 📂 Dossier : la racine du projet
+
+cp .env.example .env
+```
+
+Puis remplir les tokens (Baserow, Make.com, etc.).
+
+### Le framework en ligne
+
+La documentation et le framework sont déployés sur **https://framework.beely.studio**. Ce site est mis à jour via `./deploy.sh prod` depuis le repo `site-system-framework` (ou depuis n'importe quel projet client qui pointe vers ce domaine dans son `.deploy.env`).
 
 ---
 
@@ -114,6 +194,9 @@ Le builder est un submodule dans `builder/`. Il n'est **jamais déployé** (excl
 ### Depuis beely-template
 
 ```bash
+# 💻 Terminal : Terminal.app ou terminal VSCode
+# 📂 Dossier : ~/Sites/ (ton dossier de projets)
+
 # 1. Cloner le template
 git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
 cd mon-projet
@@ -131,6 +214,9 @@ python3 builder/configurator-server.py
 ### Cloner un projet existant
 
 ```bash
+# 💻 Terminal : Terminal.app ou terminal VSCode
+# 📂 Dossier : ~/Sites/
+
 git clone --recursive https://github.com/org/mon-projet.git
 cd mon-projet
 ./setup.sh
@@ -139,6 +225,8 @@ cd mon-projet
 Si cloné sans `--recursive` :
 
 ```bash
+# 📂 Dossier : ~/Sites/mon-projet/ (la racine du projet)
+
 ./setup.sh --init
 ```
 
@@ -147,6 +235,9 @@ Si cloné sans `--recursive` :
 ## Modifier le framework
 
 ```bash
+# 💻 Terminal : terminal VSCode (Ctrl+`)
+# 📂 Dossier : la racine d'un projet client (ex: ~/Sites/mon-projet/)
+
 # 1. Naviguer dans le submodule
 cd .framework/
 
@@ -155,7 +246,7 @@ cd .framework/
 # 3. Commiter et pousser
 git add -A && git commit -m "Description" && git push
 
-# 4. Mettre à jour la référence dans le projet parent
+# 4. Revenir à la racine et mettre à jour la référence
 cd ..
 git add .framework
 git commit -m "Update framework submodule"
@@ -166,6 +257,9 @@ git commit -m "Update framework submodule"
 ## Modifier le builder
 
 ```bash
+# 💻 Terminal : terminal VSCode (Ctrl+`)
+# 📂 Dossier : la racine d'un projet client (ex: ~/Sites/mon-projet/)
+
 # 1. Naviguer dans le submodule
 cd builder/
 
@@ -174,7 +268,7 @@ cd builder/
 # 3. Commiter et pousser
 git add -A && git commit -m "Description" && git push
 
-# 4. Mettre à jour la référence dans le projet parent
+# 4. Revenir à la racine et mettre à jour la référence
 cd ..
 git add builder
 git commit -m "Update builder submodule"
@@ -187,6 +281,8 @@ git commit -m "Update builder submodule"
 ### Mettre à jour le framework
 
 ```bash
+# 📂 Dossier : la racine d'un projet client
+
 git submodule update --remote .framework
 git add .framework
 git commit -m "Update framework to latest version"
@@ -195,6 +291,8 @@ git commit -m "Update framework to latest version"
 ### Mettre à jour le builder
 
 ```bash
+# 📂 Dossier : la racine d'un projet client
+
 git submodule update --remote builder
 git add builder
 git commit -m "Update builder to latest version"
@@ -203,6 +301,8 @@ git commit -m "Update builder to latest version"
 ### Mettre à jour les deux
 
 ```bash
+# 📂 Dossier : la racine d'un projet client
+
 git submodule update --remote
 git add .framework builder
 git commit -m "Update submodules to latest versions"
@@ -215,6 +315,8 @@ git commit -m "Update submodules to latest versions"
 Le script `deploy.sh` utilise **rsync** avec l'option `-L` (follow symlinks). Le serveur reçoit une structure à plat.
 
 ```bash
+# 📂 Dossier : la racine du projet client
+
 rsync -avzL --delete \
   --exclude-from='.rsync-exclude' \
   -e "ssh -p ${REMOTE_PORT}" \
@@ -230,13 +332,15 @@ rsync -avzL --delete \
 
 ## Mise en production du framework
 
-Le framework est aussi déployé sur son propre domaine pour la documentation en ligne (ex: `framework.beely.studio`).
+Le framework est aussi déployé sur son propre domaine : **https://framework.beely.studio**.
 
 ### Déployer le framework
 
-Depuis la racine du repo `beely-framework` :
-
 ```bash
+# 💻 Terminal : Terminal.app ou terminal VSCode
+# 📂 Dossier : ~/Sites/site-system-framework/ (ou ~/Sites/site-system/)
+#              = le repo qui a un .deploy.env pointant vers framework.beely.studio
+
 ./deploy.sh prod
 ```
 
@@ -249,12 +353,13 @@ Quand tu modifies le framework (ajout d'une feature, correction de bug, mise à 
 #### Étape 1 — Modifier et pousser le framework
 
 ```bash
-# 1. Aller dans le repo du framework
-cd /chemin/vers/beely-framework
+# 💻 Terminal : terminal VSCode
+# 📂 Dossier : le repo du framework (~/Sites/site-system-framework/)
+#              OU le submodule d'un projet (~/Sites/mon-projet/.framework/)
 
-# 2. Faire les modifications (CSS, JS, docs, etc.)
+# 1. Faire les modifications (CSS, JS, docs, etc.)
 
-# 3. Commiter et pousser sur GitHub
+# 2. Commiter et pousser sur GitHub
 git add -A
 git commit -m "Description de la modification"
 git push
@@ -265,6 +370,9 @@ git push
 Si tu as modifié la doc ou les fichiers visibles sur `framework.beely.studio` :
 
 ```bash
+# 📂 Dossier : le repo qui déploie le framework
+#              (~/Sites/site-system/ ou ~/Sites/site-system-framework/)
+
 ./deploy.sh prod
 ```
 
@@ -273,19 +381,19 @@ Si tu as modifié la doc ou les fichiers visibles sur `framework.beely.studio` :
 Pour **chaque projet** qui utilise le framework comme submodule, il faut aller chercher la nouvelle version :
 
 ```bash
-# 1. Aller dans le projet client
-cd /chemin/vers/mon-projet
+# 💻 Terminal : terminal VSCode
+# 📂 Dossier : la racine du projet client (ex: ~/Sites/mon-projet/)
 
-# 2. Mettre à jour le submodule framework
+# 1. Mettre à jour le submodule framework
 cd .framework
 git pull        # récupère les derniers commits
 cd ..
 
-# 3. Enregistrer la mise à jour dans le projet
+# 2. Enregistrer la mise à jour dans le projet
 git add .framework
 git commit -m "Update framework submodule"
 
-# 4. (Optionnel) Pousser et déployer le projet client
+# 3. (Optionnel) Pousser et déployer le projet client
 git push
 ./deploy.sh prod
 ```
@@ -293,6 +401,8 @@ git push
 **En une seule commande** (raccourci) :
 
 ```bash
+# 📂 Dossier : la racine du projet client
+
 cd .framework && git pull && cd .. && git add .framework && git commit -m "Update framework submodule"
 ```
 
@@ -301,6 +411,8 @@ cd .framework && git pull && cd .. && git add .framework && git commit -m "Updat
 Si le builder a aussi été modifié :
 
 ```bash
+# 📂 Dossier : la racine du projet client
+
 cd builder && git pull && cd .. && git add builder && git commit -m "Update builder submodule"
 ```
 
@@ -332,6 +444,9 @@ Si tu as beaucoup de projets, tu peux créer un script qui boucle sur tous les p
 ```bash
 #!/bin/bash
 # update-all-projects.sh
+# 💻 Terminal : Terminal.app
+# 📂 Dossier : n'importe où (le script navigue tout seul)
+
 PROJECTS=("test-projet" "client-a" "client-b")
 BASE="/Users/theo/Sites"
 
@@ -354,6 +469,31 @@ done
 
 ---
 
+## Quel repo modifier pour quoi ? {#quel-repo-modifier-pour-quoi}
+
+Guide rapide pour savoir où aller quand tu veux modifier quelque chose :
+
+| Je veux... | Repo à modifier | Dossier | Commande depuis un projet client |
+|---|---|---|---|
+| Changer le CSS du framework (tokens, base, grid, etc.) | beely-framework | `core/css/` | `cd .framework && ...` |
+| Changer le JS du framework (composants, animations, etc.) | beely-framework | `core/js/` | `cd .framework && ...` |
+| Ajouter/modifier un wireframe | beely-framework | `wireframes/` | `cd .framework && ...` |
+| Modifier la documentation | beely-framework | `docs/` | `cd .framework && ...` |
+| Ajouter/modifier un composant (header, footer, card) | beely-framework | `components/` | `cd .framework && ...` |
+| Modifier les API PHP | beely-framework | `api/` | `cd .framework && ...` |
+| Ajouter des icônes | beely-framework | `assets/icons/` | `cd .framework && ...` |
+| Modifier le builder visuel | beely-builder | `js/` | `cd builder && ...` |
+| Modifier le configurateur | beely-builder | `configurator.html` | `cd builder && ...` |
+| Modifier le serveur Python du builder | beely-builder | `configurator-server.py` | `cd builder && ...` |
+| Modifier une page de mon site | le projet lui-même | racine | édition directe |
+| Changer la config du site (nom, analytics, etc.) | le projet lui-même | `config-site.js` | édition directe |
+| Configurer le déploiement SSH | le projet lui-même | `.deploy.env` | édition directe |
+| Configurer les secrets (tokens API) | le projet lui-même | `.env` | édition directe |
+
+**Règle simple** : si le fichier est un symlink → modifier dans le repo correspondant (framework ou builder). Si c'est un fichier réel → modifier directement dans le projet.
+
+---
+
 ## Versioning
 
 Chaque repo utilise le **versioning sémantique** :
@@ -365,6 +505,8 @@ Chaque repo utilise le **versioning sémantique** :
 Pour épingler un projet à une version spécifique du framework :
 
 ```bash
+# 📂 Dossier : la racine du projet client
+
 cd .framework
 git checkout v1.2.0
 cd ..

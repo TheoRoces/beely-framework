@@ -48,40 +48,124 @@
         <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
           <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
           <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
-            <li><a href="#concept">Concept</a> &mdash; pourquoi un submodule</li>
+            <li><a href="#reprendre-de-zero">Reprendre de z&eacute;ro</a> &mdash; retrouver les repos, recloner, reconfigurer</li>
+            <li><a href="#les-3-repos">Les 3 repos</a> &mdash; framework, builder, template</li>
             <li><a href="#architecture">Architecture</a> &mdash; framework dans <code>.framework/</code> + symlinks</li>
             <li><a href="#fichiers">Fichiers symlink&eacute;s vs r&eacute;els</a> &mdash; ce qui vient du framework vs ce qui est propre au projet</li>
             <li><a href="#installation">Installation</a> &mdash; cloner et initialiser un projet</li>
             <li><a href="#modifier-framework">Modifier le framework</a> &mdash; &eacute;diter, commiter et propager</li>
-            <li><a href="#mettre-a-jour">Mettre &agrave; jour le framework</a> &mdash; r&eacute;cup&eacute;rer les derni&egrave;res modifications</li>
-            <li><a href="#ajouter-fichier">Ajouter un nouveau fichier</a> &mdash; &eacute;tendre le framework</li>
-            <li><a href="#deploiement">D&eacute;ploiement d'un projet client</a> &mdash; rsync suit les symlinks</li>
-            <li><a href="#mise-en-prod-framework">Mise en production du framework</a> &mdash; propager les changements &agrave; tous les projets</li>
-            <li><a href="#commandes">Commandes utiles</a> &mdash; r&eacute;f&eacute;rence rapide git submodule</li>
+            <li><a href="#modifier-builder">Modifier le builder</a> &mdash; &eacute;diter, commiter et propager</li>
+            <li><a href="#mettre-a-jour">Mettre &agrave; jour les submodules</a> &mdash; r&eacute;cup&eacute;rer les derni&egrave;res versions</li>
+            <li><a href="#deploiement">D&eacute;ploiement</a> &mdash; rsync suit les symlinks</li>
+            <li><a href="#mise-en-prod-framework">Mise en production du framework</a> &mdash; propager les changements partout</li>
+            <li><a href="#quel-repo">Quel repo modifier pour quoi&nbsp;?</a> &mdash; guide rapide</li>
+            <li><a href="#commandes">Commandes utiles</a> &mdash; r&eacute;f&eacute;rence rapide</li>
           </ol>
         </div>
 
-        <!-- ========== CONCEPT ========== -->
+        <!-- ========== REPRENDRE DE ZÉRO ========== -->
 
-        <h2 id="concept">Concept</h2>
-        <p>Le framework Site System est con&ccedil;u comme une <strong>source de v&eacute;rit&eacute; unique</strong> (single source of truth). Plut&ocirc;t que de copier les fichiers du framework dans chaque projet, on utilise un <strong>git submodule</strong> qui pointe vers le d&eacute;p&ocirc;t du framework.</p>
-        <p>Les avantages de cette approche :</p>
+        <h2 id="reprendre-de-zero">Reprendre de z&eacute;ro</h2>
+        <p>Si tu as perdu la main (nouveau Mac, r&eacute;installation, longue absence), voici comment tout retrouver et recloner.</p>
+
+        <h3>Les 3 repos GitHub</h3>
+        <table>
+          <tr><th>Repo</th><th>URL GitHub</th><th>Description</th></tr>
+          <tr>
+            <td><strong>beely-framework</strong></td>
+            <td><code>https://github.com/TheoRoces/beely-framework</code></td>
+            <td>Le framework&nbsp;: CSS, JS, composants, wireframes, docs, assets, API PHP</td>
+          </tr>
+          <tr>
+            <td><strong>beely-builder</strong></td>
+            <td><code>https://github.com/TheoRoces/beely-builder</code></td>
+            <td>Le builder visuel&nbsp;: &eacute;diteur WYSIWYG, configurateur, serveur Python</td>
+          </tr>
+          <tr>
+            <td><strong>beely-template</strong></td>
+            <td><code>https://github.com/TheoRoces/beely-template</code></td>
+            <td>Le template de d&eacute;part pour chaque nouveau projet client</td>
+          </tr>
+        </table>
+
+        <h3>Recloner l'environnement complet</h3>
+<pre><code># &#x1F4BB; Terminal : Terminal.app (Mac) ou terminal VSCode
+# &#x1F4C2; Dossier : l&agrave; o&ugrave; tu ranges tes sites (ex: ~/Sites/)
+
+cd ~/Sites
+
+# 1. Cloner le framework (pour le modifier ou le d&eacute;ployer)
+git clone https://github.com/TheoRoces/beely-framework.git site-system-framework
+
+# 2. Cloner le builder (pour le modifier)
+git clone https://github.com/TheoRoces/beely-builder.git beely-builder
+
+# 3. Cloner le template (pour cr&eacute;er de nouveaux projets)
+git clone --recursive https://github.com/TheoRoces/beely-template.git beely-template</code></pre>
+
+        <h3>Recloner un projet client existant</h3>
+<pre><code># &#x1F4BB; Terminal : Terminal.app ou terminal VSCode
+# &#x1F4C2; Dossier : ~/Sites/
+
+cd ~/Sites
+git clone --recursive https://github.com/votre-org/mon-projet.git
+cd mon-projet
+./setup.sh</code></pre>
+        <p>L'option <code>--recursive</code> clone automatiquement les submodules (<code>.framework/</code> et <code>builder/</code>). Le script <code>setup.sh</code> cr&eacute;e les symlinks.</p>
+
+        <h3>Recr&eacute;er les fichiers de config</h3>
+        <p>Deux fichiers ne sont pas dans git (ils contiennent des secrets). Il faut les recr&eacute;er&nbsp;:</p>
+
+        <p><strong><code>.deploy.env</code></strong> (infos SSH pour le d&eacute;ploiement)&nbsp;:</p>
+<pre><code># &#x1F4C2; Dossier : la racine du projet
+
+cp .deploy.env.example .deploy.env</code></pre>
+        <p>Puis remplir les valeurs SSH. Pour retrouver les infos serveur&nbsp;:</p>
         <ul>
-          <li><strong>Z&eacute;ro duplication</strong> &mdash; le code du framework n'existe qu'&agrave; un seul endroit</li>
-          <li><strong>Mises &agrave; jour centralis&eacute;es</strong> &mdash; une correction dans le framework profite &agrave; tous les projets</li>
-          <li><strong>Versioning ind&eacute;pendant</strong> &mdash; chaque projet peut &ecirc;tre &agrave; une version diff&eacute;rente du framework</li>
-          <li><strong>S&eacute;paration claire</strong> &mdash; les fichiers du framework et ceux du projet sont bien distincts</li>
-          <li><strong>Transparence</strong> &mdash; gr&acirc;ce aux symlinks, les chemins HTML restent identiques (ex: <code>core/css/tokens.css</code>)</li>
+          <li>Connecte-toi &agrave; <a href="https://hpanel.hostinger.com/" target="_blank" rel="noopener">Hostinger hPanel</a></li>
+          <li>Va dans <strong>Avanc&eacute; &rarr; Acc&egrave;s SSH</strong></li>
+          <li>Note l'IP, le port et le nom d'utilisateur</li>
         </ul>
+
+        <p><strong><code>.env</code></strong> (tokens API, webhooks)&nbsp;:</p>
+<pre><code># &#x1F4C2; Dossier : la racine du projet
+
+cp .env.example .env</code></pre>
+        <p>Puis remplir les tokens (Baserow, Make.com, etc.).</p>
+
+        <h3>Le framework en ligne</h3>
+        <p>La documentation et le framework sont d&eacute;ploy&eacute;s sur <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong>. Ce site est mis &agrave; jour via <code>./deploy.sh prod</code> depuis le repo qui a un <code>.deploy.env</code> pointant vers ce domaine.</p>
+
+        <!-- ========== LES 3 REPOS ========== -->
+
+        <h2 id="les-3-repos">Les 3 repos</h2>
+        <table>
+          <tr><th>Repo</th><th>Contenu</th><th>Usage</th></tr>
+          <tr>
+            <td><strong>beely-framework</strong></td>
+            <td>Core CSS/JS, API PHP, composants, wireframes, docs, assets</td>
+            <td>Submodule <code>.framework/</code></td>
+          </tr>
+          <tr>
+            <td><strong>beely-builder</strong></td>
+            <td>Builder visuel, configurateur, serveur Python</td>
+            <td>Submodule <code>builder/</code></td>
+          </tr>
+          <tr>
+            <td><strong>beely-template</strong></td>
+            <td>Starter projet client&nbsp;: pages, config, deploy, setup</td>
+            <td>Clon&eacute; pour chaque nouveau client</td>
+          </tr>
+        </table>
+        <p>Chaque repo est <strong>versionn&eacute; ind&eacute;pendamment</strong> avec des tags s&eacute;mantiques (v1.0.0, v1.1.0, etc.).</p>
 
         <!-- ========== ARCHITECTURE ========== -->
 
-        <h2 id="architecture">Architecture</h2>
-        <p>Le framework vit dans le dossier <code>.framework/</code> &agrave; la racine du projet. Ce dossier est un <strong>git submodule</strong> qui pointe vers le d&eacute;p&ocirc;t GitHub du framework.</p>
-        <p>Des <strong>symlinks</strong> (liens symboliques) sont cr&eacute;&eacute;s &agrave; la racine du projet pour pointer vers les dossiers et fichiers du framework. Ainsi, les chemins relatifs utilis&eacute;s dans le HTML restent identiques :</p>
-
+        <h2 id="architecture">Architecture d'un projet</h2>
+        <p>Un projet client utilise les 2 submodules via <code>setup.sh</code> qui cr&eacute;e les symlinks&nbsp;:</p>
 <pre><code>mon-projet/
-&boxvr;&boxh;&boxh; .framework/              &larr; git submodule (d&eacute;p&ocirc;t du framework)
+&boxvr;&boxh;&boxh; .framework/              &larr; submodule beely-framework
+&boxvr;&boxh;&boxh; builder/                 &larr; submodule beely-builder
 &boxvr;&boxh;&boxh; core/                    &larr; symlink &rarr; .framework/core/
 &boxvr;&boxh;&boxh; components/              &larr; symlink &rarr; .framework/components/
 &boxvr;&boxh;&boxh; assets/                  &larr; symlink &rarr; .framework/assets/
@@ -89,207 +173,198 @@
 &boxvr;&boxh;&boxh; wireframes/              &larr; symlink &rarr; .framework/wireframes/
 &boxvr;&boxh;&boxh; snippets/                &larr; symlink &rarr; .framework/snippets/
 &boxvr;&boxh;&boxh; docs/                    &larr; symlink &rarr; .framework/docs/
-&boxvr;&boxh;&boxh; base-html.html           &larr; symlink &rarr; .framework/base-html.html
-&boxvr;&boxh;&boxh; base-index.html          &larr; symlink &rarr; .framework/base-index.html
-&boxvr;&boxh;&boxh; robots.txt               &larr; symlink &rarr; .framework/robots.txt
-&boxvr;&boxh;&boxh; generate-sitemap.js      &larr; symlink &rarr; .framework/generate-sitemap.js
 &boxvr;&boxh;&boxh; config-site.js           &larr; fichier r&eacute;el du projet
 &boxvr;&boxh;&boxh; index.html               &larr; fichier r&eacute;el du projet
 &boxvr;&boxh;&boxh; .htaccess                &larr; fichier r&eacute;el du projet
 &boxdr;&boxh;&boxh; deploy.sh                &larr; fichier r&eacute;el du projet</code></pre>
+        <p>Le HTML r&eacute;f&eacute;rence <code>core/css/tokens.css</code> comme d'habitude &mdash; le symlink redirige automatiquement vers <code>.framework/core/css/tokens.css</code>.</p>
 
-        <p>Le HTML r&eacute;f&eacute;rence <code>core/css/tokens.css</code> comme d'habitude &mdash; le symlink redirige automatiquement vers <code>.framework/core/css/tokens.css</code>. Aucun changement n'est n&eacute;cessaire dans le code HTML.</p>
-
-        <!-- ========== FICHIERS SYMLINKÉS VS RÉELS ========== -->
+        <!-- ========== FICHIERS ========== -->
 
         <h2 id="fichiers">Fichiers symlink&eacute;s vs r&eacute;els</h2>
-        <p>Voici le d&eacute;tail complet de ce qui provient du framework (via symlink) et de ce qui est propre &agrave; chaque projet :</p>
 
         <h3>Fichiers symlink&eacute;s (framework)</h3>
-        <p>Ces fichiers et dossiers sont des symlinks vers <code>.framework/</code>. Ils ne doivent <strong>jamais &ecirc;tre modifi&eacute;s directement</strong> dans le projet &mdash; les modifications se font dans le d&eacute;p&ocirc;t du framework.</p>
+        <p>Ces fichiers sont des symlinks vers <code>.framework/</code>. Ils ne doivent <strong>jamais &ecirc;tre modifi&eacute;s directement</strong> dans le projet &mdash; les modifications se font dans le d&eacute;p&ocirc;t du framework.</p>
         <table>
           <tr><th>Chemin</th><th>Description</th></tr>
-          <tr><td><code>core/</code></td><td>CSS et JS du framework (tokens, base, animations, &eacute;l&eacute;ments, etc.)</td></tr>
-          <tr><td><code>components/</code></td><td>Composants r&eacute;utilisables (header, footer, card, sidebar, etc.)</td></tr>
-          <tr><td><code>assets/</code></td><td>Ic&ocirc;nes Heroicons, images par d&eacute;faut, favicons</td></tr>
-          <tr><td><code>api/</code></td><td>Endpoints PHP (proxy Baserow, formulaire, consentement RGPD)</td></tr>
+          <tr><td><code>core/</code></td><td>CSS et JS du framework</td></tr>
+          <tr><td><code>components/</code></td><td>Composants r&eacute;utilisables (header, footer, card&hellip;)</td></tr>
+          <tr><td><code>assets/</code></td><td>Ic&ocirc;nes Heroicons, images par d&eacute;faut</td></tr>
+          <tr><td><code>api/</code></td><td>Endpoints PHP (proxy Baserow, formulaire, consentement)</td></tr>
           <tr><td><code>wireframes/</code></td><td>375+ sections HTML pr&ecirc;tes &agrave; l'emploi</td></tr>
           <tr><td><code>snippets/</code></td><td>Fragments HTML copiables</td></tr>
-          <tr><td><code>docs/</code></td><td>Documentation interactive du framework</td></tr>
-          <tr><td><code>base-html.html</code></td><td>Template HTML de base (page vierge)</td></tr>
-          <tr><td><code>base-index.html</code></td><td>Template de page d'accueil avec sections pr&eacute;-int&eacute;gr&eacute;es</td></tr>
-          <tr><td><code>robots.txt</code></td><td>Fichier robots.txt par d&eacute;faut</td></tr>
-          <tr><td><code>generate-sitemap.js</code></td><td>Script Node.js de g&eacute;n&eacute;ration du sitemap</td></tr>
+          <tr><td><code>docs/</code></td><td>Documentation interactive</td></tr>
         </table>
 
         <h3>Fichiers r&eacute;els (projet)</h3>
-        <p>Ces fichiers sont propres &agrave; chaque projet et ne sont <strong>pas partag&eacute;s</strong> entre projets. Ils sont versionn&eacute;s dans le d&eacute;p&ocirc;t du projet.</p>
+        <p>Propres &agrave; chaque projet, versionn&eacute;s dans le d&eacute;p&ocirc;t du projet.</p>
         <table>
           <tr><th>Chemin</th><th>Description</th></tr>
           <tr><td><code>config-site.js</code></td><td>Configuration du site (nom, analytics, blog, mentions l&eacute;gales)</td></tr>
-          <tr><td><code>index.html</code></td><td>Page d'accueil du projet</td></tr>
-          <tr><td><code>blog.html</code></td><td>Page listing du blog</td></tr>
-          <tr><td><code>blog/</code></td><td>Dossier des articles de blog</td></tr>
-          <tr><td><code>mentions-legales.html</code></td><td>Page mentions l&eacute;gales</td></tr>
-          <tr><td><code>confidentialite.html</code></td><td>Page politique de confidentialit&eacute;</td></tr>
-          <tr><td><code>404.html</code></td><td>Page d'erreur 404</td></tr>
-          <tr><td><code>data/</code></td><td>Donn&eacute;es sp&eacute;cifiques au projet</td></tr>
-          <tr><td><code>sitemap.xml</code></td><td>Sitemap g&eacute;n&eacute;r&eacute; pour le projet</td></tr>
-          <tr><td><code>.htaccess</code></td><td>Configuration Apache du projet</td></tr>
+          <tr><td><code>index.html</code></td><td>Page d'accueil</td></tr>
+          <tr><td><code>.htaccess</code></td><td>Configuration Apache</td></tr>
           <tr><td><code>deploy.sh</code></td><td>Script de d&eacute;ploiement</td></tr>
-          <tr><td><code>CLAUDE.md</code></td><td>Directives Claude Code du projet</td></tr>
           <tr><td><code>.env</code></td><td>Variables d'environnement sensibles</td></tr>
-          <tr><td><code>.deploy.env</code></td><td>Configuration SSH de d&eacute;ploiement</td></tr>
-          <tr><td><code>builder/</code></td><td>Dossier du Builder (si utilis&eacute;)</td></tr>
-          <tr><td><code>configurator.html</code></td><td>Configurateur de design tokens</td></tr>
-          <tr><td><code>configurator-server.py</code></td><td>Serveur Python pour le configurateur</td></tr>
-          <tr><td><code>pages.json</code></td><td>Registre des pages du Builder</td></tr>
+          <tr><td><code>.deploy.env</code></td><td>Configuration SSH</td></tr>
         </table>
 
         <!-- ========== INSTALLATION ========== -->
 
-        <h2 id="installation">Installation</h2>
-        <p>Pour cloner un projet qui utilise le submodule framework :</p>
+        <h2 id="installation">Installation d'un nouveau projet</h2>
 
-        <h3>1. Cloner avec le submodule</h3>
-<pre><code>git clone --recursive https://github.com/votre-org/mon-projet.git
-cd mon-projet</code></pre>
-        <p>L'option <code>--recursive</code> clone automatiquement le submodule <code>.framework/</code> en m&ecirc;me temps que le projet.</p>
+        <h3>Depuis beely-template</h3>
+<pre><code># &#x1F4BB; Terminal : Terminal.app ou terminal VSCode
+# &#x1F4C2; Dossier : ~/Sites/ (ton dossier de projets)
 
-        <h3>2. Ex&eacute;cuter le script d'installation</h3>
-<pre><code>./setup.sh</code></pre>
-        <p>Le script <code>setup.sh</code> cr&eacute;e tous les symlinks n&eacute;cessaires &agrave; la racine du projet. Il v&eacute;rifie que le submodule est bien initialis&eacute; et affiche un r&eacute;capitulatif des liens cr&eacute;&eacute;s.</p>
+# 1. Cloner le template
+git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
+cd mon-projet
 
-        <h3>Si le submodule n'a pas &eacute;t&eacute; clon&eacute;</h3>
-        <p>Si vous avez clon&eacute; sans <code>--recursive</code>, initialisez le submodule manuellement :</p>
-<pre><code>git submodule init
-git submodule update</code></pre>
-        <p>Puis lancez <code>./setup.sh</code> pour cr&eacute;er les symlinks.</p>
+# 2. Lancer le setup (cr&eacute;e les symlinks + copie les .env)
+./setup.sh --init
+
+# 3. Configurer le projet
+# Remplir config-site.js, .env, .deploy.env
+# Ou utiliser le configurateur :
+python3 builder/configurator-server.py
+# &rarr; http://localhost:5555/builder/configurator.html</code></pre>
+
+        <h3>Cloner un projet existant</h3>
+<pre><code># &#x1F4C2; Dossier : ~/Sites/
+
+git clone --recursive https://github.com/org/mon-projet.git
+cd mon-projet
+./setup.sh</code></pre>
+        <p>Si clon&eacute; sans <code>--recursive</code>&nbsp;:</p>
+<pre><code># &#x1F4C2; Dossier : ~/Sites/mon-projet/
+
+./setup.sh --init</code></pre>
 
         <!-- ========== MODIFIER LE FRAMEWORK ========== -->
 
         <h2 id="modifier-framework">Modifier le framework</h2>
-        <p>Pour apporter des modifications au framework (corrections, nouvelles fonctionnalit&eacute;s, nouveaux wireframes) :</p>
+<pre><code># &#x1F4BB; Terminal : terminal VSCode (Ctrl+`)
+# &#x1F4C2; Dossier : la racine d'un projet client (ex: ~/Sites/mon-projet/)
 
-        <h3>1. Naviguer dans le submodule</h3>
-<pre><code>cd .framework/</code></pre>
+# 1. Naviguer dans le submodule
+cd .framework/
 
-        <h3>2. &Eacute;diter les fichiers</h3>
-        <p>Modifiez les fichiers normalement. Gr&acirc;ce aux symlinks, les changements sont <strong>imm&eacute;diatement visibles</strong> dans le projet parent &mdash; pas besoin de copier ou synchroniser quoi que ce soit.</p>
+# 2. &Eacute;diter les fichiers (changements visibles imm&eacute;diatement via les symlinks)
 
-        <h3>3. Commiter et pousser</h3>
-<pre><code>git add -A
-git commit -m "Description de la modification"
-git push</code></pre>
+# 3. Commiter et pousser
+git add -A &amp;&amp; git commit -m "Description" &amp;&amp; git push
 
-        <h3>4. Mettre &agrave; jour la r&eacute;f&eacute;rence dans le projet parent</h3>
-        <p>De retour &agrave; la racine du projet, mettez &agrave; jour la r&eacute;f&eacute;rence du submodule :</p>
-<pre><code>cd ..
+# 4. Revenir &agrave; la racine et mettre &agrave; jour la r&eacute;f&eacute;rence
+cd ..
 git add .framework
-git commit -m "Update framework submodule"
-git push</code></pre>
-        <p>Cela enregistre le nouveau commit du framework dans le projet parent.</p>
+git commit -m "Update framework submodule"</code></pre>
+
+        <!-- ========== MODIFIER LE BUILDER ========== -->
+
+        <h2 id="modifier-builder">Modifier le builder</h2>
+<pre><code># &#x1F4BB; Terminal : terminal VSCode (Ctrl+`)
+# &#x1F4C2; Dossier : la racine d'un projet client (ex: ~/Sites/mon-projet/)
+
+# 1. Naviguer dans le submodule
+cd builder/
+
+# 2. &Eacute;diter les fichiers
+
+# 3. Commiter et pousser
+git add -A &amp;&amp; git commit -m "Description" &amp;&amp; git push
+
+# 4. Revenir &agrave; la racine et mettre &agrave; jour la r&eacute;f&eacute;rence
+cd ..
+git add builder
+git commit -m "Update builder submodule"</code></pre>
 
         <!-- ========== METTRE À JOUR ========== -->
 
-        <h2 id="mettre-a-jour">Mettre &agrave; jour le framework</h2>
-        <p>Pour r&eacute;cup&eacute;rer les derni&egrave;res modifications du framework dans votre projet :</p>
+        <h2 id="mettre-a-jour">Mettre &agrave; jour les submodules</h2>
 
-<pre><code>git submodule update --remote .framework</code></pre>
+        <h3>Mettre &agrave; jour le framework</h3>
+<pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
-        <p>Cette commande met &agrave; jour le submodule vers le dernier commit de la branche <code>main</code> du framework. Les symlinks continuent de fonctionner sans intervention &mdash; ils pointent vers <code>.framework/</code> dont le contenu vient d'&ecirc;tre mis &agrave; jour.</p>
+git submodule update --remote .framework
+git add .framework
+git commit -m "Update framework to latest version"</code></pre>
 
-        <p>N'oubliez pas de commiter la mise &agrave; jour dans le projet parent :</p>
-<pre><code>git add .framework
-git commit -m "Update framework to latest version"
-git push</code></pre>
+        <h3>Mettre &agrave; jour le builder</h3>
+<pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
-        <!-- ========== AJOUTER UN FICHIER ========== -->
+git submodule update --remote builder
+git add builder
+git commit -m "Update builder to latest version"</code></pre>
 
-        <h2 id="ajouter-fichier">Ajouter un nouveau fichier au framework</h2>
-        <p>Quand vous ajoutez un nouveau fichier ou dossier dans le d&eacute;p&ocirc;t du framework :</p>
+        <h3>Mettre &agrave; jour les deux</h3>
+<pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
-        <h3>1. Ajouter dans le d&eacute;p&ocirc;t framework</h3>
-        <p>Cr&eacute;ez le fichier dans <code>.framework/</code>, commitez et poussez.</p>
-
-        <h3>2. Cr&eacute;er le symlink si n&eacute;cessaire</h3>
-        <p>Si le fichier doit &ecirc;tre accessible &agrave; la racine du projet, ajoutez un symlink :</p>
-<pre><code>ln -s .framework/nouveau-dossier nouveau-dossier</code></pre>
-        <p>Les fichiers <em>dans</em> des dossiers d&eacute;j&agrave; symlink&eacute;s (comme <code>core/</code>, <code>components/</code>) sont automatiquement accessibles &mdash; pas besoin de symlink suppl&eacute;mentaire.</p>
-
-        <h3>3. Mettre &agrave; jour setup.sh</h3>
-        <p>Ajoutez le nouveau symlink dans <code>setup.sh</code> pour que les futurs clones le cr&eacute;ent automatiquement.</p>
+git submodule update --remote
+git add .framework builder
+git commit -m "Update submodules to latest versions"</code></pre>
 
         <!-- ========== DÉPLOIEMENT ========== -->
 
-        <h2 id="deploiement">D&eacute;ploiement</h2>
-        <p>Le script <code>deploy.sh</code> utilise <strong>rsync</strong> avec l'option <code>-L</code> (follow symlinks). Lors du d&eacute;ploiement, rsync suit les symlinks et copie les fichiers r&eacute;els sur le serveur &mdash; le serveur re&ccedil;oit une structure &agrave; plat, sans symlinks ni submodule.</p>
+        <h2 id="deploiement">D&eacute;ploiement d'un projet client</h2>
+        <p>Le script <code>deploy.sh</code> utilise <strong>rsync</strong> avec l'option <code>-L</code> (follow symlinks). Le serveur re&ccedil;oit une structure &agrave; plat.</p>
+<pre><code># &#x1F4C2; Dossier : la racine du projet client
 
-<pre><code># Extrait de deploy.sh
-rsync -avz -L --delete \
+rsync -avzL --delete \
   --exclude-from='.rsync-exclude' \
+  -e "ssh -p ${REMOTE_PORT}" \
   ./ user@serveur:/chemin/</code></pre>
-
-        <p>Le dossier <code>.framework/</code> est exclu du d&eacute;ploiement via <code>.rsync-exclude</code> (les fichiers sont d&eacute;j&agrave; d&eacute;ploy&eacute;s via les symlinks suivis par rsync).</p>
-
-        <p><strong>Points importants :</strong></p>
         <ul>
           <li>Le serveur ne contient <strong>aucun symlink</strong> &mdash; uniquement les fichiers r&eacute;els</li>
-          <li>Le dossier <code>.framework/</code> n'est <strong>jamais d&eacute;ploy&eacute;</strong></li>
+          <li><code>.framework/</code> et <code>builder/</code> ne sont <strong>jamais d&eacute;ploy&eacute;s</strong> (exclus via <code>.rsync-exclude</code>)</li>
           <li>L'option <code>-L</code> est <strong>essentielle</strong> &mdash; sans elle, rsync copierait les symlinks au lieu des fichiers</li>
         </ul>
 
         <!-- ========== MISE EN PROD DU FRAMEWORK ========== -->
 
         <h2 id="mise-en-prod-framework">Mise en production du framework</h2>
-        <p>Le framework est aussi d&eacute;ploy&eacute; sur son propre domaine pour la documentation en ligne (ex&nbsp;: <code>framework.beely.studio</code>).</p>
+        <p>Le framework est aussi d&eacute;ploy&eacute; sur son propre domaine&nbsp;: <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong>.</p>
 
         <h3>D&eacute;ployer le framework</h3>
-        <p>Depuis la racine du repo <code>beely-framework</code>&nbsp;:</p>
-<pre><code>./deploy.sh prod</code></pre>
-        <p>Cela envoie la documentation, le core CSS/JS, les wireframes et tous les assets sur le serveur.</p>
+<pre><code># &#x1F4BB; Terminal : Terminal.app ou terminal VSCode
+# &#x1F4C2; Dossier : ~/Sites/site-system-framework/ (ou ~/Sites/site-system/)
 
-        <h3>Workflow complet : modifier le framework et propager partout</h3>
-        <p>Quand tu modifies le framework (ajout d'une feature, correction de bug, mise &agrave; jour de la doc), il faut <strong>propager les changements &agrave; tous les projets</strong> qui l'utilisent. Voici les &eacute;tapes, dans l'ordre&nbsp;:</p>
+./deploy.sh prod</code></pre>
+
+        <h3>Workflow complet : modifier et propager partout</h3>
+        <p>Quand tu modifies le framework, il faut <strong>propager les changements &agrave; tous les projets</strong>. Voici les &eacute;tapes&nbsp;:</p>
 
         <h4>&Eacute;tape 1 &mdash; Modifier et pousser le framework</h4>
-<pre><code># 1. Aller dans le repo du framework
-cd /chemin/vers/beely-framework
+<pre><code># &#x1F4BB; Terminal : terminal VSCode
+# &#x1F4C2; Dossier : le repo du framework (~/Sites/site-system-framework/)
+#              OU le submodule d'un projet (~/Sites/mon-projet/.framework/)
 
-# 2. Faire les modifications (CSS, JS, docs, etc.)
-
-# 3. Commiter et pousser sur GitHub
 git add -A
 git commit -m "Description de la modification"
 git push</code></pre>
 
-        <h4>&Eacute;tape 2 &mdash; D&eacute;ployer la doc du framework (optionnel)</h4>
-        <p>Si tu as modifi&eacute; la doc ou les fichiers visibles sur <code>framework.beely.studio</code>&nbsp;:</p>
-<pre><code>./deploy.sh prod</code></pre>
+        <h4>&Eacute;tape 2 &mdash; D&eacute;ployer la doc (optionnel)</h4>
+<pre><code># &#x1F4C2; Dossier : le repo qui d&eacute;ploie le framework
+
+./deploy.sh prod</code></pre>
 
         <h4>&Eacute;tape 3 &mdash; Mettre &agrave; jour chaque projet client</h4>
-        <p>Pour <strong>chaque projet</strong> qui utilise le framework comme submodule&nbsp;:</p>
-<pre><code># 1. Aller dans le projet client
-cd /chemin/vers/mon-projet
+<pre><code># &#x1F4BB; Terminal : terminal VSCode
+# &#x1F4C2; Dossier : la racine du projet client (ex: ~/Sites/mon-projet/)
 
-# 2. Mettre &agrave; jour le submodule framework
 cd .framework
 git pull
 cd ..
-
-# 3. Enregistrer la mise &agrave; jour dans le projet
 git add .framework
 git commit -m "Update framework submodule"
 
-# 4. (Optionnel) Pousser et d&eacute;ployer le projet client
+# (Optionnel) Pousser et d&eacute;ployer
 git push
 ./deploy.sh prod</code></pre>
 
         <p><strong>En une seule commande</strong> (raccourci)&nbsp;:</p>
-<pre><code>cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework submodule"</code></pre>
+<pre><code># &#x1F4C2; Dossier : la racine du projet client
 
-        <h4>&Eacute;tape 4 &mdash; Faire pareil pour le builder (si modifi&eacute;)</h4>
-<pre><code>cd builder &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add builder &amp;&amp; git commit -m "Update builder submodule"</code></pre>
+cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework submodule"</code></pre>
 
         <h3>Pourquoi c'est n&eacute;cessaire&nbsp;?</h3>
         <p>Un <strong>submodule git</strong> est un pointeur vers un commit pr&eacute;cis d'un autre repo. Quand tu fais <code>git pull</code> dans le submodule, tu r&eacute;cup&egrave;res les derniers commits. Mais le projet parent ne sait pas que le submodule a chang&eacute; tant que tu ne fais pas <code>git add .framework &amp;&amp; git commit</code>.</p>
@@ -307,85 +382,110 @@ Pour CHAQUE projet client :
     git add .framework &amp;&amp; git commit
     git push &amp;&amp; ./deploy.sh prod</code></pre>
 
-        <h3>Automatiser avec un script</h3>
-        <p>Si tu as beaucoup de projets, tu peux cr&eacute;er un script qui boucle sur tous les projets&nbsp;:</p>
-<pre><code>#!/bin/bash
-# update-all-projects.sh
-PROJECTS=("test-projet" "client-a" "client-b")
-BASE="/Users/theo/Sites"
+        <!-- ========== QUEL REPO ========== -->
 
-for project in "${PROJECTS[@]}"; do
-  echo "=== Mise &agrave; jour de $project ==="
-  cd "$BASE/$project"
-
-  # Framework
-  cd .framework &amp;&amp; git pull &amp;&amp; cd ..
-  git add .framework
-
-  # Builder
-  cd builder &amp;&amp; git pull &amp;&amp; cd ..
-  git add builder
-
-  git commit -m "Update submodules to latest"
-  echo ""
-done</code></pre>
-
-        <!-- ========== COMMANDES UTILES ========== -->
-
-        <h2 id="commandes">Commandes utiles</h2>
-        <p>R&eacute;f&eacute;rence rapide des commandes git submodule les plus courantes :</p>
-
+        <h2 id="quel-repo">Quel repo modifier pour quoi&nbsp;?</h2>
+        <p>Guide rapide pour savoir o&ugrave; aller quand tu veux modifier quelque chose&nbsp;:</p>
         <table>
-          <tr><th>Commande</th><th>Description</th></tr>
+          <tr><th>Je veux&hellip;</th><th>Repo</th><th>Dossier</th><th>Commande depuis un projet</th></tr>
           <tr>
-            <td><code>git clone --recursive &lt;url&gt;</code></td>
-            <td>Cloner un projet avec son submodule</td>
+            <td>Changer le CSS du framework</td>
+            <td>beely-framework</td>
+            <td><code>core/css/</code></td>
+            <td><code>cd .framework &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td><code>git submodule init</code></td>
-            <td>Initialiser le submodule (apr&egrave;s un clone sans <code>--recursive</code>)</td>
+            <td>Changer le JS du framework</td>
+            <td>beely-framework</td>
+            <td><code>core/js/</code></td>
+            <td><code>cd .framework &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td><code>git submodule update</code></td>
-            <td>Mettre &agrave; jour le submodule au commit r&eacute;f&eacute;renc&eacute;</td>
+            <td>Ajouter/modifier un wireframe</td>
+            <td>beely-framework</td>
+            <td><code>wireframes/</code></td>
+            <td><code>cd .framework &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td><code>git submodule update --remote .framework</code></td>
-            <td>Mettre &agrave; jour vers le dernier commit de la branche distante</td>
+            <td>Modifier la documentation</td>
+            <td>beely-framework</td>
+            <td><code>docs/</code></td>
+            <td><code>cd .framework &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td><code>git submodule status</code></td>
-            <td>Afficher le commit actuel du submodule</td>
+            <td>Modifier un composant</td>
+            <td>beely-framework</td>
+            <td><code>components/</code></td>
+            <td><code>cd .framework &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td><code>git diff --submodule</code></td>
-            <td>Voir les changements dans le submodule</td>
+            <td>Modifier les API PHP</td>
+            <td>beely-framework</td>
+            <td><code>api/</code></td>
+            <td><code>cd .framework &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td><code>cd .framework &amp;&amp; git log --oneline -5</code></td>
-            <td>Voir les derniers commits du framework</td>
+            <td>Modifier le builder visuel</td>
+            <td>beely-builder</td>
+            <td><code>js/</code></td>
+            <td><code>cd builder &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td><code>cd .framework &amp;&amp; git pull</code></td>
-            <td>Tirer les derni&egrave;res modifications du framework</td>
+            <td>Modifier le configurateur</td>
+            <td>beely-builder</td>
+            <td><code>configurator.html</code></td>
+            <td><code>cd builder &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
-            <td><code>git submodule foreach git pull</code></td>
-            <td>Mettre &agrave; jour tous les submodules (si plusieurs)</td>
+            <td>Modifier une page de mon site</td>
+            <td>le projet lui-m&ecirc;me</td>
+            <td>racine</td>
+            <td>&eacute;dition directe</td>
           </tr>
           <tr>
-            <td><code>git submodule add &lt;url&gt; .framework</code></td>
-            <td>Ajouter le submodule framework &agrave; un projet existant</td>
+            <td>Changer la config du site</td>
+            <td>le projet lui-m&ecirc;me</td>
+            <td><code>config-site.js</code></td>
+            <td>&eacute;dition directe</td>
           </tr>
           <tr>
-            <td><code>cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework"</code></td>
-            <td>Raccourci M&agrave;J framework dans un projet</td>
+            <td>Configurer le d&eacute;ploiement SSH</td>
+            <td>le projet lui-m&ecirc;me</td>
+            <td><code>.deploy.env</code></td>
+            <td>&eacute;dition directe</td>
           </tr>
           <tr>
-            <td><code>cd builder &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add builder &amp;&amp; git commit -m "Update builder"</code></td>
-            <td>Raccourci M&agrave;J builder dans un projet</td>
+            <td>Configurer les secrets API</td>
+            <td>le projet lui-m&ecirc;me</td>
+            <td><code>.env</code></td>
+            <td>&eacute;dition directe</td>
           </tr>
         </table>
+        <p><strong>R&egrave;gle simple</strong>&nbsp;: si le fichier est un symlink &rarr; modifier dans le repo correspondant. Si c'est un fichier r&eacute;el &rarr; modifier directement dans le projet.</p>
+
+        <!-- ========== COMMANDES ========== -->
+
+        <h2 id="commandes">Commandes utiles</h2>
+        <table>
+          <tr><th>Commande</th><th>Description</th></tr>
+          <tr><td><code>git clone --recursive &lt;url&gt;</code></td><td>Cloner un projet avec ses submodules</td></tr>
+          <tr><td><code>git submodule update --init --recursive</code></td><td>Initialiser les submodules apr&egrave;s un clone</td></tr>
+          <tr><td><code>git submodule update --remote .framework</code></td><td>Mettre &agrave; jour le framework</td></tr>
+          <tr><td><code>git submodule update --remote builder</code></td><td>Mettre &agrave; jour le builder</td></tr>
+          <tr><td><code>git submodule status</code></td><td>Voir les commits des submodules</td></tr>
+          <tr><td><code>cd .framework &amp;&amp; git log --oneline -5</code></td><td>Derniers commits du framework</td></tr>
+          <tr><td><code>cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework"</code></td><td>Raccourci M&agrave;J framework</td></tr>
+          <tr><td><code>cd builder &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add builder &amp;&amp; git commit -m "Update builder"</code></td><td>Raccourci M&agrave;J builder</td></tr>
+        </table>
+
+        <div class="docs-see-also">
+          <div class="docs-see-also__title">Voir aussi</div>
+          <ul>
+            <li><a href="getting-started.html">D&eacute;marrer un projet</a></li>
+            <li><a href="production.html">Mise en production</a></li>
+            <li><a href="builder-overview.html">Builder &mdash; Vue d'ensemble</a></li>
+          </ul>
+        </div>
 
       </main>
     </div>
