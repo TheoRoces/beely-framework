@@ -116,7 +116,7 @@ cd ~/Sites
 git clone --recursive https://github.com/votre-org/mon-projet.git
 cd mon-projet
 ./setup.sh</code></pre>
-        <p>L'option <code>--recursive</code> clone automatiquement les submodules (<code>.framework/</code> et <code>builder/</code>). Le script <code>setup.sh</code> cr&eacute;e les symlinks.</p>
+        <p>L'option <code>--recursive</code> clone automatiquement les submodules (<code>.framework/</code> et <code>configurateur/</code>). Le script <code>setup.sh</code> cr&eacute;e les symlinks.</p>
 
         <h3>Recr&eacute;er les fichiers de config</h3>
         <p>Deux fichiers ne sont pas dans git (ils contiennent des secrets). Il faut les recr&eacute;er&nbsp;:</p>
@@ -154,7 +154,7 @@ cp .env.example .env</code></pre>
           <tr>
             <td><strong>beely-builder</strong></td>
             <td>Configurateur, interface d'administration, serveur Python</td>
-            <td>Submodule <code>builder/</code></td>
+            <td>Submodule <code>configurateur/</code></td>
           </tr>
           <tr>
             <td><strong>beely-template</strong></td>
@@ -173,20 +173,20 @@ cp .env.example .env</code></pre>
         <p><code>site-system</code> n'est <strong>pas un submodule</strong> &mdash; c'est le <strong>repo de d&eacute;veloppement principal</strong>. C'est le seul endroit o&ugrave;&nbsp;:</p>
         <ul>
           <li>Tu modifies le <strong>framework</strong> (via le submodule <code>.framework/</code>)</li>
-          <li>Tu modifies le <strong>Configurateur</strong> (via le submodule <code>builder/</code>)</li>
+          <li>Tu modifies le <strong>Configurateur</strong> (via le submodule <code>configurateur/</code>)</li>
           <li>Tu mets &agrave; jour la <strong>documentation</strong> (qui se trouve dans <code>.framework/docs/</code>)</li>
           <li>Tu d&eacute;ploies le site <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong> (via <code>./deploy.sh prod</code>)</li>
         </ul>
         <p>En r&eacute;sum&eacute;&nbsp;: <code>site-system</code> = ton atelier. <code>beely-template</code> = ce que tu donnes aux projets clients.</p>
 <pre><code>site-system/
 &boxvr;&boxh;&boxh; .framework/     &larr; submodule beely-framework (tu modifies ici)
-&boxvr;&boxh;&boxh; builder/        &larr; submodule beely-builder (tu modifies ici)
+&boxvr;&boxh;&boxh; configurateur/  &larr; submodule beely-builder (tu modifies ici)
 &boxvr;&boxh;&boxh; core/           &larr; symlink &rarr; .framework/core/
 &boxvr;&boxh;&boxh; docs/           &larr; symlink &rarr; .framework/docs/
 &boxvr;&boxh;&boxh; wireframes/     &larr; symlink &rarr; .framework/wireframes/
 &boxvr;&boxh;&boxh; deploy.sh       &larr; d&eacute;ploie vers framework.beely.studio
 &boxdr;&boxh;&boxh; config-site.js  &larr; config du site de doc</code></pre>
-        <p>Les projets clients ne connaissent <strong>jamais</strong> <code>site-system</code>. Ils utilisent <code>beely-template</code> qui inclut les m&ecirc;mes submodules (<code>.framework/</code> et <code>builder/</code>) mais avec leurs propres fichiers de configuration.</p>
+        <p>Les projets clients ne connaissent <strong>jamais</strong> <code>site-system</code>. Ils utilisent <code>beely-template</code> qui inclut les m&ecirc;mes submodules (<code>.framework/</code> et <code>configurateur/</code>) mais avec leurs propres fichiers de configuration.</p>
 
         <!-- ========== ARCHITECTURE ========== -->
 
@@ -194,7 +194,7 @@ cp .env.example .env</code></pre>
         <p>Un projet client utilise les 2 submodules via <code>setup.sh</code> qui cr&eacute;e les symlinks&nbsp;:</p>
 <pre><code>mon-projet/
 &boxvr;&boxh;&boxh; .framework/              &larr; submodule beely-framework
-&boxvr;&boxh;&boxh; builder/                 &larr; submodule beely-builder
+&boxvr;&boxh;&boxh; configurateur/           &larr; submodule beely-builder
 &boxvr;&boxh;&boxh; core/                    &larr; symlink &rarr; .framework/core/
 &boxvr;&boxh;&boxh; components/              &larr; symlink &rarr; .framework/components/
 &boxvr;&boxh;&boxh; assets/                  &larr; symlink &rarr; .framework/assets/
@@ -255,8 +255,8 @@ cd mon-projet
 # 3. Configurer le projet
 # Remplir config-site.js, .env, .deploy.env
 # Ou utiliser le configurateur :
-python3 builder/configurator-server.py
-# &rarr; http://localhost:5555/builder/configurator.html</code></pre>
+python3 configurateur/configurator-server.py
+# &rarr; http://localhost:5555/configurateur/configurator.html</code></pre>
 
         <h3>Cloner un projet existant</h3>
 <pre><code># &#x1F4C2; Dossier : ~/Sites/
@@ -295,7 +295,7 @@ git commit -m "Update framework submodule"</code></pre>
 # &#x1F4C2; Dossier : la racine d'un projet client (ex: ~/Sites/mon-projet/)
 
 # 1. Naviguer dans le submodule
-cd builder/
+cd configurateur/
 
 # 2. &Eacute;diter les fichiers
 
@@ -304,8 +304,8 @@ git add -A &amp;&amp; git commit -m "Description" &amp;&amp; git push
 
 # 4. Revenir &agrave; la racine et mettre &agrave; jour la r&eacute;f&eacute;rence
 cd ..
-git add builder
-git commit -m "Update builder submodule"</code></pre>
+git add configurateur
+git commit -m "Update configurateur submodule"</code></pre>
 
         <!-- ========== METTRE À JOUR ========== -->
 
@@ -321,15 +321,15 @@ git commit -m "Update framework to latest version"</code></pre>
         <h3>Mettre &agrave; jour le Configurateur</h3>
 <pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
-git submodule update --remote builder
-git add builder
-git commit -m "Update builder to latest version"</code></pre>
+git submodule update --remote configurateur
+git add configurateur
+git commit -m "Update configurateur to latest version"</code></pre>
 
         <h3>Mettre &agrave; jour les deux</h3>
 <pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
 git submodule update --remote
-git add .framework builder
+git add .framework configurateur
 git commit -m "Update submodules to latest versions"</code></pre>
 
         <!-- ========== DÉPLOIEMENT ========== -->
@@ -344,7 +344,7 @@ rsync -avzL --delete \
   ./ user@serveur:/chemin/</code></pre>
         <ul>
           <li>Le serveur ne contient <strong>aucun symlink</strong> &mdash; uniquement les fichiers r&eacute;els</li>
-          <li><code>.framework/</code> et <code>builder/</code> ne sont <strong>jamais d&eacute;ploy&eacute;s</strong> (exclus via <code>.rsync-exclude</code>)</li>
+          <li><code>.framework/</code> et <code>configurateur/</code> ne sont <strong>jamais d&eacute;ploy&eacute;s</strong> (exclus via <code>.rsync-exclude</code>)</li>
           <li>L'option <code>-L</code> est <strong>essentielle</strong> &mdash; sans elle, rsync copierait les symlinks au lieu des fichiers</li>
         </ul>
 
@@ -457,13 +457,13 @@ Pour CHAQUE projet client :
             <td>Modifier le Configurateur</td>
             <td>beely-builder</td>
             <td><code>js/</code></td>
-            <td><code>cd builder &amp;&amp; &hellip;</code></td>
+            <td><code>cd configurateur &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
             <td>Modifier le configurateur</td>
             <td>beely-builder</td>
             <td><code>configurator.html</code></td>
-            <td><code>cd builder &amp;&amp; &hellip;</code></td>
+            <td><code>cd configurateur &amp;&amp; &hellip;</code></td>
           </tr>
           <tr>
             <td>Modifier une page de mon site</td>
@@ -500,11 +500,11 @@ Pour CHAQUE projet client :
           <tr><td><code>git clone --recursive &lt;url&gt;</code></td><td>Cloner un projet avec ses submodules</td></tr>
           <tr><td><code>git submodule update --init --recursive</code></td><td>Initialiser les submodules apr&egrave;s un clone</td></tr>
           <tr><td><code>git submodule update --remote .framework</code></td><td>Mettre &agrave; jour le framework</td></tr>
-          <tr><td><code>git submodule update --remote builder</code></td><td>Mettre &agrave; jour le Configurateur</td></tr>
+          <tr><td><code>git submodule update --remote configurateur</code></td><td>Mettre &agrave; jour le Configurateur</td></tr>
           <tr><td><code>git submodule status</code></td><td>Voir les commits des submodules</td></tr>
           <tr><td><code>cd .framework &amp;&amp; git log --oneline -5</code></td><td>Derniers commits du framework</td></tr>
           <tr><td><code>cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework"</code></td><td>Raccourci M&agrave;J framework</td></tr>
-          <tr><td><code>cd builder &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add builder &amp;&amp; git commit -m "Update builder"</code></td><td>Raccourci M&agrave;J Configurateur</td></tr>
+          <tr><td><code>cd configurateur &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add configurateur &amp;&amp; git commit -m "Update configurateur"</code></td><td>Raccourci M&agrave;J Configurateur</td></tr>
         </table>
 
         <div class="docs-see-also">

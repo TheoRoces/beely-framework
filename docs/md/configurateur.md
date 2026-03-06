@@ -25,7 +25,7 @@ Le Configurateur repose sur un serveur Python léger (`configurator-server.py`) 
 Depuis la racine du projet :
 
 ```bash
-python3 builder/configurator-server.py
+python3 configurateur/configurator-server.py
 ```
 
 Le serveur démarre sur `http://localhost:5555`. Il utilise uniquement la bibliothèque standard Python (pas de pip install nécessaire).
@@ -35,7 +35,7 @@ Le serveur démarre sur `http://localhost:5555`. Il utilise uniquement la biblio
 Ouvrez votre navigateur et naviguez vers :
 
 ```
-http://localhost:5555/builder/
+http://localhost:5555/configurateur/
 ```
 
 Le Configurateur se charge comme une SPA (Single Page Application) avec navigation par panels.
@@ -53,19 +53,19 @@ Le backend Python sert de proxy fichier : il gère le registre des pages (`pages
 
 ## Structure des fichiers
 
-Le dossier `builder/` contient l'ensemble du code :
+Le dossier `configurateur/` contient l'ensemble du code :
 
 | Fichier | Description |
 |---------|-------------|
-| `builder/index.html` | Interface HTML principale |
-| `builder/configurateur.css` | Styles (layout, panels, sidebar) |
-| `builder/js/configurateur-app.js` | Shell principal : navigation entre panels, état global, initialisation |
-| `builder/js/configurateur-api.js` | Client HTTP pour communiquer avec l'API backend Python |
-| `builder/js/configurateur-pages.js` | Gestion des pages : arborescence, création, suppression, métadonnées |
-| `builder/js/configurateur-library.js` | Bibliothèque : icônes et médiathèque |
-| `builder/js/configurateur-config.js` | Configurateur de design tokens |
-| `builder/js/configurateur-publish.js` | Déploiement en production/pré-production et gestion git |
-| `builder/js/configurateur-modal.js` | Système de modales : confirm, prompt, alertes |
+| `configurateur/index.html` | Interface HTML principale |
+| `configurateur/configurateur.css` | Styles (layout, panels, sidebar) |
+| `configurateur/js/configurateur-app.js` | Shell principal : navigation entre panels, état global, initialisation |
+| `configurateur/js/configurateur-api.js` | Client HTTP pour communiquer avec l'API backend Python |
+| `configurateur/js/configurateur-pages.js` | Gestion des pages : arborescence, création, suppression, métadonnées |
+| `configurateur/js/configurateur-library.js` | Bibliothèque : icônes et médiathèque |
+| `configurateur/js/configurateur-config.js` | Configurateur de design tokens |
+| `configurateur/js/configurateur-publish.js` | Déploiement en production/pré-production et gestion git |
+| `configurateur/js/configurateur-modal.js` | Système de modales : confirm, prompt, alertes |
 
 ## Panels
 

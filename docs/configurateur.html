@@ -72,12 +72,12 @@
 
         <h3>1. D&eacute;marrer le serveur</h3>
         <p>Depuis la racine du projet :</p>
-<pre><code>python3 builder/configurator-server.py</code></pre>
+<pre><code>python3 configurateur/configurator-server.py</code></pre>
         <p>Le serveur d&eacute;marre sur <code>http://localhost:5555</code>. Il utilise uniquement la biblioth&egrave;que standard Python (pas de pip install n&eacute;cessaire).</p>
 
         <h3>2. Acc&eacute;der au Configurateur</h3>
         <p>Ouvrez votre navigateur et naviguez vers :</p>
-<pre><code>http://localhost:5555/builder/</code></pre>
+<pre><code>http://localhost:5555/configurateur/</code></pre>
         <p>Le Configurateur se charge comme une SPA (Single Page Application) avec navigation par panels.</p>
 
         <!-- ========== ARCHITECTURE ========== -->
@@ -104,19 +104,19 @@
         <!-- ========== STRUCTURE DES FICHIERS ========== -->
 
         <h2 id="structure-fichiers">Structure des fichiers</h2>
-        <p>Le dossier <code>builder/</code> contient l'ensemble du code :</p>
+        <p>Le dossier <code>configurateur/</code> contient l'ensemble du code :</p>
 
         <table>
           <tr><th>Fichier</th><th>Description</th></tr>
-          <tr><td><code>builder/index.html</code></td><td>Interface HTML principale</td></tr>
-          <tr><td><code>builder/configurateur.css</code></td><td>Styles (layout, panels, sidebar)</td></tr>
-          <tr><td><code>builder/js/configurateur-app.js</code></td><td>Shell principal : navigation entre panels, &eacute;tat global, initialisation</td></tr>
-          <tr><td><code>builder/js/configurateur-api.js</code></td><td>Client HTTP pour communiquer avec l'API backend Python</td></tr>
-          <tr><td><code>builder/js/configurateur-pages.js</code></td><td>Gestion des pages : arborescence, cr&eacute;ation, suppression, m&eacute;tadonn&eacute;es</td></tr>
-          <tr><td><code>builder/js/configurateur-library.js</code></td><td>Biblioth&egrave;que : ic&ocirc;nes et m&eacute;diath&egrave;que</td></tr>
-          <tr><td><code>builder/js/configurateur-config.js</code></td><td>Configurateur de design tokens</td></tr>
-          <tr><td><code>builder/js/configurateur-publish.js</code></td><td>D&eacute;ploiement en production/pr&eacute;-production et gestion git</td></tr>
-          <tr><td><code>builder/js/configurateur-modal.js</code></td><td>Syst&egrave;me de modales : confirm, prompt, alertes</td></tr>
+          <tr><td><code>configurateur/index.html</code></td><td>Interface HTML principale</td></tr>
+          <tr><td><code>configurateur/configurateur.css</code></td><td>Styles (layout, panels, sidebar)</td></tr>
+          <tr><td><code>configurateur/js/configurateur-app.js</code></td><td>Shell principal : navigation entre panels, &eacute;tat global, initialisation</td></tr>
+          <tr><td><code>configurateur/js/configurateur-api.js</code></td><td>Client HTTP pour communiquer avec l'API backend Python</td></tr>
+          <tr><td><code>configurateur/js/configurateur-pages.js</code></td><td>Gestion des pages : arborescence, cr&eacute;ation, suppression, m&eacute;tadonn&eacute;es</td></tr>
+          <tr><td><code>configurateur/js/configurateur-library.js</code></td><td>Biblioth&egrave;que : ic&ocirc;nes et m&eacute;diath&egrave;que</td></tr>
+          <tr><td><code>configurateur/js/configurateur-config.js</code></td><td>Configurateur de design tokens</td></tr>
+          <tr><td><code>configurateur/js/configurateur-publish.js</code></td><td>D&eacute;ploiement en production/pr&eacute;-production et gestion git</td></tr>
+          <tr><td><code>configurateur/js/configurateur-modal.js</code></td><td>Syst&egrave;me de modales : confirm, prompt, alertes</td></tr>
         </table>
 
         <!-- ========== PANELS ========== -->

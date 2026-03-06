@@ -200,8 +200,8 @@ Protégez un site en développement ou pré-production par mot de passe (HTTP Ba
 
 #### Via le configurateur (recommandé)
 
-1. Lancez le serveur Python : `python3 builder/configurator-server.py`
-2. Ouvrez le configurateur : `http://localhost:5555/builder/configurator.html`
+1. Lancez le serveur Python : `python3 configurateur/configurator-server.py`
+2. Ouvrez le configurateur : `http://localhost:5555/configurateur/configurator.html`
 3. Cliquez sur l'onglet **Protection HTTP** dans la sidebar
 4. Cochez **Activer la protection HTTP**
 5. Renseignez un identifiant et un mot de passe

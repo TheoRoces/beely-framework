@@ -64,7 +64,7 @@ cd mon-projet
 ./setup.sh
 ```
 
-L'option `--recursive` clone automatiquement les submodules (`.framework/` et `builder/`). Le script `setup.sh` crée les symlinks.
+L'option `--recursive` clone automatiquement les submodules (`.framework/` et `configurateur/`). Le script `setup.sh` crée les symlinks.
 
 ### Recréer les fichiers de config
 
@@ -104,7 +104,7 @@ La documentation et le framework sont déployés sur **https://framework.beely.s
 | Repo | Contenu | Usage |
 |---|---|---|
 | **beely-framework** | Core CSS/JS, API PHP, composants, wireframes, docs, assets | Submodule `.framework/` |
-| **beely-builder** | Configurateur visuel, configurateur, serveur Python | Submodule `builder/` |
+| **beely-builder** | Configurateur visuel, configurateur, serveur Python | Submodule `configurateur/` |
 | **beely-template** | Starter projet client : pages, config, deploy, setup | Cloné pour chaque nouveau client |
 
 Chaque repo est **versionné indépendamment** avec des tags sémantiques (v1.0.0, v1.1.0, etc.).
@@ -118,7 +118,7 @@ Un projet client utilise les 2 submodules via `setup.sh` qui crée les symlinks 
 ```
 mon-projet/
 ├── .framework/              ← submodule beely-framework
-├── builder/                 ← submodule beely-builder
+├── configurateur/           ← submodule beely-builder
 │   ├── index.html           ← Configurateur UI
 │   ├── configurateur.css
 │   ├── configurator.html    ← Configurateur intégré
@@ -185,7 +185,7 @@ Propres à chaque projet, versionnés dans le dépôt du projet.
 
 ### Submodule Configurateur
 
-Le Configurateur est un submodule dans `builder/`. Il n'est **jamais déployé** (exclu via `.rsync-exclude`).
+Le Configurateur est un submodule dans `configurateur/`. Il n'est **jamais déployé** (exclu via `.rsync-exclude`).
 
 ---
 
@@ -207,8 +207,8 @@ cd mon-projet
 # 3. Configurer le projet
 # Remplir config-site.js, .env, .deploy.env
 # Ou utiliser le configurateur :
-python3 builder/configurator-server.py
-# → http://localhost:5555/builder/configurator.html
+python3 configurateur/configurator-server.py
+# → http://localhost:5555/configurateur/configurator.html
 ```
 
 ### Cloner un projet existant
@@ -261,7 +261,7 @@ git commit -m "Update framework submodule"
 # 📂 Dossier : la racine d'un projet client (ex: ~/Sites/mon-projet/)
 
 # 1. Naviguer dans le submodule
-cd builder/
+cd configurateur/
 
 # 2. Éditer les fichiers
 
@@ -270,8 +270,8 @@ git add -A && git commit -m "Description" && git push
 
 # 4. Revenir à la racine et mettre à jour la référence
 cd ..
-git add builder
-git commit -m "Update builder submodule"
+git add configurateur
+git commit -m "Update configurateur submodule"
 ```
 
 ---
@@ -293,9 +293,9 @@ git commit -m "Update framework to latest version"
 ```bash
 # 📂 Dossier : la racine d'un projet client
 
-git submodule update --remote builder
-git add builder
-git commit -m "Update builder to latest version"
+git submodule update --remote configurateur
+git add configurateur
+git commit -m "Update configurateur to latest version"
 ```
 
 ### Mettre à jour les deux
@@ -304,7 +304,7 @@ git commit -m "Update builder to latest version"
 # 📂 Dossier : la racine d'un projet client
 
 git submodule update --remote
-git add .framework builder
+git add .framework configurateur
 git commit -m "Update submodules to latest versions"
 ```
 
@@ -325,7 +325,7 @@ rsync -avzL --delete \
 
 **Points importants :**
 - Le serveur ne contient **aucun symlink** — uniquement les fichiers réels
-- `.framework/` et `builder/` ne sont **jamais déployés** (exclus via `.rsync-exclude`)
+- `.framework/` et `configurateur/` ne sont **jamais déployés** (exclus via `.rsync-exclude`)
 - L'option `-L` est **essentielle** — sans elle, rsync copierait les symlinks au lieu des fichiers
 
 ---
@@ -413,7 +413,7 @@ Si le Configurateur a aussi été modifié :
 ```bash
 # 📂 Dossier : la racine du projet client
 
-cd builder && git pull && cd .. && git add builder && git commit -m "Update builder submodule"
+cd configurateur && git pull && cd .. && git add configurateur && git commit -m "Update configurateur submodule"
 ```
 
 ### Pourquoi c'est nécessaire ?
@@ -458,9 +458,9 @@ for project in "${PROJECTS[@]}"; do
   cd .framework && git pull && cd ..
   git add .framework
 
-  # Builder
-  cd builder && git pull && cd ..
-  git add builder
+  # Configurateur
+  cd configurateur && git pull && cd ..
+  git add configurateur
 
   git commit -m "Update submodules to latest"
   echo ""
@@ -482,15 +482,15 @@ Guide rapide pour savoir où aller quand tu veux modifier quelque chose :
 | Ajouter/modifier un composant (header, footer, card) | beely-framework | `components/` | `cd .framework && ...` |
 | Modifier les API PHP | beely-framework | `api/` | `cd .framework && ...` |
 | Ajouter des icônes | beely-framework | `assets/icons/` | `cd .framework && ...` |
-| Modifier le Configurateur visuel | beely-builder | `js/` | `cd builder && ...` |
-| Modifier le configurateur | beely-builder | `configurator.html` | `cd builder && ...` |
-| Modifier le serveur Python du Configurateur | beely-builder | `configurator-server.py` | `cd builder && ...` |
+| Modifier le Configurateur visuel | beely-builder | `js/` | `cd configurateur && ...` |
+| Modifier le configurateur | beely-builder | `configurator.html` | `cd configurateur && ...` |
+| Modifier le serveur Python du Configurateur | beely-builder | `configurator-server.py` | `cd configurateur && ...` |
 | Modifier une page de mon site | le projet lui-même | racine | édition directe |
 | Changer la config du site (nom, analytics, etc.) | le projet lui-même | `config-site.js` | édition directe |
 | Configurer le déploiement SSH | le projet lui-même | `.deploy.env` | édition directe |
 | Configurer les secrets (tokens API) | le projet lui-même | `.env` | édition directe |
 
-**Règle simple** : si le fichier est un symlink → modifier dans le repo correspondant (framework ou builder). Si c'est un fichier réel → modifier directement dans le projet.
+**Règle simple** : si le fichier est un symlink → modifier dans le repo correspondant (framework ou configurateur). Si c'est un fichier réel → modifier directement dans le projet.
 
 ---
 
@@ -523,13 +523,13 @@ git commit -m "Pin framework to v1.2.0"
 | `git clone --recursive <url>` | Cloner un projet avec ses submodules |
 | `git submodule update --init --recursive` | Initialiser les submodules après un clone |
 | `git submodule update --remote .framework` | Mettre à jour le framework |
-| `git submodule update --remote builder` | Mettre à jour le Configurateur |
+| `git submodule update --remote configurateur` | Mettre à jour le Configurateur |
 | `git submodule status` | Voir les commits des submodules |
 | `git submodule foreach git pull` | Mettre à jour tous les submodules |
 | `cd .framework && git log --oneline -5` | Derniers commits du framework |
-| `cd builder && git log --oneline -5` | Derniers commits du Configurateur |
+| `cd configurateur && git log --oneline -5` | Derniers commits du Configurateur |
 | `cd .framework && git pull && cd .. && git add .framework && git commit -m "Update framework"` | Raccourci MàJ framework |
-| `cd builder && git pull && cd .. && git add builder && git commit -m "Update builder"` | Raccourci MàJ Configurateur |
+| `cd configurateur && git pull && cd .. && git add configurateur && git commit -m "Update configurateur"` | Raccourci MàJ Configurateur |
 
 ---
 
