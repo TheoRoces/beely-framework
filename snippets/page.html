@@ -2,11 +2,13 @@
   PAGE COMPLÈTE — Site System
 
   Template minimal pour créer une nouvelle page.
-  Copiez ce fichier à la racine du projet et renommez-le.
+  Les pages vivent dans le dossier pages/ du projet.
 
   Chemins :
-    - Si la page est à la racine (ex: contact.html) → chemins ci-dessous OK
-    - Si la page est dans un sous-dossier (ex: pages/about.html) → préfixer avec ../
+    - Les chemins ci-dessous sont relatifs à la racine du projet
+    - Le configurateur les ajuste automatiquement lors de la création
+    - Pages dans pages/ : préfixe ../ (1 niveau)
+    - Pages dans pages/sous-dossier/ : préfixe ../../ (2 niveaux)
 
   Modules inclus (retirer ceux non utilisés) :
     CSS : tokens, base, animations, elements, forms, cookies, grid, icons, blog
