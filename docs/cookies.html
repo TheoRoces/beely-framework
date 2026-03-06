@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookies — Documentation — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+
+  <div data-component="header"
+       data-site-name="SiteSystem"
+       data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="cookies"></nav>
+
+      <main class="docs-content">
+        <h1>Cookies &amp; Analytics</h1>
+        <p>
+          Bandeau de consentement RGPD/CNIL avec gestion granulaire par cat&eacute;gorie, expiration automatique (13 mois), preuve de consentement c&ocirc;t&eacute; serveur (PHP/CSV), nettoyage des cookies tiers au refus, et injection des scripts analytics.
+        </p>
+
+        <h2>Configuration</h2>
+        <p>Ouvrez <code>config-site.js</code> &agrave; la racine du projet et remplissez les IDs de vos plateformes :</p>
+
+<pre><code>window.COOKIES_CONFIG = {
+  ga4: 'G-XXXXXXXXXX',
+  gtm: 'GTM-XXXXXXX',
+  clarity: 'xxxxxxxxxx',
+  fbPixel: '123456789012345',
+  hotjar: '1234567',
+  linkedin: '123456',
+  tiktok: 'XXXXXXXXXX',
+
+  categories: {
+    functional: {
+      label: 'Fonctionnel',
+      description: 'Propagation des UTM (URL uniquement, aucun stockage).',
+      services: [],
+      required: true
+    },
+    analytics: {
+      label: 'Analytique',
+      description: 'Mesure d\'audience et analyse du trafic.',
+      services: ['ga4', 'gtm', 'clarity', 'hotjar']
+    },
+    marketing: {
+      label: 'Marketing',
+      description: 'Publicite ciblee et suivi des conversions.',
+      services: ['fbPixel', 'linkedin', 'tiktok']
+    }
+  },
+
+  banner: {
+    title: 'Ce site utilise des cookies',
+    text: 'Nous utilisons des cookies pour analyser le trafic...',
+    acceptText: 'Tout accepter',
+    rejectText: 'Tout refuser',
+    settingsText: 'Personnaliser',
+    saveText: 'Enregistrer mes choix',
+    cookieName: 'cookie_consent',
+    cookieDuration: 395,           // ~13 mois (CNIL max)
+    consentVersion: '1.0',         // Changer pour re-demander le consentement
+    privacyUrl: '/confidentialite.html',  // Lien politique de confidentialité
+    privacyText: 'Politique de confidentialité'
+  },
+
+  // Endpoint PHP intégré (preuve de consentement)
+  consentEndpoint: '/api/consent.php'
+};</code></pre>
+        <p>Vous pouvez aussi utiliser <code>consentWebhook</code> &agrave; la place de <code>consentEndpoint</code> pour envoyer la preuve de consentement vers un webhook externe (ex : Make.com, Zapier).</p>
+
+        <h2>Plateformes support&eacute;es</h2>
+        <table>
+          <tr><th>Cl&eacute;</th><th>Plateforme</th><th>Format de l'ID</th></tr>
+          <tr><td><code>ga4</code></td><td>Google Analytics 4</td><td>G-XXXXXXXXXX</td></tr>
+          <tr><td><code>gtm</code></td><td>Google Tag Manager</td><td>GTM-XXXXXXX</td></tr>
+          <tr><td><code>clarity</code></td><td>Microsoft Clarity</td><td>xxxxxxxxxx</td></tr>
+          <tr><td><code>fbPixel</code></td><td>Facebook Pixel</td><td>123456789012345</td></tr>
+          <tr><td><code>hotjar</code></td><td>Hotjar</td><td>1234567</td></tr>
+          <tr><td><code>linkedin</code></td><td>LinkedIn Insight Tag</td><td>123456</td></tr>
+          <tr><td><code>tiktok</code></td><td>TikTok Pixel</td><td>XXXXXXXXXX</td></tr>
+        </table>
+        <p>Laissez un champ vide (<code>''</code>) pour d&eacute;sactiver un service. Les cat&eacute;gories sans service configur&eacute; sont automatiquement masqu&eacute;es.</p>
+
+        <h2>Cat&eacute;gories de consentement</h2>
+        <p>Les services sont regroup&eacute;s en cat&eacute;gories. L'utilisateur peut accepter ou refuser chaque cat&eacute;gorie ind&eacute;pendamment via le panneau &laquo; Personnaliser &raquo;.</p>
+        <table>
+          <tr><th>Propri&eacute;t&eacute;</th><th>Description</th></tr>
+          <tr><td><code>label</code></td><td>Nom affich&eacute; dans le panneau de consentement</td></tr>
+          <tr><td><code>description</code></td><td>Description courte de la cat&eacute;gorie</td></tr>
+          <tr><td><code>services</code></td><td>Tableau des cl&eacute;s de services associ&eacute;s (<code>['ga4', 'clarity']</code>)</td></tr>
+          <tr><td><code>required</code></td><td>Si <code>true</code>, la cat&eacute;gorie est toujours active (toggle gris&eacute;, badge &laquo; requis &raquo;)</td></tr>
+        </table>
+
+        <h3>Cat&eacute;gorie Fonctionnel (UTM)</h3>
+        <p>La cat&eacute;gorie <code>functional</code> est marqu&eacute;e <code>required: true</code> par d&eacute;faut. Elle documente la propagation des param&egrave;tres UTM entre les pages. Cette propagation fonctionne <strong>sans aucun stockage</strong> (pas de cookie, pas de localStorage) : le script <code>params.js</code> lit l'URL et ajoute les param&egrave;tres aux liens internes.</p>
+
+        <h2>Conformit&eacute; CNIL / RGPD</h2>
+        <p>Le syst&egrave;me respecte les recommandations de la CNIL :</p>
+        <table>
+          <tr><th>R&egrave;gle CNIL</th><th>Impl&eacute;mentation</th></tr>
+          <tr><td>Dur&eacute;e max du consentement</td><td>13 mois (395 jours). Le script plafonne automatiquement &agrave; cette valeur.</td></tr>
+          <tr><td>Re-demande apr&egrave;s expiration</td><td>Le consentement est horodat&eacute;. Apr&egrave;s 13 mois, le cookie est effac&eacute; et le bandeau r&eacute;appara&icirc;t.</td></tr>
+          <tr><td>Refus aussi facile qu'acceptation</td><td>Les boutons &laquo; Tout accepter &raquo; et &laquo; Tout refuser &raquo; sont au m&ecirc;me niveau.</td></tr>
+          <tr><td>Consentement granulaire</td><td>Chaque cat&eacute;gorie peut &ecirc;tre accept&eacute;e ou refus&eacute;e individuellement.</td></tr>
+          <tr><td>Preuve de consentement</td><td>Enregistrement automatique dans un fichier CSV c&ocirc;t&eacute; serveur (PHP).</td></tr>
+          <tr><td>Modification du choix</td><td>Bouton <code>data-cookies-settings</code> ou <code>openCookieSettings()</code> pour r&eacute;ouvrir.</td></tr>
+          <tr><td>Nettoyage au refus</td><td>Les cookies d&eacute;pos&eacute;s par les services tiers sont supprim&eacute;s au refus/retrait.</td></tr>
+          <tr><td>Lien confidentialit&eacute;</td><td>Lien configurable vers la politique de confidentialit&eacute; dans la banni&egrave;re.</td></tr>
+          <tr><td>Gestion de version</td><td>Changez <code>consentVersion</code> pour re-demander le consentement apr&egrave;s modification des cat&eacute;gories.</td></tr>
+        </table>
+
+        <h3>Preuve de consentement (PHP / CSV)</h3>
+        <p>Le fichier <code>api/consent.php</code> re&ccedil;oit chaque choix en POST et l'enregistre dans <code>data/consents.csv</code>.</p>
+
+        <h4>Fonctionnement</h4>
+        <ol>
+          <li>L'utilisateur fait un choix (accepter, refuser, personnaliser)</li>
+          <li>Le JS envoie les donn&eacute;es en POST &agrave; <code>/api/consent.php</code></li>
+          <li>Le PHP &eacute;crit une ligne dans <code>data/consents.csv</code></li>
+          <li>Le dossier <code>data/</code> est prot&eacute;g&eacute; par <code>.htaccess</code> (cr&eacute;&eacute; automatiquement)</li>
+        </ol>
+
+        <h4>Format du fichier CSV</h4>
+<pre><code>timestamp,ip_hash,consent,url,user_agent,expiry_date
+"2026-02-26T14:30:00.000Z","a1b2c3...","functional=1;analytics=1;marketing=0","https://monsite.fr/",
+"Mozilla/5.0 ...","2027-03-27T14:30:00.000Z"</code></pre>
+        <table>
+          <tr><th>Colonne</th><th>Description</th></tr>
+          <tr><td><code>timestamp</code></td><td>Date ISO du choix</td></tr>
+          <tr><td><code>ip_hash</code></td><td>Hash SHA-256 de l'IP (anonymis&eacute;e, RGPD)</td></tr>
+          <tr><td><code>consent</code></td><td>Choix par cat&eacute;gorie (<code>key=1</code> ou <code>key=0</code>)</td></tr>
+          <tr><td><code>url</code></td><td>Page o&ugrave; le choix a &eacute;t&eacute; fait (sans query string)</td></tr>
+          <tr><td><code>user_agent</code></td><td>Navigateur</td></tr>
+          <tr><td><code>expiry_date</code></td><td>Date d'expiration du consentement</td></tr>
+        </table>
+
+        <h4>S&eacute;curit&eacute;</h4>
+        <ul>
+          <li><strong>IP anonymis&eacute;e</strong> : l'IP est hash&eacute;e avec un sel mensuel (SHA-256), jamais stock&eacute;e en clair</li>
+          <li><strong>.htaccess</strong> : le dossier <code>data/</code> est prot&eacute;g&eacute; par <code>Deny from all</code> (cr&eacute;&eacute; automatiquement)</li>
+          <li><strong>Verrouillage</strong> : &eacute;criture avec <code>LOCK_EX</code> pour &eacute;viter les conflits</li>
+          <li><strong>CORS restreint</strong> : configurable via <code>SITE_ORIGIN</code> dans <code>.env</code></li>
+          <li><strong>POST uniquement</strong> : le endpoint refuse GET, PUT, DELETE</li>
+        </ul>
+
+        <h4>Configuration .env</h4>
+        <p>Pour restreindre l'acc&egrave;s au endpoint :</p>
+<pre><code># .env (racine du projet)
+SITE_ORIGIN=https://monsite.fr</code></pre>
+
+        <h4>D&eacute;sactiver la preuve serveur</h4>
+        <p>Laissez <code>consentEndpoint</code> vide dans <code>config-site.js</code> :</p>
+<pre><code>consentEndpoint: ''  // Pas de preuve serveur</code></pre>
+
+        <h3>Nettoyage des cookies tiers</h3>
+        <p>Quand l'utilisateur refuse ou retire son consentement pour une cat&eacute;gorie, les cookies d&eacute;pos&eacute;s par les services tiers associ&eacute;s sont automatiquement supprim&eacute;s.</p>
+        <p>Les patterns de cookies connus sont g&eacute;r&eacute;s automatiquement pour chaque service :</p>
+        <table>
+          <tr><th>Service</th><th>Cookies supprim&eacute;s</th></tr>
+          <tr><td>GA4 / GTM</td><td><code>_ga</code>, <code>_ga_*</code>, <code>_gid</code>, <code>_gat</code></td></tr>
+          <tr><td>Clarity</td><td><code>_clck</code>, <code>_clsk</code>, <code>CLID</code>, <code>ANONCHK</code></td></tr>
+          <tr><td>Hotjar</td><td><code>_hj*</code>, <code>_hjSession*</code>, <code>_hjid</code></td></tr>
+          <tr><td>Facebook Pixel</td><td><code>_fbp</code>, <code>_fbc</code>, <code>fr</code></td></tr>
+          <tr><td>LinkedIn</td><td><code>_li*</code>, <code>li_sugr</code>, <code>bcookie</code>, <code>lidc</code></td></tr>
+          <tr><td>TikTok</td><td><code>_ttp</code>, <code>_tt_enable_cookie</code>, <code>tt_*</code></td></tr>
+        </table>
+
+        <h3>Gestion de version</h3>
+        <p>Si vous modifiez les cat&eacute;gories ou ajoutez des services, changez <code>consentVersion</code> dans la config. Tous les visiteurs seront re-sollicit&eacute;s :</p>
+<pre><code>banner: {
+  consentVersion: '2.0',  // Etait '1.0' → re-demande automatique
+  // ...
+}</code></pre>
+
+        <h3>Lien politique de confidentialit&eacute;</h3>
+        <p>Ajoutez <code>privacyUrl</code> et <code>privacyText</code> dans la config de la banni&egrave;re :</p>
+<pre><code>banner: {
+  privacyUrl: '/confidentialite.html',
+  privacyText: 'Politique de confidentialité',
+  // ...
+}</code></pre>
+        <p>Le lien s'affiche automatiquement apr&egrave;s le texte de la banni&egrave;re.</p>
+
+        <h3>Format du cookie</h3>
+        <p>Le consentement est stock&eacute; en JSON avec horodatage et version :</p>
+<pre><code>// Cookie cookie_consent
+{
+  "choices": { "functional": true, "analytics": true, "marketing": false },
+  "timestamp": 1740576600000,
+  "version": "1.0"
+}</code></pre>
+
+        <h2>Fonctionnement</h2>
+        <p><strong>Aucun cookie ni script tiers n'est d&eacute;pos&eacute; avant le consentement.</strong> Tant que le visiteur n'a pas cliqu&eacute; sur &laquo; Tout accepter &raquo; ou personnalis&eacute; ses choix, aucun tracker n'est charg&eacute;. Cela garantit la conformit&eacute; RGPD/CNIL.</p>
+        <ul>
+          <li>Au premier chargement, le bandeau de consentement s'affiche</li>
+          <li><strong>Tout accepter</strong> : active toutes les cat&eacute;gories, injecte les scripts correspondants + preuve serveur</li>
+          <li><strong>Tout refuser</strong> : refuse les cat&eacute;gories non requises, aucun script inject&eacute; + preuve serveur</li>
+          <li><strong>Personnaliser</strong> : ouvre le panneau avec un toggle par cat&eacute;gorie</li>
+          <li>Les cat&eacute;gories <code>required</code> ont un toggle gris&eacute; avec badge &laquo; requis &raquo;</li>
+          <li>Seuls les scripts des cat&eacute;gories accept&eacute;es sont inject&eacute;s</li>
+          <li>Si un visiteur <strong>change d'avis</strong> et refuse apr&egrave;s avoir accept&eacute;, les cookies tiers sont automatiquement supprim&eacute;s</li>
+          <li>Le consentement expire automatiquement apr&egrave;s 13 mois (effacement + re-demande)</li>
+          <li>Un changement de <code>consentVersion</code> d&eacute;clenche aussi la re-demande</li>
+        </ul>
+
+        <h2>Bouton de r&eacute;ouverture</h2>
+        <p>Ajoutez l'attribut <code>data-cookies-settings</code> sur n'importe quel &eacute;l&eacute;ment pour r&eacute;ouvrir le gestionnaire de consentement :</p>
+
+<pre><code>&lt;!-- Lien dans le footer --&gt;
+&lt;a href="#" data-cookies-settings&gt;Gérer les cookies&lt;/a&gt;
+
+&lt;!-- Ou un bouton --&gt;
+&lt;button data-cookies-settings&gt;Paramètres cookies&lt;/button&gt;</code></pre>
+        <p>Le panneau de personnalisation s'ouvre directement, avec les choix actuels pr&eacute;-coch&eacute;s.</p>
+        <p>Vous pouvez aussi appeler la fonction JavaScript <code>openCookieSettings()</code> pour ouvrir le gestionnaire programmatiquement.</p>
+
+        <h2>Personnalisation du bandeau</h2>
+        <p>Le bandeau utilise les classes BEM <code>.cookies</code>. Modifiez <code>core/css/cookies.css</code> pour personnaliser l'apparence.</p>
+<pre><code>/* Exemple : bandeau en haut au lieu d'en bas */
+.cookies {
+  bottom: auto;
+  top: 0;
+  border-top: none;
+  border-bottom: 1px solid var(--color-border);
+  transform: translateY(-100%);
+}</code></pre>
+
+        <h2>Inclure dans une page</h2>
+<pre><code>&lt;!-- Synchrone (avant les composants) --&gt;
+&lt;script src="config-site.js"&gt;&lt;/script&gt;
+
+&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="core/css/cookies.css"&gt;
+
+&lt;!-- Defer --&gt;
+&lt;script src="core/js/cookies.js" defer&gt;&lt;/script&gt;</code></pre>
+
+        <h2>Fichiers</h2>
+        <table>
+          <tr><th>Fichier</th><th>R&ocirc;le</th></tr>
+          <tr><td><code>config-site.js</code></td><td>Configuration (IDs analytics, cat&eacute;gories, banni&egrave;re, endpoint)</td></tr>
+          <tr><td><code>core/js/cookies.js</code></td><td>Logique JS (bandeau, injection, preuve, nettoyage)</td></tr>
+          <tr><td><code>core/css/cookies.css</code></td><td>Styles du bandeau</td></tr>
+          <tr><td><code>api/consent.php</code></td><td>Endpoint PHP (enregistrement CSV)</td></tr>
+          <tr><td><code>data/consents.csv</code></td><td>Fichier de preuves (cr&eacute;&eacute; automatiquement, prot&eacute;g&eacute; par .htaccess)</td></tr>
+          <tr><td><code>.env</code></td><td>Variable <code>SITE_ORIGIN</code> pour restreindre le CORS</td></tr>
+          <tr><td><code>core/js/legal.js</code></td><td>Rendu dynamique des pages l&eacute;gales (mentions, confidentialit&eacute;)</td></tr>
+          <tr><td><code>mentions-legales.html</code></td><td>Page des mentions l&eacute;gales (racine du projet)</td></tr>
+          <tr><td><code>confidentialite.html</code></td><td>Politique de confidentialit&eacute; / cookies (racine du projet)</td></tr>
+        </table>
+
+        <h2>Pages l&eacute;gales</h2>
+        <p>
+          Deux pages pr&ecirc;tes &agrave; l'emploi sont fournies : <strong>Mentions l&eacute;gales</strong> (<code>mentions-legales.html</code>)
+          et <strong>Politique de confidentialit&eacute;</strong> (<code>confidentialite.html</code>).
+          Elles contiennent un texte g&eacute;n&eacute;rique conforme (loi 2004-575, RGPD, CNIL).
+        </p>
+        <p>
+          <strong>Important :</strong> ces textes sont des mod&egrave;les. Faites-les valider par un professionnel du droit
+          avant mise en production.
+        </p>
+
+        <h3>Configuration LEGAL_CONFIG</h3>
+        <p>Ouvrez <code>config-site.js</code> et remplissez le bloc <code>LEGAL_CONFIG</code> :</p>
+
+<pre><code>window.LEGAL_CONFIG = {
+  company: 'Ma Societe SAS',
+  legalForm: 'SAS',
+  siret: '123 456 789 00000',
+  registration: 'RCS Paris',
+  representative: 'Jean Dupont',
+  address: '123 rue Exemple, 75000 Paris',
+  phone: '+33 1 23 45 67 89',
+  email: 'contact@monsite.fr',
+  website: 'https://monsite.fr',
+
+  hosting: {
+    name: 'OVH',
+    address: '2 rue Kellermann, 59100 Roubaix',
+    url: 'https://www.ovh.com',
+    contact: 'https://www.ovh.com/fr/support/'
+  },
+
+  developer: {
+    name: 'Beely Studio',
+    url: 'https://beely.studio',
+    address: '20 chemin du Chateau, 79370 Ville'
+  }
+};</code></pre>
+
+        <h3>Champs LEGAL_CONFIG</h3>
+        <table>
+          <tr><th>Champ</th><th>Description</th><th>Obligatoire</th></tr>
+          <tr><td><code>company</code></td><td>Nom de l'entreprise ou raison sociale</td><td>Oui</td></tr>
+          <tr><td><code>legalForm</code></td><td>Forme juridique (SAS, SARL, Auto-entrepreneur, etc.)</td><td>Oui</td></tr>
+          <tr><td><code>siret</code></td><td>Num&eacute;ro SIRET (14 chiffres)</td><td>Oui</td></tr>
+          <tr><td><code>registration</code></td><td>Immatriculation RCS ou RM</td><td>Oui</td></tr>
+          <tr><td><code>representative</code></td><td>Nom du responsable de la publication</td><td>Oui</td></tr>
+          <tr><td><code>address</code></td><td>Adresse compl&egrave;te du si&egrave;ge social</td><td>Oui</td></tr>
+          <tr><td><code>phone</code></td><td>Num&eacute;ro de t&eacute;l&eacute;phone</td><td>Recommand&eacute;</td></tr>
+          <tr><td><code>email</code></td><td>Email de contact (aussi utilis&eacute; pour le RGPD)</td><td>Oui</td></tr>
+          <tr><td><code>website</code></td><td>URL compl&egrave;te du site (<code>https://...</code>)</td><td>Oui</td></tr>
+          <tr><td><code>hosting.name</code></td><td>Nom de l'h&eacute;bergeur</td><td>Oui</td></tr>
+          <tr><td><code>hosting.address</code></td><td>Adresse de l'h&eacute;bergeur</td><td>Oui</td></tr>
+          <tr><td><code>hosting.url</code></td><td>Site web de l'h&eacute;bergeur</td><td>Recommand&eacute;</td></tr>
+          <tr><td><code>hosting.contact</code></td><td>URL de contact de l'h&eacute;bergeur</td><td>Recommand&eacute;</td></tr>
+          <tr><td><code>developer.name</code></td><td>Nom du d&eacute;veloppeur / agence</td><td>Non (section masqu&eacute;e si vide)</td></tr>
+          <tr><td><code>developer.url</code></td><td>Site web du d&eacute;veloppeur</td><td>Non</td></tr>
+          <tr><td><code>developer.address</code></td><td>Adresse du d&eacute;veloppeur</td><td>Non</td></tr>
+        </table>
+
+        <h3>Fonctionnement dynamique</h3>
+        <p>Le script <code>core/js/legal.js</code> remplit automatiquement les pages l&eacute;gales :</p>
+        <ul>
+          <li><strong>Attribut <code>data-legal</code></strong> : chaque &eacute;l&eacute;ment portant cet attribut est rempli avec la valeur correspondante de <code>LEGAL_CONFIG</code>. Exemple : <code>&lt;span data-legal="company"&gt;&lt;/span&gt;</code> affiche le nom de l'entreprise.</li>
+          <li><strong>Liens automatiques</strong> : les balises <code>&lt;a data-legal="email"&gt;</code> re&ccedil;oivent automatiquement un <code>href="mailto:..."</code>. Idem pour <code>phone</code> (<code>tel:</code>) et <code>website</code> / <code>url</code> (lien externe).</li>
+          <li><strong>Champs vides</strong> : si un champ est vide dans la config, le placeholder <code>[NOM_DU_CHAMP]</code> reste visible pour identifier ce qui doit &ecirc;tre rempli.</li>
+          <li><strong>Section d&eacute;veloppeur</strong> : masqu&eacute;e automatiquement (<code>display:none</code>) si <code>developer.name</code> est vide.</li>
+        </ul>
+
+        <h3>Section cookies dynamique</h3>
+        <p>
+          Sur la page <code>confidentialite.html</code>, la section cookies g&eacute;n&egrave;re automatiquement un tableau
+          listant les services actifs (ceux avec un ID configur&eacute; dans <code>COOKIES_CONFIG</code>).
+        </p>
+        <ul>
+          <li>Si des services sont configur&eacute;s : un tableau affiche le nom, l'&eacute;diteur, la finalit&eacute;, les cookies d&eacute;pos&eacute;s et leur dur&eacute;e</li>
+          <li>Si aucun service n'est configur&eacute; : le texte &laquo; Ce site n'utilise aucun cookie tiers &raquo; s'affiche</li>
+          <li>Le cookie technique de consentement est toujours mentionn&eacute;</li>
+          <li>Un bouton &laquo; G&eacute;rer mes pr&eacute;f&eacute;rences cookies &raquo; est pr&eacute;sent pour ouvrir le bandeau</li>
+        </ul>
+
+        <h3>Inclure dans une page l&eacute;gale</h3>
+<pre><code>&lt;!-- Synchrone (avant les composants) --&gt;
+&lt;script src="config-site.js"&gt;&lt;/script&gt;
+
+&lt;!-- Defer --&gt;
+&lt;script src="core/js/legal.js" defer&gt;&lt;/script&gt;
+&lt;script src="core/js/cookies.js" defer&gt;&lt;/script&gt;</code></pre>
+
+        <h3>Liens dans le footer</h3>
+        <p>
+          Les liens footer sont d&eacute;clar&eacute;s directement dans chaque page via le slot <code>content</code> du composant footer :
+        </p>
+<pre><code>&lt;div data-component="footer"
+     data-copyright="&amp;copy; 2026 MonSite"&gt;
+  &lt;template data-slot="content"&gt;
+    &lt;nav class="footer__links"&gt;
+      &lt;a href="/mentions-legales.html"&gt;Mentions légales&lt;/a&gt;
+      &lt;a href="/confidentialite.html"&gt;Politique de confidentialité&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/template&gt;
+&lt;/div&gt;</code></pre>
+
+        <div class="docs-troubleshoot">
+          <div class="docs-troubleshoot__title">Probl&egrave;mes courants</div>
+          <ul>
+            <li><strong>Le bandeau ne s'affiche pas :</strong> v&eacute;rifiez que <code>cookies.js</code> est charg&eacute; avec <code>defer</code> et que <code>COOKIES_CONFIG</code> est d&eacute;fini dans <code>config-site.js</code>.</li>
+            <li><strong>Les scripts analytics ne sont pas inject&eacute;s :</strong> ouvrez la console et v&eacute;rifiez que le consentement a &eacute;t&eacute; accept&eacute;. Les identifiants (GA4, GTM, etc.) doivent &ecirc;tre renseign&eacute;s dans <code>COOKIES_CONFIG.categories[].services</code>.</li>
+            <li><strong>Le bandeau r&eacute;appara&icirc;t &agrave; chaque visite :</strong> si vous changez <code>consentVersion</code>, le bandeau se r&eacute;affiche pour demander un nouveau consentement. C'est le comportement attendu.</li>
+            <li><strong>Erreur CORS sur l'endpoint de consentement :</strong> v&eacute;rifiez <code>SITE_ORIGIN</code> dans <code>.env</code> et que <code>api/consent.php</code> est accessible.</li>
+          </ul>
+        </div>
+
+        <div class="docs-see-also">
+          <div class="docs-see-also__title">Voir aussi</div>
+          <ul>
+            <li><a href="getting-started.html">D&eacute;marrer un projet</a></li>
+            <li><a href="forms.html">Formulaires</a></li>
+            <li><a href="params.html">Param&egrave;tres URL</a></li>
+          </ul>
+        </div>
+      </main>
+      <aside class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <div data-component="footer"
+       data-copyright="&copy; 2026 SiteSystem">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>

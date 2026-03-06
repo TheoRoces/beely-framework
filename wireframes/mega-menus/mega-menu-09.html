@@ -1,0 +1,223 @@
+<!-- mega-menu-09: Mega-menu with search bar at top -->
+<style>
+  .wf-megamenu-09 {
+    --wf-mm-bg: var(--color-bg);
+    --wf-mm-border: var(--color-border);
+    --wf-mm-text: var(--color-text);
+    --wf-mm-text-muted: var(--color-text-light);
+    --wf-mm-hover: var(--color-neutral-100);
+    --wf-mm-accent: var(--color-text);
+    --wf-mm-search-bg: var(--color-bg-alt);
+    --wf-mm-radius: 12px;
+    --wf-mm-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 4px 16px rgba(0,0,0,0.05);
+    --wf-mm-padding: 0;
+
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    background: var(--wf-mm-bg);
+    border: 1px solid var(--wf-mm-border);
+    border-radius: var(--wf-mm-radius);
+    box-shadow: var(--wf-mm-shadow);
+    max-width: 860px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__search {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.5rem;
+    background: var(--wf-mm-search-bg);
+    border-bottom: 1px solid var(--wf-mm-border);
+  }
+
+  .wf-megamenu-09 .wf-megamenu__search-icon {
+    color: var(--wf-mm-text-muted);
+    flex-shrink: 0;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 0.9375rem;
+    color: var(--wf-mm-text);
+    outline: none;
+    font-family: inherit;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__search-input::placeholder {
+    color: var(--wf-mm-text-muted);
+  }
+
+  .wf-megamenu-09 .wf-megamenu__search-shortcut {
+    font-size: 0.6875rem;
+    color: var(--wf-mm-text-muted);
+    border: 1px solid var(--wf-mm-border);
+    border-radius: var(--radius-sm, 0.25rem);
+    padding: 0.15rem 0.4rem;
+    background: var(--wf-mm-bg);
+  }
+
+  .wf-megamenu-09 .wf-megamenu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__group-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-mm-text-muted);
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--wf-mm-border);
+  }
+
+  .wf-megamenu-09 .wf-megamenu__link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    color: var(--wf-mm-text);
+    text-decoration: none;
+    font-size: 0.875rem;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__link:hover {
+    background: var(--wf-mm-hover);
+    color: var(--wf-mm-accent);
+  }
+
+  .wf-megamenu-09 .wf-icon {
+    color: var(--wf-mm-text-muted);
+    flex-shrink: 0;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__link:hover .wf-icon {
+    color: var(--wf-mm-accent);
+  }
+
+  .wf-megamenu-09 .wf-megamenu__popular {
+    grid-column: 1 / -1;
+    padding-top: 1rem;
+    border-top: 1px solid var(--wf-mm-border);
+  }
+
+  .wf-megamenu-09 .wf-megamenu__popular-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--wf-mm-text-muted);
+    margin: 0 0 0.5rem 0;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__tag {
+    font-size: 0.8125rem;
+    color: var(--wf-mm-text);
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--wf-mm-border);
+    border-radius: 20px;
+    transition: all 0.15s ease;
+  }
+
+  .wf-megamenu-09 .wf-megamenu__tag:hover {
+    border-color: var(--wf-mm-accent);
+    color: var(--wf-mm-accent);
+    background: var(--color-neutral-100);
+  }
+
+  @media (max-width: 700px) {
+    .wf-megamenu-09 .wf-megamenu {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wf-megamenu-09 .wf-megamenu {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="wf-megamenu-09">
+  <div class="wf-megamenu__search">
+    <span class="wf-megamenu__search-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+    </span>
+    <input type="text" class="wf-megamenu__search-input" placeholder="Rechercher des produits, guides, articles..." aria-label="Rechercher">
+    <span class="wf-megamenu__search-shortcut">Ctrl+K</span>
+  </div>
+  <nav class="wf-megamenu" aria-label="Menu principal">
+    <div class="wf-megamenu__column">
+      <h3 class="wf-megamenu__group-title">Produits</h3>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Design UI/UX
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Developpement Web
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Applications Mobiles
+      </a>
+    </div>
+    <div class="wf-megamenu__column">
+      <h3 class="wf-megamenu__group-title">Ressources</h3>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Blog
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Guides
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Etudes de cas
+      </a>
+    </div>
+    <div class="wf-megamenu__column">
+      <h3 class="wf-megamenu__group-title">Entreprise</h3>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        A propos
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Carrieres
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Contact
+      </a>
+    </div>
+    <div class="wf-megamenu__popular">
+      <h4 class="wf-megamenu__popular-title">Recherches populaires</h4>
+      <div class="wf-megamenu__tags">
+        <a href="#" class="wf-megamenu__tag">Design system</a>
+        <a href="#" class="wf-megamenu__tag">React</a>
+        <a href="#" class="wf-megamenu__tag">API</a>
+        <a href="#" class="wf-megamenu__tag">Responsive</a>
+        <a href="#" class="wf-megamenu__tag">Accessibilite</a>
+        <a href="#" class="wf-megamenu__tag">Performance</a>
+      </div>
+    </div>
+  </nav>
+</div>

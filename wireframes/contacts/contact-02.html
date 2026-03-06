@@ -1,0 +1,124 @@
+<!-- contact-02: Centered form only (name, email, message, button) -->
+<style>
+  .wf-contact-02 {
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-bg: var(--color-bg);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-input-bg: var(--color-bg-alt);
+    --wf-input-border: var(--color-border);
+    --wf-input-radius: 0.5rem;
+    --wf-accent: var(--color-text);
+    --wf-btn-bg: var(--color-text);
+    --wf-btn-text: var(--color-bg);
+    --wf-btn-radius: 0.5rem;
+    padding: var(--wf-section-padding);
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-contact-02 .wf-container {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .wf-contact-02 h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+
+  .wf-contact-02 .wf-subtitle {
+    color: var(--wf-text-muted);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin: 0 0 2.5rem;
+  }
+
+  .wf-contact-02 form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: left;
+  }
+
+  .wf-contact-02 .wf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .wf-contact-02 .wf-input,
+  .wf-contact-02 .wf-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--wf-input-border);
+    border-radius: var(--wf-input-radius);
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .wf-contact-02 .wf-input:focus,
+  .wf-contact-02 .wf-textarea:focus {
+    border-color: var(--wf-accent);
+  }
+
+  .wf-contact-02 .wf-textarea {
+    min-height: 160px;
+    resize: vertical;
+  }
+
+  .wf-contact-02 .wf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: var(--wf-btn-bg);
+    color: var(--wf-btn-text);
+    border: none;
+    border-radius: var(--wf-btn-radius);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .wf-contact-02 .wf-btn:hover {
+    opacity: 0.85;
+  }
+
+  @media (max-width: 768px) {
+    .wf-contact-02 h2 {
+      font-size: 2rem;
+    }
+    .wf-contact-02 .wf-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-contact-02">
+  <div class="wf-container">
+    <h2>Contactez-nous</h2>
+    <p class="wf-subtitle">Envoyez-nous un message et nous vous repondrons dans les plus brefs delais.</p>
+    <form>
+      <div class="wf-row">
+        <input type="text" class="wf-input" placeholder="Nom complet" />
+        <input type="email" class="wf-input" placeholder="Adresse email" />
+      </div>
+      <input type="text" class="wf-input" placeholder="Sujet" />
+      <textarea class="wf-textarea" placeholder="Votre message"></textarea>
+      <button type="submit" class="wf-btn">Envoyer le message</button>
+    </form>
+  </div>
+</section>

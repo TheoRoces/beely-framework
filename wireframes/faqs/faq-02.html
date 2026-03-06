@@ -1,0 +1,87 @@
+<!-- FAQ-02: Two-column FAQ grid layout. Each Q&A is a standalone block arranged in two columns. -->
+<style>
+  .wf-faq02 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--space-xl, 80px) var(--space-md, 24px);
+    max-width: var(--container-lg, 1120px);
+    margin: 0 auto;
+  }
+  .wf-faq02__header {
+    text-align: center;
+    margin-bottom: var(--space-lg, 48px);
+  }
+  .wf-faq02__title {
+    font-size: var(--text-3xl, 2.5rem);
+    font-weight: var(--font-bold, 700);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs, 12px);
+  }
+  .wf-faq02__subtitle {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .wf-faq02__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md, 40px);
+  }
+  .wf-faq02__item {
+    padding-bottom: var(--space-sm, 20px);
+  }
+  .wf-faq02__question {
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-semibold, 600);
+    color: var(--color-text);
+    margin-bottom: var(--space-2xs, 8px);
+  }
+  .wf-faq02__answer {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  @media (max-width: 768px) {
+    .wf-faq02__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-faq02">
+  <div class="wf-faq02__header">
+    <h2 class="wf-faq02__title">Questions frequentes</h2>
+    <p class="wf-faq02__subtitle">Tout ce que vous devez savoir sur nos services et notre approche.</p>
+  </div>
+
+  <div class="wf-faq02__grid">
+    <div class="wf-faq02__item">
+      <h3 class="wf-faq02__question">Quels sont vos delais de livraison ?</h3>
+      <p class="wf-faq02__answer">Nos delais de livraison varient selon la complexite du projet. En general, un projet standard est livre entre 4 et 8 semaines. Nous etablissons un calendrier detaille des le debut de la collaboration.</p>
+    </div>
+
+    <div class="wf-faq02__item">
+      <h3 class="wf-faq02__question">Comment fonctionne votre processus de travail ?</h3>
+      <p class="wf-faq02__answer">Notre processus se deroule en plusieurs phases : decouverte et strategie, conception, developpement, puis lancement. A chaque etape, vous etes implique pour valider les orientations prises.</p>
+    </div>
+
+    <div class="wf-faq02__item">
+      <h3 class="wf-faq02__question">Proposez-vous un support apres livraison ?</h3>
+      <p class="wf-faq02__answer">Oui, nous proposons un accompagnement continu apres la livraison. Cela inclut une periode de garantie pour les corrections, ainsi que des forfaits de maintenance adaptes a vos besoins.</p>
+    </div>
+
+    <div class="wf-faq02__item">
+      <h3 class="wf-faq02__question">Quels sont vos tarifs ?</h3>
+      <p class="wf-faq02__answer">Nos tarifs dependent de la nature et de l'envergure du projet. Nous proposons des devis personnalises apres une premiere consultation gratuite afin de vous offrir la meilleure solution.</p>
+    </div>
+
+    <div class="wf-faq02__item">
+      <h3 class="wf-faq02__question">Comment demarrer un projet avec vous ?</h3>
+      <p class="wf-faq02__answer">Contactez-nous via notre formulaire ou par email pour planifier un premier appel decouverte. Nous discuterons de vos besoins et nous vous proposerons une feuille de route claire.</p>
+    </div>
+
+    <div class="wf-faq02__item">
+      <h3 class="wf-faq02__question">Travaillez-vous avec des clients internationaux ?</h3>
+      <p class="wf-faq02__answer">Absolument. Nous collaborons avec des clients du monde entier grace a nos outils de communication et de gestion de projet a distance. Les fuseaux horaires ne sont jamais un obstacle.</p>
+    </div>
+  </div>
+</section>

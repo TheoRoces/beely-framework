@@ -1,0 +1,72 @@
+<!--
+  TABS — Site System
+
+  CSS : core/css/elements.css
+  JS  : core/js/elements.js
+
+  Classes :
+    .tabs              — Conteneur principal
+    .tabs__nav         — Barre de navigation (flex, scroll horizontal auto)
+    .tabs__nav-wrapper — Wrapper auto-généré par JS (dégradés indicateurs)
+    .tabs__tab         — Bouton d'onglet
+    .tabs__tab--active — Onglet actif (ajouté par JS)
+    .tabs__panel       — Panneau de contenu
+    .tabs__panel--active — Panneau visible (ajouté par JS)
+
+  Attributs :
+    data-tab="id"        — Identifiant de l'onglet (sur le bouton)
+    data-tab-panel="id"  — Panneau correspondant (même id)
+    data-tab-active      — Marque l'onglet actif par défaut (sur le bouton)
+
+  Les tabs sont imbriquables.
+  Quand les onglets dépassent, la nav scrolle avec des dégradés indicateurs.
+-->
+
+
+<!-- ===== TABS BASIQUES ===== -->
+
+<div class="tabs">
+  <div class="tabs__nav">
+    <button class="tabs__tab" data-tab="tab1" data-tab-active>Onglet 1</button>
+    <button class="tabs__tab" data-tab="tab2">Onglet 2</button>
+    <button class="tabs__tab" data-tab="tab3">Onglet 3</button>
+  </div>
+  <div class="tabs__panel" data-tab-panel="tab1">
+    <p>Contenu de l'onglet 1.</p>
+  </div>
+  <div class="tabs__panel" data-tab-panel="tab2">
+    <p>Contenu de l'onglet 2.</p>
+  </div>
+  <div class="tabs__panel" data-tab-panel="tab3">
+    <p>Contenu de l'onglet 3.</p>
+  </div>
+</div>
+
+
+<!-- ===== TABS IMBRIQUÉS ===== -->
+
+<div class="tabs">
+  <div class="tabs__nav">
+    <button class="tabs__tab" data-tab="parent1" data-tab-active>Parent A</button>
+    <button class="tabs__tab" data-tab="parent2">Parent B</button>
+  </div>
+  <div class="tabs__panel" data-tab-panel="parent1">
+    <h3>Parent A</h3>
+    <!-- Tabs enfants -->
+    <div class="tabs">
+      <div class="tabs__nav">
+        <button class="tabs__tab" data-tab="child1" data-tab-active>Enfant 1</button>
+        <button class="tabs__tab" data-tab="child2">Enfant 2</button>
+      </div>
+      <div class="tabs__panel" data-tab-panel="child1">
+        <p>Contenu enfant 1.</p>
+      </div>
+      <div class="tabs__panel" data-tab-panel="child2">
+        <p>Contenu enfant 2.</p>
+      </div>
+    </div>
+  </div>
+  <div class="tabs__panel" data-tab-panel="parent2">
+    <p>Contenu du parent B.</p>
+  </div>
+</div>

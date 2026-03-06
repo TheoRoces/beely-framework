@@ -1,0 +1,174 @@
+<!-- FAQ-13: Two columns - left FAQs accordion, right "Still have questions?" CTA card. -->
+<style>
+  .wf-faq13 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--space-xl, 80px) var(--space-md, 24px);
+    max-width: var(--container-lg, 1120px);
+    margin: 0 auto;
+  }
+  .wf-faq13__header {
+    text-align: center;
+    margin-bottom: var(--space-lg, 48px);
+  }
+  .wf-faq13__title {
+    font-size: var(--text-3xl, 2.5rem);
+    font-weight: var(--font-bold, 700);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs, 12px);
+  }
+  .wf-faq13__subtitle {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .wf-faq13__layout {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-lg, 48px);
+    align-items: start;
+  }
+  .wf-faq13__item {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .wf-faq13__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm, 20px) 0;
+    cursor: pointer;
+    gap: var(--space-xs, 12px);
+  }
+  .wf-faq13__question-text {
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-semibold, 600);
+    color: var(--color-text);
+  }
+  .wf-faq13__chevron {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 0.3s ease;
+  }
+  .wf-faq13__item--open .wf-faq13__chevron {
+    transform: rotate(180deg);
+  }
+  .wf-faq13__answer {
+    display: none;
+    padding-bottom: var(--space-sm, 20px);
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  .wf-faq13__item--open .wf-faq13__answer {
+    display: block;
+  }
+  .wf-faq13__cta {
+    background: var(--color-bg-dark);
+    border-radius: var(--radius-lg, 16px);
+    padding: var(--space-lg, 40px) var(--space-md, 32px);
+    color: var(--color-white);
+    position: sticky;
+    top: var(--space-md, 40px);
+  }
+  .wf-faq13__cta-title {
+    font-size: var(--text-xl, 1.5rem);
+    font-weight: var(--font-bold, 700);
+    margin-bottom: var(--space-xs, 12px);
+  }
+  .wf-faq13__cta-text {
+    font-size: var(--text-base, 1rem);
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-bottom: var(--space-sm, 24px);
+  }
+  .wf-faq13__cta-button {
+    display: inline-block;
+    padding: var(--space-xs, 14px) var(--space-md, 28px);
+    background: var(--color-white);
+    color: var(--color-text);
+    font-size: var(--text-base, 1rem);
+    font-weight: var(--font-semibold, 600);
+    border: none;
+    border-radius: var(--radius-md, 8px);
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .wf-faq13__cta-button:hover {
+    opacity: 0.9;
+  }
+  .wf-faq13__cta-contact {
+    margin-top: var(--space-sm, 20px);
+    font-size: var(--text-sm, 0.875rem);
+    opacity: 0.75;
+  }
+  .wf-faq13__cta-contact a {
+    color: var(--color-white);
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    .wf-faq13__layout {
+      grid-template-columns: 1fr;
+    }
+    .wf-faq13__cta {
+      position: static;
+    }
+  }
+</style>
+
+<section class="wf-faq13">
+  <div class="wf-faq13__header">
+    <h2 class="wf-faq13__title">Questions frequentes</h2>
+    <p class="wf-faq13__subtitle">Retrouvez ci-dessous les reponses a nos questions les plus courantes.</p>
+  </div>
+
+  <div class="wf-faq13__layout">
+    <div class="wf-faq13__list">
+      <div class="wf-faq13__item wf-faq13__item--open">
+        <div class="wf-faq13__question">
+          <span class="wf-faq13__question-text">Quels sont vos delais de livraison ?</span>
+          <span class="wf-faq13__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
+        </div>
+        <div class="wf-faq13__answer">Nos delais varient entre 4 et 8 semaines selon la complexite. Un calendrier precis est fourni des le debut pour garantir une transparence totale sur les echeances.</div>
+      </div>
+
+      <div class="wf-faq13__item">
+        <div class="wf-faq13__question">
+          <span class="wf-faq13__question-text">Comment fonctionne votre processus de travail ?</span>
+          <span class="wf-faq13__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
+        </div>
+        <div class="wf-faq13__answer">Quatre phases : decouverte, conception, developpement et lancement. Vous validez chaque etape pour garantir un resultat conforme a vos attentes.</div>
+      </div>
+
+      <div class="wf-faq13__item">
+        <div class="wf-faq13__question">
+          <span class="wf-faq13__question-text">Proposez-vous un support apres livraison ?</span>
+          <span class="wf-faq13__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
+        </div>
+        <div class="wf-faq13__answer">Oui, nous offrons une garantie et des forfaits de maintenance mensuels pour assurer la perennite et l'evolution de votre solution dans le temps.</div>
+      </div>
+
+      <div class="wf-faq13__item">
+        <div class="wf-faq13__question">
+          <span class="wf-faq13__question-text">Quels sont vos tarifs ?</span>
+          <span class="wf-faq13__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
+        </div>
+        <div class="wf-faq13__answer">Nos tarifs sont personnalises. Une consultation gratuite nous permet de comprendre vos besoins et de vous proposer un devis adapte.</div>
+      </div>
+
+      <div class="wf-faq13__item">
+        <div class="wf-faq13__question">
+          <span class="wf-faq13__question-text">Comment demarrer un projet avec vous ?</span>
+          <span class="wf-faq13__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
+        </div>
+        <div class="wf-faq13__answer">Contactez-nous pour un appel decouverte. Nous analyserons vos besoins et vous proposerons une feuille de route avec les prochaines etapes.</div>
+      </div>
+    </div>
+
+    <div class="wf-faq13__cta">
+      <h3 class="wf-faq13__cta-title">Encore des questions ?</h3>
+      <p class="wf-faq13__cta-text">Notre equipe est disponible pour repondre a toutes vos interrogations et vous accompagner dans votre reflexion.</p>
+      <a href="#contact" class="wf-faq13__cta-button">Nous contacter</a>
+      <p class="wf-faq13__cta-contact">Ou ecrivez-nous a <a href="mailto:contact@example.com">contact@example.com</a></p>
+    </div>
+  </div>
+</section>

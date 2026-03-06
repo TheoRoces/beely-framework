@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+
+  <div data-component="header"
+       data-site-name="SiteSystem"
+       data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="index"></nav>
+
+      <main class="docs-content">
+        <h1 class="anim-fade-in-up">Site Syste</h1>
+        <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
+          Boilerplate z&eacute;ro d&eacute;pendances pour cr&eacute;er des sites et landing pages en pur HTML/CSS/JS.
+        </p>
+
+        <h2>D&eacute;marrage rapide</h2>
+        <ol>
+          <li>Copiez le dossier <code>site-system/</code> dans votre projet</li>
+          <li>Ouvrez <code>core/css/tokens.css</code> et modifiez les couleurs, polices, etc.</li>
+          <li>Configurez <code>config-site.js</code> (nom du site, favicon, analytics, domaines)</li>
+          <li>C'est pr&ecirc;t ! Ouvrez <code>index.html</code> dans votre navigateur</li>
+        </ol>
+
+        <h2>Par o&ugrave; commencer ?</h2>
+        <p>Choisissez votre parcours selon votre besoin :</p>
+        <div class="docs-card-grid" style="margin-bottom: var(--space-8);">
+          <div class="docs-card">
+            <h3>Site vitrine simple</h3>
+            <p>Une landing page ou un site de quelques pages, sans blog ni formulaire.</p>
+            <ol style="font-size: var(--text-sm); color: var(--color-text-light); padding-left: var(--space-4); margin-bottom: var(--space-4);">
+              <li><a href="getting-started.html#creer-un-nouveau-projet">D&eacute;marrer un projet</a></li>
+              <li><a href="tokens.html#couleurs">Personnaliser les tokens</a></li>
+              <li><a href="components.html#composants-inclus">Configurer header &amp; footer</a></li>
+              <li><a href="grid.html#grille-simple">Mettre en page avec Grid / Bento</a></li>
+              <li><a href="wireframes.html">Copier-coller des sections</a></li>
+              <li><a href="animations.html#animations-d-entree-scroll">Ajouter des animations</a></li>
+              <li><a href="cookies.html#configuration">Mettre en place les cookies</a> (obligatoire RGPD)</li>
+              <li>Configurer les pages l&eacute;gales via <a href="getting-started.html#legal-config">LEGAL_CONFIG</a> (obligatoire)</li>
+              <li><a href="production.html#deploiement-hostinger-apache">Mettre en production</a></li>
+            </ol>
+          </div>
+          <div class="docs-card">
+            <h3>Site avec blog</h3>
+            <p>Tout ce qui pr&eacute;c&egrave;de + un blog dynamique connect&eacute; &agrave; Baserow.</p>
+            <ol style="font-size: var(--text-sm); color: var(--color-text-light); padding-left: var(--space-4); margin-bottom: var(--space-4);">
+              <li>Parcours &laquo; Site vitrine &raquo; ci-dessus</li>
+              <li><a href="blog.html#connexion-a-baserow">Configurer le blog</a></li>
+              <li><a href="sitemap.html#utilisation">G&eacute;n&eacute;rer le sitemap</a></li>
+            </ol>
+          </div>
+          <div class="docs-card">
+            <h3>Site avec formulaires</h3>
+            <p>Tout ce qui pr&eacute;c&egrave;de + formulaires multi-&eacute;tapes avec envoi par email.</p>
+            <ol style="font-size: var(--text-sm); color: var(--color-text-light); padding-left: var(--space-4); margin-bottom: var(--space-4);">
+              <li>Parcours &laquo; Site vitrine &raquo; ci-dessus</li>
+              <li><a href="forms.html#structure-de-base">Cr&eacute;er des formulaires</a></li>
+              <li><a href="params.html#pre-remplissage-des-champs">Pr&eacute;-remplissage par URL</a></li>
+            </ol>
+          </div>
+        </div>
+
+        <h2>Architecture</h2>
+<pre><code>site-system/
+├── .htaccess                  ← URLs propres + s&eacute;curit&eacute; (Apache)
+├── .env                       ← Variables serveur (CORS, tokens API) — non versionn&eacute;
+├── .deploy.env                ← Config SSH de d&eacute;ploiement — non versionn&eacute;
+├── .rsync-exclude             ← Fichiers exclus du d&eacute;ploiement rsync
+├── config-site.js             ← Configuration client (site, cookies, blog, legal)
+├── deploy.sh                  ← Script de d&eacute;ploiement rsync/SSH
+├── core/                      ← Framework (ne pas toucher)
+│   ├── css/
+│   │   ├── tokens.css         ← Charte client (couleurs, polices, etc.)
+│   │   ├── base.css           ← Reset + utilitaires
+│   │   ├── animations.css     ← Animations scroll + clic
+│   │   ├── elements.css       ← Styles &eacute;l&eacute;ments interactifs
+│   │   ├── forms.css          ← Styles formulaires + toasts
+│   │   ├── cookies.css        ← Bandeau cookies
+│   │   ├── grid.css           ← Syst&egrave;me de grille / bento
+│   │   ├── icons.css          ← Styles ic&ocirc;nes SVG
+│   │   └── blog.css           ← Styles blog (listing, article, lightbox)
+│   └── js/
+│       ├── components.js      ← Syst&egrave;me de composants/slots
+│       ├── animations.js      ← IntersectionObserver + clic
+│       ├── elements.js        ← Popup, Tooltip, Accordion, Tabs, Slider
+│       ├── forms.js           ← Formulaires multi-steps, validation, webhooks
+│       ├── params.js          ← Persistance des UTMs + pr&eacute;-remplissage
+│       ├── cookies.js         ← Consentement cookies
+│       ├── blog.js            ← Moteur blog Baserow
+│       ├── darkmode.js        ← Toggle dark/light mode
+│       ├── icons.js           ← Syst&egrave;me d'ic&ocirc;nes SVG inline
+│       └── site.js            ← Favicon + titre par d&eacute;faut (depuis SITE_CONFIG)
+├── components/                ← Composants (modifiables)
+│   ├── header.js              ← Composant Header
+│   ├── footer.js              ← Composant Footer
+│   └── card.js                ← Composant Card
+├── snippets/                  ← Fragments HTML copier-coller
+├── assets/                    ← Images, ic&ocirc;nes, logos, polices
+│   ├── images/
+│   ├── icons/
+│   ├── logos/
+│   └── fonts/
+├── api/                       ← Endpoints PHP (proxy Baserow, consentement, formulaires)
+│   ├── baserow.php            ← Proxy API Baserow (CORS)
+│   ├── consent.php            ← Enregistrement consentement RGPD
+│   └── form.php               ← Proxy webhook formulaires
+├── data/                      ← Donn&eacute;es serveur (CSV consentements)
+├── blog.html                  ← Page listing blog
+├── blog/
+│   └── article.html           ← Page article
+├── docs/                      ← Cette documentation
+└── index.html                 ← Page de d&eacute;mo</code></pre>
+
+        <h2>Fonctionnalit&eacute;s</h2>
+        <div class="docs-card-grid">
+          <div class="docs-card anim-fade-in-up">
+            <h3>D&eacute;marrer un projet</h3>
+            <p>Cr&eacute;er un site, le d&eacute;ployer en production, adapter le boilerplate (avec ou sans blog).</p>
+            <a href="getting-started.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-1">
+            <h3>Design Tokens</h3>
+            <p>Configurez la charte graphique du client en 30 secondes dans un seul fichier.</p>
+            <a href="tokens.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-2">
+            <h3>Composants / Slots</h3>
+            <p>Syst&egrave;me de composants r&eacute;utilisables via slots : Header, Footer, Card, et composants custom.</p>
+            <a href="components.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-3">
+            <h3>&Eacute;l&eacute;ments interactifs</h3>
+            <p>Popup, Tooltip, Accordion, Tabs, Slider (draggable, autoplay, multi-slides).</p>
+            <a href="elements.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-4">
+            <h3>Ic&ocirc;nes</h3>
+            <p>324 ic&ocirc;nes Heroicons (outline + solid). Chargement SVG inline, animation au survol, copier-coller rapide.</p>
+            <a href="icons.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-5">
+            <h3>Grid / Bento</h3>
+            <p>Syst&egrave;me de grille flexible et layouts bento asym&eacute;triques. CSS pur, responsive.</p>
+            <a href="grid.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-6">
+            <h3>Formulaires</h3>
+            <p>Multi-steps, logique conditionnelle, champs custom, validation, webhooks.</p>
+            <a href="forms.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-7">
+            <h3>Blog</h3>
+            <p>Blog dynamique connect&eacute; &agrave; Baserow. Listing, article, galerie lightbox, filtres.</p>
+            <a href="blog.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-8">
+            <h3>Cookies</h3>
+            <p>Bandeau RGPD avec gestion granulaire et injection auto des scripts analytics.</p>
+            <a href="cookies.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-9">
+            <h3>Animations</h3>
+            <p>Animations d'entr&eacute;e au scroll, de sortie, et au clic. Respect prefers-reduced-motion.</p>
+            <a href="animations.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-10">
+            <h3>Param&egrave;tres URL</h3>
+            <p>Persistance des UTMs, pr&eacute;-remplissage des champs depuis l'URL.</p>
+            <a href="params.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-10">
+            <h3>Sitemap</h3>
+            <p>G&eacute;n&eacute;ration automatique de sitemap.xml et robots.txt via Node.js.</p>
+            <a href="sitemap.html">Voir la doc →</a>
+          </div>
+          <div class="docs-card anim-fade-in-up anim--delay-10">
+            <h3>Wireframes</h3>
+            <p>375 sections pr&ecirc;tes &agrave; copier-coller : headers, heroes, services, portfolios, FAQs, et bien plus.</p>
+            <a href="wireframes.html">Voir la doc →</a>
+          </div>
+        </div>
+
+        <h2>Conventions</h2>
+        <ul>
+          <li><strong>BEM</strong> : Block__Element--Modifier pour le nommage CSS</li>
+          <li><strong>data-*</strong> : Configuration via attributs HTML</li>
+          <li><strong>Aucune d&eacute;pendance</strong> : tout fonctionne en pur JS/CSS/HTML</li>
+          <li><strong>file://</strong> : fonctionne sans serveur web</li>
+        </ul>
+
+        <h2>Pr&eacute;requis</h2>
+        <ul>
+          <li><strong>HTML/CSS</strong> : conna&icirc;tre les bases (balises, classes, propri&eacute;t&eacute;s CSS)</li>
+          <li><strong>&Eacute;diteur de code</strong> : VSCode recommand&eacute; (avec l'extension <em>Live Server</em>)</li>
+          <li><strong>Navigateur moderne</strong> : Chrome, Firefox, Safari ou Edge</li>
+          <li><strong>Node.js</strong> : uniquement pour la g&eacute;n&eacute;ration du sitemap (<em>optionnel</em>)</li>
+          <li><strong>Serveur Apache + PHP</strong> : uniquement pour la production (blog, formulaires, cookies)</li>
+        </ul>
+
+        <h2>Glossaire</h2>
+        <table>
+          <tr><th>Terme</th><th>D&eacute;finition</th></tr>
+          <tr><td><strong>Design tokens</strong></td><td>Variables CSS centralis&eacute;es (<code>--color-primary</code>, <code>--text-lg</code>, etc.) qui d&eacute;finissent la charte graphique. Modifiez-les dans <code>tokens.css</code> pour changer tout le design.</td></tr>
+          <tr><td><strong>BEM</strong></td><td>Convention de nommage CSS : <code>.block__element--modifier</code>. Exemple : <code>.card__title--large</code>.</td></tr>
+          <tr><td><strong>Slots</strong></td><td>M&eacute;canisme pour injecter du contenu dans un composant. On d&eacute;finit des <code>&lt;template data-slot="nom"&gt;</code> dans le HTML.</td></tr>
+          <tr><td><strong>Composant</strong></td><td>Bloc HTML r&eacute;utilisable (header, footer, card) d&eacute;fini en JS via <code>registerComponent()</code> et utilis&eacute; via <code>data-component="nom"</code>.</td></tr>
+          <tr><td><strong>data-*</strong></td><td>Attributs HTML personnalis&eacute;s utilis&eacute;s pour configurer le comportement des &eacute;l&eacute;ments sans &eacute;crire de JS. Ex : <code>data-popup-target</code>, <code>data-icon</code>.</td></tr>
+          <tr><td><strong>Wireframe</strong></td><td>Section HTML pr&ecirc;te &agrave; l'emploi (hero, FAQ, portfolio...) &agrave; copier-coller dans vos pages.</td></tr>
+          <tr><td><strong>Webhook</strong></td><td>URL qui re&ccedil;oit les donn&eacute;es d'un formulaire par POST. Utilis&eacute; avec Make.com pour envoyer des emails.</td></tr>
+          <tr><td><strong>Proxy PHP</strong></td><td>Script c&ocirc;t&eacute; serveur (<code>api/*.php</code>) qui transmet les requ&ecirc;tes &agrave; des services externes (Baserow, Make.com) en masquant les tokens d'API.</td></tr>
+          <tr><td><strong>Baserow</strong></td><td>CMS headless (base de donn&eacute;es en ligne) utilis&eacute; comme back-end pour le blog. Similaire &agrave; Airtable.</td></tr>
+          <tr><td><strong>RGPD / CNIL</strong></td><td>R&egrave;glementation europ&eacute;enne/fran&ccedil;aise sur la protection des donn&eacute;es. Impose le consentement avant d&eacute;p&ocirc;t de cookies.</td></tr>
+        </table>
+
+        <h2>Inclure dans une page</h2>
+<pre><code>&lt;!-- CSS (dans le &lt;head&gt;) --&gt;
+&lt;link rel="stylesheet" href="core/css/tokens.css"&gt;
+&lt;link rel="stylesheet" href="core/css/base.css"&gt;
+&lt;link rel="stylesheet" href="core/css/animations.css"&gt;
+&lt;link rel="stylesheet" href="core/css/elements.css"&gt;
+&lt;link rel="stylesheet" href="core/css/forms.css"&gt;
+&lt;link rel="stylesheet" href="core/css/cookies.css"&gt;
+&lt;link rel="stylesheet" href="core/css/grid.css"&gt;
+&lt;link rel="stylesheet" href="core/css/icons.css"&gt;
+&lt;link rel="stylesheet" href="core/css/blog.css"&gt;
+
+&lt;!-- Dark mode (synchrone, avant les CSS) --&gt;
+&lt;script src="core/js/darkmode.js"&gt;&lt;/script&gt;
+
+&lt;!-- JS (dans le &lt;head&gt;) --&gt;
+&lt;script src="core/js/components.js"&gt;&lt;/script&gt;
+&lt;script src="components/header.js"&gt;&lt;/script&gt;
+&lt;script src="components/footer.js"&gt;&lt;/script&gt;
+&lt;script src="components/card.js"&gt;&lt;/script&gt;
+
+&lt;!-- JS interactifs (defer) --&gt;
+&lt;script src="core/js/animations.js" defer&gt;&lt;/script&gt;
+&lt;script src="core/js/elements.js" defer&gt;&lt;/script&gt;
+&lt;script src="core/js/forms.js" defer&gt;&lt;/script&gt;
+&lt;script src="core/js/icons.js" defer&gt;&lt;/script&gt;
+&lt;script src="core/js/params.js" defer&gt;&lt;/script&gt;
+&lt;script src="config-site.js" defer&gt;&lt;/script&gt;
+&lt;script src="core/js/blog.js" defer&gt;&lt;/script&gt;
+&lt;script src="core/js/cookies.js" defer&gt;&lt;/script&gt;</code></pre>
+      </main>
+      <aside class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <div data-component="footer"
+       data-copyright="&copy; 2026 SiteSystem">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>

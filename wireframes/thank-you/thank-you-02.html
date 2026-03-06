@@ -1,0 +1,152 @@
+<!-- thank-you-02: Thank you with next steps list -->
+<style>
+  .wf-thank-you-02 {
+    --wf-bg: var(--color-bg-alt);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-primary: var(--color-text);
+    --wf-primary-hover: var(--color-neutral-800);
+    --wf-icon-color: var(--color-text);
+    --wf-card-bg: var(--color-bg);
+    --wf-border: var(--color-border);
+    --wf-step-bg: var(--color-bg-alt);
+    --wf-step-num: var(--color-text);
+    --wf-radius: 12px;
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .wf-thank-you-02__container {
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .wf-thank-you-02__icon {
+    color: var(--wf-icon-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .wf-thank-you-02__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-thank-you-02__subtitle {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    margin: 0 0 2.5rem 0;
+    line-height: 1.6;
+  }
+
+  .wf-thank-you-02__steps-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1.25rem 0;
+    text-align: left;
+  }
+
+  .wf-thank-you-02__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem 0;
+    text-align: left;
+  }
+
+  .wf-thank-you-02__step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--wf-card-bg);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-thank-you-02__step-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wf-step-bg);
+    color: var(--wf-step-num);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.875rem;
+  }
+
+  .wf-thank-you-02__step-text {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--wf-text);
+    padding-top: 0.25rem;
+  }
+
+  .wf-thank-you-02__button {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-thank-you-02__button:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  @media (max-width: 640px) {
+    .wf-thank-you-02__title {
+      font-size: 1.75rem;
+    }
+
+    .wf-thank-you-02__step {
+      padding: 0.875rem;
+    }
+  }
+</style>
+
+<section class="wf-thank-you-02">
+  <div class="wf-thank-you-02__container">
+    <div class="wf-thank-you-02__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h1 class="wf-thank-you-02__title">Merci !</h1>
+    <p class="wf-thank-you-02__subtitle">Votre message a bien ete envoye.</p>
+
+    <h2 class="wf-thank-you-02__steps-heading">Etapes suivantes</h2>
+    <ol class="wf-thank-you-02__steps">
+      <li class="wf-thank-you-02__step">
+        <span class="wf-thank-you-02__step-number">1</span>
+        <span class="wf-thank-you-02__step-text">Verifiez votre boite email pour la confirmation de reception.</span>
+      </li>
+      <li class="wf-thank-you-02__step">
+        <span class="wf-thank-you-02__step-number">2</span>
+        <span class="wf-thank-you-02__step-text">Notre equipe examine votre demande sous 24 heures.</span>
+      </li>
+      <li class="wf-thank-you-02__step">
+        <span class="wf-thank-you-02__step-number">3</span>
+        <span class="wf-thank-you-02__step-text">Nous vous repondrons par email ou par telephone.</span>
+      </li>
+    </ol>
+
+    <a href="#" class="wf-thank-you-02__button">Retour a l'accueil</a>
+  </div>
+</section>

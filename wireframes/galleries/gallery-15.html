@@ -1,0 +1,233 @@
+<!-- Gallery 15: Galerie fond sombre avec bordures claires -->
+<!-- Section galerie sur fond noir avec bordures blanches subtiles -->
+
+<style>
+  .wf-gallery-15 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-gallery-15-gap: 1.5rem;
+    --wf-gallery-15-radius: 0.5rem;
+    --wf-gallery-15-bg: var(--color-bg-dark);
+    --wf-gallery-15-text: var(--color-neutral-100);
+    --wf-gallery-15-muted: var(--color-neutral-400);
+    --wf-gallery-15-img-bg: var(--color-bg-dark);
+    --wf-gallery-15-border: rgba(255, 255, 255, 0.12);
+    --wf-gallery-15-padding-x: 5%;
+    --wf-gallery-15-padding-y: 5rem;
+  }
+
+  .wf-gallery-15 {
+    background-color: var(--wf-gallery-15-bg);
+    padding: var(--wf-gallery-15-padding-y) var(--wf-gallery-15-padding-x);
+  }
+
+  .wf-gallery-15__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-gallery-15__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-gallery-15-muted);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .wf-gallery-15__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--wf-gallery-15-text);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .wf-gallery-15__description {
+    font-size: 1.125rem;
+    color: var(--wf-gallery-15-muted);
+    margin: 0 auto;
+    max-width: 40rem;
+    line-height: 1.6;
+  }
+
+  .wf-gallery-15__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wf-gallery-15-gap);
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+
+  .wf-gallery-15__item {
+    border: 1px solid var(--wf-gallery-15-border);
+    border-radius: var(--wf-gallery-15-radius);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .wf-gallery-15__item:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .wf-gallery-15__item .wf-img {
+    aspect-ratio: 4 / 3;
+    background-color: var(--wf-gallery-15-img-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-gallery-15__item .wf-img svg {
+    color: var(--wf-gallery-15-muted);
+  }
+
+  .wf-gallery-15__item-info {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--wf-gallery-15-border);
+  }
+
+  .wf-gallery-15__item-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--wf-gallery-15-text);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .wf-gallery-15__item-meta {
+    font-size: 0.8125rem;
+    color: var(--wf-gallery-15-muted);
+    margin: 0;
+  }
+
+  .wf-gallery-15__cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .wf-gallery-15__btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border: 1px solid var(--wf-gallery-15-border);
+    border-radius: var(--wf-gallery-15-radius);
+    color: var(--wf-gallery-15-text);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s, border-color 0.2s;
+    cursor: pointer;
+    background: none;
+  }
+
+  .wf-gallery-15__btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .wf-gallery-15__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wf-gallery-15__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-gallery-15">
+  <div class="wf-gallery-15__header">
+    <p class="wf-gallery-15__tagline">Galerie</p>
+    <h2 class="wf-gallery-15__title">Nos realisations en images</h2>
+    <p class="wf-gallery-15__description">Une galerie elegante sur fond sombre pour mettre vos images en valeur.</p>
+  </div>
+
+  <div class="wf-gallery-15__grid">
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Alpha</h3>
+        <p class="wf-gallery-15__item-meta">Architecture &middot; 2024</p>
+      </div>
+    </div>
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Beta</h3>
+        <p class="wf-gallery-15__item-meta">Interieur &middot; 2024</p>
+      </div>
+    </div>
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Gamma</h3>
+        <p class="wf-gallery-15__item-meta">Paysage &middot; 2023</p>
+      </div>
+    </div>
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Delta</h3>
+        <p class="wf-gallery-15__item-meta">Renovation &middot; 2023</p>
+      </div>
+    </div>
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Epsilon</h3>
+        <p class="wf-gallery-15__item-meta">Architecture &middot; 2023</p>
+      </div>
+    </div>
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Zeta</h3>
+        <p class="wf-gallery-15__item-meta">Interieur &middot; 2022</p>
+      </div>
+    </div>
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Eta</h3>
+        <p class="wf-gallery-15__item-meta">Paysage &middot; 2022</p>
+      </div>
+    </div>
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Theta</h3>
+        <p class="wf-gallery-15__item-meta">Renovation &middot; 2022</p>
+      </div>
+    </div>
+    <div class="wf-gallery-15__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-15__item-info">
+        <h3 class="wf-gallery-15__item-title">Projet Iota</h3>
+        <p class="wf-gallery-15__item-meta">Architecture &middot; 2021</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wf-gallery-15__cta">
+    <a href="#" class="wf-gallery-15__btn">Voir plus</a>
+  </div>
+</section>

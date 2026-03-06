@@ -1,0 +1,183 @@
+<!-- Portfolio 02: 2-column grid with overlay text on hover -->
+<style>
+  .wf-portfolio-02 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-overlay: rgba(0, 0, 0, 0.7);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-radius: 0.75rem;
+    --wf-gap: 1.5rem;
+    padding: 5rem 1.5rem;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+  .wf-portfolio-02 .wf-portfolio-02__header {
+    max-width: 72rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .wf-portfolio-02 .wf-portfolio-02__subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-02 .wf-portfolio-02__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .wf-portfolio-02 .wf-portfolio-02__desc {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .wf-portfolio-02 .wf-portfolio-02__grid {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--wf-gap);
+  }
+  .wf-portfolio-02 .wf-card {
+    position: relative;
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .wf-portfolio-02 .wf-img {
+    width: 100%;
+    min-height: 22rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-card-bg);
+    color: var(--wf-text-muted);
+  }
+  .wf-portfolio-02 .wf-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--wf-overlay);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .wf-portfolio-02 .wf-card:hover .wf-card__overlay {
+    opacity: 1;
+  }
+  .wf-portfolio-02 .wf-card__overlay-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-on-dark);
+    margin: 0 0 0.5rem;
+  }
+  .wf-portfolio-02 .wf-card__overlay-text {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+  .wf-portfolio-02 .wf-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text, #374151);
+    background: var(--color-bg, #ffffff);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full, 9999px);
+    width: fit-content;
+  }
+  @media (max-width: 768px) {
+    .wf-portfolio-02 .wf-portfolio-02__grid { grid-template-columns: 1fr; }
+    .wf-portfolio-02 .wf-portfolio-02__title { font-size: 1.75rem; }
+    .wf-portfolio-02 .wf-card__overlay { opacity: 1; background: rgba(0,0,0,0.5); }
+    .wf-portfolio-02 { padding: 3rem 1rem; }
+  }
+</style>
+
+<section class="wf-portfolio-02">
+  <div class="wf-portfolio-02__header">
+    <div class="wf-portfolio-02__subtitle">Portfolio</div>
+    <h2 class="wf-portfolio-02__title">Projets recents</h2>
+    <p class="wf-portfolio-02__desc">Survolez chaque projet pour decouvrir les details de notre travail.</p>
+  </div>
+
+  <div class="wf-portfolio-02__grid">
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Refonte TechVision</h3>
+        <p class="wf-card__overlay-text">Redesign complet du site web avec une approche mobile-first.</p>
+        <span class="wf-badge">Web Design</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Plateforme InnoPlus</h3>
+        <p class="wf-card__overlay-text">Application web collaborative pour la gestion de projets innovants.</p>
+        <span class="wf-badge">Application</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Identite Luxora</h3>
+        <p class="wf-card__overlay-text">Creation d'une identite visuelle haut de gamme pour une marque de luxe.</p>
+        <span class="wf-badge">Branding</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Boutique ModaChic</h3>
+        <p class="wf-card__overlay-text">Plateforme e-commerce sur mesure avec experience d'achat immersive.</p>
+        <span class="wf-badge">E-commerce</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Dashboard FinanceFlow</h3>
+        <p class="wf-card__overlay-text">Tableau de bord analytique pour visualiser les donnees financieres.</p>
+        <span class="wf-badge">Application</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Branding EcoVert</h3>
+        <p class="wf-card__overlay-text">Identite de marque ecologique avec une palette naturelle et organique.</p>
+        <span class="wf-badge">Branding</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,189 @@
+<!-- mega-menu-04: Tabs left (categories) + content right -->
+<style>
+  .wf-megamenu-04 {
+    --wf-mm-bg: var(--color-bg);
+    --wf-mm-border: var(--color-border);
+    --wf-mm-text: var(--color-text);
+    --wf-mm-text-muted: var(--color-text-light);
+    --wf-mm-hover: var(--color-neutral-100);
+    --wf-mm-accent: var(--color-text);
+    --wf-mm-tab-active-bg: var(--color-bg-alt);
+    --wf-mm-tab-active-border: var(--color-text);
+    --wf-mm-radius: 12px;
+    --wf-mm-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 4px 16px rgba(0,0,0,0.05);
+    --wf-mm-padding: 0;
+
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    background: var(--wf-mm-bg);
+    border: 1px solid var(--wf-mm-border);
+    border-radius: var(--wf-mm-radius);
+    box-shadow: var(--wf-mm-shadow);
+    max-width: 780px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .wf-megamenu-04 .wf-megamenu {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 320px;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__tabs {
+    background: var(--color-bg-alt);
+    border-right: 1px solid var(--wf-mm-border);
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__tab {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--wf-mm-text-muted);
+    text-decoration: none;
+    border-left: 3px solid transparent;
+    transition: all 0.15s ease;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__tab:hover {
+    color: var(--wf-mm-text);
+    background: var(--wf-mm-hover);
+  }
+
+  .wf-megamenu-04 .wf-megamenu__tab--active {
+    color: var(--wf-mm-accent);
+    background: var(--wf-mm-tab-active-bg);
+    border-left-color: var(--wf-mm-tab-active-border);
+    font-weight: 600;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__tab-chevron {
+    color: var(--wf-mm-text-muted);
+    opacity: 0.5;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__tab--active .wf-megamenu__tab-chevron {
+    color: var(--wf-mm-accent);
+    opacity: 1;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__content {
+    padding: 1.5rem 2rem;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__group-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-mm-text-muted);
+    margin: 0 0 1rem 0;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.6rem;
+    color: var(--wf-mm-text);
+    text-decoration: none;
+    font-size: 0.875rem;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .wf-megamenu-04 .wf-megamenu__link:hover {
+    background: var(--wf-mm-hover);
+    color: var(--wf-mm-accent);
+  }
+
+  .wf-megamenu-04 .wf-icon {
+    color: var(--wf-mm-accent);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .wf-megamenu-04 .wf-megamenu {
+      grid-template-columns: 1fr;
+    }
+    .wf-megamenu-04 .wf-megamenu__tabs {
+      flex-direction: row;
+      overflow-x: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--wf-mm-border);
+      padding: 0;
+    }
+    .wf-megamenu-04 .wf-megamenu__tab {
+      border-left: none;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      padding: 0.75rem 1rem;
+    }
+    .wf-megamenu-04 .wf-megamenu__tab--active {
+      border-bottom-color: var(--wf-mm-tab-active-border);
+      border-left-color: transparent;
+    }
+    .wf-megamenu-04 .wf-megamenu__tab-chevron {
+      display: none;
+    }
+    .wf-megamenu-04 .wf-megamenu__content-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="wf-megamenu-04">
+  <nav class="wf-megamenu" aria-label="Menu principal">
+    <div class="wf-megamenu__tabs" role="tablist">
+      <a href="#" class="wf-megamenu__tab wf-megamenu__tab--active" role="tab" aria-selected="true">
+        Produits
+        <span class="wf-megamenu__tab-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+      </a>
+      <a href="#" class="wf-megamenu__tab" role="tab">
+        Solutions
+        <span class="wf-megamenu__tab-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+      </a>
+      <a href="#" class="wf-megamenu__tab" role="tab">
+        Ressources
+        <span class="wf-megamenu__tab-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+      </a>
+      <a href="#" class="wf-megamenu__tab" role="tab">
+        Entreprise
+        <span class="wf-megamenu__tab-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+      </a>
+    </div>
+    <div class="wf-megamenu__content" role="tabpanel">
+      <h3 class="wf-megamenu__group-title">Produits</h3>
+      <div class="wf-megamenu__content-grid">
+        <a href="#" class="wf-megamenu__link">
+          <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+          Design UI/UX
+        </a>
+        <a href="#" class="wf-megamenu__link">
+          <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+          Developpement Web
+        </a>
+        <a href="#" class="wf-megamenu__link">
+          <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+          Applications Mobiles
+        </a>
+        <a href="#" class="wf-megamenu__link">
+          <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+          Consulting
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>

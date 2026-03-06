@@ -1,0 +1,187 @@
+<!-- Content 14 : Feature highlight - icone + titre + texte + lien, repete 3x verticalement -->
+<style>
+  .wf-content-14 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-text-color: var(--color-text, #1a1a1a);
+    --wf-text-secondary: var(--color-text-light, #555);
+    --wf-accent: var(--color-text, #374151);
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-radius: 0.75rem;
+    --wf-max-width: 800px;
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-icon-bg: var(--color-bg-alt, #f3f4f6)
+
+    background: var(--wf-bg);
+    color: var(--wf-text-color);
+    padding: var(--wf-section-padding);
+  }
+
+  .wf-content-14__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-content-14__header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .wf-content-14__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-content-14__main-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .wf-content-14__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .wf-content-14__item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--wf-border);
+  }
+
+  .wf-content-14__item:first-child {
+    padding-top: 0;
+  }
+
+  .wf-content-14__item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .wf-content-14__icon {
+    flex-shrink: 0;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: var(--radius-lg, 0.75rem);
+    background: var(--wf-icon-bg);
+    color: var(--wf-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-content-14__item-body {
+    flex: 1;
+  }
+
+  .wf-content-14__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .wf-content-14__text {
+    color: var(--wf-text-secondary);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .wf-content-14__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--wf-accent);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9375rem;
+  }
+
+  .wf-content-14__link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .wf-content-14 {
+      --wf-section-padding: 3rem 1.25rem;
+    }
+    .wf-content-14__main-title {
+      font-size: 1.75rem;
+    }
+    .wf-content-14__item {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+
+<section class="wf-content-14">
+  <div class="wf-content-14__container">
+    <div class="wf-content-14__header">
+      <p class="wf-content-14__label">Nos services</p>
+      <h2 class="wf-content-14__main-title">Ce que nous pouvons faire pour vous</h2>
+    </div>
+    <div class="wf-content-14__list">
+      <div class="wf-content-14__item">
+        <div class="wf-content-14__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/></svg>
+        </div>
+        <div class="wf-content-14__item-body">
+          <h3 class="wf-content-14__title">Expertise reconnue en design</h3>
+          <p class="wf-content-14__text">
+            Notre equipe de designers cree des interfaces qui captivent vos utilisateurs
+            et renforcent votre image de marque. Chaque pixel est pense pour engager
+            et convertir.
+          </p>
+          <a href="#" class="wf-content-14__link">
+            Decouvrir nos creations
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="wf-content-14__item">
+        <div class="wf-content-14__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+        </div>
+        <div class="wf-content-14__item-body">
+          <h3 class="wf-content-14__title">Approche personnalisee du developpement</h3>
+          <p class="wf-content-14__text">
+            Pas de solutions generiques. Nous developpons des applications sur mesure
+            avec les technologies les plus adaptees a votre projet et a vos ambitions
+            de croissance.
+          </p>
+          <a href="#" class="wf-content-14__link">
+            Voir nos technologies
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="wf-content-14__item">
+        <div class="wf-content-14__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+        </div>
+        <div class="wf-content-14__item-body">
+          <h3 class="wf-content-14__title">Support reactif et resultats mesurables</h3>
+          <p class="wf-content-14__text">
+            Un accompagnement continu avec des reportings clairs et des KPIs precis.
+            Nous mesurons chaque action pour optimiser en permanence vos performances
+            digitales.
+          </p>
+          <a href="#" class="wf-content-14__link">
+            Consulter nos etudes de cas
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

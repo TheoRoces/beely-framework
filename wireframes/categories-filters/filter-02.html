@@ -1,0 +1,220 @@
+<!-- filter-02.html — Dropdown select filter + results grid -->
+<style>
+  .wf-filter-02 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-muted: var(--color-text-light, #6b7280);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-accent: var(--color-text, #1a1a1a);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-radius: 0.5rem;
+    --wf-radius-full: 9999px;
+    --wf-gap: 1.5rem;
+    --wf-section-py: 5rem;
+
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    padding: var(--wf-section-py) 5%;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-filter-02__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .wf-filter-02__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .wf-filter-02__controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .wf-filter-02__label {
+    font-size: 0.875rem;
+    color: var(--wf-muted);
+    font-weight: 500;
+  }
+
+  .wf-filter-02__select {
+    appearance: none;
+    padding: 0.625rem 2.5rem 0.625rem 1rem;
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    background: var(--wf-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
+    font-size: 0.9375rem;
+    color: var(--wf-text);
+    cursor: pointer;
+    min-width: 180px;
+  }
+
+  .wf-filter-02__count {
+    color: var(--wf-muted);
+    font-size: 0.9375rem;
+  }
+
+  .wf-filter-02__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wf-gap);
+  }
+
+  .wf-filter-02 .wf-card {
+    background: var(--wf-card-bg);
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+    border: 1px solid var(--wf-border);
+  }
+
+  .wf-filter-02 .wf-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--wf-border);
+    display: block;
+  }
+
+  .wf-filter-02 .wf-card__body {
+    padding: 1.25rem;
+  }
+
+  .wf-filter-02 .wf-badge {
+    display: inline-block;
+    padding: 0.2rem 0.625rem;
+    border-radius: var(--wf-radius-full);
+    background: var(--wf-border);
+    color: var(--wf-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-filter-02 .wf-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-filter-02 .wf-card__desc {
+    color: var(--wf-muted);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .wf-filter-02__grid {
+      grid-template-columns: 1fr;
+    }
+    .wf-filter-02__top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .wf-filter-02__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<section class="wf-filter-02">
+  <div class="wf-filter-02__top">
+    <h2 class="wf-filter-02__title">Resultats</h2>
+    <div class="wf-filter-02__controls">
+      <div>
+        <label class="wf-filter-02__label" for="wf-cat-select">Filtrer par categorie</label>
+        <select class="wf-filter-02__select" id="wf-cat-select">
+          <option>Tous</option>
+          <option>Design</option>
+          <option>Developpement</option>
+          <option>Marketing</option>
+          <option>Strategie</option>
+          <option>E-commerce</option>
+        </select>
+      </div>
+      <div>
+        <label class="wf-filter-02__label" for="wf-sort-select">Trier par</label>
+        <select class="wf-filter-02__select" id="wf-sort-select">
+          <option>Plus recents</option>
+          <option>Plus anciens</option>
+          <option>A - Z</option>
+        </select>
+      </div>
+      <span class="wf-filter-02__count">24 projets</span>
+    </div>
+  </div>
+
+  <div class="wf-filter-02__grid">
+    <div class="wf-card">
+      <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">Design</span>
+        <h3 class="wf-card__title">Refonte identite visuelle</h3>
+        <p class="wf-card__desc">Projet de refonte complete de l'identite visuelle pour une marque.</p>
+      </div>
+    </div>
+    <div class="wf-card">
+      <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">Developpement</span>
+        <h3 class="wf-card__title">Application mobile</h3>
+        <p class="wf-card__desc">Developpement d'une application mobile cross-platform.</p>
+      </div>
+    </div>
+    <div class="wf-card">
+      <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">Marketing</span>
+        <h3 class="wf-card__title">Campagne digitale</h3>
+        <p class="wf-card__desc">Strategie de campagne digitale multi-canal.</p>
+      </div>
+    </div>
+    <div class="wf-card">
+      <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">Strategie</span>
+        <h3 class="wf-card__title">Plan de croissance</h3>
+        <p class="wf-card__desc">Elaboration d'un plan de croissance sur 3 ans.</p>
+      </div>
+    </div>
+    <div class="wf-card">
+      <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">E-commerce</span>
+        <h3 class="wf-card__title">Boutique en ligne</h3>
+        <p class="wf-card__desc">Creation d'une boutique e-commerce complete.</p>
+      </div>
+    </div>
+    <div class="wf-card">
+      <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">Design</span>
+        <h3 class="wf-card__title">Systeme de design</h3>
+        <p class="wf-card__desc">Mise en place d'un design system complet.</p>
+      </div>
+    </div>
+  </div>
+</section>

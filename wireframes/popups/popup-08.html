@@ -1,0 +1,138 @@
+<!-- popup-08.html | Notification Popup (Slide-in from Right) | Wireframe -->
+<style>
+  .wf-popup-preview--08 {
+    --popup-bg: var(--color-bg);
+    --popup-overlay: rgba(0, 0, 0, 0.25);
+    --popup-radius: 12px;
+    --popup-padding: 1.25rem;
+    --popup-max-width: 380px;
+    --popup-text: var(--color-text);
+    --popup-muted: var(--color-text-light);
+    --popup-border: var(--color-border);
+    --popup-accent: var(--color-text);
+    --popup-success: var(--color-text);
+
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-height: 500px;
+    background: var(--popup-overlay);
+    padding: 1.5rem;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-popup-preview--08 .wf-popup-box {
+    background: var(--popup-bg);
+    border-radius: var(--popup-radius);
+    max-width: var(--popup-max-width);
+    width: 100%;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+  }
+
+  .wf-popup-preview--08 .wf-popup-notification {
+    display: flex;
+    gap: 0.875rem;
+    padding: var(--popup-padding);
+    position: relative;
+  }
+
+  .wf-popup-preview--08 .wf-popup-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--popup-muted);
+    padding: 0;
+  }
+
+  .wf-popup-preview--08 .wf-popup-notif-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .wf-popup-preview--08 .wf-popup-notif-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--popup-success);
+  }
+
+  .wf-popup-preview--08 .wf-popup-notif-content {
+    flex: 1;
+    min-width: 0;
+    padding-right: 1rem;
+  }
+
+  .wf-popup-preview--08 .wf-popup-notif-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--popup-text);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.3;
+  }
+
+  .wf-popup-preview--08 .wf-popup-notif-text {
+    font-size: 0.8125rem;
+    color: var(--popup-muted);
+    line-height: 1.5;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .wf-popup-preview--08 .wf-popup-notif-time {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+  }
+
+  .wf-popup-preview--08 .wf-popup-progress {
+    height: 3px;
+    background: var(--popup-border);
+  }
+
+  .wf-popup-preview--08 .wf-popup-progress-bar {
+    height: 100%;
+    width: 65%;
+    background: var(--popup-success);
+    border-radius: 0 2px 2px 0;
+  }
+
+  @media (max-width: 480px) {
+    .wf-popup-preview--08 {
+      justify-content: center;
+    }
+  }
+</style>
+
+<div class="wf-popup-preview wf-popup-preview--08">
+  <div class="wf-popup-box">
+    <div class="wf-popup-notification">
+      <button class="wf-popup-close" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="wf-popup-notif-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+      </div>
+      <div class="wf-popup-notif-content">
+        <h3 class="wf-popup-notif-title">Enregistre avec succes</h3>
+        <p class="wf-popup-notif-text">Vos modifications ont ete sauvegardees avec succes.</p>
+        <span class="wf-popup-notif-time">A l'instant</span>
+      </div>
+    </div>
+    <div class="wf-popup-progress">
+      <div class="wf-popup-progress-bar"></div>
+    </div>
+  </div>
+</div>

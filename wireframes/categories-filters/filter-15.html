@@ -1,0 +1,230 @@
+<!-- filter-15.html — Mega category grid (icons + labels, 4x3) -->
+<style>
+  .wf-filter-15 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-muted: var(--color-text-light, #6b7280);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-accent: var(--color-text, #1a1a1a);
+    --wf-accent-text: var(--color-bg, #ffffff);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-radius: 0.75rem;
+    --wf-radius-full: 9999px;
+    --wf-gap: 1rem;
+    --wf-section-py: 5rem;
+
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    padding: var(--wf-section-py) 5%;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-filter-15__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-filter-15__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-filter-15__subtitle {
+    color: var(--wf-muted);
+    font-size: 1.125rem;
+    margin: 0;
+  }
+
+  .wf-filter-15__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--wf-gap);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .wf-filter-15 .wf-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.75rem 1rem;
+    background: var(--wf-card-bg);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    text-decoration: none;
+    color: var(--wf-text);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .wf-filter-15 .wf-card:hover {
+    border-color: var(--wf-accent);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .wf-filter-15 .wf-card--active {
+    background: var(--wf-accent);
+    color: var(--wf-accent-text);
+    border-color: var(--wf-accent);
+  }
+
+  .wf-filter-15__icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 0.625rem;
+  }
+
+  .wf-filter-15 .wf-card--active .wf-filter-15__icon {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .wf-filter-15__icon svg {
+    width: 1.375rem;
+    height: 1.375rem;
+  }
+
+  .wf-filter-15 .wf-card__title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+
+  .wf-filter-15 .wf-card__count {
+    font-size: 0.75rem;
+    color: var(--wf-muted);
+    margin: 0;
+  }
+
+  .wf-filter-15 .wf-card--active .wf-card__count {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  @media (max-width: 640px) {
+    .wf-filter-15__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    .wf-filter-15__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<section class="wf-filter-15">
+  <div class="wf-filter-15__header">
+    <h2 class="wf-filter-15__title">Filtrer par categorie</h2>
+    <p class="wf-filter-15__subtitle">Explorez nos 24 projets par domaine</p>
+  </div>
+
+  <div class="wf-filter-15__grid">
+    <!-- Row 1 -->
+    <a href="#" class="wf-card wf-card--active">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Tous</h3>
+      <p class="wf-card__count">24 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485"/></svg>
+      </div>
+      <h3 class="wf-card__title">Design</h3>
+      <p class="wf-card__count">8 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+      </div>
+      <h3 class="wf-card__title">Developpement</h3>
+      <p class="wf-card__count">6 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Marketing</h3>
+      <p class="wf-card__count">4 projets</p>
+    </a>
+
+    <!-- Row 2 -->
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Strategie</h3>
+      <p class="wf-card__count">3 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+      </div>
+      <h3 class="wf-card__title">E-commerce</h3>
+      <p class="wf-card__count">3 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Web</h3>
+      <p class="wf-card__count">5 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Mobile</h3>
+      <p class="wf-card__count">4 projets</p>
+    </a>
+
+    <!-- Row 3 -->
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Performance</h3>
+      <p class="wf-card__count">3 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Securite</h3>
+      <p class="wf-card__count">2 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Branding</h3>
+      <p class="wf-card__count">4 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-15__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+      </div>
+      <h3 class="wf-card__title">International</h3>
+      <p class="wf-card__count">2 projets</p>
+    </a>
+  </div>
+</section>

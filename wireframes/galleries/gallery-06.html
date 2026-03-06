@@ -1,0 +1,198 @@
+<!-- Gallery 06: Galerie avec legendes sous chaque image -->
+<!-- Section galerie avec titre et description sous chaque image -->
+
+<style>
+  .wf-gallery-06 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-gallery-06-gap: 2rem;
+    --wf-gallery-06-columns: 3;
+    --wf-gallery-06-radius: 0.5rem;
+    --wf-gallery-06-bg: var(--color-bg);
+    --wf-gallery-06-text: var(--color-text);
+    --wf-gallery-06-muted: var(--color-text-light);
+    --wf-gallery-06-img-bg: var(--color-border);
+    --wf-gallery-06-padding-x: 5%;
+    --wf-gallery-06-padding-y: 5rem;
+  }
+
+  .wf-gallery-06 {
+    background-color: var(--wf-gallery-06-bg);
+    padding: var(--wf-gallery-06-padding-y) var(--wf-gallery-06-padding-x);
+  }
+
+  .wf-gallery-06__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-gallery-06__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-gallery-06-muted);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .wf-gallery-06__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--wf-gallery-06-text);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .wf-gallery-06__description {
+    font-size: 1.125rem;
+    color: var(--wf-gallery-06-muted);
+    margin: 0 auto;
+    max-width: 40rem;
+    line-height: 1.6;
+  }
+
+  .wf-gallery-06__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--wf-gallery-06-columns), 1fr);
+    gap: var(--wf-gallery-06-gap);
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+
+  .wf-gallery-06__item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wf-gallery-06__item .wf-img {
+    aspect-ratio: 4 / 3;
+    background-color: var(--wf-gallery-06-img-bg);
+    border-radius: var(--wf-gallery-06-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .wf-gallery-06__caption {
+    padding: 1rem 0 0 0;
+  }
+
+  .wf-gallery-06__caption-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--wf-gallery-06-text);
+    margin: 0 0 0.25rem 0;
+  }
+
+  .wf-gallery-06__caption-text {
+    font-size: 0.875rem;
+    color: var(--wf-gallery-06-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .wf-gallery-06__cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .wf-gallery-06__btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border: 2px solid var(--wf-gallery-06-text);
+    border-radius: var(--wf-gallery-06-radius);
+    color: var(--wf-gallery-06-text);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+    cursor: pointer;
+    background: none;
+  }
+
+  .wf-gallery-06__btn:hover {
+    background-color: var(--wf-gallery-06-text);
+    color: var(--wf-gallery-06-bg);
+  }
+
+  @media (max-width: 768px) {
+    .wf-gallery-06__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wf-gallery-06__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-gallery-06">
+  <div class="wf-gallery-06__header">
+    <p class="wf-gallery-06__tagline">Galerie</p>
+    <h2 class="wf-gallery-06__title">Nos realisations en images</h2>
+    <p class="wf-gallery-06__description">Chaque image est accompagnee d'une legende descriptive pour mieux comprendre nos projets.</p>
+  </div>
+
+  <div class="wf-gallery-06__grid">
+    <div class="wf-gallery-06__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-06__caption">
+        <h3 class="wf-gallery-06__caption-title">Refonte site e-commerce</h3>
+        <p class="wf-gallery-06__caption-text">Redesign complet avec parcours d'achat optimise et taux de conversion ameliore de 40%.</p>
+      </div>
+    </div>
+    <div class="wf-gallery-06__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-06__caption">
+        <h3 class="wf-gallery-06__caption-title">Application mobile fitness</h3>
+        <p class="wf-gallery-06__caption-text">Interface intuitive avec suivi des performances et integration d'objets connectes.</p>
+      </div>
+    </div>
+    <div class="wf-gallery-06__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-06__caption">
+        <h3 class="wf-gallery-06__caption-title">Dashboard analytique</h3>
+        <p class="wf-gallery-06__caption-text">Visualisation de donnees en temps reel avec filtres avances et exports personnalises.</p>
+      </div>
+    </div>
+    <div class="wf-gallery-06__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-06__caption">
+        <h3 class="wf-gallery-06__caption-title">Campagne branding luxe</h3>
+        <p class="wf-gallery-06__caption-text">Identite visuelle haut de gamme declinee sur tous les supports numeriques et physiques.</p>
+      </div>
+    </div>
+    <div class="wf-gallery-06__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-06__caption">
+        <h3 class="wf-gallery-06__caption-title">Plateforme educative</h3>
+        <p class="wf-gallery-06__caption-text">Parcours d'apprentissage interactif avec suivi de progression et certification en ligne.</p>
+      </div>
+    </div>
+    <div class="wf-gallery-06__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-06__caption">
+        <h3 class="wf-gallery-06__caption-title">Site vitrine restaurant</h3>
+        <p class="wf-gallery-06__caption-text">Design immersif mettant en valeur l'ambiance et le menu avec reservation integree.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wf-gallery-06__cta">
+    <a href="#" class="wf-gallery-06__btn">Voir plus</a>
+  </div>
+</section>

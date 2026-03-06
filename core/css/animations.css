@@ -1,0 +1,312 @@
+/* ==========================================================================
+   ANIMATIONS — Entrée (scroll), Sortie, Clic
+   Convention BEM
+   ========================================================================== */
+
+/* ---------- État de base : invisible avant animation ---------- */
+[class*="anim-fade-in"],
+[class*="anim-scale-in"],
+[class*="anim-slide-in"],
+[class*="anim-rotate-in"] {
+  opacity: 0;
+  will-change: opacity, transform;
+  transition-property: opacity, transform;
+  transition-duration: 600ms;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ---------- Animations d'entrée — Transforms initiaux ---------- */
+.anim-fade-in {
+  /* opacity: 0 suffit */
+}
+
+.anim-fade-in-up {
+  transform: translateY(30px);
+}
+
+.anim-fade-in-down {
+  transform: translateY(-30px);
+}
+
+.anim-fade-in-left {
+  transform: translateX(-30px);
+}
+
+.anim-fade-in-right {
+  transform: translateX(30px);
+}
+
+.anim-scale-in {
+  transform: scale(0.85);
+}
+
+.anim-scale-in-up {
+  transform: scale(0.85) translateY(30px);
+}
+
+.anim-slide-in-up {
+  transform: translateY(60px);
+}
+
+.anim-slide-in-down {
+  transform: translateY(-60px);
+}
+
+.anim-slide-in-left {
+  transform: translateX(-60px);
+}
+
+.anim-slide-in-right {
+  transform: translateX(60px);
+}
+
+.anim-rotate-in {
+  transform: rotate(-10deg) scale(0.9);
+}
+
+/* ---------- État visible (ajouté par JS) ---------- */
+.anim--visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ---------- Modificateurs de délai ---------- */
+.anim--delay-1 { transition-delay: 100ms; }
+.anim--delay-2 { transition-delay: 200ms; }
+.anim--delay-3 { transition-delay: 300ms; }
+.anim--delay-4 { transition-delay: 400ms; }
+.anim--delay-5 { transition-delay: 500ms; }
+.anim--delay-6 { transition-delay: 600ms; }
+.anim--delay-7 { transition-delay: 700ms; }
+.anim--delay-8 { transition-delay: 800ms; }
+.anim--delay-9 { transition-delay: 900ms; }
+.anim--delay-10 { transition-delay: 1000ms; }
+
+/* ---------- Modificateurs de durée ---------- */
+.anim--duration-fast { transition-duration: 300ms; }
+.anim--duration-slow { transition-duration: 1000ms; }
+.anim--duration-slower { transition-duration: 1500ms; }
+
+/* ---------- Modificateurs d'easing ---------- */
+.anim--ease-bounce {
+  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.anim--ease-elastic {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.anim--ease-smooth {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Animations au clic (keyframes) ---------- */
+@keyframes click-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes click-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes click-bounce {
+  0%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-12px); }
+  60% { transform: translateY(-4px); }
+}
+
+@keyframes click-ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.anim-click-pulse.anim-click--active {
+  animation: click-pulse 400ms ease;
+}
+
+.anim-click-shake.anim-click--active {
+  animation: click-shake 500ms ease;
+}
+
+.anim-click-bounce.anim-click--active {
+  animation: click-bounce 500ms ease;
+}
+
+/* Ripple nécessite position relative */
+.anim-click-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.anim-click-ripple__circle {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  animation: click-ripple-effect 600ms ease forwards;
+}
+
+/* Sur fonds sombres, le ripple est blanc */
+.anim-click-ripple--light .anim-click-ripple__circle,
+.btn--primary .anim-click-ripple__circle {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================================================
+   ANIMATIONS SVG — Dessin de tracé (stroke-dasharray)
+   ========================================================================== */
+
+/* Animation de dessin SVG (stroke) */
+[class*="anim-svg-"] {
+  will-change: stroke-dashoffset, opacity;
+}
+
+.anim-svg-draw {
+  stroke-dasharray: var(--svg-length, 1000);
+  stroke-dashoffset: var(--svg-length, 1000);
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.anim-svg-draw.anim--visible {
+  stroke-dashoffset: 0 !important;
+}
+
+/* Dessin + fondu */
+.anim-svg-draw-fade {
+  opacity: 0;
+  stroke-dasharray: var(--svg-length, 1000);
+  stroke-dashoffset: var(--svg-length, 1000);
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.6s ease;
+}
+
+.anim-svg-draw-fade.anim--visible {
+  opacity: 1 !important;
+  stroke-dashoffset: 0 !important;
+}
+
+/* Fondu SVG (pour les éléments fill) */
+.anim-svg-fade {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.anim-svg-fade.anim--visible {
+  opacity: 1 !important;
+}
+
+/* Fondu + montée SVG */
+.anim-svg-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.anim-svg-fade-up.anim--visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Animation de remplissage (fill) */
+@keyframes svg-fill-in {
+  0% { fill-opacity: 0; }
+  100% { fill-opacity: 1; }
+}
+
+.anim-svg-fill {
+  fill-opacity: 0;
+}
+
+.anim-svg-fill.anim--visible {
+  animation: svg-fill-in 0.8s ease forwards;
+  animation-delay: 1s;
+}
+
+/* Modificateurs de durée SVG */
+.anim-svg--fast { transition-duration: 0.8s !important; }
+.anim-svg--slow { transition-duration: 2.5s !important; }
+.anim-svg--slower { transition-duration: 4s !important; }
+
+/* ---------- Animations Variable Font ---------- */
+
+/*
+  Ces animations utilisent font-variation-settings pour animer
+  le poids (wght) et la largeur (wdth) des fonts variables.
+  Si la police n'est pas variable, l'animation est ignorée (pas de crash).
+
+  Classes :
+    .anim-font-weight-hover    — poids 400→700 au hover
+    .anim-font-weight-scroll   — poids 400→700 au scroll (IntersectionObserver)
+    .anim-font-weight-loop     — boucle 400↔700 infinie
+
+  Attributs sur l'élément :
+    data-font-from="300"       — poids de départ (défaut: 400)
+    data-font-to="900"         — poids d'arrivée (défaut: 700)
+    data-font-duration="0.6s"  — durée (défaut: 0.4s)
+*/
+
+.anim-font-weight-hover,
+.anim-font-weight-scroll,
+.anim-font-weight-loop {
+  transition: font-weight var(--anim-font-duration, 0.4s) ease;
+  font-weight: var(--anim-font-from, 400);
+}
+
+.anim-font-weight-hover:hover {
+  font-weight: var(--anim-font-to, 700);
+}
+
+.anim-font-weight-scroll.anim--visible {
+  font-weight: var(--anim-font-to, 700);
+}
+
+@keyframes font-weight-loop {
+  0%, 100% { font-weight: var(--anim-font-from, 400); }
+  50% { font-weight: var(--anim-font-to, 700); }
+}
+
+.anim-font-weight-loop {
+  animation: font-weight-loop var(--anim-font-duration, 2s) ease-in-out infinite;
+}
+
+/* ---------- Respect prefers-reduced-motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  [class*="anim-fade-in"],
+  [class*="anim-scale-in"],
+  [class*="anim-slide-in"],
+  [class*="anim-rotate-in"],
+  [class*="anim-svg-"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    stroke-dashoffset: 0;
+    fill-opacity: 1;
+  }
+
+  .anim-click-pulse.anim-click--active,
+  .anim-click-shake.anim-click--active,
+  .anim-click-bounce.anim-click--active {
+    animation: none;
+  }
+
+  .anim-svg-fill.anim--visible {
+    animation: none;
+    fill-opacity: 1;
+  }
+}

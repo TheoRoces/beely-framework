@@ -1,0 +1,196 @@
+<!-- popup-07.html | Login / Register Popup with Tabs | Wireframe -->
+<style>
+  .wf-popup-preview--07 {
+    --popup-bg: var(--color-bg);
+    --popup-overlay: rgba(0, 0, 0, 0.55);
+    --popup-radius: 12px;
+    --popup-padding: 2rem;
+    --popup-max-width: 440px;
+    --popup-text: var(--color-text);
+    --popup-muted: var(--color-text-light);
+    --popup-border: var(--color-border);
+    --popup-accent: var(--color-text);
+    --popup-accent-text: var(--color-bg);
+    --popup-input-bg: var(--color-bg-alt);
+    --popup-tab-active: var(--color-text);
+    --popup-tab-inactive: var(--color-neutral-400);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 560px;
+    background: var(--popup-overlay);
+    padding: 1.5rem;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-popup-preview--07 .wf-popup-box {
+    background: var(--popup-bg);
+    border-radius: var(--popup-radius);
+    max-width: var(--popup-max-width);
+    width: 100%;
+    position: relative;
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+  }
+
+  .wf-popup-preview--07 .wf-popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: 1px solid var(--popup-border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--popup-muted);
+    z-index: 1;
+  }
+
+  .wf-popup-preview--07 .wf-popup-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--popup-border);
+  }
+
+  .wf-popup-preview--07 .wf-popup-tab {
+    flex: 1;
+    padding: 1.125rem 1rem;
+    text-align: center;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--popup-tab-inactive);
+  }
+
+  .wf-popup-preview--07 .wf-popup-tab--active {
+    color: var(--popup-tab-active);
+    border-bottom-color: var(--popup-tab-active);
+  }
+
+  .wf-popup-preview--07 .wf-popup-body {
+    padding: var(--popup-padding);
+  }
+
+  .wf-popup-preview--07 .wf-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  .wf-popup-preview--07 .wf-popup-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .wf-popup-preview--07 .wf-popup-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--popup-text);
+  }
+
+  .wf-popup-preview--07 .wf-popup-input {
+    width: 100%;
+    padding: 0.8125rem 1rem;
+    border: 1px solid var(--popup-border);
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    background: var(--popup-input-bg);
+    color: var(--popup-text);
+    box-sizing: border-box;
+  }
+
+  .wf-popup-preview--07 .wf-popup-forgot {
+    font-size: 0.8125rem;
+    color: var(--popup-muted);
+    text-align: right;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .wf-popup-preview--07 .wf-popup-btn {
+    width: 100%;
+    padding: 0.8125rem 1rem;
+    background: var(--popup-accent);
+    color: var(--popup-accent-text);
+    border: none;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .wf-popup-preview--07 .wf-popup-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.25rem 0;
+    font-size: 0.8125rem;
+    color: var(--popup-muted);
+  }
+
+  .wf-popup-preview--07 .wf-popup-divider::before,
+  .wf-popup-preview--07 .wf-popup-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--popup-border);
+  }
+
+  .wf-popup-preview--07 .wf-popup-btn--outline {
+    width: 100%;
+    padding: 0.8125rem 1rem;
+    background: none;
+    color: var(--popup-text);
+    border: 1px solid var(--popup-border);
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .wf-popup-preview--07 .wf-popup-body {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<div class="wf-popup-preview wf-popup-preview--07">
+  <div class="wf-popup-box">
+    <button class="wf-popup-close" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="wf-popup-tabs">
+      <button class="wf-popup-tab wf-popup-tab--active">Connexion</button>
+      <button class="wf-popup-tab">Inscription</button>
+    </div>
+    <div class="wf-popup-body">
+      <form class="wf-popup-form">
+        <div class="wf-popup-field">
+          <label class="wf-popup-label">Votre email</label>
+          <input type="email" class="wf-popup-input" placeholder="nom@exemple.com" />
+        </div>
+        <div class="wf-popup-field">
+          <label class="wf-popup-label">Mot de passe</label>
+          <input type="password" class="wf-popup-input" placeholder="••••••••" />
+        </div>
+        <a class="wf-popup-forgot" href="#">Mot de passe oublie ?</a>
+        <button type="submit" class="wf-popup-btn">Se connecter</button>
+      </form>
+      <div class="wf-popup-divider">ou</div>
+      <button class="wf-popup-btn--outline">Continuer avec Google</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<!--
+  POPUP / MODAL — Site System
+
+  CSS : core/css/elements.css
+  JS  : core/js/elements.js
+
+  Classes :
+    .popup              — Conteneur principal (caché par défaut)
+    .popup--active      — Popup visible (ajouté par JS)
+    .popup__overlay     — Fond semi-transparent cliquable
+    .popup__content     — Boîte de contenu (scrollable)
+    .popup__close       — Bouton fermeture (positionné en haut à droite)
+
+  Attributs :
+    data-popup="id"             — Identifiant unique du popup
+    data-popup-target="id"      — Bouton déclencheur (ouvre le popup correspondant)
+    data-popup-close            — Bouton de fermeture (dans le popup)
+    data-popup-position="..."   — Variante de position :
+      (aucun)   → centré (défaut, animation scale + fade)
+      "right"   → panneau latéral droit (pleine hauteur, max 480px)
+      "left"    → panneau latéral gauche
+      "bottom"  → bottom sheet (pleine largeur, max 80vh)
+      "top"     → panneau supérieur
+
+  Fermeture : clic overlay, bouton close, touche Escape
+  Popups imbriquables (z-index auto-incrémenté)
+-->
+
+
+<!-- ===== POPUP CENTRÉ (défaut) ===== -->
+
+<button data-popup-target="mon-popup">Ouvrir le popup</button>
+
+<div class="popup" data-popup="mon-popup">
+  <div class="popup__overlay"></div>
+  <div class="popup__content">
+    <button class="popup__close" data-popup-close>&times;</button>
+    <h2>Titre du popup</h2>
+    <p>Contenu du popup centré.</p>
+  </div>
+</div>
+
+
+<!-- ===== PANNEAU LATÉRAL DROIT ===== -->
+
+<button data-popup-target="panneau-droit">Ouvrir panneau droit</button>
+
+<div class="popup" data-popup="panneau-droit" data-popup-position="right">
+  <div class="popup__overlay"></div>
+  <div class="popup__content">
+    <button class="popup__close" data-popup-close>&times;</button>
+    <h2>Panneau latéral</h2>
+    <p>Glisse depuis la droite. Pleine hauteur, largeur max 480px.</p>
+  </div>
+</div>
+
+
+<!-- ===== PANNEAU LATÉRAL GAUCHE ===== -->
+
+<button data-popup-target="panneau-gauche">Ouvrir panneau gauche</button>
+
+<div class="popup" data-popup="panneau-gauche" data-popup-position="left">
+  <div class="popup__overlay"></div>
+  <div class="popup__content">
+    <button class="popup__close" data-popup-close>&times;</button>
+    <h2>Menu latéral</h2>
+    <nav>
+      <a href="#">Lien 1</a>
+      <a href="#">Lien 2</a>
+      <a href="#">Lien 3</a>
+    </nav>
+  </div>
+</div>
+
+
+<!-- ===== BOTTOM SHEET ===== -->
+
+<button data-popup-target="bottom-sheet">Ouvrir bottom sheet</button>
+
+<div class="popup" data-popup="bottom-sheet" data-popup-position="bottom">
+  <div class="popup__overlay"></div>
+  <div class="popup__content">
+    <button class="popup__close" data-popup-close>&times;</button>
+    <h2>Bottom Sheet</h2>
+    <p>Glisse depuis le bas. Pleine largeur, hauteur max 80vh.</p>
+  </div>
+</div>
+
+
+<!-- ===== PANNEAU SUPÉRIEUR ===== -->
+
+<button data-popup-target="top-panel">Ouvrir panneau haut</button>
+
+<div class="popup" data-popup="top-panel" data-popup-position="top">
+  <div class="popup__overlay"></div>
+  <div class="popup__content">
+    <button class="popup__close" data-popup-close>&times;</button>
+    <h2>Notification / Bannière</h2>
+    <p>Glisse depuis le haut.</p>
+  </div>
+</div>

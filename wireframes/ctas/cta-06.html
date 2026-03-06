@@ -1,0 +1,103 @@
+<!-- CTA-06 : CTA card with border, centered inside container -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text, #374151); color: var(--color-bg, #ffffff); border-color: var(--color-text, #374151); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #e5e7eb); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+  .wf-cta-06 {
+    padding: var(--space-20, 5rem) var(--space-6, 1.5rem);
+    background-color: var(--color-bg, #ffffff);
+  }
+
+  .wf-cta-06__container {
+    max-width: var(--container-max, 56rem);
+    margin: 0 auto;
+  }
+
+  .wf-cta-06__card {
+    border: 2px solid var(--color-border, #e5e7eb);
+    border-radius: var(--radius-xl, 1rem);
+    padding: var(--space-8, 3rem) var(--space-6, 2rem);
+    text-align: center;
+    background-color: var(--color-bg, #ffffff);
+  }
+
+  .wf-cta-06__icon {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto var(--space-5, 1.5rem);
+    background-color: var(--color-neutral-100, #f3f4f6);
+    border-radius: var(--radius-full, 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-cta-06__icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--color-text, #374151);
+  }
+
+  .wf-cta-06__heading {
+    font-size: var(--text-2xl, 1.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text, #111827);
+    margin: 0 0 var(--space-4, 0.75rem);
+  }
+
+  .wf-cta-06__text {
+    font-size: var(--font-size-md, 1rem);
+    line-height: 1.6;
+    color: var(--color-text-muted, #6b7280);
+    margin: 0 0 var(--space-6, 2rem);
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wf-cta-06__buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4, 0.75rem);
+  }
+
+  @media (min-width: 768px) {
+    .wf-cta-06__card {
+      padding: var(--space-12, 4rem) var(--space-8, 3rem);
+    }
+
+    .wf-cta-06__heading {
+      font-size: var(--text-3xl, 2.25rem);
+    }
+
+    .wf-cta-06__buttons {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+</style>
+
+<section class="wf-cta-06">
+  <div class="wf-cta-06__container">
+    <div class="wf-cta-06__card">
+      <div class="wf-cta-06__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.63 8.41m6.96 5.96a14.926 14.926 0 0 1-5.84 2.58m0 0a14.926 14.926 0 0 1-6.16-2.58A6 6 0 0 1 9.75 21.75v-4.8" />
+        </svg>
+      </div>
+      <h2 class="wf-cta-06__heading">Pret a transformer votre projet ?</h2>
+      <p class="wf-cta-06__text">
+        Beneficiez d'un accompagnement personnalise et de solutions adaptees a vos besoins specifiques.
+      </p>
+      <div class="wf-cta-06__buttons">
+        <a href="#" class="btn btn--primary">Commencer maintenant</a>
+        <a href="#" class="btn btn--secondary">En savoir plus</a>
+      </div>
+    </div>
+  </div>
+</section>

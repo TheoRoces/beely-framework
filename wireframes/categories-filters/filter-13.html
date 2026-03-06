@@ -1,0 +1,331 @@
+<!-- filter-13.html — Range/slider style filters (visual representation, CSS only) -->
+<style>
+  .wf-filter-13 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-muted: var(--color-text-light, #6b7280);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-accent: var(--color-text, #1a1a1a);
+    --wf-accent-text: var(--color-bg, #ffffff);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-radius: 0.5rem;
+    --wf-radius-full: 9999px;
+    --wf-gap: 1.5rem;
+    --wf-section-py: 5rem;
+    --wf-sidebar-w: 300px;
+
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    padding: var(--wf-section-py) 5%;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-filter-13__header {
+    margin-bottom: 2.5rem;
+  }
+
+  .wf-filter-13__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-filter-13__subtitle {
+    color: var(--wf-muted);
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .wf-filter-13__layout {
+    display: grid;
+    grid-template-columns: var(--wf-sidebar-w) 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .wf-filter-13__sidebar {
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    padding: 1.5rem;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .wf-filter-13__sidebar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+  }
+
+  .wf-filter-13__group {
+    margin-bottom: 2rem;
+  }
+
+  .wf-filter-13__group:last-child {
+    margin-bottom: 0;
+  }
+
+  .wf-filter-13__group-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-muted);
+    margin: 0 0 1rem;
+  }
+
+  /* CSS-only range slider visual */
+  .wf-filter-13__slider {
+    position: relative;
+    height: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .wf-filter-13__slider-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--wf-border);
+    border-radius: 2px;
+    transform: translateY(-50%);
+  }
+
+  .wf-filter-13__slider-fill {
+    position: absolute;
+    top: 50%;
+    height: 4px;
+    background: var(--wf-accent);
+    border-radius: 2px;
+    transform: translateY(-50%);
+  }
+
+  .wf-filter-13__slider-fill--budget {
+    left: 15%;
+    right: 30%;
+  }
+
+  .wf-filter-13__slider-fill--duration {
+    left: 0;
+    right: 40%;
+  }
+
+  .wf-filter-13__slider-fill--team {
+    left: 10%;
+    right: 50%;
+  }
+
+  .wf-filter-13__slider-thumb {
+    position: absolute;
+    top: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: var(--wf-accent);
+    border: 3px solid var(--wf-bg);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+
+  .wf-filter-13__slider-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+    color: var(--wf-muted);
+  }
+
+  .wf-filter-13__slider-values strong {
+    color: var(--wf-text);
+    font-weight: 600;
+  }
+
+  .wf-filter-13__divider {
+    border: none;
+    border-top: 1px solid var(--wf-border);
+    margin: 0 0 2rem;
+  }
+
+  .wf-filter-13__apply {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--wf-accent);
+    color: var(--wf-accent-text);
+    border: none;
+    border-radius: var(--wf-radius);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .wf-filter-13__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--wf-gap);
+  }
+
+  .wf-filter-13 .wf-card {
+    background: var(--wf-card-bg);
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+    border: 1px solid var(--wf-border);
+  }
+
+  .wf-filter-13 .wf-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--wf-border);
+    display: block;
+  }
+
+  .wf-filter-13 .wf-card__body {
+    padding: 1.25rem;
+  }
+
+  .wf-filter-13 .wf-badge {
+    display: inline-block;
+    padding: 0.2rem 0.625rem;
+    border-radius: var(--wf-radius-full);
+    background: var(--wf-border);
+    color: var(--wf-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-filter-13 .wf-card__title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin: 0 0 0.375rem;
+  }
+
+  .wf-filter-13 .wf-card__desc {
+    color: var(--wf-muted);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .wf-filter-13__layout {
+      grid-template-columns: 1fr;
+    }
+    .wf-filter-13__sidebar {
+      position: static;
+    }
+    .wf-filter-13__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-filter-13">
+  <div class="wf-filter-13__header">
+    <h2 class="wf-filter-13__title">Nos projets</h2>
+    <p class="wf-filter-13__subtitle">Filtrer par criteres avances</p>
+  </div>
+
+  <div class="wf-filter-13__layout">
+    <aside class="wf-filter-13__sidebar">
+      <h3 class="wf-filter-13__sidebar-title">Filtrer par categorie</h3>
+
+      <!-- Budget range -->
+      <div class="wf-filter-13__group">
+        <p class="wf-filter-13__group-label">Budget</p>
+        <div class="wf-filter-13__slider">
+          <div class="wf-filter-13__slider-track"></div>
+          <div class="wf-filter-13__slider-fill wf-filter-13__slider-fill--budget"></div>
+          <div class="wf-filter-13__slider-thumb" style="left: 15%;"></div>
+          <div class="wf-filter-13__slider-thumb" style="left: 70%;"></div>
+        </div>
+        <div class="wf-filter-13__slider-values">
+          <span><strong>5 000 &euro;</strong></span>
+          <span><strong>50 000 &euro;</strong></span>
+        </div>
+      </div>
+
+      <!-- Duration range -->
+      <div class="wf-filter-13__group">
+        <p class="wf-filter-13__group-label">Duree du projet</p>
+        <div class="wf-filter-13__slider">
+          <div class="wf-filter-13__slider-track"></div>
+          <div class="wf-filter-13__slider-fill wf-filter-13__slider-fill--duration"></div>
+          <div class="wf-filter-13__slider-thumb" style="left: 0%;"></div>
+          <div class="wf-filter-13__slider-thumb" style="left: 60%;"></div>
+        </div>
+        <div class="wf-filter-13__slider-values">
+          <span><strong>1 semaine</strong></span>
+          <span><strong>6 mois</strong></span>
+        </div>
+      </div>
+
+      <!-- Team size range -->
+      <div class="wf-filter-13__group">
+        <p class="wf-filter-13__group-label">Taille de l'equipe</p>
+        <div class="wf-filter-13__slider">
+          <div class="wf-filter-13__slider-track"></div>
+          <div class="wf-filter-13__slider-fill wf-filter-13__slider-fill--team"></div>
+          <div class="wf-filter-13__slider-thumb" style="left: 10%;"></div>
+          <div class="wf-filter-13__slider-thumb" style="left: 50%;"></div>
+        </div>
+        <div class="wf-filter-13__slider-values">
+          <span><strong>2 personnes</strong></span>
+          <span><strong>8 personnes</strong></span>
+        </div>
+      </div>
+
+      <hr class="wf-filter-13__divider">
+
+      <p class="wf-filter-13__subtitle" style="font-size: 0.8125rem; margin: 0;">Resultats : 12 projets</p>
+
+      <button class="wf-filter-13__apply">Appliquer les filtres</button>
+    </aside>
+
+    <div class="wf-filter-13__grid">
+      <div class="wf-card">
+        <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+        <div class="wf-card__body">
+          <span class="wf-badge">Design</span>
+          <h3 class="wf-card__title">Refonte identite visuelle</h3>
+          <p class="wf-card__desc">Projet de refonte complete de l'identite visuelle.</p>
+        </div>
+      </div>
+      <div class="wf-card">
+        <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+        <div class="wf-card__body">
+          <span class="wf-badge">Developpement</span>
+          <h3 class="wf-card__title">Application mobile</h3>
+          <p class="wf-card__desc">Application cross-platform pour le secteur sante.</p>
+        </div>
+      </div>
+      <div class="wf-card">
+        <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+        <div class="wf-card__body">
+          <span class="wf-badge">Marketing</span>
+          <h3 class="wf-card__title">Campagne digitale</h3>
+          <p class="wf-card__desc">Campagne multi-canal pour lancement produit.</p>
+        </div>
+      </div>
+      <div class="wf-card">
+        <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+        <div class="wf-card__body">
+          <span class="wf-badge">E-commerce</span>
+          <h3 class="wf-card__title">Boutique en ligne</h3>
+          <p class="wf-card__desc">Boutique e-commerce avec paiement integre.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

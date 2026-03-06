@@ -1,0 +1,140 @@
+<!-- Banner 03: Cookie-Consent Style Bottom Banner -->
+<!-- Fixed-position bottom bar with privacy message, accept/decline buttons -->
+
+<style>
+  .wf-banner-03 {
+    --wf-banner-bg: var(--color-bg, #FFFFFF);
+    --wf-banner-text: var(--color-neutral-700, #374151);
+    --wf-banner-border: var(--color-border, #E5E7EB);
+    --wf-banner-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+    --wf-banner-btn-accept-bg: var(--color-bg-dark);
+    --wf-banner-btn-accept-text: var(--color-text-on-dark, #ffffff);
+    --wf-banner-btn-decline-bg: transparent;
+    --wf-banner-btn-decline-text: var(--color-text-light, #6B7280);
+    --wf-banner-btn-decline-border: var(--color-neutral-300, #D1D5DB);
+    --wf-banner-padding: 1.25rem 1.5rem;
+    --wf-banner-font-size: 0.875rem;
+    --wf-banner-radius: 0;
+    --wf-banner-link-color: var(--color-text, #374151);
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: var(--wf-banner-bg);
+    color: var(--wf-banner-text);
+    padding: var(--wf-banner-padding);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    font-size: var(--wf-banner-font-size);
+    line-height: 1.5;
+    border-top: 1px solid var(--wf-banner-border);
+    box-shadow: var(--wf-banner-shadow);
+  }
+
+  .wf-banner-03__inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .wf-banner-03__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .wf-banner-03__title {
+    margin: 0 0 0.25rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text, #111827);
+  }
+
+  .wf-banner-03__text {
+    margin: 0;
+    color: var(--wf-banner-text);
+  }
+
+  .wf-banner-03__link {
+    color: var(--wf-banner-link-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .wf-banner-03__link:hover {
+    text-decoration: none;
+  }
+
+  .wf-banner-03__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .wf-banner-03__btn {
+    font-family: inherit;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-md, 0.5rem);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1.4;
+  }
+
+  .wf-banner-03__btn--accept {
+    background-color: var(--wf-banner-btn-accept-bg);
+    color: var(--wf-banner-btn-accept-text);
+    border: 1px solid transparent;
+  }
+
+  .wf-banner-03__btn--accept:hover {
+    opacity: 0.9;
+  }
+
+  .wf-banner-03__btn--decline {
+    background-color: var(--wf-banner-btn-decline-bg);
+    color: var(--wf-banner-btn-decline-text);
+    border: 1px solid var(--wf-banner-btn-decline-border);
+  }
+
+  .wf-banner-03__btn--decline:hover {
+    background-color: var(--color-bg-alt, #F9FAFB);
+  }
+
+  @media (max-width: 48rem) {
+    .wf-banner-03__inner {
+      flex-direction: column;
+      text-align: center;
+      gap: 1rem;
+    }
+
+    .wf-banner-03__actions {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<div class="wf-banner-03">
+  <div class="wf-banner-03__inner">
+    <div class="wf-banner-03__content">
+      <p class="wf-banner-03__title">Nous respectons votre vie privee</p>
+      <p class="wf-banner-03__text">
+        Nous utilisons des cookies pour ameliorer votre experience. En continuant, vous acceptez notre
+        <a href="#" class="wf-banner-03__link">politique de confidentialite</a>.
+      </p>
+    </div>
+    <div class="wf-banner-03__actions">
+      <a href="#" class="wf-banner-03__btn wf-banner-03__btn--decline">Refuser</a>
+      <a href="#" class="wf-banner-03__btn wf-banner-03__btn--accept">Accepter tout</a>
+    </div>
+  </div>
+</div>

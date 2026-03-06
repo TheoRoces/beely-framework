@@ -1,0 +1,120 @@
+<!-- single-01.html | Classic: centered narrow content, title + meta + featured image + body text -->
+<style>
+  .wf-single-01 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-max-width: 720px;
+    --wf-spacing-lg: 3rem;
+    --wf-spacing-md: 2rem;
+    --wf-spacing-sm: 1rem;
+    --wf-font-title: 2.75rem;
+    --wf-font-body: var(--font-body);
+    --wf-line-height: 1.8;
+    --wf-color-bg: var(--color-bg);
+    --wf-color-text: var(--color-text);
+    --wf-color-meta: var(--color-text-light);
+    --wf-color-border: var(--color-border);
+    --wf-img-ratio: 56.25%;
+  }
+
+  .wf-single-01 {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    padding: var(--wf-spacing-lg) var(--wf-spacing-sm);
+    color: var(--wf-color-text);
+    background-color: var(--wf-color-bg);
+  }
+
+  .wf-single-01__title {
+    font-size: var(--wf-font-title);
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 var(--wf-spacing-sm);
+    letter-spacing: -0.02em;
+  }
+
+  .wf-single-01__meta {
+    font-size: 0.9rem;
+    color: var(--wf-color-meta);
+    margin-bottom: var(--wf-spacing-md);
+    padding-bottom: var(--wf-spacing-sm);
+    border-bottom: 1px solid var(--wf-color-border);
+  }
+
+  .wf-single-01__featured-image {
+    width: 100%;
+    padding-top: var(--wf-img-ratio);
+    background-color: var(--color-neutral-300);
+    margin-bottom: var(--wf-spacing-md);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md, 0.5rem);
+  }
+
+  .wf-single-01__featured-image span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+  }
+
+  .wf-single-01__body p {
+    line-height: var(--wf-line-height);
+    margin: 0 0 1.5rem;
+    color: var(--wf-color-text);
+  }
+
+  .wf-single-01__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: var(--wf-spacing-md);
+    padding-top: var(--wf-spacing-sm);
+    border-top: 1px solid var(--wf-color-border);
+  }
+
+  .wf-single-01__tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-full, 9999px);
+    font-size: 0.8rem;
+    color: var(--wf-color-meta);
+  }
+
+  @media (max-width: 640px) {
+    .wf-single-01 {
+      --wf-font-title: 1.875rem;
+      --wf-spacing-lg: 2rem;
+    }
+  }
+</style>
+
+<article class="wf-single-01">
+  <h1 class="wf-single-01__title">Les tendances du web design en 2026</h1>
+
+  <div class="wf-single-01__meta">
+    Par Marie Dupont | 15 février 2026 | 8 min de lecture
+  </div>
+
+  <div class="wf-single-01__featured-image">
+    <span>Image mise en avant — 1280 × 720</span>
+  </div>
+
+  <div class="wf-single-01__body">
+    <p>Le paysage du web design continue d'évoluer à une vitesse remarquable en 2026. Les interfaces utilisateur deviennent de plus en plus immersives, mêlant esthétique minimaliste et interactions sophistiquées. Les designers repoussent les limites de la créativité tout en maintenant une accessibilité exemplaire pour tous les utilisateurs.</p>
+
+    <p>L'intelligence artificielle transforme profondément la manière dont nous concevons les expériences numériques. Les outils de génération automatique de maquettes et de prototypage rapide permettent aux équipes de design de se concentrer sur la stratégie et l'innovation plutôt que sur les tâches répétitives. Cette évolution redéfinit le rôle du designer moderne.</p>
+
+    <p>La typographie variable et les systèmes de design adaptatifs occupent désormais une place centrale dans les projets web. Les marques investissent massivement dans des identités visuelles numériques cohérentes, capables de s'adapter fluidement à chaque contexte d'affichage, du smartphone à l'écran ultra-large.</p>
+
+    <p>Enfin, la durabilité numérique s'impose comme un critère incontournable. Les concepteurs intègrent dès la phase initiale des considérations d'éco-conception, optimisant le poids des pages et réduisant l'empreinte carbone des sites web. Cette approche responsable devient un avantage compétitif majeur sur le marché.</p>
+  </div>
+
+  <div class="wf-single-01__tags">
+    <span class="wf-single-01__tag">Web Design</span>
+    <span class="wf-single-01__tag">Tendances</span>
+    <span class="wf-single-01__tag">UI/UX</span>
+  </div>
+</article>

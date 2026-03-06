@@ -1,0 +1,220 @@
+<!-- Services 12 : Bento grid layout with mixed-size service cards -->
+
+<style>
+  .wf-services-12 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-icon-bg: var(--color-bg, #ffffff);
+    --wf-card-bg-1: var(--color-bg-alt, #f3f4f6);
+    --wf-card-bg-2: var(--color-bg-alt, #f9fafb);
+    --wf-card-bg-3: var(--color-bg-alt, #f3f4f6);
+    --wf-card-bg-4: var(--color-bg-alt, #f3f4f6);
+    --wf-section-py: clamp(3rem, 8vw, 6rem);
+    --wf-section-px: clamp(1rem, 5vw, 4rem);
+    --wf-max-width: 1200px;
+
+    background: var(--wf-bg);
+    padding: var(--wf-section-py) var(--wf-section-px);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    color: var(--wf-text);
+  }
+
+  .wf-services-12__inner {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-services-12__header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
+
+  .wf-services-12__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-services-12__title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .wf-services-12__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .wf-services-12__card {
+    border: 1px solid var(--wf-border);
+    border-radius: var(--radius-xl, 1rem);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .wf-services-12__card--wide {
+    grid-column: span 2;
+  }
+
+  .wf-services-12__card--tall {
+    grid-row: span 2;
+  }
+
+  .wf-services-12__card--bg1 { background: var(--wf-card-bg-1); border-color: transparent; }
+  .wf-services-12__card--bg2 { background: var(--wf-card-bg-2); }
+  .wf-services-12__card--bg3 { background: var(--wf-card-bg-3); border-color: transparent; }
+  .wf-services-12__card--bg4 { background: var(--wf-card-bg-4); border-color: transparent; }
+
+  .wf-services-12__card .wf-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--wf-icon-bg);
+    border-radius: var(--radius-lg, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wf-accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .wf-services-12__card .wf-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .wf-services-12__card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-services-12__card-text {
+    font-size: 0.9375rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .wf-services-12__card-link {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--wf-accent);
+    text-decoration: none;
+  }
+
+  .wf-services-12__card-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .wf-services-12__grid {
+      grid-template-columns: 1fr;
+    }
+    .wf-services-12__card--wide,
+    .wf-services-12__card--tall {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .wf-services-12__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<section class="wf-services-12">
+  <div class="wf-services-12__inner">
+    <header class="wf-services-12__header">
+      <p class="wf-services-12__tagline">Ce que nous faisons</p>
+      <h2 class="wf-services-12__title">Nos services</h2>
+    </header>
+
+    <div class="wf-services-12__grid">
+      <!-- Row 1: wide card + 2 regular -->
+      <div class="wf-services-12__card wf-services-12__card--wide wf-services-12__card--bg1">
+        <div>
+          <div class="wf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <h3 class="wf-services-12__card-title">Design UI/UX</h3>
+          <p class="wf-services-12__card-text">Nous creons des interfaces intuitives et elegantes qui maximisent l'engagement utilisateur. Notre approche centree utilisateur garantit des resultats mesurables.</p>
+        </div>
+        <a href="#" class="wf-services-12__card-link">En savoir plus &rarr;</a>
+      </div>
+
+      <div class="wf-services-12__card wf-services-12__card--tall wf-services-12__card--bg3">
+        <div>
+          <div class="wf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <h3 class="wf-services-12__card-title">Developpement Web</h3>
+          <p class="wf-services-12__card-text">Solutions techniques performantes et evolutives pour accompagner votre croissance digitale. Des solutions performantes et scalables pour votre business.</p>
+        </div>
+        <a href="#" class="wf-services-12__card-link">En savoir plus &rarr;</a>
+      </div>
+
+      <div class="wf-services-12__card wf-services-12__card--bg2">
+        <div>
+          <div class="wf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <h3 class="wf-services-12__card-title">Strategie Digitale</h3>
+          <p class="wf-services-12__card-text">Nous creons des interfaces intuitives et elegantes.</p>
+        </div>
+        <a href="#" class="wf-services-12__card-link">En savoir plus &rarr;</a>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="wf-services-12__card wf-services-12__card--bg4">
+        <div>
+          <div class="wf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <h3 class="wf-services-12__card-title">SEO & Analytics</h3>
+          <p class="wf-services-12__card-text">Nous creons des interfaces intuitives et elegantes.</p>
+        </div>
+        <a href="#" class="wf-services-12__card-link">En savoir plus &rarr;</a>
+      </div>
+
+      <div class="wf-services-12__card wf-services-12__card--bg2">
+        <div>
+          <div class="wf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <h3 class="wf-services-12__card-title">Branding</h3>
+          <p class="wf-services-12__card-text">Nous creons des interfaces intuitives et elegantes.</p>
+        </div>
+        <a href="#" class="wf-services-12__card-link">En savoir plus &rarr;</a>
+      </div>
+
+      <!-- Tall card from row 1 continues here -->
+
+      <div class="wf-services-12__card wf-services-12__card--wide wf-services-12__card--bg1">
+        <div>
+          <div class="wf-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          </div>
+          <h3 class="wf-services-12__card-title">Applications Mobile</h3>
+          <p class="wf-services-12__card-text">Analyses approfondies et recommandations strategiques pour optimiser votre presence en ligne. Applications natives et cross-platform.</p>
+        </div>
+        <a href="#" class="wf-services-12__card-link">En savoir plus &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>

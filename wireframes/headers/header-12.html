@@ -1,0 +1,98 @@
+<!-- Header 12 : Header avec indicateurs dropdown sur les elements de nav -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text); color: var(--color-bg); border-color: var(--color-text); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text); border-color: var(--color-border); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+  .wf-header-12 {
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) 0;
+  }
+  .wf-header-12 .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wf-header-12__logo {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .wf-header-12__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .wf-header-12__nav-item {
+    position: relative;
+  }
+  .wf-header-12__nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+  }
+  .wf-header-12__nav-link:hover {
+    color: var(--color-text);
+    background-color: var(--color-bg-alt);
+  }
+  .wf-header-12__chevron {
+    width: 14px;
+    height: 14px;
+    transition: transform var(--transition-fast);
+  }
+  .wf-header-12__nav-item:hover .wf-header-12__chevron {
+    transform: rotate(180deg);
+  }
+  @media (max-width: 768px) {
+    .wf-header-12__nav {
+      display: none;
+    }
+  }
+</style>
+
+<header class="wf-header-12">
+  <div class="container">
+    <a href="#" class="wf-header-12__logo">Logo</a>
+    <nav>
+      <ul class="wf-header-12__nav">
+        <li class="wf-header-12__nav-item">
+          <a href="#" class="wf-header-12__nav-link">Accueil</a>
+        </li>
+        <li class="wf-header-12__nav-item">
+          <a href="#" class="wf-header-12__nav-link">
+            Services
+            <svg class="wf-header-12__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+        </li>
+        <li class="wf-header-12__nav-item">
+          <a href="#" class="wf-header-12__nav-link">
+            Portfolio
+            <svg class="wf-header-12__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+        </li>
+        <li class="wf-header-12__nav-item">
+          <a href="#" class="wf-header-12__nav-link">Blog</a>
+        </li>
+        <li class="wf-header-12__nav-item">
+          <a href="#" class="wf-header-12__nav-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <a href="#" class="btn btn--primary">Commencer</a>
+  </div>
+</header>

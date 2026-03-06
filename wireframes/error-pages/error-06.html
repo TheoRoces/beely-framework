@@ -1,0 +1,143 @@
+<!-- error-06.html - 500 server error page (technical) -->
+<style>
+  .wf-error-06 {
+    --wf-bg: var(--color-bg-alt, #f9fafb);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-primary: var(--color-text, #1a1a1a);
+    --wf-primary-hover: var(--color-neutral-700, #333333);
+    --wf-danger: var(--color-text-light, #6b7280);
+    --wf-danger-bg: var(--color-bg-alt, #f9fafb);
+    --wf-danger-border: var(--color-neutral-100, #f3f4f6);
+    --wf-code-bg: var(--color-bg-dark, #1f2937);
+    --wf-code-text: var(--color-neutral-300, #d1d5db);
+    --wf-font: var(--font-body);
+    --wf-mono: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .wf-error-06__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    background-color: var(--wf-danger-bg);
+    border: 1px solid var(--wf-danger-border);
+    border-radius: 2rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--wf-danger);
+    margin-bottom: 1.5rem;
+  }
+
+  .wf-error-06__badge-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--wf-danger);
+    border-radius: 50%;
+  }
+
+  .wf-error-06__title {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    margin: 0 0 0.75rem;
+    line-height: 1.15;
+  }
+
+  .wf-error-06__text {
+    font-size: 1rem;
+    color: var(--wf-text-muted);
+    max-width: 30rem;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+  }
+
+  .wf-error-06__code {
+    width: 100%;
+    max-width: 32rem;
+    background-color: var(--wf-code-bg);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+    overflow-x: auto;
+  }
+
+  .wf-error-06__code-line {
+    font-family: var(--wf-mono);
+    font-size: 0.8125rem;
+    color: var(--wf-code-text);
+    line-height: 1.8;
+    margin: 0;
+    white-space: pre;
+  }
+
+  .wf-error-06__code-line--muted {
+    color: var(--color-text-light, #6b7280);
+  }
+
+  .wf-error-06__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .wf-error-06__btn {
+    display: inline-block;
+    padding: 0.875rem 1.75rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-error-06__btn:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  .wf-error-06__btn--outline {
+    background-color: transparent;
+    color: var(--wf-text);
+    border: 1px solid var(--color-border, #e5e7eb);
+  }
+
+  .wf-error-06__btn--outline:hover {
+    background-color: var(--color-bg-alt, #f9fafb);
+  }
+</style>
+
+<section class="wf-error-06">
+  <div class="wf-error-06__badge">
+    <span class="wf-error-06__badge-dot"></span>
+    Erreur 500
+  </div>
+  <h1 class="wf-error-06__title">Erreur serveur</h1>
+  <p class="wf-error-06__text">Une erreur interne s'est produite. Notre equipe technique a ete notifiee et travaille a la resolution du probleme.</p>
+
+  <div class="wf-error-06__code">
+    <p class="wf-error-06__code-line wf-error-06__code-line--muted"># Informations techniques</p>
+    <p class="wf-error-06__code-line">Status:  500 Internal Server Error</p>
+    <p class="wf-error-06__code-line">Time:    2026-02-26T10:30:00Z</p>
+    <p class="wf-error-06__code-line">Ref:     ERR-XXXX-XXXX</p>
+  </div>
+
+  <div class="wf-error-06__actions">
+    <a href="#" class="wf-error-06__btn">Retour a l'accueil</a>
+    <a href="#" class="wf-error-06__btn wf-error-06__btn--outline">Contacter le support</a>
+  </div>
+</section>

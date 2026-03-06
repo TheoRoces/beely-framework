@@ -1,0 +1,203 @@
+<!-- Portfolio 11: Before/after split layout for projects -->
+<style>
+  .wf-portfolio-11 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-card-bg-alt: var(--color-neutral-200, #e8edf5);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-radius: 0.75rem;
+    --wf-gap: 1.5rem;
+    padding: 5rem 1.5rem;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+  .wf-portfolio-11 .wf-portfolio-11__header {
+    max-width: 72rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__desc {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__projects {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__project {
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__project-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--wf-border);
+  }
+  .wf-portfolio-11 .wf-portfolio-11__project-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  .wf-portfolio-11 .wf-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--wf-accent);
+    background: var(--color-bg-alt, #f9fafb);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full, 9999px);
+  }
+  .wf-portfolio-11 .wf-portfolio-11__split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__before,
+  .wf-portfolio-11 .wf-portfolio-11__after {
+    position: relative;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-sm, 0.25rem);
+    z-index: 1;
+  }
+  .wf-portfolio-11 .wf-portfolio-11__label--before {
+    background: var(--color-text-light, #6b7280);
+    color: var(--color-text-on-dark);
+  }
+  .wf-portfolio-11 .wf-portfolio-11__label--after {
+    background: var(--color-text, #374151);
+    color: var(--color-text-on-dark);
+  }
+  .wf-portfolio-11 .wf-img {
+    width: 100%;
+    min-height: 18rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wf-text-muted);
+  }
+  .wf-portfolio-11 .wf-portfolio-11__before .wf-img {
+    background: var(--wf-card-bg);
+  }
+  .wf-portfolio-11 .wf-portfolio-11__after .wf-img {
+    background: var(--wf-card-bg-alt);
+  }
+  .wf-portfolio-11 .wf-portfolio-11__divider {
+    width: 2px;
+    background: var(--wf-border);
+    position: relative;
+  }
+  @media (max-width: 768px) {
+    .wf-portfolio-11 .wf-portfolio-11__split { grid-template-columns: 1fr; }
+    .wf-portfolio-11 .wf-portfolio-11__title { font-size: 1.75rem; }
+    .wf-portfolio-11 .wf-portfolio-11__project-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .wf-portfolio-11 { padding: 3rem 1rem; }
+  }
+</style>
+
+<section class="wf-portfolio-11">
+  <div class="wf-portfolio-11__header">
+    <div class="wf-portfolio-11__subtitle">Portfolio</div>
+    <h2 class="wf-portfolio-11__title">Avant / Apres</h2>
+    <p class="wf-portfolio-11__desc">Comparez nos projets avant et apres notre intervention pour mesurer l'impact de notre travail.</p>
+  </div>
+
+  <div class="wf-portfolio-11__projects">
+    <div class="wf-portfolio-11__project">
+      <div class="wf-portfolio-11__project-header">
+        <h3 class="wf-portfolio-11__project-name">Refonte TechVision</h3>
+        <span class="wf-badge">Web Design</span>
+      </div>
+      <div class="wf-portfolio-11__split">
+        <div class="wf-portfolio-11__before">
+          <span class="wf-portfolio-11__label wf-portfolio-11__label--before">Avant</span>
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+        </div>
+        <div class="wf-portfolio-11__after">
+          <span class="wf-portfolio-11__label wf-portfolio-11__label--after">Apres</span>
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-portfolio-11__project">
+      <div class="wf-portfolio-11__project-header">
+        <h3 class="wf-portfolio-11__project-name">Identite Luxora</h3>
+        <span class="wf-badge">Branding</span>
+      </div>
+      <div class="wf-portfolio-11__split">
+        <div class="wf-portfolio-11__before">
+          <span class="wf-portfolio-11__label wf-portfolio-11__label--before">Avant</span>
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+        </div>
+        <div class="wf-portfolio-11__after">
+          <span class="wf-portfolio-11__label wf-portfolio-11__label--after">Apres</span>
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-portfolio-11__project">
+      <div class="wf-portfolio-11__project-header">
+        <h3 class="wf-portfolio-11__project-name">Boutique ModaChic</h3>
+        <span class="wf-badge">E-commerce</span>
+      </div>
+      <div class="wf-portfolio-11__split">
+        <div class="wf-portfolio-11__before">
+          <span class="wf-portfolio-11__label wf-portfolio-11__label--before">Avant</span>
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+        </div>
+        <div class="wf-portfolio-11__after">
+          <span class="wf-portfolio-11__label wf-portfolio-11__label--after">Apres</span>
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

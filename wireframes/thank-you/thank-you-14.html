@@ -1,0 +1,185 @@
+<!-- thank-you-14: Thank you with summary/recap card -->
+<style>
+  .wf-thank-you-14 {
+    --wf-bg: var(--color-bg-alt);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-icon-color: var(--color-text);
+    --wf-card-bg: var(--color-bg);
+    --wf-border: var(--color-border);
+    --wf-primary: var(--color-text);
+    --wf-primary-hover: var(--color-neutral-800);
+    --wf-label: var(--color-neutral-400);
+    --wf-radius: 12px;
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .wf-thank-you-14__container {
+    text-align: center;
+    max-width: 560px;
+    width: 100%;
+  }
+
+  .wf-thank-you-14__icon {
+    color: var(--wf-icon-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .wf-thank-you-14__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-thank-you-14__text {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0 0 2.5rem 0;
+  }
+
+  .wf-thank-you-14__summary {
+    background-color: var(--wf-card-bg);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .wf-thank-you-14__summary-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--wf-border);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .wf-thank-you-14__summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--wf-border);
+  }
+
+  .wf-thank-you-14__summary-row:last-child {
+    border-bottom: none;
+  }
+
+  .wf-thank-you-14__summary-label {
+    font-size: 0.875rem;
+    color: var(--wf-label);
+    font-weight: 500;
+    flex-shrink: 0;
+    min-width: 120px;
+  }
+
+  .wf-thank-you-14__summary-value {
+    font-size: 0.9375rem;
+    color: var(--wf-text);
+    text-align: right;
+    word-break: break-word;
+  }
+
+  .wf-thank-you-14__actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .wf-thank-you-14__button {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-thank-you-14__button:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  .wf-thank-you-14__button--outline {
+    background-color: transparent;
+    color: var(--wf-primary);
+    border: 1px solid var(--wf-border);
+  }
+
+  .wf-thank-you-14__button--outline:hover {
+    background-color: var(--wf-card-bg);
+  }
+
+  @media (max-width: 640px) {
+    .wf-thank-you-14__title {
+      font-size: 1.75rem;
+    }
+
+    .wf-thank-you-14__summary-row {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .wf-thank-you-14__summary-value {
+      text-align: left;
+    }
+
+    .wf-thank-you-14__actions {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<section class="wf-thank-you-14">
+  <div class="wf-thank-you-14__container">
+    <div class="wf-thank-you-14__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h1 class="wf-thank-you-14__title">Merci !</h1>
+    <p class="wf-thank-you-14__text">Votre message a bien ete envoye.</p>
+
+    <div class="wf-thank-you-14__summary">
+      <div class="wf-thank-you-14__summary-header">Recapitulatif de votre demande</div>
+      <div class="wf-thank-you-14__summary-row">
+        <span class="wf-thank-you-14__summary-label">Reference</span>
+        <span class="wf-thank-you-14__summary-value">#12345</span>
+      </div>
+      <div class="wf-thank-you-14__summary-row">
+        <span class="wf-thank-you-14__summary-label">Nom</span>
+        <span class="wf-thank-you-14__summary-value">Jean Dupont</span>
+      </div>
+      <div class="wf-thank-you-14__summary-row">
+        <span class="wf-thank-you-14__summary-label">Email</span>
+        <span class="wf-thank-you-14__summary-value">jean@exemple.com</span>
+      </div>
+      <div class="wf-thank-you-14__summary-row">
+        <span class="wf-thank-you-14__summary-label">Objet</span>
+        <span class="wf-thank-you-14__summary-value">Demande d'information</span>
+      </div>
+      <div class="wf-thank-you-14__summary-row">
+        <span class="wf-thank-you-14__summary-label">Date</span>
+        <span class="wf-thank-you-14__summary-value">26 fevrier 2026</span>
+      </div>
+    </div>
+
+    <div class="wf-thank-you-14__actions">
+      <a href="#" class="wf-thank-you-14__button">Retour a l'accueil</a>
+      <a href="#" class="wf-thank-you-14__button wf-thank-you-14__button--outline">Imprimer</a>
+    </div>
+  </div>
+</section>

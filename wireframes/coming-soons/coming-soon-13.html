@@ -1,0 +1,117 @@
+<!-- coming-soon-13: Minimal dark with single email field and submit -->
+<style>
+  .wf-coming-soon-13 {
+    --wf-bg: var(--color-bg-dark);
+    --wf-text: var(--color-text-on-dark);
+    --wf-text-muted: var(--color-neutral-500);
+    --wf-primary: var(--color-bg-alt);
+    --wf-primary-hover: var(--color-border);
+    --wf-border: var(--color-neutral-800);
+    --wf-radius: 6px;
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--wf-font);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .wf-coming-soon-13 *,
+  .wf-coming-soon-13 *::before,
+  .wf-coming-soon-13 *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wf-coming-soon-13 .wf-eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--wf-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .wf-coming-soon-13 .wf-heading {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 3.5rem;
+    letter-spacing: -0.03em;
+    max-width: 600px;
+  }
+
+  .wf-coming-soon-13 .wf-signup-form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .wf-coming-soon-13 .wf-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    font-size: 1rem;
+    font-family: var(--wf-font);
+    background-color: transparent;
+    color: var(--wf-text);
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+  }
+
+  .wf-coming-soon-13 .wf-input::placeholder {
+    color: var(--wf-text-muted);
+  }
+
+  .wf-coming-soon-13 .wf-input:focus {
+    border-color: var(--wf-text-muted);
+  }
+
+  .wf-coming-soon-13 .wf-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    border: none;
+    border-radius: var(--wf-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--wf-font);
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .wf-coming-soon-13 .wf-button:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  .wf-coming-soon-13 .wf-footnote {
+    margin-top: 1.5rem;
+    font-size: 0.8125rem;
+    color: var(--wf-text-muted);
+    line-height: 1.5;
+  }
+</style>
+
+<section class="wf-coming-soon-13">
+  <span class="wf-eyebrow">Bientot disponible</span>
+  <h1 class="wf-heading">Nous preparons quelque chose d'exceptionnel</h1>
+
+  <form class="wf-signup-form">
+    <input type="email" class="wf-input" placeholder="votre@email.com" />
+    <button type="submit" class="wf-button">Me notifier</button>
+  </form>
+
+  <p class="wf-footnote">Entrez votre email pour etre notifie. Pas de spam, promis.</p>
+</section>

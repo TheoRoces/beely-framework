@@ -1,0 +1,36 @@
+<!--
+  TOOLTIP — Site System
+
+  CSS : core/css/elements.css
+  JS  : core/js/elements.js
+
+  Attributs :
+    data-tooltip="texte"                — Texte de la bulle
+    data-tooltip-pos="top|bottom|left|right" — Position (défaut : top)
+
+  Repositionnement automatique si la bulle déborde du viewport.
+  Fonctionne sur n'importe quel élément HTML.
+-->
+
+
+<!-- ===== TOOLTIP BASIQUE (haut par défaut) ===== -->
+
+<span data-tooltip="Information utile">Survolez-moi</span>
+
+
+<!-- ===== TOOLTIP POSITIONS ===== -->
+
+<button data-tooltip="Info en haut">Haut (défaut)</button>
+<button data-tooltip="Info en bas" data-tooltip-pos="bottom">Bas</button>
+<button data-tooltip="Info à gauche" data-tooltip-pos="left">Gauche</button>
+<button data-tooltip="Info à droite" data-tooltip-pos="right">Droite</button>
+
+
+<!-- ===== TOOLTIP SUR UN LIEN ===== -->
+
+<a href="#" data-tooltip="Ouvre une nouvelle page">Lien avec tooltip</a>
+
+
+<!-- ===== TOOLTIP SUR UNE ICÔNE ===== -->
+
+<span data-icon="information-circle" data-icon-size="20" data-tooltip="Plus d'informations"></span>

@@ -1,0 +1,185 @@
+<!-- Services 02 : 4-column minimal cards with icon top -->
+
+<style>
+  .wf-services-02 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-icon-bg: var(--color-bg-alt, #f3f4f6);
+    --wf-section-py: clamp(3rem, 8vw, 6rem);
+    --wf-section-px: clamp(1rem, 5vw, 4rem);
+    --wf-max-width: 1200px;
+
+    background: var(--wf-bg);
+    padding: var(--wf-section-py) var(--wf-section-px);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    color: var(--wf-text);
+  }
+
+  .wf-services-02__inner {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-services-02__header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
+
+  .wf-services-02__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-services-02__title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .wf-services-02__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .wf-services-02__card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--wf-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    transition: border-color 0.2s ease;
+  }
+
+  .wf-services-02__card:hover {
+    border-color: var(--wf-accent);
+  }
+
+  .wf-services-02__card .wf-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--wf-icon-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wf-accent);
+    margin: 0 auto 1.25rem;
+  }
+
+  .wf-services-02__card .wf-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .wf-services-02__card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-services-02__card-text {
+    font-size: 0.875rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .wf-services-02__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .wf-services-02__card {
+      padding: 1.5rem 1rem;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .wf-services-02__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<section class="wf-services-02">
+  <div class="wf-services-02__inner">
+    <header class="wf-services-02__header">
+      <p class="wf-services-02__tagline">Ce que nous faisons</p>
+      <h2 class="wf-services-02__title">Nos services</h2>
+    </header>
+
+    <div class="wf-services-02__grid">
+      <div class="wf-services-02__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-02__card-title">Design UI/UX</h3>
+        <p class="wf-services-02__card-text">Interfaces intuitives et elegantes qui maximisent l'engagement.</p>
+      </div>
+
+      <div class="wf-services-02__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-02__card-title">Developpement Web</h3>
+        <p class="wf-services-02__card-text">Solutions performantes et evolutives pour votre croissance digitale.</p>
+      </div>
+
+      <div class="wf-services-02__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-02__card-title">Strategie Digitale</h3>
+        <p class="wf-services-02__card-text">Recommandations strategiques pour optimiser votre presence en ligne.</p>
+      </div>
+
+      <div class="wf-services-02__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-02__card-title">SEO & Analytics</h3>
+        <p class="wf-services-02__card-text">Campagnes ciblees pour renforcer votre notoriete et fideliser vos clients.</p>
+      </div>
+
+      <div class="wf-services-02__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-02__card-title">Branding</h3>
+        <p class="wf-services-02__card-text">Identites visuelles memorables qui refletent les valeurs de votre marque.</p>
+      </div>
+
+      <div class="wf-services-02__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-02__card-title">Applications Mobile</h3>
+        <p class="wf-services-02__card-text">Applications modernes et reactives pour toucher vos utilisateurs partout.</p>
+      </div>
+
+      <div class="wf-services-02__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-02__card-title">Consulting Tech</h3>
+        <p class="wf-services-02__card-text">Audit et conseil technique pour guider vos choix technologiques.</p>
+      </div>
+
+      <div class="wf-services-02__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-02__card-title">Support & Maintenance</h3>
+        <p class="wf-services-02__card-text">Assistance continue et mises a jour pour garantir la perennite de vos projets.</p>
+      </div>
+    </div>
+  </div>
+</section>

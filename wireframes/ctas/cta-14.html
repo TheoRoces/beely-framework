@@ -1,0 +1,122 @@
+<!-- CTA-14 : CTA with floating image/illustration -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text, #374151); color: var(--color-bg, #ffffff); border-color: var(--color-text, #374151); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #e5e7eb); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+  .wf-cta-14 {
+    padding: var(--space-20, 5rem) var(--space-6, 1.5rem);
+    background-color: var(--color-bg, #ffffff);
+  }
+
+  .wf-cta-14__container {
+    max-width: var(--container-max, 72rem);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .wf-cta-14__card {
+    background-color: var(--color-bg-alt, #f9fafb);
+    border-radius: var(--radius-xl, 1rem);
+    padding: var(--space-8, 3rem) var(--space-6, 2rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wf-cta-14__content {
+    max-width: 32rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .wf-cta-14__heading {
+    font-size: var(--text-3xl, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text, #111827);
+    margin: 0 0 var(--space-5, 1rem);
+  }
+
+  .wf-cta-14__text {
+    font-size: var(--font-size-md, 1rem);
+    line-height: 1.6;
+    color: var(--color-text-muted, #6b7280);
+    margin: 0 0 var(--space-6, 2rem);
+  }
+
+  .wf-cta-14__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4, 0.75rem);
+  }
+
+  .wf-cta-14__float {
+    display: none;
+    position: absolute;
+    right: 2rem;
+    bottom: -1rem;
+    width: 20rem;
+    height: 18rem;
+    z-index: 0;
+  }
+
+  .wf-cta-14__float-image {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-placeholder, #e5e7eb);
+    border-radius: var(--radius-lg, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted, #9ca3af);
+    font-size: var(--text-sm, 0.875rem);
+    box-shadow: var(--shadow-xl);
+    transform: rotate(3deg);
+  }
+
+  @media (min-width: 768px) {
+    .wf-cta-14__card {
+      padding: var(--space-12, 4rem);
+    }
+
+    .wf-cta-14__heading {
+      font-size: var(--text-4xl, 3rem);
+    }
+
+    .wf-cta-14__float {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .wf-cta-14__float {
+      width: 24rem;
+      height: 20rem;
+      right: 3rem;
+    }
+  }
+</style>
+
+<section class="wf-cta-14">
+  <div class="wf-cta-14__container">
+    <div class="wf-cta-14__card">
+      <div class="wf-cta-14__content">
+        <h2 class="wf-cta-14__heading">Pret a transformer votre projet ?</h2>
+        <p class="wf-cta-14__text">
+          Notre equipe d'experts vous accompagne de la conception a la mise en production. Lancez-vous en toute confiance.
+        </p>
+        <div class="wf-cta-14__buttons">
+          <a href="#" class="btn btn--primary">Commencer maintenant</a>
+          <a href="#" class="btn btn--secondary">Reservez un appel decouverte</a>
+        </div>
+      </div>
+      <div class="wf-cta-14__float">
+        <div class="wf-cta-14__float-image">
+          <span>[Illustration 384x320]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,177 @@
+<!-- contact-15: Simple form inside a bordered card, centered -->
+<style>
+  .wf-contact-15 {
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-bg: var(--color-bg-alt);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-border: var(--color-border);
+    --wf-accent: var(--color-text);
+    --wf-card-bg: var(--color-bg);
+    --wf-input-bg: var(--color-bg-alt);
+    --wf-input-border: var(--color-border);
+    --wf-input-radius: 0.5rem;
+    --wf-btn-bg: var(--color-text);
+    --wf-btn-text: var(--color-bg);
+    --wf-btn-radius: 0.5rem;
+    --wf-icon-size: 24px;
+    padding: var(--wf-section-padding);
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-contact-15 .wf-container {
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .wf-contact-15 .wf-card {
+    background: var(--wf-card-bg);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--radius-xl, 1rem);
+    padding: 2.5rem;
+  }
+
+  .wf-contact-15 .wf-card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .wf-contact-15 .wf-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--wf-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+
+  .wf-contact-15 .wf-icon {
+    width: var(--wf-icon-size);
+    height: var(--wf-icon-size);
+    color: var(--wf-accent);
+  }
+
+  .wf-contact-15 h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-contact-15 .wf-subtitle {
+    color: var(--wf-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .wf-contact-15 form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  .wf-contact-15 .wf-input,
+  .wf-contact-15 .wf-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--wf-input-border);
+    border-radius: var(--wf-input-radius);
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .wf-contact-15 .wf-input:focus,
+  .wf-contact-15 .wf-textarea:focus {
+    border-color: var(--wf-accent);
+  }
+
+  .wf-contact-15 .wf-textarea {
+    min-height: 130px;
+    resize: vertical;
+  }
+
+  .wf-contact-15 .wf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: var(--wf-btn-bg);
+    color: var(--wf-btn-text);
+    border: none;
+    border-radius: var(--wf-btn-radius);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .wf-contact-15 .wf-btn:hover {
+    opacity: 0.85;
+  }
+
+  .wf-contact-15 .wf-card-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--wf-border);
+  }
+
+  .wf-contact-15 .wf-card-footer p {
+    color: var(--wf-text-muted);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .wf-contact-15 .wf-card-footer a {
+    color: var(--wf-accent);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .wf-contact-15 .wf-card {
+      padding: 1.75rem;
+    }
+    .wf-contact-15 h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<section class="wf-contact-15">
+  <div class="wf-container">
+    <div class="wf-card">
+      <div class="wf-card-header">
+        <div class="wf-icon-wrap">
+          <svg class="wf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        </div>
+        <h2>Contactez-nous</h2>
+        <p class="wf-subtitle">Envoyez-nous un message et nous vous repondrons rapidement.</p>
+      </div>
+      <form>
+        <input type="text" class="wf-input" placeholder="Nom complet" />
+        <input type="email" class="wf-input" placeholder="Adresse email" />
+        <input type="tel" class="wf-input" placeholder="Telephone" />
+        <input type="text" class="wf-input" placeholder="Sujet" />
+        <textarea class="wf-textarea" placeholder="Votre message"></textarea>
+        <button type="submit" class="wf-btn">Envoyer le message</button>
+      </form>
+      <div class="wf-card-footer">
+        <p>Vous pouvez aussi nous contacter a <a href="mailto:contact@monsite.fr">contact@monsite.fr</a> ou au <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+      </div>
+    </div>
+  </div>
+</section>

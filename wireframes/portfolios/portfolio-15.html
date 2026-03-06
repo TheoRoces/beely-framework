@@ -1,0 +1,224 @@
+<!-- Portfolio 15: Full-width image gallery with caption overlay -->
+<style>
+  .wf-portfolio-15 {
+    --wf-bg: var(--color-bg-dark, #0f172a);
+    --wf-text: var(--color-text-inverse, #f8fafc);
+    --wf-text-muted: var(--color-neutral-400, #94a3b8);
+    --wf-accent: var(--color-text, #374151);
+    --wf-card-bg: var(--color-neutral-800, #1e293b);
+    --wf-border: var(--color-neutral-700, #334155);
+    --wf-radius: 0;
+    --wf-gap: 0.25rem;
+    padding: 5rem 0;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+  .wf-portfolio-15 .wf-portfolio-15__header {
+    max-width: 72rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+  .wf-portfolio-15 .wf-portfolio-15__subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-text-muted);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-15 .wf-portfolio-15__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .wf-portfolio-15 .wf-portfolio-15__desc {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .wf-portfolio-15 .wf-portfolio-15__gallery {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wf-gap);
+  }
+  .wf-portfolio-15 .wf-portfolio-15__row {
+    display: grid;
+    gap: var(--wf-gap);
+  }
+  .wf-portfolio-15 .wf-portfolio-15__row--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .wf-portfolio-15 .wf-portfolio-15__row--2 {
+    grid-template-columns: 1.5fr 1fr;
+  }
+  .wf-portfolio-15 .wf-portfolio-15__row--2-alt {
+    grid-template-columns: 1fr 1.5fr;
+  }
+  .wf-portfolio-15 .wf-portfolio-15__item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .wf-portfolio-15 .wf-img {
+    width: 100%;
+    min-height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-card-bg);
+    color: var(--wf-text-muted);
+    transition: transform 0.4s ease;
+  }
+  .wf-portfolio-15 .wf-portfolio-15__item:hover .wf-img {
+    transform: scale(1.03);
+  }
+  .wf-portfolio-15 .wf-portfolio-15__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  .wf-portfolio-15 .wf-portfolio-15__item:hover .wf-portfolio-15__caption {
+    transform: translateY(0);
+  }
+  .wf-portfolio-15 .wf-portfolio-15__caption-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.375rem;
+    color: var(--color-text-on-dark);
+  }
+  .wf-portfolio-15 .wf-portfolio-15__caption-text {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 0.75rem;
+    line-height: 1.4;
+  }
+  .wf-portfolio-15 .wf-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--color-text, #374151);
+    background: var(--color-bg, #ffffff);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full, 9999px);
+  }
+  @media (max-width: 768px) {
+    .wf-portfolio-15 .wf-portfolio-15__row--3,
+    .wf-portfolio-15 .wf-portfolio-15__row--2,
+    .wf-portfolio-15 .wf-portfolio-15__row--2-alt {
+      grid-template-columns: 1fr;
+    }
+    .wf-portfolio-15 .wf-img { min-height: 16rem; }
+    .wf-portfolio-15 .wf-portfolio-15__caption { transform: translateY(0); }
+    .wf-portfolio-15 .wf-portfolio-15__title { font-size: 1.75rem; }
+    .wf-portfolio-15 { padding: 3rem 0; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .wf-portfolio-15 .wf-portfolio-15__row--3 { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<section class="wf-portfolio-15">
+  <div class="wf-portfolio-15__header">
+    <div class="wf-portfolio-15__subtitle">Galerie</div>
+    <h2 class="wf-portfolio-15__title">Nos realisations</h2>
+    <p class="wf-portfolio-15__desc">Parcourez notre galerie de projets en plein ecran. Survolez pour decouvrir les details.</p>
+  </div>
+
+  <div class="wf-portfolio-15__gallery">
+    <!-- Row 1: 3 equal columns -->
+    <div class="wf-portfolio-15__row wf-portfolio-15__row--3">
+      <div class="wf-portfolio-15__item">
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-portfolio-15__caption">
+          <h3 class="wf-portfolio-15__caption-title">Refonte TechVision</h3>
+          <p class="wf-portfolio-15__caption-text">Redesign complet avec approche mobile-first.</p>
+          <span class="wf-badge">Web Design</span>
+        </div>
+      </div>
+
+      <div class="wf-portfolio-15__item">
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-portfolio-15__caption">
+          <h3 class="wf-portfolio-15__caption-title">Plateforme InnoPlus</h3>
+          <p class="wf-portfolio-15__caption-text">Application collaborative pour gestion de projets.</p>
+          <span class="wf-badge">Application</span>
+        </div>
+      </div>
+
+      <div class="wf-portfolio-15__item">
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-portfolio-15__caption">
+          <h3 class="wf-portfolio-15__caption-title">Identite Luxora</h3>
+          <p class="wf-portfolio-15__caption-text">Identite visuelle haut de gamme pour luxe.</p>
+          <span class="wf-badge">Branding</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Wide left + narrow right -->
+    <div class="wf-portfolio-15__row wf-portfolio-15__row--2">
+      <div class="wf-portfolio-15__item">
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-portfolio-15__caption">
+          <h3 class="wf-portfolio-15__caption-title">Boutique ModaChic</h3>
+          <p class="wf-portfolio-15__caption-text">Plateforme e-commerce avec experience d'achat immersive.</p>
+          <span class="wf-badge">E-commerce</span>
+        </div>
+      </div>
+
+      <div class="wf-portfolio-15__item">
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-portfolio-15__caption">
+          <h3 class="wf-portfolio-15__caption-title">Dashboard FinanceFlow</h3>
+          <p class="wf-portfolio-15__caption-text">Tableau de bord analytique pour donnees financieres.</p>
+          <span class="wf-badge">Application</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Narrow left + wide right -->
+    <div class="wf-portfolio-15__row wf-portfolio-15__row--2-alt">
+      <div class="wf-portfolio-15__item">
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-portfolio-15__caption">
+          <h3 class="wf-portfolio-15__caption-title">Branding EcoVert</h3>
+          <p class="wf-portfolio-15__caption-text">Identite de marque ecologique avec palette naturelle.</p>
+          <span class="wf-badge">Branding</span>
+        </div>
+      </div>
+
+      <div class="wf-portfolio-15__item">
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-portfolio-15__caption">
+          <h3 class="wf-portfolio-15__caption-title">Marketplace NovaMart</h3>
+          <p class="wf-portfolio-15__caption-text">Place de marche multi-vendeurs avec interface fluide.</p>
+          <span class="wf-badge">E-commerce</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

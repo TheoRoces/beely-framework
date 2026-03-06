@@ -1,0 +1,204 @@
+<!-- Portfolio 07: Dark bg + light project cards with categories -->
+<style>
+  .wf-portfolio-07 {
+    --wf-bg: var(--color-bg-dark, #0f172a);
+    --wf-text: var(--color-text-inverse, #f8fafc);
+    --wf-text-muted: var(--color-neutral-400, #94a3b8);
+    --wf-accent: var(--color-text, #374151);
+    --wf-card-bg: var(--color-bg, #ffffff);
+    --wf-card-text: var(--color-text, #1a1a1a);
+    --wf-card-muted: var(--color-text-light, #6b7280);
+    --wf-border: var(--color-neutral-800, #1e293b);
+    --wf-radius: 0.75rem;
+    --wf-gap: 1.5rem;
+    padding: 5rem 1.5rem;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+  .wf-portfolio-07 .wf-portfolio-07__header {
+    max-width: 72rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .wf-portfolio-07 .wf-portfolio-07__subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-text-muted);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-07 .wf-portfolio-07__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .wf-portfolio-07 .wf-portfolio-07__desc {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .wf-portfolio-07 .wf-portfolio-07__grid {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: var(--wf-gap);
+  }
+  .wf-portfolio-07 .wf-card {
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+    background: var(--wf-card-bg);
+    color: var(--wf-card-text);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .wf-portfolio-07 .wf-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  .wf-portfolio-07 .wf-img {
+    width: 100%;
+    flex: 1;
+    min-height: 14rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-alt, #f9fafb);
+    color: var(--wf-card-muted);
+  }
+  .wf-portfolio-07 .wf-card__body {
+    padding: 1.25rem;
+  }
+  .wf-portfolio-07 .wf-card__category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.5rem;
+  }
+  .wf-portfolio-07 .wf-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  .wf-portfolio-07 .wf-card__text {
+    font-size: 0.875rem;
+    color: var(--wf-card-muted);
+    margin: 0 0 1rem;
+    line-height: 1.5;
+  }
+  .wf-portfolio-07 .wf-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--wf-card-muted);
+    background: var(--color-bg-alt, #f9fafb);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full, 9999px);
+    margin-right: 0.375rem;
+  }
+  @media (max-width: 768px) {
+    .wf-portfolio-07 .wf-portfolio-07__grid { grid-template-columns: 1fr; }
+    .wf-portfolio-07 .wf-portfolio-07__title { font-size: 1.75rem; }
+    .wf-portfolio-07 { padding: 3rem 1rem; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .wf-portfolio-07 .wf-portfolio-07__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<section class="wf-portfolio-07">
+  <div class="wf-portfolio-07__header">
+    <div class="wf-portfolio-07__subtitle">Portfolio</div>
+    <h2 class="wf-portfolio-07__title">Projets recents</h2>
+    <p class="wf-portfolio-07__desc">Une selection de nos meilleurs travaux classes par categorie.</p>
+  </div>
+
+  <div class="wf-portfolio-07__grid">
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <div class="wf-card__category">Web Design</div>
+        <h3 class="wf-card__title">Refonte TechVision</h3>
+        <p class="wf-card__text">Redesign complet avec approche mobile-first et design system modulaire.</p>
+        <span class="wf-badge">UI/UX</span>
+        <span class="wf-badge">Responsive</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <div class="wf-card__category">Application</div>
+        <h3 class="wf-card__title">Plateforme InnoPlus</h3>
+        <p class="wf-card__text">Application collaborative pour gestion de projets innovants.</p>
+        <span class="wf-badge">SaaS</span>
+        <span class="wf-badge">Dashboard</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <div class="wf-card__category">Branding</div>
+        <h3 class="wf-card__title">Identite Luxora</h3>
+        <p class="wf-card__text">Identite visuelle haut de gamme pour marque de luxe.</p>
+        <span class="wf-badge">Logo</span>
+        <span class="wf-badge">Charte</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <div class="wf-card__category">E-commerce</div>
+        <h3 class="wf-card__title">Boutique ModaChic</h3>
+        <p class="wf-card__text">Plateforme e-commerce avec experience d'achat immersive.</p>
+        <span class="wf-badge">Shopify</span>
+        <span class="wf-badge">Custom</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <div class="wf-card__category">Application</div>
+        <h3 class="wf-card__title">Dashboard FinanceFlow</h3>
+        <p class="wf-card__text">Tableau de bord analytique pour visualiser les donnees financieres.</p>
+        <span class="wf-badge">Fintech</span>
+        <span class="wf-badge">Data</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <div class="wf-card__category">Branding</div>
+        <h3 class="wf-card__title">Branding EcoVert</h3>
+        <p class="wf-card__text">Identite de marque ecologique avec palette naturelle et organique.</p>
+        <span class="wf-badge">Eco</span>
+        <span class="wf-badge">Print</span>
+      </div>
+    </div>
+  </div>
+</section>

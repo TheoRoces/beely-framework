@@ -1,0 +1,124 @@
+<!-- Content 05 : Titre centre au-dessus + deux colonnes de texte -->
+<style>
+  .wf-content-05 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-gap: 2.5rem;
+    --wf-text-color: var(--color-text, #1a1a1a);
+    --wf-text-secondary: var(--color-text-light, #555);
+    --wf-accent: var(--color-text, #374151);
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-max-width: 1200px;
+    --wf-border: var(--color-border, #e5e7eb);
+
+    background: var(--wf-bg);
+    color: var(--wf-text-color);
+    padding: var(--wf-section-padding);
+  }
+
+  .wf-content-05__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-content-05__header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 3rem auto;
+  }
+
+  .wf-content-05__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-content-05__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .wf-content-05__divider {
+    width: 3rem;
+    height: 3px;
+    background: var(--wf-accent);
+    border: none;
+    margin: 2rem auto;
+  }
+
+  .wf-content-05__columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--wf-gap);
+  }
+
+  .wf-content-05__col-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+  }
+
+  .wf-content-05__text {
+    color: var(--wf-text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin: 0 0 1rem 0;
+  }
+
+  .wf-content-05__text:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-content-05 {
+      --wf-section-padding: 3rem 1.25rem;
+    }
+    .wf-content-05__columns {
+      grid-template-columns: 1fr;
+    }
+    .wf-content-05__title {
+      font-size: 1.875rem;
+    }
+  }
+</style>
+
+<section class="wf-content-05">
+  <div class="wf-content-05__container">
+    <div class="wf-content-05__header">
+      <p class="wf-content-05__label">A propos de nous</p>
+      <h2 class="wf-content-05__title">Deux decennies d'innovation et d'engagement</h2>
+    </div>
+    <hr class="wf-content-05__divider" />
+    <div class="wf-content-05__columns">
+      <div class="wf-content-05__col">
+        <h3 class="wf-content-05__col-title">Notre mission</h3>
+        <p class="wf-content-05__text">
+          Nous croyons que chaque entreprise merite d'avoir acces aux meilleures
+          solutions technologiques. Notre mission est de democratiser l'innovation
+          digitale et de rendre accessible la performance en ligne.
+        </p>
+        <p class="wf-content-05__text">
+          Depuis notre creation, nous avons accompagne des centaines de projets
+          avec la meme passion et le meme souci du detail.
+        </p>
+      </div>
+      <div class="wf-content-05__col">
+        <h3 class="wf-content-05__col-title">Nos valeurs</h3>
+        <p class="wf-content-05__text">
+          La transparence, l'excellence et la collaboration sont au coeur de
+          chacune de nos actions. Nous construisons des relations durables
+          basees sur la confiance mutuelle et les resultats concrets.
+        </p>
+        <p class="wf-content-05__text">
+          Chaque membre de notre equipe partage cette vision et s'engage
+          quotidiennement a depasser les attentes de nos clients.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

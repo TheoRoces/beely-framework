@@ -1,0 +1,58 @@
+<!--
+  DARK MODE — Site System
+
+  CSS : core/css/tokens.css (bloc [data-theme="dark"])
+  JS  : core/js/darkmode.js
+
+  Fonctionnement :
+    - Applique data-theme="dark" ou "light" sur <html>
+    - Vérifie d'abord localStorage, puis prefers-color-scheme
+    - Persiste le choix dans localStorage
+    - Script synchrone (pas defer) pour éviter le flash
+
+  JS global :
+    window.toggleTheme()  — Bascule entre light et dark
+
+  Attribut :
+    data-theme-toggle     — Bouton de bascule (délégation click)
+
+  Personnalisation (tokens.css) :
+    Les variables suivantes sont surchargées en dark mode :
+    --text, --text-light, --bg, --bg-alt, --border, --border-dark,
+    --white, --black, --shadow-sm/md/lg/xl
+    → Les mappings --color-* héritent automatiquement.
+
+  Script à inclure dans <head> (synchrone, avant les CSS) :
+    <script src="core/js/darkmode.js"></script>
+-->
+
+
+<!-- ===== BOUTON TOGGLE SIMPLE ===== -->
+
+<button data-theme-toggle>
+  Mode sombre / clair
+</button>
+
+
+<!-- ===== BOUTON TOGGLE AVEC ICÔNES ===== -->
+
+<button data-theme-toggle aria-label="Basculer le thème">
+  <span class="icon-light">&#9788;</span>
+  <span class="icon-dark">&#9790;</span>
+</button>
+
+<style>
+  /* Afficher l'icône correspondant au mode actif */
+  [data-theme="dark"] .icon-dark,
+  [data-theme="light"] .icon-light,
+  :not([data-theme]) .icon-light {
+    display: none;
+  }
+</style>
+
+
+<!-- ===== SCRIPT À INCLURE ===== -->
+<!--
+  Dans le <head>, AVANT les CSS et SANS defer :
+  <script src="core/js/darkmode.js"></script>
+-->

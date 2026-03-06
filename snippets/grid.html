@@ -1,0 +1,78 @@
+<!--
+  GRID / BENTO — Site System
+
+  CSS : core/css/grid.css
+
+  Classes :
+    .grid              — Grille CSS standard
+    .grid--1 à .grid--6 — Colonnes fixes (alternative aux data-cols)
+    .bento             — Grille bento (4 colonnes, auto-rows)
+
+  Attributs Grid (.grid) :
+    data-cols="1-6"          — Nombre de colonnes
+    data-gap="none|xs|sm|md|lg|xl" — Espacement (défaut : md)
+    data-align="start|center|end|stretch" — Alignement vertical
+
+  Attributs items :
+    data-col-span="2-6|full" — Largeur en colonnes
+    data-row-span="2-4"      — Hauteur en rangées
+
+  Attributs Bento (.bento) :
+    data-row-height="sm|md|lg|xl"  — Hauteur des rangées (120-320px)
+    data-size="wide|tall|large|full" — Taille prédéfinie des items
+    data-layout="sidebar|sidebar-left|feature" — Layout prédéfini
+
+  Responsive : 1024px → 3 cols, 768px → 2 cols, 480px → 1 col
+-->
+
+
+<!-- ===== GRILLE 3 COLONNES ===== -->
+
+<div class="grid" data-cols="3" data-gap="lg">
+  <div>Colonne 1</div>
+  <div>Colonne 2</div>
+  <div>Colonne 3</div>
+  <div data-col-span="2">Large (2 colonnes)</div>
+  <div>Normal</div>
+</div>
+
+
+<!-- ===== GRILLE 4 COLONNES AVEC SPAN ===== -->
+
+<div class="grid" data-cols="4" data-gap="md">
+  <div data-col-span="full">Pleine largeur</div>
+  <div data-col-span="2" data-row-span="2">Grand bloc</div>
+  <div>Petit 1</div>
+  <div>Petit 2</div>
+  <div>Petit 3</div>
+  <div>Petit 4</div>
+</div>
+
+
+<!-- ===== BENTO LAYOUT ===== -->
+
+<div class="bento" data-gap="md">
+  <div data-size="wide">Large</div>
+  <div data-size="tall">Haut</div>
+  <div>Normal</div>
+  <div data-size="large">Grand (2x2)</div>
+  <div>Normal</div>
+  <div data-size="full">Pleine largeur</div>
+</div>
+
+
+<!-- ===== LAYOUT SIDEBAR ===== -->
+
+<div class="bento" data-layout="sidebar">
+  <div>Contenu principal (2/3)</div>
+  <div>Sidebar (1/3)</div>
+</div>
+
+
+<!-- ===== LAYOUT FEATURE ===== -->
+
+<div class="bento" data-layout="feature" data-gap="md">
+  <div>Feature principale (grande)</div>
+  <div>Petit 1</div>
+  <div>Petit 2</div>
+</div>

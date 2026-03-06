@@ -1,0 +1,145 @@
+<!-- team-11: Team grid with department/group headers -->
+<style>
+  .wf-team-11 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--wf-spacing-section, 5rem) var(--wf-spacing-gutter, 1.5rem);
+    max-width: var(--wf-max-width, 1200px);
+    margin: 0 auto;
+  }
+  .wf-team-11__header {
+    text-align: center;
+    margin-bottom: var(--wf-spacing-xl, 4rem);
+  }
+  .wf-team-11__title {
+    font-size: var(--wf-font-size-3xl, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text, #111);
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+  .wf-team-11__subtitle {
+    font-size: var(--wf-font-size-md, 1.125rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+  }
+  .wf-team-11__department {
+    margin-bottom: var(--wf-spacing-xl, 4rem);
+  }
+  .wf-team-11__department:last-child {
+    margin-bottom: 0;
+  }
+  .wf-team-11__dept-label {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-light, #6b7280);
+    margin: 0 0 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-border, #e5e7eb);
+  }
+  .wf-team-11__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wf-spacing-md, 2rem);
+  }
+  .wf-team-11__member {
+    text-align: center;
+  }
+  .wf-team-11__photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--color-bg-alt, #f3f4f6);
+    border-radius: var(--wf-radius-md, 0.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .wf-team-11__name {
+    font-size: var(--wf-font-size-base, 1rem);
+    font-weight: 600;
+    color: var(--color-text, #111);
+    margin: 0 0 0.25rem;
+  }
+  .wf-team-11__role {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .wf-team-11__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .wf-team-11__grid { grid-template-columns: 1fr; max-width: 18rem; margin: 0 auto; }
+    .wf-team-11__title { font-size: 2rem; }
+  }
+</style>
+
+<section class="wf-team-11">
+  <header class="wf-team-11__header">
+    <h2 class="wf-team-11__title">Notre equipe</h2>
+    <p class="wf-team-11__subtitle">Les talents derriere le projet</p>
+  </header>
+
+  <div class="wf-team-11__department">
+    <h3 class="wf-team-11__dept-label">Direction</h3>
+    <div class="wf-team-11__grid">
+      <div class="wf-team-11__member">
+        <div class="wf-team-11__photo wf-img--square">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+        </div>
+        <h4 class="wf-team-11__name">Marie Dupont</h4>
+        <p class="wf-team-11__role">Directrice Generale</p>
+      </div>
+      <div class="wf-team-11__member">
+        <div class="wf-team-11__photo wf-img--square">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+        </div>
+        <h4 class="wf-team-11__name">Lucas Petit</h4>
+        <p class="wf-team-11__role">Chef de Projet</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wf-team-11__department">
+    <h3 class="wf-team-11__dept-label">Developpement</h3>
+    <div class="wf-team-11__grid">
+      <div class="wf-team-11__member">
+        <div class="wf-team-11__photo wf-img--square">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+        </div>
+        <h4 class="wf-team-11__name">Jean Martin</h4>
+        <p class="wf-team-11__role">Lead Developer</p>
+      </div>
+      <div class="wf-team-11__member">
+        <div class="wf-team-11__photo wf-img--square">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+        </div>
+        <h4 class="wf-team-11__name">Thomas Leroy</h4>
+        <p class="wf-team-11__role">Developpeur Frontend</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wf-team-11__department">
+    <h3 class="wf-team-11__dept-label">Design & Marketing</h3>
+    <div class="wf-team-11__grid">
+      <div class="wf-team-11__member">
+        <div class="wf-team-11__photo wf-img--square">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+        </div>
+        <h4 class="wf-team-11__name">Sophie Bernard</h4>
+        <p class="wf-team-11__role">Designer UI/UX</p>
+      </div>
+      <div class="wf-team-11__member">
+        <div class="wf-team-11__photo wf-img--square">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+        </div>
+        <h4 class="wf-team-11__name">Emma Moreau</h4>
+        <p class="wf-team-11__role">Responsable Marketing</p>
+      </div>
+    </div>
+  </div>
+</section>

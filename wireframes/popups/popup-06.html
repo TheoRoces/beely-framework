@@ -1,0 +1,124 @@
+<!-- popup-06.html | Video Popup | Wireframe -->
+<style>
+  .wf-popup-preview--06 {
+    --popup-overlay: rgba(0, 0, 0, 0.8);
+    --popup-radius: 12px;
+    --popup-max-width: 800px;
+    --popup-border: rgba(255, 255, 255, 0.15);
+    --popup-muted: rgba(255, 255, 255, 0.6);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    background: var(--popup-overlay);
+    padding: 1.5rem;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-popup-preview--06 .wf-popup-box {
+    max-width: var(--popup-max-width);
+    width: 100%;
+    position: relative;
+  }
+
+  .wf-popup-preview--06 .wf-popup-close {
+    position: absolute;
+    top: -48px;
+    right: 0;
+    background: none;
+    border: 1px solid var(--popup-border);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--popup-muted);
+  }
+
+  .wf-popup-preview--06 .wf-popup-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--color-bg-dark);
+    border-radius: var(--popup-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wf-popup-preview--06 .wf-popup-play {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+  }
+
+  .wf-popup-preview--06 .wf-popup-play svg {
+    width: 28px;
+    height: 28px;
+    color: var(--color-text-on-dark);
+    margin-left: 3px;
+  }
+
+  .wf-popup-preview--06 .wf-popup-video-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .wf-popup-preview--06 .wf-popup-video-title {
+    font-size: 0.875rem;
+    color: var(--color-text-on-dark);
+    font-weight: 500;
+  }
+
+  .wf-popup-preview--06 .wf-popup-video-time {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  @media (max-width: 600px) {
+    .wf-popup-preview--06 .wf-popup-play {
+      width: 56px;
+      height: 56px;
+    }
+    .wf-popup-preview--06 .wf-popup-play svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+</style>
+
+<div class="wf-popup-preview wf-popup-preview--06">
+  <div class="wf-popup-box">
+    <button class="wf-popup-close" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="wf-popup-video">
+      <button class="wf-popup-play" aria-label="Lire la video">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M8 5.14v14l11-7-11-7z"/></svg>
+      </button>
+      <div class="wf-popup-video-bar">
+        <span class="wf-popup-video-title">Presentation du projet</span>
+        <span class="wf-popup-video-time">2:34</span>
+      </div>
+    </div>
+  </div>
+</div>

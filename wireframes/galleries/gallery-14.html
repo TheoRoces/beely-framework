@@ -1,0 +1,237 @@
+<!-- Gallery 14: Galerie avec badge compteur (1/12) -->
+<!-- Section galerie avec indicateur de position numerique -->
+
+<style>
+  .wf-gallery-14 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-gallery-14-gap: 1.5rem;
+    --wf-gallery-14-radius: 0.75rem;
+    --wf-gallery-14-bg: var(--color-bg);
+    --wf-gallery-14-text: var(--color-text);
+    --wf-gallery-14-muted: var(--color-text-light);
+    --wf-gallery-14-img-bg: var(--color-border);
+    --wf-gallery-14-padding-x: 5%;
+    --wf-gallery-14-padding-y: 5rem;
+    --wf-gallery-14-badge-bg: rgba(0, 0, 0, 0.7);
+    --wf-gallery-14-badge-text: var(--color-text-on-dark)
+  }
+
+  .wf-gallery-14 {
+    background-color: var(--wf-gallery-14-bg);
+    padding: var(--wf-gallery-14-padding-y) var(--wf-gallery-14-padding-x);
+  }
+
+  .wf-gallery-14__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-gallery-14__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-gallery-14-muted);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .wf-gallery-14__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--wf-gallery-14-text);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .wf-gallery-14__description {
+    font-size: 1.125rem;
+    color: var(--wf-gallery-14-muted);
+    margin: 0 auto;
+    max-width: 40rem;
+    line-height: 1.6;
+  }
+
+  .wf-gallery-14__viewer {
+    position: relative;
+    max-width: 64rem;
+    margin: 0 auto 2rem auto;
+  }
+
+  .wf-gallery-14__main .wf-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--wf-gallery-14-img-bg);
+    border-radius: var(--wf-gallery-14-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .wf-gallery-14__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--wf-gallery-14-badge-bg);
+    color: var(--wf-gallery-14-badge-text);
+    padding: 0.375rem 0.875rem;
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.025em;
+  }
+
+  .wf-gallery-14__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .wf-gallery-14__arrow {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    color: var(--wf-gallery-14-text);
+    font-size: 1.125rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+  }
+
+  .wf-gallery-14__arrow:hover {
+    background-color: var(--color-neutral-200);
+  }
+
+  .wf-gallery-14__counter {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--wf-gallery-14-text);
+    font-variant-numeric: tabular-nums;
+    min-width: 4rem;
+    text-align: center;
+  }
+
+  .wf-gallery-14__thumbnails {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    max-width: 64rem;
+    margin: 0 auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+  }
+
+  .wf-gallery-14__thumbnails::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wf-gallery-14__thumb {
+    flex: 0 0 5rem;
+    height: 5rem;
+    background-color: var(--wf-gallery-14-img-bg);
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s;
+    opacity: 0.6;
+  }
+
+  .wf-gallery-14__thumb--active {
+    border-color: var(--wf-gallery-14-text);
+    opacity: 1;
+  }
+
+  .wf-gallery-14__thumb:hover {
+    opacity: 1;
+  }
+
+  .wf-gallery-14__thumb svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .wf-gallery-14__thumb {
+      flex: 0 0 3.5rem;
+      height: 3.5rem;
+    }
+
+    .wf-gallery-14__thumb svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+</style>
+
+<section class="wf-gallery-14">
+  <div class="wf-gallery-14__header">
+    <p class="wf-gallery-14__tagline">Galerie</p>
+    <h2 class="wf-gallery-14__title">Nos realisations en images</h2>
+    <p class="wf-gallery-14__description">Parcourez nos images avec le compteur pour suivre votre progression.</p>
+  </div>
+
+  <div class="wf-gallery-14__viewer">
+    <div class="wf-gallery-14__main">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <span class="wf-gallery-14__badge">1 / 12</span>
+  </div>
+
+  <div class="wf-gallery-14__nav">
+    <button class="wf-gallery-14__arrow" aria-label="Precedent">&larr;</button>
+    <span class="wf-gallery-14__counter">1 / 12</span>
+    <button class="wf-gallery-14__arrow" aria-label="Suivant">&rarr;</button>
+  </div>
+
+  <div class="wf-gallery-14__thumbnails">
+    <div class="wf-gallery-14__thumb wf-gallery-14__thumb--active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-14__thumb">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+  </div>
+</section>

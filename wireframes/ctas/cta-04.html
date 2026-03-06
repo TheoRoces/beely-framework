@@ -1,0 +1,100 @@
+<!-- CTA-04 : Newsletter style - email input + submit button -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text, #374151); color: var(--color-bg, #ffffff); border-color: var(--color-text, #374151); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #e5e7eb); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+  .wf-cta-04 {
+    padding: var(--space-20, 5rem) var(--space-6, 1.5rem);
+    background-color: var(--color-bg-alt, #f9fafb);
+    text-align: center;
+  }
+
+  .wf-cta-04__container {
+    max-width: var(--container-max, 40rem);
+    margin: 0 auto;
+  }
+
+  .wf-cta-04__heading {
+    font-size: var(--text-3xl, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text, #111827);
+    margin: 0 0 var(--space-4, 0.5rem);
+  }
+
+  .wf-cta-04__text {
+    font-size: var(--font-size-md, 1rem);
+    line-height: 1.6;
+    color: var(--color-text-muted, #6b7280);
+    margin: 0 0 var(--space-6, 2rem);
+  }
+
+  .wf-cta-04__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4, 0.75rem);
+    max-width: 28rem;
+    margin: 0 auto;
+  }
+
+  .wf-cta-04__input {
+    padding: 0.75rem 1rem;
+    font-size: var(--font-size-md, 1rem);
+    border: 1px solid var(--color-border, #e5e7eb);
+    border-radius: var(--radius-md, 0.5rem);
+    background-color: var(--color-bg, #ffffff);
+    color: var(--color-text, #111827);
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wf-cta-04__input::placeholder {
+    color: var(--color-text-muted, #9ca3af);
+  }
+
+  .wf-cta-04__disclaimer {
+    font-size: var(--text-xs, 0.75rem);
+    color: var(--color-text-muted, #9ca3af);
+    margin-top: var(--space-3, 0.5rem);
+  }
+
+  @media (min-width: 768px) {
+    .wf-cta-04__form {
+      flex-direction: row;
+    }
+
+    .wf-cta-04__input {
+      flex: 1;
+    }
+
+    .wf-cta-04__heading {
+      font-size: var(--text-4xl, 3rem);
+    }
+  }
+</style>
+
+<section class="wf-cta-04">
+  <div class="wf-cta-04__container">
+    <h2 class="wf-cta-04__heading">Restez informe</h2>
+    <p class="wf-cta-04__text">
+      Recevez nos conseils et actualites directement dans votre boite mail. Pas de spam, promis.
+    </p>
+    <form class="wf-cta-04__form" action="#" method="post">
+      <input
+        type="email"
+        class="wf-cta-04__input"
+        placeholder="Votre adresse email"
+        aria-label="Adresse email"
+        required
+      />
+      <button type="submit" class="btn btn--primary">S'inscrire</button>
+    </form>
+    <p class="wf-cta-04__disclaimer">
+      En vous inscrivant, vous acceptez notre politique de confidentialite. Desabonnement possible a tout moment.
+    </p>
+  </div>
+</section>

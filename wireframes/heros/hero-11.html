@@ -1,0 +1,101 @@
+<!-- Hero 11 : Centered text + animated gradient background (CSS only) -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text, #374151); color: var(--color-bg, #ffffff); border-color: var(--color-text, #374151); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #e5e7eb); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+.wf-hero-11 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 90vh;
+  padding: var(--space-12, 5rem) var(--space-6, 2rem);
+  background: linear-gradient(-45deg, var(--color-bg-dark), var(--color-bg-dark), var(--color-text), var(--color-text-light), var(--color-bg-dark));
+  background-size: 400% 400%;
+  animation: wf-hero-11-gradient 12s ease infinite;
+  overflow: hidden;
+}
+@keyframes wf-hero-11-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.wf-hero-11::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.05) 0%, transparent 60%),
+              radial-gradient(circle at 70% 80%, rgba(255,255,255,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+.wf-hero-11__content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4, 1.5rem);
+}
+.wf-hero-11__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  padding: 0.375rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.wf-hero-11__title {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text-on-dark, #fff);
+  margin: 0;
+}
+.wf-hero-11__subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 600px;
+}
+.wf-hero-11__actions {
+  display: flex;
+  gap: var(--space-3, 0.75rem);
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: var(--space-2, 0.5rem);
+}
+@media (max-width: 768px) {
+  .wf-hero-11 {
+    min-height: 80vh;
+    padding: var(--space-8, 3rem) var(--space-4, 1rem);
+  }
+}
+
+  .wf-hero-11 .btn--primary { background-color: var(--color-bg); color: var(--color-text); border-color: var(--color-bg); }
+  .wf-hero-11 .btn--primary:hover { background-color: var(--color-border); border-color: var(--color-border); }
+  .wf-hero-11 .btn--secondary { color: var(--color-text-on-dark, #fff); border-color: rgba(255,255,255,0.4); }
+  .wf-hero-11 .btn--secondary:hover { border-color: var(--color-text-on-dark, #fff); background: rgba(255,255,255,0.1); }
+</style>
+
+<section class="wf-hero-11">
+  <div class="wf-hero-11__content">
+    <span class="wf-hero-11__badge">Innovation digitale</span>
+    <h1 class="wf-hero-11__title">Transformez votre vision en realite numerique</h1>
+    <p class="wf-hero-11__subtitle">Nous concevons des experiences digitales qui allient esthetique et performance pour propulser votre activite.</p>
+    <div class="wf-hero-11__actions">
+      <a href="#" class="btn btn--primary">Decouvrir nos services</a>
+      <a href="#" class="btn btn--secondary">Nous contacter</a>
+    </div>
+  </div>
+</section>

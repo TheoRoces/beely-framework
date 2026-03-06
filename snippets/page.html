@@ -1,0 +1,97 @@
+<!--
+  PAGE COMPLÈTE — Site System
+
+  Template minimal pour créer une nouvelle page.
+  Copiez ce fichier à la racine du projet et renommez-le.
+
+  Chemins :
+    - Si la page est à la racine (ex: contact.html) → chemins ci-dessous OK
+    - Si la page est dans un sous-dossier (ex: pages/about.html) → préfixer avec ../
+
+  Modules inclus (retirer ceux non utilisés) :
+    CSS : tokens, base, animations, elements, forms, cookies, grid, icons, blog
+    JS  : darkmode, config-site, site, components, header, footer, card,
+          animations, elements, forms, icons, params, blog, cookies
+
+  Dark mode : darkmode.js est chargé en synchrone (pas defer) pour éviter le flash.
+  Config     : config-site.js est chargé en synchrone (cookies, legal, blog).
+  Site       : site.js applique le favicon et le titre par défaut depuis SITE_CONFIG.
+  Composants : components.js est chargé en synchrone pour le rendu header/footer.
+  Header/Footer : configurés via attributs data-* et slots <template>.
+  Tous les autres JS sont en defer (chargement différé).
+-->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma Page — Mon Site</title>
+  <meta name="description" content="Description de la page pour le SEO.">
+
+  <!-- Dark mode + Config (synchrone, avant les CSS et composants) -->
+  <script src="core/js/darkmode.js"></script>
+  <script src="config-site.js"></script>
+  <script src="core/js/site.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="core/css/tokens.css">
+  <link rel="stylesheet" href="core/css/base.css">
+  <link rel="stylesheet" href="core/css/animations.css">
+  <link rel="stylesheet" href="core/css/elements.css">
+  <link rel="stylesheet" href="core/css/forms.css">
+  <link rel="stylesheet" href="core/css/cookies.css">
+  <link rel="stylesheet" href="core/css/grid.css">
+  <link rel="stylesheet" href="core/css/icons.css">
+  <!-- <link rel="stylesheet" href="core/css/blog.css"> -->
+
+  <!-- Composants (synchrone) -->
+  <script src="core/js/components.js"></script>
+  <script src="components/header.js"></script>
+  <script src="components/footer.js"></script>
+  <!-- <script src="components/card.js"></script> -->
+
+  <!-- JS interactifs (defer) -->
+  <script src="core/js/animations.js" defer></script>
+  <script src="core/js/elements.js" defer></script>
+  <script src="core/js/forms.js" defer></script>
+  <script src="core/js/icons.js" defer></script>
+  <script src="core/js/params.js" defer></script>
+  <!-- <script src="core/js/blog.js" defer></script> -->
+  <script src="core/js/cookies.js" defer></script>
+</head>
+<body>
+
+  <!-- Header : data-* pour les valeurs, <template> pour le HTML -->
+  <div data-component="header"
+       data-site-name="Mon Site"
+       data-logo-link="/index.html">
+    <template data-slot="nav">
+      <a href="/index.html">Accueil</a>
+      <a href="/contact.html">Contact</a>
+    </template>
+  </div>
+
+  <!-- Contenu principal -->
+  <div class="container">
+    <div class="section">
+      <h1 class="anim-fade-in-up">Titre de la page</h1>
+      <p class="anim-fade-in-up anim--delay-1">
+        Contenu de la page.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer : data-* pour le copyright, <template> pour les liens -->
+  <div data-component="footer"
+       data-copyright="&copy; 2026 Mon Site">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>

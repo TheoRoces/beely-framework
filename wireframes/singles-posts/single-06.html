@@ -1,0 +1,110 @@
+<!-- single-06.html | Minimal: no image, just title + long-form text -->
+<style>
+  .wf-single-06 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-max-width: 680px;
+    --wf-spacing-lg: 4rem;
+    --wf-spacing-md: 2rem;
+    --wf-spacing-sm: 1rem;
+    --wf-font-title: 3rem;
+    --wf-font-body: var(--font-body);
+    --wf-line-height: 1.9;
+    --wf-color-bg: var(--color-bg);
+    --wf-color-text: var(--color-text);
+    --wf-color-meta: var(--color-text-light);
+    --wf-color-border: var(--color-border);
+    --wf-color-accent: var(--color-neutral-900)
+  }
+
+  .wf-single-06 {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    padding: var(--wf-spacing-lg) var(--wf-spacing-sm);
+    color: var(--wf-color-text);
+    background-color: var(--wf-color-bg);
+  }
+
+  .wf-single-06__header {
+    margin-bottom: var(--wf-spacing-lg);
+    padding-bottom: var(--wf-spacing-md);
+    border-bottom: 2px solid var(--wf-color-accent);
+  }
+
+  .wf-single-06__title {
+    font-size: var(--wf-font-title);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 var(--wf-spacing-sm);
+    letter-spacing: -0.03em;
+  }
+
+  .wf-single-06__meta {
+    font-size: 0.9rem;
+    color: var(--wf-color-meta);
+  }
+
+  .wf-single-06__body p {
+    line-height: var(--wf-line-height);
+    margin: 0 0 1.75rem;
+  }
+
+  .wf-single-06__body h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .wf-single-06__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: var(--wf-spacing-lg);
+    padding-top: var(--wf-spacing-sm);
+    border-top: 1px solid var(--wf-color-border);
+  }
+
+  .wf-single-06__tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-full, 9999px);
+    font-size: 0.8rem;
+    color: var(--wf-color-meta);
+  }
+
+  @media (max-width: 640px) {
+    .wf-single-06 {
+      --wf-font-title: 2rem;
+      --wf-spacing-lg: 2.5rem;
+      --wf-font-body: var(--font-body);
+    }
+  }
+</style>
+
+<article class="wf-single-06">
+  <header class="wf-single-06__header">
+    <h1 class="wf-single-06__title">Les tendances du web design en 2026</h1>
+    <div class="wf-single-06__meta">Par Marie Dupont | 15 février 2026 | 8 min de lecture</div>
+  </header>
+
+  <div class="wf-single-06__body">
+    <h2>Interfaces immersives et minimalisme</h2>
+    <p>Le paysage du web design continue d'évoluer à une vitesse remarquable en 2026. Les interfaces utilisateur deviennent de plus en plus immersives, mêlant esthétique minimaliste et interactions sophistiquées. Les designers repoussent les limites de la créativité tout en maintenant une accessibilité exemplaire pour tous les utilisateurs.</p>
+
+    <h2>Le rôle de l'intelligence artificielle</h2>
+    <p>L'intelligence artificielle transforme profondément la manière dont nous concevons les expériences numériques. Les outils de génération automatique de maquettes et de prototypage rapide permettent aux équipes de design de se concentrer sur la stratégie et l'innovation plutôt que sur les tâches répétitives. Cette évolution redéfinit le rôle du designer moderne.</p>
+
+    <h2>Typographie et systèmes adaptatifs</h2>
+    <p>La typographie variable et les systèmes de design adaptatifs occupent désormais une place centrale dans les projets web. Les marques investissent massivement dans des identités visuelles numériques cohérentes, capables de s'adapter fluidement à chaque contexte d'affichage, du smartphone à l'écran ultra-large.</p>
+
+    <h2>Durabilité et éco-conception</h2>
+    <p>Enfin, la durabilité numérique s'impose comme un critère incontournable. Les concepteurs intègrent dès la phase initiale des considérations d'éco-conception, optimisant le poids des pages et réduisant l'empreinte carbone des sites web. Cette approche responsable devient un avantage compétitif majeur sur le marché.</p>
+  </div>
+
+  <div class="wf-single-06__tags">
+    <span class="wf-single-06__tag">Web Design</span>
+    <span class="wf-single-06__tag">Tendances</span>
+    <span class="wf-single-06__tag">UI/UX</span>
+  </div>
+</article>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Param&egrave;tres URL — Documentation — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+
+  <div data-component="header"
+       data-site-name="SiteSystem"
+       data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="params"></nav>
+
+      <main class="docs-content">
+        <h1>Param&egrave;tres URL</h1>
+        <p>
+          Persistance automatique des param&egrave;tres d'URL (UTMs, etc.) entre les pages et pr&eacute;-remplissage des champs de formulaire.
+        </p>
+
+        <h2>Persistance entre les pages</h2>
+        <p>Le script <code>core/js/params.js</code> d&eacute;tecte automatiquement les param&egrave;tres d'URL et les ajoute &agrave; tous les liens internes du site. Ainsi, si un visiteur arrive depuis :</p>
+<pre><code>https://monsite.fr/?utm_source=google&utm_medium=cpc&utm_campaign=promo</code></pre>
+        <p>Tous les liens internes du site deviendront :</p>
+<pre><code>&lt;a href="blog?utm_source=google&utm_medium=cpc&utm_campaign=promo"&gt;</code></pre>
+
+        <h3>Liens pris en charge</h3>
+        <ul>
+          <li>Chemins relatifs : <code>blog</code>, <code>./contact</code>, <code>../index</code></li>
+          <li>Chemins absolus : <code>/contact</code></li>
+          <li>Liens avec m&ecirc;me domaine</li>
+        </ul>
+
+        <h3>Liens ignor&eacute;s</h3>
+        <ul>
+          <li>Ancres : <code>#section</code></li>
+          <li>Liens externes (domaine diff&eacute;rent)</li>
+          <li>Liens <code>mailto:</code>, <code>tel:</code>, <code>javascript:</code></li>
+        </ul>
+
+        <h2>UTMs automatiques</h2>
+        <p>Les UTMs sont automatiquement collect&eacute;s et envoy&eacute;s avec chaque soumission de formulaire :</p>
+        <table>
+          <tr><th>Param&egrave;tre</th><th>Description</th></tr>
+          <tr><td><code>utm_source</code></td><td>Source du trafic (google, facebook, newsletter...)</td></tr>
+          <tr><td><code>utm_medium</code></td><td>Support (cpc, email, social...)</td></tr>
+          <tr><td><code>utm_campaign</code></td><td>Nom de la campagne</td></tr>
+          <tr><td><code>utm_term</code></td><td>Mot-cl&eacute; (SEA)</td></tr>
+          <tr><td><code>utm_content</code></td><td>Variante de l'annonce (A/B test)</td></tr>
+        </table>
+
+        <h2>Pr&eacute;-remplissage des champs</h2>
+        <p>Les param&egrave;tres d'URL dont le nom correspond &agrave; l'attribut <code>name</code> d'un champ de formulaire le pr&eacute;-remplissent automatiquement :</p>
+
+<pre><code>https://monsite.fr/contact?nom=Manon&email=manon@ex.fr&type_client=entreprise</code></pre>
+
+        <ul>
+          <li><code>?nom=Manon</code> &rarr; <code>&lt;input name="nom"&gt;</code> aura la valeur &laquo; Manon &raquo;</li>
+          <li><code>?type_client=entreprise</code> &rarr; le radio &laquo; Entreprise &raquo; sera s&eacute;lectionn&eacute;</li>
+        </ul>
+
+        <h3>Types de champs support&eacute;s</h3>
+        <ul>
+          <li><strong>Inputs texte/email/tel</strong> : valeur directe</li>
+          <li><strong>Checkboxes/Radios</strong> : coch&eacute;s si la valeur correspond</li>
+          <li><strong>Selects natifs</strong> : option s&eacute;lectionn&eacute;e</li>
+          <li><strong>Custom Select</strong> (<code>data-name</code>) : option simul&eacute;e</li>
+          <li><strong>Custom Radio/Checkbox Group</strong> (<code>data-name</code>) : option simul&eacute;e</li>
+        </ul>
+
+        <h2>API JavaScript</h2>
+<pre><code>// R&eacute;cup&eacute;rer tous les param&egrave;tres d'URL
+var params = getUrlParams();
+// { nom: 'Manon', utm_source: 'google', ... }
+
+// R&eacute;cup&eacute;rer uniquement les UTMs
+var utms = getUTMs();
+// { utm_source: 'google', utm_medium: 'cpc', ... }</code></pre>
+
+        <h2>Inclure dans une page</h2>
+<pre><code>&lt;script src="core/js/params.js" defer&gt;&lt;/script&gt;</code></pre>
+        <p>Le script s'initialise automatiquement au chargement du DOM. Aucune configuration n&eacute;cessaire.</p>
+
+        <div class="docs-see-also">
+          <div class="docs-see-also__title">Voir aussi</div>
+          <ul>
+            <li><a href="forms.html#pre-remplissage-par-url">Formulaires (pr&eacute;-remplissage)</a></li>
+            <li><a href="cookies.html">Cookies &amp; Analytics</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </main>
+      <aside class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <div data-component="footer"
+       data-copyright="&copy; 2026 SiteSystem">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>

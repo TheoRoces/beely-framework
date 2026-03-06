@@ -1,0 +1,76 @@
+<!-- Logos 14 : Animated fade-in logos (CSS keyframes) -->
+<style>
+  .wf-logos-14 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--wf-spacing-xl, 4rem) var(--wf-spacing-md, 1.5rem);
+    text-align: center;
+  }
+
+  .wf-logos-14__title {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-light, #6b7280);
+    margin: 0 0 var(--wf-spacing-lg, 2.5rem) 0;
+    animation: wf-fade-in-up 0.6s ease both;
+  }
+
+  .wf-logos-14__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--wf-spacing-lg, 3rem);
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .wf-logos-14 .wf-logo {
+    color: var(--color-text-light, #9ca3af);
+    opacity: 0;
+    flex-shrink: 0;
+    animation: wf-fade-in-up 0.6s ease both;
+  }
+
+  .wf-logos-14 .wf-logo:nth-child(1) { animation-delay: 0.1s; }
+  .wf-logos-14 .wf-logo:nth-child(2) { animation-delay: 0.2s; }
+  .wf-logos-14 .wf-logo:nth-child(3) { animation-delay: 0.3s; }
+  .wf-logos-14 .wf-logo:nth-child(4) { animation-delay: 0.4s; }
+  .wf-logos-14 .wf-logo:nth-child(5) { animation-delay: 0.5s; }
+  .wf-logos-14 .wf-logo:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes wf-fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 0.5;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wf-logos-14__row {
+      gap: var(--wf-spacing-md, 1.5rem);
+    }
+
+    .wf-logos-14 .wf-logo svg {
+      width: 96px;
+      height: 26px;
+    }
+  }
+</style>
+
+<section class="wf-logos-14">
+  <p class="wf-logos-14__title">Ils nous font confiance</p>
+  <div class="wf-logos-14__row">
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+  </div>
+</section>

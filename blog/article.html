@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article — Site System</title>
+  <meta name="description" content="">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+
+  <!-- CSS -->
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="/docs/docs.css">
+  <link rel="stylesheet" href="../core/css/grid.css">
+  <link rel="stylesheet" href="../core/css/blog.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+
+  <!-- Slots -->
+  <script src="../core/js/components.js"></script>
+
+  <!-- Composants -->
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+
+  <!-- JS -->
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/blog.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+</head>
+<body>
+
+  <div data-component="header"
+       data-site-name="SiteSystem"
+       data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+
+  <article class="section" style="padding: var(--space-16) 0;">
+    <div class="container">
+      <div data-blog="article"></div>
+    </div>
+  </article>
+
+  <div data-component="footer"
+       data-copyright="&copy; 2026 SiteSystem">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>

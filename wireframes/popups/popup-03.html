@@ -1,0 +1,142 @@
+<!-- popup-03.html | Image + Text Side by Side Popup | Wireframe -->
+<style>
+  .wf-popup-preview--03 {
+    --popup-bg: var(--color-bg);
+    --popup-overlay: rgba(0, 0, 0, 0.55);
+    --popup-radius: 12px;
+    --popup-max-width: 720px;
+    --popup-text: var(--color-text);
+    --popup-muted: var(--color-text-light);
+    --popup-border: var(--color-border);
+    --popup-accent: var(--color-text);
+    --popup-accent-text: var(--color-bg);
+    --popup-placeholder: var(--color-border);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    background: var(--popup-overlay);
+    padding: 1.5rem;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-popup-preview--03 .wf-popup-box {
+    background: var(--popup-bg);
+    border-radius: var(--popup-radius);
+    max-width: var(--popup-max-width);
+    width: 100%;
+    position: relative;
+    box-shadow: var(--shadow-xl);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .wf-popup-preview--03 .wf-popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--popup-bg);
+    border: 1px solid var(--popup-border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--popup-muted);
+    z-index: 1;
+  }
+
+  .wf-popup-preview--03 .wf-popup-image {
+    background: var(--popup-placeholder);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 340px;
+  }
+
+  .wf-popup-preview--03 .wf-popup-image svg {
+    width: 48px;
+    height: 48px;
+    color: var(--color-text-light);
+  }
+
+  .wf-popup-preview--03 .wf-popup-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .wf-popup-preview--03 .wf-popup-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--popup-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-popup-preview--03 .wf-popup-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--popup-text);
+    margin: 0 0 0.75rem 0;
+    line-height: 1.3;
+  }
+
+  .wf-popup-preview--03 .wf-popup-desc {
+    font-size: 0.9375rem;
+    color: var(--popup-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .wf-popup-preview--03 .wf-popup-btn {
+    display: inline-block;
+    padding: 0.8125rem 1.5rem;
+    background: var(--popup-accent);
+    color: var(--popup-accent-text);
+    border: none;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    align-self: flex-start;
+  }
+
+  @media (max-width: 600px) {
+    .wf-popup-preview--03 .wf-popup-box {
+      grid-template-columns: 1fr;
+    }
+    .wf-popup-preview--03 .wf-popup-image {
+      min-height: 180px;
+    }
+    .wf-popup-preview--03 .wf-popup-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<div class="wf-popup-preview wf-popup-preview--03">
+  <div class="wf-popup-box">
+    <button class="wf-popup-close" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="wf-popup-image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+    </div>
+    <div class="wf-popup-content">
+      <span class="wf-popup-tag">Decouverte</span>
+      <h2 class="wf-popup-title">Explorez notre nouvelle collection</h2>
+      <p class="wf-popup-desc">Decouvrez des pieces uniques selectionnees avec soin pour vous inspirer au quotidien.</p>
+      <button class="wf-popup-btn">En savoir plus</button>
+    </div>
+  </div>
+</div>

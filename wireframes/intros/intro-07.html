@@ -1,0 +1,108 @@
+<!-- intro-07.html | Intro with background pattern/texture (CSS) -->
+<style>
+  .wf-intro-07 {
+    --wf-section-padding: 6rem 1.5rem;
+    --wf-max-width: 50rem;
+    --wf-bg-color: var(--color-bg-alt);
+    --wf-pattern-color: rgba(107, 114, 128, 0.05);
+    --wf-eyebrow-color: var(--color-text);
+    --wf-title-size: clamp(2rem, 4.5vw, 3.25rem);
+    --wf-title-color: var(--color-neutral-900);
+    --wf-text-size: 1.0625rem;
+    --wf-text-color: var(--color-neutral-600);
+    --wf-font-family: var(--font-body);
+
+    padding: var(--wf-section-padding);
+    font-family: var(--wf-font-family);
+    text-align: center;
+    background-color: var(--wf-bg-color);
+    background-image:
+      radial-gradient(circle at 1px 1px, var(--wf-pattern-color) 1px, transparent 0);
+    background-size: 24px 24px;
+    position: relative;
+  }
+
+  .wf-intro-07::before,
+  .wf-intro-07::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    pointer-events: none;
+  }
+
+  .wf-intro-07::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--wf-bg-color), transparent);
+  }
+
+  .wf-intro-07::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--wf-bg-color), transparent);
+  }
+
+  .wf-intro-07__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .wf-intro-07__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-lg, 0.75rem);
+    background-color: var(--color-neutral-100);
+    margin-bottom: 1.25rem;
+  }
+
+  .wf-intro-07__icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--wf-eyebrow-color);
+  }
+
+  .wf-intro-07__eyebrow {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--wf-eyebrow-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .wf-intro-07__title {
+    font-size: var(--wf-title-size);
+    font-weight: 700;
+    color: var(--wf-title-color);
+    line-height: 1.2;
+    margin: 0 0 1.25rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-intro-07__text {
+    font-size: var(--wf-text-size);
+    color: var(--wf-text-color);
+    line-height: 1.75;
+    margin: 0 auto;
+    max-width: 38rem;
+  }
+</style>
+
+<section class="wf-intro-07">
+  <div class="wf-intro-07__container">
+    <div class="wf-intro-07__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21" />
+      </svg>
+    </div>
+    <span class="wf-intro-07__eyebrow">Notre entreprise</span>
+    <h2 class="wf-intro-07__title">Batir l'avenir du numerique, ensemble</h2>
+    <p class="wf-intro-07__text">Depuis 2015, nous accompagnons les entreprises dans leur transformation digitale. Chaque projet est une opportunite de repousser les limites et de creer des experiences qui comptent.</p>
+  </div>
+</section>

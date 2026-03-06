@@ -1,0 +1,144 @@
+<!-- error-13.html - 404 with countdown to redirect (CSS-only visual, no JS) -->
+<style>
+  @keyframes wf-countdown-fill {
+    0% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 283;
+    }
+  }
+
+  .wf-error-13 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-primary: var(--color-text, #1a1a1a);
+    --wf-primary-hover: var(--color-neutral-700, #333333);
+    --wf-accent: var(--color-text, #374151);
+    --wf-accent-light: var(--color-bg-alt, #f3f4f6);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-font: var(--font-body);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .wf-error-13__countdown {
+    position: relative;
+    width: 7rem;
+    height: 7rem;
+    margin-bottom: 2rem;
+  }
+
+  .wf-error-13__countdown-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .wf-error-13__countdown-track {
+    fill: none;
+    stroke: var(--wf-border);
+    stroke-width: 4;
+  }
+
+  .wf-error-13__countdown-fill {
+    fill: none;
+    stroke: var(--wf-accent);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 0;
+    animation: wf-countdown-fill 10s linear forwards;
+  }
+
+  .wf-error-13__countdown-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--wf-accent);
+  }
+
+  .wf-error-13__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wf-text-muted);
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-error-13__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    margin: 0 0 0.75rem;
+    line-height: 1.15;
+  }
+
+  .wf-error-13__text {
+    font-size: 1rem;
+    color: var(--wf-text-muted);
+    max-width: 28rem;
+    line-height: 1.6;
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-error-13__redirect-note {
+    font-size: 0.875rem;
+    color: var(--wf-accent);
+    font-weight: 500;
+    margin: 0 0 2rem;
+  }
+
+  .wf-error-13__btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-error-13__btn:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wf-error-13__countdown-fill {
+      animation: none;
+      stroke-dashoffset: 140;
+    }
+  }
+</style>
+
+<section class="wf-error-13">
+  <div class="wf-error-13__countdown">
+    <svg class="wf-error-13__countdown-svg" viewBox="0 0 100 100">
+      <circle class="wf-error-13__countdown-track" cx="50" cy="50" r="45" />
+      <circle class="wf-error-13__countdown-fill" cx="50" cy="50" r="45" />
+    </svg>
+    <span class="wf-error-13__countdown-text">10</span>
+  </div>
+
+  <p class="wf-error-13__label">Erreur 404</p>
+  <h1 class="wf-error-13__title">Page introuvable</h1>
+  <p class="wf-error-13__text">La page que vous cherchez n'existe pas ou a ete deplacee.</p>
+  <p class="wf-error-13__redirect-note">Redirection automatique vers l'accueil dans 10 secondes</p>
+  <a href="#" class="wf-error-13__btn">Retour a l'accueil maintenant</a>
+</section>

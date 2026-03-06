@@ -1,0 +1,105 @@
+<!-- Logos 11 : Section alt background + centered title + logos + stat below -->
+<style>
+  .wf-logos-11 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--wf-spacing-xl, 4rem) var(--wf-spacing-md, 1.5rem);
+    background-color: var(--color-bg-alt, #f9fafb);
+    text-align: center;
+  }
+
+  .wf-logos-11__title {
+    font-size: var(--wf-font-size-lg, 1.25rem);
+    font-weight: 600;
+    color: var(--color-text, #111827);
+    margin: 0 0 var(--wf-spacing-xs, 0.5rem) 0;
+  }
+
+  .wf-logos-11__subtitle {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0 0 var(--wf-spacing-lg, 2.5rem) 0;
+  }
+
+  .wf-logos-11__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--wf-spacing-lg, 3rem);
+    max-width: 960px;
+    margin: 0 auto var(--wf-spacing-xl, 3rem) auto;
+  }
+
+  .wf-logos-11 .wf-logo {
+    color: var(--color-text-light, #9ca3af);
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
+
+  .wf-logos-11__stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--wf-spacing-xl, 4rem);
+    flex-wrap: wrap;
+    padding-top: var(--wf-spacing-lg, 2rem);
+    border-top: 1px solid var(--color-border, #e5e7eb);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .wf-logos-11__stat-value {
+    font-size: var(--wf-font-size-2xl, 2rem);
+    font-weight: 700;
+    color: var(--color-text, #111827);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .wf-logos-11__stat-label {
+    font-size: var(--wf-font-size-xs, 0.75rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0.25rem 0 0 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-logos-11__row {
+      gap: var(--wf-spacing-md, 1.5rem);
+    }
+
+    .wf-logos-11__stats {
+      gap: var(--wf-spacing-lg, 2rem);
+    }
+
+    .wf-logos-11 .wf-logo svg {
+      width: 96px;
+      height: 26px;
+    }
+  }
+</style>
+
+<section class="wf-logos-11">
+  <h2 class="wf-logos-11__title">Ils nous font confiance</h2>
+  <p class="wf-logos-11__subtitle">Des entreprises de toutes tailles nous accompagnent au quotidien</p>
+  <div class="wf-logos-11__row">
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+    <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
+  </div>
+  <div class="wf-logos-11__stats">
+    <div>
+      <p class="wf-logos-11__stat-value">500+</p>
+      <p class="wf-logos-11__stat-label">Entreprises</p>
+    </div>
+    <div>
+      <p class="wf-logos-11__stat-value">98%</p>
+      <p class="wf-logos-11__stat-label">Satisfaction</p>
+    </div>
+    <div>
+      <p class="wf-logos-11__stat-value">12M</p>
+      <p class="wf-logos-11__stat-label">Utilisateurs</p>
+    </div>
+  </div>
+</section>

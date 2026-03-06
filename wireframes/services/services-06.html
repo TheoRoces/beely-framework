@@ -1,0 +1,241 @@
+<!-- Services 06 : Numbered service list with expandable text (CSS-only accordion) -->
+
+<style>
+  .wf-services-06 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-section-py: clamp(3rem, 8vw, 6rem);
+    --wf-section-px: clamp(1rem, 5vw, 4rem);
+    --wf-max-width: 800px;
+
+    background: var(--wf-bg);
+    padding: var(--wf-section-py) var(--wf-section-px);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    color: var(--wf-text);
+  }
+
+  .wf-services-06__inner {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-services-06__header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
+
+  .wf-services-06__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-services-06__title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .wf-services-06__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .wf-services-06__item {
+    border-bottom: 1px solid var(--wf-border);
+  }
+
+  .wf-services-06__item:first-child {
+    border-top: 1px solid var(--wf-border);
+  }
+
+  .wf-services-06__toggle {
+    display: none;
+  }
+
+  .wf-services-06__label {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .wf-services-06__label:hover {
+    color: var(--wf-accent);
+  }
+
+  .wf-services-06__number {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--wf-text-muted);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+    width: 2rem;
+  }
+
+  .wf-services-06__label-title {
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .wf-services-06__chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: var(--wf-text-muted);
+  }
+
+  .wf-services-06__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .wf-services-06__content-inner {
+    padding: 0 0 1.5rem 3.5rem;
+  }
+
+  .wf-services-06__content-text {
+    font-size: 1rem;
+    color: var(--wf-text-muted);
+    line-height: 1.7;
+    margin: 0 0 1rem;
+    max-width: 560px;
+  }
+
+  .wf-services-06__content-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--wf-accent);
+    text-decoration: none;
+  }
+
+  .wf-services-06__content-link:hover {
+    text-decoration: underline;
+  }
+
+  .wf-services-06__toggle:checked ~ .wf-services-06__content {
+    max-height: 200px;
+  }
+
+  .wf-services-06__toggle:checked ~ .wf-services-06__label .wf-services-06__chevron {
+    transform: rotate(180deg);
+  }
+
+  .wf-services-06__toggle:checked ~ .wf-services-06__label {
+    color: var(--wf-accent);
+  }
+</style>
+
+<section class="wf-services-06">
+  <div class="wf-services-06__inner">
+    <header class="wf-services-06__header">
+      <p class="wf-services-06__tagline">Ce que nous faisons</p>
+      <h2 class="wf-services-06__title">Nos services</h2>
+    </header>
+
+    <ul class="wf-services-06__list">
+      <li class="wf-services-06__item">
+        <input type="checkbox" id="wf-svc06-1" class="wf-services-06__toggle">
+        <label for="wf-svc06-1" class="wf-services-06__label">
+          <span class="wf-services-06__number">01</span>
+          <span class="wf-services-06__label-title">Design UI/UX</span>
+          <svg class="wf-services-06__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </label>
+        <div class="wf-services-06__content">
+          <div class="wf-services-06__content-inner">
+            <p class="wf-services-06__content-text">Nous creons des interfaces intuitives et elegantes qui maximisent l'engagement utilisateur.</p>
+            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="wf-services-06__item">
+        <input type="checkbox" id="wf-svc06-2" class="wf-services-06__toggle">
+        <label for="wf-svc06-2" class="wf-services-06__label">
+          <span class="wf-services-06__number">02</span>
+          <span class="wf-services-06__label-title">Developpement Web</span>
+          <svg class="wf-services-06__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </label>
+        <div class="wf-services-06__content">
+          <div class="wf-services-06__content-inner">
+            <p class="wf-services-06__content-text">Solutions techniques performantes et evolutives pour accompagner votre croissance digitale.</p>
+            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="wf-services-06__item">
+        <input type="checkbox" id="wf-svc06-3" class="wf-services-06__toggle">
+        <label for="wf-svc06-3" class="wf-services-06__label">
+          <span class="wf-services-06__number">03</span>
+          <span class="wf-services-06__label-title">Strategie Digitale</span>
+          <svg class="wf-services-06__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </label>
+        <div class="wf-services-06__content">
+          <div class="wf-services-06__content-inner">
+            <p class="wf-services-06__content-text">Analyses approfondies et recommandations strategiques pour optimiser votre presence en ligne.</p>
+            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="wf-services-06__item">
+        <input type="checkbox" id="wf-svc06-4" class="wf-services-06__toggle">
+        <label for="wf-svc06-4" class="wf-services-06__label">
+          <span class="wf-services-06__number">04</span>
+          <span class="wf-services-06__label-title">SEO & Analytics</span>
+          <svg class="wf-services-06__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </label>
+        <div class="wf-services-06__content">
+          <div class="wf-services-06__content-inner">
+            <p class="wf-services-06__content-text">Campagnes creatives et ciblees qui renforcent votre notoriete et fidelisent vos clients.</p>
+            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="wf-services-06__item">
+        <input type="checkbox" id="wf-svc06-5" class="wf-services-06__toggle">
+        <label for="wf-svc06-5" class="wf-services-06__label">
+          <span class="wf-services-06__number">05</span>
+          <span class="wf-services-06__label-title">Branding</span>
+          <svg class="wf-services-06__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </label>
+        <div class="wf-services-06__content">
+          <div class="wf-services-06__content-inner">
+            <p class="wf-services-06__content-text">Identites visuelles memorables et coherentes qui refletent les valeurs de votre marque.</p>
+            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="wf-services-06__item">
+        <input type="checkbox" id="wf-svc06-6" class="wf-services-06__toggle">
+        <label for="wf-svc06-6" class="wf-services-06__label">
+          <span class="wf-services-06__number">06</span>
+          <span class="wf-services-06__label-title">Applications Mobile</span>
+          <svg class="wf-services-06__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </label>
+        <div class="wf-services-06__content">
+          <div class="wf-services-06__content-inner">
+            <p class="wf-services-06__content-text">Applications mobiles modernes et reactives pour toucher vos utilisateurs ou qu'ils soient.</p>
+            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

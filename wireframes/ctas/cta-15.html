@@ -1,0 +1,88 @@
+<!-- CTA-15 : Sticky bottom bar CTA (fixed position preview) -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text, #374151); color: var(--color-bg, #ffffff); border-color: var(--color-text, #374151); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #e5e7eb); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+  .wf-cta-15 {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: var(--color-bg, #ffffff);
+    border-top: 1px solid var(--color-border, #e5e7eb);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+    padding: var(--space-4, 0.75rem) var(--space-6, 1.5rem);
+  }
+
+  .wf-cta-15__container {
+    max-width: var(--container-max, 72rem);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4, 0.75rem);
+  }
+
+  .wf-cta-15__content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4, 0.75rem);
+    text-align: center;
+  }
+
+  .wf-cta-15__text {
+    font-size: var(--text-sm, 0.875rem);
+    font-weight: 500;
+    color: var(--color-text, #111827);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .wf-cta-15__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4, 0.75rem);
+    flex-shrink: 0;
+  }
+
+  .wf-cta-15__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    color: var(--color-text-muted, #9ca3af);
+    line-height: 1;
+    font-size: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .wf-cta-15__container {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .wf-cta-15__content {
+      text-align: left;
+    }
+
+    .wf-cta-15__text {
+      font-size: var(--font-size-md, 1rem);
+    }
+  }
+</style>
+
+<div class="wf-cta-15" role="complementary" aria-label="Appel a l'action">
+  <div class="wf-cta-15__container">
+    <div class="wf-cta-15__content">
+      <p class="wf-cta-15__text">Lancez votre projet des aujourd'hui. Consultation gratuite et sans engagement.</p>
+    </div>
+    <div class="wf-cta-15__actions">
+      <a href="#" class="btn btn--primary">Demandez un devis gratuit</a>
+      <button class="wf-cta-15__close" aria-label="Fermer" type="button">&times;</button>
+    </div>
+  </div>
+</div>

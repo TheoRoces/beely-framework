@@ -1,0 +1,154 @@
+<!-- filter-06.html — Category cards (icon + title + count) in a grid -->
+<style>
+  .wf-filter-06 {
+    --wf-bg: var(--color-bg-alt, #f9fafb);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-muted: var(--color-text-light, #6b7280);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-accent: var(--color-text, #1a1a1a);
+    --wf-card-bg: var(--color-bg, #ffffff);
+    --wf-radius: 0.75rem;
+    --wf-gap: 1.5rem;
+    --wf-section-py: 5rem;
+
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    padding: var(--wf-section-py) 5%;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-filter-06__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-filter-06__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-filter-06__subtitle {
+    color: var(--wf-muted);
+    font-size: 1.125rem;
+    margin: 0;
+  }
+
+  .wf-filter-06__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wf-gap);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .wf-filter-06 .wf-card {
+    background: var(--wf-card-bg);
+    border-radius: var(--wf-radius);
+    border: 1px solid var(--wf-border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--wf-text);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: block;
+    cursor: pointer;
+  }
+
+  .wf-filter-06 .wf-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .wf-filter-06__icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--wf-bg);
+    border-radius: 0.625rem;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-filter-06__icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--wf-accent);
+  }
+
+  .wf-filter-06 .wf-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.375rem;
+  }
+
+  .wf-filter-06 .wf-card__count {
+    color: var(--wf-muted);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .wf-filter-06__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<section class="wf-filter-06">
+  <div class="wf-filter-06__header">
+    <h2 class="wf-filter-06__title">Filtrer par categorie</h2>
+    <p class="wf-filter-06__subtitle">Explorez nos projets par domaine d'expertise</p>
+  </div>
+
+  <div class="wf-filter-06__grid">
+    <a href="#" class="wf-card">
+      <div class="wf-filter-06__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm0 8a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zm10 0a1 1 0 011-1h4a1 1 0 011 1v6a1 1 0 01-1 1h-4a1 1 0 01-1-1v-6z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Tous</h3>
+      <p class="wf-card__count">24 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-06__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485"/></svg>
+      </div>
+      <h3 class="wf-card__title">Design</h3>
+      <p class="wf-card__count">8 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-06__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+      </div>
+      <h3 class="wf-card__title">Developpement</h3>
+      <p class="wf-card__count">6 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-06__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Marketing</h3>
+      <p class="wf-card__count">4 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-06__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      </div>
+      <h3 class="wf-card__title">Strategie</h3>
+      <p class="wf-card__count">3 projets</p>
+    </a>
+
+    <a href="#" class="wf-card">
+      <div class="wf-filter-06__icon">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+      </div>
+      <h3 class="wf-card__title">E-commerce</h3>
+      <p class="wf-card__count">3 projets</p>
+    </a>
+  </div>
+</section>

@@ -1,0 +1,118 @@
+<!-- intro-05.html | Eyebrow + title + text + 3 stats in a row -->
+<style>
+  .wf-intro-05 {
+    --wf-section-padding: 6rem 1.5rem;
+    --wf-max-width: 72rem;
+    --wf-eyebrow-color: var(--color-text);
+    --wf-title-size: clamp(2rem, 4vw, 3rem);
+    --wf-title-color: var(--color-neutral-900);
+    --wf-text-size: 1.0625rem;
+    --wf-text-color: var(--color-neutral-600);
+    --wf-stat-value-size: clamp(2rem, 4vw, 2.75rem);
+    --wf-stat-value-color: var(--color-text);
+    --wf-stat-label-color: var(--color-neutral-500);
+    --wf-border-color: var(--color-border);
+    --wf-font-family: var(--font-body);
+
+    padding: var(--wf-section-padding);
+    font-family: var(--wf-font-family);
+  }
+
+  .wf-intro-05__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-intro-05__header {
+    max-width: 40rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .wf-intro-05__eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--wf-eyebrow-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .wf-intro-05__title {
+    font-size: var(--wf-title-size);
+    font-weight: 700;
+    color: var(--wf-title-color);
+    line-height: 1.2;
+    margin: 0 0 1.25rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-intro-05__text {
+    font-size: var(--wf-text-size);
+    color: var(--wf-text-color);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .wf-intro-05__stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    border-top: 1px solid var(--wf-border-color);
+    padding-top: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .wf-intro-05__stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .wf-intro-05__stat {
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .wf-intro-05__stat:not(:last-child) {
+      border-right: 1px solid var(--wf-border-color);
+    }
+  }
+
+  .wf-intro-05__stat-value {
+    font-size: var(--wf-stat-value-size);
+    font-weight: 800;
+    color: var(--wf-stat-value-color);
+    margin: 0 0 0.375rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-intro-05__stat-label {
+    font-size: 0.875rem;
+    color: var(--wf-stat-label-color);
+    margin: 0;
+  }
+</style>
+
+<section class="wf-intro-05">
+  <div class="wf-intro-05__container">
+    <div class="wf-intro-05__header">
+      <span class="wf-intro-05__eyebrow">A propos de nous</span>
+      <h2 class="wf-intro-05__title">Des resultats concrets, un engagement durable</h2>
+      <p class="wf-intro-05__text">Depuis 2015, nous accompagnons les entreprises dans leur transformation digitale. Notre equipe pluridisciplinaire combine expertise technique et vision strategique.</p>
+    </div>
+    <div class="wf-intro-05__stats">
+      <div class="wf-intro-05__stat">
+        <p class="wf-intro-05__stat-value">10+</p>
+        <p class="wf-intro-05__stat-label">Annees d'experience</p>
+      </div>
+      <div class="wf-intro-05__stat">
+        <p class="wf-intro-05__stat-value">500+</p>
+        <p class="wf-intro-05__stat-label">Projets realises</p>
+      </div>
+      <div class="wf-intro-05__stat">
+        <p class="wf-intro-05__stat-value">98%</p>
+        <p class="wf-intro-05__stat-label">De clients satisfaits</p>
+      </div>
+    </div>
+  </div>
+</section>

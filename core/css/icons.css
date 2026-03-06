@@ -1,0 +1,51 @@
+/* ==========================================================================
+   ICONS — Styles et animations pour le système d'icônes SVG
+   ========================================================================== */
+
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.icon {
+  display: block;
+  flex-shrink: 0;
+  color: inherit;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+/* Force currentColor via CSS (plus fiable que l'attribut SVG stroke/fill) */
+.icon [stroke]:not([stroke="none"]) {
+  stroke: currentColor;
+}
+
+.icon [fill]:not([fill="none"]) {
+  fill: currentColor;
+}
+
+/* Animation par défaut : léger scale au hover du parent */
+.icon--animated {
+  transition: transform var(--transition-base), color var(--transition-base);
+}
+
+a:hover .icon--animated,
+button:hover .icon--animated,
+.icon-wrapper:hover .icon--animated {
+  transform: scale(1.15);
+}
+
+/* Respect des préférences utilisateur */
+@media (prefers-reduced-motion: reduce) {
+  .icon,
+  .icon--animated {
+    transition: none;
+  }
+  a:hover .icon--animated,
+  button:hover .icon--animated,
+  .icon-wrapper:hover .icon--animated {
+    transform: none;
+  }
+}

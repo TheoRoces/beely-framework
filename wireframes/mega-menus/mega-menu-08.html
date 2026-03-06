@@ -1,0 +1,179 @@
+<!-- mega-menu-08: Dark mega-menu with light text -->
+<style>
+  .wf-megamenu-08 {
+    --wf-mm-bg: var(--color-bg-dark);
+    --wf-mm-border: var(--color-neutral-700);
+    --wf-mm-text: var(--color-text-on-dark);
+    --wf-mm-text-muted: var(--color-neutral-400);
+    --wf-mm-hover: var(--color-neutral-800);
+    --wf-mm-accent: var(--color-border);
+    --wf-mm-icon-bg: rgba(107, 114, 128, 0.1);
+    --wf-mm-radius: 12px;
+    --wf-mm-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 4px 16px rgba(0,0,0,0.2);
+    --wf-mm-padding: 2rem;
+
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    background: var(--wf-mm-bg);
+    border: 1px solid var(--wf-mm-border);
+    border-radius: var(--wf-mm-radius);
+    box-shadow: var(--wf-mm-shadow);
+    padding: var(--wf-mm-padding);
+    max-width: 860px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wf-megamenu-08 .wf-megamenu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .wf-megamenu-08 .wf-megamenu__group-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-mm-accent);
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--wf-mm-border);
+  }
+
+  .wf-megamenu-08 .wf-megamenu__link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.5rem;
+    color: var(--wf-mm-text);
+    text-decoration: none;
+    font-size: 0.875rem;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .wf-megamenu-08 .wf-megamenu__link:hover {
+    background: var(--wf-mm-hover);
+    color: var(--wf-mm-accent);
+  }
+
+  .wf-megamenu-08 .wf-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-mm-icon-bg);
+    border-radius: var(--radius-md, 0.5rem);
+    color: var(--wf-mm-accent);
+  }
+
+  .wf-megamenu-08 .wf-megamenu__footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--wf-mm-border);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .wf-megamenu-08 .wf-megamenu__footer-link {
+    color: var(--wf-mm-text-muted);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: color 0.15s ease;
+  }
+
+  .wf-megamenu-08 .wf-megamenu__footer-link:hover {
+    color: var(--wf-mm-accent);
+  }
+
+  @media (max-width: 700px) {
+    .wf-megamenu-08 .wf-megamenu {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wf-megamenu-08 .wf-megamenu {
+      grid-template-columns: 1fr;
+    }
+    .wf-megamenu-08 {
+      padding: 1.25rem;
+    }
+    .wf-megamenu-08 .wf-megamenu__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+<div class="wf-megamenu-08">
+  <nav class="wf-megamenu" aria-label="Menu principal">
+    <div class="wf-megamenu__column">
+      <h3 class="wf-megamenu__group-title">Produits</h3>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Design UI/UX
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Developpement Web
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Applications Mobiles
+      </a>
+    </div>
+    <div class="wf-megamenu__column">
+      <h3 class="wf-megamenu__group-title">Ressources</h3>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Blog
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Guides
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Etudes de cas
+      </a>
+    </div>
+    <div class="wf-megamenu__column">
+      <h3 class="wf-megamenu__group-title">Entreprise</h3>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        A propos
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Carrieres
+      </a>
+      <a href="#" class="wf-megamenu__link">
+        <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+        Contact
+      </a>
+    </div>
+  </nav>
+  <div class="wf-megamenu__footer">
+    <a href="#" class="wf-megamenu__footer-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      Nouveautes
+    </a>
+    <a href="#" class="wf-megamenu__footer-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      Changelog
+    </a>
+    <a href="#" class="wf-megamenu__footer-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      Documentation
+    </a>
+  </div>
+</div>

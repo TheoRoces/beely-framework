@@ -1,0 +1,77 @@
+<!--
+  ICÔNES — Site System
+
+  CSS : core/css/icons.css
+  JS  : core/js/icons.js
+  SVG : assets/icons/outline/ et assets/icons/solid/
+
+  324 icônes Heroicons disponibles en outline et solid.
+
+  Attributs (sur n'importe quel élément) :
+    data-icon="nom"              — Nom de l'icône (requis), ex: "heart", "arrow-right"
+    data-icon-type="outline|solid" — Style (défaut : outline)
+    data-icon-size="24"          — Taille en px (défaut : 24)
+    data-icon-color="currentColor" — Couleur CSS (défaut : currentColor)
+    data-icon-animate="..."      — Animation SVG au scroll :
+      draw-fade (défaut outline)   — Dessin progressif + fondu
+      draw                         — Dessin progressif seul
+      fade-up (défaut solid)       — Fondu + montée
+      fade                         — Fondu simple
+      fill                         — Remplissage progressif
+      no                           — Aucune animation
+
+  Animation au scroll par défaut : draw-fade (outline), fade-up (solid).
+  Hover : scale(1.15) au survol du parent (a, button).
+  Respecte prefers-reduced-motion.
+
+  JS global : window.initIcons(root) — Réinitialise les icônes dans un conteneur.
+-->
+
+
+<!-- ===== ICÔNE SIMPLE (animation draw-fade par défaut) ===== -->
+
+<span data-icon="heart"></span>
+
+
+<!-- ===== ICÔNE AVEC OPTIONS ===== -->
+
+<span data-icon="star" data-icon-type="solid" data-icon-size="32" data-icon-color="#f59e0b"></span>
+
+
+<!-- ===== FORCER UNE ANIMATION SPÉCIFIQUE ===== -->
+
+<span data-icon="bolt" data-icon-animate="draw"></span>
+<span data-icon="fire" data-icon-type="solid" data-icon-animate="fill"></span>
+
+
+<!-- ===== ICÔNE DANS UN BOUTON ===== -->
+
+<button>
+  <span data-icon="plus" data-icon-size="20"></span>
+  Ajouter
+</button>
+
+
+<!-- ===== ICÔNE DANS UN LIEN ===== -->
+
+<a href="#">
+  <span data-icon="arrow-right" data-icon-size="16"></span>
+  Voir plus
+</a>
+
+
+<!-- ===== ICÔNE SANS ANIMATION ===== -->
+
+<span data-icon="information-circle" data-icon-animate="no"></span>
+
+
+<!-- ===== ICÔNE SOLID ===== -->
+
+<span data-icon="check-circle" data-icon-type="solid" data-icon-color="#10b981"></span>
+
+
+<!-- ===== SCRIPTS À INCLURE ===== -->
+<!--
+<link rel="stylesheet" href="core/css/icons.css">
+<script src="core/js/icons.js" defer></script>
+-->

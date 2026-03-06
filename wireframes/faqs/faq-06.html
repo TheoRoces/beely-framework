@@ -1,0 +1,78 @@
+<!-- FAQ-06: Minimal question + answer pairs. No accordion, no chevrons. Clean stacked layout. -->
+<style>
+  .wf-faq06 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--space-xl, 80px) var(--space-md, 24px);
+    max-width: var(--container-md, 768px);
+    margin: 0 auto;
+  }
+  .wf-faq06__header {
+    text-align: center;
+    margin-bottom: var(--space-lg, 56px);
+  }
+  .wf-faq06__title {
+    font-size: var(--text-3xl, 2.5rem);
+    font-weight: var(--font-bold, 700);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs, 12px);
+  }
+  .wf-faq06__subtitle {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .wf-faq06__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md, 40px);
+  }
+  .wf-faq06__item {
+    border-left: 3px solid var(--color-text);
+    padding-left: var(--space-sm, 20px);
+  }
+  .wf-faq06__question {
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-semibold, 600);
+    color: var(--color-text);
+    margin-bottom: var(--space-2xs, 8px);
+  }
+  .wf-faq06__answer {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+</style>
+
+<section class="wf-faq06">
+  <div class="wf-faq06__header">
+    <h2 class="wf-faq06__title">Questions frequentes</h2>
+    <p class="wf-faq06__subtitle">Des reponses claires et directes a vos interrogations.</p>
+  </div>
+
+  <div class="wf-faq06__list">
+    <div class="wf-faq06__item">
+      <h3 class="wf-faq06__question">Quels sont vos delais de livraison ?</h3>
+      <p class="wf-faq06__answer">Nos delais varient selon la complexite du projet, generalement entre 4 et 8 semaines pour un projet standard. Nous fournissons un calendrier precis des le debut de la collaboration pour une transparence totale.</p>
+    </div>
+
+    <div class="wf-faq06__item">
+      <h3 class="wf-faq06__question">Comment fonctionne votre processus de travail ?</h3>
+      <p class="wf-faq06__answer">Nous suivons un processus structure en quatre phases : decouverte et strategie, conception, developpement, et lancement. Vous participez a chaque etape pour valider les orientations et garantir la qualite du resultat.</p>
+    </div>
+
+    <div class="wf-faq06__item">
+      <h3 class="wf-faq06__question">Proposez-vous un support apres livraison ?</h3>
+      <p class="wf-faq06__answer">Absolument. Nous assurons un accompagnement apres livraison comprenant une periode de garantie pour les corrections et des forfaits de maintenance mensuels pour faire evoluer votre solution.</p>
+    </div>
+
+    <div class="wf-faq06__item">
+      <h3 class="wf-faq06__question">Quels sont vos tarifs ?</h3>
+      <p class="wf-faq06__answer">Chaque projet est unique, c'est pourquoi nos tarifs sont personnalises. Nous proposons une consultation gratuite pour analyser vos besoins et vous fournir un devis adapte a votre budget.</p>
+    </div>
+
+    <div class="wf-faq06__item">
+      <h3 class="wf-faq06__question">Comment demarrer un projet avec vous ?</h3>
+      <p class="wf-faq06__answer">Contactez-nous par formulaire ou email pour planifier un appel decouverte. Nous discuterons de vos objectifs, definirons le perimetre et vous proposerons une feuille de route claire et actionnable.</p>
+    </div>
+  </div>
+</section>

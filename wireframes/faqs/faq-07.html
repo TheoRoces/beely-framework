@@ -1,0 +1,102 @@
+<!-- FAQ-07: FAQ cards in a grid. Each card contains one question and answer pair. -->
+<style>
+  .wf-faq07 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--space-xl, 80px) var(--space-md, 24px);
+    max-width: var(--container-lg, 1120px);
+    margin: 0 auto;
+  }
+  .wf-faq07__header {
+    text-align: center;
+    margin-bottom: var(--space-lg, 48px);
+  }
+  .wf-faq07__title {
+    font-size: var(--text-3xl, 2.5rem);
+    font-weight: var(--font-bold, 700);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs, 12px);
+  }
+  .wf-faq07__subtitle {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .wf-faq07__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm, 24px);
+  }
+  .wf-faq07__card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg, 12px);
+    padding: var(--space-md, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs, 12px);
+    transition: box-shadow 0.2s ease;
+  }
+  .wf-faq07__card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+  .wf-faq07__question {
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-semibold, 600);
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+  .wf-faq07__answer {
+    font-size: var(--text-sm, 0.9375rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  @media (max-width: 960px) {
+    .wf-faq07__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .wf-faq07__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-faq07">
+  <div class="wf-faq07__header">
+    <h2 class="wf-faq07__title">FAQ</h2>
+    <p class="wf-faq07__subtitle">Les reponses a vos questions les plus frequentes, presentees de maniere claire et accessible.</p>
+  </div>
+
+  <div class="wf-faq07__grid">
+    <div class="wf-faq07__card">
+      <h3 class="wf-faq07__question">Quels sont vos delais de livraison ?</h3>
+      <p class="wf-faq07__answer">Nos delais varient entre 4 et 8 semaines selon la complexite. Un calendrier detaille est fourni des le debut pour garantir une transparence totale sur les echeances.</p>
+    </div>
+
+    <div class="wf-faq07__card">
+      <h3 class="wf-faq07__question">Comment fonctionne votre processus de travail ?</h3>
+      <p class="wf-faq07__answer">Quatre phases structurees : decouverte, conception, developpement et lancement. Vous validez chaque etape pour un resultat conforme a vos attentes.</p>
+    </div>
+
+    <div class="wf-faq07__card">
+      <h3 class="wf-faq07__question">Proposez-vous un support apres livraison ?</h3>
+      <p class="wf-faq07__answer">Oui, avec une periode de garantie incluse et des forfaits de maintenance mensuels pour assurer la perennite et l'evolution de votre solution.</p>
+    </div>
+
+    <div class="wf-faq07__card">
+      <h3 class="wf-faq07__question">Quels sont vos tarifs ?</h3>
+      <p class="wf-faq07__answer">Nos tarifs sont personnalises. Une premiere consultation gratuite nous permet de comprendre vos besoins et de vous fournir un devis adapte a votre budget.</p>
+    </div>
+
+    <div class="wf-faq07__card">
+      <h3 class="wf-faq07__question">Comment demarrer un projet avec vous ?</h3>
+      <p class="wf-faq07__answer">Contactez-nous pour un appel decouverte gratuit. Nous analyserons vos besoins et vous proposerons une feuille de route claire avec les prochaines etapes.</p>
+    </div>
+
+    <div class="wf-faq07__card">
+      <h3 class="wf-faq07__question">Travaillez-vous avec des clients internationaux ?</h3>
+      <p class="wf-faq07__answer">Oui, nous collaborons avec des clients partout dans le monde. Nos outils de communication facilitent une collaboration efficace quel que soit le fuseau horaire.</p>
+    </div>
+  </div>
+</section>

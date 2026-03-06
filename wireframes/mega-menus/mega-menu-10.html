@@ -1,0 +1,157 @@
+<!-- mega-menu-10: Category cards grid (icon + title + short desc) -->
+<style>
+  .wf-megamenu-10 {
+    --wf-mm-bg: var(--color-bg);
+    --wf-mm-border: var(--color-border);
+    --wf-mm-text: var(--color-text);
+    --wf-mm-text-muted: var(--color-text-light);
+    --wf-mm-hover: var(--color-bg-alt);
+    --wf-mm-accent: var(--color-text);
+    --wf-mm-card-border: var(--color-border);
+    --wf-mm-card-hover-border: var(--color-border);
+    --wf-mm-icon-bg: var(--color-bg-alt);
+    --wf-mm-radius: 12px;
+    --wf-mm-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 4px 16px rgba(0,0,0,0.05);
+    --wf-mm-padding: 2rem;
+
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    background: var(--wf-mm-bg);
+    border: 1px solid var(--wf-mm-border);
+    border-radius: var(--wf-mm-radius);
+    box-shadow: var(--wf-mm-shadow);
+    padding: var(--wf-mm-padding);
+    max-width: 820px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wf-megamenu-10 .wf-megamenu__header {
+    margin-bottom: 1.25rem;
+  }
+
+  .wf-megamenu-10 .wf-megamenu__group-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-mm-text-muted);
+    margin: 0;
+  }
+
+  .wf-megamenu-10 .wf-megamenu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .wf-megamenu-10 .wf-megamenu__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.25rem;
+    border: 1px solid var(--wf-mm-card-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .wf-megamenu-10 .wf-megamenu__card:hover {
+    border-color: var(--wf-mm-card-hover-border);
+    background: var(--wf-mm-hover);
+    box-shadow: 0 4px 12px var(--color-bg-alt);
+  }
+
+  .wf-megamenu-10 .wf-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-mm-icon-bg);
+    border-radius: var(--radius-md, 0.5rem);
+    color: var(--wf-mm-accent);
+  }
+
+  .wf-megamenu-10 .wf-megamenu__card-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--wf-mm-text);
+    margin: 0;
+  }
+
+  .wf-megamenu-10 .wf-megamenu__card-desc {
+    font-size: 0.8125rem;
+    color: var(--wf-mm-text-muted);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .wf-megamenu-10 .wf-megamenu__card-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--wf-mm-accent);
+    margin-top: auto;
+  }
+
+  @media (max-width: 700px) {
+    .wf-megamenu-10 .wf-megamenu {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wf-megamenu-10 .wf-megamenu {
+      grid-template-columns: 1fr;
+    }
+    .wf-megamenu-10 {
+      padding: 1.25rem;
+    }
+  }
+</style>
+
+<div class="wf-megamenu-10">
+  <div class="wf-megamenu__header">
+    <h3 class="wf-megamenu__group-title">Nos Solutions</h3>
+  </div>
+  <nav class="wf-megamenu" aria-label="Menu principal">
+    <a href="#" class="wf-megamenu__card">
+      <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+      <h4 class="wf-megamenu__card-title">Design UI/UX</h4>
+      <p class="wf-megamenu__card-desc">Interfaces utilisateur modernes et centrees sur l'experience.</p>
+      <span class="wf-megamenu__card-arrow">Decouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+    </a>
+    <a href="#" class="wf-megamenu__card">
+      <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+      <h4 class="wf-megamenu__card-title">Developpement Web</h4>
+      <p class="wf-megamenu__card-desc">Sites et applications web performants sur mesure.</p>
+      <span class="wf-megamenu__card-arrow">Decouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+    </a>
+    <a href="#" class="wf-megamenu__card">
+      <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+      <h4 class="wf-megamenu__card-title">Applications Mobiles</h4>
+      <p class="wf-megamenu__card-desc">Applications iOS et Android natives et hybrides.</p>
+      <span class="wf-megamenu__card-arrow">Decouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+    </a>
+    <a href="#" class="wf-megamenu__card">
+      <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+      <h4 class="wf-megamenu__card-title">Consulting</h4>
+      <p class="wf-megamenu__card-desc">Conseil en strategie digitale et transformation.</p>
+      <span class="wf-megamenu__card-arrow">Decouvrir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+    </a>
+    <a href="#" class="wf-megamenu__card">
+      <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+      <h4 class="wf-megamenu__card-title">Blog</h4>
+      <p class="wf-megamenu__card-desc">Articles, tendances et retours d'experience.</p>
+      <span class="wf-megamenu__card-arrow">Lire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+    </a>
+    <a href="#" class="wf-megamenu__card">
+      <span class="wf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></span>
+      <h4 class="wf-megamenu__card-title">Etudes de cas</h4>
+      <p class="wf-megamenu__card-desc">Decouvrez nos projets et resultats concrets.</p>
+      <span class="wf-megamenu__card-arrow">Voir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg></span>
+    </a>
+  </nav>
+</div>

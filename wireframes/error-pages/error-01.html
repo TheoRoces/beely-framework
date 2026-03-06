@@ -1,0 +1,83 @@
+<!-- error-01.html - Classic 404: large number + title + text + home button -->
+<style>
+  .wf-error-01 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-primary: var(--color-text, #1a1a1a);
+    --wf-primary-hover: var(--color-neutral-700, #333333);
+    --wf-number-color: var(--color-neutral-100, #f3f4f6);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-font: var(--font-body);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .wf-error-01__number {
+    font-size: clamp(8rem, 20vw, 16rem);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--wf-number-color);
+    margin: 0;
+    letter-spacing: -0.04em;
+  }
+
+  .wf-error-01__title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin: -1rem 0 1rem;
+    color: var(--wf-text);
+  }
+
+  .wf-error-01__text {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    color: var(--wf-text-muted);
+    max-width: 32rem;
+    line-height: 1.6;
+    margin: 0 0 2.5rem;
+  }
+
+  .wf-error-01__btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md, 0.5rem);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-error-01__btn:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  @media (max-width: 640px) {
+    .wf-error-01 {
+      padding: 1.5rem;
+    }
+    .wf-error-01__title {
+      margin-top: -0.5rem;
+    }
+  }
+</style>
+
+<section class="wf-error-01">
+  <p class="wf-error-01__number">404</p>
+  <h1 class="wf-error-01__title">Page introuvable</h1>
+  <p class="wf-error-01__text">La page que vous cherchez n'existe pas ou a ete deplacee. Verifiez l'adresse ou retournez a la page d'accueil.</p>
+  <a href="#" class="wf-error-01__btn">Retour a l'accueil</a>
+</section>

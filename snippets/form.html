@@ -1,0 +1,168 @@
+<!--
+  FORMULAIRE — Site System
+
+  CSS : core/css/forms.css
+  JS  : core/js/forms.js
+
+  Classes :
+    .form              — Conteneur principal
+    .form__step        — Étape (multi-step)
+    .form__field       — Wrapper de champ
+    .form__field--float — Label flottant (input AVANT label, placeholder=" ")
+    .form__label       — Label du champ
+    .form__label-hint  — Texte d'aide sous le label
+    .form__input       — Input texte / email / tel / etc.
+    .form__textarea    — Textarea
+    .form__error       — Message d'erreur (rempli par JS)
+    .form__select      — Select personnalisé
+    .form__number      — Input numérique +/-
+    .form__radio-group — Groupe de boutons radio
+    .form__checkbox-group — Groupe de cases à cocher
+    .form__multiselect — Multiselect personnalisé
+    .form__nav         — Navigation multi-step (prev/next/submit)
+    .form__prev        — Bouton "Précédent"
+    .form__next        — Bouton "Suivant"
+    .form__submit      — Bouton "Envoyer"
+    .form__progress    — Barre de progression
+
+  Attributs (sur .form) :
+    data-form-webhook="url"    — URL de soumission (POST JSON)
+    data-form-redirect="url"   — Redirection après succès
+    data-form-success="msg"    — Message de succès (toast)
+    data-form-error="msg"      — Message d'erreur (toast)
+
+  Attributs (sur .form__field) :
+    data-condition="champ=valeur"  — Logique conditionnelle
+
+  Attributs (sur input) :
+    data-validate="required|email|min:2|max:100|phone|url"
+
+  Toast : window.showToast('Message', 'success|error|warning|info')
+-->
+
+
+<!-- ===== FORMULAIRE SIMPLE ===== -->
+
+<form class="form"
+      data-form-webhook="https://hooks.example.com/form"
+      data-form-success="Merci ! Votre message a été envoyé."
+      data-form-error="Erreur lors de l'envoi.">
+
+  <div class="form__field form__field--float">
+    <input class="form__input" type="text" name="nom" placeholder=" " data-validate="required|min:2">
+    <label class="form__label">Nom</label>
+    <div class="form__error"></div>
+  </div>
+
+  <div class="form__field form__field--float">
+    <input class="form__input" type="email" name="email" placeholder=" " data-validate="required|email">
+    <label class="form__label">Email</label>
+    <div class="form__error"></div>
+  </div>
+
+  <div class="form__field form__field--float">
+    <textarea class="form__textarea" name="message" rows="4" placeholder=" " data-validate="required|min:10"></textarea>
+    <label class="form__label">Message</label>
+    <div class="form__error"></div>
+  </div>
+
+  <div class="form__nav">
+    <button type="submit" class="form__submit">Envoyer</button>
+  </div>
+</form>
+
+
+<!-- ===== FORMULAIRE MULTI-STEP ===== -->
+
+<form class="form"
+      data-form-webhook="https://hooks.example.com/inscription"
+      data-form-redirect="merci.html"
+      data-form-success="Inscription réussie !">
+
+  <!-- Indicateurs d'étapes (auto-générés par JS) -->
+  <div class="form__step-indicators"></div>
+  <div class="form__progress"><div class="form__progress-bar"></div></div>
+
+  <!-- Étape 1 -->
+  <div class="form__step">
+    <h3>Informations</h3>
+    <div class="form__field form__field--float">
+      <input class="form__input" type="text" name="prenom" placeholder=" " data-validate="required">
+      <label class="form__label">Prénom</label>
+      <div class="form__error"></div>
+    </div>
+    <div class="form__field form__field--float">
+      <input class="form__input" type="email" name="email" placeholder=" " data-validate="required|email">
+      <label class="form__label">Email</label>
+      <div class="form__error"></div>
+    </div>
+  </div>
+
+  <!-- Étape 2 -->
+  <div class="form__step">
+    <h3>Préférences</h3>
+
+    <!-- Select personnalisé -->
+    <div class="form__field">
+      <label class="form__label">Pays</label>
+      <div class="form__select">
+        <input type="hidden" name="pays">
+        <div class="form__select-trigger">Choisir...</div>
+        <div class="form__select-options">
+          <div class="form__select-option" data-value="france">France</div>
+          <div class="form__select-option" data-value="belgique">Belgique</div>
+          <div class="form__select-option" data-value="suisse">Suisse</div>
+          <div class="form__select-option" data-value="canada">Canada</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Radio group -->
+    <div class="form__field">
+      <label class="form__label">Type de compte</label>
+      <div class="form__radio-group" data-name="type_compte">
+        <div class="form__radio-option" data-value="personnel">Personnel</div>
+        <div class="form__radio-option" data-value="professionnel">Professionnel</div>
+      </div>
+    </div>
+
+    <!-- Champ conditionnel (visible si type_compte = professionnel) -->
+    <div class="form__field form__field--float" data-condition="type_compte=professionnel">
+      <input class="form__input" type="text" name="entreprise" placeholder=" " data-validate="required">
+      <label class="form__label">Nom de l'entreprise</label>
+      <div class="form__error"></div>
+    </div>
+  </div>
+
+  <!-- Étape 3 -->
+  <div class="form__step">
+    <h3>Confirmation</h3>
+
+    <!-- Checkbox group -->
+    <div class="form__field">
+      <label class="form__label">Centres d'intérêt</label>
+      <div class="form__checkbox-group" data-name="interets">
+        <div class="form__checkbox-option" data-value="tech">Tech</div>
+        <div class="form__checkbox-option" data-value="design">Design</div>
+        <div class="form__checkbox-option" data-value="marketing">Marketing</div>
+      </div>
+    </div>
+
+    <!-- Input numérique -->
+    <div class="form__field">
+      <label class="form__label">Nombre de participants</label>
+      <div class="form__number">
+        <button type="button" class="form__number-minus">−</button>
+        <input class="form__number-input" type="number" name="participants" value="1" min="1" max="10" step="1">
+        <button type="button" class="form__number-plus">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation multi-step -->
+  <div class="form__nav">
+    <button type="button" class="form__prev">Précédent</button>
+    <button type="button" class="form__next">Suivant</button>
+    <button type="submit" class="form__submit">Envoyer</button>
+  </div>
+</form>

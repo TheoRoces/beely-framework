@@ -1,0 +1,157 @@
+<!-- error-11.html - 404 with breadcrumb back navigation -->
+<style>
+  .wf-error-11 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-primary: var(--color-text, #1a1a1a);
+    --wf-primary-hover: var(--color-neutral-700, #333333);
+    --wf-link: var(--color-text, #374151);
+    --wf-link-hover: var(--color-text, #374151);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-breadcrumb-bg: var(--color-bg-alt, #f9fafb);
+    --wf-font: var(--font-body);
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    box-sizing: border-box;
+  }
+
+  .wf-error-11__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background-color: var(--wf-breadcrumb-bg);
+    border-bottom: 1px solid var(--wf-border);
+    font-size: 0.875rem;
+    flex-wrap: wrap;
+  }
+
+  .wf-error-11__breadcrumb-link {
+    color: var(--wf-link);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .wf-error-11__breadcrumb-link:hover {
+    color: var(--wf-link-hover);
+  }
+
+  .wf-error-11__breadcrumb-sep {
+    color: var(--wf-text-muted);
+    font-size: 0.75rem;
+  }
+
+  .wf-error-11__breadcrumb-current {
+    color: var(--wf-text-muted);
+  }
+
+  .wf-error-11__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .wf-error-11__number {
+    font-size: clamp(5rem, 12vw, 8rem);
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    color: var(--wf-border);
+    letter-spacing: -0.04em;
+  }
+
+  .wf-error-11__title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .wf-error-11__text {
+    font-size: 1rem;
+    color: var(--wf-text-muted);
+    max-width: 28rem;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+  }
+
+  .wf-error-11__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .wf-error-11__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-error-11__btn:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  .wf-error-11__btn--ghost {
+    background-color: transparent;
+    color: var(--wf-text);
+  }
+
+  .wf-error-11__btn--ghost:hover {
+    background-color: var(--wf-breadcrumb-bg);
+  }
+
+  .wf-error-11__btn-arrow {
+    font-size: 1.125rem;
+    line-height: 1;
+  }
+
+  @media (max-width: 640px) {
+    .wf-error-11__breadcrumb {
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>
+
+<section class="wf-error-11">
+  <nav class="wf-error-11__breadcrumb" aria-label="Fil d'Ariane">
+    <a href="#" class="wf-error-11__breadcrumb-link">Accueil</a>
+    <span class="wf-error-11__breadcrumb-sep" aria-hidden="true">/</span>
+    <a href="#" class="wf-error-11__breadcrumb-link">Services</a>
+    <span class="wf-error-11__breadcrumb-sep" aria-hidden="true">/</span>
+    <span class="wf-error-11__breadcrumb-current">Page introuvable</span>
+  </nav>
+
+  <div class="wf-error-11__content">
+    <p class="wf-error-11__number">404</p>
+    <h1 class="wf-error-11__title">Page introuvable</h1>
+    <p class="wf-error-11__text">La page que vous cherchez n'existe pas ou a ete deplacee. Utilisez la navigation ci-dessus pour revenir en arriere.</p>
+    <div class="wf-error-11__actions">
+      <a href="#" class="wf-error-11__btn">
+        <span class="wf-error-11__btn-arrow" aria-hidden="true">&larr;</span>
+        Retour a l'accueil
+      </a>
+      <a href="#" class="wf-error-11__btn wf-error-11__btn--ghost">
+        Page precedente
+      </a>
+    </div>
+  </div>
+</section>

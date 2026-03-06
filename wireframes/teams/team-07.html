@@ -1,0 +1,193 @@
+<!-- team-07: Team cards with hover overlay showing bio (CSS-only) -->
+<style>
+  .wf-team-07 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--wf-spacing-section, 5rem) var(--wf-spacing-gutter, 1.5rem);
+    max-width: var(--wf-max-width, 1200px);
+    margin: 0 auto;
+  }
+  .wf-team-07__header {
+    text-align: center;
+    margin-bottom: var(--wf-spacing-lg, 3rem);
+  }
+  .wf-team-07__title {
+    font-size: var(--wf-font-size-3xl, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text, #111);
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+  .wf-team-07__subtitle {
+    font-size: var(--wf-font-size-md, 1.125rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+  }
+  .wf-team-07__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wf-spacing-md, 2rem);
+  }
+  .wf-team-07__card {
+    position: relative;
+    border-radius: var(--wf-radius-lg, 0.75rem);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .wf-team-07__photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--color-bg-alt, #f3f4f6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wf-team-07__info {
+    padding: 1rem;
+    text-align: center;
+  }
+  .wf-team-07__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--color-text-on-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+  }
+  .wf-team-07__card:hover .wf-team-07__overlay,
+  .wf-team-07__card:focus-within .wf-team-07__overlay {
+    opacity: 1;
+  }
+  .wf-team-07__overlay-name {
+    font-size: var(--wf-font-size-lg, 1.25rem);
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+  .wf-team-07__overlay-role {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    opacity: 0.7;
+    margin: 0 0 1rem;
+  }
+  .wf-team-07__overlay-bio {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    line-height: 1.5;
+    opacity: 0.9;
+    margin: 0;
+  }
+  .wf-team-07__name {
+    font-size: var(--wf-font-size-base, 1rem);
+    font-weight: 600;
+    color: var(--color-text, #111);
+    margin: 0 0 0.25rem;
+  }
+  .wf-team-07__role {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .wf-team-07__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .wf-team-07__grid { grid-template-columns: 1fr; max-width: 20rem; margin: 0 auto; }
+    .wf-team-07__title { font-size: 2rem; }
+  }
+</style>
+
+<section class="wf-team-07">
+  <header class="wf-team-07__header">
+    <h2 class="wf-team-07__title">Notre equipe</h2>
+    <p class="wf-team-07__subtitle">Les talents derriere le projet</p>
+  </header>
+  <div class="wf-team-07__grid">
+    <div class="wf-team-07__card" tabindex="0">
+      <div class="wf-team-07__photo wf-img--portrait">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <div class="wf-team-07__info">
+        <h3 class="wf-team-07__name">Marie Dupont</h3>
+        <p class="wf-team-07__role">Directrice Generale</p>
+      </div>
+      <div class="wf-team-07__overlay">
+        <p class="wf-team-07__overlay-name">Marie Dupont</p>
+        <p class="wf-team-07__overlay-role">Directrice Generale</p>
+        <p class="wf-team-07__overlay-bio">Passionnee par l'innovation et le leadership, Marie dirige notre equipe avec vision et determination.</p>
+      </div>
+    </div>
+    <div class="wf-team-07__card" tabindex="0">
+      <div class="wf-team-07__photo wf-img--portrait">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <div class="wf-team-07__info">
+        <h3 class="wf-team-07__name">Jean Martin</h3>
+        <p class="wf-team-07__role">Lead Developer</p>
+      </div>
+      <div class="wf-team-07__overlay">
+        <p class="wf-team-07__overlay-name">Jean Martin</p>
+        <p class="wf-team-07__overlay-role">Lead Developer</p>
+        <p class="wf-team-07__overlay-bio">Expert en architecture logicielle, Jean transforme les idees complexes en solutions elegantes.</p>
+      </div>
+    </div>
+    <div class="wf-team-07__card" tabindex="0">
+      <div class="wf-team-07__photo wf-img--portrait">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <div class="wf-team-07__info">
+        <h3 class="wf-team-07__name">Sophie Bernard</h3>
+        <p class="wf-team-07__role">Designer UI/UX</p>
+      </div>
+      <div class="wf-team-07__overlay">
+        <p class="wf-team-07__overlay-name">Sophie Bernard</p>
+        <p class="wf-team-07__overlay-role">Designer UI/UX</p>
+        <p class="wf-team-07__overlay-bio">Sophie cree des interfaces intuitives qui allient esthetique et fonctionnalite.</p>
+      </div>
+    </div>
+    <div class="wf-team-07__card" tabindex="0">
+      <div class="wf-team-07__photo wf-img--portrait">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <div class="wf-team-07__info">
+        <h3 class="wf-team-07__name">Lucas Petit</h3>
+        <p class="wf-team-07__role">Chef de Projet</p>
+      </div>
+      <div class="wf-team-07__overlay">
+        <p class="wf-team-07__overlay-name">Lucas Petit</p>
+        <p class="wf-team-07__overlay-role">Chef de Projet</p>
+        <p class="wf-team-07__overlay-bio">Lucas coordonne les projets avec rigueur et assure la livraison dans les delais.</p>
+      </div>
+    </div>
+    <div class="wf-team-07__card" tabindex="0">
+      <div class="wf-team-07__photo wf-img--portrait">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <div class="wf-team-07__info">
+        <h3 class="wf-team-07__name">Emma Moreau</h3>
+        <p class="wf-team-07__role">Responsable Marketing</p>
+      </div>
+      <div class="wf-team-07__overlay">
+        <p class="wf-team-07__overlay-name">Emma Moreau</p>
+        <p class="wf-team-07__overlay-role">Responsable Marketing</p>
+        <p class="wf-team-07__overlay-bio">Emma developpe des strategies marketing innovantes pour renforcer notre presence.</p>
+      </div>
+    </div>
+    <div class="wf-team-07__card" tabindex="0">
+      <div class="wf-team-07__photo wf-img--portrait">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <div class="wf-team-07__info">
+        <h3 class="wf-team-07__name">Thomas Leroy</h3>
+        <p class="wf-team-07__role">Developpeur Frontend</p>
+      </div>
+      <div class="wf-team-07__overlay">
+        <p class="wf-team-07__overlay-name">Thomas Leroy</p>
+        <p class="wf-team-07__overlay-role">Developpeur Frontend</p>
+        <p class="wf-team-07__overlay-bio">Thomas construit des interfaces performantes et accessibles avec les dernières technologies.</p>
+      </div>
+    </div>
+  </div>
+</section>

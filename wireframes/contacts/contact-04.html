@@ -1,0 +1,171 @@
+<!-- contact-04: Split layout - left form + right map placeholder -->
+<style>
+  .wf-contact-04 {
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-gap: 3rem;
+    --wf-bg: var(--color-bg);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-accent: var(--color-text);
+    --wf-map-bg: var(--color-border);
+    --wf-input-bg: var(--color-bg-alt);
+    --wf-input-border: var(--color-border);
+    --wf-input-radius: 0.5rem;
+    --wf-btn-bg: var(--color-text);
+    --wf-btn-text: var(--color-bg);
+    --wf-btn-radius: 0.5rem;
+    padding: var(--wf-section-padding);
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-contact-04 .wf-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--wf-gap);
+    align-items: stretch;
+  }
+
+  .wf-contact-04 .wf-form-side h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-contact-04 .wf-form-side .wf-subtitle {
+    color: var(--wf-text-muted);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+  }
+
+  .wf-contact-04 form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .wf-contact-04 .wf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .wf-contact-04 .wf-input,
+  .wf-contact-04 .wf-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--wf-input-border);
+    border-radius: var(--wf-input-radius);
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .wf-contact-04 .wf-input:focus,
+  .wf-contact-04 .wf-textarea:focus {
+    border-color: var(--wf-accent);
+  }
+
+  .wf-contact-04 .wf-textarea {
+    min-height: 130px;
+    resize: vertical;
+  }
+
+  .wf-contact-04 .wf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: var(--wf-btn-bg);
+    color: var(--wf-btn-text);
+    border: none;
+    border-radius: var(--wf-btn-radius);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .wf-contact-04 .wf-btn:hover {
+    opacity: 0.85;
+  }
+
+  .wf-contact-04 .wf-map-side {
+    background: var(--wf-map-bg);
+    border-radius: var(--radius-lg, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wf-contact-04 .wf-map-placeholder {
+    color: var(--wf-text-muted);
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .wf-contact-04 .wf-map-placeholder svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    .wf-contact-04 .wf-container {
+      grid-template-columns: 1fr;
+    }
+    .wf-contact-04 .wf-form-side h2 {
+      font-size: 2rem;
+    }
+    .wf-contact-04 .wf-row {
+      grid-template-columns: 1fr;
+    }
+    .wf-contact-04 .wf-map-side {
+      min-height: 300px;
+    }
+  }
+</style>
+
+<section class="wf-contact-04">
+  <div class="wf-container">
+    <div class="wf-form-side">
+      <h2>Contactez-nous</h2>
+      <p class="wf-subtitle">Envoyez-nous un message et nous vous repondrons rapidement.</p>
+      <form>
+        <div class="wf-row">
+          <input type="text" class="wf-input" placeholder="Nom complet" />
+          <input type="email" class="wf-input" placeholder="Adresse email" />
+        </div>
+        <input type="tel" class="wf-input" placeholder="Telephone" />
+        <input type="text" class="wf-input" placeholder="Sujet" />
+        <textarea class="wf-textarea" placeholder="Votre message"></textarea>
+        <button type="submit" class="wf-btn">Envoyer le message</button>
+      </form>
+    </div>
+    <div class="wf-map-side">
+      <div class="wf-map-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+        <span>Carte interactive</span>
+        <span>123 rue Exemple, 75000 Paris</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,416 @@
+/* ==========================================================================
+   TOKENS — Design Tokens / Charte Client
+   Modifiez UNIQUEMENT les valeurs marquées « À MODIFIER » pour initialiser
+   le branding. Les variantes de couleurs sont auto-générées.
+   ========================================================================== */
+
+/* ==========================================================================
+   POLICES LOCALES (@font-face)
+   Remplacez les fichiers dans /assets/fonts/ pour changer de police.
+   RGPD : aucun appel externe (Google Fonts, etc.)
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../assets/fonts/Inter-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../../assets/fonts/Inter-Italic-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* ==============================================
+     COULEURS — À MODIFIER
+     Changez uniquement ces 4 valeurs,
+     toutes les variantes se calculent automatiquement.
+     ============================================== */
+  --primary: #1E69FE;
+  --secondary: #8b5cf6;
+  --tertiary: #ec4899;
+  --accent: #f59e0b;
+
+  /* ==============================================
+     PRIMARY — Variantes auto-générées
+     t = transparent, l = light, d = dark
+     ============================================== */
+  --primary-t-1: color-mix(in srgb, var(--primary) 84%, transparent);
+  --primary-t-2: color-mix(in srgb, var(--primary) 68%, transparent);
+  --primary-t-3: color-mix(in srgb, var(--primary) 53%, transparent);
+  --primary-t-4: color-mix(in srgb, var(--primary) 37%, transparent);
+  --primary-t-5: color-mix(in srgb, var(--primary) 21%, transparent);
+  --primary-t-6: color-mix(in srgb, var(--primary) 5%, transparent);
+
+  --primary-l-1: var(--primary);
+  --primary-l-2: color-mix(in srgb, var(--primary) 80%, white);
+  --primary-l-3: color-mix(in srgb, var(--primary) 60%, white);
+  --primary-l-4: color-mix(in srgb, var(--primary) 40%, white);
+  --primary-l-5: color-mix(in srgb, var(--primary) 20%, white);
+  --primary-l-6: color-mix(in srgb, var(--primary) 7%, white);
+
+  --primary-d-1: color-mix(in srgb, var(--primary) 85%, black);
+  --primary-d-2: color-mix(in srgb, var(--primary) 70%, black);
+  --primary-d-3: color-mix(in srgb, var(--primary) 55%, black);
+  --primary-d-4: color-mix(in srgb, var(--primary) 40%, black);
+  --primary-d-5: color-mix(in srgb, var(--primary) 25%, black);
+  --primary-d-6: color-mix(in srgb, var(--primary) 15%, black);
+
+  /* ==============================================
+     SECONDARY — Variantes auto-générées
+     ============================================== */
+  --secondary-t-1: color-mix(in srgb, var(--secondary) 84%, transparent);
+  --secondary-t-2: color-mix(in srgb, var(--secondary) 68%, transparent);
+  --secondary-t-3: color-mix(in srgb, var(--secondary) 53%, transparent);
+  --secondary-t-4: color-mix(in srgb, var(--secondary) 37%, transparent);
+  --secondary-t-5: color-mix(in srgb, var(--secondary) 21%, transparent);
+  --secondary-t-6: color-mix(in srgb, var(--secondary) 5%, transparent);
+
+  --secondary-l-1: var(--secondary);
+  --secondary-l-2: color-mix(in srgb, var(--secondary) 80%, white);
+  --secondary-l-3: color-mix(in srgb, var(--secondary) 60%, white);
+  --secondary-l-4: color-mix(in srgb, var(--secondary) 40%, white);
+  --secondary-l-5: color-mix(in srgb, var(--secondary) 20%, white);
+  --secondary-l-6: color-mix(in srgb, var(--secondary) 7%, white);
+
+  --secondary-d-1: color-mix(in srgb, var(--secondary) 85%, black);
+  --secondary-d-2: color-mix(in srgb, var(--secondary) 70%, black);
+  --secondary-d-3: color-mix(in srgb, var(--secondary) 55%, black);
+  --secondary-d-4: color-mix(in srgb, var(--secondary) 40%, black);
+  --secondary-d-5: color-mix(in srgb, var(--secondary) 25%, black);
+  --secondary-d-6: color-mix(in srgb, var(--secondary) 15%, black);
+
+  /* ==============================================
+     TERTIARY — Variantes auto-générées
+     ============================================== */
+  --tertiary-t-1: color-mix(in srgb, var(--tertiary) 84%, transparent);
+  --tertiary-t-2: color-mix(in srgb, var(--tertiary) 68%, transparent);
+  --tertiary-t-3: color-mix(in srgb, var(--tertiary) 53%, transparent);
+  --tertiary-t-4: color-mix(in srgb, var(--tertiary) 37%, transparent);
+  --tertiary-t-5: color-mix(in srgb, var(--tertiary) 21%, transparent);
+  --tertiary-t-6: color-mix(in srgb, var(--tertiary) 5%, transparent);
+
+  --tertiary-l-1: var(--tertiary);
+  --tertiary-l-2: color-mix(in srgb, var(--tertiary) 80%, white);
+  --tertiary-l-3: color-mix(in srgb, var(--tertiary) 60%, white);
+  --tertiary-l-4: color-mix(in srgb, var(--tertiary) 40%, white);
+  --tertiary-l-5: color-mix(in srgb, var(--tertiary) 20%, white);
+  --tertiary-l-6: color-mix(in srgb, var(--tertiary) 7%, white);
+
+  --tertiary-d-1: color-mix(in srgb, var(--tertiary) 85%, black);
+  --tertiary-d-2: color-mix(in srgb, var(--tertiary) 70%, black);
+  --tertiary-d-3: color-mix(in srgb, var(--tertiary) 55%, black);
+  --tertiary-d-4: color-mix(in srgb, var(--tertiary) 40%, black);
+  --tertiary-d-5: color-mix(in srgb, var(--tertiary) 25%, black);
+  --tertiary-d-6: color-mix(in srgb, var(--tertiary) 15%, black);
+
+  /* ==============================================
+     ACCENT — Variantes auto-générées
+     ============================================== */
+  --accent-t-1: color-mix(in srgb, var(--accent) 84%, transparent);
+  --accent-t-2: color-mix(in srgb, var(--accent) 68%, transparent);
+  --accent-t-3: color-mix(in srgb, var(--accent) 53%, transparent);
+  --accent-t-4: color-mix(in srgb, var(--accent) 37%, transparent);
+  --accent-t-5: color-mix(in srgb, var(--accent) 21%, transparent);
+  --accent-t-6: color-mix(in srgb, var(--accent) 5%, transparent);
+
+  --accent-l-1: var(--accent);
+  --accent-l-2: color-mix(in srgb, var(--accent) 80%, white);
+  --accent-l-3: color-mix(in srgb, var(--accent) 60%, white);
+  --accent-l-4: color-mix(in srgb, var(--accent) 40%, white);
+  --accent-l-5: color-mix(in srgb, var(--accent) 20%, white);
+  --accent-l-6: color-mix(in srgb, var(--accent) 7%, white);
+
+  --accent-d-1: color-mix(in srgb, var(--accent) 85%, black);
+  --accent-d-2: color-mix(in srgb, var(--accent) 70%, black);
+  --accent-d-3: color-mix(in srgb, var(--accent) 55%, black);
+  --accent-d-4: color-mix(in srgb, var(--accent) 40%, black);
+  --accent-d-5: color-mix(in srgb, var(--accent) 25%, black);
+  --accent-d-6: color-mix(in srgb, var(--accent) 15%, black);
+
+  /* ==============================================
+     NEUTRAL — Commun à tous les projets
+     Variantes auto-générées depuis --neutral.
+     ============================================== */
+  --neutral: #262525;
+
+  --neutral-t-1: color-mix(in srgb, var(--neutral) 84%, transparent);
+  --neutral-t-2: color-mix(in srgb, var(--neutral) 68%, transparent);
+  --neutral-t-3: color-mix(in srgb, var(--neutral) 53%, transparent);
+  --neutral-t-4: color-mix(in srgb, var(--neutral) 37%, transparent);
+  --neutral-t-5: color-mix(in srgb, var(--neutral) 21%, transparent);
+  --neutral-t-6: color-mix(in srgb, var(--neutral) 5%, transparent);
+
+  --neutral-l-1: color-mix(in srgb, var(--neutral) 80%, white);
+  --neutral-l-2: color-mix(in srgb, var(--neutral) 60%, white);
+  --neutral-l-3: color-mix(in srgb, var(--neutral) 44%, white);
+  --neutral-l-4: color-mix(in srgb, var(--neutral) 30%, white);
+  --neutral-l-5: color-mix(in srgb, var(--neutral) 16%, white);
+  --neutral-l-6: color-mix(in srgb, var(--neutral) 2%, white);
+
+  --neutral-d-1: color-mix(in srgb, var(--neutral) 87%, black);
+  --neutral-d-2: color-mix(in srgb, var(--neutral) 76%, black);
+  --neutral-d-3: color-mix(in srgb, var(--neutral) 66%, black);
+  --neutral-d-4: color-mix(in srgb, var(--neutral) 55%, black);
+  --neutral-d-5: color-mix(in srgb, var(--neutral) 44%, black);
+  --neutral-d-6: color-mix(in srgb, var(--neutral) 33%, black);
+
+  /* ==============================================
+     BLACK & WHITE — Fixes, communs à tous les projets
+     Seules les variantes de transparence sont générées.
+     ============================================== */
+  --black: #000000;
+  --black-t-1: rgba(0, 0, 0, 0.84);
+  --black-t-2: rgba(0, 0, 0, 0.68);
+  --black-t-3: rgba(0, 0, 0, 0.53);
+  --black-t-4: rgba(0, 0, 0, 0.37);
+  --black-t-5: rgba(0, 0, 0, 0.21);
+  --black-t-6: rgba(0, 0, 0, 0.05);
+
+  --white: #ffffff;
+  --white-t-1: rgba(255, 255, 255, 0.84);
+  --white-t-2: rgba(255, 255, 255, 0.68);
+  --white-t-3: rgba(255, 255, 255, 0.53);
+  --white-t-4: rgba(255, 255, 255, 0.37);
+  --white-t-5: rgba(255, 255, 255, 0.21);
+  --white-t-6: rgba(255, 255, 255, 0.05);
+
+  /* ==============================================
+     COULEURS SÉMANTIQUES — À MODIFIER si besoin
+     ============================================== */
+  --error: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+
+  /* ==============================================
+     TEXTE & FONDS — À MODIFIER
+     ============================================== */
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --bg: #ffffff;
+  --bg-alt: #f9fafb;
+  --border: #e5e7eb;
+  --border-dark: #d1d5db;
+
+  /* ==============================================
+     POLICES — À MODIFIER
+     font-body  : texte courant (paragraphes, labels…)
+     font-heading : titres (h1–h6)
+     Changez la font-family pour utiliser une autre police.
+     ============================================== */
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Alias rétro-compatible */
+  --font-base: var(--font-body);
+
+  /* ==============================================
+     TAILLES DE TEXTE — Fluid / Dynamiques (clamp)
+     ============================================== */
+  --text-xs: clamp(0.7rem, 0.66rem + 0.2vw, 0.75rem);
+  --text-sm: clamp(0.8rem, 0.76rem + 0.2vw, 0.875rem);
+  --text-base: clamp(0.9rem, 0.86rem + 0.2vw, 1rem);
+  --text-lg: clamp(1rem, 0.93rem + 0.35vw, 1.125rem);
+  --text-xl: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
+  --text-2xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --text-3xl: clamp(1.5rem, 1.2rem + 1.5vw, 1.875rem);
+  --text-4xl: clamp(1.75rem, 1.35rem + 2vw, 2.25rem);
+  --text-5xl: clamp(2rem, 1.4rem + 3vw, 3rem);
+
+  /* ==============================================
+     FONT WEIGHTS
+     ============================================== */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ==============================================
+     ESPACEMENTS
+     ============================================== */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ==============================================
+     RAYONS (border-radius)
+     ============================================== */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ==============================================
+     OMBRES
+     ============================================== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  /* ==============================================
+     TRANSITIONS
+     ============================================== */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+  /* ==============================================
+     LAYOUT
+     ============================================== */
+  --container-max: 1200px;
+  --container-padding: var(--space-6);
+
+  /* Breakpoints — 4 paliers : desktop >=992, tablette 768-991, mobile-landscape 479-767, mobile <=478 */
+  --bp-tablet: 991px;
+  --bp-mobile-landscape: 767px;
+  --bp-mobile: 478px;
+
+  /* ==============================================
+     MAPPING INTERNE — Ne pas modifier
+     Les composants utilisent ces noms en interne.
+     ============================================== */
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-d-2);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-accent: var(--accent);
+  --color-success: var(--success);
+  --color-danger: var(--error);
+  --color-warning: var(--warning);
+
+  --color-text: var(--text);
+  --color-text-light: var(--text-light);
+  --color-text-inverse: #ffffff;
+
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-bg-dark: var(--black);
+
+  --color-border: var(--border);
+  --color-border-dark: var(--border-dark);
+
+  /* Echelle de gris neutres (wireframes) */
+  --color-neutral-50:  #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+
+  /* Alias muted pour texte secondaire */
+  --color-text-muted: var(--text-light);
+
+  /* ==============================================
+     ECHELLE SÉMANTIQUE ÉTENDUE
+     Variantes claires (tints) et foncées (shades)
+     pour success, warning, danger/error.
+     Utilisent color-mix pour s'adapter au dark mode.
+     ============================================== */
+
+  /* Success */
+  --color-success-50:  color-mix(in srgb, var(--success) 8%, var(--bg));
+  --color-success-100: color-mix(in srgb, var(--success) 15%, var(--bg));
+  --color-success-300: color-mix(in srgb, var(--success) 40%, var(--bg));
+  --color-success-800: color-mix(in srgb, var(--success) 85%, black);
+  --color-success-dark: color-mix(in srgb, var(--success) 70%, black);
+
+  /* Warning */
+  --color-warning-50:  color-mix(in srgb, var(--warning) 8%, var(--bg));
+  --color-warning-100: color-mix(in srgb, var(--warning) 15%, var(--bg));
+  --color-warning-200: color-mix(in srgb, var(--warning) 25%, var(--bg));
+  --color-warning-300: color-mix(in srgb, var(--warning) 40%, var(--bg));
+  --color-warning-800: color-mix(in srgb, var(--warning) 85%, black);
+  --color-warning-dark: color-mix(in srgb, var(--warning) 70%, black);
+
+  /* Danger / Error (alias) */
+  --color-error:      var(--error);
+  --color-error-50:   color-mix(in srgb, var(--error) 8%, var(--bg));
+  --color-error-100:  color-mix(in srgb, var(--error) 15%, var(--bg));
+  --color-error-200:  color-mix(in srgb, var(--error) 25%, var(--bg));
+  --color-error-300:  color-mix(in srgb, var(--error) 40%, var(--bg));
+  --color-error-dark: color-mix(in srgb, var(--error) 70%, black);
+
+  /* Variantes de couleurs principales */
+  --color-primary-light: var(--primary-l-4);
+  --color-secondary-dark: var(--secondary-d-2);
+  --color-tertiary-dark: var(--tertiary-d-2);
+
+  /* Alias de surface / muted */
+  --color-surface: var(--bg-alt);
+  --color-muted: var(--border);
+  --color-dark: var(--black);
+  --color-placeholder: var(--border);
+  --color-text-muted-inverse: rgba(255, 255, 255, 0.6);
+
+  /* Blocs de code */
+  --code-bg: #0f1117;
+  --code-text: #e5e7eb;
+  --code-border: rgba(255, 255, 255, 0.06);
+  --code-btn: #6b7280;
+  --code-btn-hover: #e5e7eb;
+
+  /* Disclaimer / avertissement */
+  --disclaimer-bg: #fff3cd;
+  --disclaimer-text: #856404;
+  --disclaimer-border: #ffeeba;
+}
+
+/* ==========================================================================
+   DARK MODE — Surcharge des tokens en mode sombre
+   Activé via data-theme="dark" sur <html>
+   ========================================================================== */
+
+[data-theme="dark"] {
+  --text: #e5e7eb;
+  --text-light: #9ca3af;
+  --bg: #111827;
+  --bg-alt: #1f2937;
+  --border: #374151;
+  --border-dark: #4b5563;
+
+  --color-text-inverse: #ffffff;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+
+  /* Neutres inversés */
+  --color-neutral-50:  #1f2937;
+  --color-neutral-100: #1f2937;
+  --color-neutral-200: #374151;
+  --color-neutral-300: #4b5563;
+  --color-neutral-400: #6b7280;
+  --color-neutral-500: #9ca3af;
+  --color-neutral-600: #d1d5db;
+  --color-neutral-700: #e5e7eb;
+  --color-neutral-800: #f3f4f6;
+  --color-neutral-900: #f9fafb;
+
+  --disclaimer-bg: rgba(255, 243, 205, 0.1);
+  --disclaimer-text: #ffc107;
+  --disclaimer-border: rgba(255, 238, 186, 0.3);
+}

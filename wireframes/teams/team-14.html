@@ -1,0 +1,193 @@
+<!-- team-14: Magazine-style with large photo + quote for founder, grid for team -->
+<style>
+  .wf-team-14 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--wf-spacing-section, 5rem) var(--wf-spacing-gutter, 1.5rem);
+    max-width: var(--wf-max-width, 1200px);
+    margin: 0 auto;
+  }
+  .wf-team-14__header {
+    text-align: center;
+    margin-bottom: var(--wf-spacing-xl, 4rem);
+  }
+  .wf-team-14__title {
+    font-size: var(--wf-font-size-3xl, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text, #111);
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+  .wf-team-14__subtitle {
+    font-size: var(--wf-font-size-md, 1.125rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+  }
+  .wf-team-14__founder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--wf-spacing-lg, 3rem);
+    align-items: center;
+    margin-bottom: var(--wf-spacing-xl, 4rem);
+  }
+  .wf-team-14__founder-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--color-bg-alt, #f3f4f6);
+    border-radius: var(--wf-radius-lg, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .wf-team-14__founder-content {
+    padding: 1rem 0;
+  }
+  .wf-team-14__founder-label {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-light, #6b7280);
+    margin: 0 0 1rem;
+  }
+  .wf-team-14__founder-quote {
+    font-size: var(--wf-font-size-xl, 1.5rem);
+    font-style: italic;
+    color: var(--color-text, #111);
+    line-height: 1.5;
+    margin: 0 0 1.5rem;
+    padding: 0;
+    border: none;
+  }
+  .wf-team-14__founder-quote::before {
+    content: "\201C";
+  }
+  .wf-team-14__founder-quote::after {
+    content: "\201D";
+  }
+  .wf-team-14__founder-name {
+    font-size: var(--wf-font-size-lg, 1.25rem);
+    font-weight: 700;
+    color: var(--color-text, #111);
+    margin: 0 0 0.25rem;
+  }
+  .wf-team-14__founder-role {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+  }
+  .wf-team-14__divider {
+    border: none;
+    height: 1px;
+    background: var(--color-border, #e5e7eb);
+    margin: 0 0 var(--wf-spacing-xl, 4rem);
+  }
+  .wf-team-14__team-label {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-light, #6b7280);
+    margin: 0 0 1.5rem;
+    text-align: center;
+  }
+  .wf-team-14__grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--wf-spacing-md, 1.5rem);
+  }
+  .wf-team-14__member {
+    text-align: center;
+  }
+  .wf-team-14__photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: var(--color-bg-alt, #f3f4f6);
+    border-radius: var(--wf-radius-md, 0.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+  .wf-team-14__name {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--color-text, #111);
+    margin: 0 0 0.125rem;
+  }
+  .wf-team-14__role {
+    font-size: var(--wf-font-size-xs, 0.75rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .wf-team-14__founder { grid-template-columns: 1fr; }
+    .wf-team-14__grid { grid-template-columns: repeat(3, 1fr); }
+    .wf-team-14__title { font-size: 2rem; }
+  }
+  @media (max-width: 480px) {
+    .wf-team-14__grid { grid-template-columns: repeat(2, 1fr); }
+    .wf-team-14__founder-quote { font-size: 1.25rem; }
+  }
+</style>
+
+<section class="wf-team-14">
+  <header class="wf-team-14__header">
+    <h2 class="wf-team-14__title">Notre equipe</h2>
+    <p class="wf-team-14__subtitle">Les talents derriere le projet</p>
+  </header>
+
+  <div class="wf-team-14__founder">
+    <div class="wf-team-14__founder-photo wf-img--portrait">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+    </div>
+    <div class="wf-team-14__founder-content">
+      <p class="wf-team-14__founder-label">Fondatrice</p>
+      <blockquote class="wf-team-14__founder-quote">Notre mission est de creer des solutions qui transforment le quotidien de nos clients et repoussent les limites du possible.</blockquote>
+      <h3 class="wf-team-14__founder-name">Marie Dupont</h3>
+      <p class="wf-team-14__founder-role">Directrice Generale</p>
+    </div>
+  </div>
+
+  <hr class="wf-team-14__divider">
+  <p class="wf-team-14__team-label">L'equipe</p>
+
+  <div class="wf-team-14__grid">
+    <div class="wf-team-14__member">
+      <div class="wf-team-14__photo wf-img--square">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <h3 class="wf-team-14__name">Jean Martin</h3>
+      <p class="wf-team-14__role">Lead Developer</p>
+    </div>
+    <div class="wf-team-14__member">
+      <div class="wf-team-14__photo wf-img--square">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <h3 class="wf-team-14__name">Sophie Bernard</h3>
+      <p class="wf-team-14__role">Designer UI/UX</p>
+    </div>
+    <div class="wf-team-14__member">
+      <div class="wf-team-14__photo wf-img--square">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <h3 class="wf-team-14__name">Lucas Petit</h3>
+      <p class="wf-team-14__role">Chef de Projet</p>
+    </div>
+    <div class="wf-team-14__member">
+      <div class="wf-team-14__photo wf-img--square">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <h3 class="wf-team-14__name">Emma Moreau</h3>
+      <p class="wf-team-14__role">Responsable Marketing</p>
+    </div>
+    <div class="wf-team-14__member">
+      <div class="wf-team-14__photo wf-img--square">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/></svg>
+      </div>
+      <h3 class="wf-team-14__name">Thomas Leroy</h3>
+      <p class="wf-team-14__role">Developpeur Frontend</p>
+    </div>
+  </div>
+</section>

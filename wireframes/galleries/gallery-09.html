@@ -1,0 +1,247 @@
+<!-- Gallery 09: Galerie style lightbox (apercu en superposition) -->
+<!-- Section galerie avec simulation d'overlay lightbox au clic (CSS only, pas de JS) -->
+
+<style>
+  .wf-gallery-09 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-gallery-09-gap: 1rem;
+    --wf-gallery-09-radius: 0.5rem;
+    --wf-gallery-09-bg: var(--color-bg);
+    --wf-gallery-09-text: var(--color-text);
+    --wf-gallery-09-muted: var(--color-text-light);
+    --wf-gallery-09-img-bg: var(--color-border);
+    --wf-gallery-09-padding-x: 5%;
+    --wf-gallery-09-padding-y: 5rem;
+    --wf-gallery-09-overlay-bg: rgba(0, 0, 0, 0.85);
+  }
+
+  .wf-gallery-09 {
+    background-color: var(--wf-gallery-09-bg);
+    padding: var(--wf-gallery-09-padding-y) var(--wf-gallery-09-padding-x);
+  }
+
+  .wf-gallery-09__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-gallery-09__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-gallery-09-muted);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .wf-gallery-09__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--wf-gallery-09-text);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .wf-gallery-09__description {
+    font-size: 1.125rem;
+    color: var(--wf-gallery-09-muted);
+    margin: 0 auto;
+    max-width: 40rem;
+    line-height: 1.6;
+  }
+
+  .wf-gallery-09__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--wf-gallery-09-gap);
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+
+  .wf-gallery-09__item {
+    position: relative;
+    cursor: pointer;
+    border-radius: var(--wf-gallery-09-radius);
+    overflow: hidden;
+  }
+
+  .wf-gallery-09__item .wf-img {
+    aspect-ratio: 4 / 3;
+    background-color: var(--wf-gallery-09-img-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-gallery-09__zoom-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s;
+  }
+
+  .wf-gallery-09__zoom-icon svg {
+    opacity: 0;
+    transition: opacity 0.3s;
+    color: var(--color-text-on-dark);
+  }
+
+  .wf-gallery-09__item:hover .wf-gallery-09__zoom-icon {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .wf-gallery-09__item:hover .wf-gallery-09__zoom-icon svg {
+    opacity: 1;
+  }
+
+  /* Lightbox overlay wireframe placeholder */
+  .wf-gallery-09__lightbox {
+    display: none;
+    position: relative;
+    margin-top: 3rem;
+    background-color: var(--wf-gallery-09-overlay-bg);
+    border-radius: var(--radius-xl, 1rem);
+    padding: 3rem;
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .wf-gallery-09__lightbox--preview {
+    display: block;
+  }
+
+  .wf-gallery-09__lightbox-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background-color: var(--color-bg-dark);
+    border-radius: var(--radius-md, 0.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-gallery-09__lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: var(--color-text-on-dark);
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-gallery-09__lightbox-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .wf-gallery-09__lightbox-arrow {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: var(--color-text-on-dark);
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .wf-gallery-09__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wf-gallery-09__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-gallery-09">
+  <div class="wf-gallery-09__header">
+    <p class="wf-gallery-09__tagline">Galerie</p>
+    <h2 class="wf-gallery-09__title">Nos realisations en images</h2>
+    <p class="wf-gallery-09__description">Cliquez sur une image pour l'agrandir dans une vue lightbox.</p>
+  </div>
+
+  <div class="wf-gallery-09__grid">
+    <div class="wf-gallery-09__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-09__zoom-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-09__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-09__zoom-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-09__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-09__zoom-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-09__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-09__zoom-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-09__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-09__zoom-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-09__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-gallery-09__zoom-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox preview placeholder (visible pour montrer le wireframe) -->
+  <div class="wf-gallery-09__lightbox wf-gallery-09__lightbox--preview">
+    <button class="wf-gallery-09__lightbox-close" aria-label="Fermer">&times;</button>
+    <div class="wf-gallery-09__lightbox-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="64" height="64" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-gallery-09__lightbox-nav">
+      <button class="wf-gallery-09__lightbox-arrow" aria-label="Precedent">&larr;</button>
+      <button class="wf-gallery-09__lightbox-arrow" aria-label="Suivant">&rarr;</button>
+    </div>
+  </div>
+</section>

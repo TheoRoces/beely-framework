@@ -1,0 +1,141 @@
+<!-- error-05.html - 404 with suggested links (3-4 popular pages) -->
+<style>
+  .wf-error-05 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-primary: var(--color-text, #1a1a1a);
+    --wf-primary-hover: var(--color-neutral-700, #333333);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-card-border: var(--color-border, #e5e7eb);
+    --wf-card-hover: var(--color-neutral-100, #f3f4f6);
+    --wf-font: var(--font-body);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    text-align: center;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .wf-error-05__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--wf-text-muted);
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-error-05__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    margin: 0 0 0.75rem;
+    line-height: 1.15;
+  }
+
+  .wf-error-05__text {
+    font-size: 1rem;
+    color: var(--wf-text-muted);
+    max-width: 28rem;
+    line-height: 1.6;
+    margin: 0 0 2.5rem;
+  }
+
+  .wf-error-05__suggestions-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--wf-text);
+    margin: 0 0 1rem;
+  }
+
+  .wf-error-05__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 48rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .wf-error-05__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background-color: var(--wf-card-bg);
+    border: 1px solid var(--wf-card-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    text-decoration: none;
+    color: var(--wf-text);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .wf-error-05__card:hover {
+    background-color: var(--wf-card-hover);
+    border-color: var(--wf-text-muted);
+  }
+
+  .wf-error-05__card-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+
+  .wf-error-05__card-desc {
+    font-size: 0.8125rem;
+    color: var(--wf-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .wf-error-05__btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md, 0.5rem);
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-error-05__btn:hover {
+    background-color: var(--wf-primary-hover);
+  }
+</style>
+
+<section class="wf-error-05">
+  <p class="wf-error-05__label">Erreur 404</p>
+  <h1 class="wf-error-05__title">Page introuvable</h1>
+  <p class="wf-error-05__text">La page que vous cherchez n'existe pas ou a ete deplacee. Voici quelques pages qui pourraient vous interesser.</p>
+
+  <p class="wf-error-05__suggestions-label">Pages populaires</p>
+  <div class="wf-error-05__grid">
+    <a href="#" class="wf-error-05__card">
+      <p class="wf-error-05__card-title">Accueil</p>
+      <p class="wf-error-05__card-desc">Retour a la page principale du site.</p>
+    </a>
+    <a href="#" class="wf-error-05__card">
+      <p class="wf-error-05__card-title">Services</p>
+      <p class="wf-error-05__card-desc">Decouvrez nos offres et services.</p>
+    </a>
+    <a href="#" class="wf-error-05__card">
+      <p class="wf-error-05__card-title">A propos</p>
+      <p class="wf-error-05__card-desc">En savoir plus sur notre equipe.</p>
+    </a>
+    <a href="#" class="wf-error-05__card">
+      <p class="wf-error-05__card-title">Contact</p>
+      <p class="wf-error-05__card-desc">Prenez contact avec nous directement.</p>
+    </a>
+  </div>
+
+  <a href="#" class="wf-error-05__btn">Retour a l'accueil</a>
+</section>

@@ -1,0 +1,144 @@
+<!-- mega-menu-03: Icon + title + description per item, 2 columns -->
+<style>
+  .wf-megamenu-03 {
+    --wf-mm-bg: var(--color-bg);
+    --wf-mm-border: var(--color-border);
+    --wf-mm-text: var(--color-text);
+    --wf-mm-text-muted: var(--color-text-light);
+    --wf-mm-hover: var(--color-bg-alt);
+    --wf-mm-accent: var(--color-text);
+    --wf-mm-icon-bg: var(--color-bg-alt);
+    --wf-mm-radius: 12px;
+    --wf-mm-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 4px 16px rgba(0,0,0,0.05);
+    --wf-mm-padding: 1.5rem;
+
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    background: var(--wf-mm-bg);
+    border: 1px solid var(--wf-mm-border);
+    border-radius: var(--wf-mm-radius);
+    box-shadow: var(--wf-mm-shadow);
+    padding: var(--wf-mm-padding);
+    max-width: 680px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wf-megamenu-03 .wf-megamenu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem;
+  }
+
+  .wf-megamenu-03 .wf-megamenu__link {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    color: var(--wf-mm-text);
+    text-decoration: none;
+    border-radius: var(--radius-lg, 0.75rem);
+    transition: background 0.15s ease;
+  }
+
+  .wf-megamenu-03 .wf-megamenu__link:hover {
+    background: var(--wf-mm-hover);
+  }
+
+  .wf-megamenu-03 .wf-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-mm-icon-bg);
+    border-radius: var(--radius-md, 0.5rem);
+    color: var(--wf-mm-accent);
+  }
+
+  .wf-megamenu-03 .wf-megamenu__link-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .wf-megamenu-03 .wf-megamenu__link-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--wf-mm-text);
+  }
+
+  .wf-megamenu-03 .wf-megamenu__link-desc {
+    font-size: 0.8125rem;
+    color: var(--wf-mm-text-muted);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 560px) {
+    .wf-megamenu-03 .wf-megamenu {
+      grid-template-columns: 1fr;
+    }
+    .wf-megamenu-03 {
+      padding: 1rem;
+    }
+  }
+</style>
+
+<div class="wf-megamenu-03">
+  <nav class="wf-megamenu" aria-label="Menu principal">
+    <a href="#" class="wf-megamenu__link">
+      <span class="wf-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      </span>
+      <span class="wf-megamenu__link-content">
+        <span class="wf-megamenu__link-title">Design UI/UX</span>
+        <span class="wf-megamenu__link-desc">Interfaces modernes et intuitives</span>
+      </span>
+    </a>
+    <a href="#" class="wf-megamenu__link">
+      <span class="wf-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      </span>
+      <span class="wf-megamenu__link-content">
+        <span class="wf-megamenu__link-title">Developpement Web</span>
+        <span class="wf-megamenu__link-desc">Sites performants et sur mesure</span>
+      </span>
+    </a>
+    <a href="#" class="wf-megamenu__link">
+      <span class="wf-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      </span>
+      <span class="wf-megamenu__link-content">
+        <span class="wf-megamenu__link-title">Applications Mobiles</span>
+        <span class="wf-megamenu__link-desc">iOS et Android natifs</span>
+      </span>
+    </a>
+    <a href="#" class="wf-megamenu__link">
+      <span class="wf-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      </span>
+      <span class="wf-megamenu__link-content">
+        <span class="wf-megamenu__link-title">Consulting</span>
+        <span class="wf-megamenu__link-desc">Strategie et accompagnement digital</span>
+      </span>
+    </a>
+    <a href="#" class="wf-megamenu__link">
+      <span class="wf-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      </span>
+      <span class="wf-megamenu__link-content">
+        <span class="wf-megamenu__link-title">Blog</span>
+        <span class="wf-megamenu__link-desc">Articles et actualites</span>
+      </span>
+    </a>
+    <a href="#" class="wf-megamenu__link">
+      <span class="wf-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+      </span>
+      <span class="wf-megamenu__link-content">
+        <span class="wf-megamenu__link-title">Etudes de cas</span>
+        <span class="wf-megamenu__link-desc">Resultats concrets de nos projets</span>
+      </span>
+    </a>
+  </nav>
+</div>

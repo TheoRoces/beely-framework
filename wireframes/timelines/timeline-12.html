@@ -1,0 +1,231 @@
+<!-- timeline-12.html — Project timeline / roadmap style -->
+<style>
+  .wf-timeline-12 {
+    --wf-color-bg: var(--color-bg);
+    --wf-color-text: var(--color-text);
+    --wf-color-text-muted: var(--color-text-light);
+    --wf-color-accent: var(--color-text);
+    --wf-color-accent-light: var(--color-bg-alt);
+    --wf-color-border: var(--color-border);
+    --wf-color-phase-bg: var(--color-bg-alt);
+    --wf-color-done: var(--color-text);
+    --wf-color-done-bg: var(--color-neutral-100);
+    --wf-color-active: var(--color-text);
+    --wf-color-active-bg: var(--color-neutral-100);
+    --wf-color-planned: var(--color-neutral-400);
+    --wf-color-planned-bg: var(--color-neutral-100);
+    --wf-font-family: var(--font-body);
+    --wf-spacing-section: 6rem;
+    --wf-spacing-lg: 3rem;
+    --wf-spacing-md: 1.5rem;
+    --wf-spacing-sm: 0.75rem;
+    --wf-max-width: 900px;
+
+    background: var(--wf-color-bg);
+    color: var(--wf-color-text);
+    font-family: var(--wf-font-family);
+    padding: var(--wf-spacing-section) var(--wf-spacing-md);
+  }
+
+  .wf-timeline-12 .wf-section__header {
+    max-width: var(--wf-max-width);
+    margin: 0 auto var(--wf-spacing-lg);
+    text-align: center;
+  }
+
+  .wf-timeline-12 .wf-section__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-color-accent);
+    margin-bottom: var(--wf-spacing-sm);
+  }
+
+  .wf-timeline-12 .wf-section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .wf-timeline-12 .wf-timeline {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    display: grid;
+    gap: var(--wf-spacing-md);
+  }
+
+  .wf-timeline-12 .wf-timeline__item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--wf-spacing-md);
+    align-items: start;
+    background: var(--wf-color-phase-bg);
+    border: 1px solid var(--wf-color-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: var(--wf-spacing-md);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wf-timeline-12 .wf-timeline__item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+  }
+
+  .wf-timeline-12 .wf-timeline__item--done::before {
+    background: var(--wf-color-done);
+  }
+
+  .wf-timeline-12 .wf-timeline__item--active::before {
+    background: var(--wf-color-active);
+  }
+
+  .wf-timeline-12 .wf-timeline__item--planned::before {
+    background: var(--wf-color-planned);
+  }
+
+  .wf-timeline-12 .wf-timeline__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .wf-timeline-12 .wf-timeline__date {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--wf-color-accent);
+  }
+
+  .wf-timeline-12 .wf-timeline__dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.1875rem 0.5rem;
+    border-radius: 999px;
+    width: fit-content;
+  }
+
+  .wf-timeline-12 .wf-timeline__item--done .wf-timeline__dot {
+    background: var(--wf-color-done-bg);
+    color: var(--wf-color-done);
+  }
+
+  .wf-timeline-12 .wf-timeline__item--active .wf-timeline__dot {
+    background: var(--wf-color-active-bg);
+    color: var(--wf-color-active);
+  }
+
+  .wf-timeline-12 .wf-timeline__item--planned .wf-timeline__dot {
+    background: var(--wf-color-planned-bg);
+    color: var(--wf-color-planned);
+  }
+
+  .wf-timeline-12 .wf-timeline__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .wf-timeline-12 .wf-timeline__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .wf-timeline-12 .wf-timeline__text {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--wf-color-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-timeline-12 .wf-section__title {
+      font-size: 1.75rem;
+    }
+
+    .wf-timeline-12 .wf-timeline__item {
+      grid-template-columns: 1fr;
+      gap: var(--wf-spacing-sm);
+    }
+
+    .wf-timeline-12 .wf-timeline__meta {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+</style>
+
+<section class="wf-timeline-12">
+  <div class="wf-section__header">
+    <p class="wf-section__tagline">Feuille de route</p>
+    <h2 class="wf-section__title">Chronologie du projet</h2>
+  </div>
+
+  <div class="wf-timeline">
+    <div class="wf-timeline__item wf-timeline__item--done">
+      <div class="wf-timeline__meta">
+        <span class="wf-timeline__date">2015</span>
+        <span class="wf-timeline__dot">Termine</span>
+      </div>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Phase 1 — Creation de l'entreprise</h3>
+        <p class="wf-timeline__text">Fondation de la structure juridique, constitution de l'equipe fondatrice et developpement du premier prototype fonctionnel.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item wf-timeline__item--done">
+      <div class="wf-timeline__meta">
+        <span class="wf-timeline__date">2018</span>
+        <span class="wf-timeline__dot">Termine</span>
+      </div>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Phase 2 — Premiere levee de fonds</h3>
+        <p class="wf-timeline__text">Tour de table serie A, recrutement de talents cles et mise en place de l'infrastructure technique.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item wf-timeline__item--done">
+      <div class="wf-timeline__meta">
+        <span class="wf-timeline__date">2020</span>
+        <span class="wf-timeline__dot">Termine</span>
+      </div>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Phase 3 — Expansion internationale</h3>
+        <p class="wf-timeline__text">Ouverture de bureaux a l'etranger et adaptation de la plateforme aux marches locaux.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item wf-timeline__item--active">
+      <div class="wf-timeline__meta">
+        <span class="wf-timeline__date">2023</span>
+        <span class="wf-timeline__dot">En cours</span>
+      </div>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Phase 4 — Lancement de la plateforme V2</h3>
+        <p class="wf-timeline__text">Refonte de l'architecture technique et de l'experience utilisateur pour supporter la montee en charge.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item wf-timeline__item--planned">
+      <div class="wf-timeline__meta">
+        <span class="wf-timeline__date">2026</span>
+        <span class="wf-timeline__dot">Planifie</span>
+      </div>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Phase 5 — 100 000 utilisateurs</h3>
+        <p class="wf-timeline__text">Objectif de croissance avec optimisation de l'acquisition et amelioration continue du produit.</p>
+      </div>
+    </div>
+  </div>
+</section>

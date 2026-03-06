@@ -1,0 +1,64 @@
+<!-- Banner 01: Simple Top Announcement Bar -->
+<!-- Thin colored background strip with centered text and inline link -->
+
+<style>
+  .wf-banner-01 {
+    --wf-banner-bg: var(--color-bg-dark);
+    --wf-banner-text: var(--color-text-on-dark, #ffffff);
+    --wf-banner-link: var(--color-border);
+    --wf-banner-link-hover: var(--color-bg, #FFFFFF);
+    --wf-banner-padding-y: 0.625rem;
+    --wf-banner-font-size: 0.875rem;
+
+    background-color: var(--wf-banner-bg);
+    color: var(--wf-banner-text);
+    padding: var(--wf-banner-padding-y) 1rem;
+    text-align: center;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    font-size: var(--wf-banner-font-size);
+    line-height: 1.4;
+    width: 100%;
+  }
+
+  .wf-banner-01__inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .wf-banner-01__text {
+    margin: 0;
+  }
+
+  .wf-banner-01__link {
+    color: var(--wf-banner-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .wf-banner-01__link:hover {
+    color: var(--wf-banner-link-hover);
+  }
+
+  @media (max-width: 48rem) {
+    .wf-banner-01 {
+      --wf-banner-font-size: 0.8125rem;
+      --wf-banner-padding-y: 0.5rem;
+    }
+  }
+</style>
+
+<div class="wf-banner-01">
+  <div class="wf-banner-01__inner">
+    <p class="wf-banner-01__text">
+      Nouveau : Decouvrez notre offre de lancement !
+      <a href="#" class="wf-banner-01__link">En savoir plus &rarr;</a>
+    </p>
+  </div>
+</div>

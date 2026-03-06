@@ -1,0 +1,92 @@
+<!-- Testimonials 11 : Minimal - just quotes in a row with name below -->
+<style>
+.wf-testimonials-11 {
+  padding: var(--space-16, 4rem) var(--space-4, 1rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.wf-testimonials-11 .wf-section-header {
+  text-align: center;
+  margin-bottom: var(--space-12, 3rem);
+}
+.wf-testimonials-11 .wf-section-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text, #1a1a1a);
+  margin: 0;
+}
+.wf-testimonials-11 .wf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-10, 2.5rem);
+}
+.wf-testimonials-11 .wf-item {
+  text-align: center;
+  position: relative;
+  padding-top: var(--space-6, 1.5rem);
+}
+.wf-testimonials-11 .wf-item::before {
+  content: '\201C';
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-text, #374151);
+  opacity: 0.2;
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Georgia, serif;
+}
+.wf-testimonials-11 .wf-quote {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-text, #1a1a1a);
+  font-style: italic;
+  margin: 0 0 var(--space-6, 1.5rem);
+}
+.wf-testimonials-11 .wf-divider {
+  width: 32px;
+  height: 2px;
+  background: var(--color-text, #374151);
+  margin: 0 auto var(--space-4, 1rem);
+}
+.wf-testimonials-11 .wf-name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--color-text, #1a1a1a);
+  margin-bottom: 2px;
+}
+.wf-testimonials-11 .wf-role {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #6b7280);
+}
+@media (max-width: 768px) {
+  .wf-testimonials-11 .wf-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<section class="wf-testimonials-11">
+  <div class="wf-section-header">
+    <h2>Paroles de clients</h2>
+  </div>
+  <div class="wf-grid">
+    <div class="wf-item">
+      <p class="wf-quote">"Un service exceptionnel qui a transforme notre presence en ligne. Les resultats ont depasse toutes nos attentes."</p>
+      <div class="wf-divider"></div>
+      <div class="wf-name">Marie Dupont</div>
+      <div class="wf-role">Directrice Marketing, Acme Corp</div>
+    </div>
+    <div class="wf-item">
+      <p class="wf-quote">"L'equipe a su comprendre nos besoins et livrer au-dela de nos attentes. Un partenaire de confiance."</p>
+      <div class="wf-divider"></div>
+      <div class="wf-name">Jean Martin</div>
+      <div class="wf-role">PDG, TechVision</div>
+    </div>
+    <div class="wf-item">
+      <p class="wf-quote">"Grace a leur expertise, notre taux de conversion a augmente de 40%. Je recommande vivement."</p>
+      <div class="wf-divider"></div>
+      <div class="wf-name">Sophie Bernard</div>
+      <div class="wf-role">Responsable Digital, InnovatePlus</div>
+    </div>
+  </div>
+</section>

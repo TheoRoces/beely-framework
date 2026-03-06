@@ -1,0 +1,118 @@
+<!-- Hero 14 : Hero with breadcrumb-style eyebrow + large title + image -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text, #374151); color: var(--color-bg, #ffffff); border-color: var(--color-text, #374151); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #e5e7eb); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+.wf-hero-14 {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8, 3rem);
+  padding: var(--space-12, 5rem) var(--space-6, 2rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.wf-hero-14__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 1.5rem);
+  max-width: 800px;
+}
+.wf-hero-14__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted, #6b7280);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.wf-hero-14__breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.wf-hero-14__breadcrumb li + li::before {
+  content: "/";
+  color: var(--color-neutral-300, #d1d5db);
+}
+.wf-hero-14__breadcrumb a {
+  color: var(--color-text-muted, #6b7280);
+  text-decoration: none;
+}
+.wf-hero-14__breadcrumb-current {
+  color: var(--color-text, #374151);
+  font-weight: 500;
+}
+.wf-hero-14__title {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text, #111827);
+  margin: 0;
+}
+.wf-hero-14__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4, 1.5rem);
+  flex-wrap: wrap;
+}
+.wf-hero-14__subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-muted, #6b7280);
+  margin: 0;
+  max-width: 600px;
+}
+.wf-hero-14__actions {
+  display: flex;
+  gap: var(--space-3, 0.75rem);
+  flex-wrap: wrap;
+}
+.wf-hero-14__media {
+  width: 100%;
+}
+.wf-hero-14 .wf-img {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  background-color: var(--color-neutral-100, #f3f4f6);
+  border-radius: var(--radius-lg, 0.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted, #9ca3af);
+  font-size: 0.875rem;
+}
+@media (max-width: 768px) {
+  .wf-hero-14 {
+    padding: var(--space-8, 3rem) var(--space-4, 1rem);
+  }
+  .wf-hero-14 .wf-img {
+    aspect-ratio: 16 / 9;
+  }
+}
+</style>
+
+<section class="wf-hero-14">
+  <div class="wf-hero-14__header">
+    <ul class="wf-hero-14__breadcrumb">
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Services</a></li>
+      <li><span class="wf-hero-14__breadcrumb-current">Design Digital</span></li>
+    </ul>
+    <h1 class="wf-hero-14__title">Transformez votre vision en realite numerique</h1>
+    <p class="wf-hero-14__subtitle">Nous concevons des experiences digitales qui allient esthetique et performance pour propulser votre activite.</p>
+    <div class="wf-hero-14__actions">
+      <a href="#" class="btn btn--primary">Decouvrir nos services</a>
+      <a href="#" class="btn btn--secondary">Nous contacter</a>
+    </div>
+  </div>
+  <div class="wf-hero-14__media">
+    <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+  </div>
+</section>

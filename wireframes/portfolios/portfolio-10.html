@@ -1,0 +1,210 @@
+<!-- Portfolio 10: Case study cards (image + title + metrics) -->
+<style>
+  .wf-portfolio-10 {
+    --wf-bg: var(--color-bg-alt, #f9fafb);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-card-bg: var(--color-bg, #ffffff);
+    --wf-img-bg: var(--color-neutral-100, #f3f4f6);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-radius: 0.75rem;
+    --wf-gap: 1.5rem;
+    padding: 5rem 1.5rem;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+  .wf-portfolio-10 .wf-portfolio-10__header {
+    max-width: 72rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .wf-portfolio-10 .wf-portfolio-10__subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-10 .wf-portfolio-10__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .wf-portfolio-10 .wf-portfolio-10__desc {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .wf-portfolio-10 .wf-portfolio-10__grid {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: var(--wf-gap);
+  }
+  .wf-portfolio-10 .wf-card {
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+    background: var(--wf-card-bg);
+    border: 1px solid var(--wf-border);
+    transition: box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .wf-portfolio-10 .wf-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  .wf-portfolio-10 .wf-img {
+    width: 100%;
+    flex: 1;
+    min-height: 14rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-img-bg);
+    color: var(--wf-text-muted);
+  }
+  .wf-portfolio-10 .wf-card__body {
+    padding: 1.5rem;
+  }
+  .wf-portfolio-10 .wf-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--wf-accent);
+    background: var(--color-bg-alt, #f9fafb);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full, 9999px);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-10 .wf-card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+  }
+  .wf-portfolio-10 .wf-card__text {
+    font-size: 0.875rem;
+    color: var(--wf-text-muted);
+    margin: 0 0 1.25rem;
+    line-height: 1.5;
+  }
+  .wf-portfolio-10 .wf-card__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--wf-border);
+  }
+  .wf-portfolio-10 .wf-card__metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--wf-accent);
+    display: block;
+  }
+  .wf-portfolio-10 .wf-card__metric-label {
+    font-size: 0.6875rem;
+    color: var(--wf-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  @media (max-width: 768px) {
+    .wf-portfolio-10 .wf-portfolio-10__grid { grid-template-columns: 1fr; }
+    .wf-portfolio-10 .wf-portfolio-10__title { font-size: 1.75rem; }
+    .wf-portfolio-10 { padding: 3rem 1rem; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .wf-portfolio-10 .wf-portfolio-10__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<section class="wf-portfolio-10">
+  <div class="wf-portfolio-10__header">
+    <div class="wf-portfolio-10__subtitle">Etudes de cas</div>
+    <h2 class="wf-portfolio-10__title">Projets recents</h2>
+    <p class="wf-portfolio-10__desc">Des resultats concrets pour chaque projet, mesures par des indicateurs de performance cles.</p>
+  </div>
+
+  <div class="wf-portfolio-10__grid">
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">Web Design</span>
+        <h3 class="wf-card__title">Refonte TechVision</h3>
+        <p class="wf-card__text">Redesign complet avec approche mobile-first et design system modulaire.</p>
+        <div class="wf-card__metrics">
+          <div>
+            <span class="wf-card__metric-value">+145%</span>
+            <span class="wf-card__metric-label">Trafic</span>
+          </div>
+          <div>
+            <span class="wf-card__metric-value">-40%</span>
+            <span class="wf-card__metric-label">Rebond</span>
+          </div>
+          <div>
+            <span class="wf-card__metric-value">+85%</span>
+            <span class="wf-card__metric-label">Conversion</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">E-commerce</span>
+        <h3 class="wf-card__title">Boutique ModaChic</h3>
+        <p class="wf-card__text">Plateforme e-commerce avec experience d'achat immersive et catalogue intelligent.</p>
+        <div class="wf-card__metrics">
+          <div>
+            <span class="wf-card__metric-value">+200%</span>
+            <span class="wf-card__metric-label">Ventes</span>
+          </div>
+          <div>
+            <span class="wf-card__metric-value">3.2s</span>
+            <span class="wf-card__metric-label">Chargement</span>
+          </div>
+          <div>
+            <span class="wf-card__metric-value">+60%</span>
+            <span class="wf-card__metric-label">Panier moyen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__body">
+        <span class="wf-badge">Application</span>
+        <h3 class="wf-card__title">Plateforme InnoPlus</h3>
+        <p class="wf-card__text">Application collaborative pour gestion de projets innovants et suivi en temps reel.</p>
+        <div class="wf-card__metrics">
+          <div>
+            <span class="wf-card__metric-value">12k</span>
+            <span class="wf-card__metric-label">Utilisateurs</span>
+          </div>
+          <div>
+            <span class="wf-card__metric-value">98%</span>
+            <span class="wf-card__metric-label">Satisfaction</span>
+          </div>
+          <div>
+            <span class="wf-card__metric-value">+120%</span>
+            <span class="wf-card__metric-label">Adoption</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

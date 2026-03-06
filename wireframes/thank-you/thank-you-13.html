@@ -1,0 +1,150 @@
+<!-- thank-you-13: Thank you with confetti animation (CSS only) -->
+<style>
+  .wf-thank-you-13 {
+    --wf-bg: var(--color-bg);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-icon-color: var(--color-text);
+    --wf-primary: var(--color-text);
+    --wf-primary-hover: var(--color-neutral-800);
+    --wf-radius: 8px;
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    padding: 2rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Confetti pieces */
+  @keyframes wf-confetti-fall {
+    0% {
+      transform: translateY(-100vh) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes wf-confetti-sway {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(30px); }
+    75% { transform: translateX(-30px); }
+  }
+
+  .wf-thank-you-13__confetti {
+    position: absolute;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    animation: wf-confetti-fall linear forwards;
+  }
+
+  .wf-thank-you-13__confetti:nth-child(1) { left: 5%; background: var(--color-text-light); animation-duration: 3.5s; animation-delay: 0s; width: 8px; height: 12px; }
+  .wf-thank-you-13__confetti:nth-child(2) { left: 12%; background: var(--color-text-light); animation-duration: 4s; animation-delay: 0.2s; width: 12px; height: 8px; }
+  .wf-thank-you-13__confetti:nth-child(3) { left: 20%; background: var(--color-text-light); animation-duration: 3.2s; animation-delay: 0.4s; width: 6px; height: 14px; }
+  .wf-thank-you-13__confetti:nth-child(4) { left: 28%; background: var(--color-text-light); animation-duration: 4.2s; animation-delay: 0.1s; width: 10px; height: 6px; border-radius: 50%; }
+  .wf-thank-you-13__confetti:nth-child(5) { left: 35%; background: var(--color-border); animation-duration: 3.8s; animation-delay: 0.6s; width: 8px; height: 10px; }
+  .wf-thank-you-13__confetti:nth-child(6) { left: 42%; background: var(--color-text); animation-duration: 3.4s; animation-delay: 0.3s; width: 14px; height: 6px; }
+  .wf-thank-you-13__confetti:nth-child(7) { left: 50%; background: var(--color-text); animation-duration: 4.5s; animation-delay: 0.5s; width: 6px; height: 12px; border-radius: 50%; }
+  .wf-thank-you-13__confetti:nth-child(8) { left: 58%; background: var(--color-text-light); animation-duration: 3.6s; animation-delay: 0.15s; width: 10px; height: 8px; }
+  .wf-thank-you-13__confetti:nth-child(9) { left: 65%; background: var(--color-text-light); animation-duration: 4.1s; animation-delay: 0.7s; width: 8px; height: 14px; }
+  .wf-thank-you-13__confetti:nth-child(10) { left: 72%; background: var(--color-text-light); animation-duration: 3.3s; animation-delay: 0.25s; width: 12px; height: 6px; border-radius: 50%; }
+  .wf-thank-you-13__confetti:nth-child(11) { left: 80%; background: var(--color-border); animation-duration: 4.3s; animation-delay: 0.45s; width: 6px; height: 10px; }
+  .wf-thank-you-13__confetti:nth-child(12) { left: 88%; background: var(--color-text-light); animation-duration: 3.7s; animation-delay: 0.35s; width: 10px; height: 12px; }
+  .wf-thank-you-13__confetti:nth-child(13) { left: 95%; background: var(--color-text); animation-duration: 4.4s; animation-delay: 0.55s; width: 8px; height: 8px; border-radius: 50%; }
+  .wf-thank-you-13__confetti:nth-child(14) { left: 8%; background: var(--color-text); animation-duration: 3.9s; animation-delay: 0.65s; width: 12px; height: 10px; }
+  .wf-thank-you-13__confetti:nth-child(15) { left: 45%; background: var(--color-text-light); animation-duration: 3.1s; animation-delay: 0.8s; width: 6px; height: 6px; border-radius: 50%; }
+  .wf-thank-you-13__confetti:nth-child(16) { left: 55%; background: var(--color-text-light); animation-duration: 4.6s; animation-delay: 0.1s; width: 14px; height: 8px; }
+  .wf-thank-you-13__confetti:nth-child(17) { left: 32%; background: var(--color-border); animation-duration: 3.5s; animation-delay: 0.75s; width: 8px; height: 12px; }
+  .wf-thank-you-13__confetti:nth-child(18) { left: 75%; background: var(--color-text-light); animation-duration: 4.0s; animation-delay: 0.9s; width: 10px; height: 6px; }
+
+  .wf-thank-you-13__container {
+    text-align: center;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .wf-thank-you-13__icon {
+    color: var(--wf-icon-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .wf-thank-you-13__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-thank-you-13__text {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+  }
+
+  .wf-thank-you-13__button {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    border-radius: var(--wf-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-thank-you-13__button:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  @media (max-width: 640px) {
+    .wf-thank-you-13__title {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+<section class="wf-thank-you-13">
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+  <div class="wf-thank-you-13__confetti"></div>
+
+  <div class="wf-thank-you-13__container">
+    <div class="wf-thank-you-13__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h1 class="wf-thank-you-13__title">Merci !</h1>
+    <p class="wf-thank-you-13__text">Votre message a bien ete envoye. Nous vous repondrons dans les 24 heures.</p>
+    <a href="#" class="wf-thank-you-13__button">Retour a l'accueil</a>
+  </div>
+</section>

@@ -1,0 +1,94 @@
+<!--
+  SLIDER / CAROUSEL — Site System
+
+  CSS : core/css/elements.css
+  JS  : core/js/elements.js
+
+  Classes :
+    .slider              — Conteneur principal
+    .slider__track       — Piste (flex, transition)
+    .slider__slide       — Slide individuel
+    .slider__prev        — Bouton précédent
+    .slider__next        — Bouton suivant
+    .slider__dots        — Conteneur des points de navigation
+    .slider__dot         — Point individuel
+    .slider__dot--active — Point actif (ajouté par JS)
+
+  Attributs (sur .slider) :
+    data-slider-per-view="N"  — Slides visibles : "3" ou "4 3 2 1" (desktop tablet mobile-l mobile)
+    data-slider-loop="true"   — Boucle infinie (défaut : false)
+    data-slider-auto="ms"     — Autoplay en millisecondes (ex: "3000")
+    data-slider-drag="true"   — Glisser-déposer souris (défaut : false)
+    data-slider-gap="xs|sm|md|lg|xl" — Espacement entre les slides
+    data-slider-dots="false"       — Masquer les dots de navigation
+    data-slider-arrows="false"     — Masquer les flèches de navigation
+
+  Personnalisation des flèches (sur .slider) :
+    data-slider-arrow-prev="icon"    — Icône bouton précédent (nom Heroicon)
+    data-slider-arrow-next="icon"    — Icône bouton suivant (nom Heroicon)
+    data-slider-arrow-type="outline" — Type d'icône : outline (défaut) ou solid
+    data-slider-arrow-size="20"      — Taille de l'icône SVG en px
+
+  CSS custom properties (sur .slider ou en CSS) :
+    --slider-arrow-size, --slider-arrow-color, --slider-arrow-hover-color,
+    --slider-arrow-bg, --slider-arrow-hover-bg, --slider-arrow-border
+-->
+
+
+<!-- ===== SLIDER BASIQUE ===== -->
+
+<div class="slider">
+  <div class="slider__track">
+    <div class="slider__slide">Slide 1</div>
+    <div class="slider__slide">Slide 2</div>
+    <div class="slider__slide">Slide 3</div>
+  </div>
+  <button class="slider__prev"></button>
+  <button class="slider__next"></button>
+  <div class="slider__dots"></div>
+</div>
+
+
+<!-- ===== SLIDER MULTI-SLIDES + AUTOPLAY + LOOP + DRAGGABLE ===== -->
+
+<div class="slider"
+     data-slider-per-view="3 2 2 1"
+     data-slider-loop="true"
+     data-slider-auto="4000"
+     data-slider-drag="true">
+  <div class="slider__track">
+    <div class="slider__slide">
+      <img src="https://picsum.photos/400/300?1" alt="Image 1">
+    </div>
+    <div class="slider__slide">
+      <img src="https://picsum.photos/400/300?2" alt="Image 2">
+    </div>
+    <div class="slider__slide">
+      <img src="https://picsum.photos/400/300?3" alt="Image 3">
+    </div>
+    <div class="slider__slide">
+      <img src="https://picsum.photos/400/300?4" alt="Image 4">
+    </div>
+    <div class="slider__slide">
+      <img src="https://picsum.photos/400/300?5" alt="Image 5">
+    </div>
+  </div>
+  <button class="slider__prev"></button>
+  <button class="slider__next"></button>
+  <div class="slider__dots"></div>
+</div>
+
+
+<!-- ===== SLIDER 2 SLIDES VISIBLES ===== -->
+
+<div class="slider" data-slider-per-view="2" data-slider-drag="true">
+  <div class="slider__track">
+    <div class="slider__slide">Card 1</div>
+    <div class="slider__slide">Card 2</div>
+    <div class="slider__slide">Card 3</div>
+    <div class="slider__slide">Card 4</div>
+  </div>
+  <button class="slider__prev"></button>
+  <button class="slider__next"></button>
+  <div class="slider__dots"></div>
+</div>

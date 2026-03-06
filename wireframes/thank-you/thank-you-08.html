@@ -1,0 +1,145 @@
+<!-- thank-you-08: Split layout - left illustration placeholder + right text -->
+<style>
+  .wf-thank-you-08 {
+    --wf-bg: var(--color-bg);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-icon-color: var(--color-text);
+    --wf-illus-bg: var(--color-bg-alt);
+    --wf-primary: var(--color-text);
+    --wf-primary-hover: var(--color-neutral-800);
+    --wf-radius: 8px;
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    box-sizing: border-box;
+  }
+
+  .wf-thank-you-08__left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wf-illus-bg);
+    padding: 3rem;
+  }
+
+  .wf-thank-you-08__illustration {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-neutral-100);
+    border-radius: var(--radius-xl, 1rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wf-icon-color);
+    font-size: 0.875rem;
+  }
+
+  .wf-thank-you-08__illustration svg {
+    width: 96px;
+    height: 96px;
+    opacity: 0.5;
+  }
+
+  .wf-thank-you-08__right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .wf-thank-you-08__content {
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .wf-thank-you-08__icon {
+    color: var(--wf-icon-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .wf-thank-you-08__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-thank-you-08__text {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    line-height: 1.7;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .wf-thank-you-08__subtext {
+    font-size: 1rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0 0 2.5rem 0;
+  }
+
+  .wf-thank-you-08__button {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    border-radius: var(--wf-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-thank-you-08__button:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  @media (max-width: 768px) {
+    .wf-thank-you-08 {
+      grid-template-columns: 1fr;
+    }
+
+    .wf-thank-you-08__left {
+      min-height: 40vh;
+      padding: 2rem;
+    }
+
+    .wf-thank-you-08__right {
+      padding: 2rem;
+    }
+
+    .wf-thank-you-08__title {
+      font-size: 1.75rem;
+    }
+
+    .wf-thank-you-08__illustration {
+      max-width: 240px;
+    }
+  }
+</style>
+
+<section class="wf-thank-you-08">
+  <div class="wf-thank-you-08__left">
+    <div class="wf-thank-you-08__illustration">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+  </div>
+  <div class="wf-thank-you-08__right">
+    <div class="wf-thank-you-08__content">
+      <div class="wf-thank-you-08__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h1 class="wf-thank-you-08__title">Merci !</h1>
+      <p class="wf-thank-you-08__text">Votre message a bien ete envoye.</p>
+      <p class="wf-thank-you-08__subtext">Nous vous repondrons dans les 24 heures.</p>
+      <a href="#" class="wf-thank-you-08__button">Retour a l'accueil</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,174 @@
+<!-- Services 03 : Left title/intro + right 2x2 grid of services -->
+
+<style>
+  .wf-services-03 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-icon-bg: var(--color-bg-alt, #f3f4f6);
+    --wf-section-py: clamp(3rem, 8vw, 6rem);
+    --wf-section-px: clamp(1rem, 5vw, 4rem);
+    --wf-max-width: 1200px;
+
+    background: var(--wf-bg);
+    padding: var(--wf-section-py) var(--wf-section-px);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    color: var(--wf-text);
+  }
+
+  .wf-services-03__inner {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .wf-services-03__left {
+    position: sticky;
+    top: 2rem;
+  }
+
+  .wf-services-03__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-services-03__title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    margin: 0 0 1.25rem;
+    line-height: 1.2;
+  }
+
+  .wf-services-03__text {
+    font-size: 1.0625rem;
+    color: var(--wf-text-muted);
+    line-height: 1.7;
+    margin: 0 0 2rem;
+  }
+
+  .wf-services-03__cta {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    background: var(--wf-accent);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .wf-services-03__cta:hover {
+    opacity: 0.9;
+  }
+
+  .wf-services-03__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .wf-services-03__card {
+    background: var(--wf-card-bg);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: 1.75rem;
+  }
+
+  .wf-services-03__card .wf-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--wf-icon-bg);
+    border-radius: var(--radius-lg, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wf-accent);
+    margin-bottom: 1rem;
+  }
+
+  .wf-services-03__card .wf-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .wf-services-03__card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-services-03__card-text {
+    font-size: 0.875rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-services-03__inner {
+      grid-template-columns: 1fr;
+    }
+    .wf-services-03__left {
+      position: static;
+    }
+    .wf-services-03__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-services-03">
+  <div class="wf-services-03__inner">
+    <div class="wf-services-03__left">
+      <p class="wf-services-03__tagline">Ce que nous faisons</p>
+      <h2 class="wf-services-03__title">Nos services</h2>
+      <p class="wf-services-03__text">Des solutions completes pour propulser votre presence numerique et atteindre vos objectifs business. Notre equipe d'experts vous accompagne a chaque etape.</p>
+      <a href="#" class="wf-services-03__cta">Decouvrir nos services</a>
+    </div>
+
+    <div class="wf-services-03__grid">
+      <div class="wf-services-03__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-03__card-title">Design UI/UX</h3>
+        <p class="wf-services-03__card-text">Nous creons des interfaces intuitives et elegantes qui maximisent l'engagement utilisateur.</p>
+      </div>
+
+      <div class="wf-services-03__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-03__card-title">Developpement Web</h3>
+        <p class="wf-services-03__card-text">Solutions techniques performantes et evolutives pour accompagner votre croissance digitale.</p>
+      </div>
+
+      <div class="wf-services-03__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-03__card-title">Strategie Digitale</h3>
+        <p class="wf-services-03__card-text">Analyses approfondies et recommandations strategiques pour optimiser votre presence en ligne.</p>
+      </div>
+
+      <div class="wf-services-03__card">
+        <div class="wf-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+        </div>
+        <h3 class="wf-services-03__card-title">SEO & Analytics</h3>
+        <p class="wf-services-03__card-text">Campagnes creatives et ciblees qui renforcent votre notoriete et fidelisent vos clients.</p>
+      </div>
+    </div>
+  </div>
+</section>

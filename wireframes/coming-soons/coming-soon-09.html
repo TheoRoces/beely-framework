@@ -1,0 +1,196 @@
+<!-- coming-soon-09: Card-style centered box on colored background -->
+<style>
+  .wf-coming-soon-09 {
+    --wf-bg: var(--color-bg-alt);
+    --wf-card-bg: var(--color-bg);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-primary: var(--color-text);
+    --wf-primary-hover: var(--color-text);
+    --wf-border: var(--color-border);
+    --wf-radius: 16px;
+    --wf-radius-sm: 8px;
+    --wf-countdown-bg: var(--color-neutral-100);
+    --wf-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--wf-font);
+    box-sizing: border-box;
+  }
+
+  .wf-coming-soon-09 *,
+  .wf-coming-soon-09 *::before,
+  .wf-coming-soon-09 *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wf-coming-soon-09 .wf-card {
+    background-color: var(--wf-card-bg);
+    border-radius: var(--wf-radius);
+    box-shadow: var(--wf-shadow);
+    padding: clamp(2rem, 5vw, 4rem);
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .wf-coming-soon-09 .wf-logo {
+    width: 56px;
+    height: 56px;
+    background-color: var(--wf-primary);
+    border-radius: var(--radius-lg, 14px);
+    margin: 0 auto 2rem;
+  }
+
+  .wf-coming-soon-09 .wf-heading {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-coming-soon-09 .wf-subheading {
+    font-size: 1rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .wf-coming-soon-09 .wf-countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .wf-coming-soon-09 .wf-countdown-item {
+    background-color: var(--wf-countdown-bg);
+    border-radius: var(--wf-radius-sm);
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wf-coming-soon-09 .wf-countdown-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .wf-coming-soon-09 .wf-countdown-label {
+    font-size: 0.65rem;
+    color: var(--wf-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .wf-coming-soon-09 .wf-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--wf-border);
+    margin-bottom: 2rem;
+  }
+
+  .wf-coming-soon-09 .wf-form-label {
+    font-size: 0.875rem;
+    color: var(--wf-text-muted);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .wf-coming-soon-09 .wf-signup-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .wf-coming-soon-09 .wf-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius-sm);
+    font-size: 0.9375rem;
+    font-family: var(--wf-font);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .wf-coming-soon-09 .wf-input:focus {
+    border-color: var(--wf-primary);
+  }
+
+  .wf-coming-soon-09 .wf-button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    border: none;
+    border-radius: var(--wf-radius-sm);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    font-family: var(--wf-font);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+  }
+
+  .wf-coming-soon-09 .wf-button:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  @media (max-width: 480px) {
+    .wf-coming-soon-09 .wf-countdown {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .wf-coming-soon-09 .wf-signup-form {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<section class="wf-coming-soon-09">
+  <div class="wf-card">
+    <div class="wf-logo"></div>
+
+    <h1 class="wf-heading">Bientot disponible</h1>
+    <p class="wf-subheading">Nous preparons quelque chose d'exceptionnel. Soyez les premiers informes.</p>
+
+    <div class="wf-countdown">
+      <div class="wf-countdown-item">
+        <span class="wf-countdown-value">12</span>
+        <span class="wf-countdown-label">Jours</span>
+      </div>
+      <div class="wf-countdown-item">
+        <span class="wf-countdown-value">08</span>
+        <span class="wf-countdown-label">Heures</span>
+      </div>
+      <div class="wf-countdown-item">
+        <span class="wf-countdown-value">34</span>
+        <span class="wf-countdown-label">Minutes</span>
+      </div>
+      <div class="wf-countdown-item">
+        <span class="wf-countdown-value">56</span>
+        <span class="wf-countdown-label">Secondes</span>
+      </div>
+    </div>
+
+    <div class="wf-divider"></div>
+
+    <span class="wf-form-label">Entrez votre email pour etre notifie</span>
+    <form class="wf-signup-form">
+      <input type="email" class="wf-input" placeholder="votre@email.com" />
+      <button type="submit" class="wf-button">Me notifier</button>
+    </form>
+  </div>
+</section>

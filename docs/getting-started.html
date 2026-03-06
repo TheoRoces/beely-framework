@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D&eacute;marrer un projet — Documentation — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+
+  <div data-component="header"
+       data-site-name="SiteSystem"
+       data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="getting-started"></nav>
+
+      <main class="docs-content">
+        <h1 class="anim-fade-in-up">D&eacute;marrer un projet</h1>
+        <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
+          Guide complet pour cr&eacute;er un nouveau site, le d&eacute;ployer en production, et adapter le boilerplate selon vos besoins.
+        </p>
+
+        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
+          <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
+          <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
+            <li><a href="#creer-un-nouveau-projet">Cr&eacute;er un nouveau projet</a> &mdash; copier, personnaliser, configurer</li>
+            <li><a href="#git-github">Git &amp; GitHub</a> &mdash; versionner et pousser votre code</li>
+            <li><a href="#mise-en-production">Mise en production</a> &mdash; SSH, rsync, d&eacute;ploiement, .env</li>
+            <li><a href="#site-sans-blog">Site sans blog</a> &mdash; retirer les fichiers blog</li>
+            <li><a href="#modules-optionnels">Modules optionnels</a> &mdash; retirer ce dont vous n'avez pas besoin</li>
+            <li><a href="#snippets-copier-coller">Snippets</a> &mdash; fragments HTML pr&ecirc;ts &agrave; l'emploi</li>
+          </ol>
+        </div>
+
+        <!-- ========== CRÉER UN PROJET ========== -->
+
+        <h2>Cr&eacute;er un nouveau projet</h2>
+
+        <h3>1. Copier le boilerplate</h3>
+        <p>Dupliquez le dossier <code>site-system/</code> et renommez-le avec le nom de votre projet :</p>
+<pre><code>cp -r site-system/ mon-projet/
+cd mon-projet/</code></pre>
+
+        <h3>2. Personnaliser la charte graphique</h3>
+        <p>Ouvrez <code>core/css/tokens.css</code> et modifiez les variables CSS :</p>
+<pre><code>:root {
+  /* Couleurs */
+  --color-primary: #2563eb;     /* Couleur principale */
+  --color-secondary: #7c3aed;   /* Couleur secondaire */
+  --color-bg: #ffffff;          /* Fond */
+  --color-text: #1e293b;        /* Texte */
+
+  /* Polices */
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Inter', sans-serif;
+
+  /* Arrondis, espacements, etc. */
+}</code></pre>
+        <p>Voir <a href="tokens.html">Design Tokens</a> pour la r&eacute;f&eacute;rence compl&egrave;te.</p>
+
+        <h3>3. Configurer le site</h3>
+        <p>&Eacute;ditez <code>config-site.js</code>. Ce fichier centralise toute la configuration du projet :</p>
+        <ul>
+          <li><strong>SITE_CONFIG</strong> : identit&eacute; du site (nom, favicon)</li>
+          <li><strong>COOKIES_CONFIG</strong> : IDs analytics (<code>ga4</code>, <code>gtm</code>, <code>clarity</code>, etc.), textes du bandeau RGPD, lien vers la politique de confidentialit&eacute;</li>
+          <li><strong>BLOG_CONFIG</strong> : connexion Baserow (voir section <a href="#site-sans-blog">Site sans blog</a> si non utilis&eacute;)</li>
+          <li><strong>LEGAL_CONFIG</strong> : informations l&eacute;gales de l'entreprise (nom, SIRET, adresse, h&eacute;bergeur, etc.)</li>
+        </ul>
+
+        <h4>Identit&eacute; du site (<code>SITE_CONFIG</code>)</h4>
+<pre><code>window.SITE_CONFIG = {
+  name: 'Mon Site',              // Titre par defaut (si &lt;title&gt; est vide)
+  favicon: '/favicon.ico',       // Chemin vers le favicon
+};</code></pre>
+        <p>La configuration SSH de d&eacute;ploiement est dans un fichier s&eacute;par&eacute; <code>.deploy.env</code> (non committ&eacute;). Voir <a href="production.html">D&eacute;ploiement</a>.</p>
+        <p>Le <strong>favicon</strong> et le <strong>titre par d&eacute;faut</strong> sont automatiquement appliqu&eacute;s par <code>core/js/site.js</code> : si aucune balise <code>&lt;link rel="icon"&gt;</code> n'est pr&eacute;sente, le favicon configur&eacute; est inject&eacute; ; si le <code>&lt;title&gt;</code> est vide, le nom du site est utilis&eacute;.</p>
+        <p>Voir <a href="cookies.html#configuration">Cookies &amp; Analytics</a> pour le d&eacute;tail des autres sections.</p>
+
+        <h3 id="legal-config">4. Remplir les informations l&eacute;gales</h3>
+        <p>Dans <code>config-site.js</code>, compl&eacute;tez le bloc <code>LEGAL_CONFIG</code> avec vos informations :</p>
+<pre><code>window.LEGAL_CONFIG = {
+  company: 'Ma Societe SAS',
+  legalForm: 'SAS',
+  siret: '123 456 789 00000',
+  registration: 'RCS Paris',
+  representative: 'Jean Dupont',
+  address: '123 rue Exemple, 75000 Paris',
+  phone: '+33 1 23 45 67 89',
+  email: 'contact@monsite.fr',
+  website: 'https://monsite.fr',
+  hosting: {
+    name: 'OVH',
+    address: '2 rue Kellermann, 59100 Roubaix',
+    url: 'https://www.ovh.com',
+    contact: 'https://www.ovh.com/fr/support/'
+  },
+  developer: {           // Optionnel, masque si name est vide
+    name: '', url: '', address: ''
+  }
+};</code></pre>
+        <p>
+          Les pages <code>mentions-legales.html</code> et <code>confidentialite.html</code> sont fournies
+          et se remplissent automatiquement avec ces informations. Les champs vides affichent un placeholder
+          <code>[NOM_DU_CHAMP]</code> pour vous aider &agrave; identifier les manques.
+        </p>
+        <p>
+          N'oubliez pas de configurer aussi <code>privacyUrl</code> dans la banni&egrave;re cookies
+          pour que le lien vers la politique de confidentialit&eacute; apparaisse dans le bandeau :
+        </p>
+<pre><code>banner: {
+  privacyUrl: '/confidentialite.html',
+  privacyText: 'Politique de confidentialité',
+  // ...
+}</code></pre>
+        <p><strong>Important :</strong> les textes l&eacute;gaux fournis sont des mod&egrave;les g&eacute;n&eacute;riques. Faites-les valider par un professionnel du droit avant mise en production.</p>
+        <p>Voir <a href="cookies.html#champs-legal-config">Pages l&eacute;gales</a> pour le d&eacute;tail de chaque champ.</p>
+
+        <h3>5. Composants (header, footer, card)</h3>
+        <p>
+          Chaque composant se configure directement dans le HTML via des <strong>attributs <code>data-*</code></strong>
+          (pour les valeurs simples) et des <strong><code>&lt;template data-slot&gt;</code></strong> (pour le contenu HTML riche).
+        </p>
+        <ul>
+          <li><strong>Header</strong> : <code>data-site-name</code>, <code>data-logo-link</code>, <code>data-logo-src</code>, slots <code>nav</code>, <code>cta</code>, <code>search</code></li>
+          <li><strong>Footer</strong> : <code>data-copyright</code>, slot <code>content</code></li>
+          <li><strong>Card</strong> : <code>data-title</code>, <code>data-text</code>, <code>data-image</code>, <code>data-image-alt</code>, slot <code>footer</code></li>
+        </ul>
+        <p>Les composants (<code>components/*.js</code>) ne sont &agrave; modifier que si vous changez la structure HTML. Voir <a href="components.html">Composants</a> pour le d&eacute;tail.</p>
+
+        <h3>6. Cr&eacute;er vos pages</h3>
+        <p>Copiez <code>snippets/page.html</code> comme mod&egrave;le pour chaque nouvelle page. Structure minimale :</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Ma Page — Mon Site&lt;/title&gt;
+  &lt;meta name="description" content="Description SEO de la page."&gt;
+
+  &lt;!-- Dark mode + Config (synchrone) --&gt;
+  &lt;script src="core/js/darkmode.js"&gt;&lt;/script&gt;
+  &lt;script src="config-site.js"&gt;&lt;/script&gt;
+  &lt;script src="core/js/site.js"&gt;&lt;/script&gt;
+
+  &lt;!-- CSS (requis) --&gt;
+  &lt;link rel="stylesheet" href="core/css/tokens.css"&gt;
+  &lt;link rel="stylesheet" href="core/css/base.css"&gt;
+  &lt;link rel="stylesheet" href="core/css/cookies.css"&gt;
+
+  &lt;!-- CSS (optionnel — ajoutez selon vos besoins) --&gt;
+  &lt;link rel="stylesheet" href="core/css/animations.css"&gt;
+  &lt;link rel="stylesheet" href="core/css/elements.css"&gt;
+  &lt;link rel="stylesheet" href="core/css/forms.css"&gt;
+  &lt;link rel="stylesheet" href="core/css/grid.css"&gt;
+  &lt;link rel="stylesheet" href="core/css/icons.css"&gt;
+  &lt;!-- &lt;link rel="stylesheet" href="core/css/blog.css"&gt; --&gt;
+
+  &lt;!-- Composants (synchrone) --&gt;
+  &lt;script src="core/js/components.js"&gt;&lt;/script&gt;
+  &lt;script src="components/header.js"&gt;&lt;/script&gt;
+  &lt;script src="components/footer.js"&gt;&lt;/script&gt;
+
+  &lt;!-- JS interactifs (defer — ajoutez selon vos besoins) --&gt;
+  &lt;script src="core/js/animations.js" defer&gt;&lt;/script&gt;
+  &lt;script src="core/js/elements.js" defer&gt;&lt;/script&gt;
+  &lt;script src="core/js/forms.js" defer&gt;&lt;/script&gt;
+  &lt;script src="core/js/icons.js" defer&gt;&lt;/script&gt;
+  &lt;script src="core/js/params.js" defer&gt;&lt;/script&gt;
+  &lt;script src="core/js/cookies.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Header : attributs + slots --&gt;
+  &lt;div data-component="header"
+       data-site-name="Mon Site"
+       data-logo-link="/index.html"&gt;
+    &lt;template data-slot="nav"&gt;
+      &lt;a href="/index.html"&gt;Accueil&lt;/a&gt;
+      &lt;a href="/contact.html"&gt;Contact&lt;/a&gt;
+    &lt;/template&gt;
+  &lt;/div&gt;
+
+  &lt;div class="container"&gt;
+    &lt;!-- Votre contenu ici --&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Footer : attributs + slots --&gt;
+  &lt;div data-component="footer"
+       data-copyright="&amp;copy; 2026 Mon Site"&gt;
+    &lt;template data-slot="content"&gt;
+      &lt;nav class="footer__links"&gt;
+        &lt;a href="/mentions-legales.html"&gt;Mentions légales&lt;/a&gt;
+        &lt;a href="/confidentialite.html"&gt;Confidentialité&lt;/a&gt;
+      &lt;/nav&gt;
+    &lt;/template&gt;
+  &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h3>7. Tester en local</h3>
+        <p>Ouvrez le projet avec <strong>VS Code + Live Server</strong> ou n'importe quel serveur local :</p>
+<pre><code># Option 1 : VS Code Live Server (extension)
+# Clic droit sur index.html → "Open with Live Server"
+
+# Option 2 : Python
+python3 -m http.server 8000
+
+# Option 3 : Node.js (npx)
+npx serve .</code></pre>
+        <p>Les liens internes utilisent <code>.html</code> pour fonctionner partout (Live Server, file://, etc.). En production, le <code>.htaccess</code> redirige vers des URLs propres.</p>
+
+        <!-- ========== GIT & GITHUB ========== -->
+
+        <h2>Git &amp; GitHub</h2>
+        <p>Versionnez votre projet avec Git et h&eacute;bergez-le sur GitHub pour collaborer, garder un historique, et faciliter le d&eacute;ploiement.</p>
+
+        <h3>1. Initialiser Git</h3>
+        <p>Dans le dossier de votre projet :</p>
+<pre><code># Initialiser le dépôt Git
+git init
+
+# Ajouter tous les fichiers
+git add -A
+
+# Premier commit
+git commit -m "Initial commit"</code></pre>
+
+        <h3>2. Cr&eacute;er le d&eacute;p&ocirc;t GitHub</h3>
+        <p>Cr&eacute;ez un nouveau d&eacute;p&ocirc;t sur <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>, puis liez-le &agrave; votre projet local :</p>
+<pre><code># Lier le dépôt distant
+git remote add origin https://github.com/votre-user/votre-projet.git
+
+# Pousser le code
+git push -u origin main</code></pre>
+        <p>L'option <code>-u</code> configure le tracking : les prochains <code>git push</code> n'auront plus besoin de pr&eacute;ciser <code>origin main</code>.</p>
+
+        <h3>3. Workflow quotidien</h3>
+        <p>Les commandes Git que vous utiliserez au quotidien :</p>
+<pre><code># Voir l'état des fichiers modifiés
+git status
+
+# Voir les modifications en détail
+git diff
+
+# Ajouter tous les fichiers modifiés
+git add -A
+
+# Ajouter un fichier spécifique
+git add chemin/du/fichier.html
+
+# Créer un commit avec un message descriptif
+git commit -m "Add contact page with form validation"
+
+# Pousser sur GitHub
+git push
+
+# Récupérer les dernières modifications (si travail en équipe)
+git pull</code></pre>
+
+        <h3>4. Bonnes pratiques commits</h3>
+        <ul>
+          <li>Un commit = une modification logique (pas 10 changements diff&eacute;rents dans un seul commit)</li>
+          <li>Messages en anglais, courts et descriptifs : <code>Add</code>, <code>Fix</code>, <code>Update</code>, <code>Remove</code></li>
+          <li>Exemples : <code>"Add hero section to homepage"</code>, <code>"Fix mobile nav toggle"</code>, <code>"Update color tokens"</code></li>
+        </ul>
+
+        <h3>5. Fichier <code>.gitignore</code></h3>
+        <p>Assurez-vous que les fichiers sensibles ou inutiles ne sont pas versionn&eacute;s :</p>
+<pre><code># Fichiers à ignorer dans .gitignore
+.env
+.deploy.env
+.DS_Store
+node_modules/
+.claude/
+data/</code></pre>
+
+        <!-- ========== MISE EN PRODUCTION ========== -->
+
+        <h2>Mise en production</h2>
+        <p>Le d&eacute;ploiement, la configuration serveur et la checklist de lancement ont leur page d&eacute;di&eacute;e :</p>
+        <div class="docs-see-also" style="margin-bottom: var(--space-6);">
+          <ul>
+            <li><a href="production.html">Mise en production</a> &mdash; SSH, rsync, .env, .htaccess, checklist de lancement</li>
+          </ul>
+        </div>
+
+        <!-- ========== SITE SANS BLOG ========== -->
+
+        <h2 id="site-sans-blog">Site sans blog</h2>
+        <p>Si votre site n'a pas besoin de blog, supprimez les fichiers li&eacute;s et all&eacute;gez la configuration.</p>
+
+        <h3>Fichiers &agrave; supprimer</h3>
+<pre><code># Pages blog
+blog.html                  # Page listing
+blog/                      # Dossier contenant article.html
+
+# Proxy API
+api/                       # Dossier contenant baserow.php
+
+# Fichier environnement (si le blog était le seul usage)
+.env</code></pre>
+
+        <h3>CSS et JS &agrave; retirer des pages</h3>
+        <p>Dans chaque fichier HTML, supprimez ces lignes du <code>&lt;head&gt;</code> :</p>
+<pre><code>&lt;!-- Supprimer cette ligne CSS --&gt;
+&lt;link rel="stylesheet" href="core/css/blog.css"&gt;
+
+&lt;!-- Supprimer cette ligne JS --&gt;
+&lt;script src="core/js/blog.js" defer&gt;&lt;/script&gt;</code></pre>
+        <p>Les fichiers <code>core/css/blog.css</code> et <code>core/js/blog.js</code> peuvent rester dans le dossier <code>core/</code> sans probl&egrave;me (ils ne seront simplement plus charg&eacute;s).</p>
+
+        <h3>Configuration &agrave; nettoyer</h3>
+        <p>Dans <code>config-site.js</code>, supprimez ou videz la section <code>BLOG_CONFIG</code> :</p>
+<pre><code>/* ---------- BLOG ---------- */
+// Supprimez tout ce bloc si pas de blog :
+window.BLOG_CONFIG = {
+  baserow: { url: '', token: '', tableId: '' },
+  perPage: 12,
+  dateFormat: 'fr-FR',
+  defaultImage: '',
+  articlePage: 'blog/article',
+  blogPage: 'blog',
+};</code></pre>
+
+        <h3>Navigation &agrave; adapter</h3>
+        <p>Retirez le lien &laquo; Blog &raquo; du slot <code>nav</code> dans le header de chaque page HTML.</p>
+
+        <h3>R&eacute;sum&eacute;</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Action</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Fichiers concern&eacute;s</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Supprimer</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>blog.html</code>, <code>blog/</code>, <code>api/</code>, <code>.env</code></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Retirer des <code>&lt;head&gt;</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>blog.css</code>, <code>blog.js</code></td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Nettoyer</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>config-site.js</code> (section BLOG_CONFIG)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;">Adapter</td>
+              <td style="padding: 8px;"><code>components/header.js</code> (retirer lien Blog)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- ========== MODULES OPTIONNELS ========== -->
+
+        <h2>Modules optionnels</h2>
+        <p>Vous pouvez aussi retirer d'autres modules selon vos besoins. Chaque module est ind&eacute;pendant :</p>
+
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Module</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">CSS</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">JS</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Requis ?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Tokens + Base</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>tokens.css</code>, <code>base.css</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">—</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Oui (toujours)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Site (favicon, titre)</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">—</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>site.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Recommand&eacute;</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Composants</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">—</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>components.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Oui (header/footer)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">&Eacute;l&eacute;ments</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>elements.css</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>elements.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Optionnel</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Ic&ocirc;nes</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>icons.css</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>icons.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Optionnel</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Grid / Bento</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>grid.css</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">—</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Optionnel</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Formulaires</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>forms.css</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>forms.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Optionnel</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Animations</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>animations.css</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>animations.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Optionnel</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Cookies</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>cookies.css</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>cookies.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Recommand&eacute; (RGPD)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Param&egrave;tres URL</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">—</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>params.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Optionnel</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Blog</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>blog.css</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>blog.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Optionnel</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Dark Mode</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">—</td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>darkmode.js</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Optionnel</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;">Pages l&eacute;gales</td>
+              <td style="padding: 8px;">—</td>
+              <td style="padding: 8px;"><code>legal.js</code></td>
+              <td style="padding: 8px;">Recommand&eacute; (RGPD)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top: var(--space-4);"><strong>Minimum requis</strong> : <code>tokens.css</code> + <code>base.css</code> + <code>components.js</code> + <code>site.js</code> + vos composants (<code>header.js</code>, <code>footer.js</code>).</p>
+
+        <!-- ========== SNIPPETS ========== -->
+
+        <h2>Snippets (copier-coller)</h2>
+        <p>Le dossier <code>snippets/</code> contient un fichier HTML par &eacute;l&eacute;ment, pr&ecirc;t &agrave; copier-coller dans vos pages. Chaque fichier commence par un bloc commentaire listant toutes les classes, attributs et options disponibles.</p>
+
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Fichier</th>
+              <th style="text-align: left; padding: 8px; border-bottom: 2px solid var(--color-border);">Contenu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>popup.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Popup centr&eacute;, panneau lat&eacute;ral, bottom sheet, panneau sup&eacute;rieur</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>tabs.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Tabs basiques + tabs imbriqu&eacute;s</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>accordion.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Accordion simple + multiple</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>slider.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Slider avec toutes les options (loop, autoplay, draggable, per-view)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>form.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Formulaire simple + multi-step avec validation et conditions</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>animations.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Animations scroll + clic + SVG</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>grid.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Grid colonnes + bento layouts</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>cookies.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Configuration cookies + bandeau RGPD</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>darkmode.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Toggle dark mode + script &agrave; inclure</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);"><code>page.html</code></td>
+              <td style="padding: 8px; border-bottom: 1px solid var(--color-border);">Page compl&egrave;te (doctype minimal avec tous les CSS/JS pr&ecirc;ts)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px;"><code>icons.html</code></td>
+              <td style="padding: 8px;">Ic&ocirc;nes (usage data-icon + options)</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: var(--space-4);">Ces fichiers ne sont pas des pages compl&egrave;tes, mais des <strong>fragments HTML</strong> &agrave; int&eacute;grer dans vos pages.</p>
+
+        <div class="docs-troubleshoot">
+          <div class="docs-troubleshoot__title">Probl&egrave;mes courants</div>
+          <ul>
+            <li><strong>Le site ne s'affiche pas correctement :</strong> v&eacute;rifiez l'ordre des CSS dans le <code>&lt;head&gt;</code> : <code>tokens.css</code> doit &ecirc;tre charg&eacute; en premier.</li>
+            <li><strong>Les composants ne s'affichent pas :</strong> v&eacute;rifiez que <code>components.js</code> est charg&eacute; avant les fichiers de composants (<code>header.js</code>, <code>footer.js</code>).</li>
+            <li><strong>Probl&egrave;mes de d&eacute;ploiement :</strong> consultez la page <a href="production.html">Mise en production</a>.</li>
+          </ul>
+        </div>
+
+        <div class="docs-see-also">
+          <div class="docs-see-also__title">Voir aussi</div>
+          <ul>
+            <li><a href="production.html">Mise en production</a></li>
+            <li><a href="tokens.html">Design Tokens</a></li>
+            <li><a href="components.html">Composants</a></li>
+            <li><a href="cookies.html">Cookies &amp; RGPD</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="wireframes.html">Wireframes</a></li>
+          </ul>
+        </div>
+
+      </main>
+      <aside class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <div data-component="footer"
+       data-copyright="&copy; 2026 SiteSystem">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>

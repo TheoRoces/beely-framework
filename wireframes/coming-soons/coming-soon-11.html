@@ -1,0 +1,201 @@
+<!-- coming-soon-11: Coming soon with feature preview list -->
+<style>
+  .wf-coming-soon-11 {
+    --wf-bg: var(--color-bg-alt);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-primary: var(--color-text-light);
+    --wf-primary-hover: var(--color-neutral-700);
+    --wf-primary-light: var(--color-bg-alt);
+    --wf-border: var(--color-border);
+    --wf-radius: 12px;
+    --wf-radius-sm: 8px;
+    --wf-feature-icon-bg: var(--color-bg-alt);
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    background-color: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--wf-font);
+    box-sizing: border-box;
+  }
+
+  .wf-coming-soon-11 *,
+  .wf-coming-soon-11 *::before,
+  .wf-coming-soon-11 *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wf-coming-soon-11 .wf-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-coming-soon-11 .wf-badge {
+    display: inline-block;
+    padding: 0.4rem 0.875rem;
+    background-color: var(--wf-primary-light);
+    color: var(--wf-primary);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .wf-coming-soon-11 .wf-heading {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-coming-soon-11 .wf-subheading {
+    font-size: 1.0625rem;
+    color: var(--wf-text-muted);
+    max-width: 520px;
+    line-height: 1.6;
+    margin: 0 auto;
+  }
+
+  .wf-coming-soon-11 .wf-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 3rem;
+  }
+
+  .wf-coming-soon-11 .wf-feature {
+    background-color: var(--color-bg);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    padding: 1.75rem;
+    text-align: left;
+  }
+
+  .wf-coming-soon-11 .wf-feature-icon {
+    width: 44px;
+    height: 44px;
+    background-color: var(--wf-feature-icon-bg);
+    border-radius: var(--radius-lg, 0.75rem);
+    margin-bottom: 1rem;
+  }
+
+  .wf-coming-soon-11 .wf-feature-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .wf-coming-soon-11 .wf-feature-desc {
+    font-size: 0.875rem;
+    color: var(--wf-text-muted);
+    line-height: 1.5;
+  }
+
+  .wf-coming-soon-11 .wf-cta {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .wf-coming-soon-11 .wf-cta-text {
+    font-size: 0.9375rem;
+    color: var(--wf-text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .wf-coming-soon-11 .wf-signup-form {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .wf-coming-soon-11 .wf-input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius-sm);
+    font-size: 1rem;
+    font-family: var(--wf-font);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .wf-coming-soon-11 .wf-input:focus {
+    border-color: var(--wf-primary);
+  }
+
+  .wf-coming-soon-11 .wf-button {
+    padding: 0.875rem 1.5rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    border: none;
+    border-radius: var(--wf-radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--wf-font);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+  }
+
+  .wf-coming-soon-11 .wf-button:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  @media (max-width: 768px) {
+    .wf-coming-soon-11 .wf-features {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+
+    .wf-coming-soon-11 .wf-signup-form {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<section class="wf-coming-soon-11">
+  <div class="wf-header">
+    <span class="wf-badge">Bientot disponible</span>
+    <h1 class="wf-heading">Nous preparons quelque chose d'exceptionnel</h1>
+    <p class="wf-subheading">Decouvrez les fonctionnalites qui vous attendent lors de notre lancement.</p>
+  </div>
+
+  <div class="wf-features">
+    <div class="wf-feature">
+      <div class="wf-feature-icon"></div>
+      <h3 class="wf-feature-title">Design moderne</h3>
+      <p class="wf-feature-desc">Une interface intuitive et elegante pour une experience utilisateur optimale.</p>
+    </div>
+    <div class="wf-feature">
+      <div class="wf-feature-icon"></div>
+      <h3 class="wf-feature-title">Performance rapide</h3>
+      <p class="wf-feature-desc">Des temps de chargement ultra-rapides grace a notre architecture optimisee.</p>
+    </div>
+    <div class="wf-feature">
+      <div class="wf-feature-icon"></div>
+      <h3 class="wf-feature-title">Securite avancee</h3>
+      <p class="wf-feature-desc">Vos donnees sont protegees avec les meilleurs standards de securite.</p>
+    </div>
+  </div>
+
+  <div class="wf-cta">
+    <p class="wf-cta-text">Soyez les premiers informes de notre lancement</p>
+    <form class="wf-signup-form">
+      <input type="email" class="wf-input" placeholder="Entrez votre email pour etre notifie" />
+      <button type="submit" class="wf-button">Me notifier</button>
+    </form>
+  </div>
+</section>

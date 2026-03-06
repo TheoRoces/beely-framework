@@ -1,0 +1,185 @@
+<!-- timeline-05.html — Timeline with icon dots instead of circles -->
+<style>
+  .wf-timeline-05 {
+    --wf-color-bg: var(--color-bg);
+    --wf-color-text: var(--color-text);
+    --wf-color-text-muted: var(--color-text-light);
+    --wf-color-line: var(--color-border);
+    --wf-color-accent: var(--color-text);
+    --wf-color-accent-light: var(--color-neutral-100);
+    --wf-font-family: var(--font-body);
+    --wf-spacing-section: 6rem;
+    --wf-spacing-lg: 3rem;
+    --wf-spacing-md: 1.5rem;
+    --wf-spacing-sm: 0.75rem;
+    --wf-max-width: 720px;
+
+    background: var(--wf-color-bg);
+    color: var(--wf-color-text);
+    font-family: var(--wf-font-family);
+    padding: var(--wf-spacing-section) var(--wf-spacing-md);
+  }
+
+  .wf-timeline-05 .wf-section__header {
+    max-width: var(--wf-max-width);
+    margin: 0 auto var(--wf-spacing-lg);
+    text-align: center;
+  }
+
+  .wf-timeline-05 .wf-section__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-color-accent);
+    margin-bottom: var(--wf-spacing-sm);
+  }
+
+  .wf-timeline-05 .wf-section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .wf-timeline-05 .wf-timeline {
+    position: relative;
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    padding-left: 4rem;
+  }
+
+  .wf-timeline-05 .wf-timeline::before {
+    content: "";
+    position: absolute;
+    left: 1.25rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--wf-color-line);
+  }
+
+  .wf-timeline-05 .wf-timeline__item {
+    position: relative;
+    padding-bottom: var(--wf-spacing-lg);
+  }
+
+  .wf-timeline-05 .wf-timeline__item:last-child {
+    padding-bottom: 0;
+  }
+
+  .wf-timeline-05 .wf-timeline__dot {
+    position: absolute;
+    left: calc(-4rem + 1.25rem - 1rem);
+    top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--wf-color-accent-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .wf-timeline-05 .wf-timeline__dot svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--wf-color-accent);
+  }
+
+  .wf-timeline-05 .wf-timeline__date {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--wf-color-accent);
+    margin-bottom: 0.25rem;
+  }
+
+  .wf-timeline-05 .wf-timeline__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.375rem 0;
+  }
+
+  .wf-timeline-05 .wf-timeline__text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--wf-color-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-timeline-05 .wf-section__title {
+      font-size: 1.75rem;
+    }
+
+    .wf-timeline-05 .wf-timeline {
+      padding-left: 3.5rem;
+    }
+
+    .wf-timeline-05 .wf-timeline__dot {
+      left: calc(-3.5rem + 1.25rem - 1rem);
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .wf-timeline-05 .wf-timeline__dot svg {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+  }
+</style>
+
+<section class="wf-timeline-05">
+  <div class="wf-section__header">
+    <p class="wf-section__tagline">Nos jalons</p>
+    <h2 class="wf-section__title">Notre histoire</h2>
+  </div>
+
+  <div class="wf-timeline">
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+      </span>
+      <p class="wf-timeline__date">2015</p>
+      <h3 class="wf-timeline__title">Creation de l'entreprise</h3>
+      <p class="wf-timeline__text">Fondation de la societe avec l'ambition de revolutionner notre secteur.</p>
+    </div>
+
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg>
+      </span>
+      <p class="wf-timeline__date">2018</p>
+      <h3 class="wf-timeline__title">Premiere levee de fonds</h3>
+      <p class="wf-timeline__text">Tour de table reussi pour financer notre developpement et nos recrutements.</p>
+    </div>
+
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </span>
+      <p class="wf-timeline__date">2020</p>
+      <h3 class="wf-timeline__title">Expansion internationale</h3>
+      <p class="wf-timeline__text">Ouverture de nos premiers bureaux a l'international en Europe et en Asie.</p>
+    </div>
+
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+      </span>
+      <p class="wf-timeline__date">2023</p>
+      <h3 class="wf-timeline__title">Lancement de la plateforme V2</h3>
+      <p class="wf-timeline__text">Nouvelle version avec des performances decuplees et une interface modernisee.</p>
+    </div>
+
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </span>
+      <p class="wf-timeline__date">2026</p>
+      <h3 class="wf-timeline__title">100 000 utilisateurs</h3>
+      <p class="wf-timeline__text">Notre communaute atteint un cap historique de cent mille utilisateurs actifs.</p>
+    </div>
+  </div>
+</section>

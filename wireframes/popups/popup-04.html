@@ -1,0 +1,137 @@
+<!-- popup-04.html | Confirmation Dialog Popup | Wireframe -->
+<style>
+  .wf-popup-preview--04 {
+    --popup-bg: var(--color-bg);
+    --popup-overlay: rgba(0, 0, 0, 0.55);
+    --popup-radius: 12px;
+    --popup-padding: 2.5rem;
+    --popup-max-width: 440px;
+    --popup-text: var(--color-text);
+    --popup-muted: var(--color-text-light);
+    --popup-border: var(--color-border);
+    --popup-accent: var(--color-text);
+    --popup-accent-text: var(--color-bg);
+    --popup-danger: var(--color-text-light);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    background: var(--popup-overlay);
+    padding: 1.5rem;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-popup-preview--04 .wf-popup-box {
+    background: var(--popup-bg);
+    border-radius: var(--popup-radius);
+    padding: var(--popup-padding);
+    max-width: var(--popup-max-width);
+    width: 100%;
+    position: relative;
+    box-shadow: var(--shadow-xl);
+    text-align: center;
+  }
+
+  .wf-popup-preview--04 .wf-popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: 1px solid var(--popup-border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--popup-muted);
+  }
+
+  .wf-popup-preview--04 .wf-popup-icon-wrapper {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+
+  .wf-popup-preview--04 .wf-popup-icon-wrapper svg {
+    width: 28px;
+    height: 28px;
+    color: var(--popup-danger);
+  }
+
+  .wf-popup-preview--04 .wf-popup-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--popup-text);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+  }
+
+  .wf-popup-preview--04 .wf-popup-desc {
+    font-size: 0.9375rem;
+    color: var(--popup-muted);
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+  }
+
+  .wf-popup-preview--04 .wf-popup-actions {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .wf-popup-preview--04 .wf-popup-btn {
+    flex: 1;
+    padding: 0.8125rem 1.25rem;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+  }
+
+  .wf-popup-preview--04 .wf-popup-btn--danger {
+    background: var(--popup-danger);
+    color: var(--color-text-on-dark);
+  }
+
+  .wf-popup-preview--04 .wf-popup-btn--secondary {
+    background: none;
+    color: var(--popup-text);
+    border: 1px solid var(--popup-border);
+  }
+
+  @media (max-width: 480px) {
+    .wf-popup-preview--04 .wf-popup-box {
+      padding: 1.5rem;
+    }
+    .wf-popup-preview--04 .wf-popup-actions {
+      flex-direction: column-reverse;
+    }
+  }
+</style>
+
+<div class="wf-popup-preview wf-popup-preview--04">
+  <div class="wf-popup-box">
+    <button class="wf-popup-close" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="wf-popup-icon-wrapper">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"/></svg>
+    </div>
+    <h2 class="wf-popup-title">Confirmation</h2>
+    <p class="wf-popup-desc">Etes-vous sur de vouloir supprimer cet element ? Cette action est irreversible et ne peut pas etre annulee.</p>
+    <div class="wf-popup-actions">
+      <button class="wf-popup-btn wf-popup-btn--secondary">Annuler</button>
+      <button class="wf-popup-btn wf-popup-btn--danger">Confirmer</button>
+    </div>
+  </div>
+</div>

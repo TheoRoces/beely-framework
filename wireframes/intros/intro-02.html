@@ -1,0 +1,91 @@
+<!-- intro-02.html | Left-aligned title + right-aligned subtitle (split layout) -->
+<style>
+  .wf-intro-02 {
+    --wf-section-padding: 6rem 1.5rem;
+    --wf-max-width: 72rem;
+    --wf-title-size: clamp(2rem, 4.5vw, 3.25rem);
+    --wf-title-color: var(--color-neutral-900);
+    --wf-subtitle-size: 1.0625rem;
+    --wf-subtitle-color: var(--color-neutral-600);
+    --wf-accent-color: var(--color-text);
+    --wf-font-family: var(--font-body);
+
+    padding: var(--wf-section-padding);
+    font-family: var(--wf-font-family);
+  }
+
+  .wf-intro-02__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .wf-intro-02__container {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  .wf-intro-02__title {
+    font-size: var(--wf-title-size);
+    font-weight: 700;
+    color: var(--wf-title-color);
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-intro-02__title span {
+    color: var(--wf-accent-color);
+  }
+
+  .wf-intro-02__right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .wf-intro-02__right {
+      padding-top: 0.5rem;
+    }
+  }
+
+  .wf-intro-02__subtitle {
+    font-size: var(--wf-subtitle-size);
+    color: var(--wf-subtitle-color);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .wf-intro-02__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--wf-accent-color);
+    text-decoration: none;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 0.125rem;
+    width: fit-content;
+  }
+
+  .wf-intro-02__link:hover {
+    opacity: 0.8;
+  }
+</style>
+
+<section class="wf-intro-02">
+  <div class="wf-intro-02__container">
+    <h2 class="wf-intro-02__title">A propos de <span>nous</span></h2>
+    <div class="wf-intro-02__right">
+      <p class="wf-intro-02__subtitle">Depuis 2015, nous accompagnons les entreprises dans leur transformation digitale. Notre approche repose sur l'ecoute, l'innovation et un engagement constant envers l'excellence pour offrir des solutions durables et performantes.</p>
+      <a href="#" class="wf-intro-02__link">En savoir plus &rarr;</a>
+    </div>
+  </div>
+</section>

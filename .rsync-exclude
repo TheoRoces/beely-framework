@@ -1,0 +1,25 @@
+# Git
+.git/
+.gitignore
+
+# Claude / Dev
+CLAUDE.md
+.claude/
+
+# Deploy config (reste en local)
+.deploy.env
+.deploy.env.example
+
+# Fichiers de dev
+generate-sitemap.js
+deploy.sh
+.rsync-exclude
+
+# Configurateur & Builder (local uniquement)
+configurator.html
+configurator-server.py
+builder/
+
+# OS files
+.DS_Store
+Thumbs.db

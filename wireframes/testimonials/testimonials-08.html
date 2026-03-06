@@ -1,0 +1,133 @@
+<!-- Testimonials 08 : Single testimonial with large avatar, company logo placeholder, and stats -->
+<style>
+.wf-testimonials-08 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  padding: var(--space-16, 4rem) var(--space-4, 1rem);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.wf-testimonials-08 .wf-wrapper {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: var(--radius-xl, 16px);
+  padding: var(--space-10, 2.5rem);
+  display: flex;
+  gap: var(--space-10, 2.5rem);
+  align-items: center;
+}
+.wf-testimonials-08 .wf-left {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4, 1rem);
+}
+.wf-testimonials-08 .wf-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--color-muted, #e5e7eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted, #6b7280);
+}
+.wf-testimonials-08 .wf-company-logo {
+  width: 120px;
+  height: 40px;
+  background: var(--color-muted, #e5e7eb);
+  border-radius: var(--radius-sm, 6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #6b7280);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.wf-testimonials-08 .wf-right {
+  flex: 1;
+}
+.wf-testimonials-08 .wf-stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-text, #374151);
+  margin-bottom: var(--space-4, 1rem);
+}
+.wf-testimonials-08 .wf-quote {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--color-text, #1a1a1a);
+  margin: 0 0 var(--space-6, 1.5rem);
+}
+.wf-testimonials-08 .wf-name {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-text, #1a1a1a);
+}
+.wf-testimonials-08 .wf-role {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted, #6b7280);
+  margin-bottom: var(--space-6, 1.5rem);
+}
+.wf-testimonials-08 .wf-stats {
+  display: flex;
+  gap: var(--space-8, 2rem);
+  border-top: 1px solid var(--color-border, #e5e7eb);
+  padding-top: var(--space-6, 1.5rem);
+}
+.wf-testimonials-08 .wf-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text, #374151);
+}
+.wf-testimonials-08 .wf-stat-label {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #6b7280);
+}
+@media (max-width: 768px) {
+  .wf-testimonials-08 .wf-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+  .wf-testimonials-08 .wf-stars { justify-content: center; }
+  .wf-testimonials-08 .wf-stats { justify-content: center; }
+}
+</style>
+
+<section class="wf-testimonials-08">
+  <div class="wf-wrapper">
+    <div class="wf-left">
+      <div class="wf-avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="56" height="56"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="wf-company-logo">Acme Corp</div>
+    </div>
+    <div class="wf-right">
+      <div class="wf-stars">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <blockquote class="wf-quote">"Un service exceptionnel qui a transforme notre presence en ligne. Leur approche strategique et leur creativite nous ont permis d'atteindre des resultats remarquables."</blockquote>
+      <div class="wf-name">Marie Dupont</div>
+      <div class="wf-role">Directrice Marketing, Acme Corp</div>
+      <div class="wf-stats">
+        <div>
+          <div class="wf-stat-value">+150%</div>
+          <div class="wf-stat-label">Trafic organique</div>
+        </div>
+        <div>
+          <div class="wf-stat-value">+40%</div>
+          <div class="wf-stat-label">Taux de conversion</div>
+        </div>
+        <div>
+          <div class="wf-stat-value">3x</div>
+          <div class="wf-stat-label">ROI en 6 mois</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

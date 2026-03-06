@@ -1,0 +1,97 @@
+<!-- Header 10 : Logo a gauche, nav centre, icones reseaux sociaux a droite -->
+<style>
+  .wf-header-10 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) 0;
+  }
+  .wf-header-10 .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wf-header-10__logo {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .wf-header-10__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .wf-header-10__nav a {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .wf-header-10__nav a:hover {
+    color: var(--color-text-light);
+  }
+  .wf-header-10__social {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .wf-header-10__social-link {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+  }
+  .wf-header-10__social-link:hover {
+    color: var(--color-text);
+    background-color: var(--color-bg-alt);
+  }
+  .wf-header-10__social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+  @media (max-width: 768px) {
+    .wf-header-10__nav {
+      display: none;
+    }
+    .wf-header-10__social {
+      display: none;
+    }
+  }
+</style>
+
+<header class="wf-header-10">
+  <div class="container">
+    <a href="#" class="wf-header-10__logo">Logo</a>
+    <nav>
+      <ul class="wf-header-10__nav">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="wf-header-10__social">
+      <a href="#" class="wf-header-10__social-link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="#" class="wf-header-10__social-link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="wf-header-10__social-link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
+</header>

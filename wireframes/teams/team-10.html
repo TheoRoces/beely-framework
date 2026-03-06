@@ -1,0 +1,133 @@
+<!-- team-10: Minimal list with name, role, and social on one line each -->
+<style>
+  .wf-team-10 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--wf-spacing-section, 5rem) var(--wf-spacing-gutter, 1.5rem);
+    max-width: var(--wf-max-width, 800px);
+    margin: 0 auto;
+  }
+  .wf-team-10__header {
+    text-align: center;
+    margin-bottom: var(--wf-spacing-xl, 4rem);
+  }
+  .wf-team-10__title {
+    font-size: var(--wf-font-size-3xl, 2.5rem);
+    font-weight: 700;
+    color: var(--color-text, #111);
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+  .wf-team-10__subtitle {
+    font-size: var(--wf-font-size-md, 1.125rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+  }
+  .wf-team-10__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .wf-team-10__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+  }
+  .wf-team-10__item:first-child {
+    border-top: 1px solid var(--color-border, #e5e7eb);
+  }
+  .wf-team-10__name {
+    font-size: var(--wf-font-size-lg, 1.25rem);
+    font-weight: 600;
+    color: var(--color-text, #111);
+    margin: 0;
+    flex: 1;
+  }
+  .wf-team-10__role {
+    font-size: var(--wf-font-size-sm, 0.875rem);
+    color: var(--color-text-light, #6b7280);
+    margin: 0;
+    flex: 1;
+    text-align: center;
+  }
+  .wf-team-10__social {
+    display: flex;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+  }
+  .wf-team-10__social-link {
+    color: var(--color-text-light, #6b7280);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .wf-team-10__social-link:hover {
+    color: var(--color-text, #111);
+  }
+  @media (max-width: 600px) {
+    .wf-team-10__item {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .wf-team-10__name { flex: 1 1 100%; }
+    .wf-team-10__role { text-align: left; flex: 1; }
+    .wf-team-10__title { font-size: 2rem; }
+  }
+</style>
+
+<section class="wf-team-10">
+  <header class="wf-team-10__header">
+    <h2 class="wf-team-10__title">Notre equipe</h2>
+    <p class="wf-team-10__subtitle">Les talents derriere le projet</p>
+  </header>
+  <ul class="wf-team-10__list">
+    <li class="wf-team-10__item">
+      <h3 class="wf-team-10__name">Marie Dupont</h3>
+      <p class="wf-team-10__role">Directrice Generale</p>
+      <div class="wf-team-10__social">
+        <a href="#" class="wf-team-10__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+        <a href="#" class="wf-team-10__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </li>
+    <li class="wf-team-10__item">
+      <h3 class="wf-team-10__name">Jean Martin</h3>
+      <p class="wf-team-10__role">Lead Developer</p>
+      <div class="wf-team-10__social">
+        <a href="#" class="wf-team-10__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+        <a href="#" class="wf-team-10__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </li>
+    <li class="wf-team-10__item">
+      <h3 class="wf-team-10__name">Sophie Bernard</h3>
+      <p class="wf-team-10__role">Designer UI/UX</p>
+      <div class="wf-team-10__social">
+        <a href="#" class="wf-team-10__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+        <a href="#" class="wf-team-10__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </li>
+    <li class="wf-team-10__item">
+      <h3 class="wf-team-10__name">Lucas Petit</h3>
+      <p class="wf-team-10__role">Chef de Projet</p>
+      <div class="wf-team-10__social">
+        <a href="#" class="wf-team-10__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+        <a href="#" class="wf-team-10__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </li>
+    <li class="wf-team-10__item">
+      <h3 class="wf-team-10__name">Emma Moreau</h3>
+      <p class="wf-team-10__role">Responsable Marketing</p>
+      <div class="wf-team-10__social">
+        <a href="#" class="wf-team-10__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+        <a href="#" class="wf-team-10__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </li>
+    <li class="wf-team-10__item">
+      <h3 class="wf-team-10__name">Thomas Leroy</h3>
+      <p class="wf-team-10__role">Developpeur Frontend</p>
+      <div class="wf-team-10__social">
+        <a href="#" class="wf-team-10__social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+        <a href="#" class="wf-team-10__social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" opacity="0.5"><circle cx="12" cy="12" r="10"/></svg></a>
+      </div>
+    </li>
+  </ul>
+</section>

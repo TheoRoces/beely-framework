@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mise en production — Documentation — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+
+  <div data-component="header"
+       data-site-name="SiteSystem"
+       data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="production"></nav>
+
+      <main class="docs-content">
+        <h1 class="anim-fade-in-up">Mise en production</h1>
+        <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
+          D&eacute;ployez votre site sur un h&eacute;bergement Hostinger (ou tout serveur Apache avec acc&egrave;s SSH) et v&eacute;rifiez que tout est pr&ecirc;t avant le lancement.
+        </p>
+
+        <!-- ========== DÉPLOIEMENT ========== -->
+
+        <h2>D&eacute;ploiement (Hostinger / Apache)</h2>
+        <p>D&eacute;ployez votre site via <code>rsync</code> pour des mises &agrave; jour rapides et automatiques.</p>
+
+        <h3>Pr&eacute;requis</h3>
+        <ul>
+          <li>Serveur Apache avec <code>mod_rewrite</code> et <code>mod_headers</code> activ&eacute;s</li>
+          <li>PHP 7+ (pour <code>api/baserow.php</code> et <code>api/consent.php</code>)</li>
+          <li>Certificat SSL (Let's Encrypt ou autre)</li>
+          <li>Acc&egrave;s SSH activ&eacute; sur l'h&eacute;bergement (Hostinger : plan Premium ou sup&eacute;rieur)</li>
+        </ul>
+
+        <h3>1. Activer et configurer SSH</h3>
+        <p>Sur Hostinger, allez dans <strong>hPanel &rarr; Avanc&eacute; &rarr; Acc&egrave;s SSH</strong> et notez :</p>
+        <ul>
+          <li><strong>IP</strong> du serveur</li>
+          <li><strong>Port</strong> (g&eacute;n&eacute;ralement <code>65002</code> chez Hostinger)</li>
+          <li><strong>Nom d'utilisateur</strong> (ex: <code>u123456789</code>)</li>
+        </ul>
+
+        <h3>2. G&eacute;n&eacute;rer une cl&eacute; SSH (si pas d&eacute;j&agrave; fait)</h3>
+<pre><code># G&eacute;n&eacute;rer une cl&eacute; SSH ed25519
+ssh-keygen -t ed25519 -C "votre@email.com"
+
+# Appuyer sur Entr&eacute;e pour accepter le chemin par d&eacute;faut
+# Choisir un mot de passe (ou Entr&eacute;e pour aucun)</code></pre>
+
+        <h3>3. Premi&egrave;re connexion SSH</h3>
+        <p>Connectez-vous une premi&egrave;re fois pour accepter l'empreinte du serveur :</p>
+<pre><code># Remplacez USER, IP et PORT par vos valeurs
+ssh -p PORT USER@IP
+
+# Tapez "yes" pour accepter l'empreinte
+# Entrez votre mot de passe SSH
+# Une fois connect&eacute;, tapez "exit" pour revenir en local</code></pre>
+
+        <h3>4. Copier la cl&eacute; publique sur le serveur</h3>
+        <p>Pour ne plus avoir &agrave; taper le mot de passe &agrave; chaque d&eacute;ploiement :</p>
+<pre><code># Copier la cl&eacute; publique (demande le mot de passe une derni&egrave;re fois)
+ssh-copy-id -p PORT USER@IP
+
+# V&eacute;rifier que la connexion fonctionne sans mot de passe
+ssh -p PORT USER@IP "echo 'SSH OK'"</code></pre>
+
+        <h3>5. Identifier le dossier du domaine</h3>
+        <p>Sur Hostinger, chaque domaine a son propre dossier. Connectez-vous en SSH pour le trouver :</p>
+<pre><code>ssh -p PORT USER@IP
+ls ~/domains/
+# R&eacute;sultat : monsite.fr  autre-site.com  ...
+exit</code></pre>
+        <p>Le chemin de d&eacute;ploiement sera : <code>/home/USER/domains/monsite.fr/public_html/</code></p>
+
+        <h3>6. Cr&eacute;er le fichier d'exclusions</h3>
+        <p>Cr&eacute;ez un fichier <code>.rsync-exclude</code> &agrave; la racine du projet pour lister les fichiers &agrave; ne pas envoyer sur le serveur :</p>
+<pre><code># .rsync-exclude
+
+# Git
+.git/
+.gitignore
+
+# Dev tools
+CLAUDE.md
+.claude/
+
+# Deploy config (reste en local)
+.deploy.env
+.deploy.env.example
+
+# Fichiers de dev
+generate-sitemap.js
+deploy.sh
+.rsync-exclude
+
+# OS files
+.DS_Store
+Thumbs.db</code></pre>
+        <p><strong>Note :</strong> le fichier <code>.env</code> n'est <strong>pas</strong> exclu du d&eacute;ploiement : il est envoy&eacute; sur le serveur par rsync et prot&eacute;g&eacute; par le <code>.htaccess</code>. Seuls les fichiers de d&eacute;veloppement et de configuration SSH sont exclus.</p>
+
+        <h3 id="deployer">7. Configurer le d&eacute;ploiement</h3>
+        <p>Le script <code>deploy.sh</code> lit les informations de connexion depuis un fichier <code>.deploy.env</code> (non committ&eacute; dans git). Copiez le template et remplissez-le :</p>
+<pre><code>cp .deploy.env.example .deploy.env</code></pre>
+        <p>Contenu de <code>.deploy.env</code> :</p>
+<pre><code># Production
+PROD_HOST=92.113.28.181
+PROD_PORT=65002
+PROD_USER=u937866772
+PROD_PATH=/home/u937866772/domains/monsite.fr/public_html/
+PROD_URL=https://monsite.fr
+
+# Pr&eacute;-production (optionnel)
+PREPROD_HOST=
+PREPROD_PORT=
+PREPROD_USER=
+PREPROD_PATH=
+PREPROD_URL=</code></pre>
+        <p>Rendez le script ex&eacute;cutable (une seule fois) :</p>
+<pre><code>chmod +x deploy.sh</code></pre>
+
+        <h3>8. D&eacute;ployer</h3>
+<pre><code># Simuler le d&eacute;ploiement en production (dry-run)
+./deploy.sh prod --dry-run
+
+# D&eacute;ployer en production
+./deploy.sh prod
+
+# D&eacute;ployer en pr&eacute;-production
+./deploy.sh preprod
+
+# Dry-run pr&eacute;-production
+./deploy.sh preprod --dry-run</code></pre>
+        <p><strong>Comment &ccedil;a marche :</strong></p>
+        <ul>
+          <li><code>rsync</code> ne transf&egrave;re que les fichiers modifi&eacute;s (tr&egrave;s rapide apr&egrave;s le premier d&eacute;ploiement)</li>
+          <li><code>--delete</code> supprime sur le serveur les fichiers supprim&eacute;s en local (synchronisation miroir)</li>
+          <li><code>--dry-run</code> simule sans rien modifier, parfait pour v&eacute;rifier avant de d&eacute;ployer</li>
+        </ul>
+
+        <h3 id="configurer-le-env">9. Configurer le fichier <code>.env</code></h3>
+        <p>Cr&eacute;ez un fichier <code>.env</code> &agrave; la racine de votre projet dans VSCode. Ce fichier contient les variables utilis&eacute;es par les API PHP c&ocirc;t&eacute; serveur :</p>
+<pre><code># .env (&agrave; la racine du projet)
+SITE_ORIGIN=https://monsite.fr
+BASEROW_TOKEN=votre_token_api_ici
+BASEROW_URL=https://api.baserow.io
+FORM_WEBHOOK_URL=https://hook.eu2.make.com/votre-webhook-id
+FORM_NOTIFICATION_EMAIL=contact@monsite.fr</code></pre>
+        <p>Le fichier <code>.env</code> est <strong>inclus dans le d&eacute;ploiement rsync</strong> et sera envoy&eacute; automatiquement sur le serveur. Il est prot&eacute;g&eacute; par le <code>.htaccess</code> (inaccessible depuis le web) et exclu du versionning Git via <code>.gitignore</code>.</p>
+        <p><strong>Aucun acc&egrave;s SSH &agrave; Hostinger n'est n&eacute;cessaire</strong> pour la configuration : tout se fait en local dans VSCode.</p>
+        <table>
+          <tr><th>Variable</th><th>Utilis&eacute; par</th><th>Description</th></tr>
+          <tr><td><code>SITE_ORIGIN</code></td><td>Tous les proxies</td><td>Domaine autoris&eacute; pour les requ&ecirc;tes CORS</td></tr>
+          <tr><td><code>BASEROW_TOKEN</code></td><td><code>api/baserow.php</code></td><td>Token API Baserow (read-only)</td></tr>
+          <tr><td><code>BASEROW_URL</code></td><td><code>api/baserow.php</code></td><td>URL de l'instance Baserow</td></tr>
+          <tr><td><code>FORM_WEBHOOK_URL</code></td><td><code>api/form.php</code></td><td>Webhook Make.com pour les formulaires</td></tr>
+          <tr><td><code>FORM_NOTIFICATION_EMAIL</code></td><td><code>api/form.php</code></td><td>Email de notification (ajout&eacute; au payload)</td></tr>
+          <tr><td><code>MAKE_API_KEY</code></td><td>Commande &laquo; cr&eacute;e le formulaire &raquo;</td><td>Token API Make.com (<a href="forms.html#creation-automatique-du-scenario-make-com">voir Formulaires</a>)</td></tr>
+          <tr><td><code>MAKE_ZONE</code></td><td>Commande &laquo; cr&eacute;e le formulaire &raquo;</td><td>Zone Make (eu1, eu2, us1, us2)</td></tr>
+          <tr><td><code>MAKE_TEAM_ID</code></td><td>Commande &laquo; cr&eacute;e le formulaire &raquo;</td><td>ID de l'&eacute;quipe Make.com</td></tr>
+        </table>
+
+        <h3>10. V&eacute;rifier le <code>.htaccess</code></h3>
+        <p>Le fichier <code>.htaccess</code> fourni g&egrave;re automatiquement :</p>
+        <ul>
+          <li><strong>HTTPS</strong> : redirection HTTP &rarr; HTTPS (301)</li>
+          <li><strong>URLs propres</strong> : <code>/blog</code> au lieu de <code>/blog.html</code></li>
+          <li><strong>Page 404</strong> : page d'erreur personnalis&eacute;e</li>
+          <li><strong>S&eacute;curit&eacute;</strong> : headers (HSTS, X-Frame-Options, X-Content-Type-Options), tous les dotfiles bloqu&eacute;s (<code>.env</code>, <code>.deploy.env</code>, etc.), dossier <code>data/</code> prot&eacute;g&eacute;, rate limiting sur les endpoints PHP</li>
+          <li><strong>Anti-cache CDN</strong> : d&eacute;sactive le cache LiteSpeed/HCDN sur les fichiers CSS, JS et HTML pour que chaque d&eacute;ploiement soit imm&eacute;diatement visible (headers <code>no-cache</code>, <code>CDN-Cache-Control: no-store</code>, <code>CacheLookup off</code>)</li>
+        </ul>
+        <p>Testez que <code>mod_rewrite</code> fonctionne en acc&eacute;dant &agrave; <code>https://votre-site.fr/blog</code> (sans .html).</p>
+
+        <h3>11. Sitemap</h3>
+        <p>Le sitemap est <strong>g&eacute;n&eacute;r&eacute; automatiquement &agrave; chaque d&eacute;ploiement</strong> par <code>deploy.sh</code>. Il utilise l'URL du site configur&eacute;e dans <code>.deploy.env</code> (<code>PROD_URL</code> ou <code>PREPROD_URL</code>).</p>
+        <p>Vous pouvez aussi le g&eacute;n&eacute;rer manuellement :</p>
+<pre><code>node generate-sitemap.js https://votre-site.fr</code></pre>
+        <p>Cela cr&eacute;e <code>sitemap.xml</code> et <code>robots.txt</code> avec les URLs propres. Soumettez le sitemap dans <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a>.</p>
+
+        <h3>R&eacute;cap : fichiers &agrave; personnaliser par projet</h3>
+        <p>Chaque nouveau projet n&eacute;cessite de remplir <strong>3 fichiers</strong> :</p>
+        <table>
+          <tr><th>Fichier</th><th>Contenu</th><th>Committ&eacute; ?</th></tr>
+          <tr><td><code>config-site.js</code></td><td>Nom du site, favicon, analytics, informations l&eacute;gales, config blog (tableId)</td><td>Oui</td></tr>
+          <tr><td><code>.env</code></td><td>Secrets : tokens Baserow &amp; Make.com, webhook URL, email notification, CORS origin</td><td>Non</td></tr>
+          <tr><td><code>.deploy.env</code></td><td>Connexion SSH : host, port, user, path pour prod et pr&eacute;prod</td><td>Non</td></tr>
+        </table>
+        <p>Les fichiers <code>.env.example</code> et <code>.deploy.env.example</code> servent de templates document&eacute;s (committ&eacute;s dans git).</p>
+        <p>Pour le <strong>d&eacute;p&ocirc;t Git</strong>, configurez le remote au d&eacute;marrage du projet :</p>
+<pre><code>git remote add origin https://github.com/votre-user/votre-projet.git
+git push -u origin main</code></pre>
+
+        <h3>R&eacute;cap : workflow quotidien</h3>
+        <p>Une fois tout configur&eacute;, le cycle de d&eacute;veloppement-d&eacute;ploiement est simple :</p>
+<pre><code># 1. Modifier le code en local (Live Server pour pr&eacute;visualiser)
+
+# 2. Commiter les changements
+git add -A
+git commit -m "Update hero section design"
+
+# 3. Pousser sur GitHub
+git push
+
+# 4. D&eacute;ployer en production
+./deploy.sh prod</code></pre>
+
+        <!-- ========== DÉPLOIEMENT MANUEL ========== -->
+
+        <h2>D&eacute;ploiement manuel (FTP / cPanel)</h2>
+        <p>Si vous n'utilisez pas SSH/rsync, vous pouvez d&eacute;ployer manuellement via le <strong>gestionnaire de fichiers cPanel</strong> ou un <strong>client FTP</strong> (FileZilla, Cyberduck, etc.). Cette m&eacute;thode fonctionne avec tous les h&eacute;bergeurs (o2switch, OVH, Infomaniak, etc.).</p>
+
+        <h3>1. Uploader les fichiers</h3>
+        <p>Connectez-vous &agrave; votre espace d'h&eacute;bergement et acc&eacute;dez au dossier de votre domaine (g&eacute;n&eacute;ralement <code>public_html/</code>).</p>
+        <ul>
+          <li><strong>cPanel</strong> : Gestionnaire de fichiers &rarr; naviguez dans <code>public_html/</code> &rarr; glissez-d&eacute;posez vos fichiers</li>
+          <li><strong>FTP</strong> : connectez votre client avec les identifiants fournis par votre h&eacute;bergeur et uploadez dans le dossier du domaine</li>
+        </ul>
+
+        <h3>2. Fichiers &agrave; ne pas envoyer</h3>
+        <p>Excluez ces fichiers/dossiers du transfert (ils sont inutiles en production) :</p>
+<pre><code>.git/                  # Historique Git
+.claude/               # Configuration Claude Code
+CLAUDE.md              # Instructions Claude Code
+.deploy.env            # Config SSH locale
+.rsync-exclude         # Liste d'exclusion rsync
+deploy.sh              # Script de d&eacute;ploiement
+generate-sitemap.js    # G&eacute;n&eacute;rateur de sitemap (Node.js)
+docs/                  # Documentation (sauf si souhait&eacute;e en ligne)</code></pre>
+
+        <h3>3. Cr&eacute;er le <code>.env</code> sur le serveur</h3>
+        <p>Le fichier <code>.env</code> n'est pas dans Git, il faut le cr&eacute;er manuellement sur le serveur. Dans le gestionnaire de fichiers cPanel, cr&eacute;ez un nouveau fichier <code>.env</code> &agrave; la racine du site :</p>
+<pre><code># .env (racine du site sur le serveur)
+SITE_ORIGIN=https://votre-site.fr
+BASEROW_TOKEN=votre-token-baserow
+BASEROW_URL=https://api.baserow.io
+FORM_WEBHOOK_URL=https://hook.eu2.make.com/xxx
+FORM_NOTIFICATION_EMAIL=contact@votre-site.fr</code></pre>
+        <p>Le <code>.htaccess</code> fourni bloque automatiquement l'acc&egrave;s &agrave; ce fichier depuis le navigateur.</p>
+
+        <h3>4. V&eacute;rifications apr&egrave;s upload</h3>
+        <ul>
+          <li>&#9744; <strong>PHP actif</strong> : la plupart des h&eacute;bergeurs mutualis&eacute;s l'activent par d&eacute;faut</li>
+          <li>&#9744; <strong><code>.htaccess</code> lu</strong> : testez que les URLs propres fonctionnent (<code>/blog</code> au lieu de <code>/blog.html</code>)</li>
+          <li>&#9744; <strong>HTTPS actif</strong> : activez le certificat SSL dans votre panneau d'h&eacute;bergement si ce n'est pas fait</li>
+          <li>&#9744; <strong><code>.env</code> inaccessible</strong> : v&eacute;rifiez que <code>https://votre-site.fr/.env</code> retourne une erreur 403</li>
+          <li>&#9744; <strong>Dossier <code>data/</code></strong> : il sera cr&eacute;&eacute; automatiquement par <code>consent.php</code> au premier consentement cookies</li>
+        </ul>
+        <p>Le projet &eacute;tant <strong>z&eacute;ro-d&eacute;pendance</strong>, il n'y a aucun <code>npm install</code> ou build &agrave; lancer. Les fichiers fonctionnent tels quels.</p>
+
+        <!-- ========== CHECKLIST ========== -->
+
+        <h2>Checklist de lancement</h2>
+        <p>V&eacute;rifiez chaque point avant de consid&eacute;rer le site comme pr&ecirc;t &agrave; &ecirc;tre lanc&eacute;.</p>
+
+        <div class="accordion" data-accordion-multi>
+          <div class="accordion__item accordion__item--active">
+            <div class="accordion__header">Charte graphique</div>
+            <div class="accordion__body">
+              <ul>
+                <li>&#9744; <code>tokens.css</code> : couleurs principales (<code>--color-primary</code>, <code>--color-secondary</code>)</li>
+                <li>&#9744; <code>tokens.css</code> : polices personnalis&eacute;es (<code>--font-heading</code>, <code>--font-body</code>)</li>
+                <li>&#9744; <code>tokens.css</code> : arrondis, ombres, conteneur max-width si besoin</li>
+                <li>&#9744; Test dark mode : toutes les pages lisibles en mode sombre</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion__item accordion__item--active">
+            <div class="accordion__header">Configuration (<code>config-site.js</code>)</div>
+            <div class="accordion__body">
+              <ul>
+                <li>&#9744; <strong>SITE_CONFIG</strong> : nom du site (<code>name</code>) renseign&eacute;</li>
+                <li>&#9744; <strong>SITE_CONFIG</strong> : favicon (<code>favicon</code>) renseign&eacute;</li>
+                <li>&#9744; <strong>COOKIES_CONFIG</strong> : IDs analytics renseign&eacute;s (ou vides si non utilis&eacute;s)</li>
+                <li>&#9744; <strong>COOKIES_CONFIG</strong> : textes du bandeau cookies adapt&eacute;s</li>
+                <li>&#9744; <strong>COOKIES_CONFIG</strong> : <code>privacyUrl</code> pointe vers <code>/confidentialite.html</code></li>
+                <li>&#9744; <strong>COOKIES_CONFIG</strong> : <code>consentEndpoint</code> configur&eacute; (<code>/api/consent.php</code>)</li>
+                <li>&#9744; <strong>BLOG_CONFIG</strong> : connexion Baserow renseign&eacute;e (si blog), <code>token</code> vide (le proxy PHP utilise <code>.env</code>)</li>
+                <li>&#9744; <strong>LEGAL_CONFIG</strong> : toutes les infos entreprise remplies (company, SIRET, adresse, etc.)</li>
+                <li>&#9744; <strong>LEGAL_CONFIG</strong> : infos h&eacute;bergeur remplies (nom, adresse, URL)</li>
+                <li>&#9744; <strong>LEGAL_CONFIG</strong> : section d&eacute;veloppeur remplie ou laiss&eacute;e vide (masqu&eacute;e automatiquement)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion__item accordion__item--active">
+            <div class="accordion__header">Pages l&eacute;gales &amp; RGPD</div>
+            <div class="accordion__body">
+              <ul>
+                <li>&#9744; <code>mentions-legales.html</code> : ouvrir et v&eacute;rifier que toutes les infos s'affichent (pas de <code>[...]</code>)</li>
+                <li>&#9744; <code>confidentialite.html</code> : v&eacute;rifier le tableau cookies (doit lister les services configur&eacute;s)</li>
+                <li>&#9744; Bouton &laquo; G&eacute;rer mes pr&eacute;f&eacute;rences cookies &raquo; fonctionnel sur la page confidentialit&eacute;</li>
+                <li>&#9744; Bandeau cookies : lien vers la politique de confidentialit&eacute; visible</li>
+                <li>&#9744; Footer de chaque page : liens vers mentions l&eacute;gales et confidentialit&eacute;</li>
+                <li>&#9744; Textes l&eacute;gaux valid&eacute;s par un professionnel du droit</li>
+                <li>&#9744; <code>api/consent.php</code> fonctionnel (tester un accept/refus et v&eacute;rifier <code>data/consents.csv</code>)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion__item accordion__item--active">
+            <div class="accordion__header">Contenu &amp; SEO</div>
+            <div class="accordion__body">
+              <ul>
+                <li>&#9744; Header : logo, navigation finale, liens corrects</li>
+                <li>&#9744; Footer : copyright &agrave; jour, liens l&eacute;gaux pr&eacute;sents</li>
+                <li>&#9744; Toutes les balises <code>&lt;title&gt;</code> uniques et descriptives</li>
+                <li>&#9744; Toutes les balises <code>&lt;meta description&gt;</code> renseign&eacute;es</li>
+                <li>&#9744; <code>404.html</code> : texte et lien personnalis&eacute;s</li>
+                <li>&#9744; <code>generate-sitemap.js</code> ex&eacute;cut&eacute; avec l'URL finale</li>
+                <li>&#9744; <code>robots.txt</code> g&eacute;n&eacute;r&eacute; et correct</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion__item accordion__item--active">
+            <div class="accordion__header">Serveur &amp; S&eacute;curit&eacute;</div>
+            <div class="accordion__body">
+              <ul>
+                <li>&#9744; <code>.env</code> : <code>SITE_ORIGIN</code> renseign&eacute; avec l'URL de production</li>
+                <li>&#9744; <code>.env</code> : <code>BASEROW_TOKEN</code> renseign&eacute; (si blog)</li>
+                <li>&#9744; HTTPS actif et fonctionnel</li>
+                <li>&#9744; URLs propres fonctionnelles (<code>/blog</code> au lieu de <code>/blog.html</code>)</li>
+                <li>&#9744; <code>.htaccess</code> : v&eacute;rifier que <code>.env</code> et tous les dotfiles sont inaccessibles depuis le navigateur</li>
+                <li>&#9744; <code>data/</code> : v&eacute;rifier que le dossier est inaccessible depuis le navigateur</li>
+                <li>&#9744; HSTS actif (header <code>Strict-Transport-Security</code>)</li>
+                <li>&#9744; Rate limiting actif sur les endpoints PHP (<code>api/rate-limit.php</code>)</li>
+                <li>&#9744; Page 404 accessible (<code>/page-inexistante</code>)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="accordion__item accordion__item--active">
+            <div class="accordion__header">Tests finaux</div>
+            <div class="accordion__body">
+              <ul>
+                <li>&#9744; Test mobile : toutes les pages responsive</li>
+                <li>&#9744; Test dark mode : lisibilit&eacute; de toutes les pages</li>
+                <li>&#9744; Test bandeau cookies : accepter, refuser, personnaliser</li>
+                <li>&#9744; Test pages l&eacute;gales : infos dynamiques correctes</li>
+                <li>&#9744; Test blog : listing, article, filtres (si blog actif)</li>
+                <li>&#9744; Test 404 : page d'erreur personnalis&eacute;e</li>
+                <li>&#9744; Test formulaires : validation, envoi (si formulaires actifs)</li>
+                <li>&#9744; Supprimer les fichiers inutiles du serveur (<code>docs/</code>, <code>.git/</code>, <code>snippets/</code>)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="docs-troubleshoot">
+          <div class="docs-troubleshoot__title">Probl&egrave;mes courants</div>
+          <ul>
+            <li><strong>Le d&eacute;ploiement &eacute;choue :</strong> v&eacute;rifiez que <code>.deploy.env</code> est bien rempli et que la cl&eacute; SSH est configur&eacute;e (<code>ssh-keygen -t ed25519</code>).</li>
+            <li><strong>Le <code>.env</code> n'est pas envoy&eacute; :</strong> v&eacute;rifiez qu'il n'est pas list&eacute; dans <code>.rsync-exclude</code> (il ne devrait pas y &ecirc;tre).</li>
+            <li><strong>Les URLs propres ne fonctionnent pas :</strong> v&eacute;rifiez que <code>mod_rewrite</code> est activ&eacute; sur le serveur Apache et que le <code>.htaccess</code> est bien d&eacute;ploy&eacute;.</li>
+            <li><strong>Le CSS/JS n'est pas &agrave; jour apr&egrave;s d&eacute;ploiement :</strong> le <code>.htaccess</code> d&eacute;sactive d&eacute;j&agrave; le cache CDN. Videz le cache navigateur (<code>Ctrl+Shift+R</code>).</li>
+          </ul>
+        </div>
+
+        <div class="docs-see-also">
+          <div class="docs-see-also__title">Voir aussi</div>
+          <ul>
+            <li><a href="getting-started.html">D&eacute;marrer un projet</a></li>
+            <li><a href="cookies.html">Cookies &amp; RGPD</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+            <li><a href="forms.html">Formulaires</a></li>
+          </ul>
+        </div>
+
+      </main>
+      <aside class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <div data-component="footer"
+       data-copyright="&copy; 2026 SiteSystem">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>

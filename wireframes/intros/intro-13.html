@@ -1,0 +1,97 @@
+<!-- intro-13.html | Large pull quote with attribution -->
+<style>
+  .wf-intro-13 {
+    --wf-section-padding: 7rem 1.5rem;
+    --wf-max-width: 56rem;
+    --wf-quote-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    --wf-quote-color: var(--color-neutral-800);
+    --wf-accent-color: var(--color-text);
+    --wf-attr-color: var(--color-neutral-500);
+    --wf-border-color: var(--color-border);
+    --wf-font-family: var(--font-body);
+
+    padding: var(--wf-section-padding);
+    font-family: var(--wf-font-family);
+    text-align: center;
+  }
+
+  .wf-intro-13__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-intro-13__icon {
+    display: inline-block;
+    font-size: 4rem;
+    color: var(--wf-accent-color);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    opacity: 0.4;
+    font-family: Georgia, serif;
+  }
+
+  .wf-intro-13__quote {
+    font-size: var(--wf-quote-size);
+    color: var(--wf-quote-color);
+    line-height: 1.5;
+    margin: 0 0 2.5rem 0;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: -0.01em;
+  }
+
+  .wf-intro-13__divider {
+    width: 3rem;
+    height: 2px;
+    background-color: var(--wf-accent-color);
+    border: none;
+    margin: 0 auto 2rem auto;
+  }
+
+  .wf-intro-13__attribution {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .wf-intro-13__avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: var(--wf-border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--wf-accent-color);
+    margin-bottom: 0.25rem;
+  }
+
+  .wf-intro-13__name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--wf-quote-color);
+    margin: 0;
+  }
+
+  .wf-intro-13__role {
+    font-size: 0.875rem;
+    color: var(--wf-attr-color);
+    margin: 0;
+  }
+</style>
+
+<section class="wf-intro-13">
+  <div class="wf-intro-13__container">
+    <span class="wf-intro-13__icon">&ldquo;</span>
+    <blockquote class="wf-intro-13__quote">Depuis 2015, nous accompagnons les entreprises dans leur transformation digitale. Notre conviction : l'innovation n'a de sens que lorsqu'elle est guidee par l'humain et orientee vers l'impact.</blockquote>
+    <hr class="wf-intro-13__divider">
+    <div class="wf-intro-13__attribution">
+      <div class="wf-intro-13__avatar">ML</div>
+      <p class="wf-intro-13__name">Marie Laurent</p>
+      <p class="wf-intro-13__role">Fondatrice &amp; Directrice Generale</p>
+    </div>
+  </div>
+</section>

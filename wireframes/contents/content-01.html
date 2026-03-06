@@ -1,0 +1,113 @@
+<!-- Content 01 : Split - texte a gauche (titre + paragraphes) + image a droite -->
+<style>
+  .wf-content-01 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-gap: 3rem;
+    --wf-text-color: var(--color-text, #1a1a1a);
+    --wf-text-secondary: var(--color-text-light, #555);
+    --wf-accent: var(--color-text, #374151);
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-radius: 0.75rem;
+    --wf-max-width: 1200px;
+
+    background: var(--wf-bg);
+    color: var(--wf-text-color);
+    padding: var(--wf-section-padding);
+  }
+
+  .wf-content-01__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--wf-gap);
+    align-items: center;
+  }
+
+  .wf-content-01__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-content-01__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .wf-content-01__text {
+    color: var(--wf-text-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin: 0 0 1rem 0;
+  }
+
+  .wf-content-01__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--wf-accent);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .wf-content-01__link:hover {
+    text-decoration: underline;
+  }
+
+  .wf-content-01__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--wf-radius);
+    background: var(--color-neutral-200, #e5e7eb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .wf-content-01 {
+      --wf-section-padding: 3rem 1.25rem;
+    }
+    .wf-content-01__container {
+      grid-template-columns: 1fr;
+    }
+    .wf-content-01__title {
+      font-size: 1.875rem;
+    }
+  }
+</style>
+
+<section class="wf-content-01">
+  <div class="wf-content-01__container">
+    <div class="wf-content-01__body">
+      <p class="wf-content-01__label">A propos de nous</p>
+      <h2 class="wf-content-01__title">Notre expertise au service de votre reussite</h2>
+      <p class="wf-content-01__text">
+        Depuis plus de dix ans, nous accompagnons les entreprises dans leur transformation
+        digitale avec une approche personnalisee et des resultats mesurables.
+      </p>
+      <p class="wf-content-01__text">
+        Notre equipe de specialistes s'engage a comprendre vos enjeux specifiques pour
+        concevoir des solutions adaptees a vos ambitions et a votre marche.
+      </p>
+      <a href="#" class="wf-content-01__link">
+        En savoir plus
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+    <div class="wf-content-01__media">
+      <div class="wf-content-01__image" role="img" aria-label="A propos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>

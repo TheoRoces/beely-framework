@@ -1,0 +1,56 @@
+<!--
+  ANIMATIONS VARIABLE FONT — Site System
+
+  CSS : core/css/animations.css
+  JS  : core/js/animations.js
+
+  IMPORTANT : Ces animations ne fonctionnent qu'avec des polices variables
+  (Variable Fonts). Avec une police statique, la transition est ignorée
+  silencieusement (pas d'erreur, pas de crash).
+
+  Classes :
+    .anim-font-weight-hover    — Poids 400→700 au hover
+    .anim-font-weight-scroll   — Poids 400→700 au scroll (IntersectionObserver)
+    .anim-font-weight-loop     — Boucle 400↔700 infinie
+
+  Attributs (optionnels, sur l'élément) :
+    data-font-from="300"       — Poids de départ (défaut : 400)
+    data-font-to="900"         — Poids d'arrivée (défaut : 700)
+    data-font-duration="0.6s"  — Durée de la transition (défaut : 0.4s)
+-->
+
+
+<!-- ===== HOVER : poids change au survol ===== -->
+
+<h2 class="anim-font-weight-hover">Survolez-moi</h2>
+
+<!-- Custom : 300 → 900 en 0.6s -->
+<h2 class="anim-font-weight-hover"
+    data-font-from="300"
+    data-font-to="900"
+    data-font-duration="0.6s">
+  Survol custom
+</h2>
+
+
+<!-- ===== SCROLL : poids change à l'apparition ===== -->
+
+<h2 class="anim-font-weight-scroll">Apparition au scroll</h2>
+
+<h2 class="anim-font-weight-scroll"
+    data-font-from="200"
+    data-font-to="800">
+  Scroll custom
+</h2>
+
+
+<!-- ===== LOOP : boucle infinie ===== -->
+
+<h2 class="anim-font-weight-loop">Boucle infinie</h2>
+
+<h2 class="anim-font-weight-loop"
+    data-font-from="300"
+    data-font-to="900"
+    data-font-duration="3s">
+  Boucle lente custom
+</h2>

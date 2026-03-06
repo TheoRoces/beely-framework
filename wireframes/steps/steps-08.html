@@ -1,0 +1,137 @@
+<!-- steps-08 : Dark section with light step cards -->
+<style>
+  .wf-steps-08 {
+    --wf-color-bg: var(--color-bg-dark, #111111);
+    --wf-color-text: var(--color-text-on-dark, #ffffff);
+    --wf-color-muted: var(--color-neutral-400, #9ca3af);
+    --wf-color-card-bg: var(--color-bg-dark);
+    --wf-color-card-border: var(--color-text-light);
+    --wf-color-accent: var(--color-bg, #ffffff);
+    --wf-color-number-bg: var(--color-bg, #ffffff);
+    --wf-color-number-text: var(--color-neutral-900, #111111);
+    --wf-font-heading: var(--font-heading);
+    --wf-font-body: var(--font-body);
+    --wf-section-py: 6rem;
+    --wf-max-width: 1200px;
+  }
+
+  .wf-steps-08 {
+    padding: var(--wf-section-py) 1.5rem;
+    background: var(--wf-color-bg);
+    color: var(--wf-color-text);
+    font-family: var(--wf-font-body);
+  }
+
+  .wf-steps-08__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-steps-08__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .wf-steps-08__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-steps-08__title {
+    font-family: var(--wf-font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.15;
+    color: var(--wf-color-text);
+  }
+
+  .wf-steps-08__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .wf-steps-08__card {
+    background: var(--wf-color-card-bg);
+    border: 1px solid var(--wf-color-card-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: 2rem 1.5rem;
+  }
+
+  .wf-steps-08 .wf-step__number {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--wf-color-number-bg);
+    color: var(--wf-color-number-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .wf-steps-08__step-title {
+    font-family: var(--wf-font-heading);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: var(--wf-color-text);
+  }
+
+  .wf-steps-08__step-text {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .wf-steps-08__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .wf-steps-08__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-steps-08">
+  <div class="wf-steps-08__container">
+    <header class="wf-steps-08__header">
+      <p class="wf-steps-08__tagline">Comment ca marche</p>
+      <h2 class="wf-steps-08__title">Notre processus</h2>
+    </header>
+    <div class="wf-steps-08__grid">
+      <div class="wf-steps-08__card">
+        <div class="wf-step__number">1</div>
+        <h3 class="wf-steps-08__step-title">Decouverte</h3>
+        <p class="wf-steps-08__step-text">Nous analysons vos besoins et definissons les objectifs du projet.</p>
+      </div>
+      <div class="wf-steps-08__card">
+        <div class="wf-step__number">2</div>
+        <h3 class="wf-steps-08__step-title">Conception</h3>
+        <p class="wf-steps-08__step-text">Creation des maquettes et prototypes interactifs.</p>
+      </div>
+      <div class="wf-steps-08__card">
+        <div class="wf-step__number">3</div>
+        <h3 class="wf-steps-08__step-title">Developpement</h3>
+        <p class="wf-steps-08__step-text">Integration et developpement technique de votre solution.</p>
+      </div>
+      <div class="wf-steps-08__card">
+        <div class="wf-step__number">4</div>
+        <h3 class="wf-steps-08__step-title">Livraison</h3>
+        <p class="wf-steps-08__step-text">Tests, optimisation et mise en production.</p>
+      </div>
+    </div>
+  </div>
+</section>

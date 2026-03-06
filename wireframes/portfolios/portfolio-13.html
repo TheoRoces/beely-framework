@@ -1,0 +1,198 @@
+<!-- Portfolio 13: Bento grid (mixed large/small) -->
+<style>
+  .wf-portfolio-13 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-radius: 0.75rem;
+    --wf-gap: 1rem;
+    padding: 5rem 1.5rem;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+  .wf-portfolio-13 .wf-portfolio-13__header {
+    max-width: 72rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .wf-portfolio-13 .wf-portfolio-13__subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-13 .wf-portfolio-13__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .wf-portfolio-13 .wf-portfolio-13__desc {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .wf-portfolio-13 .wf-portfolio-13__bento {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: var(--wf-gap);
+  }
+  .wf-portfolio-13 .wf-card {
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+    position: relative;
+    background: var(--wf-card-bg);
+  }
+  .wf-portfolio-13 .wf-card--wide {
+    grid-column: span 2;
+  }
+  .wf-portfolio-13 .wf-card--tall {
+    grid-row: span 2;
+  }
+  .wf-portfolio-13 .wf-card--large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .wf-portfolio-13 .wf-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-card-bg);
+    color: var(--wf-text-muted);
+  }
+  .wf-portfolio-13 .wf-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    color: var(--color-text-on-dark);
+  }
+  .wf-portfolio-13 .wf-card__overlay-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+  .wf-portfolio-13 .wf-card--large .wf-card__overlay-title {
+    font-size: 1.25rem;
+  }
+  .wf-portfolio-13 .wf-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full, 9999px);
+  }
+  @media (max-width: 768px) {
+    .wf-portfolio-13 .wf-portfolio-13__bento {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .wf-portfolio-13 .wf-card { min-height: 14rem; }
+    .wf-portfolio-13 .wf-card--wide,
+    .wf-portfolio-13 .wf-card--tall,
+    .wf-portfolio-13 .wf-card--large {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+    .wf-portfolio-13 .wf-card--large { grid-column: span 2; }
+    .wf-portfolio-13 .wf-portfolio-13__title { font-size: 1.75rem; }
+    .wf-portfolio-13 { padding: 3rem 1rem; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .wf-portfolio-13 .wf-portfolio-13__bento {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+  }
+</style>
+
+<section class="wf-portfolio-13">
+  <div class="wf-portfolio-13__header">
+    <div class="wf-portfolio-13__subtitle">Portfolio</div>
+    <h2 class="wf-portfolio-13__title">Nos realisations</h2>
+    <p class="wf-portfolio-13__desc">Explorez notre galerie de projets dans une mise en page dynamique et variee.</p>
+  </div>
+
+  <div class="wf-portfolio-13__bento">
+    <!-- Large card spanning 2 cols and 2 rows -->
+    <div class="wf-card wf-card--large">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Refonte TechVision</h3>
+        <span class="wf-badge">Web Design</span>
+      </div>
+    </div>
+
+    <!-- Small cards -->
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Plateforme InnoPlus</h3>
+        <span class="wf-badge">Application</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Identite Luxora</h3>
+        <span class="wf-badge">Branding</span>
+      </div>
+    </div>
+
+    <!-- Tall card spanning 2 rows -->
+    <div class="wf-card wf-card--tall">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Boutique ModaChic</h3>
+        <span class="wf-badge">E-commerce</span>
+      </div>
+    </div>
+
+    <!-- Wide card spanning 2 cols -->
+    <div class="wf-card wf-card--wide">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Dashboard FinanceFlow</h3>
+        <span class="wf-badge">Application</span>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+      <div class="wf-card__overlay">
+        <h3 class="wf-card__overlay-title">Branding EcoVert</h3>
+        <span class="wf-badge">Branding</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,162 @@
+<!-- Portfolio 06: Alternating full-width project rows (image left/right text) -->
+<style>
+  .wf-portfolio-06 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-radius: 0.75rem;
+    --wf-gap: 1.5rem;
+    padding: 5rem 1.5rem;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+  .wf-portfolio-06 .wf-portfolio-06__header {
+    max-width: 72rem;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__row {
+    max-width: 72rem;
+    margin: 0 auto 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__row:last-child {
+    margin-bottom: 0;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__row--reverse {
+    direction: rtl;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__row--reverse > * {
+    direction: ltr;
+  }
+  .wf-portfolio-06 .wf-img {
+    width: 100%;
+    min-height: 22rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-card-bg);
+    color: var(--wf-text-muted);
+    border-radius: var(--wf-radius);
+  }
+  .wf-portfolio-06 .wf-portfolio-06__content {
+    padding: 1rem 0;
+  }
+  .wf-portfolio-06 .wf-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--wf-accent);
+    background: var(--color-bg-alt, #f9fafb);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full, 9999px);
+    margin-bottom: 1rem;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__project-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    line-height: 1.3;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__project-text {
+    font-size: 1rem;
+    color: var(--wf-text-muted);
+    margin: 0 0 1.5rem;
+    line-height: 1.6;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__link {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--wf-accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .wf-portfolio-06 .wf-portfolio-06__link:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 768px) {
+    .wf-portfolio-06 .wf-portfolio-06__row,
+    .wf-portfolio-06 .wf-portfolio-06__row--reverse { grid-template-columns: 1fr; direction: ltr; }
+    .wf-portfolio-06 .wf-portfolio-06__title { font-size: 1.75rem; }
+    .wf-portfolio-06 .wf-portfolio-06__row { gap: 1.5rem; margin-bottom: 3rem; }
+    .wf-portfolio-06 { padding: 3rem 1rem; }
+  }
+</style>
+
+<section class="wf-portfolio-06">
+  <div class="wf-portfolio-06__header">
+    <div class="wf-portfolio-06__subtitle">Portfolio</div>
+    <h2 class="wf-portfolio-06__title">Nos realisations</h2>
+  </div>
+
+  <div class="wf-portfolio-06__row">
+    <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-portfolio-06__content">
+      <span class="wf-badge">Web Design</span>
+      <h3 class="wf-portfolio-06__project-title">Refonte TechVision</h3>
+      <p class="wf-portfolio-06__project-text">Redesign complet du site corporate avec une nouvelle identite visuelle et une experience utilisateur repensee. Approche mobile-first et design system modulaire.</p>
+      <a href="#" class="wf-portfolio-06__link">Voir le projet &rarr;</a>
+    </div>
+  </div>
+
+  <div class="wf-portfolio-06__row wf-portfolio-06__row--reverse">
+    <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-portfolio-06__content">
+      <span class="wf-badge">Application</span>
+      <h3 class="wf-portfolio-06__project-title">Plateforme InnoPlus</h3>
+      <p class="wf-portfolio-06__project-text">Application web collaborative pour la gestion de projets innovants. Interface intuitive avec tableaux kanban et suivi en temps reel.</p>
+      <a href="#" class="wf-portfolio-06__link">Voir le projet &rarr;</a>
+    </div>
+  </div>
+
+  <div class="wf-portfolio-06__row">
+    <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-portfolio-06__content">
+      <span class="wf-badge">E-commerce</span>
+      <h3 class="wf-portfolio-06__project-title">Boutique ModaChic</h3>
+      <p class="wf-portfolio-06__project-text">Plateforme e-commerce sur mesure avec experience d'achat immersive. Catalogue intelligent, paiement securise et logistique integree.</p>
+      <a href="#" class="wf-portfolio-06__link">Voir le projet &rarr;</a>
+    </div>
+  </div>
+
+  <div class="wf-portfolio-06__row wf-portfolio-06__row--reverse">
+    <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+    <div class="wf-portfolio-06__content">
+      <span class="wf-badge">Branding</span>
+      <h3 class="wf-portfolio-06__project-title">Identite Luxora</h3>
+      <p class="wf-portfolio-06__project-text">Creation d'une identite visuelle haut de gamme. Logo, charte graphique, supports de communication et brand guidelines complets.</p>
+      <a href="#" class="wf-portfolio-06__link">Voir le projet &rarr;</a>
+    </div>
+  </div>
+</section>

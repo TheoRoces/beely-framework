@@ -1,0 +1,195 @@
+<!-- timeline-01.html — Vertical timeline with dots, alternating left/right content -->
+<style>
+  .wf-timeline-01 {
+    --wf-color-bg: var(--color-bg);
+    --wf-color-text: var(--color-text);
+    --wf-color-text-muted: var(--color-text-light);
+    --wf-color-line: var(--color-border);
+    --wf-color-dot: var(--color-text);
+    --wf-color-dot-border: var(--color-neutral-100);
+    --wf-font-family: var(--font-body);
+    --wf-spacing-section: 6rem;
+    --wf-spacing-lg: 3rem;
+    --wf-spacing-md: 1.5rem;
+    --wf-spacing-sm: 0.75rem;
+    --wf-max-width: 960px;
+
+    background: var(--wf-color-bg);
+    color: var(--wf-color-text);
+    font-family: var(--wf-font-family);
+    padding: var(--wf-spacing-section) var(--wf-spacing-md);
+  }
+
+  .wf-timeline-01 .wf-section__header {
+    text-align: center;
+    margin-bottom: var(--wf-spacing-lg);
+  }
+
+  .wf-timeline-01 .wf-section__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-color-dot);
+    margin-bottom: var(--wf-spacing-sm);
+  }
+
+  .wf-timeline-01 .wf-section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .wf-timeline-01 .wf-timeline {
+    position: relative;
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    padding: var(--wf-spacing-md) 0;
+  }
+
+  .wf-timeline-01 .wf-timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--wf-color-line);
+    transform: translateX(-50%);
+  }
+
+  .wf-timeline-01 .wf-timeline__item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: var(--wf-spacing-lg);
+  }
+
+  .wf-timeline-01 .wf-timeline__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .wf-timeline-01 .wf-timeline__item--left .wf-timeline__content {
+    width: 45%;
+    text-align: right;
+    padding-right: var(--wf-spacing-lg);
+  }
+
+  .wf-timeline-01 .wf-timeline__item--right .wf-timeline__content {
+    width: 45%;
+    margin-left: 55%;
+    text-align: left;
+    padding-left: var(--wf-spacing-lg);
+  }
+
+  .wf-timeline-01 .wf-timeline__dot {
+    position: absolute;
+    left: 50%;
+    top: 0.25rem;
+    width: 16px;
+    height: 16px;
+    background: var(--wf-color-dot);
+    border: 4px solid var(--wf-color-dot-border);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .wf-timeline-01 .wf-timeline__date {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--wf-color-dot);
+    margin-bottom: 0.25rem;
+  }
+
+  .wf-timeline-01 .wf-timeline__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .wf-timeline-01 .wf-timeline__text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--wf-color-text-muted);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-timeline-01 .wf-timeline::before {
+      left: 1rem;
+    }
+
+    .wf-timeline-01 .wf-timeline__dot {
+      left: 1rem;
+    }
+
+    .wf-timeline-01 .wf-timeline__item--left .wf-timeline__content,
+    .wf-timeline-01 .wf-timeline__item--right .wf-timeline__content {
+      width: auto;
+      margin-left: 3rem;
+      text-align: left;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .wf-timeline-01 .wf-section__title {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+<section class="wf-timeline-01">
+  <div class="wf-section__header">
+    <p class="wf-section__tagline">Chronologie</p>
+    <h2 class="wf-section__title">Notre histoire</h2>
+  </div>
+
+  <div class="wf-timeline">
+    <div class="wf-timeline__item wf-timeline__item--left">
+      <span class="wf-timeline__dot"></span>
+      <div class="wf-timeline__content">
+        <p class="wf-timeline__date">2015</p>
+        <h3 class="wf-timeline__title">Creation de l'entreprise</h3>
+        <p class="wf-timeline__text">Lancement de notre aventure avec une equipe de trois passionnes determines a transformer le secteur.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item wf-timeline__item--right">
+      <span class="wf-timeline__dot"></span>
+      <div class="wf-timeline__content">
+        <p class="wf-timeline__date">2018</p>
+        <h3 class="wf-timeline__title">Premiere levee de fonds</h3>
+        <p class="wf-timeline__text">Obtention d'un financement de serie A pour accelerer notre croissance et elargir notre offre.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item wf-timeline__item--left">
+      <span class="wf-timeline__dot"></span>
+      <div class="wf-timeline__content">
+        <p class="wf-timeline__date">2020</p>
+        <h3 class="wf-timeline__title">Expansion internationale</h3>
+        <p class="wf-timeline__text">Ouverture de bureaux en Europe et en Asie pour accompagner nos clients a l'international.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item wf-timeline__item--right">
+      <span class="wf-timeline__dot"></span>
+      <div class="wf-timeline__content">
+        <p class="wf-timeline__date">2023</p>
+        <h3 class="wf-timeline__title">Lancement de la plateforme V2</h3>
+        <p class="wf-timeline__text">Une refonte complete de notre plateforme avec de nouvelles fonctionnalites innovantes.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item wf-timeline__item--left">
+      <span class="wf-timeline__dot"></span>
+      <div class="wf-timeline__content">
+        <p class="wf-timeline__date">2026</p>
+        <h3 class="wf-timeline__title">100 000 utilisateurs</h3>
+        <p class="wf-timeline__text">Un cap symbolique franchi grace a la confiance de notre communaute grandissante.</p>
+      </div>
+    </div>
+  </div>
+</section>

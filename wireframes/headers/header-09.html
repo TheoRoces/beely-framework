@@ -1,0 +1,54 @@
+<!-- Header 09 : Minimal - logo a gauche, icone hamburger a droite (mobile-first) -->
+<style>
+  .wf-header-09 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) 0;
+  }
+  .wf-header-09 .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wf-header-09__logo {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .wf-header-09__toggle {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    color: var(--color-text);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  }
+  .wf-header-09__toggle:hover {
+    background-color: var(--color-bg-alt);
+    border-color: var(--color-border-dark);
+  }
+  .wf-header-09__toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+</style>
+
+<header class="wf-header-09">
+  <div class="container">
+    <a href="#" class="wf-header-09__logo">Logo</a>
+    <button class="wf-header-09__toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</header>

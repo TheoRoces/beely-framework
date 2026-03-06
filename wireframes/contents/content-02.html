@@ -1,0 +1,137 @@
+<!-- Content 02 : Split inverse - image a gauche + texte a droite -->
+<style>
+  .wf-content-02 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-gap: 3rem;
+    --wf-text-color: var(--color-text, #1a1a1a);
+    --wf-text-secondary: var(--color-text-light, #555);
+    --wf-accent: var(--color-text, #374151);
+    --wf-bg: var(--color-bg-alt, #f9fafb);
+    --wf-radius: 0.75rem;
+    --wf-max-width: 1200px;
+
+    background: var(--wf-bg);
+    color: var(--wf-text-color);
+    padding: var(--wf-section-padding);
+  }
+
+  .wf-content-02__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--wf-gap);
+    align-items: center;
+  }
+
+  .wf-content-02__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--wf-radius);
+    background: var(--color-neutral-200, #e5e7eb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-content-02__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-content-02__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .wf-content-02__text {
+    color: var(--wf-text-secondary);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin: 0 0 1rem 0;
+  }
+
+  .wf-content-02__actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .wf-content-02__btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .wf-content-02__btn--primary {
+    background: var(--wf-accent);
+    color: var(--color-text-on-dark, #fff);
+  }
+
+  .wf-content-02__btn--secondary {
+    background: transparent;
+    color: var(--wf-text-color);
+    border: 1.5px solid var(--color-border, #e5e7eb);
+  }
+
+  .wf-content-02__btn:hover {
+    opacity: 0.85;
+  }
+
+  @media (max-width: 768px) {
+    .wf-content-02 {
+      --wf-section-padding: 3rem 1.25rem;
+    }
+    .wf-content-02__container {
+      grid-template-columns: 1fr;
+    }
+    .wf-content-02__media {
+      order: -1;
+    }
+    .wf-content-02__title {
+      font-size: 1.875rem;
+    }
+  }
+</style>
+
+<section class="wf-content-02">
+  <div class="wf-content-02__container">
+    <div class="wf-content-02__media">
+      <div class="wf-content-02__image" role="img" aria-label="Notre histoire">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <div class="wf-content-02__body">
+      <p class="wf-content-02__label">Notre histoire</p>
+      <h2 class="wf-content-02__title">Une passion pour l'excellence depuis 2012</h2>
+      <p class="wf-content-02__text">
+        Fondee avec la conviction que chaque projet merite une attention particuliere,
+        notre agence a su evoluer pour repondre aux defis toujours plus complexes du
+        monde numerique.
+      </p>
+      <p class="wf-content-02__text">
+        Aujourd'hui, nous sommes fiers d'accompagner plus de 200 entreprises dans leur
+        croissance et leur transformation digitale.
+      </p>
+      <div class="wf-content-02__actions">
+        <a href="#" class="wf-content-02__btn wf-content-02__btn--primary">Decouvrir nos services</a>
+        <a href="#" class="wf-content-02__btn wf-content-02__btn--secondary">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+</section>

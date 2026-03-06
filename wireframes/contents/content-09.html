@@ -1,0 +1,176 @@
+<!-- Content 09 : Zigzag - rangees alternees image/texte (3 rangees) -->
+<style>
+  .wf-content-09 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-gap: 3rem;
+    --wf-text-color: var(--color-text, #1a1a1a);
+    --wf-text-secondary: var(--color-text-light, #555);
+    --wf-accent: var(--color-text, #374151);
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-radius: 0.75rem;
+    --wf-max-width: 1200px;
+
+    background: var(--wf-bg);
+    color: var(--wf-text-color);
+    padding: var(--wf-section-padding);
+  }
+
+  .wf-content-09__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-content-09__header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 4rem auto;
+  }
+
+  .wf-content-09__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-content-09__main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .wf-content-09__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--wf-gap);
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .wf-content-09__row:last-child {
+    margin-bottom: 0;
+  }
+
+  .wf-content-09__row--reverse .wf-content-09__media {
+    order: 1;
+  }
+
+  .wf-content-09__row--reverse .wf-content-09__body {
+    order: 0;
+  }
+
+  .wf-content-09__image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--wf-radius);
+    background: var(--color-neutral-200, #e5e7eb);
+    display: block;
+  }
+
+  .wf-content-09__step {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--wf-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .wf-content-09__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .wf-content-09__text {
+    color: var(--wf-text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-content-09 {
+      --wf-section-padding: 3rem 1.25rem;
+    }
+    .wf-content-09__row {
+      grid-template-columns: 1fr;
+      margin-bottom: 3rem;
+    }
+    .wf-content-09__row--reverse .wf-content-09__media {
+      order: -1;
+    }
+    .wf-content-09__row--reverse .wf-content-09__body {
+      order: 0;
+    }
+    .wf-content-09__main-title {
+      font-size: 1.875rem;
+    }
+    .wf-content-09__title {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<section class="wf-content-09">
+  <div class="wf-content-09__container">
+    <div class="wf-content-09__header">
+      <p class="wf-content-09__label">Notre processus</p>
+      <h2 class="wf-content-09__main-title">Comment nous travaillons avec vous</h2>
+    </div>
+
+    <!-- Rangee 1 : image gauche, texte droite -->
+    <div class="wf-content-09__row">
+      <div class="wf-content-09__media">
+        <img src="https://placehold.co/700x470/e5e7eb/999?text=Etape+1" alt="Decouverte" class="wf-content-09__image" />
+      </div>
+      <div class="wf-content-09__body">
+        <p class="wf-content-09__step">Etape 01</p>
+        <h3 class="wf-content-09__title">Decouverte et analyse</h3>
+        <p class="wf-content-09__text">
+          Nous commencons par comprendre en profondeur vos objectifs, votre marche
+          et vos contraintes. Cette phase d'ecoute est essentielle pour construire
+          une strategie pertinente et alignee sur vos ambitions.
+        </p>
+      </div>
+    </div>
+
+    <!-- Rangee 2 : texte gauche, image droite (inversee) -->
+    <div class="wf-content-09__row wf-content-09__row--reverse">
+      <div class="wf-content-09__media">
+        <img src="https://placehold.co/700x470/e5e7eb/999?text=Etape+2" alt="Conception" class="wf-content-09__image" />
+      </div>
+      <div class="wf-content-09__body">
+        <p class="wf-content-09__step">Etape 02</p>
+        <h3 class="wf-content-09__title">Conception et developpement</h3>
+        <p class="wf-content-09__text">
+          Notre equipe de designers et developpeurs donne vie a votre projet
+          avec une attention particuliere portee a l'experience utilisateur,
+          la performance et la qualite du code.
+        </p>
+      </div>
+    </div>
+
+    <!-- Rangee 3 : image gauche, texte droite -->
+    <div class="wf-content-09__row">
+      <div class="wf-content-09__media">
+        <img src="https://placehold.co/700x470/e5e7eb/999?text=Etape+3" alt="Lancement" class="wf-content-09__image" />
+      </div>
+      <div class="wf-content-09__body">
+        <p class="wf-content-09__step">Etape 03</p>
+        <h3 class="wf-content-09__title">Lancement et accompagnement</h3>
+        <p class="wf-content-09__text">
+          Le lancement n'est que le debut. Nous assurons un suivi continu,
+          des optimisations regulieres et un support reactif pour garantir
+          la performance durable de votre solution.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

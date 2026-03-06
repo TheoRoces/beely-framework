@@ -1,0 +1,154 @@
+<!-- thank-you-09: Thank you with email confirmation message -->
+<style>
+  .wf-thank-you-09 {
+    --wf-bg: var(--color-bg-alt);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-icon-color: var(--color-text);
+    --wf-card-bg: var(--color-bg);
+    --wf-border: var(--color-border);
+    --wf-email-bg: var(--color-bg-alt);
+    --wf-email-icon: var(--color-text-light);
+    --wf-email-text: var(--color-text);
+    --wf-primary: var(--color-text);
+    --wf-primary-hover: var(--color-neutral-800);
+    --wf-radius: 12px;
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .wf-thank-you-09__container {
+    text-align: center;
+    max-width: 520px;
+    width: 100%;
+  }
+
+  .wf-thank-you-09__icon {
+    color: var(--wf-icon-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .wf-thank-you-09__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-thank-you-09__text {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0 0 2rem 0;
+  }
+
+  .wf-thank-you-09__email-card {
+    background-color: var(--wf-card-bg);
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .wf-thank-you-09__email-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .wf-thank-you-09__email-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md, 0.5rem);
+    background-color: var(--wf-email-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .wf-thank-you-09__email-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--wf-email-icon);
+  }
+
+  .wf-thank-you-09__email-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .wf-thank-you-09__email-body {
+    font-size: 0.9375rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+  }
+
+  .wf-thank-you-09__email-note {
+    font-size: 0.8125rem;
+    color: var(--wf-email-text);
+    background-color: var(--wf-email-bg);
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md, 0.5rem);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .wf-thank-you-09__button {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+
+  .wf-thank-you-09__button:hover {
+    background-color: var(--wf-primary-hover);
+  }
+
+  @media (max-width: 640px) {
+    .wf-thank-you-09__title {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+<section class="wf-thank-you-09">
+  <div class="wf-thank-you-09__container">
+    <div class="wf-thank-you-09__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <h1 class="wf-thank-you-09__title">Merci !</h1>
+    <p class="wf-thank-you-09__text">Votre message a bien ete envoye.</p>
+
+    <div class="wf-thank-you-09__email-card">
+      <div class="wf-thank-you-09__email-header">
+        <div class="wf-thank-you-09__email-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+        </div>
+        <h2 class="wf-thank-you-09__email-title">Verifiez votre boite email</h2>
+      </div>
+      <p class="wf-thank-you-09__email-body">Un email de confirmation a ete envoye a votre adresse. Il contient un recapitulatif de votre demande ainsi que votre numero de reference.</p>
+      <p class="wf-thank-you-09__email-note">Si vous ne trouvez pas l'email, pensez a verifier vos courriers indesirables (spam).</p>
+    </div>
+
+    <a href="#" class="wf-thank-you-09__button">Retour a l'accueil</a>
+  </div>
+</section>

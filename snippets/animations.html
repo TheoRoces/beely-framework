@@ -1,0 +1,86 @@
+<!--
+  ANIMATIONS — Site System
+
+  CSS : core/css/animations.css
+  JS  : core/js/animations.js
+
+  Animations d'entrée (au scroll via IntersectionObserver) :
+    .anim-fade-in          — Fondu simple
+    .anim-fade-in-up       — Fondu + glissement vers le haut
+    .anim-fade-in-down     — Fondu + glissement vers le bas
+    .anim-fade-in-left     — Fondu + glissement depuis la gauche
+    .anim-fade-in-right    — Fondu + glissement depuis la droite
+    .anim-scale-in         — Zoom depuis 0.85
+    .anim-scale-in-up      — Zoom + glissement vers le haut
+    .anim-slide-in-up      — Grand glissement depuis le bas (60px)
+    .anim-slide-in-down    — Grand glissement depuis le haut
+    .anim-slide-in-left    — Grand glissement depuis la gauche
+    .anim-slide-in-right   — Grand glissement depuis la droite
+    .anim-rotate-in        — Rotation + zoom
+
+  Modificateurs de délai :
+    .anim--delay-1 à .anim--delay-10  — 100ms à 1000ms
+
+  Modificateurs de durée :
+    .anim--duration-fast    — 300ms
+    .anim--duration-slow    — 1000ms
+    .anim--duration-slower  — 1500ms
+
+  Modificateurs d'easing :
+    .anim--ease-bounce      — Rebond
+    .anim--ease-elastic     — Élastique
+    .anim--ease-smooth      — Doux
+
+  Animations au clic :
+    .anim-click-pulse       — Impulsion (scale)
+    .anim-click-shake       — Secousse horizontale
+    .anim-click-bounce      — Rebond vertical
+    .anim-click-ripple      — Ondulation (cercle depuis le clic)
+
+  Animations SVG (au scroll) :
+    .anim-svg-draw          — Tracé du trait
+    .anim-svg-draw-fade     — Tracé + fondu
+    .anim-svg-fade          — Fondu SVG
+    .anim-svg-fade-up       — Fondu + glissement SVG
+    .anim-svg-fill          — Remplissage SVG
+
+  Attributs :
+    data-anim-exit          — Réjoue l'animation à chaque entrée/sortie du viewport
+
+  Accessibilité : respecte prefers-reduced-motion automatiquement.
+-->
+
+
+<!-- ===== ANIMATIONS D'ENTRÉE AU SCROLL ===== -->
+
+<div class="anim-fade-in">Fondu simple</div>
+<div class="anim-fade-in-up">Fondu vers le haut</div>
+<div class="anim-fade-in-up anim--delay-1">Avec délai 100ms</div>
+<div class="anim-fade-in-up anim--delay-2">Avec délai 200ms</div>
+<div class="anim-fade-in-up anim--delay-3">Avec délai 300ms</div>
+
+<div class="anim-scale-in">Zoom in</div>
+<div class="anim-slide-in-left anim--duration-slow">Glissement lent depuis la gauche</div>
+<div class="anim-rotate-in anim--ease-bounce">Rotation avec rebond</div>
+
+
+<!-- ===== ANIMATION REJOUÉE AU SCROLL ===== -->
+
+<div class="anim-fade-in-up" data-anim-exit>
+  Cette animation se rejoue à chaque passage dans le viewport.
+</div>
+
+
+<!-- ===== ANIMATIONS AU CLIC ===== -->
+
+<button class="anim-click-pulse">Pulse au clic</button>
+<button class="anim-click-shake">Shake au clic</button>
+<button class="anim-click-bounce">Bounce au clic</button>
+<button class="anim-click-ripple">Ripple au clic</button>
+
+
+<!-- ===== ANIMATIONS SVG ===== -->
+
+<svg class="anim-svg-draw" width="200" height="100" style="--svg-length: 500">
+  <circle cx="100" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
+</svg>

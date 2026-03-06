@@ -1,0 +1,179 @@
+<!-- timeline-08.html — Compact timeline list (small dots, dense) -->
+<style>
+  .wf-timeline-08 {
+    --wf-color-bg: var(--color-bg);
+    --wf-color-text: var(--color-text);
+    --wf-color-text-muted: var(--color-text-light);
+    --wf-color-line: var(--color-border);
+    --wf-color-dot: var(--color-text);
+    --wf-color-border: var(--color-border);
+    --wf-font-family: var(--font-body);
+    --wf-spacing-section: 6rem;
+    --wf-spacing-lg: 3rem;
+    --wf-spacing-md: 1.5rem;
+    --wf-spacing-sm: 0.75rem;
+    --wf-max-width: 600px;
+
+    background: var(--wf-color-bg);
+    color: var(--wf-color-text);
+    font-family: var(--wf-font-family);
+    padding: var(--wf-spacing-section) var(--wf-spacing-md);
+  }
+
+  .wf-timeline-08 .wf-section__header {
+    max-width: var(--wf-max-width);
+    margin: 0 auto var(--wf-spacing-lg);
+    text-align: center;
+  }
+
+  .wf-timeline-08 .wf-section__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-color-dot);
+    margin-bottom: var(--wf-spacing-sm);
+  }
+
+  .wf-timeline-08 .wf-section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .wf-timeline-08 .wf-timeline {
+    position: relative;
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+    padding-left: 2rem;
+  }
+
+  .wf-timeline-08 .wf-timeline::before {
+    content: "";
+    position: absolute;
+    left: 0.3125rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--wf-color-line);
+  }
+
+  .wf-timeline-08 .wf-timeline__item {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--wf-color-border);
+    margin-bottom: 1rem;
+  }
+
+  .wf-timeline-08 .wf-timeline__item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .wf-timeline-08 .wf-timeline__dot {
+    position: absolute;
+    left: calc(-2rem + 0.3125rem - 3px);
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background: var(--wf-color-dot);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .wf-timeline-08 .wf-timeline__date {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--wf-color-dot);
+    flex-shrink: 0;
+    min-width: 3rem;
+  }
+
+  .wf-timeline-08 .wf-timeline__content {
+    flex: 1;
+  }
+
+  .wf-timeline-08 .wf-timeline__title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    margin: 0;
+    display: inline;
+  }
+
+  .wf-timeline-08 .wf-timeline__text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--wf-color-text-muted);
+    margin: 0.25rem 0 0 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-timeline-08 .wf-section__title {
+      font-size: 1.75rem;
+    }
+
+    .wf-timeline-08 .wf-timeline__item {
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+  }
+</style>
+
+<section class="wf-timeline-08">
+  <div class="wf-section__header">
+    <p class="wf-section__tagline">En bref</p>
+    <h2 class="wf-section__title">Notre histoire</h2>
+  </div>
+
+  <div class="wf-timeline">
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot"></span>
+      <span class="wf-timeline__date">2015</span>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Creation de l'entreprise</h3>
+        <p class="wf-timeline__text">Fondation par trois associes avec une vision commune.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot"></span>
+      <span class="wf-timeline__date">2018</span>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Premiere levee de fonds</h3>
+        <p class="wf-timeline__text">Financement de serie A pour accelerer la croissance.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot"></span>
+      <span class="wf-timeline__date">2020</span>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Expansion internationale</h3>
+        <p class="wf-timeline__text">Ouverture de bureaux en Europe et en Asie.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot"></span>
+      <span class="wf-timeline__date">2023</span>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">Lancement de la plateforme V2</h3>
+        <p class="wf-timeline__text">Refonte complete de la plateforme et nouvelles fonctionnalites.</p>
+      </div>
+    </div>
+
+    <div class="wf-timeline__item">
+      <span class="wf-timeline__dot"></span>
+      <span class="wf-timeline__date">2026</span>
+      <div class="wf-timeline__content">
+        <h3 class="wf-timeline__title">100 000 utilisateurs</h3>
+        <p class="wf-timeline__text">Cap historique franchi pour notre communaute.</p>
+      </div>
+    </div>
+  </div>
+</section>

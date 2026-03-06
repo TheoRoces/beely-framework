@@ -1,0 +1,177 @@
+<!-- Gallery 03: Grille 4 colonnes avec effet zoom au survol -->
+<!-- Section galerie avec grille de 4 colonnes et animation de zoom au hover -->
+
+<style>
+  .wf-gallery-03 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-gallery-03-gap: 1rem;
+    --wf-gallery-03-columns: 4;
+    --wf-gallery-03-radius: 0.5rem;
+    --wf-gallery-03-bg: var(--color-bg);
+    --wf-gallery-03-text: var(--color-text);
+    --wf-gallery-03-muted: var(--color-text-light);
+    --wf-gallery-03-img-bg: var(--color-border);
+    --wf-gallery-03-padding-x: 5%;
+    --wf-gallery-03-padding-y: 5rem;
+    --wf-gallery-03-zoom: 1.08;
+  }
+
+  .wf-gallery-03 {
+    background-color: var(--wf-gallery-03-bg);
+    padding: var(--wf-gallery-03-padding-y) var(--wf-gallery-03-padding-x);
+  }
+
+  .wf-gallery-03__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-gallery-03__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-gallery-03-muted);
+    margin: 0 0 0.75rem 0;
+  }
+
+  .wf-gallery-03__title {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--wf-gallery-03-text);
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+  }
+
+  .wf-gallery-03__description {
+    font-size: 1.125rem;
+    color: var(--wf-gallery-03-muted);
+    margin: 0 auto;
+    max-width: 40rem;
+    line-height: 1.6;
+  }
+
+  .wf-gallery-03__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--wf-gallery-03-columns), 1fr);
+    gap: var(--wf-gallery-03-gap);
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+
+  .wf-gallery-03__item {
+    border-radius: var(--wf-gallery-03-radius);
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .wf-gallery-03__item .wf-img {
+    aspect-ratio: 1 / 1;
+    background-color: var(--wf-gallery-03-img-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .wf-gallery-03__item:hover .wf-img {
+    transform: scale(var(--wf-gallery-03-zoom));
+  }
+
+  .wf-gallery-03__cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .wf-gallery-03__btn {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    border: 2px solid var(--wf-gallery-03-text);
+    border-radius: var(--wf-gallery-03-radius);
+    color: var(--wf-gallery-03-text);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+    cursor: pointer;
+    background: none;
+  }
+
+  .wf-gallery-03__btn:hover {
+    background-color: var(--wf-gallery-03-text);
+    color: var(--wf-gallery-03-bg);
+  }
+
+  @media (max-width: 1024px) {
+    .wf-gallery-03__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wf-gallery-03__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wf-gallery-03__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-gallery-03">
+  <div class="wf-gallery-03__header">
+    <p class="wf-gallery-03__tagline">Galerie</p>
+    <h2 class="wf-gallery-03__title">Nos realisations en images</h2>
+    <p class="wf-gallery-03__description">Survolez chaque image pour decouvrir l'effet de zoom interactif.</p>
+  </div>
+
+  <div class="wf-gallery-03__grid">
+    <div class="wf-gallery-03__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-03__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-03__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-03__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-03__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-03__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-03__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+    <div class="wf-gallery-03__item">
+      <div class="wf-img">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="wf-gallery-03__cta">
+    <a href="#" class="wf-gallery-03__btn">Voir plus</a>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+<!-- Hero 07 : Minimal centered text only, large title, subtitle, one button -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text, #374151); color: var(--color-bg, #ffffff); border-color: var(--color-text, #374151); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #e5e7eb); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+.wf-hero-07 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 85vh;
+  padding: var(--space-12, 5rem) var(--space-6, 2rem);
+}
+.wf-hero-07__content {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5, 2rem);
+}
+.wf-hero-07__title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--color-text, #111827);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+.wf-hero-07__subtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--color-text-muted, #6b7280);
+  margin: 0;
+  max-width: 560px;
+}
+.wf-hero-07__actions {
+  padding-top: var(--space-2, 0.5rem);
+}
+@media (max-width: 768px) {
+  .wf-hero-07 {
+    min-height: 70vh;
+    padding: var(--space-8, 3rem) var(--space-4, 1rem);
+  }
+}
+</style>
+
+<section class="wf-hero-07">
+  <div class="wf-hero-07__content">
+    <h1 class="wf-hero-07__title">Transformez votre vision en realite numerique</h1>
+    <p class="wf-hero-07__subtitle">Nous concevons des experiences digitales qui allient esthetique et performance pour propulser votre activite.</p>
+    <div class="wf-hero-07__actions">
+      <a href="#" class="btn btn--primary">Decouvrir nos services</a>
+    </div>
+  </div>
+</section>

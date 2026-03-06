@@ -1,0 +1,121 @@
+<!-- FAQ-11: Numbered FAQ list. Each question is prefixed with a large number (1, 2, 3...). -->
+<style>
+  .wf-faq11 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    padding: var(--space-xl, 80px) var(--space-md, 24px);
+    max-width: var(--container-md, 768px);
+    margin: 0 auto;
+  }
+  .wf-faq11__header {
+    text-align: center;
+    margin-bottom: var(--space-lg, 56px);
+  }
+  .wf-faq11__title {
+    font-size: var(--text-3xl, 2.5rem);
+    font-weight: var(--font-bold, 700);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs, 12px);
+  }
+  .wf-faq11__subtitle {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+  .wf-faq11__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md, 36px);
+  }
+  .wf-faq11__item {
+    display: flex;
+    gap: var(--space-sm, 24px);
+    align-items: flex-start;
+    padding-bottom: var(--space-md, 36px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .wf-faq11__item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .wf-faq11__number {
+    font-size: var(--text-3xl, 2.5rem);
+    font-weight: var(--font-bold, 700);
+    color: var(--color-text);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 48px;
+    opacity: 0.3;
+  }
+  .wf-faq11__content {
+    flex: 1;
+  }
+  .wf-faq11__question {
+    font-size: var(--text-lg, 1.125rem);
+    font-weight: var(--font-semibold, 600);
+    color: var(--color-text);
+    margin-bottom: var(--space-2xs, 8px);
+  }
+  .wf-faq11__answer {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  @media (max-width: 600px) {
+    .wf-faq11__item {
+      flex-direction: column;
+      gap: var(--space-2xs, 8px);
+    }
+    .wf-faq11__number {
+      font-size: var(--text-xl, 1.5rem);
+    }
+  }
+</style>
+
+<section class="wf-faq11">
+  <div class="wf-faq11__header">
+    <h2 class="wf-faq11__title">Questions frequentes</h2>
+    <p class="wf-faq11__subtitle">Les reponses aux 5 questions les plus posees par nos clients.</p>
+  </div>
+
+  <div class="wf-faq11__list">
+    <div class="wf-faq11__item">
+      <span class="wf-faq11__number">01</span>
+      <div class="wf-faq11__content">
+        <h3 class="wf-faq11__question">Quels sont vos delais de livraison ?</h3>
+        <p class="wf-faq11__answer">Nos delais varient selon la complexite du projet, generalement entre 4 et 8 semaines. Un calendrier detaille est fourni des le debut pour vous offrir une visibilite totale sur les etapes et echeances.</p>
+      </div>
+    </div>
+
+    <div class="wf-faq11__item">
+      <span class="wf-faq11__number">02</span>
+      <div class="wf-faq11__content">
+        <h3 class="wf-faq11__question">Comment fonctionne votre processus de travail ?</h3>
+        <p class="wf-faq11__answer">Notre approche repose sur quatre phases : decouverte et strategie, conception, developpement et lancement. A chaque etape, vous participez activement pour valider les orientations et garantir un resultat optimal.</p>
+      </div>
+    </div>
+
+    <div class="wf-faq11__item">
+      <span class="wf-faq11__number">03</span>
+      <div class="wf-faq11__content">
+        <h3 class="wf-faq11__question">Proposez-vous un support apres livraison ?</h3>
+        <p class="wf-faq11__answer">Oui, nous offrons un accompagnement complet apres livraison. Cela comprend une periode de garantie pour les ajustements et des forfaits de maintenance mensuels pour faire evoluer votre solution.</p>
+      </div>
+    </div>
+
+    <div class="wf-faq11__item">
+      <span class="wf-faq11__number">04</span>
+      <div class="wf-faq11__content">
+        <h3 class="wf-faq11__question">Quels sont vos tarifs ?</h3>
+        <p class="wf-faq11__answer">Nos tarifs sont adaptes a chaque projet. Apres une premiere consultation gratuite, nous vous fournissons un devis personnalise tenant compte de vos besoins specifiques et de votre budget.</p>
+      </div>
+    </div>
+
+    <div class="wf-faq11__item">
+      <span class="wf-faq11__number">05</span>
+      <div class="wf-faq11__content">
+        <h3 class="wf-faq11__question">Comment demarrer un projet avec vous ?</h3>
+        <p class="wf-faq11__answer">Envoyez-nous un message pour planifier un appel decouverte gratuit. Nous definirons ensemble vos objectifs et vous recevrez une proposition detaillee avec une feuille de route actionnable.</p>
+      </div>
+    </div>
+  </div>
+</section>

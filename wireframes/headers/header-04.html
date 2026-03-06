@@ -1,0 +1,95 @@
+<!-- Header 04 : Logo a gauche, nav centre, icone recherche + CTA a droite -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text); color: var(--color-bg); border-color: var(--color-text); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text); border-color: var(--color-border); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+  .wf-header-04 {
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4) 0;
+  }
+  .wf-header-04 .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .wf-header-04__logo {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .wf-header-04__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .wf-header-04__nav a {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+  .wf-header-04__nav a:hover {
+    color: var(--color-text-light);
+  }
+  .wf-header-04__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .wf-header-04__search {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+  }
+  .wf-header-04__search:hover {
+    color: var(--color-text);
+    background-color: var(--color-bg-alt);
+  }
+  @media (max-width: 768px) {
+    .wf-header-04__nav {
+      display: none;
+    }
+  }
+</style>
+
+<header class="wf-header-04">
+  <div class="container">
+    <a href="#" class="wf-header-04__logo">Logo</a>
+    <nav>
+      <ul class="wf-header-04__nav">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="wf-header-04__actions">
+      <button class="wf-header-04__search" aria-label="Rechercher">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+      <a href="#" class="btn btn--primary">Commencer</a>
+    </div>
+  </div>
+</header>

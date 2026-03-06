@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid / Bento — Documentation — Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/grid.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+
+  <div data-component="header"
+       data-site-name="SiteSystem"
+       data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="grid"></nav>
+
+      <main class="docs-content">
+        <h1>Grid / Bento</h1>
+        <p>
+          Syst&egrave;me de grille flexible et layouts bento via classes CSS et attributs <code>data-*</code>. Responsive par d&eacute;faut, z&eacute;ro d&eacute;pendance.
+        </p>
+
+        <h2>Grille simple</h2>
+        <p>Ajoutez la classe <code>grid</code> et d&eacute;finissez le nombre de colonnes avec <code>data-cols</code> :</p>
+
+<pre><code>&lt;div class="grid" data-cols="3" data-gap="md"&gt;
+  &lt;div&gt;Colonne 1&lt;/div&gt;
+  &lt;div&gt;Colonne 2&lt;/div&gt;
+  &lt;div&gt;Colonne 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <div class="grid" data-cols="3" data-gap="md" style="margin-bottom: var(--space-6);">
+          <div class="demo-box">1</div>
+          <div class="demo-box">2</div>
+          <div class="demo-box">3</div>
+        </div>
+
+        <h3>Colonnes</h3>
+        <table>
+          <tr><th>Attribut / Classe</th><th>Colonnes</th></tr>
+          <tr><td><code>data-cols="1"</code> ou <code>grid--1</code></td><td>1 colonne</td></tr>
+          <tr><td><code>data-cols="2"</code> ou <code>grid--2</code></td><td>2 colonnes</td></tr>
+          <tr><td><code>data-cols="3"</code> ou <code>grid--3</code></td><td>3 colonnes</td></tr>
+          <tr><td><code>data-cols="4"</code> ou <code>grid--4</code></td><td>4 colonnes</td></tr>
+          <tr><td><code>data-cols="5"</code> ou <code>grid--5</code></td><td>5 colonnes</td></tr>
+          <tr><td><code>data-cols="6"</code> ou <code>grid--6</code></td><td>6 colonnes</td></tr>
+        </table>
+
+        <h3>Gap (espacement)</h3>
+        <table>
+          <tr><th>Attribut / Classe</th><th>Espacement</th></tr>
+          <tr><td><code>data-gap="none"</code> ou <code>grid--gap-none</code></td><td>0</td></tr>
+          <tr><td><code>data-gap="xs"</code> ou <code>grid--gap-xs</code></td><td>var(--space-2)</td></tr>
+          <tr><td><code>data-gap="sm"</code> ou <code>grid--gap-sm</code></td><td>var(--space-4)</td></tr>
+          <tr><td><code>data-gap="md"</code> ou <code>grid--gap-md</code></td><td>var(--space-6) &mdash; d&eacute;faut</td></tr>
+          <tr><td><code>data-gap="lg"</code> ou <code>grid--gap-lg</code></td><td>var(--space-8)</td></tr>
+          <tr><td><code>data-gap="xl"</code> ou <code>grid--gap-xl</code></td><td>var(--space-12) grille / var(--space-10) bento</td></tr>
+        </table>
+
+        <h3>Alignement vertical</h3>
+        <table>
+          <tr><th>Attribut</th><th>Effet</th></tr>
+          <tr><td><code>data-align="start"</code></td><td>Align&eacute; en haut</td></tr>
+          <tr><td><code>data-align="center"</code></td><td>Centr&eacute; verticalement</td></tr>
+          <tr><td><code>data-align="end"</code></td><td>Align&eacute; en bas</td></tr>
+          <tr><td><code>data-align="stretch"</code></td><td>&Eacute;tir&eacute; (d&eacute;faut)</td></tr>
+        </table>
+
+        <h2>Span (items)</h2>
+        <p>Un &eacute;l&eacute;ment enfant peut occuper plusieurs colonnes ou lignes :</p>
+
+<pre><code>&lt;div class="grid" data-cols="3"&gt;
+  &lt;div data-col-span="2"&gt;Je prends 2 colonnes&lt;/div&gt;
+  &lt;div&gt;1 colonne&lt;/div&gt;
+  &lt;div data-col-span="full"&gt;Toute la largeur&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <div class="grid" data-cols="3" data-gap="md" style="margin-bottom: var(--space-6);">
+          <div class="demo-box--primary demo-box" data-col-span="2">Span 2</div>
+          <div class="demo-box">1</div>
+          <div class="demo-box--dark demo-box" data-col-span="full">Full width</div>
+        </div>
+
+        <table>
+          <tr><th>Attribut</th><th>Effet</th></tr>
+          <tr><td><code>data-col-span="2"</code> &agrave; <code>"6"</code></td><td>Occupe N colonnes</td></tr>
+          <tr><td><code>data-col-span="full"</code></td><td>Toute la largeur</td></tr>
+          <tr><td><code>data-row-span="2"</code> &agrave; <code>"4"</code></td><td>Occupe N lignes</td></tr>
+        </table>
+
+        <h2>Bento</h2>
+        <p>Le syst&egrave;me bento est une grille 4 colonnes avec des tailles pr&eacute;d&eacute;finies pour cr&eacute;er des layouts asym&eacute;triques rapidement :</p>
+
+<pre><code>&lt;div class="bento" data-gap="md"&gt;
+  &lt;div class="bento__item" data-size="large"&gt;Grande carte&lt;/div&gt;
+  &lt;div class="bento__item"&gt;Normal&lt;/div&gt;
+  &lt;div class="bento__item"&gt;Normal&lt;/div&gt;
+  &lt;div class="bento__item" data-size="wide"&gt;Large&lt;/div&gt;
+  &lt;div class="bento__item" data-size="tall"&gt;Haute&lt;/div&gt;
+  &lt;div class="bento__item"&gt;Normal&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <div class="bento" data-gap="md" style="margin-bottom: var(--space-6);">
+          <div class="bento__item demo-box--primary demo-box" data-size="large" style="font-size: var(--text-lg); font-weight: var(--font-weight-bold);">Large</div>
+          <div class="bento__item demo-box">Normal</div>
+          <div class="bento__item demo-box">Normal</div>
+          <div class="bento__item demo-box--dark demo-box" data-size="wide">Wide</div>
+          <div class="bento__item demo-box" data-size="tall">Tall</div>
+          <div class="bento__item demo-box">Normal</div>
+        </div>
+
+        <h3>Tailles pr&eacute;d&eacute;finies</h3>
+        <table>
+          <tr><th>Attribut</th><th>Effet</th></tr>
+          <tr><td>(aucun)</td><td>1 colonne, 1 ligne</td></tr>
+          <tr><td><code>data-size="wide"</code></td><td>2 colonnes, 1 ligne</td></tr>
+          <tr><td><code>data-size="tall"</code></td><td>1 colonne, 2 lignes</td></tr>
+          <tr><td><code>data-size="large"</code></td><td>2 colonnes, 2 lignes</td></tr>
+          <tr><td><code>data-size="full"</code></td><td>Toute la largeur</td></tr>
+        </table>
+        <p>Pour un contr&ocirc;le plus fin, utilisez <code>data-col-span</code> et <code>data-row-span</code> directement sur les <code>.bento__item</code>.</p>
+
+        <h3>Hauteur des lignes</h3>
+        <table>
+          <tr><th>Attribut</th><th>Hauteur minimum</th></tr>
+          <tr><td><code>data-row-height="sm"</code></td><td>120px</td></tr>
+          <tr><td><code>data-row-height="md"</code></td><td>180px (d&eacute;faut)</td></tr>
+          <tr><td><code>data-row-height="lg"</code></td><td>240px</td></tr>
+          <tr><td><code>data-row-height="xl"</code></td><td>320px</td></tr>
+        </table>
+
+        <h2>Layouts pr&eacute;d&eacute;finis</h2>
+        <p>Des layouts courants sont disponibles via <code>data-layout</code> :</p>
+
+        <table>
+          <tr><th>Layout</th><th>Description</th></tr>
+          <tr><td><code>data-layout="sidebar"</code></td><td>2/3 + 1/3 (contenu + sidebar droite)</td></tr>
+          <tr><td><code>data-layout="sidebar-left"</code></td><td>1/3 + 2/3 (sidebar gauche + contenu)</td></tr>
+          <tr><td><code>data-layout="feature"</code></td><td>1 grande carte &agrave; gauche + 2 petites empil&eacute;es &agrave; droite</td></tr>
+        </table>
+
+<pre><code>&lt;!-- Layout feature : 1 grande + 2 petites --&gt;
+&lt;div class="bento" data-layout="feature" data-gap="md"&gt;
+  &lt;div class="bento__item"&gt;Mise en avant&lt;/div&gt;
+  &lt;div class="bento__item"&gt;D&eacute;tail 1&lt;/div&gt;
+  &lt;div class="bento__item"&gt;D&eacute;tail 2&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <div class="bento" data-layout="feature" data-gap="md" style="margin-bottom: var(--space-6);">
+          <div class="bento__item demo-box--primary demo-box" style="font-size: var(--text-xl); font-weight: var(--font-weight-bold);">Mise en avant</div>
+          <div class="bento__item demo-box">D&eacute;tail 1</div>
+          <div class="bento__item demo-box">D&eacute;tail 2</div>
+        </div>
+
+        <h2>Responsive</h2>
+        <p>Toutes les grilles s'adaptent automatiquement selon 4 breakpoints :</p>
+        <table>
+          <tr><th>Breakpoint</th><th>Range</th><th>Grille</th></tr>
+          <tr><td>Desktop</td><td>&ge; 992px</td><td>Toutes les colonnes</td></tr>
+          <tr><td>Tablette</td><td>&le; 991px</td><td>5-6 cols &rarr; 3, bento &rarr; 3 colonnes</td></tr>
+          <tr><td>Mobile landscape</td><td>&le; 767px</td><td>3-6 cols &rarr; 2, bento &rarr; 2 cols, layouts &rarr; 1 col</td></tr>
+          <tr><td>Mobile</td><td>&le; 478px</td><td>Tout passe en 1 colonne</td></tr>
+        </table>
+        <p>Les spans trop larges pour l'&eacute;cran sont automatiquement r&eacute;duits.</p>
+
+        <h2>Inclure dans une page</h2>
+<pre><code>&lt;link rel="stylesheet" href="core/css/grid.css"&gt;</code></pre>
+        <p>Aucun JavaScript n&eacute;cessaire. Tout fonctionne en CSS pur.</p>
+
+        <div class="docs-troubleshoot">
+          <div class="docs-troubleshoot__title">Probl&egrave;mes courants</div>
+          <ul>
+            <li><strong>Les colonnes ne s'affichent pas c&ocirc;te &agrave; c&ocirc;te :</strong> v&eacute;rifiez que <code>grid.css</code> est bien charg&eacute;. L'attribut <code>data-cols</code> d&eacute;finit le nombre de colonnes.</li>
+            <li><strong>Le bento est tout en une colonne :</strong> la grille bento passe &agrave; 1 colonne sous 478px. Testez sur un &eacute;cran plus large ou r&eacute;duisez le nombre de colonnes.</li>
+            <li><strong>Un item d&eacute;borde de la grille :</strong> un <code>data-col-span</code> sup&eacute;rieur au nombre de colonnes disponibles provoque un d&eacute;bordement. Le span est r&eacute;duit automatiquement en responsive.</li>
+          </ul>
+        </div>
+
+        <div class="docs-see-also">
+          <div class="docs-see-also__title">Voir aussi</div>
+          <ul>
+            <li><a href="tokens.html#espacements">Design Tokens (espacements)</a></li>
+            <li><a href="animations.html">Animations</a></li>
+            <li><a href="wireframes.html">Wireframes</a></li>
+          </ul>
+        </div>
+      </main>
+      <aside class="docs-toc"></aside>
+    </div>
+  </div>
+
+  <div data-component="footer"
+       data-copyright="&copy; 2026 SiteSystem">
+    <template data-slot="content">
+      <nav class="footer__links">
+        <a href="/mentions-legales.html">Mentions l&eacute;gales</a>
+        <a href="/confidentialite.html">Politique de confidentialit&eacute;</a>
+      </nav>
+    </template>
+  </div>
+
+</body>
+</html>

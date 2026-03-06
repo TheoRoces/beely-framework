@@ -1,0 +1,136 @@
+<!-- Hero 15 : Split reverse: image left, text right -->
+<style>
+
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: var(--radius-md, 0.5rem); font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: background 0.2s, border-color 0.2s; font-family: inherit; }
+.btn--primary { background: var(--color-text, #374151); color: var(--color-bg, #ffffff); border-color: var(--color-text, #374151); }
+.btn--primary:hover { background: var(--color-primary-hover); }
+.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #e5e7eb); box-shadow: none; }
+.btn--secondary:hover { background: var(--color-bg-alt); }
+.wf-hero-15 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8, 3rem);
+  padding: var(--space-12, 5rem) var(--space-6, 2rem);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.wf-hero-15__media {
+  flex: 1 1 50%;
+}
+.wf-hero-15 .wf-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-neutral-100, #f3f4f6);
+  border-radius: var(--radius-lg, 0.75rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted, #9ca3af);
+  font-size: 0.875rem;
+}
+.wf-hero-15__content {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 1.5rem);
+}
+.wf-hero-15__eyebrow {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text, #374151);
+}
+.wf-hero-15__title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text, #111827);
+  margin: 0;
+}
+.wf-hero-15__subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-muted, #6b7280);
+  margin: 0;
+}
+.wf-hero-15__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+  padding-top: var(--space-2, 0.5rem);
+}
+.wf-hero-15__feature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--color-text, #374151);
+}
+.wf-hero-15__feature-check {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-neutral-100, #f3f4f6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--color-text, #374151);
+  font-weight: 700;
+}
+.wf-hero-15__actions {
+  display: flex;
+  gap: var(--space-3, 0.75rem);
+  flex-wrap: wrap;
+  padding-top: var(--space-2, 0.5rem);
+}
+@media (max-width: 768px) {
+  .wf-hero-15 {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-8, 3rem) var(--space-4, 1rem);
+  }
+  .wf-hero-15__media {
+    order: -1;
+  }
+  .wf-hero-15__actions {
+    justify-content: center;
+  }
+  .wf-hero-15__features {
+    align-items: center;
+  }
+}
+</style>
+
+<section class="wf-hero-15">
+  <div class="wf-hero-15__media">
+    <div class="wf-img">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+    </div>
+  </div>
+  <div class="wf-hero-15__content">
+    <span class="wf-hero-15__eyebrow">Pourquoi nous choisir</span>
+    <h1 class="wf-hero-15__title">Transformez votre vision en realite numerique</h1>
+    <p class="wf-hero-15__subtitle">Nous concevons des experiences digitales qui allient esthetique et performance pour propulser votre activite.</p>
+    <div class="wf-hero-15__features">
+      <div class="wf-hero-15__feature">
+        <span class="wf-hero-15__feature-check">&#10003;</span>
+        <span>150+ clients accompagnes avec succes</span>
+      </div>
+      <div class="wf-hero-15__feature">
+        <span class="wf-hero-15__feature-check">&#10003;</span>
+        <span>98% de taux de satisfaction client</span>
+      </div>
+      <div class="wf-hero-15__feature">
+        <span class="wf-hero-15__feature-check">&#10003;</span>
+        <span>10 ans d'experience dans le digital</span>
+      </div>
+    </div>
+    <div class="wf-hero-15__actions">
+      <a href="#" class="btn btn--primary">Decouvrir nos services</a>
+      <a href="#" class="btn btn--secondary">Nous contacter</a>
+    </div>
+  </div>
+</section>

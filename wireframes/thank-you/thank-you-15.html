@@ -1,0 +1,46 @@
+<!-- thank-you-15: Minimal - just "Merci" in large text + one line -->
+<style>
+  .wf-thank-you-15 {
+    --wf-bg: var(--color-bg);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--wf-bg);
+    font-family: var(--wf-font);
+    color: var(--wf-text);
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .wf-thank-you-15__container {
+    text-align: center;
+  }
+
+  .wf-thank-you-15__title {
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 800;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .wf-thank-you-15__text {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--wf-text-muted);
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+</style>
+
+<section class="wf-thank-you-15">
+  <div class="wf-thank-you-15__container">
+    <h1 class="wf-thank-you-15__title">Merci</h1>
+    <p class="wf-thank-you-15__text">Nous vous repondrons dans les 24 heures.</p>
+  </div>
+</section>

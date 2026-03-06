@@ -1,0 +1,169 @@
+<!-- coming-soon-07: Animated gradient background with minimal text -->
+<style>
+  @keyframes wf-gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .wf-coming-soon-07 {
+    --wf-text: var(--color-text-on-dark);
+    --wf-text-muted: rgba(255, 255, 255, 0.75);
+    --wf-primary: var(--color-bg);
+    --wf-border: rgba(255, 255, 255, 0.3);
+    --wf-radius: 8px;
+    --wf-font: var(--font-body);
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(-45deg, var(--color-bg-dark), var(--color-text), var(--color-text-light), var(--color-text-light));
+    background-size: 400% 400%;
+    animation: wf-gradient-shift 15s ease infinite;
+    color: var(--wf-text);
+    font-family: var(--wf-font);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .wf-coming-soon-07 *,
+  .wf-coming-soon-07 *::before,
+  .wf-coming-soon-07 *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wf-coming-soon-07 .wf-heading {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+
+  .wf-coming-soon-07 .wf-subheading {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: var(--wf-text-muted);
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .wf-coming-soon-07 .wf-countdown {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .wf-coming-soon-07 .wf-countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wf-coming-soon-07 .wf-countdown-value {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 200;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .wf-coming-soon-07 .wf-countdown-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--wf-text-muted);
+  }
+
+  .wf-coming-soon-07 .wf-signup-form {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .wf-coming-soon-07 .wf-input {
+    flex: 1;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid var(--wf-border);
+    border-radius: var(--wf-radius);
+    font-size: 1rem;
+    font-family: var(--wf-font);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--wf-text);
+    outline: none;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  .wf-coming-soon-07 .wf-input::placeholder {
+    color: var(--wf-text-muted);
+  }
+
+  .wf-coming-soon-07 .wf-input:focus {
+    border-color: var(--wf-primary);
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .wf-coming-soon-07 .wf-button {
+    padding: 0.875rem 1.75rem;
+    background-color: var(--wf-primary);
+    color: var(--color-text);
+    border: none;
+    border-radius: var(--wf-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--wf-font);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .wf-coming-soon-07 .wf-button:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 600px) {
+    .wf-coming-soon-07 .wf-countdown {
+      gap: 1.5rem;
+    }
+
+    .wf-coming-soon-07 .wf-signup-form {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<section class="wf-coming-soon-07">
+  <h1 class="wf-heading">Bientot disponible</h1>
+  <p class="wf-subheading">Nous preparons quelque chose d'exceptionnel</p>
+
+  <div class="wf-countdown">
+    <div class="wf-countdown-item">
+      <span class="wf-countdown-value">12</span>
+      <span class="wf-countdown-label">Jours</span>
+    </div>
+    <div class="wf-countdown-item">
+      <span class="wf-countdown-value">08</span>
+      <span class="wf-countdown-label">Heures</span>
+    </div>
+    <div class="wf-countdown-item">
+      <span class="wf-countdown-value">34</span>
+      <span class="wf-countdown-label">Minutes</span>
+    </div>
+    <div class="wf-countdown-item">
+      <span class="wf-countdown-value">56</span>
+      <span class="wf-countdown-label">Secondes</span>
+    </div>
+  </div>
+
+  <form class="wf-signup-form">
+    <input type="email" class="wf-input" placeholder="votre@email.com" />
+    <button type="submit" class="wf-button">Me notifier</button>
+  </form>
+</section>

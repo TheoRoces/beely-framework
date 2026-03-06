@@ -1,0 +1,208 @@
+<!-- contact-08: Two-column layout - form left + FAQ right -->
+<style>
+  .wf-contact-08 {
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-gap: 4rem;
+    --wf-bg: var(--color-bg);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-border: var(--color-border);
+    --wf-accent: var(--color-text);
+    --wf-input-bg: var(--color-bg-alt);
+    --wf-input-border: var(--color-border);
+    --wf-input-radius: 0.5rem;
+    --wf-btn-bg: var(--color-text);
+    --wf-btn-text: var(--color-bg);
+    --wf-btn-radius: 0.5rem;
+    padding: var(--wf-section-padding);
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-contact-08 .wf-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .wf-contact-08 .wf-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .wf-contact-08 h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-contact-08 .wf-subtitle {
+    color: var(--wf-text-muted);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .wf-contact-08 .wf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--wf-gap);
+    align-items: start;
+  }
+
+  .wf-contact-08 .wf-form-side h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+  }
+
+  .wf-contact-08 form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  .wf-contact-08 .wf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.125rem;
+  }
+
+  .wf-contact-08 .wf-input,
+  .wf-contact-08 .wf-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--wf-input-border);
+    border-radius: var(--wf-input-radius);
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .wf-contact-08 .wf-input:focus,
+  .wf-contact-08 .wf-textarea:focus {
+    border-color: var(--wf-accent);
+  }
+
+  .wf-contact-08 .wf-textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .wf-contact-08 .wf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: var(--wf-btn-bg);
+    color: var(--wf-btn-text);
+    border: none;
+    border-radius: var(--wf-btn-radius);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .wf-contact-08 .wf-btn:hover {
+    opacity: 0.85;
+  }
+
+  .wf-contact-08 .wf-faq-side h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem;
+  }
+
+  .wf-contact-08 .wf-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .wf-contact-08 .wf-faq-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--wf-border);
+  }
+
+  .wf-contact-08 .wf-faq-item:first-child {
+    padding-top: 0;
+  }
+
+  .wf-contact-08 .wf-faq-question {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-contact-08 .wf-faq-answer {
+    font-size: 0.9375rem;
+    color: var(--wf-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-contact-08 .wf-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .wf-contact-08 h2 {
+      font-size: 2rem;
+    }
+    .wf-contact-08 .wf-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="wf-contact-08">
+  <div class="wf-container">
+    <div class="wf-header">
+      <h2>Contactez-nous</h2>
+      <p class="wf-subtitle">Consultez nos questions frequentes ou envoyez-nous un message.</p>
+    </div>
+    <div class="wf-grid">
+      <div class="wf-form-side">
+        <h3>Envoyez-nous un message</h3>
+        <form>
+          <div class="wf-row">
+            <input type="text" class="wf-input" placeholder="Nom complet" />
+            <input type="email" class="wf-input" placeholder="Adresse email" />
+          </div>
+          <input type="text" class="wf-input" placeholder="Sujet" />
+          <textarea class="wf-textarea" placeholder="Votre message"></textarea>
+          <button type="submit" class="wf-btn">Envoyer le message</button>
+        </form>
+      </div>
+      <div class="wf-faq-side">
+        <h3>Questions frequentes</h3>
+        <div class="wf-faq-list">
+          <div class="wf-faq-item">
+            <p class="wf-faq-question">Quel est votre delai de reponse ?</p>
+            <p class="wf-faq-answer">Nous repondons generalement sous 24 heures ouvrees a toutes les demandes recues.</p>
+          </div>
+          <div class="wf-faq-item">
+            <p class="wf-faq-question">Proposez-vous un support telephonique ?</p>
+            <p class="wf-faq-answer">Oui, notre equipe est disponible par telephone du lundi au vendredi, de 9h a 18h.</p>
+          </div>
+          <div class="wf-faq-item">
+            <p class="wf-faq-question">Ou se trouvent vos bureaux ?</p>
+            <p class="wf-faq-answer">Nous sommes situes au 123 rue Exemple, 75000 Paris. Vous pouvez venir sur rendez-vous.</p>
+          </div>
+          <div class="wf-faq-item">
+            <p class="wf-faq-question">Peut-on demander un devis en ligne ?</p>
+            <p class="wf-faq-answer">Absolument, utilisez le formulaire ci-contre en selectionnant le sujet "Demande de devis".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

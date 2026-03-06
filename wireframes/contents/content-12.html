@@ -1,0 +1,174 @@
+<!-- Content 12 : Section a propos avec photo d'equipe + texte narratif -->
+<style>
+  .wf-content-12 {
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-gap: 3rem;
+    --wf-text-color: var(--color-text, #1a1a1a);
+    --wf-text-secondary: var(--color-text-light, #555);
+    --wf-accent: var(--color-text, #374151);
+    --wf-bg: var(--color-bg-alt, #f9fafb);
+    --wf-radius: 0.75rem;
+    --wf-max-width: 1200px;
+
+    background: var(--wf-bg);
+    color: var(--wf-text-color);
+    padding: var(--wf-section-padding);
+  }
+
+  .wf-content-12__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-content-12__image-wrap {
+    position: relative;
+    margin-bottom: 3rem;
+    border-radius: var(--wf-radius);
+    overflow: hidden;
+  }
+
+  .wf-content-12__image {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    display: block;
+    background: var(--color-neutral-200, #e5e7eb);
+  }
+
+  .wf-content-12__badge {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    background: var(--wf-accent);
+    color: var(--color-text-on-dark, #fff);
+    padding: 0.5rem 1.25rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .wf-content-12__body {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--wf-gap);
+    align-items: start;
+  }
+
+  .wf-content-12__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .wf-content-12__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .wf-content-12__story-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+  }
+
+  .wf-content-12__text {
+    color: var(--wf-text-secondary);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin: 0 0 1rem 0;
+  }
+
+  .wf-content-12__text:last-child {
+    margin-bottom: 0;
+  }
+
+  .wf-content-12__signature {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border, #e5e7eb);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .wf-content-12__sig-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--color-neutral-200, #e5e7eb);
+    object-fit: cover;
+  }
+
+  .wf-content-12__sig-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .wf-content-12__sig-role {
+    font-size: 0.8125rem;
+    color: var(--wf-text-secondary);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-content-12 {
+      --wf-section-padding: 3rem 1.25rem;
+    }
+    .wf-content-12__body {
+      grid-template-columns: 1fr;
+    }
+    .wf-content-12__title {
+      font-size: 1.75rem;
+    }
+    .wf-content-12__image {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>
+
+<section class="wf-content-12">
+  <div class="wf-content-12__container">
+    <div class="wf-content-12__image-wrap">
+      <img src="https://placehold.co/1200x500/e5e7eb/999?text=Photo+d'equipe" alt="Notre equipe" class="wf-content-12__image" />
+      <span class="wf-content-12__badge">Depuis 2012</span>
+    </div>
+    <div class="wf-content-12__body">
+      <div class="wf-content-12__heading">
+        <p class="wf-content-12__label">Notre histoire</p>
+        <h2 class="wf-content-12__title">Une equipe passionnee a votre service</h2>
+      </div>
+      <div class="wf-content-12__story">
+        <h3 class="wf-content-12__story-title">De l'idee a la realite</h3>
+        <p class="wf-content-12__text">
+          Tout a commence dans un petit bureau partage avec une vision claire :
+          rendre le digital accessible et performant pour toutes les entreprises.
+          Aujourd'hui, notre equipe de 35 experts continue de porter cette vision
+          avec la meme energie et la meme passion.
+        </p>
+        <p class="wf-content-12__text">
+          Au fil des annees, nous avons developpe une expertise reconnue dans la
+          conception d'experiences numeriques memorables. Chaque projet est une
+          nouvelle aventure, chaque client un partenaire de confiance.
+        </p>
+        <p class="wf-content-12__text">
+          Notre culture d'entreprise repose sur la collaboration, l'innovation
+          continue et un engagement sans faille envers la qualite.
+        </p>
+        <div class="wf-content-12__signature">
+          <img src="https://placehold.co/60x60/e5e7eb/999?text=JP" alt="Jean-Pierre Martin" class="wf-content-12__sig-avatar" />
+          <div>
+            <p class="wf-content-12__sig-name">Jean-Pierre Martin</p>
+            <p class="wf-content-12__sig-role">Fondateur et Directeur General</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

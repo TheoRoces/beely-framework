@@ -1,0 +1,262 @@
+<!-- contact-12: Multi-step form preview (step 1: info, step 2: message) -->
+<style>
+  .wf-contact-12 {
+    --wf-section-padding: 5rem 1.5rem;
+    --wf-bg: var(--color-bg);
+    --wf-text: var(--color-text);
+    --wf-text-muted: var(--color-text-light);
+    --wf-border: var(--color-border);
+    --wf-accent: var(--color-text);
+    --wf-step-active: var(--color-text);
+    --wf-step-inactive: var(--color-neutral-300);
+    --wf-step-done: var(--color-text);
+    --wf-input-bg: var(--color-bg-alt);
+    --wf-input-border: var(--color-border);
+    --wf-input-radius: 0.5rem;
+    --wf-btn-bg: var(--color-text);
+    --wf-btn-text: var(--color-bg);
+    --wf-btn-radius: 0.5rem;
+    padding: var(--wf-section-padding);
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-contact-12 .wf-container {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .wf-contact-12 .wf-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .wf-contact-12 h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-contact-12 .wf-subtitle {
+    color: var(--wf-text-muted);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .wf-contact-12 .wf-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 2.5rem;
+  }
+
+  .wf-contact-12 .wf-step {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .wf-contact-12 .wf-step-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .wf-contact-12 .wf-step--active .wf-step-number {
+    background: var(--wf-step-active);
+    color: var(--color-text-on-dark);
+  }
+
+  .wf-contact-12 .wf-step--inactive .wf-step-number {
+    background: transparent;
+    border: 2px solid var(--wf-step-inactive);
+    color: var(--wf-text-muted);
+  }
+
+  .wf-contact-12 .wf-step--done .wf-step-number {
+    background: var(--wf-step-done);
+    color: var(--color-text-on-dark);
+  }
+
+  .wf-contact-12 .wf-step-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .wf-contact-12 .wf-step--active .wf-step-label {
+    color: var(--wf-text);
+  }
+
+  .wf-contact-12 .wf-step--inactive .wf-step-label {
+    color: var(--wf-text-muted);
+  }
+
+  .wf-contact-12 .wf-step--done .wf-step-label {
+    color: var(--wf-step-done);
+  }
+
+  .wf-contact-12 .wf-step-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--wf-step-inactive);
+    margin: 0 1rem;
+  }
+
+  .wf-contact-12 .wf-step-divider--done {
+    background: var(--wf-step-done);
+  }
+
+  .wf-contact-12 .wf-form-step {
+    border: 1px solid var(--wf-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: 2rem;
+  }
+
+  .wf-contact-12 .wf-form-step h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+
+  .wf-contact-12 .wf-form-step p {
+    color: var(--wf-text-muted);
+    font-size: 0.9375rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .wf-contact-12 .wf-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  .wf-contact-12 .wf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.125rem;
+  }
+
+  .wf-contact-12 .wf-input,
+  .wf-contact-12 .wf-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid var(--wf-input-border);
+    border-radius: var(--wf-input-radius);
+    background: var(--wf-input-bg);
+    color: var(--wf-text);
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .wf-contact-12 .wf-input:focus,
+  .wf-contact-12 .wf-textarea:focus {
+    border-color: var(--wf-accent);
+  }
+
+  .wf-contact-12 .wf-textarea {
+    min-height: 130px;
+    resize: vertical;
+  }
+
+  .wf-contact-12 .wf-form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .wf-contact-12 .wf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: var(--wf-btn-bg);
+    color: var(--wf-btn-text);
+    border: none;
+    border-radius: var(--wf-btn-radius);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .wf-contact-12 .wf-btn:hover {
+    opacity: 0.85;
+  }
+
+  .wf-contact-12 .wf-btn--outline {
+    background: transparent;
+    color: var(--wf-text);
+    border: 1px solid var(--wf-border);
+  }
+
+  .wf-contact-12 .wf-btn--outline:hover {
+    background: var(--wf-input-bg);
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .wf-contact-12 h2 {
+      font-size: 2rem;
+    }
+    .wf-contact-12 .wf-row {
+      grid-template-columns: 1fr;
+    }
+    .wf-contact-12 .wf-step-label {
+      display: none;
+    }
+    .wf-contact-12 .wf-step-divider {
+      width: 40px;
+    }
+  }
+</style>
+
+<section class="wf-contact-12">
+  <div class="wf-container">
+    <div class="wf-header">
+      <h2>Contactez-nous</h2>
+      <p class="wf-subtitle">Completez le formulaire en deux etapes pour nous envoyer votre message.</p>
+    </div>
+
+    <div class="wf-stepper">
+      <div class="wf-step wf-step--done">
+        <span class="wf-step-number">1</span>
+        <span class="wf-step-label">Informations</span>
+      </div>
+      <div class="wf-step-divider wf-step-divider--done"></div>
+      <div class="wf-step wf-step--active">
+        <span class="wf-step-number">2</span>
+        <span class="wf-step-label">Message</span>
+      </div>
+    </div>
+
+    <div class="wf-form-step">
+      <h3>Votre message</h3>
+      <p>Decrivez votre demande en detail pour que nous puissions vous aider au mieux.</p>
+      <form>
+        <div class="wf-fields">
+          <input type="text" class="wf-input" placeholder="Sujet" />
+          <textarea class="wf-textarea" placeholder="Votre message"></textarea>
+        </div>
+        <div class="wf-form-actions">
+          <button type="button" class="wf-btn wf-btn--outline">Retour</button>
+          <button type="submit" class="wf-btn">Envoyer le message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

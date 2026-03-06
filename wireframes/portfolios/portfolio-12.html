@@ -1,0 +1,186 @@
+<!-- Portfolio 12: Projects with numbered list (01, 02, 03) -->
+<style>
+  .wf-portfolio-12 {
+    --wf-bg: var(--color-bg, #ffffff);
+    --wf-text: var(--color-text, #1a1a1a);
+    --wf-text-muted: var(--color-text-light, #6b7280);
+    --wf-accent: var(--color-text, #374151);
+    --wf-card-bg: var(--color-bg-alt, #f9fafb);
+    --wf-border: var(--color-border, #e5e7eb);
+    --wf-radius: 0.75rem;
+    --wf-gap: 1.5rem;
+    padding: 5rem 1.5rem;
+    background: var(--wf-bg);
+    color: var(--wf-text);
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+  .wf-portfolio-12 .wf-portfolio-12__header {
+    max-width: 72rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__subtitle {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wf-accent);
+    margin-bottom: 0.75rem;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__desc {
+    font-size: 1.125rem;
+    color: var(--wf-text-muted);
+    max-width: 40rem;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__list {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__item {
+    display: grid;
+    grid-template-columns: 5rem 1fr 2fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--wf-border);
+    transition: background 0.2s ease;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__item:first-child {
+    border-top: 1px solid var(--wf-border);
+  }
+  .wf-portfolio-12 .wf-portfolio-12__item:hover {
+    background: var(--wf-card-bg);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    border-radius: var(--wf-radius);
+  }
+  .wf-portfolio-12 .wf-portfolio-12__number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--wf-border);
+    line-height: 1;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__item:hover .wf-portfolio-12__number {
+    color: var(--wf-accent);
+  }
+  .wf-portfolio-12 .wf-portfolio-12__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__project-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+  }
+  .wf-portfolio-12 .wf-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--wf-accent);
+    background: var(--color-bg-alt, #f9fafb);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full, 9999px);
+    width: fit-content;
+  }
+  .wf-portfolio-12 .wf-portfolio-12__project-text {
+    font-size: 0.9375rem;
+    color: var(--wf-text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .wf-portfolio-12 .wf-img {
+    width: 100%;
+    min-height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--wf-card-bg);
+    color: var(--wf-text-muted);
+    border-radius: var(--radius-md, 0.5rem);
+  }
+  @media (max-width: 768px) {
+    .wf-portfolio-12 .wf-portfolio-12__item { grid-template-columns: 3.5rem 1fr; }
+    .wf-portfolio-12 .wf-portfolio-12__project-text { display: none; }
+    .wf-portfolio-12 .wf-portfolio-12__number { font-size: 2rem; }
+    .wf-portfolio-12 .wf-portfolio-12__title { font-size: 1.75rem; }
+    .wf-portfolio-12 { padding: 3rem 1rem; }
+  }
+</style>
+
+<section class="wf-portfolio-12">
+  <div class="wf-portfolio-12__header">
+    <div class="wf-portfolio-12__subtitle">Portfolio</div>
+    <h2 class="wf-portfolio-12__title">Nos realisations</h2>
+    <p class="wf-portfolio-12__desc">Une liste de nos projets les plus marquants, du plus recent au plus ancien.</p>
+  </div>
+
+  <div class="wf-portfolio-12__list">
+    <div class="wf-portfolio-12__item">
+      <div class="wf-portfolio-12__number">01</div>
+      <div class="wf-portfolio-12__info">
+        <h3 class="wf-portfolio-12__project-title">Refonte TechVision</h3>
+        <span class="wf-badge">Web Design</span>
+      </div>
+      <p class="wf-portfolio-12__project-text">Redesign complet du site corporate avec une nouvelle identite visuelle et une experience utilisateur repensee de A a Z.</p>
+    </div>
+
+    <div class="wf-portfolio-12__item">
+      <div class="wf-portfolio-12__number">02</div>
+      <div class="wf-portfolio-12__info">
+        <h3 class="wf-portfolio-12__project-title">Plateforme InnoPlus</h3>
+        <span class="wf-badge">Application</span>
+      </div>
+      <p class="wf-portfolio-12__project-text">Application web collaborative pour la gestion de projets innovants avec tableaux kanban et suivi en temps reel.</p>
+    </div>
+
+    <div class="wf-portfolio-12__item">
+      <div class="wf-portfolio-12__number">03</div>
+      <div class="wf-portfolio-12__info">
+        <h3 class="wf-portfolio-12__project-title">Identite Luxora</h3>
+        <span class="wf-badge">Branding</span>
+      </div>
+      <p class="wf-portfolio-12__project-text">Creation d'une identite visuelle haut de gamme pour une marque de luxe. Logo, charte graphique et brand guidelines.</p>
+    </div>
+
+    <div class="wf-portfolio-12__item">
+      <div class="wf-portfolio-12__number">04</div>
+      <div class="wf-portfolio-12__info">
+        <h3 class="wf-portfolio-12__project-title">Boutique ModaChic</h3>
+        <span class="wf-badge">E-commerce</span>
+      </div>
+      <p class="wf-portfolio-12__project-text">Plateforme e-commerce sur mesure avec experience d'achat immersive et catalogue intelligent.</p>
+    </div>
+
+    <div class="wf-portfolio-12__item">
+      <div class="wf-portfolio-12__number">05</div>
+      <div class="wf-portfolio-12__info">
+        <h3 class="wf-portfolio-12__project-title">Dashboard FinanceFlow</h3>
+        <span class="wf-badge">Application</span>
+      </div>
+      <p class="wf-portfolio-12__project-text">Tableau de bord analytique pour visualiser les donnees financieres en temps reel avec graphiques interactifs.</p>
+    </div>
+
+    <div class="wf-portfolio-12__item">
+      <div class="wf-portfolio-12__number">06</div>
+      <div class="wf-portfolio-12__info">
+        <h3 class="wf-portfolio-12__project-title">Branding EcoVert</h3>
+        <span class="wf-badge">Branding</span>
+      </div>
+      <p class="wf-portfolio-12__project-text">Identite de marque ecologique avec une palette naturelle et organique pour une startup environnementale.</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,180 @@
+<!-- popup-11.html | Exit Intent Popup | Wireframe -->
+<style>
+  .wf-popup-preview--11 {
+    --popup-bg: var(--color-bg);
+    --popup-overlay: rgba(0, 0, 0, 0.55);
+    --popup-radius: 12px;
+    --popup-max-width: 580px;
+    --popup-text: var(--color-text);
+    --popup-muted: var(--color-text-light);
+    --popup-border: var(--color-border);
+    --popup-accent: var(--color-text);
+    --popup-accent-text: var(--color-bg);
+    --popup-input-bg: var(--color-bg-alt);
+    --popup-highlight: var(--color-bg-alt);
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    background: var(--popup-overlay);
+    padding: 1.5rem;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  .wf-popup-preview--11 .wf-popup-box {
+    background: var(--popup-bg);
+    border-radius: var(--popup-radius);
+    max-width: var(--popup-max-width);
+    width: 100%;
+    position: relative;
+    box-shadow: var(--shadow-xl);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .wf-popup-preview--11 .wf-popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--popup-bg);
+    border: 1px solid var(--popup-border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--popup-muted);
+    z-index: 1;
+  }
+
+  .wf-popup-preview--11 .wf-popup-visual {
+    background: var(--popup-highlight);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem;
+    gap: 1.25rem;
+  }
+
+  .wf-popup-preview--11 .wf-popup-visual-icon {
+    width: 56px;
+    height: 56px;
+    color: var(--popup-text);
+  }
+
+  .wf-popup-preview--11 .wf-popup-visual-text {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--popup-text);
+    text-align: center;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .wf-popup-preview--11 .wf-popup-visual-sub {
+    font-size: 0.9375rem;
+    color: var(--popup-muted);
+    text-align: center;
+  }
+
+  .wf-popup-preview--11 .wf-popup-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .wf-popup-preview--11 .wf-popup-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--popup-text);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+  }
+
+  .wf-popup-preview--11 .wf-popup-desc {
+    font-size: 0.9375rem;
+    color: var(--popup-muted);
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .wf-popup-preview--11 .wf-popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .wf-popup-preview--11 .wf-popup-input {
+    width: 100%;
+    padding: 0.8125rem 1rem;
+    border: 1px solid var(--popup-border);
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    background: var(--popup-input-bg);
+    color: var(--popup-text);
+    box-sizing: border-box;
+  }
+
+  .wf-popup-preview--11 .wf-popup-btn {
+    width: 100%;
+    padding: 0.8125rem 1rem;
+    background: var(--popup-accent);
+    color: var(--popup-accent-text);
+    border: none;
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .wf-popup-preview--11 .wf-popup-skip {
+    font-size: 0.8125rem;
+    color: var(--popup-muted);
+    text-align: center;
+    margin-top: 0.75rem;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .wf-popup-preview--11 .wf-popup-box {
+      grid-template-columns: 1fr;
+    }
+    .wf-popup-preview--11 .wf-popup-visual {
+      padding: 1.5rem;
+    }
+    .wf-popup-preview--11 .wf-popup-content {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<div class="wf-popup-preview wf-popup-preview--11">
+  <div class="wf-popup-box">
+    <button class="wf-popup-close" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="wf-popup-visual">
+      <svg class="wf-popup-visual-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+      <p class="wf-popup-visual-text">-15%</p>
+      <p class="wf-popup-visual-sub">Offre exclusive</p>
+    </div>
+    <div class="wf-popup-content">
+      <h2 class="wf-popup-title">Avant de partir...</h2>
+      <p class="wf-popup-desc">Profitez de 15% de reduction sur votre premiere commande. Inscrivez-vous maintenant !</p>
+      <form class="wf-popup-form">
+        <input type="email" class="wf-popup-input" placeholder="Votre email" />
+        <button type="submit" class="wf-popup-btn">S'inscrire</button>
+      </form>
+      <p class="wf-popup-skip">Non merci, je prefere payer plein tarif</p>
+    </div>
+  </div>
+</div>

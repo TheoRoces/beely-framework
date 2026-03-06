@@ -1,0 +1,176 @@
+<!-- steps-11 : Steps with image placeholder for each step -->
+<style>
+  .wf-steps-11 {
+    --wf-color-bg: var(--color-bg, #ffffff);
+    --wf-color-text: var(--color-text, #1a1a1a);
+    --wf-color-muted: var(--color-text-light, #6b7280);
+    --wf-color-placeholder: var(--color-neutral-100, #f3f4f6);
+    --wf-color-placeholder-icon: var(--color-neutral-300, #d1d5db);
+    --wf-color-accent: var(--color-text, #1a1a1a);
+    --wf-font-heading: var(--font-heading);
+    --wf-font-body: var(--font-body);
+    --wf-section-py: 6rem;
+    --wf-max-width: 1200px;
+  }
+
+  .wf-steps-11 {
+    padding: var(--wf-section-py) 1.5rem;
+    background: var(--wf-color-bg);
+    color: var(--wf-color-text);
+    font-family: var(--wf-font-body);
+  }
+
+  .wf-steps-11__container {
+    max-width: var(--wf-max-width);
+    margin: 0 auto;
+  }
+
+  .wf-steps-11__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .wf-steps-11__tagline {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-steps-11__title {
+    font-family: var(--wf-font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  .wf-steps-11__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .wf-steps-11__step {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .wf-steps-11__step:nth-child(even) {
+    direction: rtl;
+  }
+
+  .wf-steps-11__step:nth-child(even) > * {
+    direction: ltr;
+  }
+
+  .wf-steps-11__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--wf-color-placeholder);
+    border-radius: var(--radius-lg, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wf-color-placeholder-icon);
+  }
+
+  .wf-steps-11__content {
+    padding: 1rem 0;
+  }
+
+  .wf-steps-11 .wf-step__number {
+    display: inline-block;
+    font-family: var(--wf-font-heading);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-light);
+    margin-bottom: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--color-text-light);
+    border-radius: 999px;
+  }
+
+  .wf-steps-11__step-title {
+    font-family: var(--wf-font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+  }
+
+  .wf-steps-11__step-text {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .wf-steps-11__step,
+    .wf-steps-11__step:nth-child(even) {
+      grid-template-columns: 1fr;
+      direction: ltr;
+      gap: 1.5rem;
+    }
+    .wf-steps-11__list {
+      gap: 3rem;
+    }
+  }
+</style>
+
+<section class="wf-steps-11">
+  <div class="wf-steps-11__container">
+    <header class="wf-steps-11__header">
+      <p class="wf-steps-11__tagline">Comment ca marche</p>
+      <h2 class="wf-steps-11__title">Notre processus</h2>
+    </header>
+    <div class="wf-steps-11__list">
+      <div class="wf-steps-11__step">
+        <div class="wf-steps-11__image">
+          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+        <div class="wf-steps-11__content">
+          <div class="wf-step__number">Etape 1</div>
+          <h3 class="wf-steps-11__step-title">Decouverte</h3>
+          <p class="wf-steps-11__step-text">Nous analysons vos besoins et definissons les objectifs du projet.</p>
+        </div>
+      </div>
+      <div class="wf-steps-11__step">
+        <div class="wf-steps-11__image">
+          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+        <div class="wf-steps-11__content">
+          <div class="wf-step__number">Etape 2</div>
+          <h3 class="wf-steps-11__step-title">Conception</h3>
+          <p class="wf-steps-11__step-text">Creation des maquettes et prototypes interactifs.</p>
+        </div>
+      </div>
+      <div class="wf-steps-11__step">
+        <div class="wf-steps-11__image">
+          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+        <div class="wf-steps-11__content">
+          <div class="wf-step__number">Etape 3</div>
+          <h3 class="wf-steps-11__step-title">Developpement</h3>
+          <p class="wf-steps-11__step-text">Integration et developpement technique de votre solution.</p>
+        </div>
+      </div>
+      <div class="wf-steps-11__step">
+        <div class="wf-steps-11__image">
+          <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        </div>
+        <div class="wf-steps-11__content">
+          <div class="wf-step__number">Etape 4</div>
+          <h3 class="wf-steps-11__step-title">Livraison</h3>
+          <p class="wf-steps-11__step-text">Tests, optimisation et mise en production.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
