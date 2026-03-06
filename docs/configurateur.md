@@ -33,7 +33,7 @@ Le serveur :
 - Fonctionne dans **tous les navigateurs** (Firefox, Chrome, Safari…)
 - Zero-dependency : utilise uniquement la stdlib Python 3
 
-> **Sécurité** : Le serveur n'autorise l'écriture que sur 3 fichiers : `config-site.js`, `.env` et `.deploy.env`. Toute autre tentative retourne une erreur 403.
+> **Sécurité** : Le serveur n'autorise l'écriture que sur 4 fichiers : `config-site.js`, `.env`, `.deploy.env` et `.htpasswd`. Toute autre tentative retourne une erreur 403.
 
 ### Sans serveur (Live Server / file://)
 
@@ -42,7 +42,7 @@ Le configurateur fonctionne aussi sans le serveur Python, avec quelques différe
 - Utilisez les boutons **Télécharger** ou **Copier** pour récupérer le code généré
 - Vos saisies sont sauvegardées dans le `localStorage` du navigateur
 
-## Les 6 onglets
+## Les 7 onglets
 
 ### Site
 Configure l'objet `window.SITE_CONFIG` :
@@ -78,6 +78,17 @@ Génère le fichier `.env` (non commitable, non déployé) :
 Génère le fichier `.deploy.env` (non commitable, non déployé) :
 - **Production** — URL, host, port, user, path SSH
 - **Pré-production** — mêmes champs pour l'environnement de test
+
+### Protection HTTP (htpasswd)
+Protège le site par mot de passe (HTTP Basic Auth) — idéal pour un staging ou préprod :
+- **Toggle** — active/désactive la protection en un clic
+- **Identifiant** — nom d'utilisateur pour l'authentification
+- **Mot de passe** — hashé en bcrypt côté serveur
+- **Message d'invite** — texte affiché dans la popup du navigateur (défaut : « Accès restreint »)
+
+Quand activé, le serveur Python génère `.htpasswd` et injecte le bloc `AuthType Basic` dans `.htaccess`. Quand désactivé, les deux sont nettoyés automatiquement.
+
+> **Note** : cet onglet nécessite le serveur Python (pas de mode téléchargement).
 
 ## Fonctionnalités
 
@@ -139,7 +150,19 @@ Le serveur écoute sur le port **5555** et expose deux endpoints :
 }
 ```
 
-**Fichiers autorisés :** `config-site.js`, `.env`, `.deploy.env`. Tout autre fichier retourne une erreur 403.
+**Fichiers autorisés :** `config-site.js`, `.env`, `.deploy.env`, `.htpasswd`. Tout autre fichier retourne une erreur 403.
+
+| `POST` | `/api/cfg-htpasswd` | Génère/supprime `.htpasswd` et met à jour `.htaccess` |
+
+**Body JSON (htpasswd) :**
+```json
+{
+  "enabled": true,
+  "username": "admin",
+  "password": "monmotdepasse",
+  "realm": "Accès restreint"
+}
+```
 
 ### Flux de données
 

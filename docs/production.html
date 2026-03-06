@@ -196,7 +196,42 @@ FORM_NOTIFICATION_EMAIL=contact@monsite.fr</code></pre>
         </ul>
         <p>Testez que <code>mod_rewrite</code> fonctionne en acc&eacute;dant &agrave; <code>https://votre-site.fr/blog</code> (sans .html).</p>
 
-        <h3>11. Sitemap</h3>
+        <h3>11. Protection HTTP &mdash; htpasswd (optionnel)</h3>
+        <p>Prot&eacute;gez un site en d&eacute;veloppement ou pr&eacute;-production par mot de passe (HTTP Basic Auth). Une popup d'authentification appara&icirc;tra dans le navigateur avant de pouvoir acc&eacute;der au site.</p>
+
+        <h4>Via le configurateur (recommand&eacute;)</h4>
+        <ol>
+          <li>Lancez le serveur Python : <code>python3 builder/configurator-server.py</code></li>
+          <li>Ouvrez le configurateur : <code>http://localhost:5555/builder/configurator.html</code></li>
+          <li>Cliquez sur l'onglet <strong>Protection HTTP</strong> dans la sidebar</li>
+          <li>Cochez <strong>Activer la protection HTTP</strong></li>
+          <li>Renseignez un identifiant et un mot de passe</li>
+          <li>Cliquez sur <strong>Enregistrer</strong></li>
+        </ol>
+        <p>Le serveur g&eacute;n&egrave;re automatiquement :</p>
+        <ul>
+          <li><code>.htpasswd</code> &agrave; la racine du projet (mot de passe hash&eacute; en bcrypt)</li>
+          <li>Le bloc <code>AuthType Basic</code> dans le <code>.htaccess</code></li>
+        </ul>
+        <p>Pour <strong>d&eacute;sactiver</strong> : d&eacute;cochez la case et cliquez sur Enregistrer. Le <code>.htpasswd</code> est supprim&eacute; et le bloc auth retir&eacute; du <code>.htaccess</code>.</p>
+
+        <h4>Manuellement</h4>
+        <p>1. G&eacute;n&eacute;rer le fichier <code>.htpasswd</code> :</p>
+<pre><code># &#x1F4C2; Dossier : racine du projet
+htpasswd -cB .htpasswd admin
+# Entrez le mot de passe quand demand&eacute;</code></pre>
+        <p>2. Ajouter ce bloc en haut du <code>.htaccess</code> (apr&egrave;s <code>ErrorDocument 404</code>) :</p>
+<pre><code># --- BEGIN Protection HTTP (htpasswd) ---
+AuthType Basic
+AuthName "Acc&egrave;s restreint"
+AuthUserFile /chemin/absolu/vers/votre/projet/.htpasswd
+Require valid-user
+# --- END Protection HTTP (htpasswd) ---</code></pre>
+        <p><strong>Important</strong> : <code>AuthUserFile</code> doit &ecirc;tre un <strong>chemin absolu</strong> (pas relatif). Sur Hostinger : <code>/home/u123456789/domains/monsite.fr/public_html/.htpasswd</code></p>
+        <p>3. Pour d&eacute;sactiver : supprimez le bloc du <code>.htaccess</code> et le fichier <code>.htpasswd</code>.</p>
+        <p><strong>Rappel</strong> : pensez &agrave; d&eacute;sactiver la protection avant la mise en production du site final.</p>
+
+        <h3>12. Sitemap</h3>
         <p>Le sitemap est <strong>g&eacute;n&eacute;r&eacute; automatiquement &agrave; chaque d&eacute;ploiement</strong> par <code>deploy.sh</code>. Il utilise l'URL du site configur&eacute;e dans <code>.deploy.env</code> (<code>PROD_URL</code> ou <code>PREPROD_URL</code>).</p>
         <p>Vous pouvez aussi le g&eacute;n&eacute;rer manuellement :</p>
 <pre><code>node generate-sitemap.js https://votre-site.fr</code></pre>

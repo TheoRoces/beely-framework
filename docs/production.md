@@ -194,7 +194,53 @@ Le fichier `.htaccess` fourni gère automatiquement :
 
 Testez que `mod_rewrite` fonctionne en accédant à `https://votre-site.fr/blog` (sans .html).
 
-### 11. Sitemap
+### 11. Protection HTTP — htpasswd (optionnel)
+
+Protégez un site en développement ou pré-production par mot de passe (HTTP Basic Auth). Une popup d'authentification apparaîtra dans le navigateur avant de pouvoir accéder au site.
+
+#### Via le configurateur (recommandé)
+
+1. Lancez le serveur Python : `python3 builder/configurator-server.py`
+2. Ouvrez le configurateur : `http://localhost:5555/builder/configurator.html`
+3. Cliquez sur l'onglet **Protection HTTP** dans la sidebar
+4. Cochez **Activer la protection HTTP**
+5. Renseignez un identifiant et un mot de passe
+6. Cliquez sur **Enregistrer**
+
+Le serveur génère automatiquement :
+- `.htpasswd` à la racine du projet (mot de passe hashé en bcrypt)
+- Le bloc `AuthType Basic` dans le `.htaccess`
+
+Pour **désactiver** : décochez la case et cliquez sur Enregistrer. Le `.htpasswd` est supprimé et le bloc auth retiré du `.htaccess`.
+
+#### Manuellement
+
+1. Générer le fichier `.htpasswd` :
+
+```bash
+# 📂 Dossier : racine du projet
+htpasswd -cB .htpasswd admin
+# Entrez le mot de passe quand demandé
+```
+
+2. Ajouter ce bloc en haut du `.htaccess` (après `ErrorDocument 404`) :
+
+```apache
+# --- BEGIN Protection HTTP (htpasswd) ---
+AuthType Basic
+AuthName "Accès restreint"
+AuthUserFile /chemin/absolu/vers/votre/projet/.htpasswd
+Require valid-user
+# --- END Protection HTTP (htpasswd) ---
+```
+
+> **Important** : `AuthUserFile` doit être un **chemin absolu** (pas relatif). Sur Hostinger : `/home/u123456789/domains/monsite.fr/public_html/.htpasswd`
+
+3. Pour désactiver : supprimez le bloc du `.htaccess` et le fichier `.htpasswd`.
+
+> **Rappel** : pensez à désactiver la protection avant la mise en production du site final.
+
+### 12. Sitemap
 
 Le sitemap est **généré automatiquement à chaque déploiement** par `deploy.sh`. Il utilise l'URL du site configurée dans `.deploy.env` (`PROD_URL` ou `PREPROD_URL`).
 
