@@ -145,15 +145,14 @@ Aucun JavaScript nécessaire. Tout fonctionne en CSS pur.
 - **Le bento est tout en une colonne :** la grille bento passe a 1 colonne sous 478px. Testez sur un ecran plus large ou reduisez le nombre de colonnes.
 - **Un item deborde de la grille :** un `data-col-span` superieur au nombre de colonnes disponibles provoque un debordement. Le span est reduit automatiquement en responsive.
 
-## Grid Builder (dans le Builder)
+## Créateur de grilles
 
-Le Builder inclut un panel **Grille** qui permet de configurer visuellement les layouts grille et bento :
+Un outil interactif est intégré directement dans [la page docs Grid](grid.html#grid-creator). Il permet de :
 
-1. Ouvrir le Builder et cliquer sur **Grille** dans la sidebar
-2. Choisir le type : **Grille flexible** ou **Bento**
-3. Configurer les options (colonnes, gap, alignement, layout prédéfini…)
-4. Cliquer sur un item dans l'aperçu pour modifier son span (grille) ou sa taille (bento)
-5. Copier le code HTML généré et le coller dans votre page
+1. Choisir le type : **Grille flexible** ou **Bento**
+2. Configurer les options (colonnes, gap, alignement, layout prédéfini…)
+3. Cliquer sur un item dans l'aperçu pour modifier son span (grille) ou sa taille (bento)
+4. Copier le code HTML généré
 
 Le code généré utilise les attributs `data-*` du framework et fonctionne immédiatement avec `grid.css`.
 

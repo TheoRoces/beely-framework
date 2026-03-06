@@ -1,6 +1,6 @@
-# Builder — Déploiement
+# Configurateur — Déploiement
 
-Le builder intègre un système de publication directement dans l'interface, accessible via le bouton "Publier" dans la barre supérieure.
+Le Configurateur intègre un système de publication directement dans l'interface, accessible via le bouton "Publier" dans la barre supérieure.
 
 ## Dropdown de publication
 

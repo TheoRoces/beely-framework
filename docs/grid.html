@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../core/css/grid.css">
   <link rel="stylesheet" href="../core/css/cookies.css">
   <link rel="stylesheet" href="docs.css">
+  <link rel="stylesheet" href="creators.css">
   <script src="../core/js/components.js"></script>
   <script src="../components/header.js"></script>
   <script src="../components/footer.js"></script>
@@ -26,6 +27,7 @@
   <script src="../core/js/cookies.js" defer></script>
   <script src="../core/js/params.js" defer></script>
   <script src="docs.js" defer></script>
+  <script src="grid-creator.js" defer></script>
 </head>
 <body>
 
@@ -202,16 +204,9 @@
           </ul>
         </div>
 
-        <h2 id="grid-builder">Grid Builder (dans le Builder)</h2>
-        <p>Le Builder inclut un panel <strong>Grille</strong> qui permet de configurer visuellement les layouts grille et bento :</p>
-        <ol>
-          <li>Ouvrir le Builder et cliquer sur <strong>Grille</strong> dans la sidebar</li>
-          <li>Choisir le type : <strong>Grille flexible</strong> ou <strong>Bento</strong></li>
-          <li>Configurer les options (colonnes, gap, alignement, layout pr&eacute;d&eacute;fini&hellip;)</li>
-          <li>Cliquer sur un item dans l'aper&ccedil;u pour modifier son span (grille) ou sa taille (bento)</li>
-          <li>Copier le code HTML g&eacute;n&eacute;r&eacute; et le coller dans votre page</li>
-        </ol>
-        <p>Le code g&eacute;n&eacute;r&eacute; utilise les attributs <code>data-*</code> du framework et fonctionne imm&eacute;diatement avec <code>grid.css</code>.</p>
+        <h2 id="grid-creator">Cr&eacute;ateur de grilles</h2>
+        <p>Configurez visuellement vos layouts grille et bento, puis copiez le code g&eacute;n&eacute;r&eacute;. Le code utilise les attributs <code>data-*</code> du framework et fonctionne imm&eacute;diatement avec <code>grid.css</code>.</p>
+        <div id="gridCreator"></div>
 
         <div class="docs-see-also">
           <div class="docs-see-also__title">Voir aussi</div>

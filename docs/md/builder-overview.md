@@ -1,23 +1,24 @@
-# Builder — Vue d'ensemble
+# Configurateur — Vue d'ensemble
 
-Le Site System Builder est un éditeur visuel WYSIWYG zero-dependency pour construire des pages Site System directement dans le navigateur.
+Le Configurateur Site System est un outil d'administration zero-dependency pour gérer les pages, la configuration du site, la médiathèque et les icônes.
 
 ## Introduction
 
-Le **Site System Builder** est un éditeur visuel WYSIWYG conçu pour créer et modifier des pages Site System sans écrire de code manuellement. Il respecte la philosophie **zero-dependency** du framework : pas de npm, pas de build tools, juste du vanilla JS et un backend Python utilisant uniquement la bibliothèque standard.
+Le **Configurateur** (anciennement Builder) est une interface d'administration conçue pour gérer un projet Site System sans écrire de code manuellement. Il respecte la philosophie **zero-dependency** du framework : pas de npm, pas de build tools, juste du vanilla JS et un backend Python utilisant uniquement la bibliothèque standard.
 
-Le builder permet de :
+Le Configurateur permet de :
 
-- Créer et gérer des pages depuis une interface visuelle
-- Insérer des wireframes (375+ sections prêtes à l'emploi) par glisser-déposer
-- Éditer le contenu en direct dans un canvas iframe
-- Accéder à la bibliothèque d'icônes, composants, éléments et animations
+- Gérer les pages du projet (création, suppression, métadonnées SEO, arborescence)
 - Configurer les design tokens via le configurateur intégré
+- Gérer la médiathèque (images, dossiers, upload)
+- Parcourir les 324 icônes Heroicons avec recherche et copie rapide
 - Déployer et versionner avec git
+
+> **Note :** Les outils interactifs (créateur d'animations, créateur de grilles) sont désormais intégrés directement dans les pages de documentation correspondantes : [Animations](animations.html#animation-creator) et [Grid](grid.html#grid-creator).
 
 ## Lancement
 
-Le builder repose sur un serveur Python léger (`configurator-server.py`) qui tourne sur le port **5555**.
+Le Configurateur repose sur un serveur Python léger (`configurator-server.py`) qui tourne sur le port **5555**.
 
 ### 1. Démarrer le serveur
 
@@ -29,7 +30,7 @@ python3 builder/configurator-server.py
 
 Le serveur démarre sur `http://localhost:5555`. Il utilise uniquement la bibliothèque standard Python (pas de pip install nécessaire).
 
-### 2. Accéder au builder
+### 2. Accéder au Configurateur
 
 Ouvrez votre navigateur et naviguez vers :
 
@@ -37,101 +38,57 @@ Ouvrez votre navigateur et naviguez vers :
 http://localhost:5555/builder/
 ```
 
-Le builder se charge comme une SPA (Single Page Application) avec navigation par panels.
+Le Configurateur se charge comme une SPA (Single Page Application) avec navigation par panels.
 
 ## Architecture
 
-Le builder suit une architecture client-serveur simple :
+Le Configurateur suit une architecture client-serveur simple :
 
 | Couche | Technologie | Rôle |
 |--------|-------------|------|
-| **Backend** | Python 3 (stdlib uniquement) | Serveur HTTP sur le port 5555, API REST pour lire/écrire les fichiers, gérer le registry et servir les assets |
-| **Frontend** | Vanilla JS (9 modules) | Interface SPA avec canvas iframe, gestion d'état, navigation par panels |
+| **Backend** | Python 3 (stdlib uniquement) | Serveur HTTP sur le port 5555, API REST pour gérer les fichiers, le registry et servir les assets |
+| **Frontend** | Vanilla JS (7 modules) | Interface SPA, gestion d'état, navigation par panels |
 
-Le backend Python sert de proxy fichier : il lit et écrit les fichiers HTML du projet, gère le registre des pages (`pages.json`), et fournit les wireframes disponibles. Le frontend gère toute l'interface utilisateur, le canvas d'édition, et communique avec le backend via des appels HTTP.
+Le backend Python sert de proxy fichier : il gère le registre des pages (`pages.json`), les opérations CRUD sur les pages et les médias, et fournit l'API de configuration. Le frontend gère toute l'interface utilisateur.
 
 ## Structure des fichiers
 
-Le dossier `builder/` contient l'ensemble du code du builder :
+Le dossier `builder/` contient l'ensemble du code :
 
 | Fichier | Description |
 |---------|-------------|
-| `builder/index.html` | Interface HTML principale du builder |
-| `builder/builder.css` | Styles du builder (layout, panels, canvas, sidebar) |
-| `builder/js/builder-app.js` | Shell principal : navigation entre panels, gestion de l'état global, initialisation |
+| `builder/index.html` | Interface HTML principale |
+| `builder/builder.css` | Styles (layout, panels, sidebar) |
+| `builder/js/builder-app.js` | Shell principal : navigation entre panels, état global, initialisation |
 | `builder/js/builder-api.js` | Client HTTP pour communiquer avec l'API backend Python |
-| `builder/js/builder-canvas.js` | Éditeur WYSIWYG : canvas iframe pour l'édition en direct, navigator DOM |
 | `builder/js/builder-pages.js` | Gestion des pages : arborescence, création, suppression, métadonnées |
-| `builder/js/builder-wireframes.js` | Catalogue de wireframes : parcours, prévisualisation et insertion de sections |
-| `builder/js/builder-library.js` | Bibliothèque : icônes, composants, éléments, animations, médias |
-| `builder/js/builder-configurator.js` | Intégration du configurateur de design tokens |
+| `builder/js/builder-library.js` | Bibliothèque : icônes et médiathèque |
+| `builder/js/builder-configurator.js` | Configurateur de design tokens |
 | `builder/js/builder-publish.js` | Déploiement en production/pré-production et gestion git |
 | `builder/js/builder-modal.js` | Système de modales : confirm, prompt, alertes |
 
-## Concepts clés
-
-### Panels SPA
-
-Le builder fonctionne comme une **Single Page Application**. La navigation se fait entre différents panels sans rechargement de page. Chaque panel correspond à une fonctionnalité majeure : dashboard, pages, éditeur, configurateur, et sous-panels de la bibliothèque.
-
-### Registry (`pages.json`)
-
-Le fichier `pages.json` est le **registre central** de toutes les pages du projet. Il stocke :
-
-- Les chemins des fichiers HTML
-- Les métadonnées de chaque page (titre, description, template utilisé)
-- L'arborescence et la hiérarchie des pages
-
-Le registry est lu et écrit par le backend Python, et utilisé par le frontend pour afficher l'arborescence des pages.
-
-### Système de sections
-
-Les pages sont structurées en **sections** délimitées par des commentaires HTML spéciaux :
-
-```html
-<!-- #section:hero-01 -->
-<section class="hero">
-  <!-- Contenu de la section -->
-</section>
-<!-- /section:hero-01 -->
-```
-
-Ces marqueurs permettent au builder d'identifier, réordonner, remplacer ou supprimer des sections individuelles sans affecter le reste de la page.
-
-### Canvas iframe
-
-L'édition visuelle se fait dans un **iframe** qui charge la page en cours de modification. Cette approche isole complètement les styles et scripts de la page éditée de ceux du builder lui-même. Le builder injecte des outils d'édition (sélection, déplacement, redimensionnement) dans l'iframe via le navigator DOM.
-
 ## Panels
 
-Le builder est organisé en panels, répartis en 3 sections dans la sidebar :
+Le Configurateur est organisé en 5 panels :
 
-### Section « Builder »
+### Accueil (Dashboard)
 
-#### Accueil (Dashboard)
+Vue d'accueil. Affiche un résumé du projet : nombre de pages, accès rapides aux actions fréquentes (créer une page, ouvrir le configurateur, déployer).
 
-Vue d'accueil du builder. Affiche un résumé du projet : nombre de pages, accès rapides aux actions fréquentes (créer une page, ouvrir le configurateur, déployer).
-
-#### Pages
+### Pages
 
 Gestionnaire de pages du projet. Permet de :
 
 - Visualiser l'arborescence complète des pages (dossiers, sous-pages)
 - Créer, renommer, dupliquer et supprimer des pages
 - Modifier les métadonnées (titre, description SEO, slug, statut publié/brouillon)
-- Ouvrir une page dans l'éditeur
+- Réordonner les pages par glisser-déposer
 
-#### Éditeur (Canvas)
+### Configuration
 
-Cœur du builder. L'éditeur affiche la page dans un canvas iframe et propose :
+Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions légales, déploiement. Les fichiers `config-site.js`, `.env` et `.deploy.env` sont générés automatiquement.
 
-- L'édition en direct du contenu (texte, images)
-- Le navigator DOM pour sélectionner et manipuler les éléments
-- L'insertion de wireframes depuis le catalogue
-- La réorganisation des sections par glisser-déposer
-- La prévisualisation responsive (desktop, tablette, mobile portrait/paysage, largeur custom)
-
-#### Médiathèque
+### Médiathèque
 
 Gestionnaire d'images du site avec :
 
@@ -141,44 +98,23 @@ Gestionnaire d'images du site avec :
 - Infos fichier (type, poids, chemin)
 - Copie rapide du chemin d'une image
 
-#### Configurateur
+### Icônes
 
-Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions légales, déploiement. Les fichiers `config-site.js`, `.env` et `.deploy.env` sont générés automatiquement.
+324 icônes Heroicons (outline + solid) avec recherche et copie rapide du code `data-icon`.
 
-### Section « Outils »
+## Registry (`pages.json`)
 
-#### Animations
+Le fichier `pages.json` est le **registre central** de toutes les pages du projet. Il stocke :
 
-Configurateur visuel d'animations. Choisis un type (fade-in, zoom-in, slide-in…), règle le délai et la durée, vois l'aperçu en direct et copie le code.
+- Les chemins des fichiers HTML
+- Les métadonnées de chaque page (titre, description, slug, statut)
+- L'arborescence et la hiérarchie des pages
 
-#### Grilles
+Le registry est lu et écrit par le backend Python, et utilisé par le frontend pour afficher l'arborescence des pages.
 
-Configurateur visuel de layouts CSS Grid et Bento. Deux modes :
+## Déploiement
 
-- **Grille flexible** — colonnes, gap, alignement, span par item
-- **Bento** — tailles prédéfinies (wide, tall, large, full), layouts (sidebar, feature)
-
-### Section « Bibliothèque »
-
-#### Wireframes
-
-375+ sections HTML prêtes à l'emploi dans 25 catégories (heroes, headers, FAQs, testimonials, etc.). Clic → copie le code HTML complet.
-
-#### Icônes
-
-324 icônes Heroicons (outline + solid) avec recherche et copie rapide.
-
-#### Composants
-
-Les composants enregistrés du projet (header, footer, card, etc.) avec copie du code.
-
-#### Éléments
-
-Éléments interactifs (popup, accordéon, tabs, slider, tooltip) avec copie du snippet.
-
-### Déploiement
-
-Panel de publication et versioning. Permet de :
+Le panel de publication permet de :
 
 - Déployer en production ou pré-production via `deploy.sh`
 - Gérer les commits git (voir les changements, commiter, pousser)

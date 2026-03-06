@@ -1,6 +1,6 @@
-# Builder — Configurateur
+# Configurateur — Configuration du site
 
-Le configurateur permet de modifier les fichiers de configuration du site directement depuis l'interface du builder, sans éditer manuellement les fichiers.
+Le configurateur permet de modifier les fichiers de configuration du site directement depuis l'interface du Configurateur, sans éditer manuellement les fichiers.
 
 ## Intégration dans le builder
 

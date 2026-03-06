@@ -149,6 +149,17 @@ Animez le poids des polices variables (comme Inter). Si la police n'est pas vari
 | `data-font-to` | 700 | Poids d'arrivée |
 | `data-font-duration` | 0.4s / 2s (loop) | Durée |
 
+## Créateur d'animations
+
+Un outil interactif est intégré directement dans [la page docs Animations](animations.html#animation-creator). Il permet de :
+
+1. Choisir un type d'animation (fade, scale, slide, rotate)
+2. Configurer la durée, l'easing et le délai
+3. Voir l'aperçu en direct
+4. Copier le code HTML généré
+
+Les animations au clic (pulse, shake, bounce, ripple) sont également disponibles avec copie rapide.
+
 ## Accessibilité
 
 Toutes les animations (y compris SVG) respectent `prefers-reduced-motion: reduce`. Si l'utilisateur a désactivé les animations dans son système, tous les éléments apparaissent immédiatement sans animation.

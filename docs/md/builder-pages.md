@@ -1,12 +1,12 @@
-# Builder — Gestion des pages
+# Configurateur — Gestion des pages
 
-Le panneau **Pages** du Builder affiche un arbre hiérarchique de toutes les pages HTML du site. Il permet de créer, renommer, supprimer, dupliquer et organiser les pages, ainsi que de gérer leurs métadonnées (SEO, statut, code personnalisé, etc.).
+Le panneau **Pages** du Configurateur affiche un arbre hiérarchique de toutes les pages HTML du site. Il permet de créer, renommer, supprimer, dupliquer et organiser les pages, ainsi que de gérer leurs métadonnées (SEO, statut, code personnalisé, etc.).
 
 ## Vue d'ensemble
 
-Le panneau Pages est accessible depuis la barre latérale gauche du Builder. Il présente l'ensemble des pages du site sous forme d'arbre hiérarchique, reflétant la structure de dossiers du projet. Chaque page est un fichier `.html` référencé dans le registre `pages.json`.
+Le panneau Pages est accessible depuis la barre latérale gauche du Configurateur. Il présente l'ensemble des pages du site sous forme d'arbre hiérarchique, reflétant la structure de dossiers du projet. Chaque page est un fichier `.html` référencé dans le registre `pages.json`.
 
-Double-cliquez sur une page pour l'ouvrir dans l'éditeur canvas. Sélectionnez une page (simple clic) pour afficher son panneau de métadonnées à droite.
+Sélectionnez une page (simple clic) pour afficher son panneau de métadonnées à droite.
 
 ## Arbre hiérarchique
 
@@ -48,10 +48,6 @@ Les pages en **lecture seule** (`readOnly`) ne peuvent pas être supprimées.
 
 Crée une copie du fichier HTML avec un nouveau nom. Le contenu est dupliqué à l'identique, et une nouvelle entrée est ajoutée au registre avec les mêmes métadonnées (sauf le slug et le chemin, qui sont adaptés au nouveau nom).
 
-## Édition d'une page
-
-**Double-cliquez** sur une page dans l'arbre pour l'ouvrir dans l'éditeur canvas du Builder. L'éditeur charge le HTML de la page et permet de modifier visuellement les sections, composants et contenus.
-
 ## Panneau de métadonnées
 
 Quand une page est sélectionnée (simple clic), un panneau de métadonnées s'affiche à droite. Il contient les champs suivants :
@@ -78,7 +74,7 @@ Certaines pages sont marquées comme `readOnly` dans le registre. Ces pages sont
 - Supprimées
 - Renommées
 
-Les pages en lecture seule restent éditables dans le canvas (leur contenu peut être modifié), mais leur fichier et leurs métadonnées structurelles sont protégés. Cela concerne typiquement les pages système comme `404.html`, `mentions-legales.html` ou `confidentialite.html`.
+Les pages en lecture seule ont leurs fichiers et métadonnées structurelles protégés. Cela concerne typiquement les pages système comme `404.html`, `mentions-legales.html` ou `confidentialite.html`.
 
 ## Pages template
 

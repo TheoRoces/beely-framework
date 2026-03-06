@@ -1,6 +1,6 @@
-# Builder — Dashboard
+# Configurateur — Dashboard
 
-Le Dashboard est l'écran d'accueil du Builder. Il offre une vue d'ensemble du projet : statistiques, actions rapides et pages récentes.
+Le Dashboard est l'écran d'accueil du Configurateur. Il offre une vue d'ensemble du projet : statistiques, actions rapides et pages récentes.
 
 ## Vue d'ensemble
 

@@ -1,6 +1,6 @@
-# Builder — API Backend
+# Configurateur — API Backend
 
-Le builder utilise un serveur Python léger (`configurator-server.py`) comme backend. Ce serveur ne dépend d'aucune bibliothèque externe — il utilise uniquement la bibliothèque standard Python 3.
+Le Configurateur utilise un serveur Python léger (`configurator-server.py`) comme backend. Ce serveur ne dépend d'aucune bibliothèque externe — il utilise uniquement la bibliothèque standard Python 3.
 
 ## Serveur Python
 
@@ -27,8 +27,6 @@ Le builder utilise un serveur Python léger (`configurator-server.py`) comme bac
 | Endpoint | Méthode | Paramètres | Réponse |
 |---|---|---|---|
 | `/api/pages-list` | POST | `{}` | `{ ok: true, pages: [{ path, title, readOnly, isTemplate }] }` |
-| `/api/page-read` | POST | `{ path: "index.html" }` | `{ ok: true, content: "<!DOCTYPE..." }` |
-| `/api/page-write` | POST | `{ path: "index.html", content: "..." }` | `{ ok: true }` |
 | `/api/page-create` | POST | `{ filename: "contact.html" }` | `{ ok: true, path: "contact.html" }` |
 | `/api/page-delete` | POST | `{ path: "contact.html" }` | `{ ok: true }` |
 | `/api/page-rename` | POST | `{ path: "old.html", newName: "new.html" }` | `{ ok: true, newPath: "new.html" }` |
@@ -38,8 +36,6 @@ Le builder utilise un serveur Python léger (`configurator-server.py`) comme bac
 
 | Endpoint | Méthode | Paramètres | Réponse |
 |---|---|---|---|
-| `/api/wireframes-catalog` | POST | `{}` | `{ ok: true, categories: [{ slug, name, count, files }] }` |
-| `/api/wireframe-read` | POST | `{ category: "heros", file: "hero-01.html" }` | `{ ok: true, content: "..." }` |
 | `/api/icons-list` | POST | `{}` | `{ ok: true, icons: [{ name, outline, solid }] }` |
 | `/api/media-list` | POST | `{}` | `{ ok: true, files: ["image.jpg", ...] }` |
 | `/api/media-upload` | POST | `{ filename: "photo.jpg", data: "base64..." }` | `{ ok: true, path: "assets/images/photo.jpg" }` |
@@ -114,14 +110,10 @@ Le fichier `builder-api.js` encapsule tous les appels API. Toutes les méthodes 
 | `BuilderAPI.cfgRead(file)` | Lire un fichier de configuration |
 | `BuilderAPI.cfgSave(file, content)` | Sauvegarder un fichier de configuration |
 | `BuilderAPI.pagesList()` | Lister toutes les pages |
-| `BuilderAPI.pageRead(path)` | Lire le contenu d'une page |
-| `BuilderAPI.pageWrite(path, content)` | Écrire le contenu d'une page |
 | `BuilderAPI.pageCreate(filename)` | Créer une nouvelle page |
 | `BuilderAPI.pageDelete(path)` | Supprimer une page |
 | `BuilderAPI.pageRename(path, newName)` | Renommer une page |
 | `BuilderAPI.pageDuplicate(path, newName)` | Dupliquer une page |
-| `BuilderAPI.wireframesCatalog()` | Récupérer le catalogue des wireframes |
-| `BuilderAPI.wireframeRead(category, file)` | Lire un wireframe spécifique |
 | `BuilderAPI.iconsList()` | Lister toutes les icônes disponibles |
 | `BuilderAPI.mediaList()` | Lister les fichiers média |
 | `BuilderAPI.mediaUpload(filename, data)` | Uploader un fichier média (base64) |
@@ -138,11 +130,8 @@ Le fichier `builder-api.js` encapsule tous les appels API. Toutes les méthodes 
 // Lire la liste des pages
 const { pages } = await BuilderAPI.pagesList();
 
-// Lire le contenu d'une page
-const { content } = await BuilderAPI.pageRead('index.html');
-
-// Sauvegarder une page modifiée
-await BuilderAPI.pageWrite('index.html', newContent);
+// Créer une page
+await BuilderAPI.pageCreate('contact.html');
 
 // Déployer en production
 const { output } = await BuilderAPI.deploy('prod');

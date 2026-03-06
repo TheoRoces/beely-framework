@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Builder — Wireframes — Site System</title>
+  <title>[Archiv&eacute;] Configurateur &mdash; Wireframes &mdash; Site System</title>
   <script src="../core/js/darkmode.js"></script>
   <script src="../config-site.js"></script>
   <script src="../core/js/site.js"></script>
@@ -35,101 +35,13 @@
     <div class="docs-layout">
       <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-wireframes"></nav>
       <main class="docs-content">
-        <h1>Builder &mdash; Wireframes</h1>
-        <p>
-          Le builder inclut une biblioth&egrave;que de plus de 375 sections HTML pr&eacute;-construites, organis&eacute;es en cat&eacute;gories. Ces wireframes permettent de construire rapidement des pages en assemblant des blocs visuels.
-        </p>
+        <h1>[Archiv&eacute;] Wireframes (Configurateur)</h1>
 
-        <h2>Catalogue de wireframes</h2>
-        <p>
-          Le catalogue est accessible de deux fa&ccedil;ons :
-        </p>
-        <ol>
-          <li><strong>Depuis la sidebar du builder</strong> : panel &laquo;&nbsp;Wireframes&nbsp;&raquo; dans la section Biblioth&egrave;que</li>
-          <li><strong>Depuis l'&eacute;diteur</strong> : bouton &laquo;&nbsp;Wireframes&nbsp;&raquo; dans la toolbar &rarr; ouvre le panneau catalogue &agrave; droite</li>
-        </ol>
-        <p>
-          Les cat&eacute;gories sont charg&eacute;es dynamiquement depuis l'API (endpoint <code>/api/wireframes-catalog</code>). Un cache c&ocirc;t&eacute; client &eacute;vite les appels API r&eacute;p&eacute;t&eacute;s.
-        </p>
+        <div style="background: var(--color-warning-bg, #fff3cd); border: 1px solid var(--color-warning-border, #ffc107); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); margin-bottom: var(--space-6);">
+          <strong>Cette fonctionnalit&eacute; a &eacute;t&eacute; supprim&eacute;e.</strong> Le navigateur de wireframes int&eacute;gr&eacute; au Configurateur a &eacute;t&eacute; retir&eacute;. Les wireframes restent disponibles dans la <a href="wireframes.html">documentation Wireframes</a> et dans le dossier <code>wireframes/</code>. Voir l'ancienne version sur la branche <code>archive/editor-v1</code>.
+        </div>
 
-        <h2>Cat&eacute;gories disponibles</h2>
-        <table>
-          <tr><th>Cat&eacute;gorie</th><th>Nombre</th><th>Description</th></tr>
-          <tr><td><strong>Banners</strong></td><td>15</td><td>Banni&egrave;res d'annonce et promotionnelles</td></tr>
-          <tr><td><strong>Blogs</strong></td><td>15</td><td>Grilles d'articles et listes de posts</td></tr>
-          <tr><td><strong>Categories/Filters</strong></td><td>variable</td><td>Filtres et navigation par cat&eacute;gorie</td></tr>
-          <tr><td><strong>Coming Soons</strong></td><td>15</td><td>Pages &laquo;&nbsp;bient&ocirc;t disponible&nbsp;&raquo;</td></tr>
-          <tr><td><strong>Contacts</strong></td><td>variable</td><td>Formulaires et sections de contact</td></tr>
-          <tr><td><strong>Contents</strong></td><td>15</td><td>Blocs de contenu texte/image</td></tr>
-          <tr><td><strong>CTAs</strong></td><td>15</td><td>Appels &agrave; l'action</td></tr>
-          <tr><td><strong>Error Pages</strong></td><td>variable</td><td>Pages d'erreur (404, 500, etc.)</td></tr>
-          <tr><td><strong>Events</strong></td><td>15</td><td>Sections &eacute;v&eacute;nements et calendriers</td></tr>
-          <tr><td><strong>FAQs</strong></td><td>variable</td><td>Questions fr&eacute;quentes et accord&eacute;ons</td></tr>
-          <tr><td><strong>Galleries</strong></td><td>variable</td><td>Galeries d'images et portfolios visuels</td></tr>
-          <tr><td><strong>Headers</strong></td><td>15</td><td>En-t&ecirc;tes de page et navigation</td></tr>
-          <tr><td><strong>Heros</strong></td><td>15</td><td>Sections h&eacute;ro (banni&egrave;re principale)</td></tr>
-          <tr><td><strong>Intros</strong></td><td>15</td><td>Sections d'introduction</td></tr>
-          <tr><td><strong>Logos</strong></td><td>15</td><td>Grilles de logos partenaires/clients</td></tr>
-          <tr><td><strong>Mega Menus</strong></td><td>15</td><td>Menus de navigation avanc&eacute;s</td></tr>
-          <tr><td><strong>Popups</strong></td><td>variable</td><td>Fen&ecirc;tres modales et popups</td></tr>
-          <tr><td><strong>Portfolios</strong></td><td>15</td><td>Grilles de projets et r&eacute;alisations</td></tr>
-          <tr><td><strong>Services</strong></td><td>15</td><td>Pr&eacute;sentations de services</td></tr>
-          <tr><td><strong>Singles Posts</strong></td><td>variable</td><td>Templates d'articles individuels</td></tr>
-          <tr><td><strong>Steps</strong></td><td>variable</td><td>Processus et &eacute;tapes</td></tr>
-          <tr><td><strong>Testimonials</strong></td><td>15</td><td>T&eacute;moignages et avis clients</td></tr>
-          <tr><td><strong>Thank You</strong></td><td>variable</td><td>Pages de remerciement</td></tr>
-          <tr><td><strong>Timelines</strong></td><td>15</td><td>Chronologies et historiques</td></tr>
-        </table>
-
-        <h2>Recherche</h2>
-        <p>
-          Un champ de recherche en temps r&eacute;el est disponible en haut du catalogue. Il filtre par nom de cat&eacute;gorie et par nom de fichier wireframe. Les cat&eacute;gories correspondantes s'ouvrent automatiquement, et les cat&eacute;gories sans r&eacute;sultat sont masqu&eacute;es.
-        </p>
-
-        <h2>Insertion dans le canvas</h2>
-        <p>
-          Pour ins&eacute;rer un wireframe dans la page en cours d'&eacute;dition :
-        </p>
-        <ol>
-          <li>Cliquez sur un wireframe dans le catalogue &mdash; le HTML est lu via l'API</li>
-          <li>Le wireframe est ins&eacute;r&eacute; comme nouvelle section dans la page</li>
-          <li>Un marqueur de section <code>&lt;!-- #section:nom --&gt;</code> est ajout&eacute; automatiquement</li>
-          <li>L'iframe et le Navigator se mettent &agrave; jour instantan&eacute;ment</li>
-          <li>L'op&eacute;ration cr&eacute;e un point d'undo (<kbd>Cmd+Z</kbd> pour annuler)</li>
-        </ol>
-
-        <h2>Structure des fichiers</h2>
-        <p>
-          Les wireframes sont stock&eacute;s dans <code>/wireframes/[cat&eacute;gorie]/[nom].html</code>. Chaque fichier contient uniquement le HTML de la section (pas de <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>).
-        </p>
-        <p>
-          Le wireframe peut utiliser les classes CSS du framework (tokens, elements, grid, etc.). Pour ajouter un nouveau wireframe, il suffit de cr&eacute;er un fichier <code>.html</code> dans le bon dossier de cat&eacute;gorie. Le catalogue se recharge automatiquement au prochain acc&egrave;s.
-        </p>
-
-        <h2>Module JS</h2>
-        <p>
-          Le catalogue de wireframes est g&eacute;r&eacute; par deux modules :
-        </p>
-        <ul>
-          <li><code>builder-wireframes.js</code> &mdash; g&egrave;re le catalogue dans la sidebar Biblioth&egrave;que</li>
-          <li><code>builder-canvas.js</code> &mdash; g&egrave;re le catalogue dans le panneau &eacute;diteur</li>
-        </ul>
-        <p>
-          Les deux modules utilisent l'API commune :
-        </p>
-        <table>
-          <tr><th>M&eacute;thode</th><th>Description</th></tr>
-          <tr><td><code>BuilderAPI.wireframesCatalog()</code></td><td>R&eacute;cup&egrave;re la liste compl&egrave;te des cat&eacute;gories et fichiers wireframes disponibles.</td></tr>
-          <tr><td><code>BuilderAPI.wireframeRead(category, file)</code></td><td>Lit le contenu HTML d'un wireframe sp&eacute;cifique &agrave; partir de sa cat&eacute;gorie et de son nom de fichier.</td></tr>
-        </table>
-
-        <h2>Voir aussi</h2>
-        <ul>
-          <li><a href="wireframes.html">Wireframes</a></li>
-          <li><a href="builder-pages.html">Builder &mdash; Pages</a></li>
-          <li><a href="builder-overview.html">Builder &mdash; Vue d'ensemble</a></li>
-          <li><a href="components.html">Composants</a></li>
-        </ul>
+        <p><a href="builder-overview.html">&larr; Retour &agrave; la vue d'ensemble du Configurateur</a></p>
 
       </main>
     </div>

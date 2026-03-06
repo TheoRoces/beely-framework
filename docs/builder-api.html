@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Builder — API Backend — Site System</title>
+  <title>Configurateur &mdash; API Backend &mdash; Site System</title>
   <script src="../core/js/darkmode.js"></script>
   <script src="../config-site.js"></script>
   <script src="../core/js/site.js"></script>
@@ -35,9 +35,9 @@
     <div class="docs-layout">
       <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-api"></nav>
       <main class="docs-content">
-        <h1>Builder &mdash; API Backend</h1>
+        <h1>Configurateur &mdash; API Backend</h1>
         <p>
-          Le builder utilise un serveur Python l&eacute;ger (<code>configurator-server.py</code>) comme backend. Ce serveur ne d&eacute;pend d'aucune biblioth&egrave;que externe &mdash; il utilise uniquement la biblioth&egrave;que standard Python&nbsp;3.
+          Le Configurateur utilise un serveur Python l&eacute;ger (<code>configurator-server.py</code>) comme backend. Ce serveur ne d&eacute;pend d'aucune biblioth&egrave;que externe &mdash; il utilise uniquement la biblioth&egrave;que standard Python&nbsp;3.
         </p>
 
         <h2>Serveur Python</h2>
@@ -79,18 +79,6 @@
             <td><code>{ ok: true, pages: [{ path, title, readOnly, isTemplate }] }</code></td>
           </tr>
           <tr>
-            <td><code>/api/page-read</code></td>
-            <td>POST</td>
-            <td><code>{ path: "index.html" }</code></td>
-            <td><code>{ ok: true, content: "&lt;!DOCTYPE..." }</code></td>
-          </tr>
-          <tr>
-            <td><code>/api/page-write</code></td>
-            <td>POST</td>
-            <td><code>{ path: "index.html", content: "..." }</code></td>
-            <td><code>{ ok: true }</code></td>
-          </tr>
-          <tr>
             <td><code>/api/page-create</code></td>
             <td>POST</td>
             <td><code>{ filename: "contact.html" }</code></td>
@@ -119,18 +107,6 @@
         <h2>Endpoints &mdash; Contenu</h2>
         <table>
           <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
-          <tr>
-            <td><code>/api/wireframes-catalog</code></td>
-            <td>POST</td>
-            <td><code>{}</code></td>
-            <td><code>{ ok: true, categories: [{ slug, name, count, files }] }</code></td>
-          </tr>
-          <tr>
-            <td><code>/api/wireframe-read</code></td>
-            <td>POST</td>
-            <td><code>{ category: "heros", file: "hero-01.html" }</code></td>
-            <td><code>{ ok: true, content: "..." }</code></td>
-          </tr>
           <tr>
             <td><code>/api/icons-list</code></td>
             <td>POST</td>
@@ -245,14 +221,10 @@
           <tr><td><code>BuilderAPI.cfgRead(file)</code></td><td>Lire un fichier de configuration</td></tr>
           <tr><td><code>BuilderAPI.cfgSave(file, content)</code></td><td>Sauvegarder un fichier de configuration</td></tr>
           <tr><td><code>BuilderAPI.pagesList()</code></td><td>Lister toutes les pages</td></tr>
-          <tr><td><code>BuilderAPI.pageRead(path)</code></td><td>Lire le contenu d'une page</td></tr>
-          <tr><td><code>BuilderAPI.pageWrite(path, content)</code></td><td>&Eacute;crire le contenu d'une page</td></tr>
           <tr><td><code>BuilderAPI.pageCreate(filename)</code></td><td>Cr&eacute;er une nouvelle page</td></tr>
           <tr><td><code>BuilderAPI.pageDelete(path)</code></td><td>Supprimer une page</td></tr>
           <tr><td><code>BuilderAPI.pageRename(path, newName)</code></td><td>Renommer une page</td></tr>
           <tr><td><code>BuilderAPI.pageDuplicate(path, newName)</code></td><td>Dupliquer une page</td></tr>
-          <tr><td><code>BuilderAPI.wireframesCatalog()</code></td><td>R&eacute;cup&eacute;rer le catalogue des wireframes</td></tr>
-          <tr><td><code>BuilderAPI.wireframeRead(category, file)</code></td><td>Lire un wireframe sp&eacute;cifique</td></tr>
           <tr><td><code>BuilderAPI.iconsList()</code></td><td>Lister toutes les ic&ocirc;nes disponibles</td></tr>
           <tr><td><code>BuilderAPI.mediaList()</code></td><td>Lister les fichiers m&eacute;dia</td></tr>
           <tr><td><code>BuilderAPI.mediaUpload(filename, data)</code></td><td>Uploader un fichier m&eacute;dia (base64)</td></tr>
@@ -268,11 +240,8 @@
 <pre><code>// Lire la liste des pages
 const { pages } = await BuilderAPI.pagesList();
 
-// Lire le contenu d'une page
-const { content } = await BuilderAPI.pageRead('index.html');
-
-// Sauvegarder une page modifi&eacute;e
-await BuilderAPI.pageWrite('index.html', newContent);
+// Cr&eacute;er une nouvelle page
+await BuilderAPI.pageCreate('contact.html');
 
 // D&eacute;ployer en production
 const { output } = await BuilderAPI.deploy('prod');</code></pre>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Builder — Bibliothèque & Outils — Site System</title>
+  <title>Configurateur — Bibliothèque — Site System</title>
   <script src="../core/js/darkmode.js"></script>
   <script src="../config-site.js"></script>
   <script src="../core/js/site.js"></script>
@@ -35,14 +35,21 @@
     <div class="docs-layout">
       <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-library"></nav>
       <main class="docs-content">
-        <h1>Builder &mdash; Biblioth&egrave;que &amp; Outils</h1>
-        <p>La sidebar du builder est organis&eacute;e en 3 sections&nbsp;:</p>
+        <h1>Configurateur &mdash; Biblioth&egrave;que</h1>
+        <p>La biblioth&egrave;que du configurateur est compos&eacute;e de deux panels&nbsp;:</p>
         <ul>
-          <li><strong>Builder</strong> &mdash; Accueil, Pages, &Eacute;diteur, M&eacute;diath&egrave;que, Configurateur</li>
-          <li><strong>Outils</strong> &mdash; Animations, Grilles</li>
-          <li><strong>Biblioth&egrave;que</strong> &mdash; Wireframes, Ic&ocirc;nes, Composants, &Eacute;l&eacute;ments</li>
+          <li><strong>Ic&ocirc;nes</strong> &mdash; 324 Heroicons utilisables directement</li>
+          <li><strong>M&eacute;diath&egrave;que</strong> &mdash; Gestionnaire d'images du site</li>
         </ul>
         <p>Chaque panel offre un acc&egrave;s rapide aux ressources du framework. Tout fonctionne en copier-coller&nbsp;: tu cliques, &ccedil;a copie le code HTML, tu le colles dans ta page.</p>
+
+        <div class="docs-info">
+          <strong>Outils interactifs</strong> &mdash; Le cr&eacute;ateur d'animations et le cr&eacute;ateur de grilles ont &eacute;t&eacute; d&eacute;plac&eacute;s dans les pages de documentation d&eacute;di&eacute;es&nbsp;:
+          <ul>
+            <li><a href="animations.html#animation-creator">animations.html#animation-creator</a></li>
+            <li><a href="grid.html#grid-creator">grid.html#grid-creator</a></li>
+          </ul>
+        </div>
 
         <hr>
 
@@ -60,88 +67,6 @@
           <li>Les SVG sont charg&eacute;s depuis <code>/assets/icons/</code> et mis en cache</li>
           <li>Les ic&ocirc;nes solid utilisent <code>currentColor</code> pour s'adapter au th&egrave;me (clair/sombre)</li>
         </ul>
-
-        <h2>Composants</h2>
-        <p>Affiche les composants r&eacute;utilisables du framework (header, footer, card, etc.).</p>
-        <ul>
-          <li>Chaque composant est pr&eacute;sent&eacute; avec son code HTML d'utilisation</li>
-          <li>Clic &rarr; copie le code du composant + toast &laquo;&nbsp;Copi&eacute;&nbsp;!&nbsp;&raquo;</li>
-          <li>Les composants utilisent le syst&egrave;me de slots (<code>data-component</code>, <code>&lt;template data-slot&gt;</code>)</li>
-        </ul>
-
-        <h2>&Eacute;l&eacute;ments</h2>
-        <p>Catalogue d'&eacute;l&eacute;ments HTML interactifs du framework.</p>
-        <ul>
-          <li>Popup, accord&eacute;on, tabs, slider, tooltip</li>
-          <li>Chaque &eacute;l&eacute;ment est pr&eacute;sent&eacute; avec un aper&ccedil;u et son code HTML</li>
-          <li>Clic &rarr; copie le snippet HTML + toast &laquo;&nbsp;Copi&eacute;&nbsp;!&nbsp;&raquo;</li>
-        </ul>
-
-        <hr>
-
-        <h2>Animations (Outil)</h2>
-        <p>Configurateur visuel d'animations. Tu choisis tes options, tu vois le r&eacute;sultat en direct, et tu copies le code.</p>
-
-        <h3>Comment &ccedil;a marche</h3>
-        <ol>
-          <li>Choisis un <strong>type d'animation</strong>&nbsp;: fade-in, fade-in-up, zoom-in, slide-in, etc.</li>
-          <li>R&egrave;gle le <strong>d&eacute;lai</strong> (quand l'animation d&eacute;marre) et la <strong>dur&eacute;e</strong></li>
-          <li>Clique sur <strong>Rejouer</strong> pour voir l'animation en aper&ccedil;u</li>
-          <li>Copie le code g&eacute;n&eacute;r&eacute; avec le bouton <strong>Copier</strong> (en haut &agrave; droite ou en bas)</li>
-        </ol>
-
-        <h3>Types disponibles</h3>
-        <ul>
-          <li>Scroll&nbsp;: <code>fade-in</code>, <code>fade-in-up</code>, <code>fade-in-down</code>, <code>fade-in-left</code>, <code>fade-in-right</code>, <code>zoom-in</code>, <code>slide-in</code></li>
-          <li>Click&nbsp;: <code>pulse</code>, <code>shake</code>, <code>bounce</code>, <code>ripple</code>, <code>spin</code>, <code>jiggle</code></li>
-        </ul>
-        <p>Le code g&eacute;n&eacute;r&eacute; ressemble &agrave; &ccedil;a&nbsp;:</p>
-<pre><code>&lt;div class="anim-fade-in-up" style="transition-delay: 0.2s;"&gt;</code></pre>
-
-        <hr>
-
-        <h2>Grilles (Outil)</h2>
-        <p>Configurateur visuel de layouts CSS Grid et Bento. Cr&eacute;e des mises en page en colonnes sans &eacute;crire de CSS.</p>
-
-        <h3>Mode Grille flexible</h3>
-        <p>Une grille simple avec un nombre de colonnes fixe&nbsp;:</p>
-        <ol>
-          <li>Choisis le <strong>nombre de colonnes</strong> (1 &agrave; 6)</li>
-          <li>Choisis l'<strong>espacement</strong> entre les colonnes (none, xs, sm, md, lg, xl)</li>
-          <li>Choisis l'<strong>alignement vertical</strong> (haut, centr&eacute;, bas, &eacute;tir&eacute;)</li>
-          <li>Ajuste le <strong>nombre d'items</strong> (1 &agrave; 12)</li>
-          <li>Clique sur un item dans l'aper&ccedil;u pour modifier son <strong>span</strong> (combien de colonnes il occupe)</li>
-          <li>Copie le code HTML avec le bouton <strong>Copier</strong></li>
-        </ol>
-        <p>Exemple de code g&eacute;n&eacute;r&eacute;&nbsp;:</p>
-<pre><code>&lt;div class="grid" data-cols="3" data-gap="md"&gt;
-  &lt;div&gt;Contenu&lt;/div&gt;
-  &lt;div data-col-span="2"&gt;Contenu large&lt;/div&gt;
-  &lt;div&gt;Contenu&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-        <h3>Mode Bento</h3>
-        <p>Un layout asym&eacute;trique style &laquo;&nbsp;bento box&nbsp;&raquo; avec des cartes de tailles vari&eacute;es&nbsp;:</p>
-        <ol>
-          <li>Choisis l'<strong>espacement</strong> et la <strong>hauteur des rang&eacute;es</strong></li>
-          <li>Choisis un <strong>layout pr&eacute;d&eacute;fini</strong> (sidebar, sidebar-left, feature) ou laisse libre</li>
-          <li>Clique sur chaque item pour choisir sa <strong>taille</strong>&nbsp;: normal, wide (2 cols), tall (2 rang&eacute;es), large (2&times;2), full (toute la largeur)</li>
-          <li>Copie le code HTML</li>
-        </ol>
-        <p>Exemple de code g&eacute;n&eacute;r&eacute;&nbsp;:</p>
-<pre><code>&lt;div class="bento" data-gap="md" data-row-height="lg"&gt;
-  &lt;div class="bento__item" data-size="large"&gt;Contenu&lt;/div&gt;
-  &lt;div class="bento__item"&gt;Contenu&lt;/div&gt;
-  &lt;div class="bento__item" data-size="wide"&gt;Contenu&lt;/div&gt;
-&lt;/div&gt;</code></pre>
-
-        <h3>Boutons d'action</h3>
-        <ul>
-          <li><strong>Copier</strong> (en haut &agrave; droite) &rarr; copie le code HTML g&eacute;n&eacute;r&eacute;</li>
-          <li><strong>R&eacute;initialiser</strong> (en haut &agrave; droite) &rarr; remet toutes les options par d&eacute;faut</li>
-        </ul>
-
-        <hr>
 
         <h2>M&eacute;diath&egrave;que</h2>
         <p>Gestionnaire de fichiers images du site. Les images sont stock&eacute;es dans <code>/assets/images/</code>.</p>
@@ -185,19 +110,14 @@
         <hr>
 
         <h2>Module JS</h2>
-        <p><code>builder-library.js</code> g&egrave;re tous les sous-panels de la biblioth&egrave;que et des outils.</p>
+        <p><code>builder-library.js</code> g&egrave;re les deux panels de la biblioth&egrave;que.</p>
         <ul>
           <li>Expos&eacute; via <code>window.BuilderLibrary.refresh(panelId)</code></li>
         </ul>
         <table>
-          <tr><th>Panel ID</th><th>Section</th><th>Description</th></tr>
-          <tr><td><code>lib-wireframes</code></td><td>Biblioth&egrave;que</td><td>Wireframes (375+ sections)</td></tr>
-          <tr><td><code>lib-icons</code></td><td>Biblioth&egrave;que</td><td>Ic&ocirc;nes Heroicons (324)</td></tr>
-          <tr><td><code>lib-components</code></td><td>Biblioth&egrave;que</td><td>Composants r&eacute;utilisables</td></tr>
-          <tr><td><code>lib-elements</code></td><td>Biblioth&egrave;que</td><td>&Eacute;l&eacute;ments interactifs</td></tr>
-          <tr><td><code>lib-animations</code></td><td>Outils</td><td>Configurateur d'animations</td></tr>
-          <tr><td><code>lib-grid</code></td><td>Outils</td><td>Configurateur de grilles</td></tr>
-          <tr><td><code>lib-media</code></td><td>Builder</td><td>M&eacute;diath&egrave;que</td></tr>
+          <tr><th>Panel ID</th><th>Description</th></tr>
+          <tr><td><code>lib-icons</code></td><td>Ic&ocirc;nes Heroicons (324)</td></tr>
+          <tr><td><code>lib-media</code></td><td>M&eacute;diath&egrave;que</td></tr>
         </table>
 
         <h2>API utilis&eacute;es</h2>

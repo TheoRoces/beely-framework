@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Builder &mdash; Vue d'ensemble &mdash; Site System</title>
+  <title>Configurateur &mdash; Vue d'ensemble &mdash; Site System</title>
   <script src="../core/js/darkmode.js"></script>
   <script src="../config-site.js"></script>
   <script src="../core/js/site.js"></script>
@@ -40,184 +40,106 @@
       <nav class="docs-sidebar" data-component="docs-sidebar" data-active="builder-overview"></nav>
 
       <main class="docs-content">
-        <h1 class="anim-fade-in-up">Builder &mdash; Vue d'ensemble</h1>
+        <h1 class="anim-fade-in-up">Configurateur &mdash; Vue d'ensemble</h1>
         <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
-          Le Site System Builder est un &eacute;diteur visuel WYSIWYG zero-dependency pour construire des pages Site System directement dans le navigateur.
+          Le Configurateur Site System est un outil d'administration zero-dependency pour g&eacute;rer les pages, la configuration du site, la m&eacute;diath&egrave;que et les ic&ocirc;nes.
         </p>
 
         <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
-          <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
-          <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
-            <li><a href="#introduction">Introduction</a> &mdash; qu'est-ce que le Builder</li>
-            <li><a href="#lancement">Lancement</a> &mdash; d&eacute;marrer le serveur et acc&eacute;der au builder</li>
-            <li><a href="#architecture">Architecture</a> &mdash; backend Python + frontend vanilla JS</li>
-            <li><a href="#structure-fichiers">Structure des fichiers</a> &mdash; organisation du dossier <code>builder/</code></li>
-            <li><a href="#concepts-cles">Concepts cl&eacute;s</a> &mdash; panels SPA, registry, sections, canvas iframe</li>
-            <li><a href="#panels">Panels</a> &mdash; description de chaque panel du builder</li>
-          </ol>
+          <strong style="font-size: var(--text-sm);">Note</strong>
+          <p style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0;">
+            Les outils interactifs (cr&eacute;ateur d'animations, cr&eacute;ateur de grilles) sont d&eacute;sormais int&eacute;gr&eacute;s directement dans les pages de documentation : <a href="animations.html#animation-creator">Animations</a> et <a href="grid.html#grid-creator">Grid</a>.
+          </p>
         </div>
 
         <!-- ========== INTRODUCTION ========== -->
 
         <h2 id="introduction">Introduction</h2>
-        <p>Le <strong>Site System Builder</strong> est un &eacute;diteur visuel WYSIWYG con&ccedil;u pour cr&eacute;er et modifier des pages Site System sans &eacute;crire de code manuellement. Il respecte la philosophie <strong>zero-dependency</strong> du framework : pas de npm, pas de build tools, juste du vanilla JS et un backend Python utilisant uniquement la biblioth&egrave;que standard.</p>
-        <p>Le builder permet de :</p>
+        <p>Le <strong>Configurateur</strong> (anciennement Builder) est une interface d'administration con&ccedil;ue pour g&eacute;rer un projet Site System sans &eacute;crire de code manuellement. Il respecte la philosophie <strong>zero-dependency</strong> du framework : pas de npm, pas de build tools, juste du vanilla JS et un backend Python utilisant uniquement la biblioth&egrave;que standard.</p>
+        <p>Le Configurateur permet de :</p>
         <ul>
-          <li>Cr&eacute;er et g&eacute;rer des pages depuis une interface visuelle</li>
-          <li>Ins&eacute;rer des wireframes (375+ sections pr&ecirc;tes &agrave; l'emploi) par glisser-d&eacute;poser</li>
-          <li>&Eacute;diter le contenu en direct dans un canvas iframe</li>
-          <li>Acc&eacute;der &agrave; la biblioth&egrave;que d'ic&ocirc;nes, composants, &eacute;l&eacute;ments et animations</li>
+          <li>G&eacute;rer les pages du projet (cr&eacute;ation, suppression, m&eacute;tadonn&eacute;es SEO, arborescence)</li>
           <li>Configurer les design tokens via le configurateur int&eacute;gr&eacute;</li>
+          <li>G&eacute;rer la m&eacute;diath&egrave;que (images, dossiers, upload)</li>
+          <li>Parcourir les 324 ic&ocirc;nes Heroicons avec recherche et copie rapide</li>
           <li>D&eacute;ployer et versionner avec git</li>
         </ul>
 
         <!-- ========== LANCEMENT ========== -->
 
         <h2 id="lancement">Lancement</h2>
-        <p>Le builder repose sur un serveur Python l&eacute;ger (<code>configurator-server.py</code>) qui tourne sur le port <strong>5555</strong>.</p>
+        <p>Le Configurateur repose sur un serveur Python l&eacute;ger (<code>configurator-server.py</code>) qui tourne sur le port <strong>5555</strong>.</p>
 
         <h3>1. D&eacute;marrer le serveur</h3>
         <p>Depuis la racine du projet :</p>
 <pre><code>python3 builder/configurator-server.py</code></pre>
         <p>Le serveur d&eacute;marre sur <code>http://localhost:5555</code>. Il utilise uniquement la biblioth&egrave;que standard Python (pas de pip install n&eacute;cessaire).</p>
 
-        <h3>2. Acc&eacute;der au builder</h3>
+        <h3>2. Acc&eacute;der au Configurateur</h3>
         <p>Ouvrez votre navigateur et naviguez vers :</p>
 <pre><code>http://localhost:5555/builder/</code></pre>
-        <p>Le builder se charge comme une SPA (Single Page Application) avec navigation par panels.</p>
+        <p>Le Configurateur se charge comme une SPA (Single Page Application) avec navigation par panels.</p>
 
         <!-- ========== ARCHITECTURE ========== -->
 
         <h2 id="architecture">Architecture</h2>
-        <p>Le builder suit une architecture client-serveur simple :</p>
+        <p>Le Configurateur suit une architecture client-serveur simple :</p>
 
         <table>
           <tr><th>Couche</th><th>Technologie</th><th>R&ocirc;le</th></tr>
           <tr>
             <td><strong>Backend</strong></td>
             <td>Python 3 (stdlib uniquement)</td>
-            <td>Serveur HTTP sur le port 5555, API REST pour lire/&eacute;crire les fichiers, g&eacute;rer le registry et servir les assets</td>
+            <td>Serveur HTTP sur le port 5555, API REST pour g&eacute;rer les fichiers, le registry et servir les assets</td>
           </tr>
           <tr>
             <td><strong>Frontend</strong></td>
-            <td>Vanilla JS (9 modules)</td>
-            <td>Interface SPA avec canvas iframe, gestion d'&eacute;tat, navigation par panels</td>
+            <td>Vanilla JS (7 modules)</td>
+            <td>Interface SPA, gestion d'&eacute;tat, navigation par panels</td>
           </tr>
         </table>
 
-        <p>Le backend Python sert de proxy fichier : il lit et &eacute;crit les fichiers HTML du projet, g&egrave;re le registre des pages (<code>pages.json</code>), et fournit les wireframes disponibles. Le frontend g&egrave;re toute l'interface utilisateur, le canvas d'&eacute;dition, et communique avec le backend via des appels HTTP.</p>
+        <p>Le backend Python sert de proxy fichier : il g&egrave;re le registre des pages (<code>pages.json</code>), les op&eacute;rations CRUD sur les pages et les m&eacute;dias, et fournit l'API de configuration. Le frontend g&egrave;re toute l'interface utilisateur.</p>
 
         <!-- ========== STRUCTURE DES FICHIERS ========== -->
 
         <h2 id="structure-fichiers">Structure des fichiers</h2>
-        <p>Le dossier <code>builder/</code> contient l'ensemble du code du builder :</p>
+        <p>Le dossier <code>builder/</code> contient l'ensemble du code :</p>
 
         <table>
           <tr><th>Fichier</th><th>Description</th></tr>
-          <tr>
-            <td><code>builder/index.html</code></td>
-            <td>Interface HTML principale du builder</td>
-          </tr>
-          <tr>
-            <td><code>builder/builder.css</code></td>
-            <td>Styles du builder (layout, panels, canvas, sidebar)</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-app.js</code></td>
-            <td>Shell principal : navigation entre panels, gestion de l'&eacute;tat global, initialisation</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-api.js</code></td>
-            <td>Client HTTP pour communiquer avec l'API backend Python</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-canvas.js</code></td>
-            <td>&Eacute;diteur WYSIWYG : canvas iframe pour l'&eacute;dition en direct, navigator DOM</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-pages.js</code></td>
-            <td>Gestion des pages : arborescence, cr&eacute;ation, suppression, m&eacute;tadonn&eacute;es</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-wireframes.js</code></td>
-            <td>Catalogue de wireframes : parcours, pr&eacute;visualisation et insertion de sections</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-library.js</code></td>
-            <td>Biblioth&egrave;que : ic&ocirc;nes, composants, &eacute;l&eacute;ments, animations, m&eacute;dias</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-configurator.js</code></td>
-            <td>Int&eacute;gration du configurateur de design tokens</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-publish.js</code></td>
-            <td>D&eacute;ploiement en production/pr&eacute;production et gestion git</td>
-          </tr>
-          <tr>
-            <td><code>builder/js/builder-modal.js</code></td>
-            <td>Syst&egrave;me de modales : confirm, prompt, alertes</td>
-          </tr>
+          <tr><td><code>builder/index.html</code></td><td>Interface HTML principale</td></tr>
+          <tr><td><code>builder/builder.css</code></td><td>Styles (layout, panels, sidebar)</td></tr>
+          <tr><td><code>builder/js/builder-app.js</code></td><td>Shell principal : navigation entre panels, &eacute;tat global, initialisation</td></tr>
+          <tr><td><code>builder/js/builder-api.js</code></td><td>Client HTTP pour communiquer avec l'API backend Python</td></tr>
+          <tr><td><code>builder/js/builder-pages.js</code></td><td>Gestion des pages : arborescence, cr&eacute;ation, suppression, m&eacute;tadonn&eacute;es</td></tr>
+          <tr><td><code>builder/js/builder-library.js</code></td><td>Biblioth&egrave;que : ic&ocirc;nes et m&eacute;diath&egrave;que</td></tr>
+          <tr><td><code>builder/js/builder-configurator.js</code></td><td>Configurateur de design tokens</td></tr>
+          <tr><td><code>builder/js/builder-publish.js</code></td><td>D&eacute;ploiement en production/pr&eacute;-production et gestion git</td></tr>
+          <tr><td><code>builder/js/builder-modal.js</code></td><td>Syst&egrave;me de modales : confirm, prompt, alertes</td></tr>
         </table>
-
-        <!-- ========== CONCEPTS CLÉS ========== -->
-
-        <h2 id="concepts-cles">Concepts cl&eacute;s</h2>
-
-        <h3>Panels SPA</h3>
-        <p>Le builder fonctionne comme une <strong>Single Page Application</strong>. La navigation se fait entre diff&eacute;rents panels sans rechargement de page. Chaque panel correspond &agrave; une fonctionnalit&eacute; majeure : dashboard, pages, &eacute;diteur, configurateur, et sous-panels de la biblioth&egrave;que.</p>
-
-        <h3>Registry (<code>pages.json</code>)</h3>
-        <p>Le fichier <code>pages.json</code> est le <strong>registre central</strong> de toutes les pages du projet. Il stocke :</p>
-        <ul>
-          <li>Les chemins des fichiers HTML</li>
-          <li>Les m&eacute;tadonn&eacute;es de chaque page (titre, description, template utilis&eacute;)</li>
-          <li>L'arborescence et la hi&eacute;rarchie des pages</li>
-        </ul>
-        <p>Le registry est lu et &eacute;crit par le backend Python, et utilis&eacute; par le frontend pour afficher l'arborescence des pages.</p>
-
-        <h3>Syst&egrave;me de sections</h3>
-        <p>Les pages sont structur&eacute;es en <strong>sections</strong> d&eacute;limit&eacute;es par des commentaires HTML sp&eacute;ciaux :</p>
-<pre><code>&lt;!-- #section:hero-01 --&gt;
-&lt;section class="hero"&gt;
-  &lt;!-- Contenu de la section --&gt;
-&lt;/section&gt;
-&lt;!-- /section:hero-01 --&gt;</code></pre>
-        <p>Ces marqueurs permettent au builder d'identifier, r&eacute;ordonner, remplacer ou supprimer des sections individuelles sans affecter le reste de la page.</p>
-
-        <h3>Canvas iframe</h3>
-        <p>L'&eacute;dition visuelle se fait dans un <strong>iframe</strong> qui charge la page en cours de modification. Cette approche isole compl&egrave;tement les styles et scripts de la page &eacute;dit&eacute;e de ceux du builder lui-m&ecirc;me. Le builder injecte des outils d'&eacute;dition (s&eacute;lection, d&eacute;placement, redimensionnement) dans l'iframe via le navigator DOM.</p>
 
         <!-- ========== PANELS ========== -->
 
         <h2 id="panels">Panels</h2>
-        <p>Le builder est organis&eacute; en panels, r&eacute;partis en 3 sections dans la sidebar :</p>
+        <p>Le Configurateur est organis&eacute; en 5 panels :</p>
 
-        <h3>Section &laquo;&nbsp;Builder&nbsp;&raquo;</h3>
+        <h3>Accueil (Dashboard)</h3>
+        <p>Vue d'accueil. Affiche un r&eacute;sum&eacute; du projet : nombre de pages, acc&egrave;s rapides aux actions fr&eacute;quentes (cr&eacute;er une page, ouvrir le configurateur, d&eacute;ployer).</p>
 
-        <h4>Accueil (Dashboard)</h4>
-        <p>Vue d'accueil du builder. Affiche un r&eacute;sum&eacute; du projet : nombre de pages, acc&egrave;s rapides aux actions fr&eacute;quentes.</p>
-
-        <h4>Pages</h4>
+        <h3>Pages</h3>
         <p>Gestionnaire de pages du projet. Permet de :</p>
         <ul>
           <li>Visualiser l'arborescence compl&egrave;te des pages (dossiers, sous-pages)</li>
           <li>Cr&eacute;er, renommer, dupliquer et supprimer des pages</li>
           <li>Modifier les m&eacute;tadonn&eacute;es (titre, description SEO, slug, statut publi&eacute;/brouillon)</li>
-          <li>Ouvrir une page dans l'&eacute;diteur</li>
+          <li>R&eacute;ordonner les pages par glisser-d&eacute;poser</li>
         </ul>
 
-        <h4>&Eacute;diteur (Canvas)</h4>
-        <p>C&oelig;ur du builder. L'&eacute;diteur affiche la page dans un canvas iframe et propose :</p>
-        <ul>
-          <li>L'&eacute;dition en direct du contenu (texte, images)</li>
-          <li>Le navigator DOM pour s&eacute;lectionner et manipuler les &eacute;l&eacute;ments</li>
-          <li>L'insertion de wireframes depuis le catalogue</li>
-          <li>La r&eacute;organisation des sections par glisser-d&eacute;poser</li>
-          <li>La pr&eacute;visualisation responsive (desktop, tablette, mobile portrait/paysage, largeur custom)</li>
-        </ul>
+        <h3>Configuration</h3>
+        <p>Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions l&eacute;gales, d&eacute;ploiement. Les fichiers <code>config-site.js</code>, <code>.env</code> et <code>.deploy.env</code> sont g&eacute;n&eacute;r&eacute;s automatiquement.</p>
 
-        <h4>M&eacute;diath&egrave;que</h4>
+        <h3>M&eacute;diath&egrave;que</h3>
         <p>Gestionnaire d'images du site avec :</p>
         <ul>
           <li>Upload par drag &amp; drop ou s&eacute;lection de fichier</li>
@@ -227,37 +149,23 @@
           <li>Copie rapide du chemin d'une image</li>
         </ul>
 
-        <h4>Configurateur</h4>
-        <p>Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions l&eacute;gales, d&eacute;ploiement. Les fichiers <code>config-site.js</code>, <code>.env</code> et <code>.deploy.env</code> sont g&eacute;n&eacute;r&eacute;s automatiquement.</p>
+        <h3>Ic&ocirc;nes</h3>
+        <p>324 ic&ocirc;nes Heroicons (outline + solid) avec recherche et copie rapide du code <code>data-icon</code>.</p>
 
-        <h3>Section &laquo;&nbsp;Outils&nbsp;&raquo;</h3>
+        <!-- ========== REGISTRY ========== -->
 
-        <h4>Animations</h4>
-        <p>Configurateur visuel d'animations. Choisis un type (fade-in, zoom-in, slide-in&hellip;), r&egrave;gle le d&eacute;lai et la dur&eacute;e, vois l'aper&ccedil;u en direct et copie le code.</p>
-
-        <h4>Grilles</h4>
-        <p>Configurateur visuel de layouts CSS Grid et Bento. Deux modes :</p>
+        <h2 id="registry">Registry (<code>pages.json</code>)</h2>
+        <p>Le fichier <code>pages.json</code> est le <strong>registre central</strong> de toutes les pages du projet. Il stocke :</p>
         <ul>
-          <li><strong>Grille flexible</strong> &mdash; colonnes, gap, alignement, span par item</li>
-          <li><strong>Bento</strong> &mdash; tailles pr&eacute;d&eacute;finies (wide, tall, large, full), layouts (sidebar, feature)</li>
+          <li>Les chemins des fichiers HTML</li>
+          <li>Les m&eacute;tadonn&eacute;es de chaque page (titre, description, slug, statut)</li>
+          <li>L'arborescence et la hi&eacute;rarchie des pages</li>
         </ul>
 
-        <h3>Section &laquo;&nbsp;Biblioth&egrave;que&nbsp;&raquo;</h3>
+        <!-- ========== DÉPLOIEMENT ========== -->
 
-        <h4>Wireframes</h4>
-        <p>375+ sections HTML pr&ecirc;tes &agrave; l'emploi dans 25 cat&eacute;gories. Clic &rarr; copie le code HTML complet.</p>
-
-        <h4>Ic&ocirc;nes</h4>
-        <p>324 ic&ocirc;nes Heroicons (outline + solid) avec recherche et copie rapide.</p>
-
-        <h4>Composants</h4>
-        <p>Les composants enregistr&eacute;s du projet (header, footer, card, etc.) avec copie du code.</p>
-
-        <h4>&Eacute;l&eacute;ments</h4>
-        <p>&Eacute;l&eacute;ments interactifs (popup, accord&eacute;on, tabs, slider, tooltip) avec copie du snippet.</p>
-
-        <h3>D&eacute;ploiement</h3>
-        <p>Panel de publication et versioning. Permet de :</p>
+        <h2 id="deploiement">D&eacute;ploiement</h2>
+        <p>Le panel de publication permet de :</p>
         <ul>
           <li>D&eacute;ployer en production ou pr&eacute;-production via <code>deploy.sh</code></li>
           <li>G&eacute;rer les commits git (voir les changements, commiter, pousser)</li>
