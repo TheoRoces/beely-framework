@@ -24,7 +24,7 @@ Le builder repose sur un serveur Python léger (`configurator-server.py`) qui to
 Depuis la racine du projet :
 
 ```bash
-python3 configurator-server.py
+python3 builder/configurator-server.py
 ```
 
 Le serveur démarre sur `http://localhost:5555`. Il utilise uniquement la bibliothèque standard Python (pas de pip install nécessaire).
@@ -104,22 +104,24 @@ L'édition visuelle se fait dans un **iframe** qui charge la page en cours de mo
 
 ## Panels
 
-Le builder est organisé en panels principaux, accessibles depuis la navigation latérale :
+Le builder est organisé en panels, répartis en 3 sections dans la sidebar :
 
-### Dashboard
+### Section « Builder »
+
+#### Accueil (Dashboard)
 
 Vue d'accueil du builder. Affiche un résumé du projet : nombre de pages, accès rapides aux actions fréquentes (créer une page, ouvrir le configurateur, déployer).
 
-### Pages
+#### Pages
 
 Gestionnaire de pages du projet. Permet de :
 
-- Visualiser l'arborescence complète des pages
-- Créer, renommer et supprimer des pages
-- Modifier les métadonnées (titre, description, slug)
+- Visualiser l'arborescence complète des pages (dossiers, sous-pages)
+- Créer, renommer, dupliquer et supprimer des pages
+- Modifier les métadonnées (titre, description SEO, slug, statut publié/brouillon)
 - Ouvrir une page dans l'éditeur
 
-### Éditeur (Canvas)
+#### Éditeur (Canvas)
 
 Cœur du builder. L'éditeur affiche la page dans un canvas iframe et propose :
 
@@ -127,21 +129,52 @@ Cœur du builder. L'éditeur affiche la page dans un canvas iframe et propose :
 - Le navigator DOM pour sélectionner et manipuler les éléments
 - L'insertion de wireframes depuis le catalogue
 - La réorganisation des sections par glisser-déposer
-- La prévisualisation responsive (desktop, tablette, mobile)
+- La prévisualisation responsive (desktop, tablette, mobile portrait/paysage, largeur custom)
 
-### Configurateur
+#### Médiathèque
 
-Interface visuelle pour modifier les design tokens du projet (`tokens.css`) : couleurs, typographie, espacements, arrondis. Les modifications sont appliquées en temps réel dans le canvas.
+Gestionnaire d'images du site avec :
 
-### Bibliothèque
+- Upload par drag & drop ou sélection de fichier
+- Organisation en dossiers (création, navigation, breadcrumb)
+- Popup d'édition (renommer, alt text, déplacer entre dossiers)
+- Infos fichier (type, poids, chemin)
+- Copie rapide du chemin d'une image
 
-La bibliothèque regroupe plusieurs sous-panels :
+#### Configurateur
 
-- **Icônes** — les 324 Heroicons (outline + solid) avec recherche et copie rapide
-- **Composants** — les composants enregistrés du projet (header, footer, card, etc.)
-- **Éléments** — boutons, badges, formulaires et autres éléments de base
-- **Animations** — les animations disponibles (fade, slide, scale, etc.)
-- **Médias** — gestion des images et fichiers du projet
+Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions légales, déploiement. Les fichiers `config-site.js`, `.env` et `.deploy.env` sont générés automatiquement.
+
+### Section « Outils »
+
+#### Animations
+
+Configurateur visuel d'animations. Choisis un type (fade-in, zoom-in, slide-in…), règle le délai et la durée, vois l'aperçu en direct et copie le code.
+
+#### Grilles
+
+Configurateur visuel de layouts CSS Grid et Bento. Deux modes :
+
+- **Grille flexible** — colonnes, gap, alignement, span par item
+- **Bento** — tailles prédéfinies (wide, tall, large, full), layouts (sidebar, feature)
+
+### Section « Bibliothèque »
+
+#### Wireframes
+
+375+ sections HTML prêtes à l'emploi dans 25 catégories (heroes, headers, FAQs, testimonials, etc.). Clic → copie le code HTML complet.
+
+#### Icônes
+
+324 icônes Heroicons (outline + solid) avec recherche et copie rapide.
+
+#### Composants
+
+Les composants enregistrés du projet (header, footer, card, etc.) avec copie du code.
+
+#### Éléments
+
+Éléments interactifs (popup, accordéon, tabs, slider, tooltip) avec copie du snippet.
 
 ### Déploiement
 

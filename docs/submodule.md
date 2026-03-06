@@ -210,7 +210,7 @@ git commit -m "Update submodules to latest versions"
 
 ---
 
-## Déploiement
+## Déploiement d'un projet client
 
 Le script `deploy.sh` utilise **rsync** avec l'option `-L` (follow symlinks). Le serveur reçoit une structure à plat.
 
@@ -225,6 +225,132 @@ rsync -avzL --delete \
 - Le serveur ne contient **aucun symlink** — uniquement les fichiers réels
 - `.framework/` et `builder/` ne sont **jamais déployés** (exclus via `.rsync-exclude`)
 - L'option `-L` est **essentielle** — sans elle, rsync copierait les symlinks au lieu des fichiers
+
+---
+
+## Mise en production du framework
+
+Le framework est aussi déployé sur son propre domaine pour la documentation en ligne (ex: `framework.beely.studio`).
+
+### Déployer le framework
+
+Depuis la racine du repo `beely-framework` :
+
+```bash
+./deploy.sh prod
+```
+
+Cela envoie la documentation, le core CSS/JS, les wireframes et tous les assets sur le serveur. Le site de doc est accessible publiquement.
+
+### Workflow complet : modifier le framework et propager partout
+
+Quand tu modifies le framework (ajout d'une feature, correction de bug, mise à jour de la doc), il faut **propager les changements à tous les projets** qui l'utilisent. Voici les étapes, dans l'ordre :
+
+#### Étape 1 — Modifier et pousser le framework
+
+```bash
+# 1. Aller dans le repo du framework
+cd /chemin/vers/beely-framework
+
+# 2. Faire les modifications (CSS, JS, docs, etc.)
+
+# 3. Commiter et pousser sur GitHub
+git add -A
+git commit -m "Description de la modification"
+git push
+```
+
+#### Étape 2 — Déployer la doc du framework (optionnel)
+
+Si tu as modifié la doc ou les fichiers visibles sur `framework.beely.studio` :
+
+```bash
+./deploy.sh prod
+```
+
+#### Étape 3 — Mettre à jour chaque projet client
+
+Pour **chaque projet** qui utilise le framework comme submodule, il faut aller chercher la nouvelle version :
+
+```bash
+# 1. Aller dans le projet client
+cd /chemin/vers/mon-projet
+
+# 2. Mettre à jour le submodule framework
+cd .framework
+git pull        # récupère les derniers commits
+cd ..
+
+# 3. Enregistrer la mise à jour dans le projet
+git add .framework
+git commit -m "Update framework submodule"
+
+# 4. (Optionnel) Pousser et déployer le projet client
+git push
+./deploy.sh prod
+```
+
+**En une seule commande** (raccourci) :
+
+```bash
+cd .framework && git pull && cd .. && git add .framework && git commit -m "Update framework submodule"
+```
+
+#### Étape 4 — Faire pareil pour le builder (si modifié)
+
+Si le builder a aussi été modifié :
+
+```bash
+cd builder && git pull && cd .. && git add builder && git commit -m "Update builder submodule"
+```
+
+### Pourquoi c'est nécessaire ?
+
+Un **submodule git** est un pointeur vers un commit précis d'un autre repo. Quand tu fais `git pull` dans le submodule, tu récupères les derniers commits. Mais le projet parent ne sait pas que le submodule a changé tant que tu ne fais pas `git add .framework && git commit`.
+
+C'est voulu : chaque projet est **épinglé à une version précise** du framework. Ça évite qu'une mise à jour du framework casse un site en production.
+
+### Récap visuel
+
+```
+Tu modifies le framework
+        ↓
+git push (dans beely-framework)
+        ↓
+deploy.sh prod (framework.beely.studio)
+        ↓
+Pour CHAQUE projet client :
+    cd .framework && git pull && cd ..
+    git add .framework && git commit
+    git push && ./deploy.sh prod
+```
+
+### Automatiser avec un script
+
+Si tu as beaucoup de projets, tu peux créer un script qui boucle sur tous les projets :
+
+```bash
+#!/bin/bash
+# update-all-projects.sh
+PROJECTS=("test-projet" "client-a" "client-b")
+BASE="/Users/theo/Sites"
+
+for project in "${PROJECTS[@]}"; do
+  echo "=== Mise à jour de $project ==="
+  cd "$BASE/$project"
+
+  # Framework
+  cd .framework && git pull && cd ..
+  git add .framework
+
+  # Builder
+  cd builder && git pull && cd ..
+  git add builder
+
+  git commit -m "Update submodules to latest"
+  echo ""
+done
+```
 
 ---
 
@@ -260,6 +386,8 @@ git commit -m "Pin framework to v1.2.0"
 | `git submodule foreach git pull` | Mettre à jour tous les submodules |
 | `cd .framework && git log --oneline -5` | Derniers commits du framework |
 | `cd builder && git log --oneline -5` | Derniers commits du builder |
+| `cd .framework && git pull && cd .. && git add .framework && git commit -m "Update framework"` | Raccourci MàJ framework |
+| `cd builder && git pull && cd .. && git add builder && git commit -m "Update builder"` | Raccourci MàJ builder |
 
 ---
 
@@ -267,4 +395,5 @@ git commit -m "Pin framework to v1.2.0"
 
 - [Démarrer un projet](getting-started.md)
 - [Configurateur](configurateur.md)
+- [Mise en production](production.md)
 - [Builder — Vue d'ensemble](builder-overview.md)

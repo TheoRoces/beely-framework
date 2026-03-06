@@ -78,7 +78,7 @@
 
         <h3>1. D&eacute;marrer le serveur</h3>
         <p>Depuis la racine du projet :</p>
-<pre><code>python3 configurator-server.py</code></pre>
+<pre><code>python3 builder/configurator-server.py</code></pre>
         <p>Le serveur d&eacute;marre sur <code>http://localhost:5555</code>. Il utilise uniquement la biblioth&egrave;que standard Python (pas de pip install n&eacute;cessaire).</p>
 
         <h3>2. Acc&eacute;der au builder</h3>
@@ -191,42 +191,70 @@
         <!-- ========== PANELS ========== -->
 
         <h2 id="panels">Panels</h2>
-        <p>Le builder est organis&eacute; en panels principaux, accessibles depuis la navigation lat&eacute;rale :</p>
+        <p>Le builder est organis&eacute; en panels, r&eacute;partis en 3 sections dans la sidebar :</p>
 
-        <h3>Dashboard</h3>
-        <p>Vue d'accueil du builder. Affiche un r&eacute;sum&eacute; du projet : nombre de pages, acc&egrave;s rapides aux actions fr&eacute;quentes (cr&eacute;er une page, ouvrir le configurateur, d&eacute;ployer).</p>
+        <h3>Section &laquo;&nbsp;Builder&nbsp;&raquo;</h3>
 
-        <h3>Pages</h3>
+        <h4>Accueil (Dashboard)</h4>
+        <p>Vue d'accueil du builder. Affiche un r&eacute;sum&eacute; du projet : nombre de pages, acc&egrave;s rapides aux actions fr&eacute;quentes.</p>
+
+        <h4>Pages</h4>
         <p>Gestionnaire de pages du projet. Permet de :</p>
         <ul>
-          <li>Visualiser l'arborescence compl&egrave;te des pages</li>
-          <li>Cr&eacute;er, renommer et supprimer des pages</li>
-          <li>Modifier les m&eacute;tadonn&eacute;es (titre, description, slug)</li>
+          <li>Visualiser l'arborescence compl&egrave;te des pages (dossiers, sous-pages)</li>
+          <li>Cr&eacute;er, renommer, dupliquer et supprimer des pages</li>
+          <li>Modifier les m&eacute;tadonn&eacute;es (titre, description SEO, slug, statut publi&eacute;/brouillon)</li>
           <li>Ouvrir une page dans l'&eacute;diteur</li>
         </ul>
 
-        <h3>&Eacute;diteur (Canvas)</h3>
+        <h4>&Eacute;diteur (Canvas)</h4>
         <p>C&oelig;ur du builder. L'&eacute;diteur affiche la page dans un canvas iframe et propose :</p>
         <ul>
           <li>L'&eacute;dition en direct du contenu (texte, images)</li>
           <li>Le navigator DOM pour s&eacute;lectionner et manipuler les &eacute;l&eacute;ments</li>
           <li>L'insertion de wireframes depuis le catalogue</li>
           <li>La r&eacute;organisation des sections par glisser-d&eacute;poser</li>
-          <li>La pr&eacute;visualisation responsive (desktop, tablette, mobile)</li>
+          <li>La pr&eacute;visualisation responsive (desktop, tablette, mobile portrait/paysage, largeur custom)</li>
         </ul>
 
-        <h3>Configurateur</h3>
-        <p>Interface visuelle pour modifier les design tokens du projet (<code>tokens.css</code>) : couleurs, typographie, espacements, arrondis. Les modifications sont appliqu&eacute;es en temps r&eacute;el dans le canvas.</p>
-
-        <h3>Biblioth&egrave;que</h3>
-        <p>La biblioth&egrave;que regroupe plusieurs sous-panels :</p>
+        <h4>M&eacute;diath&egrave;que</h4>
+        <p>Gestionnaire d'images du site avec :</p>
         <ul>
-          <li><strong>Ic&ocirc;nes</strong> &mdash; les 324 Heroicons (outline + solid) avec recherche et copie rapide</li>
-          <li><strong>Composants</strong> &mdash; les composants enregistr&eacute;s du projet (header, footer, card, etc.)</li>
-          <li><strong>&Eacute;l&eacute;ments</strong> &mdash; boutons, badges, formulaires et autres &eacute;l&eacute;ments de base</li>
-          <li><strong>Animations</strong> &mdash; les animations disponibles (fade, slide, scale, etc.)</li>
-          <li><strong>M&eacute;dias</strong> &mdash; gestion des images et fichiers du projet</li>
+          <li>Upload par drag &amp; drop ou s&eacute;lection de fichier</li>
+          <li>Organisation en dossiers (cr&eacute;ation, navigation, breadcrumb)</li>
+          <li>Popup d'&eacute;dition (renommer, alt text, d&eacute;placer entre dossiers)</li>
+          <li>Infos fichier (type, poids, chemin)</li>
+          <li>Copie rapide du chemin d'une image</li>
         </ul>
+
+        <h4>Configurateur</h4>
+        <p>Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions l&eacute;gales, d&eacute;ploiement. Les fichiers <code>config-site.js</code>, <code>.env</code> et <code>.deploy.env</code> sont g&eacute;n&eacute;r&eacute;s automatiquement.</p>
+
+        <h3>Section &laquo;&nbsp;Outils&nbsp;&raquo;</h3>
+
+        <h4>Animations</h4>
+        <p>Configurateur visuel d'animations. Choisis un type (fade-in, zoom-in, slide-in&hellip;), r&egrave;gle le d&eacute;lai et la dur&eacute;e, vois l'aper&ccedil;u en direct et copie le code.</p>
+
+        <h4>Grilles</h4>
+        <p>Configurateur visuel de layouts CSS Grid et Bento. Deux modes :</p>
+        <ul>
+          <li><strong>Grille flexible</strong> &mdash; colonnes, gap, alignement, span par item</li>
+          <li><strong>Bento</strong> &mdash; tailles pr&eacute;d&eacute;finies (wide, tall, large, full), layouts (sidebar, feature)</li>
+        </ul>
+
+        <h3>Section &laquo;&nbsp;Biblioth&egrave;que&nbsp;&raquo;</h3>
+
+        <h4>Wireframes</h4>
+        <p>375+ sections HTML pr&ecirc;tes &agrave; l'emploi dans 25 cat&eacute;gories. Clic &rarr; copie le code HTML complet.</p>
+
+        <h4>Ic&ocirc;nes</h4>
+        <p>324 ic&ocirc;nes Heroicons (outline + solid) avec recherche et copie rapide.</p>
+
+        <h4>Composants</h4>
+        <p>Les composants enregistr&eacute;s du projet (header, footer, card, etc.) avec copie du code.</p>
+
+        <h4>&Eacute;l&eacute;ments</h4>
+        <p>&Eacute;l&eacute;ments interactifs (popup, accord&eacute;on, tabs, slider, tooltip) avec copie du snippet.</p>
 
         <h3>D&eacute;ploiement</h3>
         <p>Panel de publication et versioning. Permet de :</p>

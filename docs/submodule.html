@@ -55,7 +55,8 @@
             <li><a href="#modifier-framework">Modifier le framework</a> &mdash; &eacute;diter, commiter et propager</li>
             <li><a href="#mettre-a-jour">Mettre &agrave; jour le framework</a> &mdash; r&eacute;cup&eacute;rer les derni&egrave;res modifications</li>
             <li><a href="#ajouter-fichier">Ajouter un nouveau fichier</a> &mdash; &eacute;tendre le framework</li>
-            <li><a href="#deploiement">D&eacute;ploiement</a> &mdash; rsync suit les symlinks</li>
+            <li><a href="#deploiement">D&eacute;ploiement d'un projet client</a> &mdash; rsync suit les symlinks</li>
+            <li><a href="#mise-en-prod-framework">Mise en production du framework</a> &mdash; propager les changements &agrave; tous les projets</li>
             <li><a href="#commandes">Commandes utiles</a> &mdash; r&eacute;f&eacute;rence rapide git submodule</li>
           </ol>
         </div>
@@ -238,6 +239,97 @@ rsync -avz -L --delete \
           <li>L'option <code>-L</code> est <strong>essentielle</strong> &mdash; sans elle, rsync copierait les symlinks au lieu des fichiers</li>
         </ul>
 
+        <!-- ========== MISE EN PROD DU FRAMEWORK ========== -->
+
+        <h2 id="mise-en-prod-framework">Mise en production du framework</h2>
+        <p>Le framework est aussi d&eacute;ploy&eacute; sur son propre domaine pour la documentation en ligne (ex&nbsp;: <code>framework.beely.studio</code>).</p>
+
+        <h3>D&eacute;ployer le framework</h3>
+        <p>Depuis la racine du repo <code>beely-framework</code>&nbsp;:</p>
+<pre><code>./deploy.sh prod</code></pre>
+        <p>Cela envoie la documentation, le core CSS/JS, les wireframes et tous les assets sur le serveur.</p>
+
+        <h3>Workflow complet : modifier le framework et propager partout</h3>
+        <p>Quand tu modifies le framework (ajout d'une feature, correction de bug, mise &agrave; jour de la doc), il faut <strong>propager les changements &agrave; tous les projets</strong> qui l'utilisent. Voici les &eacute;tapes, dans l'ordre&nbsp;:</p>
+
+        <h4>&Eacute;tape 1 &mdash; Modifier et pousser le framework</h4>
+<pre><code># 1. Aller dans le repo du framework
+cd /chemin/vers/beely-framework
+
+# 2. Faire les modifications (CSS, JS, docs, etc.)
+
+# 3. Commiter et pousser sur GitHub
+git add -A
+git commit -m "Description de la modification"
+git push</code></pre>
+
+        <h4>&Eacute;tape 2 &mdash; D&eacute;ployer la doc du framework (optionnel)</h4>
+        <p>Si tu as modifi&eacute; la doc ou les fichiers visibles sur <code>framework.beely.studio</code>&nbsp;:</p>
+<pre><code>./deploy.sh prod</code></pre>
+
+        <h4>&Eacute;tape 3 &mdash; Mettre &agrave; jour chaque projet client</h4>
+        <p>Pour <strong>chaque projet</strong> qui utilise le framework comme submodule&nbsp;:</p>
+<pre><code># 1. Aller dans le projet client
+cd /chemin/vers/mon-projet
+
+# 2. Mettre &agrave; jour le submodule framework
+cd .framework
+git pull
+cd ..
+
+# 3. Enregistrer la mise &agrave; jour dans le projet
+git add .framework
+git commit -m "Update framework submodule"
+
+# 4. (Optionnel) Pousser et d&eacute;ployer le projet client
+git push
+./deploy.sh prod</code></pre>
+
+        <p><strong>En une seule commande</strong> (raccourci)&nbsp;:</p>
+<pre><code>cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework submodule"</code></pre>
+
+        <h4>&Eacute;tape 4 &mdash; Faire pareil pour le builder (si modifi&eacute;)</h4>
+<pre><code>cd builder &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add builder &amp;&amp; git commit -m "Update builder submodule"</code></pre>
+
+        <h3>Pourquoi c'est n&eacute;cessaire&nbsp;?</h3>
+        <p>Un <strong>submodule git</strong> est un pointeur vers un commit pr&eacute;cis d'un autre repo. Quand tu fais <code>git pull</code> dans le submodule, tu r&eacute;cup&egrave;res les derniers commits. Mais le projet parent ne sait pas que le submodule a chang&eacute; tant que tu ne fais pas <code>git add .framework &amp;&amp; git commit</code>.</p>
+        <p>C'est voulu&nbsp;: chaque projet est <strong>&eacute;pingl&eacute; &agrave; une version pr&eacute;cise</strong> du framework. &Ccedil;a &eacute;vite qu'une mise &agrave; jour du framework casse un site en production.</p>
+
+        <h3>R&eacute;cap visuel</h3>
+<pre><code>Tu modifies le framework
+        &darr;
+git push (dans beely-framework)
+        &darr;
+deploy.sh prod (framework.beely.studio)
+        &darr;
+Pour CHAQUE projet client :
+    cd .framework &amp;&amp; git pull &amp;&amp; cd ..
+    git add .framework &amp;&amp; git commit
+    git push &amp;&amp; ./deploy.sh prod</code></pre>
+
+        <h3>Automatiser avec un script</h3>
+        <p>Si tu as beaucoup de projets, tu peux cr&eacute;er un script qui boucle sur tous les projets&nbsp;:</p>
+<pre><code>#!/bin/bash
+# update-all-projects.sh
+PROJECTS=("test-projet" "client-a" "client-b")
+BASE="/Users/theo/Sites"
+
+for project in "${PROJECTS[@]}"; do
+  echo "=== Mise &agrave; jour de $project ==="
+  cd "$BASE/$project"
+
+  # Framework
+  cd .framework &amp;&amp; git pull &amp;&amp; cd ..
+  git add .framework
+
+  # Builder
+  cd builder &amp;&amp; git pull &amp;&amp; cd ..
+  git add builder
+
+  git commit -m "Update submodules to latest"
+  echo ""
+done</code></pre>
+
         <!-- ========== COMMANDES UTILES ========== -->
 
         <h2 id="commandes">Commandes utiles</h2>
@@ -284,6 +376,14 @@ rsync -avz -L --delete \
           <tr>
             <td><code>git submodule add &lt;url&gt; .framework</code></td>
             <td>Ajouter le submodule framework &agrave; un projet existant</td>
+          </tr>
+          <tr>
+            <td><code>cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework"</code></td>
+            <td>Raccourci M&agrave;J framework dans un projet</td>
+          </tr>
+          <tr>
+            <td><code>cd builder &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add builder &amp;&amp; git commit -m "Update builder"</code></td>
+            <td>Raccourci M&agrave;J builder dans un projet</td>
           </tr>
         </table>
 
