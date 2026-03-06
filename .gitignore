@@ -1,6 +1,4 @@
-.env
-.deploy.env
 .claude/
 node_modules/
-data/
 .DS_Store
+.vscode/
