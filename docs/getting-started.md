@@ -15,14 +15,19 @@ Guide complet pour créer un nouveau site, le déployer en production, et adapte
 
 ## Créer un nouveau projet
 
-### 1. Copier le boilerplate
+### 1. Cloner le template
 
-Dupliquez le dossier `site-system/` et renommez-le avec le nom de votre projet :
+Clonez le dépôt **beely-template** avec ses submodules, puis lancez le setup :
 
 ```bash
-cp -r site-system/ mon-projet/
+git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
 cd mon-projet/
+./setup.sh --init
 ```
+
+Le script `setup.sh` initialise les 2 submodules (`.framework/` et `builder/`), crée les symlinks nécessaires, et copie les fichiers `.env.example`.
+
+Voir [Architecture 3 repos](submodule.md) pour le détail de l'architecture.
 
 ### 2. Personnaliser la charte graphique
 
@@ -219,36 +224,19 @@ Les liens internes utilisent `.html` pour fonctionner partout (Live Server, file
 
 ## Git & GitHub
 
-Versionnez votre projet avec Git et hebergez-le sur GitHub pour collaborer, garder un historique, et faciliter le déploiement.
+Le projet est déjà un dépôt Git (cloné depuis beely-template). Il faut simplement changer le remote pour pointer vers votre propre dépôt.
 
-### 1. Initialiser Git
+### 1. Créer votre dépôt GitHub
 
-Dans le dossier de votre projet :
-
-```bash
-# Initialiser le depot Git
-git init
-
-# Ajouter tous les fichiers
-git add -A
-
-# Premier commit
-git commit -m "Initial commit"
-```
-
-### 2. Créer le depot GitHub
-
-Créez un nouveau depot sur [github.com/new](https://github.com/new), puis liez-le a votre projet local :
+Créez un nouveau dépôt sur [github.com/new](https://github.com/new), puis changez le remote :
 
 ```bash
-# Lier le depot distant
-git remote add origin https://github.com/votre-user/votre-projet.git
+# Changer le remote
+git remote set-url origin https://github.com/votre-user/votre-projet.git
 
 # Pousser le code
 git push -u origin main
 ```
-
-L'option `-u` configure le tracking : les prochains `git push` n'auront plus besoin de preciser `origin main`.
 
 ### 3. Workflow quotidien
 

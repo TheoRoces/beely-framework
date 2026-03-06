@@ -1,46 +1,49 @@
-# Architecture Submodule
+# Architecture 3 Repos
 
-Le framework Site System est une source de vérité unique partagée entre tous les projets via **git submodule** et **symlinks**. Cette architecture garantit que chaque projet utilise toujours la dernière version du framework sans duplication de code.
+Le système Beely est organisé en **3 dépôts indépendants** connectés par des **git submodules** et des **symlinks**. Cette architecture garantit la stabilité pour des centaines de projets clients.
 
 ---
 
 ## Sommaire
 
-1. [Concept](#concept) — pourquoi un submodule
-2. [Architecture](#architecture) — framework dans `.framework/` + symlinks
-3. [Fichiers symlinkés vs réels](#fichiers-symlinkés-vs-réels) — ce qui vient du framework vs ce qui est propre au projet
-4. [Installation](#installation) — cloner et initialiser un projet
+1. [Les 3 repos](#les-3-repos) — framework, builder, template
+2. [Architecture d'un projet](#architecture-dun-projet) — structure des fichiers
+3. [Fichiers symlinkés vs réels](#fichiers-symlinkés-vs-réels) — ce qui vient du framework vs du projet
+4. [Installation d'un nouveau projet](#installation-dun-nouveau-projet) — cloner et initialiser
 5. [Modifier le framework](#modifier-le-framework) — éditer, commiter et propager
-6. [Mettre à jour le framework](#mettre-à-jour-le-framework) — récupérer les dernières modifications
-7. [Ajouter un nouveau fichier](#ajouter-un-nouveau-fichier-au-framework) — étendre le framework
+6. [Modifier le builder](#modifier-le-builder) — éditer, commiter et propager
+7. [Mettre à jour les submodules](#mettre-à-jour-les-submodules) — récupérer les dernières versions
 8. [Déploiement](#déploiement) — rsync suit les symlinks
-9. [Commandes utiles](#commandes-utiles) — référence rapide git submodule
+9. [Versioning](#versioning) — tags sémantiques
+10. [Commandes utiles](#commandes-utiles) — référence rapide
 
 ---
 
-## Concept
+## Les 3 repos
 
-Le framework Site System est conçu comme une **source de vérité unique** (single source of truth). Plutôt que de copier les fichiers du framework dans chaque projet, on utilise un **git submodule** qui pointe vers le dépôt du framework.
+| Repo | Contenu | Usage |
+|---|---|---|
+| **beely-framework** | Core CSS/JS, API PHP, composants, wireframes, docs, assets | Submodule `.framework/` |
+| **beely-builder** | Builder visuel, configurateur, serveur Python | Submodule `builder/` |
+| **beely-template** | Starter projet client : pages, config, deploy, setup | Cloné pour chaque nouveau client |
 
-Les avantages de cette approche :
-
-- **Zéro duplication** — le code du framework n'existe qu'à un seul endroit
-- **Mises à jour centralisées** — une correction dans le framework profite à tous les projets
-- **Versioning indépendant** — chaque projet peut être à une version différente du framework
-- **Séparation claire** — les fichiers du framework et ceux du projet sont bien distincts
-- **Transparence** — grâce aux symlinks, les chemins HTML restent identiques (ex: `core/css/tokens.css`)
+Chaque repo est **versionné indépendamment** avec des tags sémantiques (v1.0.0, v1.1.0, etc.).
 
 ---
 
-## Architecture
+## Architecture d'un projet
 
-Le framework vit dans le dossier `.framework/` à la racine du projet. Ce dossier est un **git submodule** qui pointe vers le dépôt GitHub du framework.
-
-Des **symlinks** (liens symboliques) sont créés à la racine du projet pour pointer vers les dossiers et fichiers du framework. Ainsi, les chemins relatifs utilisés dans le HTML restent identiques :
+Un projet client utilise les 2 submodules via `setup.sh` qui crée les symlinks :
 
 ```
 mon-projet/
-├── .framework/              ← git submodule (dépôt du framework)
+├── .framework/              ← submodule beely-framework
+├── builder/                 ← submodule beely-builder
+│   ├── index.html           ← Builder UI
+│   ├── builder.css
+│   ├── configurator.html    ← Configurateur intégré
+│   ├── configurator-server.py ← Serveur de dev
+│   └── js/                  ← 9 modules JS
 ├── core/                    ← symlink → .framework/core/
 ├── components/              ← symlink → .framework/components/
 ├── assets/                  ← symlink → .framework/assets/
@@ -48,17 +51,18 @@ mon-projet/
 ├── wireframes/              ← symlink → .framework/wireframes/
 ├── snippets/                ← symlink → .framework/snippets/
 ├── docs/                    ← symlink → .framework/docs/
-├── base-html.html           ← symlink → .framework/base-html.html
 ├── base-index.html          ← symlink → .framework/base-index.html
 ├── robots.txt               ← symlink → .framework/robots.txt
 ├── generate-sitemap.js      ← symlink → .framework/generate-sitemap.js
 ├── config-site.js           ← fichier réel du projet
 ├── index.html               ← fichier réel du projet
 ├── .htaccess                ← fichier réel du projet
-└── deploy.sh                ← fichier réel du projet
+├── deploy.sh                ← fichier réel du projet
+├── setup.sh                 ← fichier réel du projet
+└── .gitmodules              ← référence les 2 submodules
 ```
 
-Le HTML référence `core/css/tokens.css` comme d'habitude — le symlink redirige automatiquement vers `.framework/core/css/tokens.css`. Aucun changement n'est nécessaire dans le code HTML.
+Le HTML référence `core/css/tokens.css` comme d'habitude — le symlink redirige automatiquement vers `.framework/core/css/tokens.css`.
 
 ---
 
@@ -66,206 +70,201 @@ Le HTML référence `core/css/tokens.css` comme d'habitude — le symlink rediri
 
 ### Fichiers symlinkés (framework)
 
-Ces fichiers et dossiers sont des symlinks vers `.framework/`. Ils ne doivent **jamais être modifiés directement** dans le projet — les modifications se font dans le dépôt du framework.
+Ces fichiers sont des symlinks vers `.framework/`. Les modifications se font dans le dépôt du framework.
 
 | Chemin | Description |
 |---|---|
-| `core/` | CSS et JS du framework (tokens, base, animations, éléments, etc.) |
-| `components/` | Composants réutilisables (header, footer, card, sidebar, etc.) |
-| `assets/` | Icônes Heroicons, images par défaut, favicons |
-| `api/` | Endpoints PHP (proxy Baserow, formulaire, consentement RGPD) |
-| `wireframes/` | 375+ sections HTML prêtes à l'emploi |
+| `core/` | CSS et JS du framework |
+| `components/` | Composants réutilisables (header, footer, card…) |
+| `assets/` | Icônes Heroicons, images par défaut |
+| `api/` | Endpoints PHP (proxy Baserow, formulaire, consentement) |
+| `wireframes/` | 375 sections HTML prêtes à l'emploi |
 | `snippets/` | Fragments HTML copiables |
-| `docs/` | Documentation interactive du framework |
-| `base-html.html` | Template HTML de base (page vierge) |
-| `base-index.html` | Template de page d'accueil avec sections pré-intégrées |
+| `docs/` | Documentation interactive |
+| `base-index.html` | Template HTML de base |
 | `robots.txt` | Fichier robots.txt par défaut |
-| `generate-sitemap.js` | Script Node.js de génération du sitemap |
+| `generate-sitemap.js` | Générateur de sitemap |
 
 ### Fichiers réels (projet)
 
-Ces fichiers sont propres à chaque projet et ne sont **pas partagés** entre projets. Ils sont versionnés dans le dépôt du projet.
+Propres à chaque projet, versionnés dans le dépôt du projet.
 
 | Chemin | Description |
 |---|---|
 | `config-site.js` | Configuration du site (nom, analytics, blog, mentions légales) |
-| `index.html` | Page d'accueil du projet |
-| `blog.html` | Page listing du blog |
-| `blog/` | Dossier des articles de blog |
-| `mentions-legales.html` | Page mentions légales |
-| `confidentialite.html` | Page politique de confidentialité |
-| `404.html` | Page d'erreur 404 |
-| `data/` | Données spécifiques au projet |
-| `sitemap.xml` | Sitemap généré pour le projet |
-| `.htaccess` | Configuration Apache du projet |
+| `index.html` | Page d'accueil |
+| `blog.html`, `blog/` | Blog |
+| `mentions-legales.html` | Mentions légales |
+| `confidentialite.html` | Politique de confidentialité |
+| `404.html` | Page d'erreur |
+| `.htaccess` | Configuration Apache |
 | `deploy.sh` | Script de déploiement |
-| `CLAUDE.md` | Directives Claude Code du projet |
+| `setup.sh` | Script d'installation |
 | `.env` | Variables d'environnement sensibles |
-| `.deploy.env` | Configuration SSH de déploiement |
-| `builder/` | Dossier du Builder (si utilisé) |
-| `configurator.html` | Configurateur de design tokens |
-| `configurator-server.py` | Serveur Python pour le configurateur |
-| `pages.json` | Registre des pages du Builder |
+| `.deploy.env` | Configuration SSH |
+
+### Submodule builder
+
+Le builder est un submodule dans `builder/`. Il n'est **jamais déployé** (exclu via `.rsync-exclude`).
 
 ---
 
-## Installation
+## Installation d'un nouveau projet
 
-Pour cloner un projet qui utilise le submodule framework :
-
-### 1. Cloner avec le submodule
+### Depuis beely-template
 
 ```bash
-git clone --recursive https://github.com/votre-org/mon-projet.git
+# 1. Cloner le template
+git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
 cd mon-projet
+
+# 2. Lancer le setup (crée les symlinks + copie les .env)
+./setup.sh --init
+
+# 3. Configurer le projet
+# Remplir config-site.js, .env, .deploy.env
+# Ou utiliser le configurateur :
+python3 builder/configurator-server.py
+# → http://localhost:5555/builder/configurator.html
 ```
 
-L'option `--recursive` clone automatiquement le submodule `.framework/` en même temps que le projet.
-
-### 2. Exécuter le script d'installation
+### Cloner un projet existant
 
 ```bash
+git clone --recursive https://github.com/org/mon-projet.git
+cd mon-projet
 ./setup.sh
 ```
 
-Le script `setup.sh` crée tous les symlinks nécessaires à la racine du projet. Il vérifie que le submodule est bien initialisé et affiche un récapitulatif des liens créés.
-
-### Si le submodule n'a pas été cloné
-
-Si vous avez cloné sans `--recursive`, initialisez le submodule manuellement :
+Si cloné sans `--recursive` :
 
 ```bash
-git submodule init
-git submodule update
+./setup.sh --init
 ```
-
-Puis lancez `./setup.sh` pour créer les symlinks.
 
 ---
 
 ## Modifier le framework
 
-Pour apporter des modifications au framework (corrections, nouvelles fonctionnalités, nouveaux wireframes) :
-
-### 1. Naviguer dans le submodule
-
 ```bash
+# 1. Naviguer dans le submodule
 cd .framework/
-```
 
-### 2. Éditer les fichiers
+# 2. Éditer les fichiers (changements visibles immédiatement via les symlinks)
 
-Modifiez les fichiers normalement. Grâce aux symlinks, les changements sont **immédiatement visibles** dans le projet parent — pas besoin de copier ou synchroniser quoi que ce soit.
+# 3. Commiter et pousser
+git add -A && git commit -m "Description" && git push
 
-### 3. Commiter et pousser
-
-```bash
-git add -A
-git commit -m "Description de la modification"
-git push
-```
-
-### 4. Mettre à jour la référence dans le projet parent
-
-De retour à la racine du projet, mettez à jour la référence du submodule :
-
-```bash
+# 4. Mettre à jour la référence dans le projet parent
 cd ..
 git add .framework
 git commit -m "Update framework submodule"
-git push
 ```
-
-Cela enregistre le nouveau commit du framework dans le projet parent.
 
 ---
 
-## Mettre à jour le framework
+## Modifier le builder
 
-Pour récupérer les dernières modifications du framework dans votre projet :
+```bash
+# 1. Naviguer dans le submodule
+cd builder/
+
+# 2. Éditer les fichiers
+
+# 3. Commiter et pousser
+git add -A && git commit -m "Description" && git push
+
+# 4. Mettre à jour la référence dans le projet parent
+cd ..
+git add builder
+git commit -m "Update builder submodule"
+```
+
+---
+
+## Mettre à jour les submodules
+
+### Mettre à jour le framework
 
 ```bash
 git submodule update --remote .framework
-```
-
-Cette commande met à jour le submodule vers le dernier commit de la branche `main` du framework. Les symlinks continuent de fonctionner sans intervention — ils pointent vers `.framework/` dont le contenu vient d'être mis à jour.
-
-N'oubliez pas de commiter la mise à jour dans le projet parent :
-
-```bash
 git add .framework
 git commit -m "Update framework to latest version"
-git push
 ```
 
----
-
-## Ajouter un nouveau fichier au framework
-
-Quand vous ajoutez un nouveau fichier ou dossier dans le dépôt du framework :
-
-### 1. Ajouter dans le dépôt framework
-
-Créez le fichier dans `.framework/`, commitez et poussez.
-
-### 2. Créer le symlink si nécessaire
-
-Si le fichier doit être accessible à la racine du projet, ajoutez un symlink :
+### Mettre à jour le builder
 
 ```bash
-ln -s .framework/nouveau-dossier nouveau-dossier
+git submodule update --remote builder
+git add builder
+git commit -m "Update builder to latest version"
 ```
 
-Les fichiers *dans* des dossiers déjà symlinkés (comme `core/`, `components/`) sont automatiquement accessibles — pas besoin de symlink supplémentaire.
+### Mettre à jour les deux
 
-### 3. Mettre à jour setup.sh
-
-Ajoutez le nouveau symlink dans `setup.sh` pour que les futurs clones le créent automatiquement.
+```bash
+git submodule update --remote
+git add .framework builder
+git commit -m "Update submodules to latest versions"
+```
 
 ---
 
 ## Déploiement
 
-Le script `deploy.sh` utilise **rsync** avec l'option `-L` (follow symlinks). Lors du déploiement, rsync suit les symlinks et copie les fichiers réels sur le serveur — le serveur reçoit une structure à plat, sans symlinks ni submodule.
+Le script `deploy.sh` utilise **rsync** avec l'option `-L` (follow symlinks). Le serveur reçoit une structure à plat.
 
 ```bash
-# Extrait de deploy.sh
-rsync -avz -L --delete \
+rsync -avzL --delete \
   --exclude-from='.rsync-exclude' \
+  -e "ssh -p ${REMOTE_PORT}" \
   ./ user@serveur:/chemin/
 ```
 
-Le dossier `.framework/` est exclu du déploiement via `.rsync-exclude` (les fichiers sont déjà déployés via les symlinks suivis par rsync).
-
 **Points importants :**
-
 - Le serveur ne contient **aucun symlink** — uniquement les fichiers réels
-- Le dossier `.framework/` n'est **jamais déployé**
+- `.framework/` et `builder/` ne sont **jamais déployés** (exclus via `.rsync-exclude`)
 - L'option `-L` est **essentielle** — sans elle, rsync copierait les symlinks au lieu des fichiers
+
+---
+
+## Versioning
+
+Chaque repo utilise le **versioning sémantique** :
+
+- **Patch** (v1.0.1) : corrections de bugs, pas de changement d'API
+- **Minor** (v1.1.0) : nouvelles fonctionnalités rétrocompatibles
+- **Major** (v2.0.0) : changements qui cassent la rétrocompatibilité
+
+Pour épingler un projet à une version spécifique du framework :
+
+```bash
+cd .framework
+git checkout v1.2.0
+cd ..
+git add .framework
+git commit -m "Pin framework to v1.2.0"
+```
 
 ---
 
 ## Commandes utiles
 
-Référence rapide des commandes git submodule les plus courantes :
-
 | Commande | Description |
 |---|---|
-| `git clone --recursive <url>` | Cloner un projet avec son submodule |
-| `git submodule init` | Initialiser le submodule (après un clone sans `--recursive`) |
-| `git submodule update` | Mettre à jour le submodule au commit référencé |
-| `git submodule update --remote .framework` | Mettre à jour vers le dernier commit de la branche distante |
-| `git submodule status` | Afficher le commit actuel du submodule |
-| `git diff --submodule` | Voir les changements dans le submodule |
-| `cd .framework && git log --oneline -5` | Voir les derniers commits du framework |
-| `cd .framework && git pull` | Tirer les dernières modifications du framework |
-| `git submodule foreach git pull` | Mettre à jour tous les submodules (si plusieurs) |
-| `git submodule add <url> .framework` | Ajouter le submodule framework à un projet existant |
+| `git clone --recursive <url>` | Cloner un projet avec ses submodules |
+| `git submodule update --init --recursive` | Initialiser les submodules après un clone |
+| `git submodule update --remote .framework` | Mettre à jour le framework |
+| `git submodule update --remote builder` | Mettre à jour le builder |
+| `git submodule status` | Voir les commits des submodules |
+| `git submodule foreach git pull` | Mettre à jour tous les submodules |
+| `cd .framework && git log --oneline -5` | Derniers commits du framework |
+| `cd builder && git log --oneline -5` | Derniers commits du builder |
 
 ---
 
 ## Voir aussi
 
 - [Démarrer un projet](getting-started.md)
-- [Composants](components.md)
+- [Configurateur](configurateur.md)
 - [Builder — Vue d'ensemble](builder-overview.md)
