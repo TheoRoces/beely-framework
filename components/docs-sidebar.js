@@ -21,6 +21,7 @@ registerComponent('docs-sidebar', function (slots) {
     { href: 'params.html',     label: 'Param\u00e8tres URL', key: 'params' },
     { href: 'wireframes.html', label: 'Wireframes',     key: 'wireframes' },
     { href: 'claude.html',     label: 'Claude Code',    key: 'claude' },
+    { href: 'submodule.html', label: 'Architecture Submodule', key: 'submodule' },
     { cat: 'Builder' },
     { href: 'builder-overview.html',     label: 'Vue d\'ensemble',     key: 'builder-overview' },
     { href: 'builder-dashboard.html',    label: 'Dashboard',           key: 'builder-dashboard' },

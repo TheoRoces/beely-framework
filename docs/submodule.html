@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture Submodule &mdash; Site System</title>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
+  <link rel="stylesheet" href="docs.css">
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/docs-sidebar.js"></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="docs.js" defer></script>
+</head>
+<body>
+
+  <div data-component="header"
+       data-site-name="SiteSystem"
+       data-logo-link="/index.html">
+    <template data-slot="nav"></template>
+    <template data-slot="search"></template>
+  </div>
+
+  <div class="container">
+    <div class="docs-layout">
+      <nav class="docs-sidebar" data-component="docs-sidebar" data-active="submodule"></nav>
+
+      <main class="docs-content">
+        <h1 class="anim-fade-in-up">Architecture Submodule</h1>
+        <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
+          Le framework Site System est une source de v&eacute;rit&eacute; unique partag&eacute;e entre tous les projets via <strong>git submodule</strong> et <strong>symlinks</strong>. Cette architecture garantit que chaque projet utilise toujours la derni&egrave;re version du framework sans duplication de code.
+        </p>
+
+        <div style="background: var(--color-bg-alt); padding: var(--space-4) var(--space-5); border-radius: var(--radius-lg); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
+          <strong style="font-size: var(--text-sm);">Sommaire de cette page</strong>
+          <ol style="font-size: var(--text-sm); color: var(--color-text-light); margin: var(--space-2) 0 0; padding-left: var(--space-5);">
+            <li><a href="#concept">Concept</a> &mdash; pourquoi un submodule</li>
+            <li><a href="#architecture">Architecture</a> &mdash; framework dans <code>.framework/</code> + symlinks</li>
+            <li><a href="#fichiers">Fichiers symlink&eacute;s vs r&eacute;els</a> &mdash; ce qui vient du framework vs ce qui est propre au projet</li>
+            <li><a href="#installation">Installation</a> &mdash; cloner et initialiser un projet</li>
+            <li><a href="#modifier-framework">Modifier le framework</a> &mdash; &eacute;diter, commiter et propager</li>
+            <li><a href="#mettre-a-jour">Mettre &agrave; jour le framework</a> &mdash; r&eacute;cup&eacute;rer les derni&egrave;res modifications</li>
+            <li><a href="#ajouter-fichier">Ajouter un nouveau fichier</a> &mdash; &eacute;tendre le framework</li>
+            <li><a href="#deploiement">D&eacute;ploiement</a> &mdash; rsync suit les symlinks</li>
+            <li><a href="#commandes">Commandes utiles</a> &mdash; r&eacute;f&eacute;rence rapide git submodule</li>
+          </ol>
+        </div>
+
+        <!-- ========== CONCEPT ========== -->
+
+        <h2 id="concept">Concept</h2>
+        <p>Le framework Site System est con&ccedil;u comme une <strong>source de v&eacute;rit&eacute; unique</strong> (single source of truth). Plut&ocirc;t que de copier les fichiers du framework dans chaque projet, on utilise un <strong>git submodule</strong> qui pointe vers le d&eacute;p&ocirc;t du framework.</p>
+        <p>Les avantages de cette approche :</p>
+        <ul>
+          <li><strong>Z&eacute;ro duplication</strong> &mdash; le code du framework n'existe qu'&agrave; un seul endroit</li>
+          <li><strong>Mises &agrave; jour centralis&eacute;es</strong> &mdash; une correction dans le framework profite &agrave; tous les projets</li>
+          <li><strong>Versioning ind&eacute;pendant</strong> &mdash; chaque projet peut &ecirc;tre &agrave; une version diff&eacute;rente du framework</li>
+          <li><strong>S&eacute;paration claire</strong> &mdash; les fichiers du framework et ceux du projet sont bien distincts</li>
+          <li><strong>Transparence</strong> &mdash; gr&acirc;ce aux symlinks, les chemins HTML restent identiques (ex: <code>core/css/tokens.css</code>)</li>
+        </ul>
+
+        <!-- ========== ARCHITECTURE ========== -->
+
+        <h2 id="architecture">Architecture</h2>
+        <p>Le framework vit dans le dossier <code>.framework/</code> &agrave; la racine du projet. Ce dossier est un <strong>git submodule</strong> qui pointe vers le d&eacute;p&ocirc;t GitHub du framework.</p>
+        <p>Des <strong>symlinks</strong> (liens symboliques) sont cr&eacute;&eacute;s &agrave; la racine du projet pour pointer vers les dossiers et fichiers du framework. Ainsi, les chemins relatifs utilis&eacute;s dans le HTML restent identiques :</p>
+
+<pre><code>mon-projet/
+&boxvr;&boxh;&boxh; .framework/              &larr; git submodule (d&eacute;p&ocirc;t du framework)
+&boxvr;&boxh;&boxh; core/                    &larr; symlink &rarr; .framework/core/
+&boxvr;&boxh;&boxh; components/              &larr; symlink &rarr; .framework/components/
+&boxvr;&boxh;&boxh; assets/                  &larr; symlink &rarr; .framework/assets/
+&boxvr;&boxh;&boxh; api/                     &larr; symlink &rarr; .framework/api/
+&boxvr;&boxh;&boxh; wireframes/              &larr; symlink &rarr; .framework/wireframes/
+&boxvr;&boxh;&boxh; snippets/                &larr; symlink &rarr; .framework/snippets/
+&boxvr;&boxh;&boxh; docs/                    &larr; symlink &rarr; .framework/docs/
+&boxvr;&boxh;&boxh; base-html.html           &larr; symlink &rarr; .framework/base-html.html
+&boxvr;&boxh;&boxh; base-index.html          &larr; symlink &rarr; .framework/base-index.html
+&boxvr;&boxh;&boxh; robots.txt               &larr; symlink &rarr; .framework/robots.txt
+&boxvr;&boxh;&boxh; generate-sitemap.js      &larr; symlink &rarr; .framework/generate-sitemap.js
+&boxvr;&boxh;&boxh; config-site.js           &larr; fichier r&eacute;el du projet
+&boxvr;&boxh;&boxh; index.html               &larr; fichier r&eacute;el du projet
+&boxvr;&boxh;&boxh; .htaccess                &larr; fichier r&eacute;el du projet
+&boxdr;&boxh;&boxh; deploy.sh                &larr; fichier r&eacute;el du projet</code></pre>
+
+        <p>Le HTML r&eacute;f&eacute;rence <code>core/css/tokens.css</code> comme d'habitude &mdash; le symlink redirige automatiquement vers <code>.framework/core/css/tokens.css</code>. Aucun changement n'est n&eacute;cessaire dans le code HTML.</p>
+
+        <!-- ========== FICHIERS SYMLINKÉS VS RÉELS ========== -->
+
+        <h2 id="fichiers">Fichiers symlink&eacute;s vs r&eacute;els</h2>
+        <p>Voici le d&eacute;tail complet de ce qui provient du framework (via symlink) et de ce qui est propre &agrave; chaque projet :</p>
+
+        <h3>Fichiers symlink&eacute;s (framework)</h3>
+        <p>Ces fichiers et dossiers sont des symlinks vers <code>.framework/</code>. Ils ne doivent <strong>jamais &ecirc;tre modifi&eacute;s directement</strong> dans le projet &mdash; les modifications se font dans le d&eacute;p&ocirc;t du framework.</p>
+        <table>
+          <tr><th>Chemin</th><th>Description</th></tr>
+          <tr><td><code>core/</code></td><td>CSS et JS du framework (tokens, base, animations, &eacute;l&eacute;ments, etc.)</td></tr>
+          <tr><td><code>components/</code></td><td>Composants r&eacute;utilisables (header, footer, card, sidebar, etc.)</td></tr>
+          <tr><td><code>assets/</code></td><td>Ic&ocirc;nes Heroicons, images par d&eacute;faut, favicons</td></tr>
+          <tr><td><code>api/</code></td><td>Endpoints PHP (proxy Baserow, formulaire, consentement RGPD)</td></tr>
+          <tr><td><code>wireframes/</code></td><td>375+ sections HTML pr&ecirc;tes &agrave; l'emploi</td></tr>
+          <tr><td><code>snippets/</code></td><td>Fragments HTML copiables</td></tr>
+          <tr><td><code>docs/</code></td><td>Documentation interactive du framework</td></tr>
+          <tr><td><code>base-html.html</code></td><td>Template HTML de base (page vierge)</td></tr>
+          <tr><td><code>base-index.html</code></td><td>Template de page d'accueil avec sections pr&eacute;-int&eacute;gr&eacute;es</td></tr>
+          <tr><td><code>robots.txt</code></td><td>Fichier robots.txt par d&eacute;faut</td></tr>
+          <tr><td><code>generate-sitemap.js</code></td><td>Script Node.js de g&eacute;n&eacute;ration du sitemap</td></tr>
+        </table>
+
+        <h3>Fichiers r&eacute;els (projet)</h3>
+        <p>Ces fichiers sont propres &agrave; chaque projet et ne sont <strong>pas partag&eacute;s</strong> entre projets. Ils sont versionn&eacute;s dans le d&eacute;p&ocirc;t du projet.</p>
+        <table>
+          <tr><th>Chemin</th><th>Description</th></tr>
+          <tr><td><code>config-site.js</code></td><td>Configuration du site (nom, analytics, blog, mentions l&eacute;gales)</td></tr>
+          <tr><td><code>index.html</code></td><td>Page d'accueil du projet</td></tr>
+          <tr><td><code>blog.html</code></td><td>Page listing du blog</td></tr>
+          <tr><td><code>blog/</code></td><td>Dossier des articles de blog</td></tr>
+          <tr><td><code>mentions-legales.html</code></td><td>Page mentions l&eacute;gales</td></tr>
+          <tr><td><code>confidentialite.html</code></td><td>Page politique de confidentialit&eacute;</td></tr>
+          <tr><td><code>404.html</code></td><td>Page d'erreur 404</td></tr>
+          <tr><td><code>data/</code></td><td>Donn&eacute;es sp&eacute;cifiques au projet</td></tr>
+          <tr><td><code>sitemap.xml</code></td><td>Sitemap g&eacute;n&eacute;r&eacute; pour le projet</td></tr>
+          <tr><td><code>.htaccess</code></td><td>Configuration Apache du projet</td></tr>
+          <tr><td><code>deploy.sh</code></td><td>Script de d&eacute;ploiement</td></tr>
+          <tr><td><code>CLAUDE.md</code></td><td>Directives Claude Code du projet</td></tr>
+          <tr><td><code>.env</code></td><td>Variables d'environnement sensibles</td></tr>
+          <tr><td><code>.deploy.env</code></td><td>Configuration SSH de d&eacute;ploiement</td></tr>
+          <tr><td><code>builder/</code></td><td>Dossier du Builder (si utilis&eacute;)</td></tr>
+          <tr><td><code>configurator.html</code></td><td>Configurateur de design tokens</td></tr>
+          <tr><td><code>configurator-server.py</code></td><td>Serveur Python pour le configurateur</td></tr>
+          <tr><td><code>pages.json</code></td><td>Registre des pages du Builder</td></tr>
+        </table>
+
+        <!-- ========== INSTALLATION ========== -->
+
+        <h2 id="installation">Installation</h2>
+        <p>Pour cloner un projet qui utilise le submodule framework :</p>
+
+        <h3>1. Cloner avec le submodule</h3>
+<pre><code>git clone --recursive https://github.com/votre-org/mon-projet.git
+cd mon-projet</code></pre>
+        <p>L'option <code>--recursive</code> clone automatiquement le submodule <code>.framework/</code> en m&ecirc;me temps que le projet.</p>
+
+        <h3>2. Ex&eacute;cuter le script d'installation</h3>
+<pre><code>./setup.sh</code></pre>
+        <p>Le script <code>setup.sh</code> cr&eacute;e tous les symlinks n&eacute;cessaires &agrave; la racine du projet. Il v&eacute;rifie que le submodule est bien initialis&eacute; et affiche un r&eacute;capitulatif des liens cr&eacute;&eacute;s.</p>
+
+        <h3>Si le submodule n'a pas &eacute;t&eacute; clon&eacute;</h3>
+        <p>Si vous avez clon&eacute; sans <code>--recursive</code>, initialisez le submodule manuellement :</p>
+<pre><code>git submodule init
+git submodule update</code></pre>
+        <p>Puis lancez <code>./setup.sh</code> pour cr&eacute;er les symlinks.</p>
+
+        <!-- ========== MODIFIER LE FRAMEWORK ========== -->
+
+        <h2 id="modifier-framework">Modifier le framework</h2>
+        <p>Pour apporter des modifications au framework (corrections, nouvelles fonctionnalit&eacute;s, nouveaux wireframes) :</p>
+
+        <h3>1. Naviguer dans le submodule</h3>
+<pre><code>cd .framework/</code></pre>
+
+        <h3>2. &Eacute;diter les fichiers</h3>
+        <p>Modifiez les fichiers normalement. Gr&acirc;ce aux symlinks, les changements sont <strong>imm&eacute;diatement visibles</strong> dans le projet parent &mdash; pas besoin de copier ou synchroniser quoi que ce soit.</p>
+
+        <h3>3. Commiter et pousser</h3>
+<pre><code>git add -A
+git commit -m "Description de la modification"
+git push</code></pre>
+
+        <h3>4. Mettre &agrave; jour la r&eacute;f&eacute;rence dans le projet parent</h3>
+        <p>De retour &agrave; la racine du projet, mettez &agrave; jour la r&eacute;f&eacute;rence du submodule :</p>
+<pre><code>cd ..
+git add .framework
+git commit -m "Update framework submodule"
+git push</code></pre>
+        <p>Cela enregistre le nouveau commit du framework dans le projet parent.</p>
+
+        <!-- ========== METTRE À JOUR ========== -->
+
+        <h2 id="mettre-a-jour">Mettre &agrave; jour le framework</h2>
+        <p>Pour r&eacute;cup&eacute;rer les derni&egrave;res modifications du framework dans votre projet :</p>
+
+<pre><code>git submodule update --remote .framework</code></pre>
+
+        <p>Cette commande met &agrave; jour le submodule vers le dernier commit de la branche <code>main</code> du framework. Les symlinks continuent de fonctionner sans intervention &mdash; ils pointent vers <code>.framework/</code> dont le contenu vient d'&ecirc;tre mis &agrave; jour.</p>
+
+        <p>N'oubliez pas de commiter la mise &agrave; jour dans le projet parent :</p>
+<pre><code>git add .framework
+git commit -m "Update framework to latest version"
+git push</code></pre>
+
+        <!-- ========== AJOUTER UN FICHIER ========== -->
+
+        <h2 id="ajouter-fichier">Ajouter un nouveau fichier au framework</h2>
+        <p>Quand vous ajoutez un nouveau fichier ou dossier dans le d&eacute;p&ocirc;t du framework :</p>
+
+        <h3>1. Ajouter dans le d&eacute;p&ocirc;t framework</h3>
+        <p>Cr&eacute;ez le fichier dans <code>.framework/</code>, commitez et poussez.</p>
+
+        <h3>2. Cr&eacute;er le symlink si n&eacute;cessaire</h3>
+        <p>Si le fichier doit &ecirc;tre accessible &agrave; la racine du projet, ajoutez un symlink :</p>
+<pre><code>ln -s .framework/nouveau-dossier nouveau-dossier</code></pre>
+        <p>Les fichiers <em>dans</em> des dossiers d&eacute;j&agrave; symlink&eacute;s (comme <code>core/</code>, <code>components/</code>) sont automatiquement accessibles &mdash; pas besoin de symlink suppl&eacute;mentaire.</p>
+
+        <h3>3. Mettre &agrave; jour setup.sh</h3>
+        <p>Ajoutez le nouveau symlink dans <code>setup.sh</code> pour que les futurs clones le cr&eacute;ent automatiquement.</p>
+
+        <!-- ========== DÉPLOIEMENT ========== -->
+
+        <h2 id="deploiement">D&eacute;ploiement</h2>
+        <p>Le script <code>deploy.sh</code> utilise <strong>rsync</strong> avec l'option <code>-L</code> (follow symlinks). Lors du d&eacute;ploiement, rsync suit les symlinks et copie les fichiers r&eacute;els sur le serveur &mdash; le serveur re&ccedil;oit une structure &agrave; plat, sans symlinks ni submodule.</p>
+
+<pre><code># Extrait de deploy.sh
+rsync -avz -L --delete \
+  --exclude-from='.rsync-exclude' \
+  ./ user@serveur:/chemin/</code></pre>
+
+        <p>Le dossier <code>.framework/</code> est exclu du d&eacute;ploiement via <code>.rsync-exclude</code> (les fichiers sont d&eacute;j&agrave; d&eacute;ploy&eacute;s via les symlinks suivis par rsync).</p>
+
+        <p><strong>Points importants :</strong></p>
+        <ul>
+          <li>Le serveur ne contient <strong>aucun symlink</strong> &mdash; uniquement les fichiers r&eacute;els</li>
+          <li>Le dossier <code>.framework/</code> n'est <strong>jamais d&eacute;ploy&eacute;</strong></li>
+          <li>L'option <code>-L</code> est <strong>essentielle</strong> &mdash; sans elle, rsync copierait les symlinks au lieu des fichiers</li>
+        </ul>
+
+        <!-- ========== COMMANDES UTILES ========== -->
+
+        <h2 id="commandes">Commandes utiles</h2>
+        <p>R&eacute;f&eacute;rence rapide des commandes git submodule les plus courantes :</p>
+
+        <table>
+          <tr><th>Commande</th><th>Description</th></tr>
+          <tr>
+            <td><code>git clone --recursive &lt;url&gt;</code></td>
+            <td>Cloner un projet avec son submodule</td>
+          </tr>
+          <tr>
+            <td><code>git submodule init</code></td>
+            <td>Initialiser le submodule (apr&egrave;s un clone sans <code>--recursive</code>)</td>
+          </tr>
+          <tr>
+            <td><code>git submodule update</code></td>
+            <td>Mettre &agrave; jour le submodule au commit r&eacute;f&eacute;renc&eacute;</td>
+          </tr>
+          <tr>
+            <td><code>git submodule update --remote .framework</code></td>
+            <td>Mettre &agrave; jour vers le dernier commit de la branche distante</td>
+          </tr>
+          <tr>
+            <td><code>git submodule status</code></td>
+            <td>Afficher le commit actuel du submodule</td>
+          </tr>
+          <tr>
+            <td><code>git diff --submodule</code></td>
+            <td>Voir les changements dans le submodule</td>
+          </tr>
+          <tr>
+            <td><code>cd .framework &amp;&amp; git log --oneline -5</code></td>
+            <td>Voir les derniers commits du framework</td>
+          </tr>
+          <tr>
+            <td><code>cd .framework &amp;&amp; git pull</code></td>
+            <td>Tirer les derni&egrave;res modifications du framework</td>
+          </tr>
+          <tr>
+            <td><code>git submodule foreach git pull</code></td>
+            <td>Mettre &agrave; jour tous les submodules (si plusieurs)</td>
+          </tr>
+          <tr>
+            <td><code>git submodule add &lt;url&gt; .framework</code></td>
+            <td>Ajouter le submodule framework &agrave; un projet existant</td>
+          </tr>
+        </table>
+
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>
