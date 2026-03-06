@@ -58,14 +58,14 @@ Le dossier `builder/` contient l'ensemble du code :
 | Fichier | Description |
 |---------|-------------|
 | `builder/index.html` | Interface HTML principale |
-| `builder/builder.css` | Styles (layout, panels, sidebar) |
-| `builder/js/builder-app.js` | Shell principal : navigation entre panels, état global, initialisation |
-| `builder/js/builder-api.js` | Client HTTP pour communiquer avec l'API backend Python |
-| `builder/js/builder-pages.js` | Gestion des pages : arborescence, création, suppression, métadonnées |
-| `builder/js/builder-library.js` | Bibliothèque : icônes et médiathèque |
-| `builder/js/builder-configurator.js` | Configurateur de design tokens |
-| `builder/js/builder-publish.js` | Déploiement en production/pré-production et gestion git |
-| `builder/js/builder-modal.js` | Système de modales : confirm, prompt, alertes |
+| `builder/configurateur.css` | Styles (layout, panels, sidebar) |
+| `builder/js/configurateur-app.js` | Shell principal : navigation entre panels, état global, initialisation |
+| `builder/js/configurateur-api.js` | Client HTTP pour communiquer avec l'API backend Python |
+| `builder/js/configurateur-pages.js` | Gestion des pages : arborescence, création, suppression, métadonnées |
+| `builder/js/configurateur-library.js` | Bibliothèque : icônes et médiathèque |
+| `builder/js/configurateur-config.js` | Configurateur de design tokens |
+| `builder/js/configurateur-publish.js` | Déploiement en production/pré-production et gestion git |
+| `builder/js/configurateur-modal.js` | Système de modales : confirm, prompt, alertes |
 
 ## Panels
 

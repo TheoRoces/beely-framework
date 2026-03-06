@@ -69,7 +69,7 @@ Clique sur une image (pas sur un bouton) pour ouvrir le popup d'édition :
 
 ## Module JS
 
-`builder-library.js` gère les panels icônes et médiathèque.
+`configurateur-library.js` gère les panels icônes et médiathèque.
 
 - Exposé via `window.BuilderLibrary.refresh(panelId)`
 - Le `panelId` correspond à :

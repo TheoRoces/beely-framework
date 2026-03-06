@@ -120,7 +120,7 @@ mon-projet/
 ├── .framework/              ← submodule beely-framework
 ├── builder/                 ← submodule beely-builder
 │   ├── index.html           ← Configurateur UI
-│   ├── builder.css
+│   ├── configurateur.css
 │   ├── configurator.html    ← Configurateur intégré
 │   ├── configurator-server.py ← Serveur de dev
 │   └── js/                  ← 9 modules JS

@@ -130,7 +130,7 @@ chmod +x deploy.sh
 
 ## Module JS
 
-L'interface de déploiement est gérée par le module `builder-publish.js`. Il expose ses méthodes via l'objet global `window.BuilderPublish`.
+L'interface de déploiement est gérée par le module `configurateur-publish.js`. Il expose ses méthodes via l'objet global `window.BuilderPublish`.
 
 ### API utilisées
 
@@ -161,7 +161,7 @@ BuilderAPI.deployConfig().then(config => {
 
 ### Module source
 
-Le fichier source du module est `builder-publish.js`. Il est chargé par le Configurateur et initialisé automatiquement lorsque le dropdown de publication est ouvert.
+Le fichier source du module est `configurateur-publish.js`. Il est chargé par le Configurateur et initialisé automatiquement lorsque le dropdown de publication est ouvert.
 
 ## Voir aussi
 

@@ -51,7 +51,7 @@ Le rafraîchissement recharge les données depuis `pages.json` et met à jour le
 
 ## API JavaScript
 
-Le dashboard est géré par le module `builder-dashboard.js`. Il expose une méthode publique via l'objet global `window.BuilderDashboard`.
+Le dashboard est géré par le module `configurateur-pages.js`. Il expose une méthode publique via l'objet global `window.BuilderDashboard`.
 
 | Méthode | Description |
 |---|---|
@@ -73,7 +73,7 @@ document.querySelector('.btn-save').addEventListener('click', () => {
 
 ### Module source
 
-Le fichier source du module est `builder-dashboard.js`. Il est chargé par le Configurateur et initialisé automatiquement lorsque le panel Dashboard est activé.
+Le fichier source du module est `configurateur-pages.js`. Il est chargé par le Configurateur et initialisé automatiquement lorsque le panel Dashboard est activé.
 
 ## Voir aussi
 

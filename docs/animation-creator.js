@@ -75,8 +75,10 @@
     box.className = 'creator__preview-item';
     // Forcer un reflow pour que le navigateur peigne l'état visible
     void box.offsetWidth;
-    // Ajouter les classes d'animation (opacity: 0, transforms)
-    var classes = getAnimClasses();
+    // Ajouter les classes d'animation SANS le delay (pas pertinent pour le preview)
+    var classes = [state.type];
+    if (state.duration) classes.push(state.duration);
+    if (state.easing) classes.push(state.easing);
     classes.forEach(function (cls) { box.classList.add(cls); });
     // Forcer un reflow pour peindre l'état invisible
     void box.offsetWidth;
@@ -236,6 +238,7 @@
         var label = document.getElementById('animCreatorDelayValue');
         if (label) label.textContent = (state.delay * 100) + 'ms';
         updateOutput();
+        replayPreview();
       });
     }
 

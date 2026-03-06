@@ -8,7 +8,7 @@ Le configurateur est intégré nativement dans le Configurateur — il ne s'agit
 
 - Les **styles sont scopés** pour éviter les conflits avec le reste du Configurateur
 - Les **scripts sont exécutés** dans le contexte du Configurateur (accès au DOM principal)
-- Module JS : `builder-configurator.js`
+- Module JS : `configurateur-config.js`
 
 ## Fichiers configurables
 

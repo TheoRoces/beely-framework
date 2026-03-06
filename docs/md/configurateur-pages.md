@@ -164,7 +164,7 @@ Le fichier `pages.json` est le registre central qui stocke toutes les métadonn�
 
 ## Module JavaScript
 
-La logique du panneau Pages est gérée par le module `builder-pages.js`. Ce module est responsable de :
+La logique du panneau Pages est gérée par le module `configurateur-pages.js`. Ce module est responsable de :
 
 - L'affichage et la mise à jour de l'arbre hiérarchique
 - Les opérations CRUD (création, renommage, suppression, duplication)

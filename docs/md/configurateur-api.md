@@ -101,7 +101,7 @@ Le fichier `pages.json` stocke la configuration de toutes les pages et l'état d
 
 ## Client JavaScript
 
-Le fichier `builder-api.js` encapsule tous les appels API. Toutes les méthodes retournent des **Promises**.
+Le fichier `configurateur-api.js` encapsule tous les appels API. Toutes les méthodes retournent des **Promises**.
 
 ### Méthodes disponibles
 
