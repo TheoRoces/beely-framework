@@ -170,7 +170,7 @@ ln -s .framework/api api
 ln -s .framework/wireframes wireframes
 ln -s .framework/snippets snippets
 ln -s .framework/docs docs
-ln -s .framework/base-index.html base-index.html
+cd pages && ln -s ../.framework/base-index.html base-index.html && cd ..
 ln -s .framework/robots.txt robots.txt
 ln -s .framework/generate-sitemap.js generate-sitemap.js</code></pre>
 
@@ -337,8 +337,10 @@ git commit -m "Add Site System framework"</code></pre>
         <!-- ========== CRÉER DES PAGES ========== -->
 
         <h2 id="creer-des-pages">Cr&eacute;er des pages</h2>
+        <p>Les pages sont cr&eacute;&eacute;es dans le dossier <code>pages/</code>. Les chemins relatifs utilisent le pr&eacute;fixe <code>../</code> pour remonter vers la racine du projet. Le Configurateur ajuste ces chemins automatiquement lors de la cr&eacute;ation d'une page.</p>
         <p>Copiez <code>snippets/page.html</code> comme mod&egrave;le pour chaque nouvelle page. Structure minimale&nbsp;:</p>
-<pre><code>&lt;!DOCTYPE html&gt;
+<pre><code>&lt;!-- Dans pages/contact.html --&gt;
+&lt;!DOCTYPE html&gt;
 &lt;html lang="fr"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
@@ -347,35 +349,35 @@ git commit -m "Add Site System framework"</code></pre>
   &lt;meta name="description" content="Description SEO de la page."&gt;
 
   &lt;!-- Dark mode + Config (synchrone) --&gt;
-  &lt;script src="core/js/darkmode.js"&gt;&lt;/script&gt;
-  &lt;script src="config-site.js"&gt;&lt;/script&gt;
-  &lt;script src="core/js/site.js"&gt;&lt;/script&gt;
+  &lt;script src="../core/js/darkmode.js"&gt;&lt;/script&gt;
+  &lt;script src="../config-site.js"&gt;&lt;/script&gt;
+  &lt;script src="../core/js/site.js"&gt;&lt;/script&gt;
 
   &lt;!-- CSS (requis) --&gt;
-  &lt;link rel="stylesheet" href="core/css/tokens.css"&gt;
-  &lt;link rel="stylesheet" href="core/css/base.css"&gt;
-  &lt;link rel="stylesheet" href="core/css/cookies.css"&gt;
+  &lt;link rel="stylesheet" href="../core/css/tokens.css"&gt;
+  &lt;link rel="stylesheet" href="../core/css/base.css"&gt;
+  &lt;link rel="stylesheet" href="../core/css/cookies.css"&gt;
 
   &lt;!-- CSS (optionnel &mdash; ajoutez selon vos besoins) --&gt;
-  &lt;link rel="stylesheet" href="core/css/animations.css"&gt;
-  &lt;link rel="stylesheet" href="core/css/elements.css"&gt;
-  &lt;link rel="stylesheet" href="core/css/forms.css"&gt;
-  &lt;link rel="stylesheet" href="core/css/grid.css"&gt;
-  &lt;link rel="stylesheet" href="core/css/icons.css"&gt;
-  &lt;!-- &lt;link rel="stylesheet" href="core/css/blog.css"&gt; --&gt;
+  &lt;link rel="stylesheet" href="../core/css/animations.css"&gt;
+  &lt;link rel="stylesheet" href="../core/css/elements.css"&gt;
+  &lt;link rel="stylesheet" href="../core/css/forms.css"&gt;
+  &lt;link rel="stylesheet" href="../core/css/grid.css"&gt;
+  &lt;link rel="stylesheet" href="../core/css/icons.css"&gt;
+  &lt;!-- &lt;link rel="stylesheet" href="../core/css/blog.css"&gt; --&gt;
 
   &lt;!-- Composants (synchrone) --&gt;
-  &lt;script src="core/js/components.js"&gt;&lt;/script&gt;
-  &lt;script src="components/header.js"&gt;&lt;/script&gt;
-  &lt;script src="components/footer.js"&gt;&lt;/script&gt;
+  &lt;script src="../core/js/components.js"&gt;&lt;/script&gt;
+  &lt;script src="../components/header.js"&gt;&lt;/script&gt;
+  &lt;script src="../components/footer.js"&gt;&lt;/script&gt;
 
   &lt;!-- JS interactifs (defer &mdash; ajoutez selon vos besoins) --&gt;
-  &lt;script src="core/js/animations.js" defer&gt;&lt;/script&gt;
-  &lt;script src="core/js/elements.js" defer&gt;&lt;/script&gt;
-  &lt;script src="core/js/forms.js" defer&gt;&lt;/script&gt;
-  &lt;script src="core/js/icons.js" defer&gt;&lt;/script&gt;
-  &lt;script src="core/js/params.js" defer&gt;&lt;/script&gt;
-  &lt;script src="core/js/cookies.js" defer&gt;&lt;/script&gt;
+  &lt;script src="../core/js/animations.js" defer&gt;&lt;/script&gt;
+  &lt;script src="../core/js/elements.js" defer&gt;&lt;/script&gt;
+  &lt;script src="../core/js/forms.js" defer&gt;&lt;/script&gt;
+  &lt;script src="../core/js/icons.js" defer&gt;&lt;/script&gt;
+  &lt;script src="../core/js/params.js" defer&gt;&lt;/script&gt;
+  &lt;script src="../core/js/cookies.js" defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
 

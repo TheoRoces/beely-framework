@@ -136,7 +136,7 @@ ln -s .framework/api api
 ln -s .framework/wireframes wireframes
 ln -s .framework/snippets snippets
 ln -s .framework/docs docs
-ln -s .framework/base-index.html base-index.html
+cd pages && ln -s ../.framework/base-index.html base-index.html && cd ..
 ln -s .framework/robots.txt robots.txt
 ln -s .framework/generate-sitemap.js generate-sitemap.js
 ```
@@ -347,9 +347,12 @@ Les composants (`components/*.js`) ne sont à modifier que si vous changez la st
 
 ## Créer des pages
 
+Les pages sont créées dans le dossier `pages/`. Les chemins relatifs utilisent le préfixe `../` pour remonter vers la racine du projet. Le Configurateur ajuste ces chemins automatiquement lors de la création d'une page.
+
 Copiez `snippets/page.html` comme modèle pour chaque nouvelle page. Structure minimale :
 
 ```html
+<!-- Dans pages/contact.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -359,35 +362,35 @@ Copiez `snippets/page.html` comme modèle pour chaque nouvelle page. Structure m
   <meta name="description" content="Description SEO de la page.">
 
   <!-- Dark mode + Config (synchrone) -->
-  <script src="core/js/darkmode.js"></script>
-  <script src="config-site.js"></script>
-  <script src="core/js/site.js"></script>
+  <script src="../core/js/darkmode.js"></script>
+  <script src="../config-site.js"></script>
+  <script src="../core/js/site.js"></script>
 
   <!-- CSS (requis) -->
-  <link rel="stylesheet" href="core/css/tokens.css">
-  <link rel="stylesheet" href="core/css/base.css">
-  <link rel="stylesheet" href="core/css/cookies.css">
+  <link rel="stylesheet" href="../core/css/tokens.css">
+  <link rel="stylesheet" href="../core/css/base.css">
+  <link rel="stylesheet" href="../core/css/cookies.css">
 
   <!-- CSS (optionnel — ajoutez selon vos besoins) -->
-  <link rel="stylesheet" href="core/css/animations.css">
-  <link rel="stylesheet" href="core/css/elements.css">
-  <link rel="stylesheet" href="core/css/forms.css">
-  <link rel="stylesheet" href="core/css/grid.css">
-  <link rel="stylesheet" href="core/css/icons.css">
-  <!-- <link rel="stylesheet" href="core/css/blog.css"> -->
+  <link rel="stylesheet" href="../core/css/animations.css">
+  <link rel="stylesheet" href="../core/css/elements.css">
+  <link rel="stylesheet" href="../core/css/forms.css">
+  <link rel="stylesheet" href="../core/css/grid.css">
+  <link rel="stylesheet" href="../core/css/icons.css">
+  <!-- <link rel="stylesheet" href="../core/css/blog.css"> -->
 
   <!-- Composants (synchrone) -->
-  <script src="core/js/components.js"></script>
-  <script src="components/header.js"></script>
-  <script src="components/footer.js"></script>
+  <script src="../core/js/components.js"></script>
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
 
   <!-- JS interactifs (defer — ajoutez selon vos besoins) -->
-  <script src="core/js/animations.js" defer></script>
-  <script src="core/js/elements.js" defer></script>
-  <script src="core/js/forms.js" defer></script>
-  <script src="core/js/icons.js" defer></script>
-  <script src="core/js/params.js" defer></script>
-  <script src="core/js/cookies.js" defer></script>
+  <script src="../core/js/animations.js" defer></script>
+  <script src="../core/js/elements.js" defer></script>
+  <script src="../core/js/forms.js" defer></script>
+  <script src="../core/js/icons.js" defer></script>
+  <script src="../core/js/params.js" defer></script>
+  <script src="../core/js/cookies.js" defer></script>
 </head>
 <body>
 

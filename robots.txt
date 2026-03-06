@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://docs.beely.studio/sitemap.xml
+Sitemap: https://framework.beely.studio/sitemap.xml

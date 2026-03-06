@@ -50,27 +50,49 @@
 
         <h2>Arbre hi&eacute;rarchique</h2>
         <p>
-          Les pages sont affich&eacute;es dans une arborescence qui refl&egrave;te la structure de dossiers du site. La hi&eacute;rarchie parent/enfant est auto-d&eacute;tect&eacute;e &agrave; partir du syst&egrave;me de fichiers :
+          Les pages sont stock&eacute;es dans le dossier <code>pages/</code> du projet. L'arbre refl&egrave;te cette structure :
         </p>
         <ul>
-          <li><code>index.html</code> &mdash; page racine</li>
+          <li><code>index.html</code> &mdash; page d'accueil (verrouill&eacute;e &agrave; la racine)</li>
           <li><code>blog.html</code> &mdash; page parente</li>
-          <li><code>blog/article.html</code> &mdash; page enfant de <code>blog.html</code></li>
+          <li><code>blog/article.html</code> &mdash; page enfant (template) dans <code>pages/blog/</code></li>
           <li><code>services.html</code> &mdash; page parente</li>
-          <li><code>services/consulting.html</code> &mdash; page enfant de <code>services.html</code></li>
+          <li><code>services/consulting.html</code> &mdash; page enfant dans <code>pages/services/</code></li>
         </ul>
         <p>
-          L'ordre d'affichage peut &ecirc;tre personnalis&eacute; via le champ <strong>Ordre</strong> dans les m&eacute;tadonn&eacute;es de chaque page. La page parente peut &eacute;galement &ecirc;tre modifi&eacute;e manuellement via le champ <strong>Page parente</strong>.
+          Les chemins affich&eacute;s sont relatifs au dossier <code>pages/</code>. Imbriquer une page comme enfant d'une autre <strong>d&eacute;place physiquement le fichier</strong> dans le sous-dossier correspondant sur le disque.
+        </p>
+        <p>
+          L'ordre d'affichage peut &ecirc;tre personnalis&eacute; via le champ <strong>Ordre</strong> dans les m&eacute;tadonn&eacute;es de chaque page.
+        </p>
+
+        <h3>Drag &amp; drop</h3>
+        <p>
+          L'arbre supporte le drag &amp; drop pour r&eacute;organiser les pages :
+        </p>
+        <ul>
+          <li><strong>Zone haute (25%)</strong> : ins&eacute;rer la page avant la cible</li>
+          <li><strong>Zone centrale (50%)</strong> : imbriquer la page comme enfant de la cible</li>
+          <li><strong>Zone basse (25%)</strong> : ins&eacute;rer la page apr&egrave;s la cible</li>
+        </ul>
+        <p>
+          Lorsqu'une page est imbriqu&eacute;e sous une autre, le fichier HTML est <strong>physiquement d&eacute;plac&eacute;</strong> dans un sous-dossier sur le disque. Par exemple, glisser <code>contact.html</code> sur <code>services.html</code> d&eacute;place le fichier de <code>pages/contact.html</code> vers <code>pages/services/contact.html</code>. D&eacute;-nester une page la ram&egrave;ne &agrave; la racine de <code>pages/</code>.
+        </p>
+        <p>
+          La page d'accueil est <strong>verrouill&eacute;e</strong> : elle ne peut &ecirc;tre ni d&eacute;plac&eacute;e, ni imbriqu&eacute;e. Les pages templates sont &eacute;galement non-d&eacute;pla&ccedil;ables.
+        </p>
+        <p>
+          Les dossiers vides sont automatiquement supprim&eacute;s apr&egrave;s un d&eacute;placement.
         </p>
 
         <h2>Op&eacute;rations CRUD</h2>
 
         <h3>Cr&eacute;er une page</h3>
         <p>
-          Cliquez sur le bouton <strong>+</strong> dans le header du panneau. Une modale appara&icirc;t pour saisir le nom du fichier. L'extension <code>.html</code> est ajout&eacute;e automatiquement si elle n'est pas pr&eacute;cis&eacute;e. La nouvelle page est cr&eacute;&eacute;e &agrave; partir du template <code>base-index.html</code>.
+          Cliquez sur le bouton <strong>+</strong> dans le header du panneau. Une modale appara&icirc;t pour saisir le nom du fichier. L'extension <code>.html</code> est ajout&eacute;e automatiquement. La nouvelle page est cr&eacute;&eacute;e dans le dossier <code>pages/</code> &agrave; partir du template <code>snippets/page.html</code>, dont les chemins relatifs sont automatiquement ajust&eacute;s.
         </p>
-<pre><code>// Exemple : saisir "contact" cr&eacute;e le fichier contact.html
-// Exemple : saisir "services/consulting" cr&eacute;e le fichier services/consulting.html</code></pre>
+<pre><code>// Exemple : saisir "contact" cr&eacute;e pages/contact.html
+// Exemple : saisir "services/consulting" cr&eacute;e pages/services/consulting.html</code></pre>
 
         <h3>Renommer une page</h3>
         <p>
@@ -122,20 +144,23 @@
           <li>Renomm&eacute;es</li>
         </ul>
         <p>
-          Les pages en lecture seule ne peuvent pas &ecirc;tre supprim&eacute;es ni renomm&eacute;es, mais leurs m&eacute;tadonn&eacute;es restent modifiables. Cela concerne typiquement les pages syst&egrave;me comme <code>404.html</code>, <code>mentions-legales.html</code> ou <code>confidentialite.html</code>.
+          Les pages en lecture seule ne peuvent pas &ecirc;tre supprim&eacute;es ni renomm&eacute;es, mais leurs m&eacute;tadonn&eacute;es restent modifiables. Cela concerne typiquement les pages syst&egrave;me comme <code>404.html</code>.
         </p>
 
         <h2>Pages template</h2>
         <p>
-          Les pages marqu&eacute;es <code>isTemplate</code> sont situ&eacute;es dans des dossiers template. Elles servent de mod&egrave;le pour la cr&eacute;ation de nouvelles pages. Par exemple, <code>base-index.html</code> est utilis&eacute; comme template par d&eacute;faut lors de la cr&eacute;ation d'une nouvelle page.
+          Les pages templates sont d&eacute;tect&eacute;es automatiquement : une page situ&eacute;e dans un sous-dossier dont le nom correspond &agrave; une page parente de premier niveau est marqu&eacute;e comme template. Par exemple, <code>blog/article.html</code> est un template car <code>blog.html</code> existe &agrave; la racine de <code>pages/</code>.
         </p>
         <p>
-          Les pages template apparaissent dans l'arbre avec un indicateur visuel distinct et ne sont pas publi&eacute;es sur le site final.
+          Les pages template apparaissent dans l'arbre avec un indicateur visuel distinct et ne sont pas publi&eacute;es sur le site final. Elles ne peuvent pas &ecirc;tre d&eacute;plac&eacute;es via le drag &amp; drop.
         </p>
 
         <h2>Registre <code>pages.json</code></h2>
         <p>
-          Le fichier <code>pages.json</code> est le registre central qui stocke toutes les m&eacute;tadonn&eacute;es des pages du site. Il est synchronis&eacute; automatiquement avec le syst&egrave;me de fichiers : si un fichier HTML est ajout&eacute; ou supprim&eacute; manuellement, le registre est mis &agrave; jour au prochain chargement.
+          Le fichier <code>pages.json</code> est le registre central qui stocke toutes les m&eacute;tadonn&eacute;es des pages du site. Les chemins (<code>path</code>) sont stock&eacute;s <strong>relativement au dossier <code>pages/</code></strong> (ex : <code>blog.html</code>, et non <code>pages/blog.html</code>). Le fichier r&eacute;el sur le disque se trouve &agrave; <code>pages/blog.html</code>.
+        </p>
+        <p>
+          Le registre est synchronis&eacute; automatiquement avec le syst&egrave;me de fichiers : si un fichier HTML est ajout&eacute; ou supprim&eacute; manuellement dans <code>pages/</code>, le registre est mis &agrave; jour au prochain chargement.
         </p>
 
         <h3>Structure du registre</h3>
@@ -196,7 +221,7 @@
         <table>
           <tr><th>Propri&eacute;t&eacute;</th><th>Type</th><th>Description</th></tr>
           <tr><td><code>title</code></td><td>String</td><td>Titre de la page</td></tr>
-          <tr><td><code>path</code></td><td>String</td><td>Chemin relatif du fichier HTML</td></tr>
+          <tr><td><code>path</code></td><td>String</td><td>Chemin relatif du fichier HTML par rapport au dossier <code>pages/</code></td></tr>
           <tr><td><code>slug</code></td><td>String</td><td>URL propre</td></tr>
           <tr><td><code>metaTitle</code></td><td>String</td><td>Titre SEO (override)</td></tr>
           <tr><td><code>metaDescription</code></td><td>String</td><td>Description SEO (override)</td></tr>
@@ -222,6 +247,8 @@
           <li>L'affichage et la sauvegarde du panneau de m&eacute;tadonn&eacute;es</li>
           <li>La gestion du drag &amp; drop pour r&eacute;organiser l'arbre</li>
           <li>La d&eacute;tection automatique de la hi&eacute;rarchie parent/enfant</li>
+          <li>Le d&eacute;placement physique des fichiers sur le disque via <code>movePageToDisk()</code></li>
+          <li>Le calcul des nouveaux chemins lors d'un drag &amp; drop via <code>computeNewPath()</code></li>
         </ul>
 
         <h2>Voir aussi</h2>

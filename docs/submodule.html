@@ -195,6 +195,12 @@ cp .env.example .env</code></pre>
 <pre><code>mon-projet/
 &boxvr;&boxh;&boxh; .framework/              &larr; submodule beely-framework
 &boxvr;&boxh;&boxh; configurateur/           &larr; submodule beely-builder
+&boxvr;&boxh;&boxh; pages/                   &larr; pages du site
+&boxvr;   &boxvr;&boxh;&boxh; index.html       &larr; page d'accueil
+&boxvr;   &boxvr;&boxh;&boxh; blog.html        &larr; blog
+&boxvr;   &boxvr;&boxh;&boxh; blog/article.html &larr; template article
+&boxvr;   &boxvr;&boxh;&boxh; css/             &larr; styles custom du projet
+&boxvr;   &boxdr;&boxh;&boxh; js/              &larr; scripts custom du projet
 &boxvr;&boxh;&boxh; core/                    &larr; symlink &rarr; .framework/core/
 &boxvr;&boxh;&boxh; components/              &larr; symlink &rarr; .framework/components/
 &boxvr;&boxh;&boxh; assets/                  &larr; symlink &rarr; .framework/assets/
@@ -202,11 +208,16 @@ cp .env.example .env</code></pre>
 &boxvr;&boxh;&boxh; wireframes/              &larr; symlink &rarr; .framework/wireframes/
 &boxvr;&boxh;&boxh; snippets/                &larr; symlink &rarr; .framework/snippets/
 &boxvr;&boxh;&boxh; docs/                    &larr; symlink &rarr; .framework/docs/
+&boxvr;&boxh;&boxh; pages/base-index.html    &larr; symlink &rarr; ../.framework/base-index.html
+&boxvr;&boxh;&boxh; robots.txt               &larr; symlink &rarr; .framework/robots.txt
+&boxvr;&boxh;&boxh; generate-sitemap.js      &larr; symlink &rarr; .framework/generate-sitemap.js
 &boxvr;&boxh;&boxh; config-site.js           &larr; fichier r&eacute;el du projet
-&boxvr;&boxh;&boxh; index.html               &larr; fichier r&eacute;el du projet
+&boxvr;&boxh;&boxh; 404.html                 &larr; page d'erreur (racine)
 &boxvr;&boxh;&boxh; .htaccess                &larr; fichier r&eacute;el du projet
-&boxdr;&boxh;&boxh; deploy.sh                &larr; fichier r&eacute;el du projet</code></pre>
-        <p>Le HTML r&eacute;f&eacute;rence <code>core/css/tokens.css</code> comme d'habitude &mdash; le symlink redirige automatiquement vers <code>.framework/core/css/tokens.css</code>.</p>
+&boxvr;&boxh;&boxh; deploy.sh                &larr; fichier r&eacute;el du projet
+&boxvr;&boxh;&boxh; setup.sh                 &larr; fichier r&eacute;el du projet
+&boxdr;&boxh;&boxh; .gitmodules              &larr; r&eacute;f&eacute;rence les 2 submodules</code></pre>
+        <p>Les pages utilisent des chemins relatifs (<code>../core/css/tokens.css</code>) &mdash; le <code>../</code> remonte d'un niveau depuis <code>pages/</code> vers la racine o&ugrave; les symlinks redirigent automatiquement vers <code>.framework/</code>.</p>
 
         <!-- ========== FICHIERS ========== -->
 
@@ -230,9 +241,16 @@ cp .env.example .env</code></pre>
         <table>
           <tr><th>Chemin</th><th>Description</th></tr>
           <tr><td><code>config-site.js</code></td><td>Configuration du site (nom, analytics, blog, mentions l&eacute;gales)</td></tr>
-          <tr><td><code>index.html</code></td><td>Page d'accueil</td></tr>
-          <tr><td><code>.htaccess</code></td><td>Configuration Apache</td></tr>
+          <tr><td><code>pages/</code></td><td>Dossier contenant toutes les pages HTML du site</td></tr>
+          <tr><td><code>pages/index.html</code></td><td>Page d'accueil</td></tr>
+          <tr><td><code>pages/blog.html</code></td><td>Blog</td></tr>
+          <tr><td><code>pages/blog/article.html</code></td><td>Template article blog</td></tr>
+          <tr><td><code>pages/css/</code></td><td>Styles CSS personnalis&eacute;s du projet</td></tr>
+          <tr><td><code>pages/js/</code></td><td>Scripts JS personnalis&eacute;s du projet</td></tr>
+          <tr><td><code>404.html</code></td><td>Page d'erreur (&agrave; la racine pour Apache)</td></tr>
+          <tr><td><code>.htaccess</code></td><td>Configuration Apache (URLs propres, rewrites vers <code>pages/</code>)</td></tr>
           <tr><td><code>deploy.sh</code></td><td>Script de d&eacute;ploiement</td></tr>
+          <tr><td><code>setup.sh</code></td><td>Script d'installation</td></tr>
           <tr><td><code>.env</code></td><td>Variables d'environnement sensibles</td></tr>
           <tr><td><code>.deploy.env</code></td><td>Configuration SSH</td></tr>
         </table>
@@ -468,7 +486,7 @@ Pour CHAQUE projet client :
           <tr>
             <td>Modifier une page de mon site</td>
             <td>le projet lui-m&ecirc;me</td>
-            <td>racine</td>
+            <td><code>pages/</code></td>
             <td>&eacute;dition directe</td>
           </tr>
           <tr>

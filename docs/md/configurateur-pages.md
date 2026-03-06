@@ -10,25 +10,41 @@ Sélectionnez une page (simple clic) pour afficher son panneau de métadonnées 
 
 ## Arbre hiérarchique
 
-Les pages sont affichées dans une arborescence qui reflète la structure de dossiers du site. La hiérarchie parent/enfant est auto-détectée à partir du système de fichiers :
+Les pages sont stockées dans le dossier `pages/` du projet. L'arbre reflète cette structure :
 
-- `index.html` — page racine
+- `index.html` — page d'accueil (verrouillée à la racine)
 - `blog.html` — page parente
-- `blog/article.html` — page enfant de `blog.html`
+- `blog/article.html` — page enfant (template) dans `pages/blog/`
 - `services.html` — page parente
-- `services/consulting.html` — page enfant de `services.html`
+- `services/consulting.html` — page enfant dans `pages/services/`
 
-L'ordre d'affichage peut être personnalisé via le champ **Ordre** dans les métadonnées de chaque page. La page parente peut également être modifiée manuellement via le champ **Page parente**.
+Les chemins affichés sont relatifs au dossier `pages/`. Imbriquer une page comme enfant d'une autre **déplace physiquement le fichier** dans le sous-dossier correspondant sur le disque.
+
+L'ordre d'affichage peut être personnalisé via le champ **Ordre** dans les métadonnées de chaque page.
+
+### Drag & drop
+
+L'arbre supporte le drag & drop pour réorganiser les pages :
+
+- **Zone haute (25%)** : insérer la page avant la cible
+- **Zone centrale (50%)** : imbriquer la page comme enfant de la cible
+- **Zone basse (25%)** : insérer la page après la cible
+
+Lorsqu'une page est imbriquée sous une autre, le fichier HTML est **physiquement déplacé** dans un sous-dossier sur le disque. Par exemple, glisser `contact.html` sur `services.html` déplace le fichier de `pages/contact.html` vers `pages/services/contact.html`. Dé-nester une page la ramène à la racine de `pages/`.
+
+La page d'accueil est **verrouillée** : elle ne peut être ni déplacée, ni imbriquée. Les pages templates sont également non-déplaçables.
+
+Les dossiers vides sont automatiquement supprimés après un déplacement.
 
 ## Opérations CRUD
 
 ### Créer une page
 
-Cliquez sur le bouton **+** dans le header du panneau. Une modale apparaît pour saisir le nom du fichier. L'extension `.html` est ajoutée automatiquement si elle n'est pas précisée. La nouvelle page est créée à partir du template `base-index.html`.
+Cliquez sur le bouton **+** dans le header du panneau. Une modale apparaît pour saisir le nom du fichier. L'extension `.html` est ajoutée automatiquement. La nouvelle page est créée dans le dossier `pages/` à partir du template `snippets/page.html`, dont les chemins relatifs sont automatiquement ajustés.
 
 ```
-// Exemple : saisir "contact" crée le fichier contact.html
-// Exemple : saisir "services/consulting" crée le fichier services/consulting.html
+// Exemple : saisir "contact" crée pages/contact.html
+// Exemple : saisir "services/consulting" crée pages/services/consulting.html
 ```
 
 ### Renommer une page
@@ -74,17 +90,19 @@ Certaines pages sont marquées comme `readOnly` dans le registre. Ces pages sont
 - Supprimées
 - Renommées
 
-Les pages en lecture seule ont leurs fichiers et métadonnées structurelles protégés. Cela concerne typiquement les pages système comme `404.html`, `mentions-legales.html` ou `confidentialite.html`.
+Les pages en lecture seule ont leurs fichiers et métadonnées structurelles protégés. Cela concerne typiquement les pages système comme `404.html`.
 
 ## Pages template
 
-Les pages marquées `isTemplate` sont situées dans des dossiers template. Elles servent de modèle pour la création de nouvelles pages. Par exemple, `base-index.html` est utilisé comme template par défaut lors de la création d'une nouvelle page.
+Les pages templates sont détectées automatiquement : une page située dans un sous-dossier dont le nom correspond à une page parente de premier niveau est marquée comme template. Par exemple, `blog/article.html` est un template car `blog.html` existe à la racine de `pages/`.
 
-Les pages template apparaissent dans l'arbre avec un indicateur visuel distinct et ne sont pas publiées sur le site final.
+Les pages template apparaissent dans l'arbre avec un indicateur visuel distinct et ne sont pas publiées sur le site final. Elles ne peuvent pas être déplacées via le drag & drop.
 
 ## Registre `pages.json`
 
-Le fichier `pages.json` est le registre central qui stocke toutes les métadonnées des pages du site. Il est synchronisé automatiquement avec le système de fichiers : si un fichier HTML est ajouté ou supprimé manuellement, le registre est mis à jour au prochain chargement.
+Le fichier `pages.json` est le registre central qui stocke toutes les métadonnées des pages du site. Les chemins (`path`) sont stockés **relativement au dossier `pages/`** (ex : `blog.html`, et non `pages/blog.html`). Le fichier réel sur le disque se trouve à `pages/blog.html`.
+
+Le registre est synchronisé automatiquement avec le système de fichiers : si un fichier HTML est ajouté ou supprimé manuellement dans `pages/`, le registre est mis à jour au prochain chargement.
 
 ### Structure du registre
 
@@ -148,7 +166,7 @@ Le fichier `pages.json` est le registre central qui stocke toutes les métadonn�
 | Propriété | Type | Description |
 |-----------|------|-------------|
 | `title` | String | Titre de la page |
-| `path` | String | Chemin relatif du fichier HTML |
+| `path` | String | Chemin relatif du fichier HTML par rapport au dossier `pages/` |
 | `slug` | String | URL propre |
 | `metaTitle` | String | Titre SEO (override) |
 | `metaDescription` | String | Description SEO (override) |
@@ -172,6 +190,8 @@ La logique du panneau Pages est gérée par le module `configurateur-pages.js`. 
 - L'affichage et la sauvegarde du panneau de métadonnées
 - La gestion du drag & drop pour réorganiser l'arbre
 - La détection automatique de la hiérarchie parent/enfant
+- Le déplacement physique des fichiers sur le disque via `movePageToDisk()`
+- Le calcul des nouveaux chemins lors d'un drag & drop via `computeNewPath()`
 
 ## Voir aussi
 

@@ -124,6 +124,12 @@ mon-projet/
 │   ├── configurator.html    ← Configurateur intégré
 │   ├── configurator-server.py ← Serveur de dev
 │   └── js/                  ← 9 modules JS
+├── pages/                   ← pages du site
+│   ├── index.html           ← page d'accueil
+│   ├── blog.html            ← blog
+│   ├── blog/article.html    ← template article
+│   ├── css/                 ← styles custom du projet
+│   └── js/                  ← scripts custom du projet
 ├── core/                    ← symlink → .framework/core/
 ├── components/              ← symlink → .framework/components/
 ├── assets/                  ← symlink → .framework/assets/
@@ -131,18 +137,19 @@ mon-projet/
 ├── wireframes/              ← symlink → .framework/wireframes/
 ├── snippets/                ← symlink → .framework/snippets/
 ├── docs/                    ← symlink → .framework/docs/
-├── base-index.html          ← symlink → .framework/base-index.html
+├── pages/
+│   ├── base-index.html      ← symlink → ../.framework/base-index.html
 ├── robots.txt               ← symlink → .framework/robots.txt
 ├── generate-sitemap.js      ← symlink → .framework/generate-sitemap.js
 ├── config-site.js           ← fichier réel du projet
-├── index.html               ← fichier réel du projet
+├── 404.html                 ← page d'erreur (racine)
 ├── .htaccess                ← fichier réel du projet
 ├── deploy.sh                ← fichier réel du projet
 ├── setup.sh                 ← fichier réel du projet
 └── .gitmodules              ← référence les 2 submodules
 ```
 
-Le HTML référence `core/css/tokens.css` comme d'habitude — le symlink redirige automatiquement vers `.framework/core/css/tokens.css`.
+Les pages utilisent des chemins relatifs (`../core/css/tokens.css`) — le `../` remonte d'un niveau depuis `pages/` vers la racine où les symlinks redirigent automatiquement vers `.framework/`.
 
 ---
 
@@ -161,7 +168,7 @@ Ces fichiers sont des symlinks vers `.framework/`. Les modifications se font dan
 | `wireframes/` | 375 sections HTML prêtes à l'emploi |
 | `snippets/` | Fragments HTML copiables |
 | `docs/` | Documentation interactive |
-| `base-index.html` | Template HTML de base |
+| `pages/base-index.html` | Template HTML de base |
 | `robots.txt` | Fichier robots.txt par défaut |
 | `generate-sitemap.js` | Générateur de sitemap |
 
@@ -172,12 +179,14 @@ Propres à chaque projet, versionnés dans le dépôt du projet.
 | Chemin | Description |
 |---|---|
 | `config-site.js` | Configuration du site (nom, analytics, blog, mentions légales) |
-| `index.html` | Page d'accueil |
-| `blog.html`, `blog/` | Blog |
-| `mentions-legales.html` | Mentions légales |
-| `confidentialite.html` | Politique de confidentialité |
-| `404.html` | Page d'erreur |
-| `.htaccess` | Configuration Apache |
+| `pages/` | Dossier contenant toutes les pages HTML du site |
+| `pages/index.html` | Page d'accueil |
+| `pages/blog.html` | Blog |
+| `pages/blog/article.html` | Template article blog |
+| `pages/css/` | Styles CSS personnalisés du projet |
+| `pages/js/` | Scripts JS personnalisés du projet |
+| `404.html` | Page d'erreur (à la racine pour Apache) |
+| `.htaccess` | Configuration Apache (URLs propres, rewrites vers `pages/`) |
 | `deploy.sh` | Script de déploiement |
 | `setup.sh` | Script d'installation |
 | `.env` | Variables d'environnement sensibles |
@@ -485,7 +494,7 @@ Guide rapide pour savoir où aller quand tu veux modifier quelque chose :
 | Modifier le Configurateur visuel | beely-builder | `js/` | `cd configurateur && ...` |
 | Modifier le configurateur | beely-builder | `configurator.html` | `cd configurateur && ...` |
 | Modifier le serveur Python du Configurateur | beely-builder | `configurator-server.py` | `cd configurateur && ...` |
-| Modifier une page de mon site | le projet lui-même | racine | édition directe |
+| Modifier une page de mon site | le projet lui-même | `pages/` | édition directe |
 | Changer la config du site (nom, analytics, etc.) | le projet lui-même | `config-site.js` | édition directe |
 | Configurer le déploiement SSH | le projet lui-même | `.deploy.env` | édition directe |
 | Configurer les secrets (tokens API) | le projet lui-même | `.env` | édition directe |
