@@ -53,8 +53,16 @@ if (empty($endpoint)) {
     exit;
 }
 
-// Valider que l'endpoint commence par /api/
-if (strpos($endpoint, '/api/') !== 0) {
+// Valider que l'endpoint commence par /api/database/ (lecture seule Baserow)
+if (strpos($endpoint, '/api/database/') !== 0) {
+    http_response_code(400);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Endpoint invalide (seul /api/database/ est autorisé)']);
+    exit;
+}
+
+// Interdire les caractères de traversal dans l'endpoint
+if (strpos($endpoint, '..') !== false || strpos($endpoint, '\\') !== false) {
     http_response_code(400);
     header('Content-Type: application/json');
     echo json_encode(['error' => 'Endpoint invalide']);
@@ -80,7 +88,7 @@ curl_setopt_array($ch, [
         'Content-Type: application/json'
     ],
     CURLOPT_TIMEOUT => 15,
-    CURLOPT_FOLLOWLOCATION => true
+    CURLOPT_FOLLOWLOCATION => false
 ]);
 
 $response = curl_exec($ch);
@@ -95,13 +103,11 @@ if ($error) {
     exit;
 }
 
-// CORS : restreindre au domaine configure dans .env (SITE_ORIGIN)
+// CORS — ne reflète l'origin que si SITE_ORIGIN est configuré dans .env
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 $allowedOrigin = isset($env['SITE_ORIGIN']) ? $env['SITE_ORIGIN'] : '';
 if ($allowedOrigin && $origin === $allowedOrigin) {
     header('Access-Control-Allow-Origin: ' . $allowedOrigin);
-} elseif (!$allowedOrigin && $origin) {
-    header('Access-Control-Allow-Origin: ' . $origin);
 }
 header('Access-Control-Allow-Methods: GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');

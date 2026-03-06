@@ -32,12 +32,13 @@ $webhookUrl   = isset($env['FORM_WEBHOOK_URL']) ? $env['FORM_WEBHOOK_URL'] : '';
 $notifEmail   = isset($env['FORM_NOTIFICATION_EMAIL']) ? $env['FORM_NOTIFICATION_EMAIL'] : '';
 $allowedOrigin = isset($env['SITE_ORIGIN']) ? $env['SITE_ORIGIN'] : '';
 
-// CORS
+// CORS — ne reflète l'origin que si SITE_ORIGIN est configuré dans .env
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 if ($allowedOrigin && $origin === $allowedOrigin) {
     header('Access-Control-Allow-Origin: ' . $allowedOrigin);
-} elseif (!$allowedOrigin && $origin) {
-    header('Access-Control-Allow-Origin: ' . $origin);
+} elseif (!$allowedOrigin) {
+    // Pas de SITE_ORIGIN configuré : on n'envoie pas de header CORS
+    // Les requêtes same-origin fonctionnent sans ce header
 }
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -63,8 +64,14 @@ if (empty($webhookUrl)) {
     exit;
 }
 
-// Lire le body JSON
-$rawBody = file_get_contents('php://input');
+// Lire le body JSON (limité à 50 Ko)
+$rawBody = file_get_contents('php://input', false, null, 0, 51200);
+if (strlen($rawBody) >= 51200) {
+    http_response_code(413);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Payload trop volumineux (max 50 Ko)']);
+    exit;
+}
 $data = json_decode($rawBody, true);
 if (!is_array($data)) {
     $data = [];
