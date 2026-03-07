@@ -153,7 +153,7 @@
     { title: 'Heroes', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe hero banner accueil landing splash cover' },
     { title: 'Services', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe service offre prestation feature fonctionnalite' },
     { title: 'Portfolios', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe portfolio projet realisation case study galerie' },
-    { title: 'Testimonials', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe testimonial temoignage avis client review quote citation' },
+    { title: 'Testimonials', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe testimonial témoignage avis client review quote citation' },
     { title: 'Contact', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe contact formulaire form email telephone adresse' },
     { title: 'FAQ', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe faq questions reponses accordion' },
     { title: 'Coming Soon', section: 'Wireframes', url: 'wireframes.html', keywords: 'wireframe coming soon bientot disponible countdown timer lancement' },

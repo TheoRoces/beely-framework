@@ -43,6 +43,12 @@
     { value: 'xl', label: 'XL (320px)' }
   ];
 
+  var RESPONSIVE_BREAKPOINTS = [
+    { key: 'colsTablet', label: 'Tablette', bp: '991px' },
+    { key: 'colsMobileL', label: 'Mobile L', bp: '767px' },
+    { key: 'colsMobile', label: 'Mobile', bp: '478px' }
+  ];
+
   var state = {
     type: 'grid',
     cols: 3,
@@ -53,8 +59,20 @@
     spans: {},
     layout: '',
     rowHeight: 'md',
-    bentoSizes: ['', '', '', '', '', '', '', '', '', '', '', '']
+    bentoSizes: ['', '', '', '', '', '', '', '', '', '', '', ''],
+    gridName: '',
+    colsTablet: 0,
+    colsMobileL: 0,
+    colsMobile: 0
   };
+
+  function slugifyName(str) {
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9-]/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
 
   /* ---------- Helpers ---------- */
 
@@ -89,7 +107,9 @@
       var attrs = ' data-cols="' + state.cols + '"';
       if (state.gap !== 'md') attrs += ' data-gap="' + state.gap + '"';
       if (state.align !== 'stretch') attrs += ' data-align="' + state.align + '"';
-      var lines = ['<div class="grid"' + attrs + '>'];
+      var className = 'grid';
+      if (state.gridName) className += ' ' + state.gridName;
+      var lines = ['<div class="' + className + '"' + attrs + '>'];
       for (var i = 0; i < state.itemCount; i++) {
         var itemAttrs = '';
         var sp = state.spans[i];
@@ -114,6 +134,21 @@
       lines.push('</div>');
       return lines.join('\n');
     }
+  }
+
+  function getResponsiveCss() {
+    if (!state.gridName || state.type !== 'grid') return '';
+    var lines = [];
+    RESPONSIVE_BREAKPOINTS.forEach(function (bp) {
+      var cols = state[bp.key];
+      if (cols > 0) {
+        var tpl = cols === 1 ? '1fr' : 'repeat(' + cols + ', 1fr)';
+        lines.push('@media (max-width: ' + bp.bp + ') {');
+        lines.push('  .' + state.gridName + ' { grid-template-columns: ' + tpl + '; }');
+        lines.push('}');
+      }
+    });
+    return lines.join('\n');
   }
 
   function updatePreview() {
@@ -166,6 +201,18 @@
   function updateOutputDisplay() {
     var output = document.getElementById('gridCreatorOutput');
     if (output) output.textContent = getGridOutput();
+
+    var cssOutput = document.getElementById('gridCreatorCssOutput');
+    var cssWrap = document.getElementById('gridCreatorCssWrap');
+    if (cssOutput && cssWrap) {
+      var css = getResponsiveCss();
+      if (css) {
+        cssOutput.textContent = css;
+        cssWrap.style.display = '';
+      } else {
+        cssWrap.style.display = 'none';
+      }
+    }
   }
 
   function showItemConfig(idx) {
@@ -248,6 +295,33 @@
       html += '<span class="creator__slider-value" id="gridCreatorItemValue">' + state.itemCount + '</span>';
       html += '</div></div>';
 
+      // ── Responsive ──
+      html += '<div class="creator__separator"></div>';
+      html += '<div class="creator__group"><label class="creator__label">Responsive <span style="font-weight:normal;color:var(--color-text-light)">(optionnel)</span></label>';
+      html += '<div class="creator__field-row">';
+      html += '<label class="creator__label creator__label--sm">Nom de la grille</label>';
+      html += '<input type="text" class="creator__input" id="gridCreatorName" value="' + state.gridName + '" placeholder="ex : grid-services">';
+      html += '</div>';
+
+      if (state.gridName) {
+        RESPONSIVE_BREAKPOINTS.forEach(function (bp) {
+          html += '<div class="creator__field-row">';
+          html += '<label class="creator__label creator__label--sm">' + bp.label + ' (≤ ' + bp.bp + ')</label>';
+          html += '<div class="creator__options">';
+          var currentVal = state[bp.key];
+          var autoActive = currentVal === 0 ? ' creator__opt--active' : '';
+          html += '<button class="creator__opt' + autoActive + '" data-grid-resp="' + bp.key + '" data-grid-resp-val="0">Auto</button>';
+          for (var c = 1; c <= 6; c++) {
+            var active = currentVal === c ? ' creator__opt--active' : '';
+            html += '<button class="creator__opt' + active + '" data-grid-resp="' + bp.key + '" data-grid-resp-val="' + c + '">' + c + '</button>';
+          }
+          html += '</div></div>';
+        });
+      } else {
+        html += '<p style="font-size:var(--text-xs);color:var(--color-text-light);margin:var(--space-2) 0 0;">Nommez votre grille pour configurer le responsive et générer le CSS.</p>';
+      }
+      html += '</div>';
+
     } else {
       // Bento : Gap
       html += '<div class="creator__group"><label class="creator__label">Espacement</label>';
@@ -325,11 +399,19 @@
     }
     html += '</div>';
 
-    // Output
-    html += '<div class="creator__group"><label class="creator__label">Code à copier</label>';
+    // Output HTML
+    html += '<div class="creator__group"><label class="creator__label">Code HTML à copier</label>';
     html += '<div class="creator__output">';
     html += '<code id="gridCreatorOutput" style="white-space:pre;"></code>';
     html += '<button class="creator__btn creator__btn--primary" id="gridCreatorCopy">Copier</button>';
+    html += '</div></div>';
+
+    // Output CSS responsive
+    html += '<div class="creator__group" id="gridCreatorCssWrap" style="display:none;">';
+    html += '<label class="creator__label">CSS responsive à copier</label>';
+    html += '<div class="creator__output">';
+    html += '<code id="gridCreatorCssOutput" style="white-space:pre;"></code>';
+    html += '<button class="creator__btn creator__btn--primary" id="gridCreatorCopyCss">Copier</button>';
     html += '</div></div>';
 
     // Reset
@@ -427,6 +509,40 @@
       if (output) copyToClipboard(output.textContent);
     });
 
+    var copyCssBtn = document.getElementById('gridCreatorCopyCss');
+    if (copyCssBtn) {
+      copyCssBtn.addEventListener('click', function () {
+        var output = document.getElementById('gridCreatorCssOutput');
+        if (output) copyToClipboard(output.textContent);
+      });
+    }
+
+    // Nom de la grille
+    var nameInput = document.getElementById('gridCreatorName');
+    if (nameInput) {
+      nameInput.addEventListener('input', function () {
+        state.gridName = slugifyName(nameInput.value);
+        updateOutputDisplay();
+        // Re-render pour afficher/cacher les sélecteurs responsive
+        var needsRender = (state.gridName && !root.querySelector('[data-grid-resp]'))
+          || (!state.gridName && root.querySelector('[data-grid-resp]'));
+        if (needsRender) render();
+      });
+    }
+
+    // Boutons responsive
+    root.querySelectorAll('[data-grid-resp]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var key = btn.getAttribute('data-grid-resp');
+        var val = parseInt(btn.getAttribute('data-grid-resp-val'));
+        state[key] = val;
+        root.querySelectorAll('[data-grid-resp="' + key + '"]').forEach(function (b) {
+          b.classList.toggle('creator__opt--active', b === btn);
+        });
+        updateOutputDisplay();
+      });
+    });
+
     document.getElementById('gridCreatorReset').addEventListener('click', function () {
       state.type = 'grid';
       state.cols = 3;
@@ -438,6 +554,10 @@
       state.layout = '';
       state.rowHeight = 'md';
       state.bentoSizes = ['', '', '', '', '', '', '', '', '', '', '', ''];
+      state.gridName = '';
+      state.colsTablet = 0;
+      state.colsMobileL = 0;
+      state.colsMobile = 0;
       render();
     });
 

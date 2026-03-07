@@ -1,6 +1,6 @@
 # Elements interactifs
 
-Popup, Tooltip, Accordion, Tabs et Slider. Tous les elements sont **emboîtables** (nestable) et initialises automatiquement au chargement.
+Popup, Tooltip, Accordion, Tabs et Slider. Tous les élémentssont **emboîtables** (nestable) et initialisés automatiquement au chargement.
 
 ## Popup / Modal
 
@@ -37,7 +37,7 @@ Système de popup/modal avec overlay, fermeture par clic exterieur, touche Escap
 
 ### Popups imbriqués
 
-Les popups peuvent etre imbriqués. Le z-index est gere automatiquement par CSS (`.popup .popup` → z-index superieur). La touche Escape ferme toujours le dernier popup ouvert.
+Les popups peuvent êtreimbriqués. Le z-index est gèreautomatiquement par CSS (`.popup .popup` → z-index supérieur). La touche Escape ferme toujours le dernier popup ouvert.
 
 ### Variantes de position
 
@@ -45,13 +45,13 @@ Ajoutez `data-popup-position` sur le `.popup` pour changer l'animation et la dis
 
 | Valeur | Comportement |
 |---|---|
-| (aucune) | Centre (defaut) — animation scale + fade |
+| (aucune) | Centre (défaut) — animation scale + fade |
 | `right` | Panneau lateral droit — pleine hauteur, max 480px, glisse depuis la droite |
 | `left` | Panneau lateral gauche — pleine hauteur, max 480px, glisse depuis la gauche |
 | `bottom` | Bottom sheet — pleine largeur, max 80vh, glisse depuis le bas |
-| `top` | Panneau superieur — pleine largeur, max 80vh, glisse depuis le haut |
+| `top` | Panneau supérieur — pleine largeur, max 80vh, glisse depuis le haut |
 
-#### Popup centre (defaut)
+#### Popup centre (défaut)
 
 ```html
 <button data-popup-target="demo">Ouvrir</button>
@@ -123,7 +123,7 @@ Sur mobile (≤ 767px), les panneaux lateraux passent en pleine largeur automati
 
 | Classe | Description |
 |---|---|
-| `.popup` | Conteneur principal (cache par defaut) |
+| `.popup` | Conteneur principal (cache par défaut) |
 | `.popup--active` | Popup visible (ajoute par JS) |
 | `.popup__overlay` | Fond semi-transparent |
 | `.popup__content` | Boite de contenu (animation scale + fade) |
@@ -158,7 +158,7 @@ Bulle d'information au survol ou au focus. Repositionnement automatique si la bu
 | Attribut | Description |
 |---|---|
 | `data-tooltip="texte"` | Texte de la bulle |
-| `data-tooltip-pos` | Position : `top` (defaut), `bottom`, `left`, `right` |
+| `data-tooltip-pos` | Position : `top` (défaut), `bottom`, `left`, `right` |
 
 ### Repositionnement automatique
 
@@ -198,7 +198,7 @@ Panneaux depliables avec animation CSS Grid. Support du mode multiple et de l'im
 
 ### Mode multiple
 
-Par defaut, un seul panneau est ouvert a la fois. Ajoutez `data-accordion-multi` pour permettre l'ouverture de plusieurs panneaux simultanement :
+Par défaut, un seul panneau est ouvert a la fois. Ajoutez `data-accordion-multi` pour permettre l'ouverture de plusieurs panneaux simultanément :
 
 ```html
 <div class="accordion" data-accordion-multi>
@@ -208,7 +208,7 @@ Par defaut, un seul panneau est ouvert a la fois. Ajoutez `data-accordion-multi`
 
 ### Accordion imbrique
 
-Les accordeons peuvent etre imbriqués. Chaque niveau gere ses propres items independamment :
+Les accordeons peuvent êtreimbriqués. Chaque niveau gèreses propres items indépendamment :
 
 ```html
 <div class="accordion">
@@ -263,9 +263,9 @@ Quand les onglets debordent, la barre de navigation scrolle horizontalement avec
 </div>
 ```
 
-### Onglet actif par defaut
+### Onglet actif par défaut
 
-Par defaut, le premier onglet est actif. Ajoutez `data-tab-active` pour choisir un autre :
+Par défaut, le premier onglet est actif. Ajoutez `data-tab-active` pour choisir un autre :
 
 ```html
 <button class="tabs__tab" data-tab="tab2" data-tab-active>Onglet 2</button>
@@ -288,7 +288,7 @@ Par defaut, le premier onglet est actif. Ajoutez `data-tab-active` pour choisir 
 | `.tabs__nav-wrapper` | Wrapper auto-généré par JS — affiche des dégradés gauche/droite quand la nav deborde |
 | `.tabs__tab` | Bouton d'onglet |
 | `.tabs__tab--active` | Onglet actif (souligne en couleur primaire) |
-| `.tabs__panel` | Panneau de contenu (cache par defaut) |
+| `.tabs__panel` | Panneau de contenu (cache par défaut) |
 | `.tabs__panel--active` | Panneau visible |
 
 ## Slider / Carousel
@@ -342,18 +342,18 @@ Le format `data-slider-per-view="3 2 2 1"` définit le nombre de slides visibles
 | `data-slider-drag` | `true` | Drag a la souris (en plus du swipe tactile) |
 | `data-slider-gap` | `xs` \| `sm` \| `md` \| `lg` \| `xl` | Espacement entre les slides |
 | `data-slider-dots` | `false` | Masquer les dots de navigation |
-| `data-slider-arrows` | `false` | Masquer les fleches de navigation |
+| `data-slider-arrows` | `false` | Masquer les flèches de navigation |
 
-### Personnalisation des fleches
+### Personnalisation des flèches
 
-Les fleches utilisent par defaut les icones chevron. Personnalisez-les via ces attributs sur le `.slider` :
+Les flèches utilisent par défaut les icônes chevron. Personnalisez-les via ces attributs sur le `.slider` :
 
 | Attribut | Valeur | Description |
 |---|---|---|
 | `data-slider-arrow-prev` | Nom d'icone | Icone du bouton precedent (ex: `arrow-left`) |
 | `data-slider-arrow-next` | Nom d'icone | Icone du bouton suivant (ex: `arrow-right`) |
-| `data-slider-arrow-type` | `outline` \| `solid` | Type d'icone (defaut : `outline`) |
-| `data-slider-arrow-size` | Nombre en px | Taille de l'icone SVG (defaut : `20`) |
+| `data-slider-arrow-type` | `outline` \| `solid` | Type d'icone (défaut : `outline`) |
+| `data-slider-arrow-size` | Nombre en px | Taille de l'icone SVG (défaut : `20`) |
 
 ```html
 <div class="slider"
@@ -364,7 +364,7 @@ Les fleches utilisent par defaut les icones chevron. Personnalisez-les via ces a
 </div>
 ```
 
-Les icones sont chargées depuis le système d'icones (`icons.js`). Les styles peuvent aussi etre definis via les CSS custom properties `--slider-arrow-*` directement en CSS.
+Les icônes sont chargées depuis le système d'icônes (`icons.js`). Les styles peuvent aussi êtredéfinis via les CSS custom properties `--slider-arrow-*` directement en CSS.
 
 ### CSS custom properties
 
@@ -415,7 +415,7 @@ Les icones sont chargées depuis le système d'icones (`icons.js`). Les styles p
 | `.slider` | Conteneur principal (`overflow: hidden`) |
 | `.slider__track` | Piste flex (`translateX` pour la navigation) |
 | `.slider__slide` | Un slide individuel |
-| `.slider__prev`, `.slider__next` | Boutons fleches (positionnes en absolu) |
+| `.slider__prev`, `.slider__next` | Boutons flèches (positionnés en absolu) |
 | `.slider__dots` | Conteneur des points de navigation |
 | `.slider__dot` | Point individuel (créé par JS) |
 | `.slider__dot--active` | Point actif |
@@ -424,9 +424,9 @@ Les icones sont chargées depuis le système d'icones (`icons.js`). Les styles p
 
 | Fonction | Fichier | Description |
 |---|---|---|
-| `initElements(root)` | elements.js | Initialise popups, tooltips, accordions, tabs, sliders dans `root` (defaut : `document`). |
+| `initElements(root)` | elements.js | Initialise popups, tooltips, accordions, tabs, sliders dans `root` (défaut : `document`). |
 | `initAnimations(root)` | animations.js | Initialise les animations scroll + clic dans `root`. |
-| `initIcons(root)` | icons.js | Charge les icones SVG `[data-icon]` dans `root`. |
+| `initIcons(root)` | icons.js | Charge les icônes SVG `[data-icon]` dans `root`. |
 | `initForms(root)` | forms.js | Initialise formulaires, validation, multi-steps dans `root`. |
 | `renderComponents(root)` | components.js | Rend les `[data-component]` dans `root`. |
 | `showToast(message, type, duration)` | forms.js | Affiche une notification toast. Types : `'success'`, `'error'`, `'warning'`, `'info'`. |
@@ -456,7 +456,7 @@ initIcons(monConteneur);
 
 ## Problèmes courants
 
-- **Le slider ne fonctionne pas :** vérifiez que `elements.js` est charge avec `defer`. La classe `.slider` doit etre presente sur le conteneur.
+- **Le slider ne fonctionne pas :** vérifiez que `elements.js` est chargéavec `defer`. La classe `.slider` doit êtreprésente sur le conteneur.
 - **Le popup ne s'ouvre pas :** le `data-popup-target` du bouton doit correspondre exactement au `data-popup` du popup.
 - **Les tabs ne changent pas :** chaque `data-tab` doit avoir un `data-tab-panel` correspondant avec la même valeur.
 - **L'accordion ne se deplie pas :** l'attribut `data-accordion-multi` est nécessaire pour permettre l'ouverture simultanee de plusieurs panneaux.

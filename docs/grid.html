@@ -191,6 +191,30 @@
         </table>
         <p>Les spans trop larges pour l'&eacute;cran sont automatiquement r&eacute;duits.</p>
 
+        <h3>Responsive personnalis&eacute;</h3>
+        <p>Pour un contr&ocirc;le fin du nombre de colonnes par breakpoint, <strong>nommez votre grille</strong> avec une classe CSS et ajoutez des media queries dans votre feuille de style :</p>
+<pre><code>&lt;!-- HTML --&gt;
+&lt;div class="grid grid-services" data-cols="4" data-gap="md"&gt;
+  &lt;div&gt;Service 1&lt;/div&gt;
+  &lt;div&gt;Service 2&lt;/div&gt;
+  &lt;div&gt;Service 3&lt;/div&gt;
+  &lt;div&gt;Service 4&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS responsive --&gt;
+&lt;style&gt;
+@media (max-width: 991px) {
+  .grid-services { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .grid-services { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 478px) {
+  .grid-services { grid-template-columns: 1fr; }
+}
+&lt;/style&gt;</code></pre>
+        <p>Le <a href="#grid-creator">cr&eacute;ateur de grilles</a> ci-dessous g&eacute;n&egrave;re automatiquement ce CSS quand vous configurez le responsive.</p>
+
         <h2>Inclure dans une page</h2>
 <pre><code>&lt;link rel="stylesheet" href="core/css/grid.css"&gt;</code></pre>
         <p>Aucun JavaScript n&eacute;cessaire. Tout fonctionne en CSS pur.</p>

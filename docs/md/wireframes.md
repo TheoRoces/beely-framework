@@ -12,14 +12,14 @@
 ## Outils de la page
 
 - **Recherche** : filtrage en temps réel par nom de wireframe
-- **Breakpoints** : prévisualisation Desktop (1440px), Tablette (768px), Mobile (375px)
+- **Breakpoints** : prévisualisation Desktop (1440px), Tablette (768px), Mobile L (480px), Mobile (375px)
 - **Filtres par catégorie** : affiche uniquement les wireframes d'une catégorie
 - **Modal de preview** : clic sur une carte pour un aperçu plein écran avec onglets Preview / Code
 - **Bouton Copier** : copie le HTML du wireframe dans le presse-papier
 
 ## Catégories disponibles
 
-Chaque catégorie contient **15 variantes** (nommées `prefix-01` a `prefix-15`). Les fichiers HTML sont stockes dans `wireframes/{categorie}/`.
+Chaque catégorie contient **15 variantes** (nommées `prefix-01` à `prefix-15`). Les fichiers HTML sont stockés dans `wireframes/{categorie}/`.
 
 | # | Catégorie | Prefixe | Description |
 |---|---|---|---|
@@ -36,14 +36,14 @@ Chaque catégorie contient **15 variantes** (nommées `prefix-01` a `prefix-15`)
 | 11 | **Single Posts** | `single` | Pages d'article individuel |
 | 12 | **Filtres** | `filter` | Catégories et filtres de contenu |
 | 13 | **Galleries** | `gallery` | Galeries d'images |
-| 14 | **CTAs** | `cta` | Appels a l'action (call-to-action) |
+| 14 | **CTAs** | `cta` | Appels à l'action (call-to-action) |
 | 15 | **Contacts** | `contact` | Formulaires et sections de contact |
 | 16 | **FAQs** | `faq` | Foires aux questions |
 | 17 | **Steps** | `steps` | Étapes / processus |
 | 18 | **Timelines** | `timeline` | Chronologies / frises temporelles |
 | 19 | **Banners** | `banner` | Bannières et bandes d'information |
 | 20 | **Popups** | `popup` | Modales et popups |
-| 21 | **Mega Menus** | `mega-menu` | Menus de navigation etendus |
+| 21 | **Mega Menus** | `mega-menu` | Menus de navigation étendus |
 | 22 | **Events** | `event` | Sections évènements |
 | 23 | **Coming Soon** | `coming-soon` | Pages "bientôt disponible" |
 | 24 | **Error Pages** | `error` | Pages d'erreur (404, 500...) |

@@ -112,7 +112,7 @@ Ajoutez `form__field--float` pour activer l'animation de label flottant. Le labe
 - Barre de progression et indicateurs générés automatiquement
 - Validation par step avant de passer au suivant
 - Boutons Precedent/Suivant/Envoyer geres automatiquement
-- Les icones dans les boutons heritent de la couleur du texte (`currentColor`)
+- Les icones dans les boutons héritent de la couleur du texte (`currentColor`)
 - Le bouton Precedent est a gauche, Suivant et Envoyer sont alignes a droite
 
 ## Validation

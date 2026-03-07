@@ -11,7 +11,7 @@ Un composant est défini dans un fichier JS via `registerComponent()`. Il est en
 registerComponent('monComposant', function (slots) {
   return `
     <div class="mon-composant">
-      <h3>${slots.title || 'Titre par defaut'}</h3>
+      <h3>${slots.title || 'Titre par défaut'}</h3>
       <p>${slots.text || ''}</p>
     </div>
   `;
@@ -70,7 +70,7 @@ L'ancienne syntaxe `data-slot-*` reste compatible.
 | Fonction | Description |
 |----------|-------------|
 | `registerComponent(name, fn)` | Enregistre un composant. `fn(slots)` reçoit un objet et retourne du HTML. |
-| `renderComponents(root)` | Rend les `[data-component]` dans `root` (defaut : `document.body`). Appele auto au DOMContentLoaded. |
+| `renderComponents(root)` | Rend les `[data-component]` dans `root` (défaut : `document.body`). Appele auto au DOMContentLoaded. |
 
 Vous pouvez appeler `renderComponents(el)` manuellement apres avoir injecté du HTML dynamique contenant des `data-component`.
 
@@ -89,7 +89,7 @@ Le header est configuré entierement par attributs et slots :
 | `logoLink` | Attribut | Lien du logo. Defaut : `/` |
 | `nav` | Template | Liens de navigation (HTML) |
 | `cta` | Template | Bouton d'action (optionnel) |
-| `search` | Template | Active le bouton de recherche (declarer vide) |
+| `search` | Template | Active le bouton de recherche (déclarer vide) |
 
 ```html
 <!-- Header minimal -->
@@ -196,7 +196,7 @@ registerComponent('testimonial', function (slots) {
 
 ## Bonnes pratiques
 
-- Toujours prevoir des valeurs par defaut : `slots.title || 'Defaut'`
+- Toujours prevoir des valeurs par défaut : `slots.title || 'Defaut'`
 - Rendre les slots optionnels : `slots.footer ? '...' : ''`
 - Nommer les composants en **camelCase** : `registerComponent('heroSection', ...)`
 - Convention BEM pour les classes CSS du composant

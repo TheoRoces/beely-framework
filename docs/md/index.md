@@ -1,8 +1,8 @@
 # Site System
 
-Boilerplate zero dependances pour créer des sites et landing pages en pur HTML/CSS/JS.
+Boilerplate zero dépendances pour créer des sites et landing pages en pur HTML/CSS/JS.
 
-## Demarrage rapide
+## Démarrage rapide
 
 1. Copiez le dossier `site-system/` dans votre projet
 2. Ouvrez `core/css/tokens.css` et modifiez les couleurs, polices, etc.
@@ -62,7 +62,7 @@ site-system/
 │   │   ├── forms.css          ← Styles formulaires + toasts
 │   │   ├── cookies.css        ← Bandeau cookies
 │   │   ├── grid.css           ← Système de grille / bento
-│   │   ├── icons.css          ← Styles icones SVG
+│   │   ├── icons.css          ← Styles icônes SVG
 │   │   └── blog.css           ← Styles blog (listing, article, lightbox)
 │   └── js/
 │       ├── components.js      ← Système de composants/slots
@@ -73,14 +73,14 @@ site-system/
 │       ├── cookies.js         ← Consentement cookies
 │       ├── blog.js            ← Moteur blog Baserow
 │       ├── darkmode.js        ← Toggle dark/light mode
-│       ├── icons.js           ← Système d'icones SVG inline
-│       └── site.js            ← Favicon + titre par defaut (depuis SITE_CONFIG)
+│       ├── icons.js           ← Système d'icônes SVG inline
+│       └── site.js            ← Favicon + titre par défaut (depuis SITE_CONFIG)
 ├── components/                ← Composants (modifiables)
 │   ├── header.js              ← Composant Header
 │   ├── footer.js              ← Composant Footer
 │   └── card.js                ← Composant Card
 ├── snippets/                  ← Fragments HTML copier-coller
-├── assets/                    ← Images, icones, logos, polices
+├── assets/                    ← Images, icônes, logos, polices
 │   ├── images/
 │   ├── icons/
 │   ├── logos/
@@ -103,7 +103,7 @@ site-system/
 - **Design Tokens** — Configurez la charte graphique du client en 30 secondes dans un seul fichier. [Voir la doc](tokens.md)
 - **Composants / Slots** — Système de composants réutilisables via slots : Header, Footer, Card, et composants custom. [Voir la doc](components.md)
 - **Elements interactifs** — Popup, Tooltip, Accordion, Tabs, Slider (draggable, autoplay, multi-slides). [Voir la doc](elements.md)
-- **Icones** — 324 icones Heroicons (outline + solid). Chargement SVG inline, animation au survol, copier-coller rapide. [Voir la doc](icons.md)
+- **Icones** — 324 icônes Heroicons (outline + solid). Chargement SVG inline, animation au survol, copier-coller rapide. [Voir la doc](icons.md)
 - **Grid / Bento** — Système de grille flexible et layouts bento asymetriques. CSS pur, responsive. [Voir la doc](grid.md)
 - **Formulaires** — Multi-steps, logique conditionnelle, champs custom, validation, webhooks. [Voir la doc](forms.md)
 - **Blog** — Blog dynamique connecte a Baserow. Listing, article, galerie lightbox, filtres. [Voir la doc](blog.md)

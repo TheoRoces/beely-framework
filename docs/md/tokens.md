@@ -1,6 +1,6 @@
 # Design Tokens
 
-Fichier `core/css/tokens.css` -- le seul fichier a modifier pour configurer la charte graphique du client.
+Fichier `core/css/tokens.css` -- le seul fichier à modifier pour configurer la charte graphique du client.
 
 ## Couleurs
 
@@ -71,7 +71,7 @@ Le système utilise des **polices locales uniquement** (RGPD, pas d'appel vers G
 }
 ```
 
-`--font-body` s'applique au body, `--font-heading` s'applique automatiquement aux titres h1-h6. Vous pouvez utiliser deux polices differentes pour le body et les titres.
+`--font-body` s'applique au body, `--font-heading` s'applique automatiquement aux titres h1-h6. Vous pouvez utiliser deux polices différentes pour le body et les titres.
 
 ### Changer de police
 
@@ -127,7 +127,7 @@ Si votre police est **variable** (comme Inter), vous pouvez animer le poids de l
 </h2>
 ```
 
-| Attribut | Defaut | Description |
+| Attribut | Défaut | Description |
 |----------|--------|-------------|
 | `data-font-from` | 400 | Poids de depart |
 | `data-font-to` | 700 | Poids d'arrivee |

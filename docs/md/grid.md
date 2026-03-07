@@ -1,10 +1,10 @@
 # Grid / Bento
 
-Système de grille flexible et layouts bento via classes CSS et attributs `data-*`. Responsive par defaut, zero dependance.
+Système de grille flexible et layouts bento via classes CSS et attributs `data-*`. Responsive par défaut, zero dépendance.
 
 ## Grille simple
 
-Ajoutez la classe `grid` et definissez le nombre de colonnes avec `data-cols` :
+Ajoutez la classe `grid` et définissez le nombre de colonnes avec `data-cols` :
 
 ```html
 <div class="grid" data-cols="3" data-gap="md">
@@ -32,7 +32,7 @@ Ajoutez la classe `grid` et definissez le nombre de colonnes avec `data-cols` :
 | `data-gap="none"` ou `grid--gap-none` | 0 |
 | `data-gap="xs"` ou `grid--gap-xs` | var(--space-2) |
 | `data-gap="sm"` ou `grid--gap-sm` | var(--space-4) |
-| `data-gap="md"` ou `grid--gap-md` | var(--space-6) — defaut |
+| `data-gap="md"` ou `grid--gap-md` | var(--space-6) — défaut |
 | `data-gap="lg"` ou `grid--gap-lg` | var(--space-8) |
 | `data-gap="xl"` ou `grid--gap-xl` | var(--space-12) grille / var(--space-10) bento |
 
@@ -43,7 +43,7 @@ Ajoutez la classe `grid` et definissez le nombre de colonnes avec `data-cols` :
 | `data-align="start"` | Aligne en haut |
 | `data-align="center"` | Centre verticalement |
 | `data-align="end"` | Aligne en bas |
-| `data-align="stretch"` | Etire (defaut) |
+| `data-align="stretch"` | Étire (défaut) |
 
 ## Span (items)
 
@@ -59,13 +59,13 @@ Un élément enfant peut occuper plusieurs colonnes ou lignes :
 
 | Attribut | Effet |
 |---|---|
-| `data-col-span="2"` a `"6"` | Occupe N colonnes |
+| `data-col-span="2"` à `"6"` | Occupe N colonnes |
 | `data-col-span="full"` | Toute la largeur |
-| `data-row-span="2"` a `"4"` | Occupe N lignes |
+| `data-row-span="2"` à `"4"` | Occupe N lignes |
 
 ## Bento
 
-Le système bento est une grille 4 colonnes avec des tailles prédéfinies pour créer des layouts asymetriques rapidement :
+Le système bento est une grille 4 colonnes avec des tailles prédéfinies pour créer des layouts asymétriques rapidement :
 
 ```html
 <div class="bento" data-gap="md">
@@ -88,14 +88,14 @@ Le système bento est une grille 4 colonnes avec des tailles prédéfinies pour 
 | `data-size="large"` | 2 colonnes, 2 lignes |
 | `data-size="full"` | Toute la largeur |
 
-Pour un controle plus fin, utilisez `data-col-span` et `data-row-span` directement sur les `.bento__item`.
+Pour un contrôle plus fin, utilisez `data-col-span` et `data-row-span` directement sur les `.bento__item`.
 
 ### Hauteur des lignes
 
 | Attribut | Hauteur minimum |
 |---|---|
 | `data-row-height="sm"` | 120px |
-| `data-row-height="md"` | 180px (defaut) |
+| `data-row-height="md"` | 180px (défaut) |
 | `data-row-height="lg"` | 240px |
 | `data-row-height="xl"` | 320px |
 
@@ -107,7 +107,7 @@ Des layouts courants sont disponibles via `data-layout` :
 |---|---|
 | `data-layout="sidebar"` | 2/3 + 1/3 (contenu + sidebar droite) |
 | `data-layout="sidebar-left"` | 1/3 + 2/3 (sidebar gauche + contenu) |
-| `data-layout="feature"` | 1 grande carte a gauche + 2 petites empilees a droite |
+| `data-layout="feature"` | 1 grande carte à gauche + 2 petites empilées à droite |
 
 ```html
 <!-- Layout feature : 1 grande + 2 petites -->
@@ -129,7 +129,36 @@ Toutes les grilles s'adaptent automatiquement selon 4 breakpoints :
 | Mobile landscape | <= 767px | 3-6 cols → 2, bento → 2 cols, layouts → 1 col |
 | Mobile | <= 478px | Tout passe en 1 colonne |
 
-Les spans trop larges pour l'ecran sont automatiquement reduits.
+Les spans trop larges pour l'écran sont automatiquement réduits.
+
+### Responsive personnalisé
+
+Pour un contrôle fin du nombre de colonnes par breakpoint, **nommez votre grille** avec une classe CSS et ajoutez des media queries dans votre feuille de style :
+
+```html
+<!-- HTML -->
+<div class="grid grid-services" data-cols="4" data-gap="md">
+  <div>Service 1</div>
+  <div>Service 2</div>
+  <div>Service 3</div>
+  <div>Service 4</div>
+</div>
+
+<!-- CSS responsive -->
+<style>
+@media (max-width: 991px) {
+  .grid-services { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .grid-services { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 478px) {
+  .grid-services { grid-template-columns: 1fr; }
+}
+</style>
+```
+
+Le [créateur de grilles](grid.html#grid-creator) génère automatiquement ce CSS quand vous configurez le responsive.
 
 ## Inclure dans une page
 
@@ -141,9 +170,9 @@ Aucun JavaScript nécessaire. Tout fonctionne en CSS pur.
 
 ## Problèmes courants
 
-- **Les colonnes ne s'affichent pas côté a côté :** vérifiez que `grid.css` est bien charge. L'attribut `data-cols` définit le nombre de colonnes.
-- **Le bento est tout en une colonne :** la grille bento passe a 1 colonne sous 478px. Testez sur un ecran plus large ou reduisez le nombre de colonnes.
-- **Un item deborde de la grille :** un `data-col-span` superieur au nombre de colonnes disponibles provoque un debordement. Le span est reduit automatiquement en responsive.
+- **Les colonnes ne s'affichent pas côte à côte :** vérifiez que `grid.css` est bien chargé. L'attribut `data-cols` définit le nombre de colonnes.
+- **Le bento est tout en une colonne :** la grille bento passe à 1 colonne sous 478px. Testez sur un écran plus large ou réduisez le nombre de colonnes.
+- **Un item déborde de la grille :** un `data-col-span` supérieur au nombre de colonnes disponibles provoque un débordement. Le span est réduit automatiquement en responsive.
 
 ## Créateur de grilles
 
