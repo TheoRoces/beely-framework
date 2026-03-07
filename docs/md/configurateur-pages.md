@@ -22,7 +22,7 @@ Les **dossiers sont indépendants des pages** : le dossier `blog/` existe indép
 
 La hiérarchie se déduit uniquement du **chemin physique** des fichiers : `blog/article.html` est dans le dossier `blog/` car son chemin contient `blog/`.
 
-### Drag & drop
+### Drag & drop des pages
 
 L'arbre supporte le drag & drop pour réorganiser les pages :
 
@@ -34,13 +34,32 @@ Si la cible est dans un dossier différent, le fichier HTML est **physiquement d
 
 La page d'accueil est **verrouillée** : elle ne peut être ni déplacée, ni imbriquée. Les pages templates sont également non-déplaçables.
 
+### Drag & drop des dossiers
+
+Les dossiers sont également draggables et peuvent être :
+
+- **Glissés sur un autre dossier** : le dossier est imbriqué dans le dossier cible (ex : `blog/` glissé sur `services/` → `services/blog/`)
+- **Glissés entre des éléments** : le dossier est déplacé à la même profondeur que la cible
+
+Lors du déplacement d'un dossier, **toutes les pages et sous-dossiers qu'il contient sont déplacés avec lui**, et les chemins relatifs dans les fichiers HTML sont automatiquement ajustés selon la nouvelle profondeur.
+
+**Garde-fou** : il est impossible de déplacer un dossier dans lui-même ou dans un de ses sous-dossiers.
+
 ### Dossiers
 
 Les dossiers apparaissent dans l'arbre avec une icône de dossier et un chevron pour expand/collapse. Ils sont :
 
-- **Cliquables** pour expand/collapse
-- **Droppables** : glisser une page dessus la déplace dans le dossier
-- **Supprimables** via clic droit (menu contextuel), uniquement s'ils sont vides
+- **Cliquables** pour sélectionner et afficher le panneau de propriétés à droite (le chevron gère l'expand/collapse)
+- **Draggables** : peuvent être déplacés par drag & drop dans l'arbre
+- **Droppables** : glisser une page ou un dossier dessus le déplace dans le dossier
+- **Imbriquables** : les sous-dossiers sont supportés (ex : `services/consulting/`)
+
+Sélectionnez un dossier (simple clic) pour afficher son panneau de propriétés à droite. Ce panneau permet de :
+
+1. **Modifier le nom d'affichage** — champ éditable, sauvegarde au blur ou Entrée
+2. **Modifier le slug** — champ éditable avec vérification de doublon en temps réel. Le changement déplace physiquement les fichiers.
+3. **Créer un sous-dossier** — bouton dans la toolbar du panneau
+4. **Supprimer le dossier** — bouton dans la toolbar (désactivé si le dossier n'est pas vide)
 
 Les dossiers vides ne sont **pas** automatiquement supprimés. Ils persistent jusqu'à suppression explicite.
 
@@ -57,7 +76,37 @@ Cliquez sur le bouton **+ Nouvelle page** dans la toolbar. Une modale apparaît 
 
 ### Créer un dossier
 
-Cliquez sur le bouton **dossier+** dans la toolbar à côté de "Nouvelle page". Une modale permet de saisir le nom du dossier. Le dossier est créé physiquement dans `pages/` et enregistré dans `reg.folders`.
+Cliquez sur le bouton **dossier+** dans la toolbar à côté de "Nouvelle page". Une modale apparaît avec deux champs :
+
+- **Nom du dossier** : nom d'affichage libre (accents, espaces, majuscules autorisés)
+- **Slug** : chemin technique, **généré automatiquement** à partir du nom (ex : « Études de cas » → `etudes-de-cas`). Modifiable manuellement.
+
+Une **vérification de doublon en temps réel** est effectuée sur le slug : si un dossier avec le même slug existe déjà, un message d'erreur s'affiche et le bouton Créer est désactivé.
+
+Le dossier est créé physiquement dans `pages/` et enregistré dans `reg.folders`.
+
+### Créer un sous-dossier
+
+Clic droit sur un dossier existant → "Nouveau sous-dossier". La même modale avec champs nom + slug apparaît, avec vérification de doublon en temps réel dans le contexte du dossier parent.
+
+### Nom et slug des dossiers
+
+Chaque dossier possède deux identifiants :
+
+- **Nom** (`name`) : nom d'affichage libre (accents, espaces, majuscules autorisés). Affiché dans l'arbre et les menus.
+- **Slug** : chemin technique sur le disque (sans accents, espaces ni caractères spéciaux). Généré automatiquement à partir du nom lors de la création.
+
+Lors de la création d'un dossier, le slug est automatiquement déduit du nom via slugification (ex : « Études de cas » → `etudes-de-cas`). L'utilisateur peut modifier le slug manuellement dans la modale. Les deux peuvent être modifiés indépendamment ensuite.
+
+### Renommer un dossier
+
+Le panneau de propriétés (clic sur le dossier) permet deux types de renommage :
+
+1. **Nom d'affichage** : champ éditable en haut du panneau. Le changement est sauvegardé au blur ou avec Entrée. Aucun fichier n'est déplacé.
+2. **Slug** : champ éditable avec vérification de doublon en temps réel. Le changement déplace physiquement le dossier et met à jour le registre. Cela entraîne :
+   - Le déplacement physique du dossier sur le disque
+   - La mise à jour de toutes les clés de pages et sous-dossiers dans le registre
+   - L'ajustement automatique des chemins relatifs dans les fichiers HTML si la profondeur change
 
 ### Renommer une page
 
@@ -198,6 +247,7 @@ Si le registre est en version 1 (ancien système avec champ `parent`), la migrat
 
 | Propriété | Type | Description |
 |-----------|------|-------------|
+| `name` | String | Nom d'affichage du dossier (accents, espaces autorisés) |
 | `order` | Number | Position dans l'arbre |
 | `collapsed` | Boolean | État expand/collapse du dossier |
 
@@ -206,12 +256,13 @@ Si le registre est en version 1 (ancien système avec champ `parent`), la migrat
 La logique du panneau Pages est gérée par le module `configurateur-pages.js`. Ce module est responsable de :
 
 - L'affichage et la mise à jour de l'arbre organisé par dossiers
-- Les opérations CRUD (création, renommage, suppression, duplication)
-- La création et suppression de dossiers
+- Les opérations CRUD (création, renommage, suppression, duplication) de pages et dossiers
+- Le drag & drop de pages et de dossiers (réordonnement, déplacement, imbrication)
+- Le déplacement physique des fichiers et dossiers sur le disque
+- Le renommage de dossiers avec mise à jour en cascade du registre
+- La création de sous-dossiers imbriqués
 - La synchronisation du registre `pages.json` avec le système de fichiers
 - L'affichage et la sauvegarde du panneau de métadonnées
-- La gestion du drag & drop pour réorganiser l'arbre et déplacer des pages entre dossiers
-- Le déplacement physique des fichiers via `movePageToFolder()`
 
 ## Voir aussi
 

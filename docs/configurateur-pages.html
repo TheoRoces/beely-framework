@@ -69,7 +69,7 @@
           La hi&eacute;rarchie se d&eacute;duit uniquement du <strong>chemin physique</strong> des fichiers : <code>blog/article.html</code> est dans le dossier <code>blog/</code> car son chemin contient <code>blog/</code>.
         </p>
 
-        <h3>Drag &amp; drop</h3>
+        <h3>Drag &amp; drop des pages</h3>
         <p>
           L'arbre supporte le drag &amp; drop pour r&eacute;organiser les pages :
         </p>
@@ -85,15 +85,40 @@
           La page d'accueil est <strong>verrouill&eacute;e</strong> : elle ne peut &ecirc;tre ni d&eacute;plac&eacute;e, ni imbriqu&eacute;e. Les pages templates sont &eacute;galement non-d&eacute;pla&ccedil;ables.
         </p>
 
+        <h3>Drag &amp; drop des dossiers</h3>
+        <p>
+          Les dossiers sont &eacute;galement draggables et peuvent &ecirc;tre :
+        </p>
+        <ul>
+          <li><strong>Gliss&eacute;s sur un autre dossier</strong> : le dossier est imbriqu&eacute; dans le dossier cible (ex : <code>blog/</code> gliss&eacute; sur <code>services/</code> &rarr; <code>services/blog/</code>)</li>
+          <li><strong>Gliss&eacute;s entre des &eacute;l&eacute;ments</strong> : le dossier est d&eacute;plac&eacute; &agrave; la m&ecirc;me profondeur que la cible</li>
+        </ul>
+        <p>
+          Lors du d&eacute;placement d'un dossier, <strong>toutes les pages et sous-dossiers qu'il contient sont d&eacute;plac&eacute;s avec lui</strong>, et les chemins relatifs dans les fichiers HTML sont automatiquement ajust&eacute;s selon la nouvelle profondeur.
+        </p>
+        <p>
+          <strong>Garde-fou</strong> : il est impossible de d&eacute;placer un dossier dans lui-m&ecirc;me ou dans un de ses sous-dossiers.
+        </p>
+
         <h3>Dossiers</h3>
         <p>
           Les dossiers apparaissent dans l'arbre avec une ic&ocirc;ne de dossier et un chevron pour expand/collapse. Ils sont :
         </p>
         <ul>
-          <li><strong>Cliquables</strong> pour expand/collapse</li>
-          <li><strong>Droppables</strong> : glisser une page dessus la d&eacute;place dans le dossier</li>
-          <li><strong>Supprimables</strong> via clic droit (menu contextuel), uniquement s'ils sont vides</li>
+          <li><strong>Cliquables</strong> pour s&eacute;lectionner et afficher le panneau de propri&eacute;t&eacute;s &agrave; droite (le chevron g&egrave;re l'expand/collapse)</li>
+          <li><strong>Draggables</strong> : peuvent &ecirc;tre d&eacute;plac&eacute;s par drag &amp; drop dans l'arbre</li>
+          <li><strong>Droppables</strong> : glisser une page ou un dossier dessus le d&eacute;place dans le dossier</li>
+          <li><strong>Imbriquables</strong> : les sous-dossiers sont support&eacute;s (ex : <code>services/consulting/</code>)</li>
         </ul>
+        <p>
+          S&eacute;lectionnez un dossier (simple clic) pour afficher son panneau de propri&eacute;t&eacute;s &agrave; droite. Ce panneau permet de :
+        </p>
+        <ol>
+          <li><strong>Modifier le nom d'affichage</strong> &mdash; champ &eacute;ditable, sauvegarde au blur ou Entr&eacute;e</li>
+          <li><strong>Modifier le slug</strong> &mdash; champ &eacute;ditable avec v&eacute;rification de doublon en temps r&eacute;el. Le changement d&eacute;place physiquement les fichiers.</li>
+          <li><strong>Cr&eacute;er un sous-dossier</strong> &mdash; bouton dans la toolbar du panneau</li>
+          <li><strong>Supprimer le dossier</strong> &mdash; bouton dans la toolbar (d&eacute;sactiv&eacute; si le dossier n'est pas vide)</li>
+        </ol>
         <p>Les dossiers vides ne sont <strong>pas</strong> automatiquement supprim&eacute;s.</p>
 
         <h2>Op&eacute;rations CRUD</h2>
@@ -107,8 +132,41 @@
 
         <h3>Cr&eacute;er un dossier</h3>
         <p>
-          Cliquez sur le bouton <strong>dossier+</strong> dans la toolbar. Une modale permet de saisir le nom du dossier. Le dossier est cr&eacute;&eacute; physiquement dans <code>pages/</code>.
+          Cliquez sur le bouton <strong>dossier+</strong> dans la toolbar. Une modale appara&icirc;t avec deux champs :
         </p>
+        <ul>
+          <li><strong>Nom du dossier</strong> : nom d'affichage libre (accents, espaces, majuscules autoris&eacute;s)</li>
+          <li><strong>Slug</strong> : chemin technique, <strong>g&eacute;n&eacute;r&eacute; automatiquement</strong> &agrave; partir du nom (ex&nbsp;: &laquo;&nbsp;&Eacute;tudes de cas&nbsp;&raquo; &rarr; <code>etudes-de-cas</code>). Modifiable manuellement.</li>
+        </ul>
+        <p>
+          Une <strong>v&eacute;rification de doublon en temps r&eacute;el</strong> est effectu&eacute;e sur le slug&nbsp;: si un dossier avec le m&ecirc;me slug existe d&eacute;j&agrave;, un message d'erreur s'affiche et le bouton Cr&eacute;er est d&eacute;sactiv&eacute;.
+        </p>
+
+        <h3>Cr&eacute;er un sous-dossier</h3>
+        <p>
+          Clic droit sur un dossier existant &rarr; &laquo;&nbsp;Nouveau sous-dossier&nbsp;&raquo;. La m&ecirc;me modale avec champs nom + slug appara&icirc;t, avec v&eacute;rification de doublon en temps r&eacute;el dans le contexte du dossier parent.
+        </p>
+
+        <h3>Nom et slug des dossiers</h3>
+        <p>
+          Chaque dossier poss&egrave;de deux identifiants :
+        </p>
+        <ul>
+          <li><strong>Nom</strong> (<code>name</code>) : nom d'affichage libre (accents, espaces, majuscules autoris&eacute;s)</li>
+          <li><strong>Slug</strong> : chemin technique sur le disque (g&eacute;n&eacute;r&eacute; automatiquement &agrave; partir du nom). L'utilisateur peut modifier le slug manuellement dans la modale.</li>
+        </ul>
+        <p>
+          Les deux peuvent &ecirc;tre modifi&eacute;s ind&eacute;pendamment via le panneau de propri&eacute;t&eacute;s (clic sur le dossier).
+        </p>
+
+        <h3>Renommer un dossier</h3>
+        <p>
+          Le panneau de propri&eacute;t&eacute;s (clic sur le dossier) permet deux types de renommage :
+        </p>
+        <ol>
+          <li><strong>Nom d'affichage</strong> : champ &eacute;ditable en haut du panneau. Sauvegarde au blur ou Entr&eacute;e. Aucun fichier n'est d&eacute;plac&eacute;.</li>
+          <li><strong>Slug</strong> : champ &eacute;ditable avec <strong>v&eacute;rification de doublon en temps r&eacute;el</strong>. Le changement d&eacute;place physiquement les fichiers et ajuste les chemins HTML.</li>
+        </ol>
 
         <h3>Supprimer une page</h3>
         <p>
@@ -206,6 +264,7 @@
         <h3>Propri&eacute;t&eacute;s d'un dossier</h3>
         <table>
           <tr><th>Propri&eacute;t&eacute;</th><th>Type</th><th>Description</th></tr>
+          <tr><td><code>name</code></td><td>String</td><td>Nom d'affichage du dossier (accents, espaces autoris&eacute;s)</td></tr>
           <tr><td><code>order</code></td><td>Number</td><td>Position dans l'arbre</td></tr>
           <tr><td><code>collapsed</code></td><td>Boolean</td><td>&Eacute;tat expand/collapse</td></tr>
         </table>
@@ -221,10 +280,12 @@
         </p>
         <ul>
           <li>Arbre organis&eacute; par dossiers (<code>buildFolderTree()</code>)</li>
-          <li>Op&eacute;rations CRUD (pages et dossiers)</li>
+          <li>Op&eacute;rations CRUD de pages et dossiers</li>
+          <li>Drag &amp; drop de pages et de dossiers (r&eacute;ordonnement, d&eacute;placement, imbrication)</li>
+          <li>Renommage de dossiers avec mise &agrave; jour en cascade du registre</li>
+          <li>Cr&eacute;ation de sous-dossiers imbriqu&eacute;s</li>
           <li>Synchronisation registre/filesystem</li>
           <li>Panneau de m&eacute;tadonn&eacute;es</li>
-          <li>Drag &amp; drop entre dossiers (<code>movePageToFolder()</code>)</li>
         </ul>
 
         <h2>Voir aussi</h2>
