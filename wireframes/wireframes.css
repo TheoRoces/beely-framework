@@ -374,7 +374,7 @@
 .wf-section--dark .wf-textarea {
   background-color: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 /* ---------- Stat / metric ---------- */
@@ -491,8 +491,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--color-text);
-  color: #fff;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -560,9 +560,9 @@
 
 .wf-filter__btn:hover,
 .wf-filter__btn--active {
-  background-color: var(--color-text);
-  color: #fff;
-  border-color: var(--color-text);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary);
 }
 
 /* ---------- Popup overlay ---------- */

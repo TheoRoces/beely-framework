@@ -67,7 +67,7 @@
 /* ---------- État visible (ajouté par JS) ---------- */
 .anim--visible {
   opacity: 1 !important;
-  transform: none !important;
+  transform: none;
 }
 
 /* ---------- Modificateurs de délai ---------- */
@@ -220,7 +220,7 @@
 
 .anim-svg-fade-up.anim--visible {
   opacity: 1 !important;
-  transform: none !important;
+  transform: none;
 }
 
 /* Animation de remplissage (fill) */

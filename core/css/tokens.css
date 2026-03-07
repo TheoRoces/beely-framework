@@ -354,9 +354,12 @@
   --color-error-dark: color-mix(in srgb, var(--error) 70%, black);
 
   /* Variantes de couleurs principales */
+  --color-primary-hover: var(--primary-d-1);
   --color-primary-light: var(--primary-l-4);
   --color-secondary-dark: var(--secondary-d-2);
   --color-tertiary-dark: var(--tertiary-d-2);
+
+  --color-text-lighter: var(--border);
 
   /* Alias de surface / muted */
   --color-surface: var(--bg-alt);
