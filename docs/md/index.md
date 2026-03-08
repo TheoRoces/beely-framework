@@ -89,12 +89,20 @@ site-system/
 │   ├── baserow.php            ← Proxy API Baserow (CORS)
 │   ├── consent.php            ← Enregistrement consentement RGPD
 │   └── form.php               ← Proxy webhook formulaires
-├── data/                      ← Donnees serveur (CSV consentements)
-├── blog.html                  ← Page listing blog
-├── blog/
-│   └── article.html           ← Page article
+├── data/                      ← Données serveur (CSV consentements, métadonnées médias)
+├── pages/                     ← Pages du site
+│   ├── index.html             ← Page d'accueil
+│   ├── blog.html              ← Page listing blog
+│   ├── blog/
+│   │   └── article.html       ← Page article
+│   ├── mentions-legales.html  ← Mentions légales (auto-générée)
+│   ├── confidentialite.html   ← Politique de confidentialité (auto-générée)
+│   ├── css/                   ← Styles custom du projet
+│   └── js/                    ← Scripts custom du projet
+├── wireframes/                ← 375+ sections HTML prêtes à l'emploi
 ├── docs/                      ← Cette documentation
-└── index.html                 ← Page de demo
+├── configurateur/             ← Configurateur visuel (site builder)
+└── 404.html                   ← Page d'erreur (racine, convention Apache)
 ```
 
 ## Fonctionnalites

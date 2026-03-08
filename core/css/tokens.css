@@ -300,6 +300,7 @@
   --color-text: var(--text);
   --color-text-light: var(--text-light);
   --color-text-inverse: #ffffff;
+  --color-text-on-dark: var(--white);
 
   --color-bg: var(--bg);
   --color-bg-alt: var(--bg-alt);
@@ -395,6 +396,7 @@
   --border-dark: #4b5563;
 
   --color-text-inverse: #ffffff;
+  --color-text-on-dark: var(--white);
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);

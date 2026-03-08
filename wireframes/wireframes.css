@@ -302,7 +302,7 @@
 .wf-stars {
   display: flex;
   gap: 2px;
-  color: #9ca3af;
+  color: var(--color-text-light);
 }
 
 .wf-stars svg {

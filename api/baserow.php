@@ -53,11 +53,23 @@ if (empty($endpoint)) {
     exit;
 }
 
-// Valider que l'endpoint commence par /api/database/ (lecture seule Baserow)
-if (strpos($endpoint, '/api/database/') !== 0) {
+// Valider que l'endpoint correspond à un chemin Baserow en lecture seule (rows/fields)
+$allowedPatterns = [
+    '#^/api/database/rows/table/\d+/$#',     // Lister les rows d'une table
+    '#^/api/database/rows/table/\d+/\d+/$#', // Lire un row spécifique
+    '#^/api/database/fields/table/\d+/$#',   // Lister les champs d'une table
+];
+$endpointValid = false;
+foreach ($allowedPatterns as $pat) {
+    if (preg_match($pat, $endpoint)) {
+        $endpointValid = true;
+        break;
+    }
+}
+if (!$endpointValid) {
     http_response_code(400);
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Endpoint invalide (seul /api/database/ est autorisé)']);
+    echo json_encode(['error' => 'Endpoint non autorisé']);
     exit;
 }
 

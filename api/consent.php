@@ -33,7 +33,13 @@ if (file_exists($envPath)) {
     }
 }
 
-/* Si SITE_ORIGIN est configure, verifier l'origin ; sinon accepter le meme domaine */
+/* Si SITE_ORIGIN n'est pas configuré, construire un origin par défaut depuis HTTP_HOST */
+if (!$allowed && isset($_SERVER['HTTP_HOST'])) {
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $allowed = $scheme . '://' . $_SERVER['HTTP_HOST'];
+}
+
+/* Vérifier l'origin contre le domaine autorisé */
 if ($allowed && $origin) {
     if ($origin !== $allowed) {
         http_response_code(403);
@@ -42,9 +48,6 @@ if ($allowed && $origin) {
         exit;
     }
     header('Access-Control-Allow-Origin: ' . $allowed);
-} elseif ($origin) {
-    /* Fallback : accepter l'origin de la requete (meme serveur) */
-    header('Access-Control-Allow-Origin: ' . $origin);
 }
 
 header('Access-Control-Allow-Methods: POST, OPTIONS');
@@ -66,6 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 /* --- Lire le payload JSON --- */
 $raw = file_get_contents('php://input');
+if (strlen($raw) > 10240) {
+    http_response_code(413);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Payload too large']);
+    exit;
+}
 $data = json_decode($raw, true);
 
 if (!$data || !isset($data['consent']) || !isset($data['timestamp'])) {

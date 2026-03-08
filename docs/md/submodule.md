@@ -130,6 +130,7 @@ mon-projet/
 │   ├── index.html           ← page d'accueil
 │   ├── blog.html            ← blog
 │   ├── blog/article.html    ← template article
+│   ├── base-index.html      ← symlink → ../.framework/base-index.html
 │   ├── css/                 ← styles custom du projet
 │   └── js/                  ← scripts custom du projet
 ├── core/                    ← symlink → .framework/core/
@@ -139,8 +140,6 @@ mon-projet/
 ├── wireframes/              ← symlink → .framework/wireframes/
 ├── snippets/                ← symlink → .framework/snippets/
 ├── docs/                    ← symlink → .framework/docs/
-├── pages/
-│   ├── base-index.html      ← symlink → ../.framework/base-index.html
 ├── robots.txt               ← symlink → .framework/robots.txt
 ├── generate-sitemap.js      ← symlink → .framework/generate-sitemap.js
 ├── config-site.js           ← fichier réel du projet
