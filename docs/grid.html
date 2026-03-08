@@ -58,9 +58,9 @@
 &lt;/div&gt;</code></pre>
 
         <div class="grid" data-cols="3" data-gap="md" style="margin-bottom: var(--space-6);">
-          <div class="demo-box">1</div>
-          <div class="demo-box">2</div>
-          <div class="demo-box">3</div>
+          <div class="demo-box">Colonne 1</div>
+          <div class="demo-box">Colonne 2</div>
+          <div class="demo-box">Colonne 3</div>
         </div>
 
         <h3>Colonnes</h3>
@@ -104,9 +104,9 @@
 &lt;/div&gt;</code></pre>
 
         <div class="grid" data-cols="3" data-gap="md" style="margin-bottom: var(--space-6);">
-          <div class="demo-box--primary demo-box" data-col-span="2">Span 2</div>
-          <div class="demo-box">1</div>
-          <div class="demo-box--dark demo-box" data-col-span="full">Full width</div>
+          <div class="demo-box--primary demo-box" data-col-span="2">Je prends 2 colonnes</div>
+          <div class="demo-box">1 colonne</div>
+          <div class="demo-box--dark demo-box" data-col-span="full">Toute la largeur</div>
         </div>
 
         <table>
@@ -129,11 +129,11 @@
 &lt;/div&gt;</code></pre>
 
         <div class="bento" data-gap="md" style="margin-bottom: var(--space-6);">
-          <div class="bento__item demo-box--primary demo-box" data-size="large" style="font-size: var(--text-lg); font-weight: var(--font-weight-bold);">Large</div>
+          <div class="bento__item demo-box--primary demo-box" data-size="large" style="font-size: var(--text-lg); font-weight: var(--font-weight-bold);">Grande carte</div>
           <div class="bento__item demo-box">Normal</div>
           <div class="bento__item demo-box">Normal</div>
-          <div class="bento__item demo-box--dark demo-box" data-size="wide">Wide</div>
-          <div class="bento__item demo-box" data-size="tall">Tall</div>
+          <div class="bento__item demo-box--dark demo-box" data-size="wide">Large</div>
+          <div class="bento__item demo-box" data-size="tall">Haute</div>
           <div class="bento__item demo-box">Normal</div>
         </div>
 
@@ -230,6 +230,76 @@
 
         <h2 id="grid-creator">Cr&eacute;ateur de grilles</h2>
         <p>Configurez visuellement vos layouts grille et bento, puis copiez le code g&eacute;n&eacute;r&eacute;. Le code utilise les attributs <code>data-*</code> du framework et fonctionne imm&eacute;diatement avec <code>grid.css</code>.</p>
+
+        <h3>Fonctionnalit&eacute;s</h3>
+        <ul>
+          <li><strong>Deux modes :</strong> <em>Grille flexible</em> (nombre de colonnes libre, spans personnalis&eacute;s) et <em>Bento</em> (tailles pr&eacute;d&eacute;finies, layouts).</li>
+          <li><strong>Responsive complet :</strong> nommez votre grille pour activer la barre de breakpoints et configurer colonnes et spans par breakpoint.</li>
+          <li><strong>Aper&ccedil;u adaptatif :</strong> la preview change de largeur selon le breakpoint s&eacute;lectionn&eacute; (Desktop&nbsp;=&nbsp;100%, Tablette&nbsp;=&nbsp;768px, Mobile&nbsp;L&nbsp;=&nbsp;480px, Mobile&nbsp;=&nbsp;375px).</li>
+          <li><strong>Sortie HTML + CSS :</strong> le code g&eacute;n&eacute;r&eacute; inclut le HTML et, si un nom est d&eacute;fini, le CSS responsive complet avec media queries.</li>
+        </ul>
+
+        <h3>Barre de breakpoints</h3>
+        <p>D&egrave;s qu'un <strong>nom de grille</strong> est renseign&eacute; (ex&nbsp;: <code>grid-services</code>), une barre de breakpoints style Webflow appara&icirc;t avec 4 niveaux :</p>
+        <table>
+          <tr><th>Breakpoint</th><th>Seuil</th><th>Largeur de preview</th></tr>
+          <tr><td>Desktop</td><td>&mdash;</td><td>100%</td></tr>
+          <tr><td>Tablette</td><td>&le; 991px</td><td>768px</td></tr>
+          <tr><td>Mobile L</td><td>&le; 767px</td><td>480px</td></tr>
+          <tr><td>Mobile</td><td>&le; 478px</td><td>375px</td></tr>
+        </table>
+        <p>Cliquez sur un breakpoint pour configurer le nombre de colonnes et les spans &agrave; ce niveau. Les breakpoints inf&eacute;rieurs <strong>h&eacute;ritent</strong> automatiquement des valeurs du breakpoint sup&eacute;rieur (syst&egrave;me de cascade). Un bouton <strong>Auto</strong> permet de r&eacute;tablir l'h&eacute;ritage si une valeur a &eacute;t&eacute; personnalis&eacute;e.</p>
+
+        <h3>Nom de la grille et classes auto</h3>
+        <p>Quand un nom est d&eacute;fini, le cr&eacute;ateur g&eacute;n&egrave;re des classes CSS automatiques pour chaque item :</p>
+<pre><code>&lt;!-- Avec nom "grid-services" --&gt;
+&lt;div class="grid grid-services" data-cols="4"&gt;
+  &lt;div class="grid-services__item-1"&gt;Contenu 1&lt;/div&gt;
+  &lt;div class="grid-services__item-2"&gt;Contenu 2&lt;/div&gt;
+  &lt;div class="grid-services__item-3"&gt;Contenu 3&lt;/div&gt;
+  &lt;div class="grid-services__item-4"&gt;Contenu 4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p>Sans nom, le comportement classique avec <code>data-col-span</code> / <code>data-row-span</code> est utilis&eacute;.</p>
+
+        <h3>CSS responsive g&eacute;n&eacute;r&eacute;</h3>
+        <p>Le bloc CSS inclut les media queries compl&egrave;tes :</p>
+        <ul>
+          <li><strong>Desktop :</strong> les spans sont d&eacute;finis en CSS sans media query.</li>
+          <li><strong>Breakpoints non-desktop :</strong> chaque niveau g&eacute;n&egrave;re une <code>@media (max-width: ...)</code> avec le <code>grid-template-columns</code> et les spans par item.</li>
+        </ul>
+<pre><code>/* Exemple de CSS g&eacute;n&eacute;r&eacute; */
+/* Desktop */
+.grid-services__item-1 {
+  grid-column: span 2;
+}
+
+/* Tablette */
+@media (max-width: 991px) {
+  .grid-services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-services__item-1 {
+    grid-column: span 2;
+  }
+}
+
+/* Mobile */
+@media (max-width: 478px) {
+  .grid-services {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+
+        <h3>Utilisation du cr&eacute;ateur</h3>
+        <ol>
+          <li>Choisissez le mode : <strong>Grille flexible</strong> ou <strong>Bento</strong>.</li>
+          <li>(Grille) Renseignez un <strong>nom de grille</strong> pour activer le responsive personnalis&eacute;.</li>
+          <li>Configurez les options globales (colonnes, gap, alignement).</li>
+          <li>Si un nom est d&eacute;fini, naviguez entre les <strong>breakpoints</strong> pour ajuster colonnes et spans.</li>
+          <li><strong>Cliquez sur un item</strong> dans l'aper&ccedil;u pour modifier son col-span et row-span (les valeurs h&eacute;rit&eacute;es sont signal&eacute;es par une bordure en pointill&eacute;s).</li>
+          <li>Copiez le <strong>code HTML</strong> et le <strong>CSS responsive</strong> g&eacute;n&eacute;r&eacute;s.</li>
+        </ol>
+
         <div id="gridCreator"></div>
 
         <div class="docs-see-also">

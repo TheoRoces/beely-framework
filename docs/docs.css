@@ -949,3 +949,15 @@ pre:hover .docs-copy-btn {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- Dev framework warning banner ---------- */
+
+.docs-warning--dev {
+  background: var(--warning-t-3, rgba(245, 158, 11, 0.15));
+  border-left: 4px solid var(--warning, #f59e0b);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}

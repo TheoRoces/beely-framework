@@ -176,12 +176,84 @@ Aucun JavaScript nécessaire. Tout fonctionne en CSS pur.
 
 ## Créateur de grilles
 
-Un outil interactif est intégré directement dans [la page docs Grid](grid.html#grid-creator). Il permet de :
+Un outil interactif est intégré directement dans [la page docs Grid](grid.html#grid-creator). Il permet de configurer visuellement vos layouts grille et bento, puis de copier le code HTML et CSS généré.
 
-1. Choisir le type : **Grille flexible** ou **Bento**
-2. Configurer les options (colonnes, gap, alignement, layout prédéfini…)
-3. Cliquer sur un item dans l'aperçu pour modifier son span (grille) ou sa taille (bento)
-4. Copier le code HTML généré
+### Fonctionnalités
+
+- **Deux modes :** *Grille flexible* (nombre de colonnes libre, spans personnalisés) et *Bento* (tailles prédéfinies, layouts).
+- **Responsive complet :** nommez votre grille pour activer la barre de breakpoints et configurer colonnes et spans par breakpoint.
+- **Aperçu adaptatif :** la preview change de largeur selon le breakpoint sélectionné (Desktop = 100%, Tablette = 768px, Mobile L = 480px, Mobile = 375px).
+- **Sortie HTML + CSS :** le code généré inclut le HTML et, si un nom est défini, le CSS responsive complet avec media queries.
+
+### Barre de breakpoints
+
+Dès qu'un **nom de grille** est renseigné (ex : `grid-services`), une barre de breakpoints style Webflow apparaît avec 4 niveaux :
+
+| Breakpoint | Seuil | Largeur de preview |
+|---|---|---|
+| Desktop | — | 100% |
+| Tablette | ≤ 991px | 768px |
+| Mobile L | ≤ 767px | 480px |
+| Mobile | ≤ 478px | 375px |
+
+Cliquez sur un breakpoint pour configurer le nombre de colonnes et les spans à ce niveau. Les breakpoints inférieurs **héritent** automatiquement des valeurs du breakpoint supérieur (système de cascade). Un bouton **Auto** permet de rétablir l'héritage si une valeur a été personnalisée.
+
+### Nom de la grille et classes auto
+
+Quand un nom est défini, le créateur génère des classes CSS automatiques pour chaque item :
+
+```html
+<!-- Avec nom "grid-services" -->
+<div class="grid grid-services" data-cols="4">
+  <div class="grid-services__item-1">Contenu 1</div>
+  <div class="grid-services__item-2">Contenu 2</div>
+  <div class="grid-services__item-3">Contenu 3</div>
+  <div class="grid-services__item-4">Contenu 4</div>
+</div>
+```
+
+Sans nom, le comportement classique avec `data-col-span` / `data-row-span` est utilisé.
+
+### CSS responsive généré
+
+Le bloc CSS inclut les media queries complètes :
+
+- **Desktop :** les spans sont définis en CSS sans media query.
+- **Breakpoints non-desktop :** chaque niveau génère une `@media (max-width: ...)` avec le `grid-template-columns` et les spans par item.
+
+```css
+/* Exemple de CSS généré */
+/* Desktop */
+.grid-services__item-1 {
+  grid-column: span 2;
+}
+
+/* Tablette */
+@media (max-width: 991px) {
+  .grid-services {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-services__item-1 {
+    grid-column: span 2;
+  }
+}
+
+/* Mobile */
+@media (max-width: 478px) {
+  .grid-services {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+### Utilisation du créateur
+
+1. Choisissez le mode : **Grille flexible** ou **Bento**.
+2. (Grille) Renseignez un **nom de grille** pour activer le responsive personnalisé.
+3. Configurez les options globales (colonnes, gap, alignement).
+4. Si un nom est défini, naviguez entre les **breakpoints** pour ajuster colonnes et spans.
+5. **Cliquez sur un item** dans l'aperçu pour modifier son col-span et row-span (les valeurs héritées sont signalées par une bordure en pointillés).
+6. Copiez le **code HTML** et le **CSS responsive** générés.
 
 Le code généré utilise les attributs `data-*` du framework et fonctionne immédiatement avec `grid.css`.
 

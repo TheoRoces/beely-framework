@@ -32,32 +32,39 @@ Gestionnaire de fichiers images du site. Les images sont stockées dans `/assets
 
 ### Upload
 
-- **Drag & drop** : glisse des images directement dans la zone de dépôt
-- **Bouton Uploader** : clique pour sélectionner des fichiers depuis ton ordinateur
+- **Drag & drop** : glissez des images directement dans la zone de dépôt
+- **Bouton Uploader** : cliquez pour sélectionner des fichiers depuis votre ordinateur
 - Les fichiers sont uploadés dans le **dossier courant** (racine par défaut)
 - Formats supportés : JPG, JPEG, PNG, GIF, SVG, WebP, AVIF, ICO
 - Taille max : 5 Mo par fichier
 
 ### Organisation en dossiers
 
-Tu peux créer des dossiers pour ranger tes images :
+Vous pouvez créer des dossiers pour ranger vos images :
 
-- Clique sur **Dossier** dans la barre d'outils → entre un nom → le dossier est créé
+- Cliquez sur **Dossier** dans la barre d'outils → entrez un nom → le dossier est créé
 - Les dossiers apparaissent en haut de la grille avec une icône de dossier
-- Clique sur un dossier pour y naviguer
-- Un **fil d'Ariane** (breadcrumb) en haut te permet de revenir en arrière : `Images / photos / portraits`
-- Les images uploadées vont dans le dossier où tu te trouves
+- Cliquez sur un dossier pour y naviguer
+- Un **fil d'Ariane** (breadcrumb) en haut vous permet de revenir en arrière : `Images / photos / portraits`
+- Les images uploadées vont dans le dossier où vous vous trouvez
 
 ### Popup d'édition
 
-Clique sur une image (pas sur un bouton) pour ouvrir le popup d'édition :
+Cliquez sur une image (pas sur un bouton) pour ouvrir le popup d'édition :
 
 - **Aperçu** de l'image à gauche
 - **Infos fichier** : type (JPEG, PNG…), poids (Ko/Mo), chemin complet
 - **Nom du fichier** : modifiable pour renommer l'image
-- **Texte alternatif (alt)** : description pour l'accessibilité (lecteurs d'écran, SEO)
+- **Texte alternatif (alt)** : description pour l'accessibilité (lecteurs d'écran, SEO). Le alt text est sauvegardé dans `data/media-meta.json` et **propagé automatiquement** dans toutes les pages HTML qui utilisent l'image (l'attribut `alt=""` des balises `<img>` est mis à jour). Le champ est pré-rempli à l'ouverture de la popup si un alt text a déjà été renseigné.
 - **Dossier** : sélecteur pour déplacer l'image dans un autre dossier
+- **Suivi d'utilisation** : affiche le nombre de pages qui utilisent cette image, avec la liste de leurs chemins. Si l'image n'est utilisée nulle part, la mention « Non utilisée » est affichée.
 - Bouton **Enregistrer** pour appliquer les modifications
+
+### Mise à jour automatique des chemins
+
+Lorsqu'une image est **déplacée** ou **renommée** via la popup d'édition, toutes les pages HTML qui la référencent sont **automatiquement mises à jour** avec le nouveau chemin. Un toast informatif indique combien de pages ont été mises à jour (ex : « Fichier mis à jour — 3 pages mises à jour »).
+
+Cela évite les images cassées après une réorganisation de la médiathèque : vous pouvez renommer et déplacer vos fichiers librement sans vous soucier des références.
 
 ### Actions rapides
 
@@ -87,6 +94,9 @@ Clique sur une image (pas sur un bouton) pour ouvrir le popup d'édition :
 | `BuilderAPI.mediaList()` | Liste les images et dossiers |
 | `BuilderAPI.mediaUpload(nom, base64, dossier)` | Upload une image |
 | `BuilderAPI.mediaDelete(chemin)` | Supprime une image |
-| `BuilderAPI.mediaRename(chemin, nouveauNom)` | Renomme une image |
+| `BuilderAPI.mediaRename(chemin, nouveauNom)` | Renomme une image (met à jour les références dans les pages) |
 | `BuilderAPI.mediaMkdir(nom, parent)` | Crée un dossier |
-| `BuilderAPI.mediaMove(chemin, dossier)` | Déplace une image |
+| `BuilderAPI.mediaMove(chemin, dossier)` | Déplace une image (met à jour les références dans les pages) |
+| `BuilderAPI.mediaUsage(chemin)` | Retourne la liste des pages utilisant cette image |
+| `BuilderAPI.mediaSetAlt(chemin, altText)` | Définit le texte alternatif et le propage dans les pages |
+| `BuilderAPI.mediaGetMeta(chemin)` | Récupère les métadonnées (alt text) depuis `media-meta.json` |

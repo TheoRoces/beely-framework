@@ -224,12 +224,13 @@
         </div>
 
         <h3>Utilisation</h3>
-<pre><code>&lt;span data-tooltip="Texte de la bulle"&gt;Survolez-moi&lt;/span&gt;
+<pre><code>&lt;button data-tooltip="Texte de la bulle"&gt;Survolez-moi&lt;/button&gt;
 
 &lt;!-- Avec position --&gt;
-&lt;span data-tooltip="Info" data-tooltip-pos="bottom"&gt;En bas&lt;/span&gt;
-&lt;span data-tooltip="Info" data-tooltip-pos="left"&gt;&Agrave; gauche&lt;/span&gt;
-&lt;span data-tooltip="Info" data-tooltip-pos="right"&gt;&Agrave; droite&lt;/span&gt;</code></pre>
+&lt;button data-tooltip="Info" data-tooltip-pos="bottom"&gt;En bas&lt;/button&gt;
+&lt;button data-tooltip="Info" data-tooltip-pos="left"&gt;&Agrave; gauche&lt;/button&gt;
+&lt;button data-tooltip="Info" data-tooltip-pos="right"&gt;&Agrave; droite&lt;/button&gt;</code></pre>
+        <p>Les tooltips fonctionnent sur n'importe quel &eacute;l&eacute;ment HTML : <code>&lt;span&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;div&gt;</code>, etc.</p>
 
         <h3>Attributs</h3>
         <table>
@@ -286,13 +287,19 @@
   &lt;div class="accordion__item"&gt;
     &lt;button class="accordion__header"&gt;Section 1&lt;/button&gt;
     &lt;div class="accordion__body"&gt;
-      &lt;div&gt;Contenu du panneau 1.&lt;/div&gt;
+      &lt;div&gt;Contenu du premier panneau.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="accordion__item"&gt;
     &lt;button class="accordion__header"&gt;Section 2&lt;/button&gt;
     &lt;div class="accordion__body"&gt;
-      &lt;div&gt;Contenu du panneau 2.&lt;/div&gt;
+      &lt;div&gt;Contenu du deuxi&egrave;me panneau.&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="accordion__item"&gt;
+    &lt;button class="accordion__header"&gt;Section 3&lt;/button&gt;
+    &lt;div class="accordion__body"&gt;
+      &lt;div&gt;Contenu du troisi&egrave;me panneau.&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
@@ -301,6 +308,32 @@
         <p>Par d&eacute;faut, un seul panneau est ouvert &agrave; la fois. Ajoutez <code>data-accordion-multi</code> pour permettre l'ouverture de plusieurs panneaux simultan&eacute;ment :</p>
 <pre><code>&lt;div class="accordion" data-accordion-multi&gt;
   ...
+&lt;/div&gt;</code></pre>
+
+        <h3>Accordion imbriqu&eacute;</h3>
+        <p>Combinez <code>data-accordion-multi</code> avec l'imbrication pour des structures complexes :</p>
+<pre><code>&lt;div class="accordion"&gt;
+  &lt;div class="accordion__item"&gt;
+    &lt;button class="accordion__header"&gt;Section parente&lt;/button&gt;
+    &lt;div class="accordion__body"&gt;
+      &lt;div&gt;Contenu avec un sous-accordion :
+        &lt;div class="accordion" data-accordion-multi&gt;
+          &lt;div class="accordion__item"&gt;
+            &lt;button class="accordion__header"&gt;Sous-section A&lt;/button&gt;
+            &lt;div class="accordion__body"&gt;
+              &lt;div&gt;Contenu imbriqu&eacute; A.&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="accordion__item"&gt;
+            &lt;button class="accordion__header"&gt;Sous-section B&lt;/button&gt;
+            &lt;div class="accordion__body"&gt;
+              &lt;div&gt;Contenu imbriqu&eacute; B (mode multiple).&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
         <h3>Accord&eacute;on imbriqu&eacute;</h3>
@@ -432,14 +465,11 @@
         <p>Carousel avec navigation par boutons, dots, swipe tactile, drag souris, autoplay et boucle. Support multi-slides.</p>
 
         <div class="docs-demo">
-          <div class="slider" data-slider-per-view="3 2 2 1" data-slider-loop="true" data-slider-drag="true" data-slider-gap="md">
+          <div class="slider">
             <div class="slider__track">
               <div class="slider__slide"><div class="demo-box demo-box--primary" style="padding: var(--space-10);">Slide 1</div></div>
               <div class="slider__slide"><div class="demo-box demo-box--dark" style="padding: var(--space-10);">Slide 2</div></div>
               <div class="slider__slide"><div class="demo-box" style="padding: var(--space-10);">Slide 3</div></div>
-              <div class="slider__slide"><div class="demo-box demo-box--primary" style="padding: var(--space-10);">Slide 4</div></div>
-              <div class="slider__slide"><div class="demo-box demo-box--dark" style="padding: var(--space-10);">Slide 5</div></div>
-              <div class="slider__slide"><div class="demo-box" style="padding: var(--space-10);">Slide 6</div></div>
             </div>
             <button class="slider__prev"></button>
             <button class="slider__next"></button>
@@ -458,9 +488,27 @@
   &lt;button class="slider__prev"&gt;&lt;/button&gt;
   &lt;button class="slider__next"&gt;&lt;/button&gt;
   &lt;div class="slider__dots"&gt;&lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 
-&lt;!-- Slider responsive multi-slides --&gt;
+        <h3>Slider multi-slides</h3>
+
+        <div class="docs-demo">
+          <div class="slider" data-slider-per-view="3 2 2 1" data-slider-loop="true" data-slider-drag="true" data-slider-gap="md">
+            <div class="slider__track">
+              <div class="slider__slide"><div class="demo-box demo-box--primary" style="padding: var(--space-10);">Slide 1</div></div>
+              <div class="slider__slide"><div class="demo-box demo-box--dark" style="padding: var(--space-10);">Slide 2</div></div>
+              <div class="slider__slide"><div class="demo-box" style="padding: var(--space-10);">Slide 3</div></div>
+              <div class="slider__slide"><div class="demo-box demo-box--primary" style="padding: var(--space-10);">Slide 4</div></div>
+              <div class="slider__slide"><div class="demo-box demo-box--dark" style="padding: var(--space-10);">Slide 5</div></div>
+              <div class="slider__slide"><div class="demo-box" style="padding: var(--space-10);">Slide 6</div></div>
+            </div>
+            <button class="slider__prev"></button>
+            <button class="slider__next"></button>
+            <div class="slider__dots"></div>
+          </div>
+        </div>
+
+<pre><code>&lt;!-- Slider responsive multi-slides --&gt;
 &lt;div class="slider"
      data-slider-per-view="3 2 2 1"
      data-slider-loop="true"
@@ -522,7 +570,7 @@
 <pre><code>&lt;div class="slider"
      data-slider-arrow-prev="arrow-left"
      data-slider-arrow-next="arrow-right"
-     style="--slider-arrow-color: #fff; --slider-arrow-bg: var(--color-primary);"&gt;
+     style="--slider-arrow-color: #fff; --slider-arrow-bg: var(--color-primary); --slider-arrow-hover-bg: var(--color-primary-dark);"&gt;
   ...
 &lt;/div&gt;</code></pre>
 
@@ -556,7 +604,7 @@
      data-slider-gap="md"
      data-slider-arrow-prev="arrow-left"
      data-slider-arrow-next="arrow-right"
-     style="--slider-arrow-color: #fff; --slider-arrow-bg: var(--color-primary);"&gt;
+     style="--slider-arrow-color: #fff; --slider-arrow-bg: var(--color-primary); --slider-arrow-hover-bg: var(--color-primary-dark);"&gt;
   &lt;div class="slider__track"&gt;
     &lt;div class="slider__slide"&gt;&lt;img src="img/1.jpg" alt=""&gt;&lt;/div&gt;
     &lt;div class="slider__slide"&gt;&lt;img src="img/2.jpg" alt=""&gt;&lt;/div&gt;

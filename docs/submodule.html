@@ -41,6 +41,10 @@
 
       <main class="docs-content">
         <h1 class="anim-fade-in-up">Architecture Submodule</h1>
+        <div class="docs-warning docs-warning--dev">
+          <strong>Section réservée au développeur du framework.</strong>
+          Si vous utilisez Site System pour créer un site, vous pouvez ignorer cette section.
+        </div>
         <p class="anim-fade-in-up anim--delay-1" style="font-size: var(--text-lg); color: var(--color-text);">
           Le framework Site System est une source de v&eacute;rit&eacute; unique partag&eacute;e entre tous les projets via <strong>git submodule</strong> et <strong>symlinks</strong>. Cette architecture garantit que chaque projet utilise toujours la derni&egrave;re version du framework sans duplication de code.
         </p>
@@ -66,7 +70,7 @@
         <!-- ========== REPRENDRE DE ZÉRO ========== -->
 
         <h2 id="reprendre-de-zero">Reprendre de z&eacute;ro</h2>
-        <p>Si tu as perdu la main (nouveau Mac, r&eacute;installation, longue absence), voici comment tout retrouver et recloner.</p>
+        <p>Si vous avez perdu la main (nouveau Mac, r&eacute;installation, longue absence), voici comment tout retrouver et recloner.</p>
 
         <h3>Les 4 repos GitHub</h3>
         <table>
@@ -127,9 +131,9 @@ cd mon-projet
 cp .deploy.env.example .deploy.env</code></pre>
         <p>Puis remplir les valeurs SSH. Pour retrouver les infos serveur&nbsp;:</p>
         <ul>
-          <li>Connecte-toi &agrave; <a href="https://hpanel.hostinger.com/" target="_blank" rel="noopener">Hostinger hPanel</a></li>
-          <li>Va dans <strong>Avanc&eacute; &rarr; Acc&egrave;s SSH</strong></li>
-          <li>Note l'IP, le port et le nom d'utilisateur</li>
+          <li>Connectez-vous &agrave; <a href="https://hpanel.hostinger.com/" target="_blank" rel="noopener">Hostinger hPanel</a></li>
+          <li>Allez dans <strong>Avanc&eacute; &rarr; Acc&egrave;s SSH</strong></li>
+          <li>Notez l'IP, le port et le nom d'utilisateur</li>
         </ul>
 
         <p><strong><code>.env</code></strong> (tokens API, webhooks)&nbsp;:</p>
@@ -172,12 +176,12 @@ cp .env.example .env</code></pre>
         <h3>Le r&ocirc;le de site-system</h3>
         <p><code>site-system</code> n'est <strong>pas un submodule</strong> &mdash; c'est le <strong>repo de d&eacute;veloppement principal</strong>. C'est le seul endroit o&ugrave;&nbsp;:</p>
         <ul>
-          <li>Tu modifies le <strong>framework</strong> (via le submodule <code>.framework/</code>)</li>
-          <li>Tu modifies le <strong>Configurateur</strong> (via le submodule <code>configurateur/</code>)</li>
-          <li>Tu mets &agrave; jour la <strong>documentation</strong> (qui se trouve dans <code>.framework/docs/</code>)</li>
-          <li>Tu d&eacute;ploies le site <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong> (via <code>./deploy.sh prod</code>)</li>
+          <li>Vous modifiez le <strong>framework</strong> (via le submodule <code>.framework/</code>)</li>
+          <li>Vous modifiez le <strong>Configurateur</strong> (via le submodule <code>configurateur/</code>)</li>
+          <li>Vous mettez &agrave; jour la <strong>documentation</strong> (qui se trouve dans <code>.framework/docs/</code>)</li>
+          <li>Vous d&eacute;ployez le site <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong> (via <code>./deploy.sh prod</code>)</li>
         </ul>
-        <p>En r&eacute;sum&eacute;&nbsp;: <code>site-system</code> = ton atelier. <code>beely-template</code> = ce que tu donnes aux projets clients.</p>
+        <p>En r&eacute;sum&eacute;&nbsp;: <code>site-system</code> = votre atelier. <code>beely-template</code> = ce que vous donnez aux projets clients.</p>
 <pre><code>site-system/
 &boxvr;&boxh;&boxh; .framework/     &larr; submodule beely-framework (tu modifies ici)
 &boxvr;&boxh;&boxh; configurateur/  &larr; submodule beely-builder (tu modifies ici)
@@ -378,7 +382,7 @@ rsync -avzL --delete \
 ./deploy.sh prod</code></pre>
 
         <h3>Workflow complet : modifier et propager partout</h3>
-        <p>Quand tu modifies le framework, il faut <strong>propager les changements &agrave; tous les projets</strong>. Voici les &eacute;tapes&nbsp;:</p>
+        <p>Quand vous modifiez le framework, il faut <strong>propager les changements &agrave; tous les projets</strong>. Voici les &eacute;tapes&nbsp;:</p>
 
         <h4>&Eacute;tape 1 &mdash; Modifier et pousser le framework</h4>
 <pre><code># &#x1F4BB; Terminal : terminal VSCode
@@ -414,7 +418,7 @@ git push
 cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework submodule"</code></pre>
 
         <h3>Pourquoi c'est n&eacute;cessaire&nbsp;?</h3>
-        <p>Un <strong>submodule git</strong> est un pointeur vers un commit pr&eacute;cis d'un autre repo. Quand tu fais <code>git pull</code> dans le submodule, tu r&eacute;cup&egrave;res les derniers commits. Mais le projet parent ne sait pas que le submodule a chang&eacute; tant que tu ne fais pas <code>git add .framework &amp;&amp; git commit</code>.</p>
+        <p>Un <strong>submodule git</strong> est un pointeur vers un commit pr&eacute;cis d'un autre repo. Quand vous faites <code>git pull</code> dans le submodule, vous r&eacute;cup&eacute;rez les derniers commits. Mais le projet parent ne sait pas que le submodule a chang&eacute; tant que vous ne faites pas <code>git add .framework &amp;&amp; git commit</code>.</p>
         <p>C'est voulu&nbsp;: chaque projet est <strong>&eacute;pingl&eacute; &agrave; une version pr&eacute;cise</strong> du framework. &Ccedil;a &eacute;vite qu'une mise &agrave; jour du framework casse un site en production.</p>
 
         <h3>R&eacute;cap visuel</h3>
@@ -432,7 +436,7 @@ Pour CHAQUE projet client :
         <!-- ========== QUEL REPO ========== -->
 
         <h2 id="quel-repo">Quel repo modifier pour quoi&nbsp;?</h2>
-        <p>Guide rapide pour savoir o&ugrave; aller quand tu veux modifier quelque chose&nbsp;:</p>
+        <p>Guide rapide pour savoir o&ugrave; aller quand vous voulez modifier quelque chose&nbsp;:</p>
         <table>
           <tr><th>Je veux&hellip;</th><th>Repo</th><th>Dossier</th><th>Commande depuis un projet</th></tr>
           <tr>

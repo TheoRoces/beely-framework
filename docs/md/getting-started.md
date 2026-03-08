@@ -4,14 +4,14 @@ Guide complet pour installer le framework Site System, créer un site, et le met
 
 **Sommaire de cette page :**
 
-1. [Installer le framework](#installer-le-framework) — 3 scénarios selon ta situation
+1. [Installer le framework](#installer-le-framework) — 3 scénarios selon votre situation
 2. [Personnaliser le site](#personnaliser-le-site) — charte graphique, config, composants
 3. [Créer des pages](#creer-des-pages) — template HTML et structure
 4. [Tester en local](#tester-en-local) — Live Server, Python, Node
-5. [Git & GitHub](#git--github) — versionner et pousser ton code
+5. [Git & GitHub](#git--github) — versionner et pousser votre code
 6. [Mise en production](#mise-en-production) — déployer sur un serveur
 7. [Site sans blog](#site-sans-blog) — retirer le blog
-8. [Modules optionnels](#modules-optionnels) — retirer ce dont tu n'as pas besoin
+8. [Modules optionnels](#modules-optionnels) — retirer ce dont vous n'avez pas besoin
 9. [Snippets copier-coller](#snippets-copier-coller) — fragments HTML prêts à l'emploi
 
 ---
@@ -22,19 +22,19 @@ Guide complet pour installer le framework Site System, créer un site, et le met
 
 Toutes les commandes de cette page se tapent dans un **terminal** (ligne de commande). Voici comment l'ouvrir :
 
-- **Sur Mac** : ouvre l'application **Terminal** (dans Applications → Utilitaires) ou tape `terminal` dans Spotlight (Cmd+Espace)
+- **Sur Mac** : ouvrez l'application **Terminal** (dans Applications → Utilitaires) ou tapez `terminal` dans Spotlight (Cmd+Espace)
 - **Dans VSCode** : menu **Terminal → Nouveau terminal**, ou le raccourci **Ctrl+`** (touche backtick, en haut à gauche du clavier)
-- **Sur Windows** : ouvre **PowerShell** ou **Git Bash**
+- **Sur Windows** : ouvrez **PowerShell** ou **Git Bash**
 
-Le terminal VSCode est pratique car il s'ouvre directement dans le dossier de ton projet.
+Le terminal VSCode est pratique car il s'ouvre directement dans le dossier de votre projet.
 
 ---
 
-### D'où pars-tu ?
+### D'où partez-vous ?
 
-Choisis le scénario qui correspond à ta situation :
+Choisissez le scénario qui correspond à votre situation :
 
-| Scénario | Ta situation | Aller à |
+| Scénario | Votre situation | Aller à |
 |---|---|---|
 | **A** | Je n'ai aucun projet, je pars de zéro | [Scénario A](#scenario-a) |
 | **B** | J'ai un projet quasi vierge (un `index.html` et quelques fichiers) | [Scénario B](#scenario-b) |
@@ -44,7 +44,7 @@ Choisis le scénario qui correspond à ta situation :
 
 ### Scénario A — Partir de zéro (aucun projet) {#scenario-a}
 
-C'est le cas le plus simple. Tu clones un template prêt à l'emploi qui contient déjà toute la structure.
+C'est le cas le plus simple. Vous clonez un template prêt à l'emploi qui contient déjà toute la structure.
 
 **Étape 1 — Cloner le template**
 
@@ -67,7 +67,7 @@ L'option `--recursive` est importante : elle télécharge aussi le framework et 
 ./setup.sh --init
 ```
 
-Ce script crée les **symlinks** (raccourcis) qui relient ton projet au framework. Il copie aussi les fichiers `.env.example` pour que tu puisses les remplir.
+Ce script crée les **symlinks** (raccourcis) qui relient votre projet au framework. Il copie aussi les fichiers `.env.example` pour que vous puissiez les remplir.
 
 **Étape 3 — Ouvrir dans VSCode**
 
@@ -77,17 +77,19 @@ Ce script crée les **symlinks** (raccourcis) qui relient ton projet au framewor
 code .
 ```
 
-Ou bien : ouvre VSCode, puis **Fichier → Ouvrir un dossier** et sélectionne `mon-projet`.
+Ou bien : ouvrez VSCode, puis **Fichier → Ouvrir un dossier** et sélectionnez `mon-projet`.
 
 **Étape 4 — Personnaliser**
 
-Passe à la section [Personnaliser le site](#personnaliser-le-site) ci-dessous.
+Passez à la section [Personnaliser le site](#personnaliser-le-site) ci-dessous.
 
 ---
 
+> **⚠️ Section réservée au développeur du framework.** Si vous utilisez Site System pour créer un site, vous pouvez ignorer cette section.
+
 ### Scénario B — Projet quasi vierge (index.html + quelques fichiers) {#scenario-b}
 
-Tu as déjà un projet avec un `index.html` et peut-être quelques fichiers CSS/JS, mais pas de structure complète. Tu veux y ajouter le framework.
+Vous avez déjà un projet avec un `index.html` et peut-être quelques fichiers CSS/JS, mais pas de structure complète. Vous voulez y ajouter le framework.
 
 **Étape 1 — Initialiser git (si pas déjà fait)**
 
@@ -100,7 +102,7 @@ git add -A
 git commit -m "Initial commit"
 ```
 
-Si ton projet est déjà un dépôt git, passe cette étape.
+Si votre projet est déjà un dépôt git, passez cette étape.
 
 **Étape 2 — Ajouter le framework comme submodule**
 
@@ -120,11 +122,11 @@ Cela crée un dossier `.framework/` contenant tout le framework (CSS, JS, compos
 git submodule add https://github.com/TheoRoces/beely-builder.git builder
 ```
 
-Le Configurateur est un éditeur visuel optionnel. Si tu ne l'utilises pas, saute cette étape.
+Le Configurateur est un éditeur visuel optionnel. Si vous ne l'utilisez pas, sautez cette étape.
 
 **Étape 4 — Créer les symlinks**
 
-Tu peux copier le script `setup.sh` depuis le [template GitHub](https://github.com/TheoRoces/beely-template/blob/main/setup.sh) et l'exécuter, ou créer les symlinks manuellement :
+Vous pouvez copier le script `setup.sh` depuis le [template GitHub](https://github.com/TheoRoces/beely-template/blob/main/setup.sh) et l'exécuter, ou créer les symlinks manuellement :
 
 ```bash
 # 📂 Dossier : la racine de ton projet
@@ -143,7 +145,7 @@ ln -s .framework/generate-sitemap.js generate-sitemap.js
 
 **Étape 5 — Créer le fichier de configuration**
 
-Crée un fichier `config-site.js` à la racine de ton projet. Copie le contenu depuis le [template](https://github.com/TheoRoces/beely-template/blob/main/config-site.js) ou crée-le manuellement :
+Créez un fichier `config-site.js` à la racine de votre projet. Copiez le contenu depuis le [template](https://github.com/TheoRoces/beely-template/blob/main/config-site.js) ou créez-le manuellement :
 
 ```js
 window.SITE_CONFIG = {
@@ -154,11 +156,11 @@ window.SITE_CONFIG = {
 
 Voir la section [Personnaliser le site](#personnaliser-le-site) pour le détail complet.
 
-**Étape 6 — Adapter ton HTML**
+**Étape 6 — Adapter votre HTML**
 
-Remplace les `<link>` et `<script>` de ton `index.html` pour utiliser le framework. Voici un avant/après :
+Remplacez les `<link>` et `<script>` de votre `index.html` pour utiliser le framework. Voici un avant/après :
 
-**Avant (ton HTML actuel) :**
+**Avant (votre HTML actuel) :**
 ```html
 <head>
   <link rel="stylesheet" href="style.css">
@@ -191,7 +193,7 @@ Remplace les `<link>` et `<script>` de ton `index.html` pour utiliser le framewo
 </head>
 ```
 
-Tu gardes tes fichiers CSS perso — il suffit de les charger **après** ceux du framework.
+Vous gardez vos fichiers CSS perso — il suffit de les charger **après** ceux du framework.
 
 **Étape 7 — Commiter et tester**
 
@@ -202,24 +204,24 @@ git add -A
 git commit -m "Add Site System framework"
 ```
 
-Passe à [Tester en local](#tester-en-local).
+Passez à [Tester en local](#tester-en-local).
 
 ---
 
 ### Scénario C — Projet existant structuré {#scenario-c}
 
-Tu as un site existant avec des dossiers `/css`, `/js`, `/assets`, etc. Tu veux migrer progressivement vers le framework sans tout casser.
+Vous avez un site existant avec des dossiers `/css`, `/js`, `/assets`, etc. Vous voulez migrer progressivement vers le framework sans tout casser.
 
 **Étape 1 — Ajouter le framework**
 
-Suis les étapes 1 à 4 du [Scénario B](#scenario-b) (git init, submodule, symlinks).
+Suivez les étapes 1 à 4 du [Scénario B](#scenario-b) (git init, submodule, symlinks).
 
 **Étape 2 — Migration progressive**
 
-Tu n'as pas besoin de tout migrer d'un coup. Voici la stratégie recommandée :
+Vous n'avez pas besoin de tout migrer d'un coup. Voici la stratégie recommandée :
 
-1. **Garde tes fichiers CSS existants** — renomme `css/style.css` en `css/custom.css` si nécessaire
-2. **Ajoute les CSS du framework** dans le `<head>` de chaque page, **avant** tes CSS custom :
+1. **Gardez vos fichiers CSS existants** — renommez `css/style.css` en `css/custom.css` si nécessaire
+2. **Ajoutez les CSS du framework** dans le `<head>` de chaque page, **avant** vos CSS custom :
 
 ```html
 <!-- Framework (ajouter) -->
@@ -230,15 +232,15 @@ Tu n'as pas besoin de tout migrer d'un coup. Voici la stratégie recommandée :
 <link rel="stylesheet" href="css/custom.css">
 ```
 
-3. **Ajoute les JS du framework** pour les fonctionnalités que tu veux utiliser (composants, icônes, animations, etc.)
-4. **Migre les composants un par un** : remplace ton header HTML par le composant `data-component="header"`, puis le footer, etc.
-5. **Teste après chaque modification** pour vérifier que rien ne casse
+3. **Ajoutez les JS du framework** pour les fonctionnalités que vous voulez utiliser (composants, icônes, animations, etc.)
+4. **Migrez les composants un par un** : remplacez votre header HTML par le composant `data-component="header"`, puis le footer, etc.
+5. **Testez après chaque modification** pour vérifier que rien ne casse
 
-**Étape 3 — Supprimer tes anciens fichiers (quand prêt)**
+**Étape 3 — Supprimer vos anciens fichiers (quand prêt)**
 
-Une fois la migration terminée, tu peux supprimer les fichiers devenus inutiles (`css/`, `js/`, `assets/` s'ils sont remplacés par le framework).
+Une fois la migration terminée, vous pouvez supprimer les fichiers devenus inutiles (`css/`, `js/`, `assets/` s'ils sont remplacés par le framework).
 
-**Conseil** : commence par une seule page pour te familiariser avec le framework, puis étends aux autres pages.
+**Conseil** : commencez par une seule page pour vous familiariser avec le framework, puis étendez aux autres pages.
 
 ---
 
@@ -246,7 +248,7 @@ Une fois la migration terminée, tu peux supprimer les fichiers devenus inutiles
 
 ### 1. Charte graphique (tokens.css)
 
-Ouvre `core/css/tokens.css` et modifie les variables CSS :
+Ouvrez `core/css/tokens.css` et modifiez les variables CSS :
 
 ```css
 :root {
@@ -268,7 +270,7 @@ Voir [Design Tokens](tokens.md) pour la référence complète.
 
 ### 2. Configuration du site (config-site.js)
 
-Édite `config-site.js`. Ce fichier centralise toute la configuration du projet :
+Éditez `config-site.js`. Ce fichier centralise toute la configuration du projet :
 
 - **SITE_CONFIG** : identité du site (nom, favicon)
 - **COOKIES_CONFIG** : IDs analytics (`ga4`, `gtm`, `clarity`, etc.), textes du bandeau RGPD, lien vers la politique de confidentialité

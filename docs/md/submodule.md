@@ -1,5 +1,7 @@
 # Architecture 3 Repos
 
+> **⚠️ Section réservée au développeur du framework.** Si vous utilisez Site System pour créer un site, vous pouvez ignorer cette section.
+
 Le système Beely est organisé en **3 dépôts indépendants** connectés par des **git submodules** et des **symlinks**. Cette architecture garantit la stabilité pour des centaines de projets clients.
 
 ---
@@ -24,7 +26,7 @@ Le système Beely est organisé en **3 dépôts indépendants** connectés par d
 
 ## Reprendre de zéro {#reprendre-de-zero}
 
-Si tu as perdu la main (nouveau Mac, réinstallation, longue absence), voici comment tout retrouver et recloner.
+Si vous avez perdu la main (nouveau Mac, réinstallation, longue absence), voici comment tout retrouver et recloner.
 
 ### Les 3 repos GitHub
 
@@ -79,9 +81,9 @@ cp .deploy.env.example .deploy.env
 ```
 
 Puis remplir les valeurs SSH. Pour retrouver les infos serveur :
-- Connecte-toi à [Hostinger hPanel](https://hpanel.hostinger.com/)
-- Va dans **Avancé → Accès SSH**
-- Note l'IP, le port et le nom d'utilisateur
+- Connectez-vous à [Hostinger hPanel](https://hpanel.hostinger.com/)
+- Allez dans **Avancé → Accès SSH**
+- Notez l'IP, le port et le nom d'utilisateur
 
 **`.env`** (tokens API, webhooks) :
 
@@ -357,7 +359,7 @@ Cela envoie la documentation, le core CSS/JS, les wireframes et tous les assets 
 
 ### Workflow complet : modifier le framework et propager partout
 
-Quand tu modifies le framework (ajout d'une feature, correction de bug, mise à jour de la doc), il faut **propager les changements à tous les projets** qui l'utilisent. Voici les étapes, dans l'ordre :
+Quand vous modifiez le framework (ajout d'une feature, correction de bug, mise à jour de la doc), il faut **propager les changements à tous les projets** qui l'utilisent. Voici les étapes, dans l'ordre :
 
 #### Étape 1 — Modifier et pousser le framework
 
@@ -376,7 +378,7 @@ git push
 
 #### Étape 2 — Déployer la doc du framework (optionnel)
 
-Si tu as modifié la doc ou les fichiers visibles sur `framework.beely.studio` :
+Si vous avez modifié la doc ou les fichiers visibles sur `framework.beely.studio` :
 
 ```bash
 # 📂 Dossier : le repo qui déploie le framework
@@ -427,7 +429,7 @@ cd configurateur && git pull && cd .. && git add configurateur && git commit -m 
 
 ### Pourquoi c'est nécessaire ?
 
-Un **submodule git** est un pointeur vers un commit précis d'un autre repo. Quand tu fais `git pull` dans le submodule, tu récupères les derniers commits. Mais le projet parent ne sait pas que le submodule a changé tant que tu ne fais pas `git add .framework && git commit`.
+Un **submodule git** est un pointeur vers un commit précis d'un autre repo. Quand vous faites `git pull` dans le submodule, vous récupérez les derniers commits. Mais le projet parent ne sait pas que le submodule a changé tant que vous ne faites pas `git add .framework && git commit`.
 
 C'est voulu : chaque projet est **épinglé à une version précise** du framework. Ça évite qu'une mise à jour du framework casse un site en production.
 
@@ -448,7 +450,7 @@ Pour CHAQUE projet client :
 
 ### Automatiser avec un script
 
-Si tu as beaucoup de projets, tu peux créer un script qui boucle sur tous les projets :
+Si vous avez beaucoup de projets, vous pouvez créer un script qui boucle sur tous les projets :
 
 ```bash
 #!/bin/bash
@@ -480,7 +482,7 @@ done
 
 ## Quel repo modifier pour quoi ? {#quel-repo-modifier-pour-quoi}
 
-Guide rapide pour savoir où aller quand tu veux modifier quelque chose :
+Guide rapide pour savoir où aller quand vous voulez modifier quelque chose :
 
 | Je veux... | Repo à modifier | Dossier | Commande depuis un projet client |
 |---|---|---|---|

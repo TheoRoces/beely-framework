@@ -41,7 +41,7 @@
           <li><strong>Ic&ocirc;nes</strong> &mdash; 324 Heroicons utilisables directement</li>
           <li><strong>M&eacute;diath&egrave;que</strong> &mdash; Gestionnaire d'images du site</li>
         </ul>
-        <p>Chaque panel offre un acc&egrave;s rapide aux ressources du framework. Tout fonctionne en copier-coller&nbsp;: tu cliques, &ccedil;a copie le code HTML, tu le colles dans ta page.</p>
+        <p>Chaque panel offre un acc&egrave;s rapide aux ressources du framework. Tout fonctionne en copier-coller&nbsp;: vous cliquez, &ccedil;a copie le code HTML, vous le collez dans votre page.</p>
 
         <div class="docs-info">
           <strong>Outils interactifs</strong> &mdash; Le cr&eacute;ateur d'animations et le cr&eacute;ateur de grilles ont &eacute;t&eacute; d&eacute;plac&eacute;s dans les pages de documentation d&eacute;di&eacute;es&nbsp;:
@@ -74,7 +74,7 @@
         <h3>Upload</h3>
         <ul>
           <li><strong>Drag &amp; drop</strong>&nbsp;: glisse des images directement dans la zone de d&eacute;p&ocirc;t</li>
-          <li><strong>Bouton Uploader</strong>&nbsp;: clique pour s&eacute;lectionner des fichiers</li>
+          <li><strong>Bouton Uploader</strong>&nbsp;: cliquez pour s&eacute;lectionner des fichiers</li>
           <li>Les fichiers sont upload&eacute;s dans le <strong>dossier courant</strong> (racine par d&eacute;faut)</li>
           <li>Formats support&eacute;s&nbsp;: JPG, JPEG, PNG, GIF, SVG, WebP, AVIF, ICO</li>
           <li>Taille max&nbsp;: 5&nbsp;Mo par fichier</li>
@@ -82,23 +82,28 @@
 
         <h3>Organisation en dossiers</h3>
         <ul>
-          <li>Clique sur <strong>Dossier</strong> dans la barre d'outils &rarr; entre un nom &rarr; le dossier est cr&eacute;&eacute;</li>
+          <li>Cliquez sur <strong>Dossier</strong> dans la barre d'outils &rarr; entrez un nom &rarr; le dossier est cr&eacute;&eacute;</li>
           <li>Les dossiers apparaissent en haut de la grille avec une ic&ocirc;ne</li>
-          <li>Clique sur un dossier pour y naviguer</li>
-          <li>Un <strong>fil d'Ariane</strong> (breadcrumb) en haut te permet de revenir en arri&egrave;re&nbsp;: <code>Images / photos / portraits</code></li>
-          <li>Les images upload&eacute;es vont dans le dossier o&ugrave; tu te trouves</li>
+          <li>Cliquez sur un dossier pour y naviguer</li>
+          <li>Un <strong>fil d'Ariane</strong> (breadcrumb) en haut vous permet de revenir en arri&egrave;re&nbsp;: <code>Images / photos / portraits</code></li>
+          <li>Les images upload&eacute;es vont dans le dossier o&ugrave; vous vous trouvez</li>
         </ul>
 
         <h3>Popup d'&eacute;dition</h3>
-        <p>Clique sur une image (pas sur un bouton) pour ouvrir le popup d'&eacute;dition&nbsp;:</p>
+        <p>Cliquez sur une image (pas sur un bouton) pour ouvrir le popup d'&eacute;dition&nbsp;:</p>
         <ul>
           <li><strong>Aper&ccedil;u</strong> de l'image &agrave; gauche</li>
           <li><strong>Infos fichier</strong>&nbsp;: type (JPEG, PNG&hellip;), poids (Ko/Mo), chemin complet</li>
           <li><strong>Nom du fichier</strong>&nbsp;: modifiable pour renommer l'image</li>
-          <li><strong>Texte alternatif (alt)</strong>&nbsp;: description pour l'accessibilit&eacute; (lecteurs d'&eacute;cran, SEO)</li>
+          <li><strong>Texte alternatif (alt)</strong>&nbsp;: description pour l'accessibilit&eacute; (lecteurs d'&eacute;cran, SEO). Le alt text est sauvegard&eacute; dans <code>data/media-meta.json</code> et <strong>propag&eacute; automatiquement</strong> dans toutes les pages HTML qui utilisent l'image (l'attribut <code>alt=""</code> des balises <code>&lt;img&gt;</code> est mis &agrave; jour). Le champ est pr&eacute;-rempli &agrave; l'ouverture de la popup si un alt text a d&eacute;j&agrave; &eacute;t&eacute; renseign&eacute;.</li>
           <li><strong>Dossier</strong>&nbsp;: s&eacute;lecteur pour d&eacute;placer l'image dans un autre dossier</li>
+          <li><strong>Suivi d'utilisation</strong>&nbsp;: affiche le nombre de pages qui utilisent cette image, avec la liste de leurs chemins. Si l'image n'est utilis&eacute;e nulle part, la mention &laquo;&nbsp;Non utilis&eacute;e&nbsp;&raquo; est affich&eacute;e.</li>
           <li>Bouton <strong>Enregistrer</strong> pour appliquer les modifications</li>
         </ul>
+
+        <h3>Mise &agrave; jour automatique des chemins</h3>
+        <p>Lorsqu'une image est <strong>d&eacute;plac&eacute;e</strong> ou <strong>renomm&eacute;e</strong> via la popup d'&eacute;dition, toutes les pages HTML qui la r&eacute;f&eacute;rencent sont <strong>automatiquement mises &agrave; jour</strong> avec le nouveau chemin. Un toast informatif indique combien de pages ont &eacute;t&eacute; mises &agrave; jour (ex&nbsp;: &laquo;&nbsp;Fichier mis &agrave; jour &mdash; 3 pages mises &agrave; jour&nbsp;&raquo;).</p>
+        <p>Cela &eacute;vite les images cass&eacute;es apr&egrave;s une r&eacute;organisation de la m&eacute;diath&egrave;que&nbsp;: vous pouvez renommer et d&eacute;placer vos fichiers librement sans vous soucier des r&eacute;f&eacute;rences.</p>
 
         <h3>Actions rapides</h3>
         <ul>
@@ -127,9 +132,12 @@
           <tr><td><code>BuilderAPI.mediaList()</code></td><td>Liste les images et dossiers</td></tr>
           <tr><td><code>BuilderAPI.mediaUpload(nom, base64, dossier)</code></td><td>Upload une image</td></tr>
           <tr><td><code>BuilderAPI.mediaDelete(chemin)</code></td><td>Supprime une image</td></tr>
-          <tr><td><code>BuilderAPI.mediaRename(chemin, nouveauNom)</code></td><td>Renomme une image</td></tr>
+          <tr><td><code>BuilderAPI.mediaRename(chemin, nouveauNom)</code></td><td>Renomme une image (met &agrave; jour les r&eacute;f&eacute;rences dans les pages)</td></tr>
           <tr><td><code>BuilderAPI.mediaMkdir(nom, parent)</code></td><td>Cr&eacute;e un dossier</td></tr>
-          <tr><td><code>BuilderAPI.mediaMove(chemin, dossier)</code></td><td>D&eacute;place une image</td></tr>
+          <tr><td><code>BuilderAPI.mediaMove(chemin, dossier)</code></td><td>D&eacute;place une image (met &agrave; jour les r&eacute;f&eacute;rences dans les pages)</td></tr>
+          <tr><td><code>BuilderAPI.mediaUsage(chemin)</code></td><td>Retourne la liste des pages utilisant cette image</td></tr>
+          <tr><td><code>BuilderAPI.mediaSetAlt(chemin, altText)</code></td><td>D&eacute;finit le texte alternatif et le propage dans les pages</td></tr>
+          <tr><td><code>BuilderAPI.mediaGetMeta(chemin)</code></td><td>R&eacute;cup&egrave;re les m&eacute;tadonn&eacute;es (alt text) depuis <code>media-meta.json</code></td></tr>
         </table>
 
       </main>
