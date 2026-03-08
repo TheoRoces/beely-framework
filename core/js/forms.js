@@ -680,7 +680,7 @@
       body: JSON.stringify(payload)
     })
     .then(function (response) {
-      if (response.ok || response.status === 0) {
+      if (response.ok) {
         var successMsg = form.getAttribute('data-form-success') || 'Formulaire envoyé avec succès !';
         window.showToast(successMsg, 'success');
 

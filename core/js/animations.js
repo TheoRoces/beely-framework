@@ -73,8 +73,6 @@
 
   /* ---------- Click animations ---------- */
 
-  var clickAnimClasses = ['anim-click-pulse', 'anim-click-shake', 'anim-click-bounce', 'anim-click-ripple'];
-
   function initClickAnimations() {
     // Délégation d'événements sur document (une seule fois)
     if (window.__clickAnimInit) return;
