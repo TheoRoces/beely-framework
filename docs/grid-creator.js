@@ -608,7 +608,6 @@
       btn.addEventListener('click', function () {
         state.type = btn.getAttribute('data-grid-type');
         state.selectedItem = -1;
-        state.spans = { desktop: {}, tablet: {}, mobileL: {}, mobile: {} };
         state.activeBreakpoint = 'desktop';
         render();
       });
