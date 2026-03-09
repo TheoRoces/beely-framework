@@ -67,7 +67,7 @@
   var searchIndex = [
     // Démarrer un projet
     { title: 'Démarrer un projet', section: 'Vue d\'ensemble', url: 'getting-started.html', keywords: 'démarrer projet start nouveau créer installation setup guide' },
-    { title: 'Créer un nouveau projet', section: 'Démarrer un projet', url: 'getting-started.html#creer-un-nouveau-projet', keywords: 'copier boilerplate nouveau projet créer start' },
+    { title: 'Créer des pages', section: 'Démarrer un projet', url: 'getting-started.html#creer-des-pages', keywords: 'copier boilerplate nouveau projet créer start pages' },
     { title: 'Mise en production', section: 'Démarrer un projet', url: 'production.html', keywords: 'production déployer deploy apache serveur htaccess https ssl rsync ftp' },
     { title: 'Déploiement manuel (FTP / cPanel)', section: 'Mise en production', url: 'production.html#deploiement-manuel-ftp-cpanel', keywords: 'ftp cpanel manuel upload glisser déposer o2switch ovh infomaniak filezilla cyberduck' },
     { title: 'Site sans blog', section: 'Démarrer un projet', url: 'getting-started.html#site-sans-blog', keywords: 'sans blog supprimer retirer fichiers baserow proxy' },
@@ -165,6 +165,10 @@
     { title: 'Bibliothèque', section: 'Configurateur', url: 'configurateur-bibliotheque.html', keywords: 'bibliothèque library composants sections wireframes blocs' },
     { title: 'Déploiement', section: 'Configurateur', url: 'configurateur-deploy.html', keywords: 'déploiement deploy production serveur mise en ligne' },
     { title: 'API Backend', section: 'Configurateur', url: 'configurateur-api.html', keywords: 'api backend serveur python endpoints cfg-save cfg-read' },
+    // Claude Code
+    { title: 'Claude Code', section: 'Outils', url: 'claude.html', keywords: 'claude code ia assistant directives skills commandes automatisation' },
+    // Submodule
+    { title: 'Architecture Submodule', section: 'Outils', url: 'submodule.html', keywords: 'submodule git architecture framework intégration mise à jour workflow' },
   ];
 
   var searchOverlay = null;
