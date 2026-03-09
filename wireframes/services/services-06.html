@@ -1,4 +1,4 @@
-<!-- Services 06 : Numbered service list with expandable text (CSS-only accordion) -->
+<!-- Services 06 : Numbered service list with expandable accordion -->
 
 <style>
   .wf-services-06 {
@@ -43,38 +43,15 @@
     line-height: 1.2;
   }
 
-  .wf-services-06__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .wf-services-06__item {
-    border-bottom: 1px solid var(--wf-border);
-  }
-
-  .wf-services-06__item:first-child {
-    border-top: 1px solid var(--wf-border);
-  }
-
-  .wf-services-06__toggle {
-    display: none;
-  }
-
-  .wf-services-06__label {
+  /* Override accordion styles for numbered list look */
+  .wf-services-06 .accordion__header {
     display: flex;
     align-items: center;
     gap: 1.5rem;
     padding: 1.5rem 0;
-    cursor: pointer;
-    transition: color 0.2s;
   }
 
-  .wf-services-06__label:hover {
-    color: var(--wf-accent);
-  }
-
-  .wf-services-06__number {
+  .wf-services-06 .wf-services-06__number {
     font-size: 0.875rem;
     font-weight: 700;
     color: var(--wf-text-muted);
@@ -83,27 +60,13 @@
     width: 2rem;
   }
 
-  .wf-services-06__label-title {
+  .wf-services-06 .wf-services-06__label-title {
     font-size: clamp(1.125rem, 2.5vw, 1.375rem);
     font-weight: 600;
     flex: 1;
   }
 
-  .wf-services-06__chevron {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-    transition: transform 0.3s ease;
-    color: var(--wf-text-muted);
-  }
-
-  .wf-services-06__content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-  }
-
-  .wf-services-06__content-inner {
+  .wf-services-06 .accordion__body-inner {
     padding: 0 0 1.5rem 3.5rem;
   }
 
@@ -125,18 +88,6 @@
   .wf-services-06__content-link:hover {
     text-decoration: underline;
   }
-
-  .wf-services-06__toggle:checked ~ .wf-services-06__content {
-    max-height: 200px;
-  }
-
-  .wf-services-06__toggle:checked ~ .wf-services-06__label .wf-services-06__chevron {
-    transform: rotate(180deg);
-  }
-
-  .wf-services-06__toggle:checked ~ .wf-services-06__label {
-    color: var(--wf-accent);
-  }
 </style>
 
 <section class="wf-services-06">
@@ -146,96 +97,72 @@
       <h2 class="wf-services-06__title">Nos services</h2>
     </header>
 
-    <ul class="wf-services-06__list">
-      <li class="wf-services-06__item">
-        <input type="checkbox" id="wf-svc06-1" class="wf-services-06__toggle">
-        <label for="wf-svc06-1" class="wf-services-06__label">
+    <div class="accordion">
+      <div class="accordion__item accordion__item--active">
+        <div class="accordion__header">
           <span class="wf-services-06__number">01</span>
           <span class="wf-services-06__label-title">Design UI/UX</span>
-          <span data-icon="chevron-down" data-icon-type="outline" data-icon-size="24"></span>
-        </label>
-        <div class="wf-services-06__content">
-          <div class="wf-services-06__content-inner">
-            <p class="wf-services-06__content-text">Nous creons des interfaces intuitives et élégantes qui maximisent l'engagement utilisateur.</p>
-            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
-          </div>
         </div>
-      </li>
+        <div class="accordion__body"><div class="accordion__body-inner">
+          <p class="wf-services-06__content-text">Nous créons des interfaces intuitives et élégantes qui maximisent l'engagement utilisateur.</p>
+          <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+        </div></div>
+      </div>
 
-      <li class="wf-services-06__item">
-        <input type="checkbox" id="wf-svc06-2" class="wf-services-06__toggle">
-        <label for="wf-svc06-2" class="wf-services-06__label">
+      <div class="accordion__item">
+        <div class="accordion__header">
           <span class="wf-services-06__number">02</span>
           <span class="wf-services-06__label-title">Développement Web</span>
-          <span data-icon="chevron-down" data-icon-type="outline" data-icon-size="24"></span>
-        </label>
-        <div class="wf-services-06__content">
-          <div class="wf-services-06__content-inner">
-            <p class="wf-services-06__content-text">Solutions techniques performantes et evolutives pour accompagner votre croissance digitale.</p>
-            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
-          </div>
         </div>
-      </li>
+        <div class="accordion__body"><div class="accordion__body-inner">
+          <p class="wf-services-06__content-text">Solutions techniques performantes et évolutives pour accompagner votre croissance digitale.</p>
+          <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+        </div></div>
+      </div>
 
-      <li class="wf-services-06__item">
-        <input type="checkbox" id="wf-svc06-3" class="wf-services-06__toggle">
-        <label for="wf-svc06-3" class="wf-services-06__label">
+      <div class="accordion__item">
+        <div class="accordion__header">
           <span class="wf-services-06__number">03</span>
           <span class="wf-services-06__label-title">Stratégie Digitale</span>
-          <span data-icon="chevron-down" data-icon-type="outline" data-icon-size="24"></span>
-        </label>
-        <div class="wf-services-06__content">
-          <div class="wf-services-06__content-inner">
-            <p class="wf-services-06__content-text">Analyses approfondies et recommandations strategiques pour optimiser votre présence en ligne.</p>
-            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
-          </div>
         </div>
-      </li>
+        <div class="accordion__body"><div class="accordion__body-inner">
+          <p class="wf-services-06__content-text">Analyses approfondies et recommandations stratégiques pour optimiser votre présence en ligne.</p>
+          <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+        </div></div>
+      </div>
 
-      <li class="wf-services-06__item">
-        <input type="checkbox" id="wf-svc06-4" class="wf-services-06__toggle">
-        <label for="wf-svc06-4" class="wf-services-06__label">
+      <div class="accordion__item">
+        <div class="accordion__header">
           <span class="wf-services-06__number">04</span>
           <span class="wf-services-06__label-title">SEO & Analytics</span>
-          <span data-icon="chevron-down" data-icon-type="outline" data-icon-size="24"></span>
-        </label>
-        <div class="wf-services-06__content">
-          <div class="wf-services-06__content-inner">
-            <p class="wf-services-06__content-text">Campagnes creatives et ciblees qui renforcent votre notoriété et fidelisent vos clients.</p>
-            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
-          </div>
         </div>
-      </li>
+        <div class="accordion__body"><div class="accordion__body-inner">
+          <p class="wf-services-06__content-text">Campagnes créatives et ciblées qui renforcent votre notoriété et fidélisent vos clients.</p>
+          <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+        </div></div>
+      </div>
 
-      <li class="wf-services-06__item">
-        <input type="checkbox" id="wf-svc06-5" class="wf-services-06__toggle">
-        <label for="wf-svc06-5" class="wf-services-06__label">
+      <div class="accordion__item">
+        <div class="accordion__header">
           <span class="wf-services-06__number">05</span>
           <span class="wf-services-06__label-title">Branding</span>
-          <span data-icon="chevron-down" data-icon-type="outline" data-icon-size="24"></span>
-        </label>
-        <div class="wf-services-06__content">
-          <div class="wf-services-06__content-inner">
-            <p class="wf-services-06__content-text">Identites visuelles memorables et coherentes qui refletent les valeurs de votre marque.</p>
-            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
-          </div>
         </div>
-      </li>
+        <div class="accordion__body"><div class="accordion__body-inner">
+          <p class="wf-services-06__content-text">Identités visuelles mémorables et cohérentes qui reflètent les valeurs de votre marque.</p>
+          <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+        </div></div>
+      </div>
 
-      <li class="wf-services-06__item">
-        <input type="checkbox" id="wf-svc06-6" class="wf-services-06__toggle">
-        <label for="wf-svc06-6" class="wf-services-06__label">
+      <div class="accordion__item">
+        <div class="accordion__header">
           <span class="wf-services-06__number">06</span>
           <span class="wf-services-06__label-title">Applications Mobile</span>
-          <span data-icon="chevron-down" data-icon-type="outline" data-icon-size="24"></span>
-        </label>
-        <div class="wf-services-06__content">
-          <div class="wf-services-06__content-inner">
-            <p class="wf-services-06__content-text">Applications mobiles modernes et reactives pour toucher vos utilisateurs ou qu'ils soient.</p>
-            <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
-          </div>
         </div>
-      </li>
-    </ul>
+        <div class="accordion__body"><div class="accordion__body-inner">
+          <p class="wf-services-06__content-text">Applications mobiles modernes et réactives pour toucher vos utilisateurs où qu'ils soient.</p>
+          <a href="#" class="wf-services-06__content-link">En savoir plus &rarr;</a>
+        </div></div>
+      </div>
+    </div>
   </div>
 </section>
