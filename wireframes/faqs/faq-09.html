@@ -84,21 +84,21 @@
 
   <div class="wf-faq09__layout">
     <nav class="wf-faq09__nav">
-      <a href="#general" class="wf-faq09__nav-link wf-faq09__nav-link--active">General</a>
-      <a href="#tarifs" class="wf-faq09__nav-link">Tarifs</a>
-      <a href="#support" class="wf-faq09__nav-link">Support</a>
+      <a href="#general" class="wf-faq09__nav-link wf-faq09__nav-link--active" data-nav="general">Général</a>
+      <a href="#tarifs" class="wf-faq09__nav-link" data-nav="tarifs">Tarifs</a>
+      <a href="#support" class="wf-faq09__nav-link" data-nav="support">Support</a>
     </nav>
 
     <div class="wf-faq09__content">
       <div class="wf-faq09__section" id="general">
-        <h3 class="wf-faq09__section-title">General</h3>
+        <h3 class="wf-faq09__section-title">Général</h3>
         <div class="accordion">
           <div class="accordion__item accordion__item--active">
             <div class="accordion__header">Comment fonctionne votre processus de travail ?</div>
             <div class="accordion__body"><div class="accordion__body-inner"><p>Notre processus se déroule en quatre phases : découverte, conception, développement et lancement. Vous êtes impliqué à chaque étape pour valider et orienter le projet.</p></div></div>
           </div>
           <div class="accordion__item">
-            <div class="accordion__header">Comment demarrer un projet avec vous ?</div>
+            <div class="accordion__header">Comment démarrer un projet avec vous ?</div>
             <div class="accordion__body"><div class="accordion__body-inner"><p>Contactez-nous pour un appel découverte gratuit. Nous discuterons de vos besoins et vous proposerons une feuille de route adaptée à votre projet.</p></div></div>
           </div>
         </div>
@@ -109,11 +109,11 @@
         <div class="accordion">
           <div class="accordion__item">
             <div class="accordion__header">Quels sont vos tarifs ?</div>
-            <div class="accordion__body"><div class="accordion__body-inner"><p>Nos tarifs dépendent de la nature et de l'envergure de chaque projet. Une consultation gratuite est proposee pour établir un devis sur mesure.</p></div></div>
+            <div class="accordion__body"><div class="accordion__body-inner"><p>Nos tarifs dépendent de la nature et de l'envergure de chaque projet. Une consultation gratuite est proposée pour établir un devis sur mesure.</p></div></div>
           </div>
           <div class="accordion__item">
             <div class="accordion__header">Quels sont vos délais de livraison ?</div>
-            <div class="accordion__body"><div class="accordion__body-inner"><p>Un projet standard est livré entre 4 et 8 semaines. Les projets plus complexes peuvent necessiter un calendrier adapté, communique des le depart.</p></div></div>
+            <div class="accordion__body"><div class="accordion__body-inner"><p>Un projet standard est livré entre 4 et 8 semaines. Les projets plus complexes peuvent nécessiter un calendrier adapté, communiqué dès le départ.</p></div></div>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
         <div class="accordion">
           <div class="accordion__item">
             <div class="accordion__header">Proposez-vous un support après livraison ?</div>
-            <div class="accordion__body"><div class="accordion__body-inner"><p>Oui, nous proposons un support continu incluant une periode de garantie et des forfaits de maintenance mensuels pour assurer la perennite de votre solution.</p></div></div>
+            <div class="accordion__body"><div class="accordion__body-inner"><p>Oui, nous proposons un support continu incluant une période de garantie et des forfaits de maintenance mensuels pour assurer la pérennité de votre solution.</p></div></div>
           </div>
         </div>
       </div>
@@ -131,3 +131,38 @@
     </div>
   </div>
 </section>
+
+<script>
+(function() {
+  var nav = document.querySelector('.wf-faq09__nav');
+  if (!nav) return;
+  var links = nav.querySelectorAll('.wf-faq09__nav-link');
+  var sections = document.querySelectorAll('.wf-faq09__section');
+
+  // Click handler
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var id = this.getAttribute('data-nav');
+      var target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      links.forEach(function(l) { l.classList.remove('wf-faq09__nav-link--active'); });
+      this.classList.add('wf-faq09__nav-link--active');
+    });
+  });
+
+  // Scroll spy
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        links.forEach(function(l) {
+          l.classList.toggle('wf-faq09__nav-link--active', l.getAttribute('data-nav') === id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(function(s) { observer.observe(s); });
+})();
+</script>
