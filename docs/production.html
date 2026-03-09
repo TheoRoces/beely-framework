@@ -47,10 +47,10 @@
 
         <!-- ========== DÉPLOIEMENT ========== -->
 
-        <h2>D&eacute;ploiement (Hostinger / Apache)</h2>
+        <h2 id="deploiement-hostinger-apache">D&eacute;ploiement (Hostinger / Apache)</h2>
         <p>D&eacute;ployez votre site via <code>rsync</code> pour des mises &agrave; jour rapides et automatiques.</p>
 
-        <h3>Pr&eacute;requis</h3>
+        <h3 id="prerequis">Pr&eacute;requis</h3>
         <ul>
           <li>Serveur Apache avec <code>mod_rewrite</code> et <code>mod_headers</code> activ&eacute;s</li>
           <li>PHP 7+ (pour <code>api/baserow.php</code> et <code>api/consent.php</code>)</li>
@@ -58,7 +58,7 @@
           <li>Acc&egrave;s SSH activ&eacute; sur l'h&eacute;bergement (Hostinger : plan Premium ou sup&eacute;rieur)</li>
         </ul>
 
-        <h3>1. Activer et configurer SSH</h3>
+        <h3 id="1-activer-et-configurer-ssh">1. Activer et configurer SSH</h3>
         <p>Sur Hostinger, allez dans <strong>hPanel &rarr; Avanc&eacute; &rarr; Acc&egrave;s SSH</strong> et notez :</p>
         <ul>
           <li><strong>IP</strong> du serveur</li>
@@ -66,14 +66,14 @@
           <li><strong>Nom d'utilisateur</strong> (ex: <code>u123456789</code>)</li>
         </ul>
 
-        <h3>2. G&eacute;n&eacute;rer une cl&eacute; SSH (si pas d&eacute;j&agrave; fait)</h3>
+        <h3 id="2-generer-une-cle-ssh-si-pas-deja-fait">2. G&eacute;n&eacute;rer une cl&eacute; SSH (si pas d&eacute;j&agrave; fait)</h3>
 <pre><code># G&eacute;n&eacute;rer une cl&eacute; SSH ed25519
 ssh-keygen -t ed25519 -C "votre@email.com"
 
 # Appuyer sur Entr&eacute;e pour accepter le chemin par d&eacute;faut
 # Choisir un mot de passe (ou Entr&eacute;e pour aucun)</code></pre>
 
-        <h3>3. Premi&egrave;re connexion SSH</h3>
+        <h3 id="3-premiere-connexion-ssh">3. Premi&egrave;re connexion SSH</h3>
         <p>Connectez-vous une premi&egrave;re fois pour accepter l'empreinte du serveur :</p>
 <pre><code># Remplacez USER, IP et PORT par vos valeurs
 ssh -p PORT USER@IP
@@ -82,7 +82,7 @@ ssh -p PORT USER@IP
 # Entrez votre mot de passe SSH
 # Une fois connect&eacute;, tapez "exit" pour revenir en local</code></pre>
 
-        <h3>4. Copier la cl&eacute; publique sur le serveur</h3>
+        <h3 id="4-copier-la-cle-publique-sur-le-serveur">4. Copier la cl&eacute; publique sur le serveur</h3>
         <p>Pour ne plus avoir &agrave; taper le mot de passe &agrave; chaque d&eacute;ploiement :</p>
 <pre><code># Copier la cl&eacute; publique (demande le mot de passe une derni&egrave;re fois)
 ssh-copy-id -p PORT USER@IP
@@ -90,7 +90,7 @@ ssh-copy-id -p PORT USER@IP
 # V&eacute;rifier que la connexion fonctionne sans mot de passe
 ssh -p PORT USER@IP "echo 'SSH OK'"</code></pre>
 
-        <h3>5. Identifier le dossier du domaine</h3>
+        <h3 id="5-identifier-le-dossier-du-domaine">5. Identifier le dossier du domaine</h3>
         <p>Sur Hostinger, chaque domaine a son propre dossier. Connectez-vous en SSH pour le trouver :</p>
 <pre><code>ssh -p PORT USER@IP
 ls ~/domains/
@@ -98,7 +98,7 @@ ls ~/domains/
 exit</code></pre>
         <p>Le chemin de d&eacute;ploiement sera : <code>/home/USER/domains/monsite.fr/public_html/</code></p>
 
-        <h3>6. Cr&eacute;er le fichier d'exclusions</h3>
+        <h3 id="6-creer-le-fichier-d-exclusions">6. Cr&eacute;er le fichier d'exclusions</h3>
         <p>Cr&eacute;ez un fichier <code>.rsync-exclude</code> &agrave; la racine du projet pour lister les fichiers &agrave; ne pas envoyer sur le serveur :</p>
 <pre><code># .rsync-exclude
 
@@ -144,7 +144,7 @@ PREPROD_URL=</code></pre>
         <p>Rendez le script ex&eacute;cutable (une seule fois) :</p>
 <pre><code>chmod +x deploy.sh</code></pre>
 
-        <h3>8. D&eacute;ployer</h3>
+        <h3 id="8-deployer">8. D&eacute;ployer</h3>
 <pre><code># Simuler le d&eacute;ploiement en production (dry-run)
 ./deploy.sh prod --dry-run
 
@@ -185,7 +185,7 @@ FORM_NOTIFICATION_EMAIL=contact@monsite.fr</code></pre>
           <tr><td><code>MAKE_TEAM_ID</code></td><td>Commande &laquo; cr&eacute;e le formulaire &raquo;</td><td>ID de l'&eacute;quipe Make.com</td></tr>
         </table>
 
-        <h3>10. V&eacute;rifier le <code>.htaccess</code></h3>
+        <h3 id="10-verifier-le-htaccess">10. V&eacute;rifier le <code>.htaccess</code></h3>
         <p>Le fichier <code>.htaccess</code> fourni g&egrave;re automatiquement :</p>
         <ul>
           <li><strong>HTTPS</strong> : redirection HTTP &rarr; HTTPS (301)</li>
@@ -196,7 +196,7 @@ FORM_NOTIFICATION_EMAIL=contact@monsite.fr</code></pre>
         </ul>
         <p>Testez que <code>mod_rewrite</code> fonctionne en acc&eacute;dant &agrave; <code>https://votre-site.fr/blog</code> (sans .html).</p>
 
-        <h3>11. Protection HTTP &mdash; htpasswd (optionnel)</h3>
+        <h3 id="11-protection-http-htpasswd-optionnel">11. Protection HTTP &mdash; htpasswd (optionnel)</h3>
         <p>Prot&eacute;gez un site en d&eacute;veloppement ou pr&eacute;-production par mot de passe (HTTP Basic Auth). Une popup d'authentification appara&icirc;tra dans le navigateur avant de pouvoir acc&eacute;der au site.</p>
 
         <h4>Via le configurateur (recommand&eacute;)</h4>
@@ -231,13 +231,13 @@ Require valid-user
         <p>3. Pour d&eacute;sactiver : supprimez le bloc du <code>.htaccess</code> et le fichier <code>.htpasswd</code>.</p>
         <p><strong>Rappel</strong> : pensez &agrave; d&eacute;sactiver la protection avant la mise en production du site final.</p>
 
-        <h3>12. Sitemap</h3>
+        <h3 id="12-sitemap">12. Sitemap</h3>
         <p>Le sitemap est <strong>g&eacute;n&eacute;r&eacute; automatiquement &agrave; chaque d&eacute;ploiement</strong> par <code>deploy.sh</code>. Il utilise l'URL du site configur&eacute;e dans <code>.deploy.env</code> (<code>PROD_URL</code> ou <code>PREPROD_URL</code>).</p>
         <p>Vous pouvez aussi le g&eacute;n&eacute;rer manuellement :</p>
 <pre><code>node generate-sitemap.js https://votre-site.fr</code></pre>
         <p>Cela cr&eacute;e <code>sitemap.xml</code> et <code>robots.txt</code> avec les URLs propres. Soumettez le sitemap dans <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Google Search Console</a>.</p>
 
-        <h3>R&eacute;cap : fichiers &agrave; personnaliser par projet</h3>
+        <h3 id="recap-fichiers-a-personnaliser-par-projet">R&eacute;cap : fichiers &agrave; personnaliser par projet</h3>
         <p>Chaque nouveau projet n&eacute;cessite de remplir <strong>3 fichiers</strong> :</p>
         <table>
           <tr><th>Fichier</th><th>Contenu</th><th>Committ&eacute; ?</th></tr>
@@ -250,7 +250,7 @@ Require valid-user
 <pre><code>git remote add origin https://github.com/votre-user/votre-projet.git
 git push -u origin main</code></pre>
 
-        <h3>R&eacute;cap : workflow quotidien</h3>
+        <h3 id="recap-workflow-quotidien">R&eacute;cap : workflow quotidien</h3>
         <p>Une fois tout configur&eacute;, le cycle de d&eacute;veloppement-d&eacute;ploiement est simple :</p>
 <pre><code># 1. Modifier le code en local (Live Server pour pr&eacute;visualiser)
 
@@ -266,17 +266,17 @@ git push
 
         <!-- ========== DÉPLOIEMENT MANUEL ========== -->
 
-        <h2>D&eacute;ploiement manuel (FTP / cPanel)</h2>
+        <h2 id="deploiement-manuel-ftp-cpanel">D&eacute;ploiement manuel (FTP / cPanel)</h2>
         <p>Si vous n'utilisez pas SSH/rsync, vous pouvez d&eacute;ployer manuellement via le <strong>gestionnaire de fichiers cPanel</strong> ou un <strong>client FTP</strong> (FileZilla, Cyberduck, etc.). Cette m&eacute;thode fonctionne avec tous les h&eacute;bergeurs (o2switch, OVH, Infomaniak, etc.).</p>
 
-        <h3>1. Uploader les fichiers</h3>
+        <h3 id="1-uploader-les-fichiers">1. Uploader les fichiers</h3>
         <p>Connectez-vous &agrave; votre espace d'h&eacute;bergement et acc&eacute;dez au dossier de votre domaine (g&eacute;n&eacute;ralement <code>public_html/</code>).</p>
         <ul>
           <li><strong>cPanel</strong> : Gestionnaire de fichiers &rarr; naviguez dans <code>public_html/</code> &rarr; glissez-d&eacute;posez vos fichiers</li>
           <li><strong>FTP</strong> : connectez votre client avec les identifiants fournis par votre h&eacute;bergeur et uploadez dans le dossier du domaine</li>
         </ul>
 
-        <h3>2. Fichiers &agrave; ne pas envoyer</h3>
+        <h3 id="2-fichiers-a-ne-pas-envoyer">2. Fichiers &agrave; ne pas envoyer</h3>
         <p>Excluez ces fichiers/dossiers du transfert (ils sont inutiles en production) :</p>
 <pre><code>.git/                  # Historique Git
 .claude/               # Configuration Claude Code
@@ -287,7 +287,7 @@ deploy.sh              # Script de d&eacute;ploiement
 generate-sitemap.js    # G&eacute;n&eacute;rateur de sitemap (Node.js)
 docs/                  # Documentation (sauf si souhait&eacute;e en ligne)</code></pre>
 
-        <h3>3. Cr&eacute;er le <code>.env</code> sur le serveur</h3>
+        <h3 id="3-creer-le-env-sur-le-serveur">3. Cr&eacute;er le <code>.env</code> sur le serveur</h3>
         <p>Le fichier <code>.env</code> n'est pas dans Git, il faut le cr&eacute;er manuellement sur le serveur. Dans le gestionnaire de fichiers cPanel, cr&eacute;ez un nouveau fichier <code>.env</code> &agrave; la racine du site :</p>
 <pre><code># .env (racine du site sur le serveur)
 SITE_ORIGIN=https://votre-site.fr
@@ -297,7 +297,7 @@ FORM_WEBHOOK_URL=https://hook.eu2.make.com/xxx
 FORM_NOTIFICATION_EMAIL=contact@votre-site.fr</code></pre>
         <p>Le <code>.htaccess</code> fourni bloque automatiquement l'acc&egrave;s &agrave; ce fichier depuis le navigateur.</p>
 
-        <h3>4. V&eacute;rifications apr&egrave;s upload</h3>
+        <h3 id="4-verifications-apres-upload">4. V&eacute;rifications apr&egrave;s upload</h3>
         <ul>
           <li>&#9744; <strong>PHP actif</strong> : la plupart des h&eacute;bergeurs mutualis&eacute;s l'activent par d&eacute;faut</li>
           <li>&#9744; <strong><code>.htaccess</code> lu</strong> : testez que les URLs propres fonctionnent (<code>/blog</code> au lieu de <code>/blog.html</code>)</li>
@@ -309,7 +309,7 @@ FORM_NOTIFICATION_EMAIL=contact@votre-site.fr</code></pre>
 
         <!-- ========== CHECKLIST ========== -->
 
-        <h2>Checklist de lancement</h2>
+        <h2 id="checklist-de-lancement">Checklist de lancement</h2>
         <p>V&eacute;rifiez chaque point avant de consid&eacute;rer le site comme pr&ecirc;t &agrave; &ecirc;tre lanc&eacute;.</p>
 
         <div class="accordion" data-accordion-multi>

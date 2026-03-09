@@ -47,10 +47,10 @@
           Syst&egrave;me de blog dynamique connect&eacute; &agrave; Baserow. Listing avec pagination &laquo; Load more &raquo;, filtres par cat&eacute;gories, page article avec galerie lightbox, SEO dynamique. Z&eacute;ro d&eacute;pendance.
         </p>
 
-        <h2>Connexion &agrave; Baserow</h2>
+        <h2 id="connexion-a-baserow">Connexion &agrave; Baserow</h2>
         <p>Le blog utilise l'API Baserow comme CMS. Voici comment r&eacute;cup&eacute;rer les identifiants n&eacute;cessaires.</p>
 
-        <h3>1. Cr&eacute;er un token API</h3>
+        <h3 id="1-creer-un-token-api">1. Cr&eacute;er un token API</h3>
         <ol>
           <li>Connectez-vous &agrave; <a href="https://baserow.io" target="_blank" rel="noopener">baserow.io</a></li>
           <li>Cliquez sur votre avatar (en haut &agrave; gauche) → <strong>Settings</strong></li>
@@ -61,7 +61,7 @@
           <li>Copiez le token g&eacute;n&eacute;r&eacute; (commen&ccedil;ant par un long hash alphanum&eacute;rique)</li>
         </ol>
 
-        <h3>2. Trouver le Table ID</h3>
+        <h3 id="2-trouver-le-table-id">2. Trouver le Table ID</h3>
         <p>Ouvrez votre table dans Baserow. Le <strong>Table ID</strong> est visible dans l'URL du navigateur :</p>
 <pre><code>https://baserow.io/database/12345/table/67890/...
                                        ^^^^^  ^^^^^
@@ -69,7 +69,7 @@
         <p>C'est le <strong>deuxi&egrave;me nombre</strong> dans l'URL (apr&egrave;s <code>/table/</code>) qui nous int&eacute;resse. Dans cet exemple : <code>67890</code>.</p>
         <p><strong>Autre m&eacute;thode :</strong> dans Baserow, ouvrez la sidebar de gauche, faites un clic droit sur le nom de votre table → l'ID appara&icirc;t dans l'URL de l'onglet.</p>
 
-        <h3>3. Configurer le projet</h3>
+        <h3 id="3-configurer-le-projet">3. Configurer le projet</h3>
         <p>Ouvrez <code>config-site.js</code> &agrave; la racine du projet et remplissez la section <code>BLOG_CONFIG</code> :</p>
 <pre><code>window.BLOG_CONFIG = {
   baserow: {
@@ -84,13 +84,13 @@
   blogPage: 'blog',                   // Chemin vers le listing
 };</code></pre>
 
-        <h3>4. V&eacute;rifier la connexion</h3>
+        <h3 id="4-verifier-la-connexion">4. V&eacute;rifier la connexion</h3>
         <p>Pour tester que le token et le Table ID sont corrects, ouvrez votre navigateur et entrez :</p>
 <pre><code>https://api.baserow.io/api/database/rows/table/67890/?user_field_names=true
 // Header: Authorization: Token VOTRE_TOKEN_ICI</code></pre>
         <p>Vous devez obtenir un JSON avec vos articles. Si vous obtenez une erreur 401, v&eacute;rifiez le token. Si 404, v&eacute;rifiez le Table ID.</p>
 
-        <h3>5. Proxy PHP (production)</h3>
+        <h3 id="5-proxy-php-production">5. Proxy PHP (production)</h3>
         <p>En production, le token API ne doit <strong>jamais</strong> &ecirc;tre expos&eacute; c&ocirc;t&eacute; client. Utilisez le proxy PHP fourni dans <code>api/baserow.php</code>. Le blog.js l'utilise automatiquement si <code>proxyUrl</code> est configur&eacute; :</p>
 <pre><code>window.BLOG_CONFIG = {
   baserow: {
@@ -103,7 +103,7 @@
 };</code></pre>
         <p>Le fichier <code>api/baserow.php</code> contient le token en dur c&ocirc;t&eacute; serveur. Le client ne voit jamais le token.</p>
 
-        <h2>Champs Baserow</h2>
+        <h2 id="champs-baserow">Champs Baserow</h2>
         <p>Cr&eacute;ez les champs suivants dans votre table. <strong>Tous sont optionnels</strong> sauf <code>title</code>.</p>
         <table>
           <tr><th>Champ</th><th>Type Baserow</th><th>Description</th></tr>
@@ -123,19 +123,19 @@
           <tr><td><code>gallery_1</code> &agrave; <code>gallery_5</code></td><td>Fichier</td><td>Images de galerie (lightbox)</td></tr>
         </table>
 
-        <h3>Options pour categories</h3>
+        <h3 id="options-pour-categories">Options pour categories</h3>
         <p>Cr&eacute;ez les options que vous souhaitez dans le champ multi-select Baserow. Exemples :</p>
 <pre><code>Tech, Design, Marketing, Business, Tutoriel, News</code></pre>
 
-        <h3>Options pour status</h3>
+        <h3 id="options-pour-status">Options pour status</h3>
         <p>Cr&eacute;ez deux options dans le champ single-select :</p>
 <pre><code>published   → Article visible sur le site
 draft       → Article masqué (brouillon)</code></pre>
 
-        <h2>Donn&eacute;es d'exemple</h2>
+        <h2 id="donnees-d-exemple">Donn&eacute;es d'exemple</h2>
         <p>Voici des entr&eacute;es &agrave; copier/coller dans Baserow pour tester le blog :</p>
 
-        <h3>Article 1</h3>
+        <h3 id="article-1">Article 1</h3>
         <table>
           <tr><td><code>title</code></td><td>D&eacute;couvrir le CSS moderne</td></tr>
           <tr><td><code>slug</code></td><td>decouvrir-css-moderne</td></tr>
@@ -150,7 +150,7 @@ draft       → Article masqué (brouillon)</code></pre>
           <tr><td><code>status</code></td><td>published</td></tr>
         </table>
 
-        <h3>Article 2</h3>
+        <h3 id="article-2">Article 2</h3>
         <table>
           <tr><td><code>title</code></td><td>10 r&egrave;gles pour un bon UX Design</td></tr>
           <tr><td><code>slug</code></td><td>10-regles-ux-design</td></tr>
@@ -163,7 +163,7 @@ draft       → Article masqué (brouillon)</code></pre>
           <tr><td><code>status</code></td><td>published</td></tr>
         </table>
 
-        <h3>Article 3</h3>
+        <h3 id="article-3">Article 3</h3>
         <table>
           <tr><td><code>title</code></td><td>D&eacute;ployer un site statique en 5 minutes</td></tr>
           <tr><td><code>slug</code></td><td>deployer-site-statique</td></tr>
@@ -176,7 +176,7 @@ draft       → Article masqué (brouillon)</code></pre>
           <tr><td><code>status</code></td><td>published</td></tr>
         </table>
 
-        <h3>Article 4</h3>
+        <h3 id="article-4">Article 4</h3>
         <table>
           <tr><td><code>title</code></td><td>Comprendre le SEO on-page</td></tr>
           <tr><td><code>slug</code></td><td>comprendre-seo-on-page</td></tr>
@@ -189,7 +189,7 @@ draft       → Article masqué (brouillon)</code></pre>
           <tr><td><code>status</code></td><td>published</td></tr>
         </table>
 
-        <h3>Article 5 (brouillon)</h3>
+        <h3 id="article-5-brouillon">Article 5 (brouillon)</h3>
         <table>
           <tr><td><code>title</code></td><td>Les tendances web 2026</td></tr>
           <tr><td><code>slug</code></td><td>tendances-web-2026</td></tr>
@@ -201,7 +201,7 @@ draft       → Article masqué (brouillon)</code></pre>
         </table>
         <p><em>Cet article a le statut <code>draft</code> — il n'apparaîtra pas sur le site.</em></p>
 
-        <h2>D&eacute;mo live — Pills + Custom Select</h2>
+        <h2 id="demo-live-pills-custom-select">D&eacute;mo live — Pills + Custom Select</h2>
         <p>Cat&eacute;gories en <strong>pills</strong>, taxonomies en <strong>select custom</strong> (identique aux selects des formulaires).</p>
 
         <div class="docs-demo">
@@ -210,7 +210,7 @@ draft       → Article masqué (brouillon)</code></pre>
 
 <pre><code>&lt;div data-blog="listing" data-blog-filters="categories:pills, taxonomies:select"&gt;&lt;/div&gt;</code></pre>
 
-        <h2>D&eacute;mo live — Checkboxes + Multi-Select (sans d&eacute;compte)</h2>
+        <h2 id="demo-live-checkboxes-multi-select-sans-decompte">D&eacute;mo live — Checkboxes + Multi-Select (sans d&eacute;compte)</h2>
         <p>Cat&eacute;gories en <strong>checkboxes</strong>, taxonomies en <strong>multi-select custom</strong> sans d&eacute;compte (<code>:no-count</code>).</p>
 
         <div class="docs-demo">
@@ -220,7 +220,7 @@ draft       → Article masqué (brouillon)</code></pre>
 <pre><code>&lt;div data-blog="listing"
      data-blog-filters="categories:checkboxes, taxonomies:multi-select:no-count"&gt;&lt;/div&gt;</code></pre>
 
-        <h2>D&eacute;mo live — Radios</h2>
+        <h2 id="demo-live-radios">D&eacute;mo live — Radios</h2>
         <p>Cat&eacute;gories en <strong>radios</strong> (s&eacute;lection unique).</p>
 
         <div class="docs-demo">
@@ -229,7 +229,7 @@ draft       → Article masqué (brouillon)</code></pre>
 
 <pre><code>&lt;div data-blog="listing" data-blog-filters="categories:radios"&gt;&lt;/div&gt;</code></pre>
 
-        <h3>Fonctionnement</h3>
+        <h3 id="fonctionnement">Fonctionnement</h3>
         <ul>
           <li>Au chargement : skeletons de chargement</li>
           <li>Fetch de <strong>tous les articles</strong> depuis Baserow (tri par date d&eacute;croissante)</li>
@@ -240,11 +240,11 @@ draft       → Article masqué (brouillon)</code></pre>
           <li>Si pas de <code>featured_img</code>, un placeholder SVG neutre est affich&eacute;</li>
         </ul>
 
-        <h2>Syst&egrave;me de filtres</h2>
+        <h2 id="systeme-de-filtres">Syst&egrave;me de filtres</h2>
         <p>Les filtres sont configur&eacute;s via l'attribut <code>data-blog-filters</code>.</p>
         <p>Format : <code>champ:style</code> ou <code>champ:style:no-count</code>, s&eacute;par&eacute;s par des virgules.</p>
 
-        <h3>Styles de filtres disponibles</h3>
+        <h3 id="styles-de-filtres-disponibles">Styles de filtres disponibles</h3>
         <table>
           <tr><th>Style</th><th>Description</th><th>S&eacute;lection</th></tr>
           <tr><td><code>pills</code></td><td>Boutons pills (d&eacute;faut)</td><td>Simple</td></tr>
@@ -254,7 +254,7 @@ draft       → Article masqué (brouillon)</code></pre>
           <tr><td><code>radios</code></td><td>Boutons radio inline</td><td>Simple</td></tr>
         </table>
 
-        <h3>Affichage du d&eacute;compte</h3>
+        <h3 id="affichage-du-decompte">Affichage du d&eacute;compte</h3>
         <p>Par d&eacute;faut, le nombre d'articles est affich&eacute; &agrave; c&ocirc;t&eacute; de chaque valeur. Pour le masquer, ajoutez <code>:no-count</code> apr&egrave;s le style :</p>
 <pre><code>&lt;!-- Avec décompte (défaut) --&gt;
 data-blog-filters="categories:pills"
@@ -266,7 +266,7 @@ data-blog-filters="categories:pills:no-count"
 data-blog-filters="categories:select, taxonomies:multi-select:no-count"</code></pre>
         <p>Pour les filtres externes, utilisez l'attribut <code>data-filter-count="false"</code>.</p>
 
-        <h3>Exemples de combinaisons</h3>
+        <h3 id="exemples-de-combinaisons">Exemples de combinaisons</h3>
 <pre><code>&lt;!-- Défaut : catégories en pills --&gt;
 &lt;div data-blog="listing"&gt;&lt;/div&gt;
 
@@ -285,7 +285,7 @@ data-blog-filters="categories:select, taxonomies:multi-select:no-count"</code></
 &lt;!-- Aucun filtre interne (filtres externes uniquement) --&gt;
 &lt;div data-blog="listing" data-blog-filters=""&gt;&lt;/div&gt;</code></pre>
 
-        <h3>Filtres s&eacute;par&eacute;s (externes)</h3>
+        <h3 id="filtres-separes-externes">Filtres s&eacute;par&eacute;s (externes)</h3>
         <p>Vous pouvez placer un filtre <strong>en dehors</strong> du listing, n'importe o&ugrave; dans la page :</p>
 <pre><code>&lt;!-- Filtre externe pour les catégories --&gt;
 &lt;div data-blog-filter="categories"
@@ -308,10 +308,10 @@ data-blog-filters="categories:select, taxonomies:multi-select:no-count"</code></
           <tr><td><code>data-filter-count</code></td><td><code>"false"</code> pour masquer le d&eacute;compte</td></tr>
         </table>
 
-        <h3>Pagination</h3>
+        <h3 id="pagination">Pagination</h3>
         <p>Le nombre d'articles par page est configur&eacute; par <code>perPage</code> dans <code>config-site.js</code>. Le bouton &laquo; Charger plus &raquo; appara&icirc;t automatiquement s'il y a plus d'articles que la limite. Pour tester la pagination, mettez <code>perPage: 2</code>.</p>
 
-        <h2>Placeholder image</h2>
+        <h2 id="placeholder-image">Placeholder image</h2>
         <p>Quand un article n'a pas de <code>featured_img</code>, un placeholder SVG est affich&eacute; automatiquement. Vous pouvez aussi l'utiliser n'importe o&ugrave; avec la classe utilitaire :</p>
 
         <div class="docs-demo">
@@ -322,11 +322,11 @@ data-blog-filters="categories:select, taxonomies:multi-select:no-count"</code></
 &lt;div class="placeholder-img"&gt;&lt;/div&gt;</code></pre>
         <p>Ratio 16:9, fond <code>--color-bg-alt</code>, ic&ocirc;ne SVG neutre, compatible dark mode. Ajoutez un <code>style</code> pour ajuster la taille si besoin.</p>
 
-        <h2>Page article</h2>
+        <h2 id="page-article">Page article</h2>
         <p>Affiche un article unique avec SEO dynamique.</p>
 <pre><code>&lt;div data-blog="article"&gt;&lt;/div&gt;</code></pre>
 
-        <h3>R&eacute;solution de l'article</h3>
+        <h3 id="resolution-de-l-article">R&eacute;solution de l'article</h3>
         <p>L'article est r&eacute;solu via l'URL :</p>
 <pre><code>&lt;!-- Par slug (recommandé, SEO-friendly) --&gt;
 blog/article?slug=decouvrir-css-moderne
@@ -335,11 +335,11 @@ blog/article?slug=decouvrir-css-moderne
 blog/article?id=42</code></pre>
         <p>Si le champ <code>slug</code> existe, les cards du listing l'utilisent automatiquement.</p>
 
-        <h3>Slugs dupliqu&eacute;s</h3>
+        <h3 id="slugs-dupliques">Slugs dupliqu&eacute;s</h3>
         <p>Si deux articles ont le m&ecirc;me slug, un avertissement appara&icirc;t dans la console. Pour d&eacute;sambiguïser, ajoutez l'ID Baserow dans l'URL :</p>
 <pre><code>blog/article?slug=mon-article&amp;id=123</code></pre>
 
-        <h3>SEO dynamique</h3>
+        <h3 id="seo-dynamique">SEO dynamique</h3>
         <p>Le JS met &agrave; jour automatiquement les balises SEO depuis les donn&eacute;es Baserow :</p>
         <table>
           <tr><th>Balise</th><th>Source Baserow</th><th>Fallback</th></tr>
@@ -356,7 +356,7 @@ blog/article?id=42</code></pre>
           <tr><td><code>twitter:image</code></td><td colspan="2"><code>featured_img</code></td></tr>
         </table>
 
-        <h3>Galerie &amp; Lightbox</h3>
+        <h3 id="galerie-et-lightbox">Galerie &amp; Lightbox</h3>
         <p>Les champs <code>gallery_1</code> &agrave; <code>gallery_5</code> sont affich&eacute;s en grille. Un clic ouvre une lightbox plein &eacute;cran :</p>
         <ul>
           <li>Fl&egrave;ches gauche/droite (clic ou clavier)</li>
@@ -364,9 +364,9 @@ blog/article?id=42</code></pre>
           <li>Clic sur l'overlay pour fermer</li>
         </ul>
 
-        <h2>Exemples de pages</h2>
+        <h2 id="exemples-de-pages">Exemples de pages</h2>
 
-        <h3>Page listing compl&egrave;te</h3>
+        <h3 id="page-listing-complete">Page listing compl&egrave;te</h3>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="fr"&gt;
 &lt;head&gt;
@@ -410,7 +410,7 @@ blog/article?id=42</code></pre>
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
-        <h3>Page article compl&egrave;te</h3>
+        <h3 id="page-article-complete">Page article compl&egrave;te</h3>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="fr"&gt;
 &lt;head&gt;
@@ -465,7 +465,7 @@ blog/article?id=42</code></pre>
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
-        <h2>Options de configuration</h2>
+        <h2 id="options-de-configuration">Options de configuration</h2>
         <table>
           <tr><th>Cl&eacute;</th><th>D&eacute;faut</th><th>Description</th></tr>
           <tr><td><code>baserow.url</code></td><td><code>https://api.baserow.io</code></td><td>URL de l'instance Baserow</td></tr>
@@ -479,7 +479,7 @@ blog/article?id=42</code></pre>
           <tr><td><code>blogPage</code></td><td><code>blog</code></td><td>Chemin vers le listing</td></tr>
         </table>
 
-        <h2>Personnalisation CSS</h2>
+        <h2 id="personnalisation-css">Personnalisation CSS</h2>
         <table>
           <tr><th>Bloc</th><th>Description</th></tr>
           <tr><td><code>.blog__grid</code></td><td>Grille de cards (CSS Grid auto-fill)</td></tr>
@@ -494,7 +494,7 @@ blog/article?id=42</code></pre>
           <tr><td><code>.blog-skeleton</code></td><td>Animation de chargement (pulse)</td></tr>
         </table>
 
-        <h2>Inclure dans une page</h2>
+        <h2 id="inclure-dans-une-page">Inclure dans une page</h2>
 <pre><code>&lt;!-- CSS --&gt;
 &lt;link rel="stylesheet" href="core/css/blog.css"&gt;
 
@@ -509,7 +509,7 @@ blog/article?id=42</code></pre>
         <p>Le script <code>params.js</code> est requis pour lire les param&egrave;tres d'URL (<code>?slug=</code> / <code>?id=</code>) sur la page article.</p>
         <p>Sur la page article, ajoutez aussi <code>icons.css</code> et <code>icons.js</code> pour les ic&ocirc;nes de partage, m&eacute;tas et articles similaires.</p>
 
-        <h3>Fonctionnalit&eacute;s article</h3>
+        <h3 id="fonctionnalites-article">Fonctionnalit&eacute;s article</h3>
         <p>La page article inclut automatiquement :</p>
         <ul>
           <li><strong>M&eacute;tas enrichies</strong> : date, auteur et temps de lecture avec ic&ocirc;nes</li>

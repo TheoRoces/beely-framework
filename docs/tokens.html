@@ -45,7 +45,7 @@
           Fichier <code>core/css/tokens.css</code> — le seul fichier &agrave; modifier pour configurer la charte graphique du client.
         </p>
 
-        <h2>Couleurs</h2>
+        <h2 id="couleurs">Couleurs</h2>
         <p>Modifiez <strong>uniquement les 4 couleurs de base</strong> — toutes les variantes (transparent, light, dark) se g&eacute;n&egrave;rent automatiquement via <code>color-mix()</code>.</p>
 
 <pre><code>:root {
@@ -55,7 +55,7 @@
   --accent: #f59e0b;    /* &Agrave; modifier */
 }</code></pre>
 
-        <h3>Couleurs de base</h3>
+        <h3 id="couleurs-de-base">Couleurs de base</h3>
         <div class="color-grid">
           <div class="color-swatch">
             <div class="color-swatch__preview" style="background: var(--primary);"></div>
@@ -75,7 +75,7 @@
           </div>
         </div>
 
-        <h3>Variantes auto-g&eacute;n&eacute;r&eacute;es (primary)</h3>
+        <h3 id="variantes-auto-generees-primary">Variantes auto-g&eacute;n&eacute;r&eacute;es (primary)</h3>
         <p>Changez <code>--primary</code> et toutes ces variantes se recalculent :</p>
 
         <p style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-light); margin-bottom: var(--space-2); font-weight: var(--font-weight-bold);">Transparent (t)</p>
@@ -164,7 +164,7 @@
 
         <p>Le m&ecirc;me syst&egrave;me existe pour <code>--secondary-*</code>, <code>--tertiary-*</code>, <code>--accent-*</code> et <code>--neutral-*</code>.</p>
 
-        <h3>S&eacute;mantique &amp; fond</h3>
+        <h3 id="semantique-et-fond">S&eacute;mantique &amp; fond</h3>
         <div class="color-grid">
           <div class="color-swatch">
             <div class="color-swatch__preview" style="background: var(--success);"></div>
@@ -192,7 +192,7 @@
           </div>
         </div>
 
-        <h3>Nomenclature des variantes</h3>
+        <h3 id="nomenclature-des-variantes">Nomenclature des variantes</h3>
         <table>
           <tr><th>Suffixe</th><th>Type</th><th>Exemple</th></tr>
           <tr><td><code>-t-1</code> &agrave; <code>-t-6</code></td><td>Transparent (opacit&eacute; d&eacute;croissante)</td><td><code>var(--primary-t-3)</code></td></tr>
@@ -200,10 +200,10 @@
           <tr><td><code>-d-1</code> &agrave; <code>-d-6</code></td><td>Dark (m&eacute;lang&eacute; avec noir)</td><td><code>var(--primary-d-2)</code></td></tr>
         </table>
 
-        <h2>Polices</h2>
+        <h2 id="polices">Polices</h2>
         <p>Le syst&egrave;me utilise des <strong>polices locales uniquement</strong> (RGPD, pas d'appel vers Google Fonts). Les fichiers sont dans <code>assets/fonts/</code>.</p>
 
-        <h3>Configuration</h3>
+        <h3 id="configuration">Configuration</h3>
 <pre><code>:root {
   --font-body: 'Inter', system-ui, sans-serif;    /* Texte courant */
   --font-heading: 'Inter', system-ui, sans-serif;  /* Titres h1-h6 */
@@ -211,7 +211,7 @@
 }</code></pre>
         <p><code>--font-body</code> s'applique au body, <code>--font-heading</code> s'applique automatiquement aux titres h1&ndash;h6. Vous pouvez utiliser deux polices diff&eacute;rentes pour le body et les titres.</p>
 
-        <h3>Changer de police</h3>
+        <h3 id="changer-de-police">Changer de police</h3>
         <ol>
           <li>Placez vos fichiers <code>.ttf</code> ou <code>.woff2</code> dans <code>assets/fonts/</code></li>
           <li>Modifiez les <code>@font-face</code> en haut de <code>tokens.css</code></li>
@@ -238,13 +238,13 @@
   --font-heading: 'MaPolice', system-ui, sans-serif;
 }</code></pre>
 
-        <h3>Animations Variable Font</h3>
+        <h3 id="animations-variable-font">Animations Variable Font</h3>
         <p>Si votre police est <strong>variable</strong> (comme Inter), vous pouvez animer le poids de la police. Si la police n'est pas variable, l'animation est ignor&eacute;e silencieusement.</p>
 
         <div class="docs-demo">
-          <h2 class="anim-font-weight-hover" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl); font-family: var(--font-heading); cursor: default;">Survolez ce titre (hover)</h2>
-          <h2 class="anim-font-weight-scroll" style="margin: var(--space-4) 0 0; border: none; padding: 0; font-size: var(--text-2xl); font-family: var(--font-heading);">Apparition au scroll</h2>
-          <h2 class="anim-font-weight-loop" style="margin: var(--space-4) 0 0; border: none; padding: 0; font-size: var(--text-2xl); font-family: var(--font-heading);">Boucle infinie</h2>
+          <h2 id="survolez-ce-titre-hover" class="anim-font-weight-hover" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl); font-family: var(--font-heading); cursor: default;">Survolez ce titre (hover)</h2>
+          <h2 id="apparition-au-scroll" class="anim-font-weight-scroll" style="margin: var(--space-4) 0 0; border: none; padding: 0; font-size: var(--text-2xl); font-family: var(--font-heading);">Apparition au scroll</h2>
+          <h2 id="boucle-infinie" class="anim-font-weight-loop" style="margin: var(--space-4) 0 0; border: none; padding: 0; font-size: var(--text-2xl); font-family: var(--font-heading);">Boucle infinie</h2>
         </div>
 <pre><code>&lt;!-- Poids 400&rarr;700 au hover --&gt;
 &lt;h2 class="anim-font-weight-hover"&gt;Survolez-moi&lt;/h2&gt;
@@ -256,7 +256,7 @@
 &lt;h2 class="anim-font-weight-loop"&gt;Boucle infinie&lt;/h2&gt;</code></pre>
 
         <div class="docs-demo">
-          <h2 class="anim-font-weight-loop" data-font-from="200" data-font-to="900" data-font-duration="3s" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl);">Boucle custom 200&rarr;900</h2>
+          <h2 id="boucle-custom-200900" class="anim-font-weight-loop" data-font-from="200" data-font-to="900" data-font-duration="3s" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl);">Boucle custom 200&rarr;900</h2>
         </div>
 <pre><code>&lt;!-- Custom : poids et dur&eacute;e personnalis&eacute;s --&gt;
 &lt;h2 class="anim-font-weight-loop"
@@ -273,7 +273,7 @@
           <tr><td><code>data-font-duration</code></td><td>0.4s (hover/scroll), 2s (loop)</td><td>Dur&eacute;e de la transition</td></tr>
         </table>
 
-        <h2>Tailles de texte (dynamiques)</h2>
+        <h2 id="tailles-de-texte-dynamiques">Tailles de texte (dynamiques)</h2>
         <p>Les tailles utilisent <code>clamp()</code> pour s'adapter automatiquement entre mobile et desktop :</p>
 <pre><code>:root {
   --text-xs:  clamp(0.7rem, 0.66rem + 0.2vw, 0.75rem);
@@ -287,7 +287,7 @@
   --text-5xl: clamp(2rem, 1.4rem + 3vw, 3rem);
 }</code></pre>
 
-        <h2>Border Radius</h2>
+        <h2 id="border-radius">Border Radius</h2>
 <pre><code>:root {
   --radius-sm: 0.25rem;    /* 4px  — inputs, badges */
   --radius-md: 0.5rem;     /* 8px  — boutons, cards */
@@ -297,7 +297,7 @@
   --radius-full: 9999px;   /* pills, avatars */
 }</code></pre>
 
-        <h2>Ombres</h2>
+        <h2 id="ombres">Ombres</h2>
 <pre><code>:root {
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
@@ -305,7 +305,7 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 }</code></pre>
 
-        <h2>Mapping interne</h2>
+        <h2 id="mapping-interne">Mapping interne</h2>
         <p>Le bas du fichier <code>tokens.css</code> contient un mapping qui connecte vos variables simples aux noms utilis&eacute;s par les composants. <strong>Ne modifiez pas cette section</strong> — elle garantit que tout le syst&egrave;me utilise vos valeurs.</p>
 <pre><code>/* Mapping interne — Ne pas modifier */
 --color-primary: var(--primary);
@@ -313,17 +313,17 @@
 --color-secondary: var(--secondary);
 /* ... etc */</code></pre>
 
-        <h2>Mode sombre (Dark Mode)</h2>
+        <h2 id="mode-sombre-dark-mode">Mode sombre (Dark Mode)</h2>
         <p>Le syst&egrave;me de th&egrave;me sombre fonctionne par surcharge des variables CSS dans <code>tokens.css</code>.</p>
 
-        <h3>Fonctionnement</h3>
+        <h3 id="fonctionnement">Fonctionnement</h3>
         <p>Un bloc <code>[data-theme="dark"]</code> &agrave; la fin de <code>tokens.css</code> surcharge les variables brutes (<code>--text</code>, <code>--bg</code>, <code>--bg-alt</code>, etc.). Les mappings internes (<code>--color-text</code>, <code>--color-bg</code>...) h&eacute;ritent automatiquement.</p>
 
-        <h3>Inclure le script</h3>
+        <h3 id="inclure-le-script">Inclure le script</h3>
         <p>Ajoutez le script <strong>en synchrone</strong> dans le <code>&lt;head&gt;</code>, avant les CSS, pour &eacute;viter un flash de th&egrave;me :</p>
 <pre><code>&lt;script src="core/js/darkmode.js"&gt;&lt;/script&gt;</code></pre>
 
-        <h3>Bouton toggle</h3>
+        <h3 id="bouton-toggle">Bouton toggle</h3>
         <p>Le header int&egrave;gre automatiquement un bouton toggle soleil/lune avec animation. Vous pouvez aussi cr&eacute;er votre propre toggle avec l'attribut <code>data-theme-toggle</code> :</p>
 
         <div class="docs-demo" style="display: flex; align-items: center; gap: var(--space-4);">
@@ -346,7 +346,7 @@
 &lt;!-- Toggle simple (texte) --&gt;
 &lt;button data-theme-toggle&gt;Mode sombre&lt;/button&gt;</code></pre>
 
-        <h3>Comportement</h3>
+        <h3 id="comportement">Comportement</h3>
         <ul>
           <li>V&eacute;rifie d'abord <code>localStorage</code>, puis <code>prefers-color-scheme</code> du syst&egrave;me</li>
           <li>Persiste le choix dans <code>localStorage</code> (cl&eacute; : <code>site-system-theme</code>)</li>
@@ -354,7 +354,7 @@
           <li>Fonction globale : <code>window.toggleTheme()</code></li>
         </ul>
 
-        <h3>Personnaliser les couleurs sombres</h3>
+        <h3 id="personnaliser-les-couleurs-sombres">Personnaliser les couleurs sombres</h3>
         <p>Modifiez le bloc <code>[data-theme="dark"]</code> en fin de <code>tokens.css</code> :</p>
 <pre><code>[data-theme="dark"] {
   --text: #e5e7eb;
@@ -370,7 +370,7 @@
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
 }</code></pre>
 
-        <h2>Espacements</h2>
+        <h2 id="espacements">Espacements</h2>
         <p>Utilis&eacute;s pour les marges, paddings et gaps dans tout le framework :</p>
         <table>
           <tr><th>Token</th><th>Valeur</th></tr>
@@ -388,7 +388,7 @@
           <tr><td><code>--space-24</code></td><td>6rem (96px)</td></tr>
         </table>
 
-        <h2>Font weights</h2>
+        <h2 id="font-weights">Font weights</h2>
         <table>
           <tr><th>Token</th><th>Valeur</th></tr>
           <tr><td><code>--font-weight-normal</code></td><td>400</td></tr>
@@ -397,7 +397,7 @@
           <tr><td><code>--font-weight-bold</code></td><td>700</td></tr>
         </table>
 
-        <h2>Transitions</h2>
+        <h2 id="transitions">Transitions</h2>
         <p>Utilis&eacute;es pour les animations hover, focus et changements d'&eacute;tat :</p>
         <table>
           <tr><th>Token</th><th>Valeur</th></tr>
@@ -406,7 +406,7 @@
           <tr><td><code>--transition-slow</code></td><td>400ms ease</td></tr>
         </table>
 
-        <h2>Layout</h2>
+        <h2 id="layout">Layout</h2>
         <p>D&eacute;finissent la largeur maximale et le padding du conteneur <code>.container</code> :</p>
         <table>
           <tr><th>Token</th><th>Valeur</th><th>Description</th></tr>

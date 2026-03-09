@@ -45,7 +45,7 @@
           Popup, Tooltip, Accordion, Tabs et Slider. Tous les &eacute;l&eacute;ments sont <strong>embo&icirc;tables</strong> (nestable) et initialis&eacute;s automatiquement au chargement.
         </p>
 
-        <h2>Popup / Modal</h2>
+        <h2 id="popup-modal">Popup / Modal</h2>
         <p>Syst&egrave;me de popup/modal avec overlay, fermeture par clic ext&eacute;rieur, touche Escape et bouton. Les popups sont empilables (nestable).</p>
 
         <div class="docs-demo">
@@ -54,13 +54,13 @@
             <div class="popup__overlay"></div>
             <div class="popup__content">
               <button class="popup__close" data-popup-close>&times;</button>
-              <h2 style="margin-bottom: var(--space-2);">Titre du popup</h2>
+              <h2 id="titre-du-popup" style="margin-bottom: var(--space-2);">Titre du popup</h2>
               <p>Contenu du popup centr&eacute;. Cliquez en dehors, sur &times; ou Escape pour fermer.</p>
             </div>
           </div>
         </div>
 
-        <h3>Structure HTML</h3>
+        <h3 id="structure-html">Structure HTML</h3>
 <pre><code>&lt;button data-popup-target="demo"&gt;Ouvrir le popup&lt;/button&gt;
 
 &lt;div class="popup" data-popup="demo"&gt;
@@ -72,7 +72,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Attributs</h3>
+        <h3 id="attributs">Attributs</h3>
         <table>
           <tr><th>Attribut</th><th>R&ocirc;le</th></tr>
           <tr><td><code>data-popup-target="id"</code></td><td>Bouton qui ouvre le popup correspondant</td></tr>
@@ -80,17 +80,17 @@
           <tr><td><code>data-popup-close</code></td><td>Bouton de fermeture (dans le popup)</td></tr>
         </table>
 
-        <h3>Fermeture</h3>
+        <h3 id="fermeture">Fermeture</h3>
         <ul>
           <li>Clic sur <code>.popup__overlay</code></li>
           <li>Clic sur <code>[data-popup-close]</code></li>
           <li>Touche <code>Escape</code> (ferme le dernier ouvert)</li>
         </ul>
 
-        <h3>Popups imbriqu&eacute;s</h3>
+        <h3 id="popups-imbriques">Popups imbriqu&eacute;s</h3>
         <p>Les popups peuvent &ecirc;tre imbriqu&eacute;s. Le z-index est g&eacute;r&eacute; automatiquement par CSS (<code>.popup .popup</code> → z-index sup&eacute;rieur). La touche Escape ferme toujours le dernier popup ouvert.</p>
 
-        <h3>Variantes de position</h3>
+        <h3 id="variantes-de-position">Variantes de position</h3>
 
         <div class="docs-demo" style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
           <button class="btn" data-popup-target="doc-popup-right">Droite</button>
@@ -102,7 +102,7 @@
             <div class="popup__overlay"></div>
             <div class="popup__content">
               <button class="popup__close" data-popup-close>&times;</button>
-              <h2 style="margin-bottom: var(--space-2);">Panneau droit</h2>
+              <h2 id="panneau-droit" style="margin-bottom: var(--space-2);">Panneau droit</h2>
               <p>Panneau lat&eacute;ral glissant depuis la droite.</p>
             </div>
           </div>
@@ -110,7 +110,7 @@
             <div class="popup__overlay"></div>
             <div class="popup__content">
               <button class="popup__close" data-popup-close>&times;</button>
-              <h2 style="margin-bottom: var(--space-2);">Panneau gauche</h2>
+              <h2 id="panneau-gauche" style="margin-bottom: var(--space-2);">Panneau gauche</h2>
               <p>Panneau lat&eacute;ral glissant depuis la gauche.</p>
             </div>
           </div>
@@ -118,7 +118,7 @@
             <div class="popup__overlay"></div>
             <div class="popup__content">
               <button class="popup__close" data-popup-close>&times;</button>
-              <h2 style="margin-bottom: var(--space-2);">Bottom sheet</h2>
+              <h2 id="bottom-sheet" style="margin-bottom: var(--space-2);">Bottom sheet</h2>
               <p>Panneau glissant depuis le bas.</p>
             </div>
           </div>
@@ -126,7 +126,7 @@
             <div class="popup__overlay"></div>
             <div class="popup__content">
               <button class="popup__close" data-popup-close>&times;</button>
-              <h2 style="margin-bottom: var(--space-2);">Panneau haut</h2>
+              <h2 id="panneau-haut" style="margin-bottom: var(--space-2);">Panneau haut</h2>
               <p>Panneau glissant depuis le haut.</p>
             </div>
           </div>
@@ -194,7 +194,7 @@
 &lt;/div&gt;</code></pre>
         <p>Sur mobile (&le; 767px), les panneaux lat&eacute;raux passent en pleine largeur automatiquement.</p>
 
-        <h3>Classes CSS</h3>
+        <h3 id="classes-css">Classes CSS</h3>
         <table>
           <tr><th>Classe</th><th>Description</th></tr>
           <tr><td><code>.popup</code></td><td>Conteneur principal (cach&eacute; par d&eacute;faut)</td></tr>
@@ -204,7 +204,7 @@
           <tr><td><code>.popup__close</code></td><td>Bouton de fermeture (positionn&eacute; en haut &agrave; droite)</td></tr>
         </table>
 
-        <h3>Attributs r&eacute;capitulatifs</h3>
+        <h3 id="attributs-recapitulatifs">Attributs r&eacute;capitulatifs</h3>
         <table>
           <tr><th>Attribut</th><th>R&ocirc;le</th></tr>
           <tr><td><code>data-popup-target="id"</code></td><td>Bouton qui ouvre le popup correspondant</td></tr>
@@ -213,7 +213,7 @@
           <tr><td><code>data-popup-position="right|left|bottom|top"</code></td><td>Variante de position (optionnel)</td></tr>
         </table>
 
-        <h2>Tooltip</h2>
+        <h2 id="tooltip">Tooltip</h2>
         <p>Bulle d'information au survol ou au focus. Repositionnement automatique si la bulle d&eacute;borde de la fen&ecirc;tre.</p>
 
         <div class="docs-demo" style="display: flex; gap: var(--space-4); flex-wrap: wrap; justify-content: center;">
@@ -223,7 +223,7 @@
           <button class="btn" data-tooltip="Info &agrave; droite" data-tooltip-pos="right">Droite</button>
         </div>
 
-        <h3>Utilisation</h3>
+        <h3 id="utilisation">Utilisation</h3>
 <pre><code>&lt;button data-tooltip="Texte de la bulle"&gt;Survolez-moi&lt;/button&gt;
 
 &lt;!-- Avec position --&gt;
@@ -232,17 +232,17 @@
 &lt;button data-tooltip="Info" data-tooltip-pos="right"&gt;&Agrave; droite&lt;/button&gt;</code></pre>
         <p>Les tooltips fonctionnent sur n'importe quel &eacute;l&eacute;ment HTML : <code>&lt;span&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;div&gt;</code>, etc.</p>
 
-        <h3>Attributs</h3>
+        <h3 id="attributs">Attributs</h3>
         <table>
           <tr><th>Attribut</th><th>Description</th></tr>
           <tr><td><code>data-tooltip="texte"</code></td><td>Texte de la bulle</td></tr>
           <tr><td><code>data-tooltip-pos</code></td><td>Position : <code>top</code> (d&eacute;faut), <code>bottom</code>, <code>left</code>, <code>right</code></td></tr>
         </table>
 
-        <h3>Repositionnement automatique</h3>
+        <h3 id="repositionnement-automatique">Repositionnement automatique</h3>
         <p>Si la bulle d&eacute;borde du viewport, elle se repositionne automatiquement (ex. <code>top</code> → <code>bottom</code> si pas de place en haut).</p>
 
-        <h3>Classes CSS</h3>
+        <h3 id="classes-css">Classes CSS</h3>
         <table>
           <tr><th>Classe</th><th>Description</th></tr>
           <tr><td><code>.tooltip</code></td><td>Ajout&eacute;e automatiquement &agrave; l'&eacute;l&eacute;ment parent</td></tr>
@@ -251,7 +251,7 @@
           <tr><td><code>.tooltip__bubble--visible</code></td><td>Bulle visible (avec transition)</td></tr>
         </table>
 
-        <h2>Accordion</h2>
+        <h2 id="accordion">Accordion</h2>
         <p>Panneaux d&eacute;pliables avec animation CSS Grid. Support du mode multiple et de l'imbrication.</p>
 
         <div class="docs-demo">
@@ -282,7 +282,7 @@
           </div>
         </div>
 
-        <h3>Structure HTML</h3>
+        <h3 id="structure-html">Structure HTML</h3>
 <pre><code>&lt;div class="accordion"&gt;
   &lt;div class="accordion__item"&gt;
     &lt;button class="accordion__header"&gt;Section 1&lt;/button&gt;
@@ -304,13 +304,13 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Mode multiple</h3>
+        <h3 id="mode-multiple">Mode multiple</h3>
         <p>Par d&eacute;faut, un seul panneau est ouvert &agrave; la fois. Ajoutez <code>data-accordion-multi</code> pour permettre l'ouverture de plusieurs panneaux simultan&eacute;ment :</p>
 <pre><code>&lt;div class="accordion" data-accordion-multi&gt;
   ...
 &lt;/div&gt;</code></pre>
 
-        <h3>Accordion imbriqu&eacute;</h3>
+        <h3 id="accordion-imbrique">Accordion imbriqu&eacute;</h3>
         <p>Combinez <code>data-accordion-multi</code> avec l'imbrication pour des structures complexes :</p>
 <pre><code>&lt;div class="accordion"&gt;
   &lt;div class="accordion__item"&gt;
@@ -336,7 +336,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Accord&eacute;on imbriqu&eacute;</h3>
+        <h3 id="accordeon-imbrique">Accord&eacute;on imbriqu&eacute;</h3>
         <p>Les accord&eacute;ons peuvent &ecirc;tre imbriqu&eacute;s. Chaque niveau g&egrave;re ses propres items ind&eacute;pendamment :</p>
 <pre><code>&lt;div class="accordion"&gt;
   &lt;div class="accordion__item"&gt;
@@ -356,7 +356,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Classes CSS</h3>
+        <h3 id="classes-css">Classes CSS</h3>
         <table>
           <tr><th>Classe</th><th>Description</th></tr>
           <tr><td><code>.accordion</code></td><td>Conteneur principal (bordure + arrondi)</td></tr>
@@ -366,7 +366,7 @@
           <tr><td><code>.accordion__body</code></td><td>Contenu (animation via <code>grid-template-rows</code>)</td></tr>
         </table>
 
-        <h2>Tabs</h2>
+        <h2 id="tabs">Tabs</h2>
         <p>Syst&egrave;me d'onglets avec navigation et panneaux. Support de l'imbrication.</p>
 
         <div class="docs-demo">
@@ -396,7 +396,7 @@
           </div>
         </div>
 
-        <h3>Scroll automatique</h3>
+        <h3 id="scroll-automatique">Scroll automatique</h3>
         <p>Quand les onglets d&eacute;bordent, la barre de navigation scrolle horizontalement avec des d&eacute;grad&eacute;s indicateurs. Le tab actif est automatiquement centr&eacute;.</p>
         <div class="docs-demo">
           <div class="tabs">
@@ -425,7 +425,7 @@
           </div>
         </div>
 
-        <h3>Structure HTML</h3>
+        <h3 id="structure-html">Structure HTML</h3>
 <pre><code>&lt;div class="tabs"&gt;
   &lt;div class="tabs__nav"&gt;
     &lt;button class="tabs__tab" data-tab="tab1"&gt;Onglet 1&lt;/button&gt;
@@ -437,11 +437,11 @@
   &lt;div class="tabs__panel" data-tab-panel="tab3"&gt;Contenu 3&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Onglet actif par d&eacute;faut</h3>
+        <h3 id="onglet-actif-par-defaut">Onglet actif par d&eacute;faut</h3>
         <p>Par d&eacute;faut, le premier onglet est actif. Ajoutez <code>data-tab-active</code> pour choisir un autre :</p>
 <pre><code>&lt;button class="tabs__tab" data-tab="tab2" data-tab-active&gt;Onglet 2&lt;/button&gt;</code></pre>
 
-        <h3>Attributs</h3>
+        <h3 id="attributs">Attributs</h3>
         <table>
           <tr><th>Attribut</th><th>Description</th></tr>
           <tr><td><code>data-tab="id"</code></td><td>Identifiant de l'onglet (sur le bouton)</td></tr>
@@ -449,7 +449,7 @@
           <tr><td><code>data-tab-active</code></td><td>Onglet actif au chargement (optionnel)</td></tr>
         </table>
 
-        <h3>Classes CSS</h3>
+        <h3 id="classes-css">Classes CSS</h3>
         <table>
           <tr><th>Classe</th><th>Description</th></tr>
           <tr><td><code>.tabs</code></td><td>Conteneur principal</td></tr>
@@ -461,7 +461,7 @@
           <tr><td><code>.tabs__panel--active</code></td><td>Panneau visible</td></tr>
         </table>
 
-        <h2>Slider / Carousel</h2>
+        <h2 id="slider-carousel">Slider / Carousel</h2>
         <p>Carousel avec navigation par boutons, dots, swipe tactile, drag souris, autoplay et boucle. Support multi-slides.</p>
 
         <div class="docs-demo">
@@ -477,7 +477,7 @@
           </div>
         </div>
 
-        <h3>Structure HTML</h3>
+        <h3 id="structure-html">Structure HTML</h3>
 <pre><code>&lt;!-- Slider basique (1 slide visible) --&gt;
 &lt;div class="slider"&gt;
   &lt;div class="slider__track"&gt;
@@ -490,7 +490,7 @@
   &lt;div class="slider__dots"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Slider multi-slides</h3>
+        <h3 id="slider-multi-slides">Slider multi-slides</h3>
 
         <div class="docs-demo">
           <div class="slider" data-slider-per-view="3 2 2 1" data-slider-loop="true" data-slider-drag="true" data-slider-gap="md">
@@ -529,7 +529,7 @@
 
         <p>Le format <code>data-slider-per-view="3 2 2 1"</code> d&eacute;finit le nombre de slides visibles par breakpoint : <strong>desktop</strong> <strong>tablette</strong> <strong>mobile-paysage</strong> <strong>mobile</strong>. Les valeurs cascadent : <code>"3"</code> = 3 slides sur tous les &eacute;crans, <code>"3 2"</code> = 3 desktop + 2 pour le reste.</p>
 
-        <h3>Attributs</h3>
+        <h3 id="attributs">Attributs</h3>
         <table>
           <tr><th>Attribut</th><th>Valeur</th><th>Description</th></tr>
           <tr><td><code>data-slider-per-view</code></td><td><code>"3"</code> ou <code>"4 3 2 1"</code></td><td>Slides visibles par breakpoint : <code>desktop [tablet] [mobile-landscape] [mobile]</code>. Cascade auto si moins de 4 valeurs.</td></tr>
@@ -541,7 +541,7 @@
           <tr><td><code>data-slider-arrows</code></td><td><code>false</code></td><td>Masquer les fl&egrave;ches de navigation</td></tr>
         </table>
 
-        <h3>Personnalisation des fl&egrave;ches</h3>
+        <h3 id="personnalisation-des-fleches">Personnalisation des fl&egrave;ches</h3>
         <p>Les fl&egrave;ches utilisent par d&eacute;faut les ic&ocirc;nes chevron. Personnalisez-les via ces attributs sur le <code>.slider</code> :</p>
         <table>
           <tr><th>Attribut</th><th>Valeur</th><th>Description</th></tr>
@@ -576,7 +576,7 @@
 
         <p>Les ic&ocirc;nes sont charg&eacute;es depuis le syst&egrave;me d'ic&ocirc;nes (<code>icons.js</code>). Les styles peuvent aussi &ecirc;tre d&eacute;finis via les CSS custom properties <code>--slider-arrow-*</code> directement en CSS.</p>
 
-        <h3>CSS custom properties</h3>
+        <h3 id="css-custom-properties">CSS custom properties</h3>
         <table>
           <tr><th>Variable</th><th>Description</th></tr>
           <tr><td><code>--slider-arrow-size</code></td><td>Taille du bouton</td></tr>
@@ -587,7 +587,7 @@
           <tr><td><code>--slider-arrow-border</code></td><td>Couleur de bordure</td></tr>
         </table>
 
-        <h3>Navigation</h3>
+        <h3 id="navigation">Navigation</h3>
         <ul>
           <li><strong>Boutons</strong> : <code>.slider__prev</code> et <code>.slider__next</code> (optionnels)</li>
           <li><strong>Dots</strong> : <code>.slider__dots</code> (g&eacute;n&eacute;r&eacute;s automatiquement par JS, optionnel)</li>
@@ -595,7 +595,7 @@
           <li><strong>Drag souris</strong> : activ&eacute; via <code>data-slider-drag="true"</code></li>
         </ul>
 
-        <h3>Exemple complet</h3>
+        <h3 id="exemple-complet">Exemple complet</h3>
 <pre><code>&lt;div class="slider"
      data-slider-per-view="2"
      data-slider-loop="true"
@@ -616,7 +616,7 @@
   &lt;div class="slider__dots"&gt;&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Classes CSS</h3>
+        <h3 id="classes-css">Classes CSS</h3>
         <table>
           <tr><th>Classe</th><th>Description</th></tr>
           <tr><td><code>.slider</code></td><td>Conteneur principal (<code>overflow: hidden</code>)</td></tr>
@@ -628,7 +628,7 @@
           <tr><td><code>.slider__dot--active</code></td><td>Point actif</td></tr>
         </table>
 
-        <h2>API JavaScript</h2>
+        <h2 id="api-javascript">API JavaScript</h2>
         <table>
           <tr><th>Fonction</th><th>Fichier</th><th>Description</th></tr>
           <tr><td><code>initElements(root)</code></td><td>elements.js</td><td>Initialise popups, tooltips, accordions, tabs, sliders dans <code>root</code> (d&eacute;faut : <code>document</code>).</td></tr>
@@ -651,7 +651,7 @@ initElements(monConteneur);
 initAnimations(monConteneur);
 initIcons(monConteneur);</code></pre>
 
-        <h2>Inclure dans une page</h2>
+        <h2 id="inclure-dans-une-page">Inclure dans une page</h2>
 <pre><code>&lt;link rel="stylesheet" href="core/css/elements.css"&gt;
 &lt;script src="core/js/elements.js" defer&gt;&lt;/script&gt;</code></pre>
 
@@ -666,7 +666,7 @@ initIcons(monConteneur);</code></pre>
           </ul>
         </div>
 
-        <h2>Accessibilit&eacute;</h2>
+        <h2 id="accessibilite">Accessibilit&eacute;</h2>
         <ul>
           <li>Les <strong>popups</strong> se ferment avec la touche <kbd>Escape</kbd>.</li>
           <li>Les <strong>accordions</strong> s'ouvrent/ferment au clic.</li>

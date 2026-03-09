@@ -53,7 +53,7 @@
 
         <hr>
 
-        <h2>Ic&ocirc;nes</h2>
+        <h2 id="icones">Ic&ocirc;nes</h2>
         <p>324 ic&ocirc;nes Heroicons disponibles en deux styles&nbsp;: <strong>outline</strong> (contour) et <strong>solid</strong> (rempli).</p>
         <ul>
           <li>Toggle <strong>outline/solid</strong> en haut du panel pour changer le style</li>
@@ -68,10 +68,10 @@
           <li>Les ic&ocirc;nes solid utilisent <code>currentColor</code> pour s'adapter au th&egrave;me (clair/sombre)</li>
         </ul>
 
-        <h2>M&eacute;diath&egrave;que</h2>
+        <h2 id="mediatheque">M&eacute;diath&egrave;que</h2>
         <p>Gestionnaire de fichiers images du site. Les images sont stock&eacute;es dans <code>/assets/images/</code>.</p>
 
-        <h3>Upload</h3>
+        <h3 id="upload">Upload</h3>
         <ul>
           <li><strong>Drag &amp; drop</strong>&nbsp;: glisse des images directement dans la zone de d&eacute;p&ocirc;t</li>
           <li><strong>Bouton Uploader</strong>&nbsp;: cliquez pour s&eacute;lectionner des fichiers</li>
@@ -80,7 +80,7 @@
           <li>Taille max&nbsp;: 5&nbsp;Mo par fichier</li>
         </ul>
 
-        <h3>Organisation en dossiers</h3>
+        <h3 id="organisation-en-dossiers">Organisation en dossiers</h3>
         <ul>
           <li>Cliquez sur <strong>Dossier</strong> dans la barre d'outils &rarr; entrez un nom &rarr; le dossier est cr&eacute;&eacute;</li>
           <li>Les dossiers apparaissent en haut de la grille avec une ic&ocirc;ne</li>
@@ -89,7 +89,7 @@
           <li>Les images upload&eacute;es vont dans le dossier o&ugrave; vous vous trouvez</li>
         </ul>
 
-        <h3>Popup d'&eacute;dition</h3>
+        <h3 id="popup-d-edition">Popup d'&eacute;dition</h3>
         <p>Cliquez sur une image (pas sur un bouton) pour ouvrir le popup d'&eacute;dition&nbsp;:</p>
         <ul>
           <li><strong>Aper&ccedil;u</strong> de l'image &agrave; gauche</li>
@@ -101,11 +101,11 @@
           <li>Bouton <strong>Enregistrer</strong> pour appliquer les modifications</li>
         </ul>
 
-        <h3>Mise &agrave; jour automatique des chemins</h3>
+        <h3 id="mise-a-jour-automatique-des-chemins">Mise &agrave; jour automatique des chemins</h3>
         <p>Lorsqu'une image est <strong>d&eacute;plac&eacute;e</strong> ou <strong>renomm&eacute;e</strong> via la popup d'&eacute;dition, toutes les pages HTML qui la r&eacute;f&eacute;rencent sont <strong>automatiquement mises &agrave; jour</strong> avec le nouveau chemin. Un toast informatif indique combien de pages ont &eacute;t&eacute; mises &agrave; jour (ex&nbsp;: &laquo;&nbsp;Fichier mis &agrave; jour &mdash; 3 pages mises &agrave; jour&nbsp;&raquo;).</p>
         <p>Cela &eacute;vite les images cass&eacute;es apr&egrave;s une r&eacute;organisation de la m&eacute;diath&egrave;que&nbsp;: vous pouvez renommer et d&eacute;placer vos fichiers librement sans vous soucier des r&eacute;f&eacute;rences.</p>
 
-        <h3>Actions rapides</h3>
+        <h3 id="actions-rapides">Actions rapides</h3>
         <ul>
           <li><strong>Copier</strong> (sur chaque image) &rarr; copie le chemin du fichier (ex&nbsp;: <code>/assets/images/hero.jpg</code>) + toast</li>
           <li><strong>Supprimer</strong> (&times;) &rarr; supprime l'image apr&egrave;s confirmation</li>
@@ -114,7 +114,7 @@
 
         <hr>
 
-        <h2>Module JS</h2>
+        <h2 id="module-js">Module JS</h2>
         <p><code>configurateur-library.js</code> g&egrave;re les deux panels de la biblioth&egrave;que.</p>
         <ul>
           <li>Expos&eacute; via <code>window.BuilderLibrary.refresh(panelId)</code></li>
@@ -125,7 +125,7 @@
           <tr><td><code>lib-media</code></td><td>M&eacute;diath&egrave;que</td></tr>
         </table>
 
-        <h2>API utilis&eacute;es</h2>
+        <h2 id="api-utilisees">API utilis&eacute;es</h2>
         <table>
           <tr><th>Endpoint</th><th>Description</th></tr>
           <tr><td><code>BuilderAPI.iconsList()</code></td><td>Liste les ic&ocirc;nes disponibles</td></tr>

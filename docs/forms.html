@@ -46,7 +46,7 @@
           Syst&egrave;me de formulaires complet : multi-steps, logique conditionnelle, champs custom, validation, toasts, webhooks.
         </p>
 
-        <h2>Structure de base</h2>
+        <h2 id="structure-de-base">Structure de base</h2>
 
         <div class="docs-demo">
           <form class="form">
@@ -88,7 +88,7 @@
           <tr><td><code>data-form-error</code></td><td>Message toast d'erreur</td></tr>
         </table>
 
-        <h2>Labels flottants</h2>
+        <h2 id="labels-flottants">Labels flottants</h2>
         <p>
           Ajoutez <code>form__field--float</code> pour activer l'animation de label flottant.
           Le label se place dans le champ quand il est vide, et monte en haut quand le champ est focus ou rempli.
@@ -133,7 +133,7 @@
   &lt;label class="form__label"&gt;Votre message&lt;/label&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Structure compl&egrave;te d'un champ</h3>
+        <h3 id="structure-complete-d-un-champ">Structure compl&egrave;te d'un champ</h3>
 <pre><code>&lt;div class="form__field form__field--float"&gt;
   &lt;input type="text" name="nom" class="form__input"
          placeholder=" " data-validate="required|min:2"&gt;
@@ -156,7 +156,7 @@
           <li>Pour les champs custom (select, radio, checkbox), le label classique au-dessus est recommand&eacute;.</li>
         </ul>
 
-        <h2>Multi-Steps</h2>
+        <h2 id="multi-steps">Multi-Steps</h2>
 <pre><code>&lt;form class="form" data-form-webhook="..."&gt;
   &lt;div class="form__step-indicators"&gt;&lt;/div&gt;
   &lt;div class="form__progress"&gt;
@@ -194,7 +194,7 @@
           <li>Le bouton Pr&eacute;c&eacute;dent est &agrave; gauche, Suivant et Envoyer sont align&eacute;s &agrave; droite</li>
         </ul>
 
-        <h2>Validation</h2>
+        <h2 id="validation">Validation</h2>
         <p>Ajoutez <code>data-validate</code> sur un input avec les r&egrave;gles s&eacute;par&eacute;es par <code>|</code> :</p>
         <table>
           <tr><th>R&egrave;gle</th><th>Description</th></tr>
@@ -209,7 +209,7 @@
 &lt;input data-validate="required|min:3|max:50"&gt;
 &lt;input data-validate="phone"&gt;</code></pre>
 
-        <h2>Logique conditionnelle</h2>
+        <h2 id="logique-conditionnelle">Logique conditionnelle</h2>
         <p>Affichez/masquez des champs en fonction de la valeur d'un autre champ :</p>
 
         <div class="docs-demo">
@@ -250,10 +250,10 @@
         </table>
         <p>Les champs masqu&eacute;s ne sont <strong>pas envoy&eacute;s</strong> dans le webhook.</p>
 
-        <h2>Champs custom (sans d&eacute;pendances)</h2>
+        <h2 id="champs-custom-sans-dependances">Champs custom (sans d&eacute;pendances)</h2>
         <p>Des &eacute;l&eacute;ments de formulaire 100% stylisables en CSS, rempla&ccedil;ant les &eacute;l&eacute;ments natifs difficiles &agrave; styler :</p>
 
-        <h3>Custom Select</h3>
+        <h3 id="custom-select">Custom Select</h3>
         <div class="docs-demo">
           <div class="form__select" data-name="doc-pays">
             <div class="form__select-trigger" data-placeholder="Choisir un pays...">Choisir un pays...</div>
@@ -273,7 +273,7 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Custom Number</h3>
+        <h3 id="custom-number">Custom Number</h3>
         <div class="docs-demo">
           <div class="form__number">
             <button type="button" class="form__number-minus">&minus;</button>
@@ -288,7 +288,7 @@
   &lt;button type="button" class="form__number-plus"&gt;+&lt;/button&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Custom Radio Group</h3>
+        <h3 id="custom-radio-group">Custom Radio Group</h3>
         <div class="docs-demo">
           <div class="form__radio-group" data-name="doc-taille">
             <div class="form__radio-option" data-value="s">S</div>
@@ -302,7 +302,7 @@
   &lt;div class="form__radio-option" data-value="l"&gt;L&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Custom Checkbox Group</h3>
+        <h3 id="custom-checkbox-group">Custom Checkbox Group</h3>
         <div class="docs-demo">
           <div class="form__checkbox-group" data-name="doc-options">
             <div class="form__checkbox-option" data-value="opt1">Option 1</div>
@@ -316,7 +316,7 @@
   &lt;div class="form__checkbox-option" data-value="opt3"&gt;Option 3&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Custom Multi Select</h3>
+        <h3 id="custom-multi-select">Custom Multi Select</h3>
         <div class="docs-demo">
           <div class="form__multiselect" data-name="doc-competences">
             <div class="form__multiselect-trigger" data-placeholder="Choisir...">Choisir...</div>
@@ -336,14 +336,14 @@
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-        <h2>Webhook (payload)</h2>
+        <h2 id="webhook-payload">Webhook (payload)</h2>
 
-        <h3>Proxy s&eacute;curis&eacute; (recommand&eacute;)</h3>
+        <h3 id="proxy-securise-recommande">Proxy s&eacute;curis&eacute; (recommand&eacute;)</h3>
         <p>En production, utilisez le proxy <code>api/form.php</code> au lieu d'exposer l'URL webhook Make.com dans le HTML :</p>
 <pre><code>&lt;form class="form" data-form-webhook="/api/form.php"&gt;</code></pre>
         <p>Le proxy lit <code>FORM_WEBHOOK_URL</code> et <code>FORM_NOTIFICATION_EMAIL</code> depuis le fichier <code>.env</code> du serveur, ajoute l'email de notification et la date au payload, puis forward vers Make.com. Voir <a href="production.html#configurer-le-env">Mise en production &rarr; .env</a> pour la configuration.</p>
 
-        <h3>Cr&eacute;ation automatique du sc&eacute;nario Make.com</h3>
+        <h3 id="creation-automatique-du-scenario-make-com">Cr&eacute;ation automatique du sc&eacute;nario Make.com</h3>
         <p>Si vous utilisez Claude Code, la commande <strong>&laquo; cr&eacute;e le formulaire &raquo;</strong> cr&eacute;e automatiquement :</p>
         <ol>
           <li>Un <strong>webhook</strong> Make.com (Custom Webhook)</li>
@@ -353,7 +353,7 @@
         </ol>
         <p>Pr&eacute;requis : renseigner <code>MAKE_API_KEY</code>, <code>MAKE_ZONE</code> et <code>MAKE_TEAM_ID</code> dans le fichier <code>.env</code>.</p>
 
-        <h3>Payload</h3>
+        <h3 id="payload">Payload</h3>
         <p>Le formulaire envoie un <code>POST</code> JSON au webhook configur&eacute;. Le payload contient :</p>
         <ul>
           <li>Tous les champs <strong>visibles</strong> (respect de la logique conditionnelle)</li>
@@ -363,7 +363,7 @@
           <li><code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_term</code>, <code>utm_content</code> : UTMs depuis l'URL</li>
         </ul>
 
-        <h3>Exemple de payload</h3>
+        <h3 id="exemple-de-payload">Exemple de payload</h3>
 <pre><code>{
   "nom": "Manon",
   "email": "manon@exemple.fr",
@@ -378,13 +378,13 @@
   "utm_medium": "cpc"
 }</code></pre>
 
-        <h2>Toasts</h2>
+        <h2 id="toasts">Toasts</h2>
         <p>Les toasts sont automatiques (succ&egrave;s/erreur) mais utilisables aussi manuellement :</p>
 <pre><code>// Afficher un toast manuellement
 showToast('Message ici', 'success');  // success, error, warning, info
 showToast('Attention !', 'warning', 6000);  // dur&eacute;e en ms</code></pre>
 
-        <h2>Pr&eacute;-remplissage par URL</h2>
+        <h2 id="pre-remplissage-par-url">Pr&eacute;-remplissage par URL</h2>
         <p>Les param&egrave;tres d'URL correspondent aux attributs <code>name</code> des champs :</p>
 <pre><code>https://monsite.fr/contact?nom=Manon&email=manon@ex.fr&type_client=entreprise</code></pre>
         <p>Les inputs natifs, selects, radios et checkboxes sont pr&eacute;-remplis automatiquement. Les champs custom (<code>data-name</code>) sont &eacute;galement support&eacute;s.</p>

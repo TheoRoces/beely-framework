@@ -64,7 +64,7 @@
 
         <h2 id="installer-le-framework">Installer le framework</h2>
 
-        <h3>Comment ouvrir un terminal&nbsp;?</h3>
+        <h3 id="comment-ouvrir-un-terminal">Comment ouvrir un terminal&nbsp;?</h3>
         <p>Toutes les commandes de cette page se tapent dans un <strong>terminal</strong> (ligne de commande). Voici comment l'ouvrir&nbsp;:</p>
         <ul>
           <li><strong>Sur Mac</strong>&nbsp;: ouvrez l'application <strong>Terminal</strong> (dans Applications &rarr; Utilitaires) ou tapez <code>terminal</code> dans Spotlight (Cmd+Espace)</li>
@@ -75,7 +75,7 @@
 
         <hr>
 
-        <h3>D'o&ugrave; partez-vous&nbsp;?</h3>
+        <h3 id="d-o-partez-vous">D'o&ugrave; partez-vous&nbsp;?</h3>
         <p>Choisissez le sc&eacute;nario qui correspond &agrave; votre situation&nbsp;:</p>
         <table>
           <tr>
@@ -263,7 +263,7 @@ git commit -m "Add Site System framework"</code></pre>
 
         <h2 id="personnaliser-le-site">Personnaliser le site</h2>
 
-        <h3>1. Charte graphique (tokens.css)</h3>
+        <h3 id="1-charte-graphique-tokens-css">1. Charte graphique (tokens.css)</h3>
         <p>Ouvrez <code>core/css/tokens.css</code> et modifiez les variables CSS&nbsp;:</p>
 <pre><code>:root {
   /* Couleurs */
@@ -280,7 +280,7 @@ git commit -m "Add Site System framework"</code></pre>
 }</code></pre>
         <p>Voir <a href="tokens.html">Design Tokens</a> pour la r&eacute;f&eacute;rence compl&egrave;te.</p>
 
-        <h3>2. Configuration du site (config-site.js)</h3>
+        <h3 id="2-configuration-du-site-config-site-js">2. Configuration du site (config-site.js)</h3>
         <p>&Eacute;ditez <code>config-site.js</code>. Ce fichier centralise toute la configuration du projet&nbsp;:</p>
         <ul>
           <li><strong>SITE_CONFIG</strong>&nbsp;: identit&eacute; du site (nom, favicon)</li>
@@ -330,7 +330,7 @@ git commit -m "Add Site System framework"</code></pre>
         <p><strong>Important&nbsp;:</strong> les textes l&eacute;gaux fournis sont des mod&egrave;les g&eacute;n&eacute;riques. Faites-les valider par un professionnel du droit avant mise en production.</p>
         <p>Voir <a href="cookies.html#champs-legal-config">Pages l&eacute;gales</a> pour le d&eacute;tail de chaque champ.</p>
 
-        <h3>4. Composants (header, footer, card)</h3>
+        <h3 id="4-composants-header-footer-card">4. Composants (header, footer, card)</h3>
         <p>Chaque composant se configure directement dans le HTML via des <strong>attributs <code>data-*</code></strong> (pour les valeurs simples) et des <strong><code>&lt;template data-slot&gt;</code></strong> (pour le contenu HTML riche).</p>
         <ul>
           <li><strong>Header</strong>&nbsp;: <code>data-site-name</code>, <code>data-logo-link</code>, <code>data-logo-src</code>, slots <code>nav</code>, <code>cta</code>, <code>search</code></li>
@@ -436,7 +436,7 @@ npx serve .</code></pre>
         <h2 id="git-github">Git &amp; GitHub</h2>
         <p>Le projet est d&eacute;j&agrave; un d&eacute;p&ocirc;t Git (clon&eacute; depuis beely-template). Il faut simplement changer le remote pour pointer vers votre propre d&eacute;p&ocirc;t.</p>
 
-        <h3>1. Cr&eacute;er votre d&eacute;p&ocirc;t GitHub</h3>
+        <h3 id="1-creer-votre-depot-github">1. Cr&eacute;er votre d&eacute;p&ocirc;t GitHub</h3>
         <p>Cr&eacute;ez un nouveau d&eacute;p&ocirc;t sur <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>, puis changez le remote&nbsp;:</p>
 <pre><code># &#x1F4BB; Terminal : terminal VSCode (Ctrl+`)
 # &#x1F4C2; Dossier : la racine de votre projet
@@ -447,7 +447,7 @@ git remote set-url origin https://github.com/votre-user/votre-projet.git
 # Pousser le code
 git push -u origin main</code></pre>
 
-        <h3>2. Workflow quotidien</h3>
+        <h3 id="2-workflow-quotidien">2. Workflow quotidien</h3>
         <p>Les commandes Git que vous utiliserez au quotidien&nbsp;:</p>
 <pre><code># &#x1F4C2; Dossier : la racine de votre projet
 
@@ -472,14 +472,14 @@ git push
 # R&eacute;cup&eacute;rer les derni&egrave;res modifications (si travail en &eacute;quipe)
 git pull</code></pre>
 
-        <h3>3. Bonnes pratiques commits</h3>
+        <h3 id="3-bonnes-pratiques-commits">3. Bonnes pratiques commits</h3>
         <ul>
           <li>Un commit = une modification logique (pas 10 changements diff&eacute;rents dans un seul commit)</li>
           <li>Messages en anglais, courts et descriptifs&nbsp;: <code>Add</code>, <code>Fix</code>, <code>Update</code>, <code>Remove</code></li>
           <li>Exemples&nbsp;: <code>"Add hero section to homepage"</code>, <code>"Fix mobile nav toggle"</code>, <code>"Update color tokens"</code></li>
         </ul>
 
-        <h3>4. Fichier <code>.gitignore</code></h3>
+        <h3 id="4-fichier-gitignore">4. Fichier <code>.gitignore</code></h3>
         <p>Assurez-vous que les fichiers sensibles ou inutiles ne sont pas versionn&eacute;s&nbsp;:</p>
 <pre><code># Fichiers &agrave; ignorer dans .gitignore
 .env
@@ -504,7 +504,7 @@ data/</code></pre>
         <h2 id="site-sans-blog">Site sans blog</h2>
         <p>Si votre site n'a pas besoin de blog, supprimez les fichiers li&eacute;s et all&eacute;gez la configuration.</p>
 
-        <h3>Fichiers &agrave; supprimer</h3>
+        <h3 id="fichiers-a-supprimer">Fichiers &agrave; supprimer</h3>
 <pre><code># &#x1F4C2; Dossier : la racine de votre projet
 
 # Pages blog
@@ -517,7 +517,7 @@ api/                       # Dossier contenant baserow.php
 # Fichier environnement (si le blog &eacute;tait le seul usage)
 .env</code></pre>
 
-        <h3>CSS et JS &agrave; retirer des pages</h3>
+        <h3 id="css-et-js-a-retirer-des-pages">CSS et JS &agrave; retirer des pages</h3>
         <p>Dans chaque fichier HTML, supprimez ces lignes du <code>&lt;head&gt;</code>&nbsp;:</p>
 <pre><code>&lt;!-- Supprimer cette ligne CSS --&gt;
 &lt;link rel="stylesheet" href="core/css/blog.css"&gt;
@@ -526,7 +526,7 @@ api/                       # Dossier contenant baserow.php
 &lt;script src="core/js/blog.js" defer&gt;&lt;/script&gt;</code></pre>
         <p>Les fichiers <code>core/css/blog.css</code> et <code>core/js/blog.js</code> peuvent rester dans le dossier <code>core/</code> sans probl&egrave;me (ils ne seront simplement plus charg&eacute;s).</p>
 
-        <h3>Configuration &agrave; nettoyer</h3>
+        <h3 id="configuration-a-nettoyer">Configuration &agrave; nettoyer</h3>
         <p>Dans <code>config-site.js</code>, supprimez ou videz la section <code>BLOG_CONFIG</code>&nbsp;:</p>
 <pre><code>/* ---------- BLOG ---------- */
 // Supprimez tout ce bloc si pas de blog :
@@ -539,10 +539,10 @@ window.BLOG_CONFIG = {
   blogPage: 'blog',
 };</code></pre>
 
-        <h3>Navigation &agrave; adapter</h3>
+        <h3 id="navigation-a-adapter">Navigation &agrave; adapter</h3>
         <p>Retirez le lien &laquo;&nbsp;Blog&nbsp;&raquo; du slot <code>nav</code> dans le header de chaque page HTML.</p>
 
-        <h3>R&eacute;sum&eacute;</h3>
+        <h3 id="resume">R&eacute;sum&eacute;</h3>
         <table>
           <tr><th>Action</th><th>Fichiers concern&eacute;s</th></tr>
           <tr><td>Supprimer</td><td><code>blog.html</code>, <code>blog/</code>, <code>api/</code>, <code>.env</code></td></tr>

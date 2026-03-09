@@ -92,6 +92,8 @@ curl_setopt_array($ch, [
     CURLOPT_POSTFIELDS     => $payload,
     CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
     CURLOPT_TIMEOUT        => 10,
+    CURLOPT_SSL_VERIFYPEER => true,
+    CURLOPT_SSL_VERIFYHOST => 2,
 ]);
 
 $response = curl_exec($ch);

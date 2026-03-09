@@ -46,7 +46,7 @@
         </p>
 
         <!-- ======================================== -->
-        <h2>Qu'est-ce qu'un Skill ?</h2>
+        <h2 id="qu-est-ce-qu-un-skill">Qu'est-ce qu'un Skill ?</h2>
         <p>
           Un <strong>Skill</strong> est une extension r&eacute;utilisable de Claude Code.
           C'est un fichier <code>SKILL.md</code> contenant des instructions structur&eacute;es
@@ -58,7 +58,7 @@
           lecture de fichiers, recherche dans le code, &eacute;dition, ex&eacute;cution de commandes, etc.
         </p>
 
-        <h3>Diff&eacute;rence avec CLAUDE.md</h3>
+        <h3 id="difference-avec-claude-md">Diff&eacute;rence avec CLAUDE.md</h3>
         <table>
           <thead>
             <tr>
@@ -92,7 +92,7 @@
         </table>
 
         <!-- ======================================== -->
-        <h2>Structure d'un Skill</h2>
+        <h2 id="structure-d-un-skill">Structure d'un Skill</h2>
         <p>Les skills sont stock&eacute;s dans <code>.claude/skills/</code> &agrave; deux niveaux :</p>
         <table>
           <thead>
@@ -116,7 +116,7 @@
           </tbody>
         </table>
 
-        <h3>Format du fichier SKILL.md</h3>
+        <h3 id="format-du-fichier-skill-md">Format du fichier SKILL.md</h3>
 <pre><code>---
 name: mon-skill
 description: Quand et pourquoi utiliser ce skill
@@ -131,7 +131,7 @@ argument-hint: [argument-optionnel]
 Claude suivra ces instructions quand le skill est invoqu&eacute;.
 Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</code></pre>
 
-        <h3>Options du frontmatter</h3>
+        <h3 id="options-du-frontmatter">Options du frontmatter</h3>
         <table>
           <thead>
             <tr>
@@ -185,13 +185,13 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
         </table>
 
         <!-- ======================================== -->
-        <h2>Skills du projet</h2>
+        <h2 id="skills-du-projet">Skills du projet</h2>
         <p>
           Site System inclut <strong>6 skills personnalis&eacute;s</strong> dans
           <code>.claude/skills/</code>, con&ccedil;us pour acc&eacute;l&eacute;rer le d&eacute;veloppement.
         </p>
 
-        <h3>/design-check</h3>
+        <h3 id="design-check">/design-check</h3>
         <p>
           V&eacute;rifie la qualit&eacute; design d'une page ou d'un composant selon la checklist compl&egrave;te :
           alignement, hi&eacute;rarchie visuelle, responsive (375px, 768px, 1200px+), espacements avec tokens,
@@ -201,7 +201,7 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
 /design-check core/css/elements.css</code></pre>
         <p>Retourne un tableau avec score /10 et corrections prioritaires.</p>
 
-        <h3>/new-page</h3>
+        <h3 id="new-page">/new-page</h3>
         <p>
           Cr&eacute;e une nouvelle page HTML compl&egrave;te avec le template standard Site System :
           imports CSS/JS, composants Header/Footer, structure s&eacute;mantique.
@@ -210,7 +210,7 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
 /new-page a-propos</code></pre>
         <p>G&eacute;n&egrave;re le fichier <code>contact.html</code> ou <code>a-propos.html</code> &agrave; la racine, pr&ecirc;t &agrave; personnaliser.</p>
 
-        <h3>/wireframe</h3>
+        <h3 id="wireframe">/wireframe</h3>
         <p>
           Int&egrave;gre une section pr&eacute;-faite (wireframe) dans une page. Acc&egrave;de aux 375+ sections
           disponibles dans <code>wireframes/</code> : heros, banners, CTAs, FAQs, testimonials, etc.
@@ -223,7 +223,7 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
           et vous laisse choisir.
         </p>
 
-        <h3>/deploy-check</h3>
+        <h3 id="deploy-check">/deploy-check</h3>
         <p>
           V&eacute;rification pr&eacute;-d&eacute;ploiement compl&egrave;te. Recherche les probl&egrave;mes courants avant de
           pousser en production :
@@ -238,7 +238,7 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
         </ul>
 <pre><code>/deploy-check</code></pre>
 
-        <h3>/seo-check</h3>
+        <h3 id="seo-check">/seo-check</h3>
         <p>
           Audit SEO on-page d'une page HTML. V&eacute;rifie les balises meta (title, description, Open Graph),
           la structure des titres (h1/h2/h3), les images (alt), les liens, la s&eacute;mantique HTML,
@@ -248,7 +248,7 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
 /seo-check blog.html</code></pre>
         <p>Retourne un score /10 avec recommandations prioris&eacute;es.</p>
 
-        <h3>/component</h3>
+        <h3 id="component">/component</h3>
         <p>
           Cr&eacute;e un nouveau composant r&eacute;utilisable dans <code>components/</code> en suivant le pattern
           <code>registerComponent()</code> du framework. G&eacute;n&egrave;re le fichier JS avec la bonne structure,
@@ -258,13 +258,13 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
 /component sidebar</code></pre>
 
         <!-- ======================================== -->
-        <h2>Commandes rapides</h2>
+        <h2 id="commandes-rapides">Commandes rapides</h2>
         <p>
           En plus des skills, des commandes rapides sont d&eacute;finies dans <code>CLAUDE.md</code>
           pour les actions fr&eacute;quentes. Elles s'ex&eacute;cutent <strong>sans confirmation</strong>.
         </p>
 
-        <h3>Git</h3>
+        <h3 id="git">Git</h3>
         <table>
           <thead>
             <tr>
@@ -296,7 +296,7 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
           </tbody>
         </table>
 
-        <h3>D&eacute;ploiement</h3>
+        <h3 id="deploiement">D&eacute;ploiement</h3>
         <table>
           <thead>
             <tr>
@@ -333,13 +333,13 @@ Utiliser $ARGUMENTS pour r&eacute;f&eacute;rencer les arguments pass&eacute;s.</
         </table>
 
         <!-- ======================================== -->
-        <h2>Cr&eacute;er un skill personnalis&eacute;</h2>
+        <h2 id="creer-un-skill-personnalise">Cr&eacute;er un skill personnalis&eacute;</h2>
         <p>Pour cr&eacute;er votre propre skill :</p>
 
-        <h3>1. Cr&eacute;er le dossier</h3>
+        <h3 id="1-creer-le-dossier">1. Cr&eacute;er le dossier</h3>
 <pre><code>mkdir -p .claude/skills/mon-skill</code></pre>
 
-        <h3>2. &Eacute;crire le SKILL.md</h3>
+        <h3 id="2-eacute-crire-le-skill-md">2. &Eacute;crire le SKILL.md</h3>
 <pre><code>---
 name: mon-skill
 description: Description claire de quand utiliser ce skill
@@ -352,10 +352,10 @@ allowed-tools: Read, Grep
 D&eacute;crivez ce que Claude doit faire quand ce skill est invoqu&eacute;.
 Utilisez $ARGUMENTS pour les arguments pass&eacute;s par l'utilisateur.</code></pre>
 
-        <h3>3. Tester</h3>
+        <h3 id="3-tester">3. Tester</h3>
 <pre><code>/mon-skill argument1 argument2</code></pre>
 
-        <h3>Bonnes pratiques</h3>
+        <h3 id="bonnes-pratiques">Bonnes pratiques</h3>
         <ul>
           <li><strong>Description claire</strong> : inclure des mots-cl&eacute;s que Claude peut d&eacute;tecter pour le chargement auto</li>
           <li><strong>Une responsabilit&eacute;</strong> : un skill = une t&acirc;che pr&eacute;cise</li>
@@ -365,7 +365,7 @@ Utilisez $ARGUMENTS pour les arguments pass&eacute;s par l'utilisateur.</code></
         </ul>
 
         <!-- ======================================== -->
-        <h2>Variables disponibles</h2>
+        <h2 id="variables-disponibles">Variables disponibles</h2>
         <table>
           <thead>
             <tr>
@@ -393,7 +393,7 @@ Utilisez $ARGUMENTS pour les arguments pass&eacute;s par l'utilisateur.</code></
           </tbody>
         </table>
 
-        <h3>Contexte dynamique</h3>
+        <h3 id="contexte-dynamique">Contexte dynamique</h3>
         <p>
           Vous pouvez injecter la sortie d'une commande shell dans le skill avec la syntaxe
           <code>!`commande`</code>. La commande est ex&eacute;cut&eacute;e avant que Claude ne lise le skill :
@@ -410,7 +410,7 @@ description: R&eacute;sume la PR en cours
 R&eacute;sume les changements de cette PR.</code></pre>
 
         <!-- ======================================== -->
-        <h2>Skills int&eacute;gr&eacute;s &agrave; Claude Code</h2>
+        <h2 id="skills-integres-a-claude-code">Skills int&eacute;gr&eacute;s &agrave; Claude Code</h2>
         <p>Claude Code inclut &eacute;galement des skills pr&eacute;-install&eacute;s :</p>
         <table>
           <thead>

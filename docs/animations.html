@@ -47,7 +47,7 @@
           Animations d'entr&eacute;e au scroll, de sortie, et au clic. Respect automatique de <code>prefers-reduced-motion</code>.
         </p>
 
-        <h2>Animations d'entr&eacute;e (scroll)</h2>
+        <h2 id="animations-d-entree-scroll">Animations d'entr&eacute;e (scroll)</h2>
         <p>Ajoutez simplement une classe CSS. L'&eacute;l&eacute;ment s'anime quand il entre dans le viewport :</p>
 
         <div class="docs-demo" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--space-3);">
@@ -83,15 +83,15 @@
 
 <pre><code>&lt;div class="anim-fade-in-up"&gt;Je m'anime au scroll&lt;/div&gt;</code></pre>
 
-        <h2>Modificateurs</h2>
+        <h2 id="modificateurs">Modificateurs</h2>
 
-        <h3>D&eacute;lai</h3>
+        <h3 id="delai">D&eacute;lai</h3>
         <table>
           <tr><th>Classe</th><th>D&eacute;lai</th></tr>
           <tr><td><code>anim--delay-1</code> &agrave; <code>anim--delay-10</code></td><td>100ms &agrave; 1000ms (incr&eacute;ments de 100ms)</td></tr>
         </table>
 
-        <h3>Dur&eacute;e</h3>
+        <h3 id="duree">Dur&eacute;e</h3>
         <table>
           <tr><th>Classe</th><th>Dur&eacute;e</th></tr>
           <tr><td><code>anim--duration-fast</code></td><td>300ms</td></tr>
@@ -99,7 +99,7 @@
           <tr><td><code>anim--duration-slower</code></td><td>1500ms</td></tr>
         </table>
 
-        <h3>Easing</h3>
+        <h3 id="easing">Easing</h3>
         <table>
           <tr><th>Classe</th><th>Effet</th></tr>
           <tr><td><code>anim--ease-bounce</code></td><td>Rebond &agrave; l'arriv&eacute;e</td></tr>
@@ -111,13 +111,13 @@
   Fondu + mont&eacute;e, d&eacute;lai 300ms, rebond
 &lt;/div&gt;</code></pre>
 
-        <h2>Animations de sortie</h2>
+        <h2 id="animations-de-sortie">Animations de sortie</h2>
         <p>Ajoutez <code>data-anim-exit="true"</code> pour que l'animation se red&eacute;clenche quand l'&eacute;l&eacute;ment sort et revient dans le viewport :</p>
 <pre><code>&lt;div class="anim-fade-in-up" data-anim-exit="true"&gt;
   Animation re-d&eacute;clenchable
 &lt;/div&gt;</code></pre>
 
-        <h2>Animations au clic</h2>
+        <h2 id="animations-au-clic">Animations au clic</h2>
 
         <div class="docs-demo" style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
           <button class="btn anim-click-pulse">Pulse</button>
@@ -138,7 +138,7 @@
   Cliquez-moi
 &lt;/button&gt;</code></pre>
 
-        <h2>Animations SVG</h2>
+        <h2 id="animations-svg">Animations SVG</h2>
         <p>Animez vos SVG au scroll avec des classes simples. Id&eacute;al pour les ic&ocirc;nes, graphiques et illustrations.</p>
 
         <div class="docs-demo" style="display: flex; gap: var(--space-8); justify-content: center; align-items: center;">
@@ -165,7 +165,7 @@
           </div>
         </div>
 
-        <h3>Dessin de trac&eacute; (stroke)</h3>
+        <h3 id="dessin-de-trace-stroke">Dessin de trac&eacute; (stroke)</h3>
         <p>Utilisez <code>--svg-length</code> pour d&eacute;finir la longueur du trac&eacute; (approximative, en pixels) :</p>
 <pre><code>&lt;svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3"&gt;
   &lt;circle class="anim-svg-draw" style="--svg-length: 283;"
@@ -183,10 +183,10 @@
           <tr><td><code>anim-svg-fill</code></td><td>Animation de remplissage (fill-opacity)</td></tr>
         </table>
 
-        <h3>Variable <code>--svg-length</code></h3>
+        <h3 id="variable-svg-length">Variable <code>--svg-length</code></h3>
         <p>D&eacute;finissez la longueur approximative du trac&eacute; SVG pour que l'animation fonctionne correctement. Vous pouvez obtenir cette valeur avec <code>path.getTotalLength()</code> dans la console.</p>
 
-        <h3>Modificateurs SVG</h3>
+        <h3 id="modificateurs-svg">Modificateurs SVG</h3>
         <table>
           <tr><th>Classe</th><th>Dur&eacute;e</th></tr>
           <tr><td><code>anim-svg--fast</code></td><td>0.8s</td></tr>
@@ -195,13 +195,13 @@
         </table>
         <p>Les modificateurs de d&eacute;lai standards (<code>anim--delay-1</code> &agrave; <code>anim--delay-10</code>) fonctionnent &eacute;galement avec les animations SVG.</p>
 
-        <h2>Animations Variable Font</h2>
+        <h2 id="animations-variable-font">Animations Variable Font</h2>
         <p>Animez le poids des polices variables (comme Inter). Si la police n'est pas variable, l'animation est ignor&eacute;e.</p>
 
         <div class="docs-demo" style="display: flex; flex-direction: column; gap: var(--space-4);">
-          <h2 class="anim-font-weight-hover" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl);">Hover : survolez ce titre</h2>
-          <h2 class="anim-font-weight-scroll" data-anim-exit="true" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl);">Scroll : apparition au scroll</h2>
-          <h2 class="anim-font-weight-loop" data-font-from="200" data-font-to="900" data-font-duration="3s" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl);">Loop : boucle 200&rarr;900</h2>
+          <h2 id="hover-survolez-ce-titre" class="anim-font-weight-hover" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl);">Hover : survolez ce titre</h2>
+          <h2 id="scroll-apparition-au-scroll" class="anim-font-weight-scroll" data-anim-exit="true" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl);">Scroll : apparition au scroll</h2>
+          <h2 id="loop-boucle-200900" class="anim-font-weight-loop" data-font-from="200" data-font-to="900" data-font-duration="3s" style="margin: 0; border: none; padding: 0; font-size: var(--text-2xl);">Loop : boucle 200&rarr;900</h2>
         </div>
 
         <table>
@@ -234,7 +234,7 @@
         <p>Configurez visuellement vos animations et copiez le code g&eacute;n&eacute;r&eacute; :</p>
         <div id="animationCreator"></div>
 
-        <h2>Accessibilit&eacute;</h2>
+        <h2 id="accessibilite">Accessibilit&eacute;</h2>
         <p>Toutes les animations (y compris SVG) respectent <code>prefers-reduced-motion: reduce</code>. Si l'utilisateur a d&eacute;sactiv&eacute; les animations dans son syst&egrave;me, tous les &eacute;l&eacute;ments apparaissent imm&eacute;diatement sans animation.</p>
 
         <div class="docs-troubleshoot">

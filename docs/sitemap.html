@@ -45,7 +45,7 @@
           G&eacute;n&eacute;ration automatique de <code>sitemap.xml</code> et <code>robots.txt</code>. Script Node.js natif, z&eacute;ro d&eacute;pendance.
         </p>
 
-        <h2>Utilisation</h2>
+        <h2 id="utilisation">Utilisation</h2>
         <p>Lancez le script avec votre URL de production :</p>
 <pre><code>node generate-sitemap.js https://monsite.fr</code></pre>
         <p>Le script g&eacute;n&egrave;re deux fichiers &agrave; la racine du projet :</p>
@@ -54,7 +54,7 @@
           <li><code>robots.txt</code> &mdash; autorise l'indexation et r&eacute;f&eacute;rence le sitemap</li>
         </ul>
 
-        <h2>Fonctionnement</h2>
+        <h2 id="fonctionnement">Fonctionnement</h2>
         <ul>
           <li>Parcourt r&eacute;cursivement le projet &agrave; la recherche de fichiers <code>.html</code></li>
           <li>D&eacute;tecte la date de derni&egrave;re modification de chaque fichier</li>
@@ -62,7 +62,7 @@
           <li><code>index.html</code> re&ccedil;oit toujours la priorit&eacute; maximale (1.0)</li>
         </ul>
 
-        <h2>Dossiers ignor&eacute;s</h2>
+        <h2 id="dossiers-ignores">Dossiers ignor&eacute;s</h2>
         <p>Par d&eacute;faut, les dossiers suivants sont exclus du sitemap :</p>
         <ul>
           <li><code>node_modules</code>, <code>.git</code>, <code>.claude</code></li>
@@ -72,8 +72,8 @@
         </ul>
         <p>Modifiez la variable <code>IGNORE_DIRS</code> dans <code>generate-sitemap.js</code> pour ajuster.</p>
 
-        <h2>Sortie</h2>
-        <h3>sitemap.xml</h3>
+        <h2 id="sortie">Sortie</h2>
+        <h3 id="sitemap-xml">sitemap.xml</h3>
 <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
   &lt;url&gt;
@@ -90,13 +90,13 @@
   &lt;/url&gt;
 &lt;/urlset&gt;</code></pre>
 
-        <h3>robots.txt</h3>
+        <h3 id="robots-txt">robots.txt</h3>
 <pre><code>User-agent: *
 Allow: /
 
 Sitemap: https://monsite.fr/sitemap.xml</code></pre>
 
-        <h2>Int&eacute;gration CI/CD</h2>
+        <h2 id="integration-ci-cd">Int&eacute;gration CI/CD</h2>
         <p>Ajoutez la commande au pipeline de d&eacute;ploiement pour garder le sitemap &agrave; jour :</p>
 <pre><code># Exemple GitHub Actions
 - name: Generate sitemap

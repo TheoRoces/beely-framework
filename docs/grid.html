@@ -48,7 +48,7 @@
           Syst&egrave;me de grille flexible et layouts bento via classes CSS et attributs <code>data-*</code>. Responsive par d&eacute;faut, z&eacute;ro d&eacute;pendance.
         </p>
 
-        <h2>Grille simple</h2>
+        <h2 id="grille-simple">Grille simple</h2>
         <p>Ajoutez la classe <code>grid</code> et d&eacute;finissez le nombre de colonnes avec <code>data-cols</code> :</p>
 
 <pre><code>&lt;div class="grid" data-cols="3" data-gap="md"&gt;
@@ -63,7 +63,7 @@
           <div class="demo-box">Colonne 3</div>
         </div>
 
-        <h3>Colonnes</h3>
+        <h3 id="colonnes">Colonnes</h3>
         <table>
           <tr><th>Attribut / Classe</th><th>Colonnes</th></tr>
           <tr><td><code>data-cols="1"</code> ou <code>grid--1</code></td><td>1 colonne</td></tr>
@@ -74,7 +74,7 @@
           <tr><td><code>data-cols="6"</code> ou <code>grid--6</code></td><td>6 colonnes</td></tr>
         </table>
 
-        <h3>Gap (espacement)</h3>
+        <h3 id="gap-espacement">Gap (espacement)</h3>
         <table>
           <tr><th>Attribut / Classe</th><th>Espacement</th></tr>
           <tr><td><code>data-gap="none"</code> ou <code>grid--gap-none</code></td><td>0</td></tr>
@@ -85,7 +85,7 @@
           <tr><td><code>data-gap="xl"</code> ou <code>grid--gap-xl</code></td><td>var(--space-12) grille / var(--space-10) bento</td></tr>
         </table>
 
-        <h3>Alignement vertical</h3>
+        <h3 id="alignement-vertical">Alignement vertical</h3>
         <table>
           <tr><th>Attribut</th><th>Effet</th></tr>
           <tr><td><code>data-align="start"</code></td><td>Align&eacute; en haut</td></tr>
@@ -94,7 +94,7 @@
           <tr><td><code>data-align="stretch"</code></td><td>&Eacute;tir&eacute; (d&eacute;faut)</td></tr>
         </table>
 
-        <h2>Span (items)</h2>
+        <h2 id="span-items">Span (items)</h2>
         <p>Un &eacute;l&eacute;ment enfant peut occuper plusieurs colonnes ou lignes :</p>
 
 <pre><code>&lt;div class="grid" data-cols="3"&gt;
@@ -116,7 +116,7 @@
           <tr><td><code>data-row-span="2"</code> &agrave; <code>"4"</code></td><td>Occupe N lignes</td></tr>
         </table>
 
-        <h2>Bento</h2>
+        <h2 id="bento">Bento</h2>
         <p>Le syst&egrave;me bento est une grille 4 colonnes avec des tailles pr&eacute;d&eacute;finies pour cr&eacute;er des layouts asym&eacute;triques rapidement :</p>
 
 <pre><code>&lt;div class="bento" data-gap="md"&gt;
@@ -137,7 +137,7 @@
           <div class="bento__item demo-box">Normal</div>
         </div>
 
-        <h3>Tailles pr&eacute;d&eacute;finies</h3>
+        <h3 id="tailles-predefinies">Tailles pr&eacute;d&eacute;finies</h3>
         <table>
           <tr><th>Attribut</th><th>Effet</th></tr>
           <tr><td>(aucun)</td><td>1 colonne, 1 ligne</td></tr>
@@ -148,7 +148,7 @@
         </table>
         <p>Pour un contr&ocirc;le plus fin, utilisez <code>data-col-span</code> et <code>data-row-span</code> directement sur les <code>.bento__item</code>.</p>
 
-        <h3>Hauteur des lignes</h3>
+        <h3 id="hauteur-des-lignes">Hauteur des lignes</h3>
         <table>
           <tr><th>Attribut</th><th>Hauteur minimum</th></tr>
           <tr><td><code>data-row-height="sm"</code></td><td>120px</td></tr>
@@ -157,7 +157,7 @@
           <tr><td><code>data-row-height="xl"</code></td><td>320px</td></tr>
         </table>
 
-        <h2>Layouts pr&eacute;d&eacute;finis</h2>
+        <h2 id="layouts-predefinis">Layouts pr&eacute;d&eacute;finis</h2>
         <p>Des layouts courants sont disponibles via <code>data-layout</code> :</p>
 
         <table>
@@ -180,7 +180,7 @@
           <div class="bento__item demo-box">D&eacute;tail 2</div>
         </div>
 
-        <h2>Responsive</h2>
+        <h2 id="responsive">Responsive</h2>
         <p>Toutes les grilles s'adaptent automatiquement selon 4 breakpoints :</p>
         <table>
           <tr><th>Breakpoint</th><th>Range</th><th>Grille</th></tr>
@@ -191,7 +191,7 @@
         </table>
         <p>Les spans trop larges pour l'&eacute;cran sont automatiquement r&eacute;duits.</p>
 
-        <h3>Responsive personnalis&eacute;</h3>
+        <h3 id="responsive-personnalise">Responsive personnalis&eacute;</h3>
         <p>Pour un contr&ocirc;le fin du nombre de colonnes par breakpoint, <strong>nommez votre grille</strong> avec une classe CSS et ajoutez des media queries dans votre feuille de style :</p>
 <pre><code>&lt;!-- HTML --&gt;
 &lt;div class="grid grid-services" data-cols="4" data-gap="md"&gt;
@@ -215,7 +215,7 @@
 &lt;/style&gt;</code></pre>
         <p>Le <a href="#grid-creator">cr&eacute;ateur de grilles</a> ci-dessous g&eacute;n&egrave;re automatiquement ce CSS quand vous configurez le responsive.</p>
 
-        <h2>Inclure dans une page</h2>
+        <h2 id="inclure-dans-une-page">Inclure dans une page</h2>
 <pre><code>&lt;link rel="stylesheet" href="core/css/grid.css"&gt;</code></pre>
         <p>Aucun JavaScript n&eacute;cessaire. Tout fonctionne en CSS pur.</p>
 
@@ -231,7 +231,7 @@
         <h2 id="grid-creator">Cr&eacute;ateur de grilles</h2>
         <p>Configurez visuellement vos layouts grille et bento, puis copiez le code g&eacute;n&eacute;r&eacute;. Le code utilise les attributs <code>data-*</code> du framework et fonctionne imm&eacute;diatement avec <code>grid.css</code>.</p>
 
-        <h3>Fonctionnalit&eacute;s</h3>
+        <h3 id="fonctionnalites">Fonctionnalit&eacute;s</h3>
         <ul>
           <li><strong>Deux modes :</strong> <em>Grille flexible</em> (nombre de colonnes libre, spans personnalis&eacute;s) et <em>Bento</em> (tailles pr&eacute;d&eacute;finies, layouts).</li>
           <li><strong>Responsive complet :</strong> nommez votre grille pour activer la barre de breakpoints et configurer colonnes et spans par breakpoint.</li>
@@ -239,7 +239,7 @@
           <li><strong>Sortie HTML + CSS :</strong> le code g&eacute;n&eacute;r&eacute; inclut le HTML et, si un nom est d&eacute;fini, le CSS responsive complet avec media queries.</li>
         </ul>
 
-        <h3>Barre de breakpoints</h3>
+        <h3 id="barre-de-breakpoints">Barre de breakpoints</h3>
         <p>D&egrave;s qu'un <strong>nom de grille</strong> est renseign&eacute; (ex&nbsp;: <code>grid-services</code>), une barre de breakpoints style Webflow appara&icirc;t avec 4 niveaux :</p>
         <table>
           <tr><th>Breakpoint</th><th>Seuil</th><th>Largeur de preview</th></tr>
@@ -250,7 +250,7 @@
         </table>
         <p>Cliquez sur un breakpoint pour configurer le nombre de colonnes et les spans &agrave; ce niveau. Les breakpoints inf&eacute;rieurs <strong>h&eacute;ritent</strong> automatiquement des valeurs du breakpoint sup&eacute;rieur (syst&egrave;me de cascade). Un bouton <strong>Auto</strong> permet de r&eacute;tablir l'h&eacute;ritage si une valeur a &eacute;t&eacute; personnalis&eacute;e.</p>
 
-        <h3>Nom de la grille et classes auto</h3>
+        <h3 id="nom-de-la-grille-et-classes-auto">Nom de la grille et classes auto</h3>
         <p>Quand un nom est d&eacute;fini, le cr&eacute;ateur g&eacute;n&egrave;re des classes CSS automatiques pour chaque item :</p>
 <pre><code>&lt;!-- Avec nom "grid-services" --&gt;
 &lt;div class="grid grid-services" data-cols="4"&gt;
@@ -261,7 +261,7 @@
 &lt;/div&gt;</code></pre>
         <p>Sans nom, le comportement classique avec <code>data-col-span</code> / <code>data-row-span</code> est utilis&eacute;.</p>
 
-        <h3>CSS responsive g&eacute;n&eacute;r&eacute;</h3>
+        <h3 id="css-responsive-genere">CSS responsive g&eacute;n&eacute;r&eacute;</h3>
         <p>Le bloc CSS inclut les media queries compl&egrave;tes :</p>
         <ul>
           <li><strong>Desktop :</strong> les spans sont d&eacute;finis en CSS sans media query.</li>
@@ -290,7 +290,7 @@
   }
 }</code></pre>
 
-        <h3>Utilisation du cr&eacute;ateur</h3>
+        <h3 id="utilisation-du-createur">Utilisation du cr&eacute;ateur</h3>
         <ol>
           <li>Choisissez le mode : <strong>Grille flexible</strong> ou <strong>Bento</strong>.</li>
           <li>(Grille) Renseignez un <strong>nom de grille</strong> pour activer le responsive personnalis&eacute;.</li>

@@ -72,7 +72,7 @@
         <h2 id="reprendre-de-zero">Reprendre de z&eacute;ro</h2>
         <p>Si vous avez perdu la main (nouveau Mac, r&eacute;installation, longue absence), voici comment tout retrouver et recloner.</p>
 
-        <h3>Les 4 repos GitHub</h3>
+        <h3 id="les-4-repos-github">Les 4 repos GitHub</h3>
         <table>
           <tr><th>Repo</th><th>URL GitHub</th><th>Description</th></tr>
           <tr>
@@ -97,7 +97,7 @@
           </tr>
         </table>
 
-        <h3>Recloner l'environnement complet</h3>
+        <h3 id="recloner-l-environnement-complet">Recloner l'environnement complet</h3>
 <pre><code># &#x1F4BB; Terminal : Terminal.app (Mac) ou terminal VSCode
 # &#x1F4C2; Dossier : l&agrave; o&ugrave; vous rangez vos sites (ex: ~/Sites/)
 
@@ -112,7 +112,7 @@ git clone https://github.com/TheoRoces/beely-builder.git beely-builder
 # 3. Cloner le template (pour cr&eacute;er de nouveaux projets)
 git clone --recursive https://github.com/TheoRoces/beely-template.git beely-template</code></pre>
 
-        <h3>Recloner un projet client existant</h3>
+        <h3 id="recloner-un-projet-client-existant">Recloner un projet client existant</h3>
 <pre><code># &#x1F4BB; Terminal : Terminal.app ou terminal VSCode
 # &#x1F4C2; Dossier : ~/Sites/
 
@@ -122,7 +122,7 @@ cd mon-projet
 ./setup.sh</code></pre>
         <p>L'option <code>--recursive</code> clone automatiquement les submodules (<code>.framework/</code> et <code>configurateur/</code>). Le script <code>setup.sh</code> cr&eacute;e les symlinks.</p>
 
-        <h3>Recr&eacute;er les fichiers de config</h3>
+        <h3 id="recreer-les-fichiers-de-config">Recr&eacute;er les fichiers de config</h3>
         <p>Deux fichiers ne sont pas dans git (ils contiennent des secrets). Il faut les recr&eacute;er&nbsp;:</p>
 
         <p><strong><code>.deploy.env</code></strong> (infos SSH pour le d&eacute;ploiement)&nbsp;:</p>
@@ -142,7 +142,7 @@ cp .deploy.env.example .deploy.env</code></pre>
 cp .env.example .env</code></pre>
         <p>Puis remplir les tokens (Baserow, Make.com, etc.).</p>
 
-        <h3>Le framework en ligne</h3>
+        <h3 id="le-framework-en-ligne">Le framework en ligne</h3>
         <p>La documentation et le framework sont d&eacute;ploy&eacute;s sur <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong>. Ce site est mis &agrave; jour via <code>./deploy.sh prod</code> depuis le repo qui a un <code>.deploy.env</code> pointant vers ce domaine.</p>
 
         <!-- ========== LES 3 REPOS ========== -->
@@ -173,7 +173,7 @@ cp .env.example .env</code></pre>
         </table>
         <p>Chaque repo est <strong>versionn&eacute; ind&eacute;pendamment</strong> avec des tags s&eacute;mantiques (v1.0.0, v1.1.0, etc.).</p>
 
-        <h3>Le r&ocirc;le de site-system</h3>
+        <h3 id="le-role-de-site-system">Le r&ocirc;le de site-system</h3>
         <p><code>site-system</code> n'est <strong>pas un submodule</strong> &mdash; c'est le <strong>repo de d&eacute;veloppement principal</strong>. C'est le seul endroit o&ugrave;&nbsp;:</p>
         <ul>
           <li>Vous modifiez le <strong>framework</strong> (via le submodule <code>.framework/</code>)</li>
@@ -227,7 +227,7 @@ cp .env.example .env</code></pre>
 
         <h2 id="fichiers">Fichiers symlink&eacute;s vs r&eacute;els</h2>
 
-        <h3>Fichiers symlink&eacute;s (framework)</h3>
+        <h3 id="fichiers-symlinkes-framework">Fichiers symlink&eacute;s (framework)</h3>
         <p>Ces fichiers sont des symlinks vers <code>.framework/</code>. Ils ne doivent <strong>jamais &ecirc;tre modifi&eacute;s directement</strong> dans le projet &mdash; les modifications se font dans le d&eacute;p&ocirc;t du framework.</p>
         <table>
           <tr><th>Chemin</th><th>Description</th></tr>
@@ -240,7 +240,7 @@ cp .env.example .env</code></pre>
           <tr><td><code>docs/</code></td><td>Documentation interactive</td></tr>
         </table>
 
-        <h3>Fichiers r&eacute;els (projet)</h3>
+        <h3 id="fichiers-reels-projet">Fichiers r&eacute;els (projet)</h3>
         <p>Propres &agrave; chaque projet, versionn&eacute;s dans le d&eacute;p&ocirc;t du projet.</p>
         <table>
           <tr><th>Chemin</th><th>Description</th></tr>
@@ -263,7 +263,7 @@ cp .env.example .env</code></pre>
 
         <h2 id="installation">Installation d'un nouveau projet</h2>
 
-        <h3>Depuis beely-template</h3>
+        <h3 id="depuis-beely-template">Depuis beely-template</h3>
 <pre><code># &#x1F4BB; Terminal : Terminal.app ou terminal VSCode
 # &#x1F4C2; Dossier : ~/Sites/ (votre dossier de projets)
 
@@ -280,7 +280,7 @@ cd mon-projet
 python3 configurateur/configurator-server.py
 # &rarr; http://localhost:5555/configurateur/configurator.html</code></pre>
 
-        <h3>Cloner un projet existant</h3>
+        <h3 id="cloner-un-projet-existant">Cloner un projet existant</h3>
 <pre><code># &#x1F4C2; Dossier : ~/Sites/
 
 git clone --recursive https://github.com/org/mon-projet.git
@@ -333,21 +333,21 @@ git commit -m "Update configurateur submodule"</code></pre>
 
         <h2 id="mettre-a-jour">Mettre &agrave; jour les submodules</h2>
 
-        <h3>Mettre &agrave; jour le framework</h3>
+        <h3 id="mettre-a-jour-le-framework">Mettre &agrave; jour le framework</h3>
 <pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
 git submodule update --remote .framework
 git add .framework
 git commit -m "Update framework to latest version"</code></pre>
 
-        <h3>Mettre &agrave; jour le Configurateur</h3>
+        <h3 id="mettre-a-jour-le-configurateur">Mettre &agrave; jour le Configurateur</h3>
 <pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
 git submodule update --remote configurateur
 git add configurateur
 git commit -m "Update configurateur to latest version"</code></pre>
 
-        <h3>Mettre &agrave; jour les deux</h3>
+        <h3 id="mettre-a-jour-les-deux">Mettre &agrave; jour les deux</h3>
 <pre><code># &#x1F4C2; Dossier : la racine d'un projet client
 
 git submodule update --remote
@@ -375,13 +375,13 @@ rsync -avzL --delete \
         <h2 id="mise-en-prod-framework">Mise en production du framework</h2>
         <p>Le framework est aussi d&eacute;ploy&eacute; sur son propre domaine&nbsp;: <strong><a href="https://framework.beely.studio" target="_blank" rel="noopener">https://framework.beely.studio</a></strong>.</p>
 
-        <h3>D&eacute;ployer le framework</h3>
+        <h3 id="deployer-le-framework">D&eacute;ployer le framework</h3>
 <pre><code># &#x1F4BB; Terminal : Terminal.app ou terminal VSCode
 # &#x1F4C2; Dossier : ~/Sites/site-system-framework/ (ou ~/Sites/site-system/)
 
 ./deploy.sh prod</code></pre>
 
-        <h3>Workflow complet : modifier et propager partout</h3>
+        <h3 id="workflow-complet-modifier-et-propager-partout">Workflow complet : modifier et propager partout</h3>
         <p>Quand vous modifiez le framework, il faut <strong>propager les changements &agrave; tous les projets</strong>. Voici les &eacute;tapes&nbsp;:</p>
 
         <h4>&Eacute;tape 1 &mdash; Modifier et pousser le framework</h4>
@@ -417,11 +417,11 @@ git push
 
 cd .framework &amp;&amp; git pull &amp;&amp; cd .. &amp;&amp; git add .framework &amp;&amp; git commit -m "Update framework submodule"</code></pre>
 
-        <h3>Pourquoi c'est n&eacute;cessaire&nbsp;?</h3>
+        <h3 id="pourquoi-c-est-necessaire">Pourquoi c'est n&eacute;cessaire&nbsp;?</h3>
         <p>Un <strong>submodule git</strong> est un pointeur vers un commit pr&eacute;cis d'un autre repo. Quand vous faites <code>git pull</code> dans le submodule, vous r&eacute;cup&eacute;rez les derniers commits. Mais le projet parent ne sait pas que le submodule a chang&eacute; tant que vous ne faites pas <code>git add .framework &amp;&amp; git commit</code>.</p>
         <p>C'est voulu&nbsp;: chaque projet est <strong>&eacute;pingl&eacute; &agrave; une version pr&eacute;cise</strong> du framework. &Ccedil;a &eacute;vite qu'une mise &agrave; jour du framework casse un site en production.</p>
 
-        <h3>R&eacute;cap visuel</h3>
+        <h3 id="recap-visuel">R&eacute;cap visuel</h3>
 <pre><code>Vous modifiez le framework
         &darr;
 git push (dans beely-framework)

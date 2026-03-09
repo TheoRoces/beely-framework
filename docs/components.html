@@ -46,7 +46,7 @@
           Syst&egrave;me de composants r&eacute;utilisables en pur JS. Chaque composant est une fonction qui re&ccedil;oit des <strong>slots</strong> (contenus injectables) et retourne du HTML.
         </p>
 
-        <h2>Principe</h2>
+        <h2 id="principe">Principe</h2>
         <p>Un composant est d&eacute;fini dans un fichier JS via <code>registerComponent()</code>. Il est ensuite utilis&eacute; dans le HTML via l'attribut <code>data-component</code>. Les contenus sont inject&eacute;s via des <strong>slots</strong>.</p>
 <pre><code>// 1. D&eacute;finir le composant (components/mon-composant.js)
 registerComponent('monComposant', function (slots) {
@@ -64,10 +64,10 @@ registerComponent('monComposant', function (slots) {
 //   &lt;template data-slot="text"&gt;Du contenu &lt;strong&gt;HTML&lt;/strong&gt;&lt;/template&gt;
 // &lt;/div&gt;</code></pre>
 
-        <h2>Injection de slots</h2>
+        <h2 id="injection-de-slots">Injection de slots</h2>
         <p>Deux m&eacute;thodes pour passer du contenu &agrave; un composant :</p>
 
-        <h3>M&eacute;thode 1 : &lt;template data-slot&gt;</h3>
+        <h3 id="methode-1-template-data-slot">M&eacute;thode 1 : &lt;template data-slot&gt;</h3>
         <p>Pour du contenu riche (HTML, liens, boutons, images). Le contenu HTML du <code>&lt;template&gt;</code> est inject&eacute; tel quel.</p>
 <pre><code>&lt;div data-component="card"&gt;
   &lt;template data-slot="title"&gt;Mon titre&lt;/template&gt;
@@ -77,7 +77,7 @@ registerComponent('monComposant', function (slots) {
   &lt;/template&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>M&eacute;thode 2 : attributs data-*</h3>
+        <h3 id="methode-2-attributs-data">M&eacute;thode 2 : attributs data-*</h3>
         <p>Pour des valeurs simples (texte, URLs). Les tirets sont convertis en camelCase. Tous les attributs <code>data-*</code> (sauf <code>data-component</code>) sont disponibles dans <code>slots</code>.</p>
 <pre><code>&lt;!-- data-site-name → slots.siteName --&gt;
 &lt;!-- data-logo-src  → slots.logoSrc  --&gt;
@@ -95,7 +95,7 @@ registerComponent('monComposant', function (slots) {
         </table>
         <p>L'ancienne syntaxe <code>data-slot-*</code> reste compatible.</p>
 
-        <h2>API JavaScript</h2>
+        <h2 id="api-javascript">API JavaScript</h2>
         <table>
           <tr><th>Fonction</th><th>Description</th></tr>
           <tr><td><code>registerComponent(name, fn)</code></td><td>Enregistre un composant. <code>fn(slots)</code> re&ccedil;oit un objet et retourne du HTML.</td></tr>
@@ -103,9 +103,9 @@ registerComponent('monComposant', function (slots) {
         </table>
         <p>Vous pouvez appeler <code>renderComponents(el)</code> manuellement apr&egrave;s avoir inject&eacute; du HTML dynamique contenant des <code>data-component</code>.</p>
 
-        <h2>Composants inclus</h2>
+        <h2 id="composants-inclus">Composants inclus</h2>
 
-        <h3>Header</h3>
+        <h3 id="header">Header</h3>
         <p>Fichier : <code>components/header.js</code></p>
         <p>Le header est configur&eacute; enti&egrave;rement par attributs et slots :</p>
         <table>
@@ -142,7 +142,7 @@ registerComponent('monComposant', function (slots) {
   &lt;template data-slot="search"&gt;&lt;/template&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Footer</h3>
+        <h3 id="footer">Footer</h3>
         <p>Fichier : <code>components/footer.js</code></p>
         <p>Le footer est configur&eacute; par attributs et slots :</p>
         <table>
@@ -160,7 +160,7 @@ registerComponent('monComposant', function (slots) {
   &lt;/template&gt;
 &lt;/div&gt;</code></pre>
 
-        <h3>Card</h3>
+        <h3 id="card">Card</h3>
 
         <div class="docs-demo" style="max-width: 320px;">
           <div data-component="card">
@@ -189,7 +189,7 @@ registerComponent('monComposant', function (slots) {
   &lt;/template&gt;
 &lt;/div&gt;</code></pre>
 
-        <h2>Cr&eacute;er un composant custom</h2>
+        <h2 id="creer-un-composant-custom">Cr&eacute;er un composant custom</h2>
         <p>Cr&eacute;ez un fichier dans <code>components/</code>, enregistrez-le, puis incluez le script dans vos pages.</p>
 <pre><code>// components/testimonial.js
 registerComponent('testimonial', function (slots) {
@@ -212,7 +212,7 @@ registerComponent('testimonial', function (slots) {
   &lt;template data-slot="avatar"&gt;img/marie.jpg&lt;/template&gt;
 &lt;/div&gt;</code></pre>
 
-        <h2>Bonnes pratiques</h2>
+        <h2 id="bonnes-pratiques">Bonnes pratiques</h2>
         <ul>
           <li>Toujours pr&eacute;voir des valeurs par d&eacute;faut : <code>slots.title || 'D&eacute;faut'</code></li>
           <li>Rendre les slots optionnels : <code>slots.footer ? '...' : ''</code></li>

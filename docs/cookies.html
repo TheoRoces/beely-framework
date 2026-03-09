@@ -45,7 +45,7 @@
           Bandeau de consentement RGPD/CNIL avec gestion granulaire par cat&eacute;gorie, expiration automatique (13 mois), preuve de consentement c&ocirc;t&eacute; serveur (PHP/CSV), nettoyage des cookies tiers au refus, et injection des scripts analytics.
         </p>
 
-        <h2>Configuration</h2>
+        <h2 id="configuration">Configuration</h2>
         <p>Ouvrez <code>config-site.js</code> &agrave; la racine du projet et remplissez les IDs de vos plateformes :</p>
 
 <pre><code>window.COOKIES_CONFIG = {
@@ -95,7 +95,7 @@
 };</code></pre>
         <p>Vous pouvez aussi utiliser <code>consentWebhook</code> &agrave; la place de <code>consentEndpoint</code> pour envoyer la preuve de consentement vers un webhook externe (ex : Make.com, Zapier).</p>
 
-        <h2>Plateformes support&eacute;es</h2>
+        <h2 id="plateformes-supportees">Plateformes support&eacute;es</h2>
         <table>
           <tr><th>Cl&eacute;</th><th>Plateforme</th><th>Format de l'ID</th></tr>
           <tr><td><code>ga4</code></td><td>Google Analytics 4</td><td>G-XXXXXXXXXX</td></tr>
@@ -108,7 +108,7 @@
         </table>
         <p>Laissez un champ vide (<code>''</code>) pour d&eacute;sactiver un service. Les cat&eacute;gories sans service configur&eacute; sont automatiquement masqu&eacute;es.</p>
 
-        <h2>Cat&eacute;gories de consentement</h2>
+        <h2 id="categories-de-consentement">Cat&eacute;gories de consentement</h2>
         <p>Les services sont regroup&eacute;s en cat&eacute;gories. L'utilisateur peut accepter ou refuser chaque cat&eacute;gorie ind&eacute;pendamment via le panneau &laquo; Personnaliser &raquo;.</p>
         <table>
           <tr><th>Propri&eacute;t&eacute;</th><th>Description</th></tr>
@@ -118,10 +118,10 @@
           <tr><td><code>required</code></td><td>Si <code>true</code>, la cat&eacute;gorie est toujours active (toggle gris&eacute;, badge &laquo; requis &raquo;)</td></tr>
         </table>
 
-        <h3>Cat&eacute;gorie Fonctionnel (UTM)</h3>
+        <h3 id="categorie-fonctionnel-utm">Cat&eacute;gorie Fonctionnel (UTM)</h3>
         <p>La cat&eacute;gorie <code>functional</code> est marqu&eacute;e <code>required: true</code> par d&eacute;faut. Elle documente la propagation des param&egrave;tres UTM entre les pages. Cette propagation fonctionne <strong>sans aucun stockage</strong> (pas de cookie, pas de localStorage) : le script <code>params.js</code> lit l'URL et ajoute les param&egrave;tres aux liens internes.</p>
 
-        <h2>Conformit&eacute; CNIL / RGPD</h2>
+        <h2 id="conformite-cnil-rgpd">Conformit&eacute; CNIL / RGPD</h2>
         <p>Le syst&egrave;me respecte les recommandations de la CNIL :</p>
         <table>
           <tr><th>R&egrave;gle CNIL</th><th>Impl&eacute;mentation</th></tr>
@@ -136,7 +136,7 @@
           <tr><td>Gestion de version</td><td>Changez <code>consentVersion</code> pour re-demander le consentement apr&egrave;s modification des cat&eacute;gories.</td></tr>
         </table>
 
-        <h3>Preuve de consentement (PHP / CSV)</h3>
+        <h3 id="preuve-de-consentement-php-csv">Preuve de consentement (PHP / CSV)</h3>
         <p>Le fichier <code>api/consent.php</code> re&ccedil;oit chaque choix en POST et l'enregistre dans <code>data/consents.csv</code>.</p>
 
         <h4>Fonctionnement</h4>
@@ -179,7 +179,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
         <p>Laissez <code>consentEndpoint</code> vide dans <code>config-site.js</code> :</p>
 <pre><code>consentEndpoint: ''  // Pas de preuve serveur</code></pre>
 
-        <h3>Nettoyage des cookies tiers</h3>
+        <h3 id="nettoyage-des-cookies-tiers">Nettoyage des cookies tiers</h3>
         <p>Quand l'utilisateur refuse ou retire son consentement pour une cat&eacute;gorie, les cookies d&eacute;pos&eacute;s par les services tiers associ&eacute;s sont automatiquement supprim&eacute;s.</p>
         <p>Les patterns de cookies connus sont g&eacute;r&eacute;s automatiquement pour chaque service :</p>
         <table>
@@ -192,14 +192,14 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
           <tr><td>TikTok</td><td><code>_ttp</code>, <code>_tt_enable_cookie</code>, <code>tt_*</code></td></tr>
         </table>
 
-        <h3>Gestion de version</h3>
+        <h3 id="gestion-de-version">Gestion de version</h3>
         <p>Si vous modifiez les cat&eacute;gories ou ajoutez des services, changez <code>consentVersion</code> dans la config. Tous les visiteurs seront re-sollicit&eacute;s :</p>
 <pre><code>banner: {
   consentVersion: '2.0',  // Etait '1.0' → re-demande automatique
   // ...
 }</code></pre>
 
-        <h3>Lien politique de confidentialit&eacute;</h3>
+        <h3 id="lien-politique-de-confidentialite">Lien politique de confidentialit&eacute;</h3>
         <p>Ajoutez <code>privacyUrl</code> et <code>privacyText</code> dans la config de la banni&egrave;re :</p>
 <pre><code>banner: {
   privacyUrl: '/confidentialite.html',
@@ -208,7 +208,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
 }</code></pre>
         <p>Le lien s'affiche automatiquement apr&egrave;s le texte de la banni&egrave;re.</p>
 
-        <h3>Format du cookie</h3>
+        <h3 id="format-du-cookie">Format du cookie</h3>
         <p>Le consentement est stock&eacute; en JSON avec horodatage et version :</p>
 <pre><code>// Cookie cookie_consent
 {
@@ -217,7 +217,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
   "version": "1.0"
 }</code></pre>
 
-        <h2>Fonctionnement</h2>
+        <h2 id="fonctionnement">Fonctionnement</h2>
         <p><strong>Aucun cookie ni script tiers n'est d&eacute;pos&eacute; avant le consentement.</strong> Tant que le visiteur n'a pas cliqu&eacute; sur &laquo; Tout accepter &raquo; ou personnalis&eacute; ses choix, aucun tracker n'est charg&eacute;. Cela garantit la conformit&eacute; RGPD/CNIL.</p>
         <ul>
           <li>Au premier chargement, le bandeau de consentement s'affiche</li>
@@ -231,7 +231,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
           <li>Un changement de <code>consentVersion</code> d&eacute;clenche aussi la re-demande</li>
         </ul>
 
-        <h2>Bouton de r&eacute;ouverture</h2>
+        <h2 id="bouton-de-reouverture">Bouton de r&eacute;ouverture</h2>
         <p>Ajoutez l'attribut <code>data-cookies-settings</code> sur n'importe quel &eacute;l&eacute;ment pour r&eacute;ouvrir le gestionnaire de consentement :</p>
 
 <pre><code>&lt;!-- Lien dans le footer --&gt;
@@ -242,7 +242,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
         <p>Le panneau de personnalisation s'ouvre directement, avec les choix actuels pr&eacute;-coch&eacute;s.</p>
         <p>Vous pouvez aussi appeler la fonction JavaScript <code>openCookieSettings()</code> pour ouvrir le gestionnaire programmatiquement.</p>
 
-        <h2>Personnalisation du bandeau</h2>
+        <h2 id="personnalisation-du-bandeau">Personnalisation du bandeau</h2>
         <p>Le bandeau utilise les classes BEM <code>.cookies</code>. Modifiez <code>core/css/cookies.css</code> pour personnaliser l'apparence.</p>
 <pre><code>/* Exemple : bandeau en haut au lieu d'en bas */
 .cookies {
@@ -253,7 +253,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
   transform: translateY(-100%);
 }</code></pre>
 
-        <h2>Inclure dans une page</h2>
+        <h2 id="inclure-dans-une-page">Inclure dans une page</h2>
 <pre><code>&lt;!-- Synchrone (avant les composants) --&gt;
 &lt;script src="config-site.js"&gt;&lt;/script&gt;
 
@@ -263,7 +263,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
 &lt;!-- Defer --&gt;
 &lt;script src="core/js/cookies.js" defer&gt;&lt;/script&gt;</code></pre>
 
-        <h2>Fichiers</h2>
+        <h2 id="fichiers">Fichiers</h2>
         <table>
           <tr><th>Fichier</th><th>R&ocirc;le</th></tr>
           <tr><td><code>config-site.js</code></td><td>Configuration (IDs analytics, cat&eacute;gories, banni&egrave;re, endpoint)</td></tr>
@@ -277,7 +277,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
           <tr><td><code>confidentialite.html</code></td><td>Politique de confidentialit&eacute; / cookies (racine du projet)</td></tr>
         </table>
 
-        <h2>Pages l&eacute;gales</h2>
+        <h2 id="pages-legales">Pages l&eacute;gales</h2>
         <p>
           Deux pages pr&ecirc;tes &agrave; l'emploi sont fournies : <strong>Mentions l&eacute;gales</strong> (<code>mentions-legales.html</code>)
           et <strong>Politique de confidentialit&eacute;</strong> (<code>confidentialite.html</code>).
@@ -288,7 +288,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
           avant mise en production.
         </p>
 
-        <h3>Configuration LEGAL_CONFIG</h3>
+        <h3 id="configuration-legal-config">Configuration LEGAL_CONFIG</h3>
         <p>Ouvrez <code>config-site.js</code> et remplissez le bloc <code>LEGAL_CONFIG</code> :</p>
 
 <pre><code>window.LEGAL_CONFIG = {
@@ -316,7 +316,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
   }
 };</code></pre>
 
-        <h3>Champs LEGAL_CONFIG</h3>
+        <h3 id="champs-legal-config">Champs LEGAL_CONFIG</h3>
         <table>
           <tr><th>Champ</th><th>Description</th><th>Obligatoire</th></tr>
           <tr><td><code>company</code></td><td>Nom de l'entreprise ou raison sociale</td><td>Oui</td></tr>
@@ -337,7 +337,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
           <tr><td><code>developer.address</code></td><td>Adresse du d&eacute;veloppeur</td><td>Non</td></tr>
         </table>
 
-        <h3>Fonctionnement dynamique</h3>
+        <h3 id="fonctionnement-dynamique">Fonctionnement dynamique</h3>
         <p>Le script <code>core/js/legal.js</code> remplit automatiquement les pages l&eacute;gales :</p>
         <ul>
           <li><strong>Attribut <code>data-legal</code></strong> : chaque &eacute;l&eacute;ment portant cet attribut est rempli avec la valeur correspondante de <code>LEGAL_CONFIG</code>. Exemple : <code>&lt;span data-legal="company"&gt;&lt;/span&gt;</code> affiche le nom de l'entreprise.</li>
@@ -346,7 +346,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
           <li><strong>Section d&eacute;veloppeur</strong> : masqu&eacute;e automatiquement (<code>display:none</code>) si <code>developer.name</code> est vide.</li>
         </ul>
 
-        <h3>Section cookies dynamique</h3>
+        <h3 id="section-cookies-dynamique">Section cookies dynamique</h3>
         <p>
           Sur la page <code>confidentialite.html</code>, la section cookies g&eacute;n&egrave;re automatiquement un tableau
           listant les services actifs (ceux avec un ID configur&eacute; dans <code>COOKIES_CONFIG</code>).
@@ -358,7 +358,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
           <li>Un bouton &laquo; G&eacute;rer mes pr&eacute;f&eacute;rences cookies &raquo; est pr&eacute;sent pour ouvrir le bandeau</li>
         </ul>
 
-        <h3>Inclure dans une page l&eacute;gale</h3>
+        <h3 id="inclure-dans-une-page-legale">Inclure dans une page l&eacute;gale</h3>
 <pre><code>&lt;!-- Synchrone (avant les composants) --&gt;
 &lt;script src="config-site.js"&gt;&lt;/script&gt;
 
@@ -366,7 +366,7 @@ SITE_ORIGIN=https://monsite.fr</code></pre>
 &lt;script src="core/js/legal.js" defer&gt;&lt;/script&gt;
 &lt;script src="core/js/cookies.js" defer&gt;&lt;/script&gt;</code></pre>
 
-        <h3>Liens dans le footer</h3>
+        <h3 id="liens-dans-le-footer">Liens dans le footer</h3>
         <p>
           Les liens footer sont d&eacute;clar&eacute;s directement dans chaque page via le slot <code>content</code> du composant footer :
         </p>

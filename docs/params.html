@@ -45,27 +45,27 @@
           Persistance automatique des param&egrave;tres d'URL (UTMs, etc.) entre les pages et pr&eacute;-remplissage des champs de formulaire.
         </p>
 
-        <h2>Persistance entre les pages</h2>
+        <h2 id="persistance-entre-les-pages">Persistance entre les pages</h2>
         <p>Le script <code>core/js/params.js</code> d&eacute;tecte automatiquement les param&egrave;tres d'URL et les ajoute &agrave; tous les liens internes du site. Ainsi, si un visiteur arrive depuis :</p>
 <pre><code>https://monsite.fr/?utm_source=google&utm_medium=cpc&utm_campaign=promo</code></pre>
         <p>Tous les liens internes du site deviendront :</p>
 <pre><code>&lt;a href="blog?utm_source=google&utm_medium=cpc&utm_campaign=promo"&gt;</code></pre>
 
-        <h3>Liens pris en charge</h3>
+        <h3 id="liens-pris-en-charge">Liens pris en charge</h3>
         <ul>
           <li>Chemins relatifs : <code>blog</code>, <code>./contact</code>, <code>../index</code></li>
           <li>Chemins absolus : <code>/contact</code></li>
           <li>Liens avec m&ecirc;me domaine</li>
         </ul>
 
-        <h3>Liens ignor&eacute;s</h3>
+        <h3 id="liens-ignores">Liens ignor&eacute;s</h3>
         <ul>
           <li>Ancres : <code>#section</code></li>
           <li>Liens externes (domaine diff&eacute;rent)</li>
           <li>Liens <code>mailto:</code>, <code>tel:</code>, <code>javascript:</code></li>
         </ul>
 
-        <h2>UTMs automatiques</h2>
+        <h2 id="utms-automatiques">UTMs automatiques</h2>
         <p>Les UTMs sont automatiquement collect&eacute;s et envoy&eacute;s avec chaque soumission de formulaire :</p>
         <table>
           <tr><th>Param&egrave;tre</th><th>Description</th></tr>
@@ -76,7 +76,7 @@
           <tr><td><code>utm_content</code></td><td>Variante de l'annonce (A/B test)</td></tr>
         </table>
 
-        <h2>Pr&eacute;-remplissage des champs</h2>
+        <h2 id="pre-remplissage-des-champs">Pr&eacute;-remplissage des champs</h2>
         <p>Les param&egrave;tres d'URL dont le nom correspond &agrave; l'attribut <code>name</code> d'un champ de formulaire le pr&eacute;-remplissent automatiquement :</p>
 
 <pre><code>https://monsite.fr/contact?nom=Manon&email=manon@ex.fr&type_client=entreprise</code></pre>
@@ -86,7 +86,7 @@
           <li><code>?type_client=entreprise</code> &rarr; le radio &laquo; Entreprise &raquo; sera s&eacute;lectionn&eacute;</li>
         </ul>
 
-        <h3>Types de champs support&eacute;s</h3>
+        <h3 id="types-de-champs-supportes">Types de champs support&eacute;s</h3>
         <ul>
           <li><strong>Inputs texte/email/tel</strong> : valeur directe</li>
           <li><strong>Checkboxes/Radios</strong> : coch&eacute;s si la valeur correspond</li>
@@ -95,7 +95,7 @@
           <li><strong>Custom Radio/Checkbox Group</strong> (<code>data-name</code>) : option simul&eacute;e</li>
         </ul>
 
-        <h2>API JavaScript</h2>
+        <h2 id="api-javascript">API JavaScript</h2>
 <pre><code>// R&eacute;cup&eacute;rer tous les param&egrave;tres d'URL
 var params = getUrlParams();
 // { nom: 'Manon', utm_source: 'google', ... }
@@ -104,7 +104,7 @@ var params = getUrlParams();
 var utms = getUTMs();
 // { utm_source: 'google', utm_medium: 'cpc', ... }</code></pre>
 
-        <h2>Inclure dans une page</h2>
+        <h2 id="inclure-dans-une-page">Inclure dans une page</h2>
 <pre><code>&lt;script src="core/js/params.js" defer&gt;&lt;/script&gt;</code></pre>
         <p>Le script s'initialise automatiquement au chargement du DOM. Aucune configuration n&eacute;cessaire.</p>
 

@@ -76,10 +76,10 @@
         <h2 id="deploiement-production-pre-production">Déploiement Production / Pré-production</h2>
         <p>Le déploiement utilise le script <code>deploy.sh</code> qui effectue un <strong>rsync via SSH</strong> vers le serveur cible.</p>
 
-        <h3>Prérequis</h3>
+        <h3 id="prerequis">Prérequis</h3>
         <p>Configurer le fichier <code>.deploy.env</code> avec les credentials SSH (voir la section <a href="#configuration-requise">Configuration requise</a>).</p>
 
-        <h3>Fonctionnement</h3>
+        <h3 id="fonctionnement">Fonctionnement</h3>
         <ol>
           <li>L'utilisateur clique sur <strong>"Déployer"</strong> sur la carte Production ou Pré-production</li>
           <li>Le Configurateur exécute l'API <code>/api/deploy</code> avec le paramètre <code>target=prod</code> ou <code>target=preprod</code></li>
@@ -88,7 +88,7 @@
           <li>Le statut et la date sont sauvegardés dans le registre (<code>pages.json</code> → <code>deploys.prod</code> / <code>deploys.preprod</code>)</li>
         </ol>
 
-        <h3>Fichiers exclus du déploiement</h3>
+        <h3 id="fichiers-exclus-du-deploiement">Fichiers exclus du déploiement</h3>
         <p>Le fichier <code>.rsync-exclude</code> définit les fichiers et dossiers exclus du transfert :</p>
         <table>
           <thead>
@@ -146,13 +146,13 @@
         <h2 id="git-commit-push">Git (commit &amp; push)</h2>
         <p>La carte <strong>Git</strong> dans le dropdown de publication permet de versionner et pousser le code directement depuis le Configurateur.</p>
 
-        <h3>Interface</h3>
+        <h3 id="interface">Interface</h3>
         <ul>
           <li><strong>Champ de saisie</strong> — pour écrire le message de commit</li>
           <li><strong>Bouton "Commit &amp; Push"</strong> — lance l'opération</li>
         </ul>
 
-        <h3>Fonctionnement</h3>
+        <h3 id="fonctionnement">Fonctionnement</h3>
         <ol>
           <li>L'utilisateur saisit un message de commit dans le champ dédié</li>
           <li>Clic sur <strong>"Commit &amp; Push"</strong></li>
@@ -208,7 +208,7 @@
         <h2 id="configuration-requise">Configuration requise</h2>
         <p>Le déploiement nécessite un fichier <code>.deploy.env</code> à la racine du projet. Créez-le depuis le template <code>.deploy.env.example</code>.</p>
 
-        <h3>Variables de production</h3>
+        <h3 id="variables-de-production">Variables de production</h3>
         <table>
           <thead>
             <tr>
@@ -248,12 +248,12 @@
 
         <p>La même structure s'applique pour la pré-production avec le préfixe <code>PREPROD_</code> (<code>PREPROD_HOST</code>, <code>PREPROD_PORT</code>, <code>PREPROD_USER</code>, <code>PREPROD_PATH</code>, <code>PREPROD_URL</code>).</p>
 
-        <h3>Clé SSH</h3>
+        <h3 id="cle-ssh">Clé SSH</h3>
         <p>Une clé SSH <strong>ed25519 sans mot de passe</strong> est recommandée pour permettre le déploiement automatisé sans intervention manuelle :</p>
 <pre><code>ssh-keygen -t ed25519 -C "deploy@mon-site.com" -f ~/.ssh/id_ed25519 -N ""</code></pre>
         <p>Ajoutez la clé publique au fichier <code>~/.ssh/authorized_keys</code> du serveur distant.</p>
 
-        <h3>Script deploy.sh</h3>
+        <h3 id="script-deploy-sh">Script deploy.sh</h3>
         <p>Le script <code>deploy.sh</code> doit être exécutable :</p>
 <pre><code>chmod +x deploy.sh</code></pre>
 
@@ -262,7 +262,7 @@
         <h2 id="module-js">Module JS</h2>
         <p>L'interface de déploiement est gérée par le module <code>configurateur-publish.js</code>. Il expose ses méthodes via l'objet global <code>window.BuilderPublish</code>.</p>
 
-        <h3>API utilisées</h3>
+        <h3 id="api-utilisees">API utilisées</h3>
         <table>
           <thead>
             <tr>
@@ -286,7 +286,7 @@
           </tbody>
         </table>
 
-        <h3>Exemple d'utilisation</h3>
+        <h3 id="exemple-d-utilisation">Exemple d'utilisation</h3>
 <pre><code>// Déployer en production
 BuilderAPI.deploy('prod').then(result => {
   console.log('Déploiement terminé :', result);
@@ -302,7 +302,7 @@ BuilderAPI.deployConfig().then(config => {
   console.log('Dernier déploiement prod :', config.deploys.prod);
 });</code></pre>
 
-        <h3>Module source</h3>
+        <h3 id="module-source">Module source</h3>
         <p>Le fichier source du module est <code>configurateur-publish.js</code>. Il est chargé par le Configurateur et initialisé automatiquement lorsque le dropdown de publication est ouvert.</p>
 
       </main>

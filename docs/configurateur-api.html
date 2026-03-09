@@ -40,7 +40,7 @@
           Le Configurateur utilise un serveur Python l&eacute;ger (<code>configurator-server.py</code>) comme backend. Ce serveur ne d&eacute;pend d'aucune biblioth&egrave;que externe &mdash; il utilise uniquement la biblioth&egrave;que standard Python&nbsp;3.
         </p>
 
-        <h2>Serveur Python</h2>
+        <h2 id="serveur-python">Serveur Python</h2>
         <table>
           <tr><th>Propri&eacute;t&eacute;</th><th>Valeur</th></tr>
           <tr><td>Fichier</td><td><code>configurator-server.py</code> (&agrave; la racine du projet)</td></tr>
@@ -51,7 +51,7 @@
           <tr><td>CORS</td><td>Activ&eacute; pour le d&eacute;veloppement local</td></tr>
         </table>
 
-        <h2>Endpoints &mdash; Configuration</h2>
+        <h2 id="endpoints-configuration">Endpoints &mdash; Configuration</h2>
         <table>
           <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
           <tr>
@@ -69,7 +69,7 @@
         </table>
         <p><strong>Note :</strong> Fichiers support&eacute;s : <code>config-site.js</code>, <code>.env</code>, <code>.deploy.env</code></p>
 
-        <h2>Endpoints &mdash; Pages</h2>
+        <h2 id="endpoints-pages">Endpoints &mdash; Pages</h2>
         <table>
           <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
           <tr>
@@ -104,7 +104,7 @@
           </tr>
         </table>
 
-        <h2>Endpoints &mdash; Contenu</h2>
+        <h2 id="endpoints-contenu">Endpoints &mdash; Contenu</h2>
         <table>
           <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
           <tr>
@@ -133,7 +133,7 @@
           </tr>
         </table>
 
-        <h2>Endpoints &mdash; Registre</h2>
+        <h2 id="endpoints-registre">Endpoints &mdash; Registre</h2>
         <table>
           <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
           <tr>
@@ -150,7 +150,7 @@
           </tr>
         </table>
 
-        <h2>Endpoints &mdash; D&eacute;ploiement</h2>
+        <h2 id="endpoints-deploiement">Endpoints &mdash; D&eacute;ploiement</h2>
         <table>
           <tr><th>Endpoint</th><th>M&eacute;thode</th><th>Param&egrave;tres</th><th>R&eacute;ponse</th></tr>
           <tr>
@@ -173,7 +173,7 @@
           </tr>
         </table>
 
-        <h2>Structure du registre (pages.json)</h2>
+        <h2 id="structure-du-registre-pages-json">Structure du registre (pages.json)</h2>
         <p>Le fichier <code>pages.json</code> stocke la configuration de toutes les pages et l'&eacute;tat des d&eacute;ploiements :</p>
 <pre><code>{
   "version": 1,
@@ -204,7 +204,7 @@
   }
 }</code></pre>
 
-        <h2>S&eacute;curit&eacute;</h2>
+        <h2 id="securite">S&eacute;curit&eacute;</h2>
         <ul>
           <li><strong>Validation des chemins :</strong> tous les paths sont v&eacute;rifi&eacute;s pour emp&ecirc;cher la travers&eacute;e de r&eacute;pertoires (<code>../</code>)</li>
           <li><strong>R&eacute;pertoires prot&eacute;g&eacute;s (lecture seule) :</strong> <code>core</code>, <code>wireframes</code>, <code>api</code>, <code>components</code>, <code>snippets</code>, <code>assets</code>, <code>builder</code>, <code>data</code>, <code>.git</code>, <code>.claude</code>, <code>.vscode</code></li>
@@ -213,9 +213,9 @@
           <li><strong>Fichiers .env :</strong> les fichiers <code>.env</code> ne sont jamais servis en tant que fichiers statiques</li>
         </ul>
 
-        <h2>Client JavaScript</h2>
+        <h2 id="client-javascript">Client JavaScript</h2>
         <p>Le fichier <code>configurateur-api.js</code> encapsule tous les appels API. Toutes les m&eacute;thodes retournent des <strong>Promises</strong>.</p>
-        <h3>M&eacute;thodes disponibles</h3>
+        <h3 id="methodes-disponibles">M&eacute;thodes disponibles</h3>
         <table>
           <tr><th>M&eacute;thode</th><th>Description</th></tr>
           <tr><td><code>BuilderAPI.cfgRead(file)</code></td><td>Lire un fichier de configuration</td></tr>
@@ -236,7 +236,7 @@
           <tr><td><code>BuilderAPI.deployConfig()</code></td><td>R&eacute;cup&eacute;rer la config de d&eacute;ploiement</td></tr>
         </table>
 
-        <h3>Exemple d'utilisation</h3>
+        <h3 id="exemple-d-utilisation">Exemple d'utilisation</h3>
 <pre><code>// Lire la liste des pages
 const { pages } = await BuilderAPI.pagesList();
 

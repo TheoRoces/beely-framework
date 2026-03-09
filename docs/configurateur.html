@@ -70,12 +70,12 @@
         <h2 id="lancement">Lancement</h2>
         <p>Le Configurateur repose sur un serveur Python l&eacute;ger (<code>configurator-server.py</code>) qui tourne sur le port <strong>5555</strong>.</p>
 
-        <h3>1. D&eacute;marrer le serveur</h3>
+        <h3 id="1-demarrer-le-serveur">1. D&eacute;marrer le serveur</h3>
         <p>Depuis la racine du projet :</p>
 <pre><code>python3 configurateur/configurator-server.py</code></pre>
         <p>Le serveur d&eacute;marre sur <code>http://localhost:5555</code>. Il utilise uniquement la biblioth&egrave;que standard Python (pas de pip install n&eacute;cessaire).</p>
 
-        <h3>2. Acc&eacute;der au Configurateur</h3>
+        <h3 id="2-acceder-au-configurateur">2. Acc&eacute;der au Configurateur</h3>
         <p>Ouvrez votre navigateur et naviguez vers :</p>
 <pre><code>http://localhost:5555/configurateur/</code></pre>
         <p>Le Configurateur se charge comme une SPA (Single Page Application) avec navigation par panels.</p>
@@ -124,10 +124,10 @@
         <h2 id="panels">Panels</h2>
         <p>Le Configurateur est organis&eacute; en 5 panels :</p>
 
-        <h3>Accueil (Dashboard)</h3>
+        <h3 id="accueil-dashboard">Accueil (Dashboard)</h3>
         <p>Vue d'accueil. Affiche un r&eacute;sum&eacute; du projet : nombre de pages, acc&egrave;s rapides aux actions fr&eacute;quentes (cr&eacute;er une page, ouvrir le configurateur, d&eacute;ployer).</p>
 
-        <h3>Pages</h3>
+        <h3 id="pages">Pages</h3>
         <p>Gestionnaire de pages du projet. Permet de :</p>
         <ul>
           <li>Visualiser l'arborescence compl&egrave;te des pages (dossiers, sous-pages)</li>
@@ -136,10 +136,10 @@
           <li>R&eacute;ordonner les pages par glisser-d&eacute;poser</li>
         </ul>
 
-        <h3>Configuration</h3>
+        <h3 id="configuration">Configuration</h3>
         <p>Interface visuelle pour configurer tout le projet : nom du site, analytics, cookies, blog, mentions l&eacute;gales, d&eacute;ploiement. Les fichiers <code>config-site.js</code>, <code>.env</code> et <code>.deploy.env</code> sont g&eacute;n&eacute;r&eacute;s automatiquement.</p>
 
-        <h3>M&eacute;diath&egrave;que</h3>
+        <h3 id="mediatheque">M&eacute;diath&egrave;que</h3>
         <p>Gestionnaire d'images du site avec :</p>
         <ul>
           <li>Upload par drag &amp; drop ou s&eacute;lection de fichier</li>
@@ -149,7 +149,7 @@
           <li>Copie rapide du chemin d'une image</li>
         </ul>
 
-        <h3>Ic&ocirc;nes</h3>
+        <h3 id="icones">Ic&ocirc;nes</h3>
         <p>324 ic&ocirc;nes Heroicons (outline + solid) avec recherche et copie rapide du code <code>data-icon</code>.</p>
 
         <!-- ========== REGISTRY ========== -->

@@ -40,7 +40,7 @@
           Le panneau <strong>Pages</strong> du Configurateur affiche un arbre organis&eacute; par dossiers de toutes les pages HTML du site. Il permet de cr&eacute;er, renommer, supprimer, dupliquer et organiser les pages dans des dossiers ind&eacute;pendants, ainsi que de g&eacute;rer leurs m&eacute;tadonn&eacute;es (SEO, statut, code personnalis&eacute;, etc.).
         </p>
 
-        <h2>Vue d'ensemble</h2>
+        <h2 id="vue-d-ensemble">Vue d'ensemble</h2>
         <p>
           Le panneau Pages est accessible depuis la barre lat&eacute;rale gauche du Configurateur. Il pr&eacute;sente l'ensemble des pages du site sous forme d'arbre organis&eacute; par dossiers, refl&eacute;tant la structure physique du projet. Chaque page est un fichier <code>.html</code> r&eacute;f&eacute;renc&eacute; dans le registre <code>pages.json</code>.
         </p>
@@ -48,7 +48,7 @@
           S&eacute;lectionnez une page (simple clic) pour afficher son panneau de m&eacute;tadonn&eacute;es &agrave; droite.
         </p>
 
-        <h2>Arbre par dossiers</h2>
+        <h2 id="arbre-par-dossiers">Arbre par dossiers</h2>
         <p>
           Les pages sont stock&eacute;es dans le dossier <code>pages/</code> du projet. L'arbre refl&egrave;te cette structure :
         </p>
@@ -69,7 +69,7 @@
           La hi&eacute;rarchie se d&eacute;duit uniquement du <strong>chemin physique</strong> des fichiers : <code>blog/article.html</code> est dans le dossier <code>blog/</code> car son chemin contient <code>blog/</code>.
         </p>
 
-        <h3>Drag &amp; drop des pages</h3>
+        <h3 id="drag-et-drop-des-pages">Drag &amp; drop des pages</h3>
         <p>
           L'arbre supporte le drag &amp; drop pour r&eacute;organiser les pages :
         </p>
@@ -85,7 +85,7 @@
           La page d'accueil est <strong>verrouill&eacute;e</strong> : elle ne peut &ecirc;tre ni d&eacute;plac&eacute;e, ni imbriqu&eacute;e. Les pages templates sont &eacute;galement non-d&eacute;pla&ccedil;ables.
         </p>
 
-        <h3>Drag &amp; drop des dossiers</h3>
+        <h3 id="drag-et-drop-des-dossiers">Drag &amp; drop des dossiers</h3>
         <p>
           Les dossiers sont &eacute;galement draggables et peuvent &ecirc;tre :
         </p>
@@ -100,7 +100,7 @@
           <strong>Garde-fou</strong> : il est impossible de d&eacute;placer un dossier dans lui-m&ecirc;me ou dans un de ses sous-dossiers.
         </p>
 
-        <h3>Dossiers</h3>
+        <h3 id="dossiers">Dossiers</h3>
         <p>
           Les dossiers apparaissent dans l'arbre avec une ic&ocirc;ne de dossier et un chevron pour expand/collapse. Ils sont :
         </p>
@@ -121,16 +121,16 @@
         </ol>
         <p>Les dossiers vides ne sont <strong>pas</strong> automatiquement supprim&eacute;s.</p>
 
-        <h2>Op&eacute;rations CRUD</h2>
+        <h2 id="operations-crud">Op&eacute;rations CRUD</h2>
 
-        <h3>Cr&eacute;er une page</h3>
+        <h3 id="creer-une-page">Cr&eacute;er une page</h3>
         <p>
           Cliquez sur le bouton <strong>+ Nouvelle page</strong> dans la toolbar. Une modale appara&icirc;t pour saisir le nom du fichier. L'extension <code>.html</code> est ajout&eacute;e automatiquement.
         </p>
 <pre><code>// Exemple : saisir "contact" cr&eacute;e pages/contact.html
 // Exemple : saisir "services/consulting" cr&eacute;e pages/services/consulting.html</code></pre>
 
-        <h3>Cr&eacute;er un dossier</h3>
+        <h3 id="creer-un-dossier">Cr&eacute;er un dossier</h3>
         <p>
           Cliquez sur le bouton <strong>dossier+</strong> dans la toolbar. Une modale appara&icirc;t avec deux champs :
         </p>
@@ -142,12 +142,12 @@
           Une <strong>v&eacute;rification de doublon en temps r&eacute;el</strong> est effectu&eacute;e sur le slug&nbsp;: si un dossier avec le m&ecirc;me slug existe d&eacute;j&agrave;, un message d'erreur s'affiche et le bouton Cr&eacute;er est d&eacute;sactiv&eacute;.
         </p>
 
-        <h3>Cr&eacute;er un sous-dossier</h3>
+        <h3 id="creer-un-sous-dossier">Cr&eacute;er un sous-dossier</h3>
         <p>
           Clic droit sur un dossier existant &rarr; &laquo;&nbsp;Nouveau sous-dossier&nbsp;&raquo;. La m&ecirc;me modale avec champs nom + slug appara&icirc;t, avec v&eacute;rification de doublon en temps r&eacute;el dans le contexte du dossier parent.
         </p>
 
-        <h3>Nom et slug des dossiers</h3>
+        <h3 id="nom-et-slug-des-dossiers">Nom et slug des dossiers</h3>
         <p>
           Chaque dossier poss&egrave;de deux identifiants :
         </p>
@@ -159,7 +159,7 @@
           Les deux peuvent &ecirc;tre modifi&eacute;s ind&eacute;pendamment via le panneau de propri&eacute;t&eacute;s (clic sur le dossier).
         </p>
 
-        <h3>Renommer un dossier</h3>
+        <h3 id="renommer-un-dossier">Renommer un dossier</h3>
         <p>
           Le panneau de propri&eacute;t&eacute;s (clic sur le dossier) permet deux types de renommage :
         </p>
@@ -168,27 +168,27 @@
           <li><strong>Slug</strong> : champ &eacute;ditable avec <strong>v&eacute;rification de doublon en temps r&eacute;el</strong>. Le changement d&eacute;place physiquement les fichiers et ajuste les chemins HTML.</li>
         </ol>
 
-        <h3>Supprimer une page</h3>
+        <h3 id="supprimer-une-page">Supprimer une page</h3>
         <p>
           Bouton <strong>Supprimer</strong> (ic&ocirc;ne poubelle) dans le panneau de m&eacute;tadonn&eacute;es. Une modale de confirmation appara&icirc;t. Les pages prot&eacute;g&eacute;es (<code>index.html</code>, <code>404.html</code>) ne peuvent pas &ecirc;tre supprim&eacute;es.
         </p>
 
-        <h3>Supprimer un dossier</h3>
+        <h3 id="supprimer-un-dossier">Supprimer un dossier</h3>
         <p>
           Clic droit sur un dossier dans l'arbre &rarr; &laquo;&nbsp;Supprimer le dossier&nbsp;&raquo;. Uniquement possible si le dossier est vide.
         </p>
 
-        <h3>Dupliquer une page</h3>
+        <h3 id="dupliquer-une-page">Dupliquer une page</h3>
         <p>
           Cr&eacute;e une copie du fichier HTML avec un nouveau nom et les m&ecirc;mes m&eacute;tadonn&eacute;es.
         </p>
 
-        <h3>D&eacute;placer une page</h3>
+        <h3 id="deplacer-une-page">D&eacute;placer une page</h3>
         <p>
           En plus du drag &amp; drop, le panneau de m&eacute;tadonn&eacute;es affiche un champ <strong>Dossier</strong> en lecture seule avec un bouton <strong>D&eacute;placer</strong>.
         </p>
 
-        <h2>Panneau de m&eacute;tadonn&eacute;es</h2>
+        <h2 id="panneau-de-metadonnees">Panneau de m&eacute;tadonn&eacute;es</h2>
         <p>
           Quand une page est s&eacute;lectionn&eacute;e (simple clic), un panneau de m&eacute;tadonn&eacute;es s'affiche &agrave; droite :
         </p>
@@ -207,17 +207,17 @@
           <tr><td><strong>Code &lt;body&gt;</strong></td><td>Textarea</td><td>Code HTML inject&eacute; avant <code>&lt;/body&gt;</code></td></tr>
         </table>
 
-        <h2>Pages template</h2>
+        <h2 id="pages-template">Pages template</h2>
         <p>
           Les pages templates sont g&eacute;r&eacute;es via le registre <code>pages.json</code> (champ <code>isTemplate</code>). Elles apparaissent avec une ic&ocirc;ne code <code>&lt;/&gt;</code> et un badge &laquo;&nbsp;Template&nbsp;&raquo;. Elles ne peuvent pas &ecirc;tre d&eacute;plac&eacute;es.
         </p>
 
-        <h2>Registre <code>pages.json</code> (V2)</h2>
+        <h2 id="registre-pages-json-v2">Registre <code>pages.json</code> (V2)</h2>
         <p>
           Le fichier <code>pages.json</code> est le registre central. Les chemins sont stock&eacute;s <strong>relativement au dossier <code>pages/</code></strong>.
         </p>
 
-        <h3>Structure du registre</h3>
+        <h3 id="structure-du-registre">Structure du registre</h3>
 <pre><code>{
   "version": 2,
   "homepage": "index.html",
@@ -244,7 +244,7 @@
   }
 }</code></pre>
 
-        <h3>Propri&eacute;t&eacute;s d'une page</h3>
+        <h3 id="proprietes-d-une-page">Propri&eacute;t&eacute;s d'une page</h3>
         <table>
           <tr><th>Propri&eacute;t&eacute;</th><th>Type</th><th>Description</th></tr>
           <tr><td><code>title</code></td><td>String</td><td>Titre de la page</td></tr>
@@ -261,7 +261,7 @@
           <tr><td><code>isTemplate</code></td><td>Boolean</td><td>Page servant de mod&egrave;le</td></tr>
         </table>
 
-        <h3>Propri&eacute;t&eacute;s d'un dossier</h3>
+        <h3 id="proprietes-d-un-dossier">Propri&eacute;t&eacute;s d'un dossier</h3>
         <table>
           <tr><th>Propri&eacute;t&eacute;</th><th>Type</th><th>Description</th></tr>
           <tr><td><code>name</code></td><td>String</td><td>Nom d'affichage du dossier (accents, espaces autoris&eacute;s)</td></tr>
@@ -269,12 +269,12 @@
           <tr><td><code>collapsed</code></td><td>Boolean</td><td>&Eacute;tat expand/collapse</td></tr>
         </table>
 
-        <h3>Migration V1 &rarr; V2</h3>
+        <h3 id="migration-v1-v2">Migration V1 &rarr; V2</h3>
         <p>
           Si le registre est en version 1 (ancien syst&egrave;me avec champ <code>parent</code>), la migration est automatique au chargement : les champs <code>parent</code> et <code>collapsed</code> sont supprim&eacute;s des pages, les dossiers sont d&eacute;tect&eacute;s depuis les chemins, et la version passe &agrave; 2.
         </p>
 
-        <h2>Module JavaScript</h2>
+        <h2 id="module-javascript">Module JavaScript</h2>
         <p>
           La logique est g&eacute;r&eacute;e par <code>configurateur-pages.js</code> :
         </p>
@@ -288,7 +288,7 @@
           <li>Panneau de m&eacute;tadonn&eacute;es</li>
         </ul>
 
-        <h2>Voir aussi</h2>
+        <h2 id="voir-aussi">Voir aussi</h2>
         <ul>
           <li><a href="getting-started.html">D&eacute;marrer un projet</a></li>
           <li><a href="components.html">Composants</a></li>
