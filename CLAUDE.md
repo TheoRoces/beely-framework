@@ -42,6 +42,28 @@ beely-framework/
 
 > **Note :** `docs/` et `wireframes/` sont dans le `.gitignore` du framework. Ils ne sont **pas sur GitHub** mais existent en local et sont déployés en production.
 
+## Matrice de déploiement (fichiers → destinations)
+
+| Fichier / Dossier | GitHub (git) | Serveur (rsync) | Notes |
+|---|:---:|:---:|---|
+| `core/`, `components/`, `assets/`, `api/`, `snippets/` | ✅ | ✅ | Framework core, déployé via symlinks |
+| `configurateur/` | ✅ | ❌ | Outil local, exclu du déploiement |
+| `docs/`, `wireframes/` | ❌ | ✅* | *Uniquement sur framework.beely.studio |
+| `config-site.js` | ✅ | ✅ | Config client spécifique |
+| `.env` | ❌ | ✅ | Secrets API côté serveur |
+| `.env.example`, `.deploy.env.example` | ✅ | ❌ | Templates documentés |
+| `.deploy.env` | ❌ | ❌ | Config SSH locale uniquement |
+| `setup.sh`, `deploy.sh` | ✅ | ❌ | Scripts locaux |
+| `.htaccess` | ✅ | ✅ | Config Apache |
+| `CLAUDE.md`, `README.md` | ✅ | ❌ | Documentation dev |
+| `sitemap.xml` | ❌ | ✅ | Généré avant chaque déploiement |
+| `pages/`, `404.html` | ✅ | ✅ | Contenu du site |
+| `data/`, `.vscode/` | ❌ | ❌ | Données locales / IDE |
+
+> `.gitignore` = ce qui va sur GitHub. `.rsync-exclude` = ce qui va sur le serveur. Deux périmètres indépendants.
+
+---
+
 ## Règles
 - **Versioning sémantique** : chaque release est taggée (v1.0.0, v1.1.0, etc.)
 - **Ne jamais casser la rétrocompatibilité** sans incrémenter la version majeure
