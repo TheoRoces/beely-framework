@@ -9,11 +9,12 @@ core/           → CSS & JS du framework (ne pas modifier directement)
   css/          → tokens.css, base.css, elements.css, animations.css, forms.css...
   js/           → site.js, components.js, animations.js, elements.js, icons.js...
 components/     → Composants réutilisables (header, footer, docs-sidebar)
+configurateur/  → Configurateur visuel / site builder (ex beely-builder)
 assets/icons/   → 324 icônes Heroicons (outline + solid)
-wireframes/     → 375+ sections HTML prêtes à l'emploi
-docs/           → Documentation interactive (14+ pages)
 api/            → Endpoints PHP (consent RGPD, proxy Baserow, formulaires)
 snippets/       → Fragments HTML prêts à copier-coller
+wireframes/     → 375+ sections HTML (gitignored — local + prod uniquement)
+docs/           → Documentation interactive (gitignored — local + prod uniquement)
 ```
 
 ## Fonctionnalités
@@ -31,7 +32,7 @@ snippets/       → Fragments HTML prêts à copier-coller
 
 ## Utilisation
 
-Ce repo est utilisé comme **submodule Git** (dossier `.framework/`) dans chaque projet client. Les fichiers `core/`, `assets/`, `components/` sont liés par symlinks à la racine du projet.
+Ce repo est utilisé comme **unique submodule Git** (dossier `.framework/`) dans chaque projet client. Les fichiers `core/`, `assets/`, `components/`, `configurateur/` sont liés par symlinks à la racine du projet.
 
 ## Documentation en ligne
 
@@ -39,5 +40,6 @@ Ce repo est utilisé comme **submodule Git** (dossier `.framework/`) dans chaque
 
 ## Repos liés
 
-- [beely-builder](https://github.com/TheoRoces/beely-builder) — Configurateur (interface d'administration)
 - [beely-template](https://github.com/TheoRoces/beely-template) — Template de démarrage pour projets clients
+
+> **Note :** Le configurateur (ex beely-builder) a été fusionné dans ce repo depuis la v1.1.0. Il n'existe plus en tant que repo/submodule séparé.

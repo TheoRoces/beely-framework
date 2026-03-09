@@ -28,16 +28,19 @@ beely-framework/
 ├── core/js/           # 11 fichiers JS (site, components, grid, forms, elements, animations, blog, cookies, icons, darkmode, params)
 ├── api/               # PHP : baserow.php, consent.php, form.php, rate-limit.php
 ├── components/        # Header, Footer, Card, Docs Sidebar
+├── configurateur/     # Configurateur visuel (ex beely-builder, fusionné dans le framework)
 ├── snippets/          # Fragments HTML prêts à copier
-├── wireframes/        # 375 sections (25 catégories × 15 variantes)
-├── docs/              # 14 pages HTML + MD
 ├── assets/            # Icônes Heroicons (324), images
 ├── base-index.html    # Template HTML de base
 ├── .htaccess          # Config Apache + CSP + sécurité
 ├── robots.txt         # Fichier robots
 ├── generate-sitemap.js # Générateur de sitemap
-└── CHANGELOG.md       # Historique des versions
+├── CHANGELOG.md       # Historique des versions
+├── wireframes/        # ⚠ Gitignored — local + déployé en prod uniquement
+└── docs/              # ⚠ Gitignored — local + déployé en prod uniquement
 ```
+
+> **Note :** `docs/` et `wireframes/` sont dans le `.gitignore` du framework. Ils ne sont **pas sur GitHub** mais existent en local et sont déployés en production.
 
 ## Règles
 - **Versioning sémantique** : chaque release est taggée (v1.0.0, v1.1.0, etc.)
@@ -62,5 +65,5 @@ beely-framework/
 - Rate limiting via `api/rate-limit.php`
 
 ## Documentation
-Chaque modification doit être documentée dans `docs/` (HTML + MD).
+Les fichiers `docs/` (HTML + MD) sont maintenus localement et déployés en prod, mais ne sont pas sur GitHub (gitignored).
 Mettre à jour le `CHANGELOG.md` à chaque release.

@@ -1,8 +1,26 @@
 # Changelog
 
-Toutes les modifications notables de **beely-builder** sont documentées ici.
+Toutes les modifications notables du **configurateur** (anciennement beely-builder) sont documentées ici.
 
 Format basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionné selon [Semantic Versioning](https://semver.org/lang/fr/).
+
+> **Note :** Depuis la v1.1.0 de beely-framework, ce projet a été **fusionné dans le framework** (`configurateur/`). Il n'existe plus en tant que repo Git séparé.
+
+## [1.1.0] - 2026-03-10
+
+### Fusion dans beely-framework
+Ce projet est désormais intégré dans le répertoire `configurateur/` de beely-framework.
+
+### Ajouté
+- Mise à jour automatique des médias dans les pages lors du remplacement dans la médiathèque
+- Propagation automatique du texte alternatif (alt) sur les images
+- Système de dossiers indépendants V2 (dossiers séparés des pages, comme dans VSCode)
+
+### Corrigé
+- Correction des accents français dans tous les fichiers JS/HTML
+- Correctif de sécurité : protection contre l'injection regex dans `configurator-server.py`
+
+---
 
 ## [1.0.0] - 2026-03-06
 

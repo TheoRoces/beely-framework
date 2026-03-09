@@ -4,6 +4,27 @@ Toutes les modifications notables de **beely-framework** sont documentées ici.
 
 Format basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/), versionné selon [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.1.0] - 2026-03-10
+
+### Ajouté
+- **Fusion du configurateur (beely-builder)** dans le framework en tant que répertoire `configurateur/` — plus de submodule séparé
+- Sélecteur d'icônes dans le configurateur avec recherche et preview
+- Index de recherche pour les wireframes
+- Table des matières (TOC) dans la documentation
+- Conversions de wireframes supplémentaires
+
+### Modifié
+- `docs/` et `wireframes/` sont désormais **gitignored** — maintenus localement et déployés en production uniquement, pas sur GitHub
+- Correction des template literals (backticks) dans les fichiers JS
+- Correction des accents français (caractères accentués préservés partout)
+- Améliorations d'accessibilité (ARIA, focus trap, titres iframe)
+- Correctif de sécurité : protection contre l'injection regex dans le serveur Python
+
+### Supprimé
+- Le repo **beely-builder** n'est plus un submodule séparé — tout est dans `configurateur/`
+
+---
+
 ## [1.0.0] - 2026-03-06
 
 ### Première version stable

@@ -2,6 +2,8 @@
 
 Outil d'administration pour le framework **Site System**.
 
+> **Note :** Depuis la v1.1.0 de beely-framework, ce projet est **intégré directement dans le framework** (répertoire `configurateur/`). Il n'existe plus en tant que repo Git séparé (ex beely-builder). Dans les projets clients, il est accessible via un symlink `configurateur → .framework/configurateur/`.
+
 ## Contenu
 
 | Outil | Description |
@@ -10,8 +12,6 @@ Outil d'administration pour le framework **Site System**.
 | **Serveur Python** | Micro-serveur local (port 5555) pour l'écriture directe des fichiers sur disque |
 
 ## Utilisation
-
-Ce repo est utilisé comme **submodule Git** dans chaque projet client (dossier `configurateur/`).
 
 ```bash
 # Depuis la racine d'un projet client
@@ -29,7 +29,6 @@ python3 configurateur/configurator-server.py
 - `configurateur.css` — Styles de l'interface
 - `js/` — Modules JS (API, pages, médiathèque, déploiement, configuration)
 
-## Repos liés
+## Repo parent
 
-- [beely-framework](https://github.com/TheoRoces/beely-framework) — Framework CSS/JS/composants
-- [beely-template](https://github.com/TheoRoces/beely-template) — Template de démarrage pour projets clients
+- [beely-framework](https://github.com/TheoRoces/beely-framework) — Framework complet (ce configurateur en fait partie)
