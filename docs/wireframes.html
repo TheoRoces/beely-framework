@@ -618,7 +618,11 @@
     }
 
     function stripScripts(html) {
-      return html.replace(/<script[\s\S]*?<\/script>/gi, '');
+      /* Remove Live Server injected code (comment + script) */
+      html = html.replace(/<!-- Code injected by live-server -->[\s\S]*/i, '');
+      /* Remove standard script tags */
+      html = html.replace(/<script[\s\S]*?<\/script>/gi, '');
+      return html;
     }
 
     /* ==== Render categories ==== */
