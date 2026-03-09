@@ -574,6 +574,10 @@
     var baseCSS = '';
     var elementsCSS = '';
     var animationsCSS = '';
+    var formsCSS = '';
+    var gridCSS = '';
+    var iconsCSS = '';
+    var iconsJS = '';
     var wireframesJS = '';
     var PER_PAGE = 30;
     var visibleCount = PER_PAGE;
@@ -618,14 +622,22 @@
 
     function buildSrcdoc(code, interactive) {
       var theme = currentTheme();
-      var html = '<!DOCTYPE html><html data-theme="' + theme + '"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+      /* Base href allows relative fetches (icons.js → assets/icons/) inside srcdoc iframes */
+      var baseHref = location.href.replace(/docs\/[^/]*$/, '');
+      var html = '<!DOCTYPE html><html data-theme="' + theme + '"><head><base href="' + baseHref + '"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
         + '<style>' + tokensCSS + '<\/style>'
         + '<style>' + baseCSS + '<\/style>'
         + '<style>' + elementsCSS + '<\/style>'
+        + '<style>' + formsCSS + '<\/style>'
+        + '<style>' + gridCSS + '<\/style>'
+        + '<style>' + iconsCSS + '<\/style>'
         + '<style>' + animationsCSS + '<\/style>'
         + '<style>' + wireframesCSS + '<\/style>'
         + '<style>' + IFRAME_CSS + '<\/style>'
         + '<\/head><body>' + code;
+      if (iconsJS) {
+        html += '<script>' + iconsJS + '<\/script>';
+      }
       if (interactive && wireframesJS) {
         html += '<script>' + wireframesJS + '<\/script>';
       }
@@ -1027,7 +1039,11 @@
       fetch('../core/css/base.css').then(function (r) { return r.ok ? r.text() : ''; }),
       fetch('../core/css/elements.css').then(function (r) { return r.ok ? r.text() : ''; }),
       fetch('../core/css/animations.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../wireframes/wireframes.js').then(function (r) { return r.ok ? r.text() : ''; })
+      fetch('../wireframes/wireframes.js').then(function (r) { return r.ok ? r.text() : ''; }),
+      fetch('../core/css/forms.css').then(function (r) { return r.ok ? r.text() : ''; }),
+      fetch('../core/css/grid.css').then(function (r) { return r.ok ? r.text() : ''; }),
+      fetch('../core/css/icons.css').then(function (r) { return r.ok ? r.text() : ''; }),
+      fetch('../core/js/icons.js').then(function (r) { return r.ok ? r.text() : ''; })
     ]).then(function (results) {
       tokensCSS = stripScripts(results[0]);
       wireframesCSS = stripScripts(results[1]);
@@ -1035,6 +1051,10 @@
       elementsCSS = stripScripts(results[3]);
       animationsCSS = stripScripts(results[4]);
       wireframesJS = stripScripts(results[5]);
+      formsCSS = stripScripts(results[6]);
+      gridCSS = stripScripts(results[7]);
+      iconsCSS = stripScripts(results[8]);
+      iconsJS = stripScripts(results[9]);
       renderCats();
       render();
     }).catch(function () {
