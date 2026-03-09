@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurateur &mdash; Site System</title>
+  <script src="/core/js/darkmode.js"></script>
+  <link rel="stylesheet" href="/core/css/tokens.css">
+  <link rel="stylesheet" href="/core/css/base.css">
+  <link rel="stylesheet" href="configurateur.css">
+</head>
+<body>
+
+<div class="bld-mobile-block">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+  <div class="bld-mobile-block__title">Écran trop petit</div>
+  <div class="bld-mobile-block__message">Le configurateur nécessite un écran d'au moins 600px de large. Utilisez un ordinateur ou agrandissez votre fenêtre.</div>
+</div>
+
+<div class="bld-layout">
+
+  <!-- ══════════════════════════════════════ TOP BAR ══════════════════════════════════════ -->
+  <header class="bld-topbar">
+    <div class="bld-topbar__left">
+      <div class="bld-topbar__logo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Site System
+      </div>
+      <span class="bld-topbar__sep"></span>
+      <span class="bld-topbar__site-name" id="siteName">Mon Site</span>
+    </div>
+    <div class="bld-topbar__right">
+      <!-- Publish dropdown -->
+      <div class="bld-topbar__publish" id="publishDropdownWrapper">
+        <button class="bld-btn bld-btn--success bld-btn--sm" id="btnPublishToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+          Publier
+        </button>
+        <div class="bld-publish-dropdown" id="publishDropdown">
+          <div id="publishDropdownContent"></div>
+          <div class="bld-deploy-log" id="deployLog" style="display:none;">
+            <div class="bld-deploy-log__header">Journal</div>
+            <pre class="bld-deploy-log__content" id="deployLogContent"></pre>
+          </div>
+        </div>
+      </div>
+      <button class="bld-topbar__theme-toggle" data-theme-toggle aria-label="Basculer le thème">
+        <svg class="bld-topbar__theme-icon bld-topbar__theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="bld-topbar__theme-icon bld-topbar__theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════════════════ SIDEBAR ══════════════════════════════════════ -->
+  <nav class="bld-sidebar">
+    <div class="bld-sidebar__section">
+      <div class="bld-sidebar__label">Configurateur</div>
+      <button class="bld-sidebar__link bld-sidebar__link--active" data-panel="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+        Accueil
+      </button>
+      <button class="bld-sidebar__link" data-panel="pages">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Pages
+      </button>
+      <button class="bld-sidebar__link" data-panel="configurator">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Configuration
+      </button>
+      <button class="bld-sidebar__link" data-panel="lib-media">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Médiathèque
+      </button>
+      <button class="bld-sidebar__link" data-panel="lib-icons">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Icônes
+      </button>
+    </div>
+
+    <div class="bld-sidebar__spacer"></div>
+
+    <div class="bld-sidebar__footer">
+      <a class="bld-sidebar__footer-link" href="https://framework.beely.studio/docs/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Documentation
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════ MAIN ══════════════════════════════════════ -->
+  <main class="bld-main">
+
+    <!-- ────── DASHBOARD ────── -->
+    <div class="bld-panel bld-panel--active" data-panel-id="dashboard">
+      <div class="bld-dash">
+        <div class="bld-dash__header">
+          <h1 class="bld-dash__title">Tableau de bord</h1>
+          <p class="bld-dash__subtitle">Gérez votre site en un coup d'œil.</p>
+        </div>
+
+        <div class="bld-stats">
+          <div class="bld-stat">
+            <div class="bld-stat__value" id="statTotal">0</div>
+            <div class="bld-stat__label">Pages</div>
+          </div>
+          <div class="bld-stat">
+            <div class="bld-stat__value" id="statPublished">0</div>
+            <div class="bld-stat__label">Publiées</div>
+          </div>
+          <div class="bld-stat">
+            <div class="bld-stat__value" id="statDraft">0</div>
+            <div class="bld-stat__label">Brouillons</div>
+          </div>
+        </div>
+
+        <div class="bld-actions">
+          <div class="bld-action" id="actionNewPage">
+            <div class="bld-action__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <div class="bld-action__text">
+              <h3>Nouvelle page</h3>
+              <p>Créer une page à partir du template.</p>
+            </div>
+          </div>
+          <div class="bld-action" id="actionConfigurator">
+            <div class="bld-action__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div class="bld-action__text">
+              <h3>Configurer le site</h3>
+              <p>Analytics, cookies, blog, mentions légales.</p>
+            </div>
+          </div>
+          <a class="bld-action" href="https://framework.beely.studio/docs/" target="_blank">
+            <div class="bld-action__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <div class="bld-action__text">
+              <h3>Documentation</h3>
+              <p>Composants, tokens, animations, formulaires.</p>
+            </div>
+          </a>
+          <a class="bld-action" href="https://framework.beely.studio/docs/wireframes" target="_blank">
+            <div class="bld-action__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="bld-action__text">
+              <h3>Wireframes</h3>
+              <p>375+ sections prêtes à l'emploi.</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="bld-recent">
+          <div class="bld-recent__header">Pages récentes</div>
+          <div id="recentPages">
+            <div class="bld-recent__empty">Aucune page pour le moment.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ────── PAGES ────── -->
+    <div class="bld-panel bld-panel--fixed" data-panel-id="pages">
+      <div class="bld-pages">
+        <div class="bld-pages__left">
+          <div class="bld-pages__toolbar">
+            <button class="bld-btn bld-btn--primary bld-btn--sm" id="btnNewPage">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Nouvelle page
+            </button>
+            <button class="bld-btn bld-btn--sm bld-btn--icon" id="btnNewFolder" title="Nouveau dossier">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+            </button>
+            <button class="bld-btn bld-btn--sm bld-btn--icon" id="btnRefreshPages" title="Rafraîchir" aria-label="Rafraîchir la liste des pages">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            </button>
+          </div>
+          <div class="bld-tree" id="pageTree"></div>
+        </div>
+        <div class="bld-pages__right" id="pageMetaPanel">
+          <div class="bld-meta__empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <p>Sélectionnez une page ou un dossier.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ────── CONFIGURATEUR (intégré nativement) ────── -->
+    <div class="bld-panel bld-panel--fixed" data-panel-id="configurator">
+      <div class="bld-configurator-embed" id="cfgEmbed">
+        <div class="bld-lib__loading">Chargement du configurateur...</div>
+      </div>
+    </div>
+
+    <!-- ────── ICÔNES ────── -->
+    <div class="bld-panel" data-panel-id="lib-icons">
+      <div class="bld-lib" id="libIcons">
+        <div class="bld-lib__header">
+          <h1 class="bld-lib__title">Icônes</h1>
+          <p class="bld-lib__subtitle">324 icônes Heroicons (outline + solid).</p>
+        </div>
+        <div class="bld-lib__toolbar">
+          <input type="text" class="bld-field__input" id="libIconSearch" placeholder="Rechercher une icône..." style="flex: 1;">
+          <div class="bld-lib__toggle" id="libIconToggle">
+            <button class="bld-lib__toggle-btn bld-lib__toggle-btn--active" data-icon-type="outline">Outline</button>
+            <button class="bld-lib__toggle-btn" data-icon-type="solid">Solid</button>
+          </div>
+        </div>
+        <div class="bld-lib__content" id="libIconContent"></div>
+      </div>
+    </div>
+
+    <!-- ────── MÉDIATHÈQUE ────── -->
+    <div class="bld-panel" data-panel-id="lib-media">
+      <div class="bld-lib" id="libMedia">
+        <div class="bld-lib__header">
+          <h1 class="bld-lib__title">Médiathèque</h1>
+          <p class="bld-lib__subtitle">Gérez les images de votre site.</p>
+        </div>
+        <div class="bld-lib__toolbar">
+          <input type="text" class="bld-field__input" id="libMediaSearch" placeholder="Rechercher..." style="flex: 1;">
+          <button class="bld-btn bld-btn--sm" id="btnMediaMkdir" title="Nouveau dossier">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/></svg>
+            Dossier
+          </button>
+          <button class="bld-btn bld-btn--primary bld-btn--sm" id="btnMediaUpload">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Uploader
+          </button>
+          <input type="file" id="mediaFileInput" accept="image/*" multiple style="display: none;">
+        </div>
+        <div class="bld-lib__content" id="libMediaContent">
+          <div class="bld-media__dropzone" id="mediaDropzone">
+            <p>Glissez des images ici ou cliquez sur "Uploader"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="bld-toast" id="bldToast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Modal nouvelle page -->
+<div class="bld-modal-overlay" id="modalNewPage" role="dialog" aria-modal="true" aria-labelledby="modalNewPageTitle">
+  <div class="bld-modal">
+    <h3 class="bld-modal__title" id="modalNewPageTitle">Nouvelle page</h3>
+    <div class="bld-field">
+      <label class="bld-field__label">Nom du fichier</label>
+      <input class="bld-field__input" type="text" id="newPageFilename" placeholder="contact.html">
+    </div>
+    <div class="bld-modal__actions">
+      <button class="bld-btn" id="btnCancelNewPage">Annuler</button>
+      <button class="bld-btn bld-btn--primary" id="btnConfirmNewPage">Créer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal générique (confirm / prompt) -->
+<div class="bld-modal-overlay" id="bldModalGeneric" role="dialog" aria-modal="true" aria-labelledby="bldModalTitle">
+  <div class="bld-modal">
+    <h3 class="bld-modal__title" id="bldModalTitle"></h3>
+    <p class="bld-modal__message" id="bldModalMessage"></p>
+    <div class="bld-field bld-modal__field" id="bldModalFieldWrap" style="display: none;">
+      <label class="bld-field__label" id="bldModalFieldLabel"></label>
+      <input class="bld-field__input" type="text" id="bldModalFieldInput">
+    </div>
+    <div id="bldModalFormFields"></div>
+    <div class="bld-modal__actions" id="bldModalActions"></div>
+  </div>
+</div>
+
+<!-- Modal édition média -->
+<div class="bld-modal-overlay" id="bldMediaEditOverlay" role="dialog" aria-modal="true" aria-labelledby="mediaEditTitle">
+  <div class="bld-modal bld-modal--media-edit">
+    <div class="bld-media-edit">
+      <div class="bld-media-edit__preview">
+        <img id="mediaEditPreview" src="" alt="">
+      </div>
+      <div class="bld-media-edit__form">
+        <h3 class="bld-modal__title" id="mediaEditTitle">Détails du fichier</h3>
+        <div class="bld-media-edit__info" id="mediaEditInfo"></div>
+        <div class="bld-media-edit__usage" id="mediaEditUsage"></div>
+        <div class="bld-field">
+          <label class="bld-field__label">Nom du fichier</label>
+          <input class="bld-field__input" type="text" id="mediaEditName">
+        </div>
+        <div class="bld-field">
+          <label class="bld-field__label">Texte alternatif (alt)</label>
+          <input class="bld-field__input" type="text" id="mediaEditAlt" placeholder="Description de l'image pour l'accessibilité">
+        </div>
+        <div class="bld-field">
+          <label class="bld-field__label">Dossier</label>
+          <select class="bld-field__input" id="mediaEditFolder"></select>
+        </div>
+        <div class="bld-modal__actions">
+          <button class="bld-btn bld-btn--ghost" id="mediaEditCancel">Annuler</button>
+          <button class="bld-btn bld-btn--primary" id="mediaEditSave">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/configurateur-modal.js"></script>
+<script src="js/configurateur-api.js"></script>
+<script src="js/configurateur-app.js"></script>
+<script src="js/configurateur-pages.js"></script>
+<script src="js/configurateur-publish.js"></script>
+<script src="js/configurateur-library.js"></script>
+<script src="js/configurateur-config.js"></script>
+
+</body>
+</html>

@@ -6,3 +6,5 @@ node_modules/
 .deploy.env
 sitemap.xml
 wireframes/wireframes-data.json
+docs/
+wireframes/
