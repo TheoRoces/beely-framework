@@ -50,7 +50,7 @@ C'est le cas le plus simple. Vous clonez un template prêt à l'emploi qui conti
 
 ```bash
 # 💻 Terminal : Terminal.app (Mac) ou terminal VSCode
-# 📂 Dossier : là où tu ranges tes sites (ex: ~/Sites/)
+# 📂 Dossier : là où vous rangez vos sites (ex: ~/Sites/)
 
 cd ~/Sites
 git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
@@ -95,7 +95,7 @@ Vous avez déjà un projet avec un `index.html` et peut-être quelques fichiers 
 
 ```bash
 # 💻 Terminal : terminal VSCode (Ctrl+`)
-# 📂 Dossier : la racine de ton projet (là où se trouve ton index.html)
+# 📂 Dossier : la racine de votre projet (là où se trouve votre index.html)
 
 git init
 git add -A
@@ -107,7 +107,7 @@ Si votre projet est déjà un dépôt git, passez cette étape.
 **Étape 2 — Ajouter le framework comme submodule**
 
 ```bash
-# 📂 Dossier : la racine de ton projet
+# 📂 Dossier : la racine de votre projet
 
 git submodule add https://github.com/TheoRoces/beely-framework.git .framework
 ```
@@ -117,7 +117,7 @@ Cela crée un dossier `.framework/` contenant tout le framework (CSS, JS, compos
 **Étape 3 — Ajouter le Configurateur (optionnel)**
 
 ```bash
-# 📂 Dossier : la racine de ton projet
+# 📂 Dossier : la racine de votre projet
 
 git submodule add https://github.com/TheoRoces/beely-builder.git builder
 ```
@@ -129,7 +129,7 @@ Le Configurateur est un éditeur visuel optionnel. Si vous ne l'utilisez pas, sa
 Vous pouvez copier le script `setup.sh` depuis le [template GitHub](https://github.com/TheoRoces/beely-template/blob/main/setup.sh) et l'exécuter, ou créer les symlinks manuellement :
 
 ```bash
-# 📂 Dossier : la racine de ton projet
+# 📂 Dossier : la racine de votre projet
 
 ln -s .framework/core core
 ln -s .framework/components components
@@ -198,7 +198,7 @@ Vous gardez vos fichiers CSS perso — il suffit de les charger **après** ceux 
 **Étape 7 — Commiter et tester**
 
 ```bash
-# 📂 Dossier : la racine de ton projet
+# 📂 Dossier : la racine de votre projet
 
 git add -A
 git commit -m "Add Site System framework"
@@ -433,7 +433,7 @@ Ouvrez le projet avec **VS Code + Live Server** ou n'importe quel serveur local 
 
 ```bash
 # 💻 Terminal : terminal VSCode (Ctrl+`)
-# 📂 Dossier : la racine de ton projet
+# 📂 Dossier : la racine de votre projet
 
 # Option 1 : VS Code Live Server (extension)
 # Clic droit sur index.html → "Open with Live Server"
@@ -459,7 +459,7 @@ Créez un nouveau dépôt sur [github.com/new](https://github.com/new), puis cha
 
 ```bash
 # 💻 Terminal : terminal VSCode (Ctrl+`)
-# 📂 Dossier : la racine de ton projet
+# 📂 Dossier : la racine de votre projet
 
 # Changer le remote
 git remote set-url origin https://github.com/votre-user/votre-projet.git
@@ -473,7 +473,7 @@ git push -u origin main
 Les commandes Git que vous utiliserez au quotidien :
 
 ```bash
-# 📂 Dossier : la racine de ton projet
+# 📂 Dossier : la racine de votre projet
 
 # Voir l'état des fichiers modifiés
 git status
@@ -534,7 +534,7 @@ Si votre site n'a pas besoin de blog, supprimez les fichiers liés et allégez l
 ### Fichiers à supprimer
 
 ```bash
-# 📂 Dossier : la racine de ton projet
+# 📂 Dossier : la racine de votre projet
 
 # Pages blog
 blog.html                  # Page listing

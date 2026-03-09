@@ -40,7 +40,7 @@ Si vous avez perdu la main (nouveau Mac, réinstallation, longue absence), voici
 
 ```bash
 # 💻 Terminal : Terminal.app (Mac) ou terminal VSCode
-# 📂 Dossier : là où tu ranges tes sites (ex: ~/Sites/)
+# 📂 Dossier : là où vous rangez vos sites (ex: ~/Sites/)
 
 cd ~/Sites
 
@@ -205,7 +205,7 @@ Le Configurateur est un submodule dans `configurateur/`. Il n'est **jamais dépl
 
 ```bash
 # 💻 Terminal : Terminal.app ou terminal VSCode
-# 📂 Dossier : ~/Sites/ (ton dossier de projets)
+# 📂 Dossier : ~/Sites/ (votre dossier de projets)
 
 # 1. Cloner le template
 git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
@@ -435,7 +435,7 @@ C'est voulu : chaque projet est **épinglé à une version précise** du framewo
 ### Récap visuel
 
 ```
-Tu modifies le framework
+Vous modifiez le framework
         ↓
 git push (dans beely-framework)
         ↓

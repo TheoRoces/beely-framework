@@ -109,7 +109,7 @@
 
         <h4>&Eacute;tape 1 &mdash; Cloner le template</h4>
 <pre><code># &#x1F4BB; Terminal : Terminal.app (Mac) ou terminal VSCode
-# &#x1F4C2; Dossier : l&agrave; o&ugrave; tu ranges tes sites (ex: ~/Sites/)
+# &#x1F4C2; Dossier : l&agrave; o&ugrave; vous rangez vos sites (ex: ~/Sites/)
 
 cd ~/Sites
 git clone --recursive https://github.com/TheoRoces/beely-template.git mon-projet
@@ -145,7 +145,7 @@ code .</code></pre>
 
         <h4>&Eacute;tape 1 &mdash; Initialiser git (si pas d&eacute;j&agrave; fait)</h4>
 <pre><code># &#x1F4BB; Terminal : terminal VSCode (Ctrl+`)
-# &#x1F4C2; Dossier : la racine de ton projet (l&agrave; o&ugrave; se trouve ton index.html)
+# &#x1F4C2; Dossier : la racine de votre projet (l&agrave; o&ugrave; se trouve votre index.html)
 
 git init
 git add -A
@@ -153,20 +153,20 @@ git commit -m "Initial commit"</code></pre>
         <p>Si votre projet est d&eacute;j&agrave; un d&eacute;p&ocirc;t git, passez cette &eacute;tape.</p>
 
         <h4>&Eacute;tape 2 &mdash; Ajouter le framework comme submodule</h4>
-<pre><code># &#x1F4C2; Dossier : la racine de ton projet
+<pre><code># &#x1F4C2; Dossier : la racine de votre projet
 
 git submodule add https://github.com/TheoRoces/beely-framework.git .framework</code></pre>
         <p>Cela cr&eacute;e un dossier <code>.framework/</code> contenant tout le framework (CSS, JS, composants, ic&ocirc;nes, wireframes, docs).</p>
 
         <h4>&Eacute;tape 3 &mdash; Ajouter le Configurateur (optionnel)</h4>
-<pre><code># &#x1F4C2; Dossier : la racine de ton projet
+<pre><code># &#x1F4C2; Dossier : la racine de votre projet
 
 git submodule add https://github.com/TheoRoces/beely-builder.git builder</code></pre>
         <p>Le Configurateur est une interface d'administration optionnelle. Si vous ne l'utilisez pas, sautez cette &eacute;tape.</p>
 
         <h4>&Eacute;tape 4 &mdash; Cr&eacute;er les symlinks</h4>
         <p>Vous pouvez copier le script <code>setup.sh</code> depuis le <a href="https://github.com/TheoRoces/beely-template/blob/main/setup.sh" target="_blank" rel="noopener">template GitHub</a> et l'ex&eacute;cuter, ou cr&eacute;er les symlinks manuellement&nbsp;:</p>
-<pre><code># &#x1F4C2; Dossier : la racine de ton projet
+<pre><code># &#x1F4C2; Dossier : la racine de votre projet
 
 ln -s .framework/core core
 ln -s .framework/components components
@@ -221,7 +221,7 @@ ln -s .framework/generate-sitemap.js generate-sitemap.js</code></pre>
         <p>Vous gardez vos fichiers CSS perso &mdash; il suffit de les charger <strong>apr&egrave;s</strong> ceux du framework.</p>
 
         <h4>&Eacute;tape 7 &mdash; Commiter et tester</h4>
-<pre><code># &#x1F4C2; Dossier : la racine de ton projet
+<pre><code># &#x1F4C2; Dossier : la racine de votre projet
 
 git add -A
 git commit -m "Add Site System framework"</code></pre>
@@ -419,7 +419,7 @@ git commit -m "Add Site System framework"</code></pre>
         <h2 id="tester-en-local">Tester en local</h2>
         <p>Ouvrez le projet avec <strong>VS Code + Live Server</strong> ou n'importe quel serveur local&nbsp;:</p>
 <pre><code># &#x1F4BB; Terminal : terminal VSCode (Ctrl+`)
-# &#x1F4C2; Dossier : la racine de ton projet
+# &#x1F4C2; Dossier : la racine de votre projet
 
 # Option 1 : VS Code Live Server (extension)
 # Clic droit sur index.html &rarr; "Open with Live Server"
@@ -439,7 +439,7 @@ npx serve .</code></pre>
         <h3>1. Cr&eacute;er votre d&eacute;p&ocirc;t GitHub</h3>
         <p>Cr&eacute;ez un nouveau d&eacute;p&ocirc;t sur <a href="https://github.com/new" target="_blank" rel="noopener">github.com/new</a>, puis changez le remote&nbsp;:</p>
 <pre><code># &#x1F4BB; Terminal : terminal VSCode (Ctrl+`)
-# &#x1F4C2; Dossier : la racine de ton projet
+# &#x1F4C2; Dossier : la racine de votre projet
 
 # Changer le remote
 git remote set-url origin https://github.com/votre-user/votre-projet.git
@@ -449,7 +449,7 @@ git push -u origin main</code></pre>
 
         <h3>2. Workflow quotidien</h3>
         <p>Les commandes Git que vous utiliserez au quotidien&nbsp;:</p>
-<pre><code># &#x1F4C2; Dossier : la racine de ton projet
+<pre><code># &#x1F4C2; Dossier : la racine de votre projet
 
 # Voir l'&eacute;tat des fichiers modifi&eacute;s
 git status
@@ -505,7 +505,7 @@ data/</code></pre>
         <p>Si votre site n'a pas besoin de blog, supprimez les fichiers li&eacute;s et all&eacute;gez la configuration.</p>
 
         <h3>Fichiers &agrave; supprimer</h3>
-<pre><code># &#x1F4C2; Dossier : la racine de ton projet
+<pre><code># &#x1F4C2; Dossier : la racine de votre projet
 
 # Pages blog
 blog.html                  # Page listing

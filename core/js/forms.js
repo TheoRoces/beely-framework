@@ -100,35 +100,93 @@
         select.appendChild(hidden);
       }
 
-      trigger.addEventListener('click', function (e) {
-        e.stopPropagation();
-        // Fermer les autres selects
+      // ARIA
+      trigger.setAttribute('role', 'combobox');
+      trigger.setAttribute('aria-haspopup', 'listbox');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.setAttribute('tabindex', '0');
+      options.setAttribute('role', 'listbox');
+      var allOpts = options.querySelectorAll('.form__select-option');
+      allOpts.forEach(function (o) { o.setAttribute('role', 'option'); });
+
+      function openSelect() {
         document.querySelectorAll('.form__select--open').forEach(function (s) {
-          if (s !== select) s.classList.remove('form__select--open');
+          if (s !== select) {
+            s.classList.remove('form__select--open');
+            var t = s.querySelector('.form__select-trigger');
+            if (t) t.setAttribute('aria-expanded', 'false');
+          }
         });
-        select.classList.toggle('form__select--open');
-      });
+        select.classList.add('form__select--open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
 
-      options.addEventListener('click', function (e) {
-        var option = e.target.closest('.form__select-option');
-        if (!option) return;
+      function closeSelect() {
+        select.classList.remove('form__select--open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
 
+      function selectOption(option) {
         var value = option.getAttribute('data-value');
         var label = option.textContent;
 
         hidden.value = value;
         trigger.textContent = label;
         trigger.classList.add('form__select-trigger--filled');
-        select.classList.remove('form__select--open');
+        closeSelect();
 
-        // Marquer l'option active
-        options.querySelectorAll('.form__select-option').forEach(function (o) {
-          o.classList.toggle('form__select-option--active', o === option);
+        // Marquer l'option active + ARIA
+        allOpts.forEach(function (o) {
+          var isActive = o === option;
+          o.classList.toggle('form__select-option--active', isActive);
+          o.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
 
         // Déclencher change pour la logique conditionnelle
         hidden.dispatchEvent(new Event('change', { bubbles: true }));
         select.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (select.classList.contains('form__select--open')) {
+          closeSelect();
+        } else {
+          openSelect();
+        }
+      });
+
+      // Navigation clavier
+      trigger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          if (select.classList.contains('form__select--open')) {
+            closeSelect();
+          } else {
+            openSelect();
+          }
+        }
+        if (e.key === 'Escape') {
+          closeSelect();
+          trigger.focus();
+        }
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!select.classList.contains('form__select--open')) {
+            openSelect();
+          }
+          var opts = Array.from(allOpts);
+          var activeIdx = opts.findIndex(function (o) { return o.classList.contains('form__select-option--active'); });
+          if (e.key === 'ArrowDown') activeIdx = Math.min(activeIdx + 1, opts.length - 1);
+          else activeIdx = Math.max(activeIdx - 1, 0);
+          selectOption(opts[activeIdx]);
+        }
+      });
+
+      options.addEventListener('click', function (e) {
+        var option = e.target.closest('.form__select-option');
+        if (!option) return;
+        selectOption(option);
       });
     });
 
@@ -138,6 +196,8 @@
       document.addEventListener('click', function () {
         document.querySelectorAll('.form__select--open').forEach(function (s) {
           s.classList.remove('form__select--open');
+          var t = s.querySelector('.form__select-trigger');
+          if (t) t.setAttribute('aria-expanded', 'false');
         });
       });
     }

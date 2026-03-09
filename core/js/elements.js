@@ -77,9 +77,31 @@
   }
 
   function openPopup(popup) {
+    popup.__previousFocus = document.activeElement;
     popup.classList.add('popup--active');
     openPopups.push(popup);
     lockScroll();
+
+    // Focus trap : focus le premier élément focusable
+    var focusable = popup.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    if (focusable.length) focusable[0].focus();
+
+    // Piéger Tab dans la popup
+    popup.__trapFocus = function (e) {
+      if (e.key !== 'Tab') return;
+      var foc = popup.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])');
+      if (!foc.length) return;
+      var first = foc[0];
+      var last = foc[foc.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    popup.addEventListener('keydown', popup.__trapFocus);
   }
 
   function closePopup(popup) {
@@ -87,6 +109,16 @@
     var idx = openPopups.indexOf(popup);
     if (idx > -1) openPopups.splice(idx, 1);
     unlockScroll();
+
+    // Retirer le focus trap et restaurer le focus
+    if (popup.__trapFocus) {
+      popup.removeEventListener('keydown', popup.__trapFocus);
+      popup.__trapFocus = null;
+    }
+    if (popup.__previousFocus && popup.__previousFocus.focus) {
+      popup.__previousFocus.focus();
+      popup.__previousFocus = null;
+    }
   }
 
   /* ==========================================================================
@@ -180,6 +212,13 @@
       if (accordion.__accordionInit) return;
       accordion.__accordionInit = true;
 
+      // Rendre les headers focusables au clavier
+      var headers = accordion.querySelectorAll(':scope > .accordion__item > .accordion__header');
+      headers.forEach(function (h) {
+        if (!h.hasAttribute('tabindex')) h.setAttribute('tabindex', '0');
+        h.setAttribute('role', 'button');
+      });
+
       // Envelopper le contenu du body dans un inner div (pour l'animation grid)
       var bodies = accordion.querySelectorAll(':scope > .accordion__item > .accordion__body');
       bodies.forEach(function (body) {
@@ -218,6 +257,15 @@
         }
 
         item.classList.toggle('accordion__item--active');
+      });
+
+      // Support clavier (Enter / Space)
+      accordion.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var header = e.target.closest('.accordion__header');
+        if (!header) return;
+        e.preventDefault();
+        header.click();
       });
     });
   }
@@ -437,6 +485,15 @@
         resetAutoplay();
       });
     }
+
+    // Navigation clavier
+    slider.setAttribute('tabindex', '0');
+    slider.setAttribute('role', 'region');
+    slider.setAttribute('aria-roledescription', 'carrousel');
+    slider.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { prev(); resetAutoplay(); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { next(); resetAutoplay(); e.preventDefault(); }
+    });
 
     // Swipe tactile
     var startX = 0;
