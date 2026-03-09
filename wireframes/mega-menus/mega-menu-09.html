@@ -119,7 +119,7 @@
     text-decoration: none;
     padding: 0.3rem 0.75rem;
     border: 1px solid var(--wf-mm-border);
-    border-radius: 20px;
+    border-radius: var(--radius-xl, 20px);
     transition: all 0.15s ease;
   }
 
@@ -145,7 +145,7 @@
     <span class="wf-megamenu__search-icon">
       <span data-icon="magnifying-glass" data-icon-type="outline" data-icon-size="24"></span>
     </span>
-    <input type="text" class="wf-megamenu__search-input" placeholder="Rechercher des produits, guides, articles..." aria-label="Rechercher">
+    <input type="text" class="wf-megamenu__search-input form__input" placeholder="Rechercher des produits, guides, articles..." aria-label="Rechercher">
     <span class="wf-megamenu__search-shortcut">Ctrl+K</span>
   </div>
   <nav class="wf-megamenu" aria-label="Menu principal">
