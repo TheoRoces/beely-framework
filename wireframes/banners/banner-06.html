@@ -8,7 +8,7 @@
     --wf-banner-border: var(--color-border, #e5e7eb);
     --wf-banner-icon-color: var(--color-text-light, #6b7280);
     --wf-banner-close-color: var(--color-text, #374151);
-    --wf-banner-close-hover-bg: rgba(107, 114, 128, 0.1);
+    --wf-banner-close-hover-bg: color-mix(in srgb, var(--color-neutral-500) 10%, transparent);
     --wf-banner-link-color: var(--color-text, #374151);
     --wf-banner-padding: 0.75rem 1.5rem;
     --wf-banner-font-size: 0.875rem;
@@ -103,10 +103,7 @@
     </div>
 
     <button class="wf-banner-06__close" aria-label="Fermer">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"/>
-        <line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
+      <span data-icon="x-mark" data-icon-type="outline" data-icon-size="18"></span>
     </button>
   </div>
 </div>
