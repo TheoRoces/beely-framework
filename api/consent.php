@@ -33,21 +33,22 @@ if (file_exists($envPath)) {
     }
 }
 
-/* Si SITE_ORIGIN n'est pas configuré, construire un origin par défaut depuis HTTP_HOST */
-if (!$allowed && isset($_SERVER['HTTP_HOST'])) {
-    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
-    $allowed = $scheme . '://' . $_SERVER['HTTP_HOST'];
-}
-
-/* Vérifier l'origin contre le domaine autorisé */
+/* Si SITE_ORIGIN n'est pas configuré, refuser les requêtes cross-origin
+   (les requêtes same-origin fonctionnent sans header CORS) */
 if ($allowed && $origin) {
     if ($origin !== $allowed) {
         http_response_code(403);
         header('Content-Type: application/json');
-        echo json_encode(['error' => 'Origin non autorise']);
+        echo json_encode(['error' => 'Origin non autorisé']);
         exit;
     }
     header('Access-Control-Allow-Origin: ' . $allowed);
+} elseif (!$allowed && $origin) {
+    /* Pas de SITE_ORIGIN configuré et requête cross-origin : refuser */
+    http_response_code(403);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'SITE_ORIGIN non configuré']);
+    exit;
 }
 
 header('Access-Control-Allow-Methods: POST, OPTIONS');

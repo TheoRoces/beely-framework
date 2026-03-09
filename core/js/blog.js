@@ -136,8 +136,9 @@
    */
   function sanitizeHtml(html) {
     if (!html) return '';
-    var div = document.createElement('div');
-    div.innerHTML = html;
+    // Utiliser DOMParser pour parser sans exécuter de scripts
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var div = doc.body;
 
     // Balises autorisées
     var allowed = ['P','BR','STRONG','B','EM','I','U','S','A','IMG',
