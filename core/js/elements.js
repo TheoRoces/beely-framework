@@ -161,7 +161,7 @@
     var pos = el.getAttribute('data-tooltip-pos') || 'top';
 
     var bubble = document.createElement('span');
-    bubble.className = 'tooltip__bubble tooltip__bubble--' + pos;
+    bubble.className = `tooltip__bubble tooltip__bubble--${pos}`;
     bubble.textContent = text;
     el.appendChild(bubble);
     el.__tooltipBubble = bubble;
@@ -182,23 +182,21 @@
 
   function adjustTooltipPosition(el, bubble, preferredPos) {
     var rect = bubble.getBoundingClientRect();
-    var cls = 'tooltip__bubble--';
-
     // Si déborde en haut → passer en bas
     if (preferredPos === 'top' && rect.top < 0) {
-      bubble.className = 'tooltip__bubble ' + cls + 'bottom tooltip__bubble--visible';
+      bubble.className = 'tooltip__bubble tooltip__bubble--bottom tooltip__bubble--visible';
     }
     // Si déborde en bas → passer en haut
     if (preferredPos === 'bottom' && rect.bottom > window.innerHeight) {
-      bubble.className = 'tooltip__bubble ' + cls + 'top tooltip__bubble--visible';
+      bubble.className = 'tooltip__bubble tooltip__bubble--top tooltip__bubble--visible';
     }
     // Si déborde à gauche → passer à droite
     if (preferredPos === 'left' && rect.left < 0) {
-      bubble.className = 'tooltip__bubble ' + cls + 'right tooltip__bubble--visible';
+      bubble.className = 'tooltip__bubble tooltip__bubble--right tooltip__bubble--visible';
     }
     // Si déborde à droite → passer à gauche
     if (preferredPos === 'right' && rect.right > window.innerWidth) {
-      bubble.className = 'tooltip__bubble ' + cls + 'left tooltip__bubble--visible';
+      bubble.className = 'tooltip__bubble tooltip__bubble--left tooltip__bubble--visible';
     }
   }
 
@@ -359,7 +357,7 @@
       // Icône par défaut : adapter la taille du SVG inline
       var svg = defaultSvg;
       if (iconSize) {
-        svg = svg.replace(/width="20"/, 'width="' + iconSize + '"').replace(/height="20"/, 'height="' + iconSize + '"');
+        svg = svg.replace(/width="20"/, `width="${iconSize}"`).replace(/height="20"/, `height="${iconSize}"`);
       }
       btn.innerHTML = svg;
       return;
@@ -369,7 +367,7 @@
       window.fetchIconSvg(iconType || 'outline', iconName, function (svgStr) {
         if (svgStr) {
           var size = iconSize || '20';
-          svgStr = svgStr.replace(/width="\d+"/, 'width="' + size + '"').replace(/height="\d+"/, 'height="' + size + '"');
+          svgStr = svgStr.replace(/width="\d+"/, `width="${size}"`).replace(/height="\d+"/, `height="${size}"`);
           svgStr = svgStr.replace(/stroke="#[^"]+"/g, 'stroke="currentColor"').replace(/fill="#[^"]+"/g, function (m) {
             return m.indexOf('none') > -1 ? m : 'fill="currentColor"';
           });
@@ -457,7 +455,7 @@
 
       current = index;
       var offset = -(current * (100 / perView));
-      track.style.transform = 'translateX(' + offset + '%)';
+      track.style.transform = `translateX(${offset}%)`;
 
       // Mettre à jour les dots
       if (dotsContainer) {

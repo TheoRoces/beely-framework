@@ -259,15 +259,15 @@
       var checked = (isRequired || (consent && consent[catKey])) ? ' checked' : '';
       var disabled = isRequired ? ' disabled' : '';
 
-      html += ''
-        + '<label class="cookies__category' + (isRequired ? ' cookies__category--required' : '') + '">'
-        +   '<div class="cookies__category-info">'
-        +     '<strong>' + escapeHtml(cat.label) + (isRequired ? ' <span class="cookies__required-badge">requis</span>' : '') + '</strong>'
-        +     '<span>' + escapeHtml(cat.description) + '</span>'
-        +   '</div>'
-        +   '<input type="checkbox" class="cookies__toggle" data-category="' + escapeHtml(catKey) + '"' + checked + disabled + '>'
-        +   '<div class="cookies__switch"><div class="cookies__switch-knob"></div></div>'
-        + '</label>';
+      html += `
+        <label class="cookies__category${isRequired ? ' cookies__category--required' : ''}">
+          <div class="cookies__category-info">
+            <strong>${escapeHtml(cat.label)}${isRequired ? ' <span class="cookies__required-badge">requis</span>' : ''}</strong>
+            <span>${escapeHtml(cat.description)}</span>
+          </div>
+          <input type="checkbox" class="cookies__toggle" data-category="${escapeHtml(catKey)}"${checked}${disabled}>
+          <div class="cookies__switch"><div class="cookies__switch-knob"></div></div>
+        </label>`;
     }
     html += '</div>';
     return html;
@@ -284,27 +284,27 @@
 
     /* Lien vers la politique de confidentialite (optionnel) */
     var privacyLink = banner.privacyUrl
-      ? ' <a href="' + escapeHtml(banner.privacyUrl) + '" target="_blank" rel="noopener">' + escapeHtml(banner.privacyText || 'Politique de confidentialit\u00e9') + '</a>'
+      ? ` <a href="${escapeHtml(banner.privacyUrl)}" target="_blank" rel="noopener">${escapeHtml(banner.privacyText || 'Politique de confidentialité')}</a>`
       : '';
 
-    el.innerHTML = ''
-      + '<div class="cookies__inner">'
-      +   '<div class="cookies__text">'
-      +     '<strong class="cookies__title">' + escapeHtml(banner.title || 'Cookies') + '</strong>'
-      +     '<p>' + escapeHtml(banner.text || '') + privacyLink + '</p>'
-      +   '</div>'
-      +   '<div class="cookies__actions">'
-      +     '<button class="cookies__btn cookies__btn--accept">' + escapeHtml(banner.acceptText || 'Tout accepter') + '</button>'
-      +     '<button class="cookies__btn cookies__btn--reject">' + escapeHtml(banner.rejectText || 'Tout refuser') + '</button>'
-      +     '<button class="cookies__btn cookies__btn--settings">' + escapeHtml(banner.settingsText || 'Personnaliser') + '</button>'
-      +   '</div>'
-      +   '<div class="cookies__settings' + settingsVisible + '">'
-      +     buildCategoryToggles(existingConsent)
-      +     '<div class="cookies__settings-actions">'
-      +       '<button class="cookies__btn cookies__btn--save">' + escapeHtml(banner.saveText || 'Enregistrer mes choix') + '</button>'
-      +     '</div>'
-      +   '</div>'
-      + '</div>';
+    el.innerHTML = `
+      <div class="cookies__inner">
+        <div class="cookies__text">
+          <strong class="cookies__title">${escapeHtml(banner.title || 'Cookies')}</strong>
+          <p>${escapeHtml(banner.text || '')}${privacyLink}</p>
+        </div>
+        <div class="cookies__actions">
+          <button class="cookies__btn cookies__btn--accept">${escapeHtml(banner.acceptText || 'Tout accepter')}</button>
+          <button class="cookies__btn cookies__btn--reject">${escapeHtml(banner.rejectText || 'Tout refuser')}</button>
+          <button class="cookies__btn cookies__btn--settings">${escapeHtml(banner.settingsText || 'Personnaliser')}</button>
+        </div>
+        <div class="cookies__settings${settingsVisible}">
+          ${buildCategoryToggles(existingConsent)}
+          <div class="cookies__settings-actions">
+            <button class="cookies__btn cookies__btn--save">${escapeHtml(banner.saveText || 'Enregistrer mes choix')}</button>
+          </div>
+        </div>
+      </div>`;
 
     /* Tout accepter */
     el.querySelector('.cookies__btn--accept').addEventListener('click', function () {

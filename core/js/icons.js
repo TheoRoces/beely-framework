@@ -31,12 +31,12 @@
   }
 
   function fetchIcon(type, name, callback) {
-    var key = type + '/' + name;
+    var key = `${type}/${name}`;
     if (cache[key]) {
       callback(cache[key]);
       return;
     }
-    var url = getBasePath() + type + '/' + name + '.svg';
+    var url = `${getBasePath()}${type}/${name}.svg`;
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.onload = function () {

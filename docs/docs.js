@@ -183,17 +183,17 @@
     searchOverlay.innerHTML = ''
       + '<div class="docs-search__overlay"></div>'
       + '<div class="docs-search__dialog">'
-      +   '<div class="docs-search__header">'
-      +     '<svg class="docs-search__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
-      +     '<input class="docs-search__input" type="text" placeholder="Rechercher dans la documentation..." autofocus>'
-      +     '<kbd class="docs-search__kbd">Esc</kbd>'
-      +   '</div>'
-      +   '<div class="docs-search__results"></div>'
-      +   '<div class="docs-search__footer">'
-      +     '<span><kbd>&uarr;</kbd><kbd>&darr;</kbd> naviguer</span>'
-      +     '<span><kbd>&crarr;</kbd> ouvrir</span>'
-      +     '<span><kbd>Esc</kbd> fermer</span>'
-      +   '</div>'
+      + '<div class="docs-search__header">'
+      + '<svg class="docs-search__icon" width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="2"/><path d="M13 13l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+      + '<input class="docs-search__input" type="text" placeholder="Rechercher dans la documentation..." autofocus>'
+      + '<kbd class="docs-search__kbd">Esc</kbd>'
+      + '</div>'
+      + '<div class="docs-search__results"></div>'
+      + '<div class="docs-search__footer">'
+      + '<span><kbd>&uarr;</kbd><kbd>&darr;</kbd> naviguer</span>'
+      + '<span><kbd>&crarr;</kbd> ouvrir</span>'
+      + '<span><kbd>Esc</kbd> fermer</span>'
+      + '</div>'
       + '</div>';
 
     document.body.appendChild(searchOverlay);
@@ -445,7 +445,16 @@
     gridBtn.setAttribute('title', 'Créateur de grilles');
     gridBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>';
 
-    headerActions.insertBefore(gridBtn, themeToggle);
+    // Bouton sélecteur d'icônes (swatch-book icon)
+    var iconsBtn = document.createElement('a');
+    iconsBtn.href = 'icons.html#toutes-les-icones';
+    iconsBtn.className = 'header__creator-btn';
+    iconsBtn.setAttribute('aria-label', 'Sélecteur d\'icônes');
+    iconsBtn.setAttribute('title', 'Sélecteur d\'icônes');
+    iconsBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4z"/><path d="M14 4h6v6h-6z"/><path d="M4 14h6v6H4z"/><circle cx="17" cy="17" r="3"/></svg>';
+
+    headerActions.insertBefore(iconsBtn, themeToggle);
+    headerActions.insertBefore(gridBtn, iconsBtn);
     headerActions.insertBefore(animBtn, gridBtn);
   }
 

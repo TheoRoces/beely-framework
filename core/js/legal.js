@@ -169,26 +169,24 @@
     }
 
     if (activeServices.length === 0) {
-      target.innerHTML = '<p>Ce site n\'utilise aucun cookie tiers. Seul un cookie technique (<code>'
-        + escapeHtml((cookiesConfig.banner && cookiesConfig.banner.cookieName) || 'cookie_consent')
-        + '</code>) est utilise pour enregistrer votre choix de consentement.</p>';
+      target.innerHTML = `<p>Ce site n'utilise aucun cookie tiers. Seul un cookie technique (<code>${escapeHtml((cookiesConfig.banner && cookiesConfig.banner.cookieName) || 'cookie_consent')}</code>) est utilisé pour enregistrer votre choix de consentement.</p>`;
       return;
     }
 
     /* Generer le tableau */
-    var html = '<p>Ce site utilise les services suivants, soumis a votre consentement :</p>';
+    var html = '<p>Ce site utilise les services suivants, soumis à votre consentement :</p>';
     html += '<table>';
-    html += '<tr><th>Service</th><th>Editeur</th><th>Finalite</th><th>Cookies</th><th>Duree</th></tr>';
+    html += '<tr><th>Service</th><th>Éditeur</th><th>Finalité</th><th>Cookies</th><th>Durée</th></tr>';
 
     for (var s = 0; s < activeServices.length; s++) {
       var svc = activeServices[s];
-      html += '<tr>'
-        + '<td>' + escapeHtml(svc.info.name) + '</td>'
-        + '<td>' + escapeHtml(svc.info.provider) + '</td>'
-        + '<td>' + escapeHtml(svc.info.purpose) + ' (' + escapeHtml(svc.category) + ')</td>'
-        + '<td><code>' + escapeHtml(svc.info.cookies) + '</code></td>'
-        + '<td>' + escapeHtml(svc.info.duration) + '</td>'
-        + '</tr>';
+      html += `<tr>
+        <td>${escapeHtml(svc.info.name)}</td>
+        <td>${escapeHtml(svc.info.provider)}</td>
+        <td>${escapeHtml(svc.info.purpose)} (${escapeHtml(svc.category)})</td>
+        <td><code>${escapeHtml(svc.info.cookies)}</code></td>
+        <td>${escapeHtml(svc.info.duration)}</td>
+      </tr>`;
     }
 
     html += '</table>';
@@ -196,10 +194,7 @@
     /* Ajouter le cookie de consentement */
     var cookieName = (cookiesConfig.banner && cookiesConfig.banner.cookieName) || 'cookie_consent';
     var cookieDuration = (cookiesConfig.banner && cookiesConfig.banner.cookieDuration) || 395;
-    html += '<p>Un cookie technique (<code>' + escapeHtml(cookieName) + '</code>) '
-      + 'est egalement depose pour enregistrer votre choix de consentement. '
-      + 'Ce cookie a une duree de ' + cookieDuration + ' jours (~13 mois) '
-      + 'et ne necessite pas de consentement (cookie strictement necessaire).</p>';
+    html += `<p>Un cookie technique (<code>${escapeHtml(cookieName)}</code>) est également déposé pour enregistrer votre choix de consentement. Ce cookie a une durée de ${cookieDuration} jours (~13 mois) et ne nécessite pas de consentement (cookie strictement nécessaire).</p>`;
 
     target.innerHTML = html;
   }

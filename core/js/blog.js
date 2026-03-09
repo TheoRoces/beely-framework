@@ -23,12 +23,12 @@
 
     if (slug && !isLocal) {
       // URL propre en production
-      return blogBase + '/' + encodeURIComponent(slug);
+      return `${blogBase}/${encodeURIComponent(slug)}`;
     }
     // Fallback query param (local dev ou pas de slug)
     var articlePage = config.articlePage || 'article.html';
     if (articlePage.charAt(0) !== '/') articlePage = '/' + articlePage;
-    return articlePage + '?' + (slug ? 'slug=' + encodeURIComponent(slug) : 'id=' + id);
+    return `${articlePage}?${slug ? 'slug=' + encodeURIComponent(slug) : 'id=' + id}`;
   }
 
   /**
@@ -122,13 +122,13 @@
   }
 
   /** SVG placeholder pour les images manquantes (icône photo neutre) */
-  var placeholderSvg = '<div class="blog-card__placeholder">'
-    + '<svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">'
-    + '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>'
-    + '<circle cx="8.5" cy="8.5" r="1.5"/>'
-    + '<polyline points="21 15 16 10 5 21"/>'
-    + '</svg>'
-    + '</div>';
+  var placeholderSvg = `<div class="blog-card__placeholder">
+    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+      <circle cx="8.5" cy="8.5" r="1.5"/>
+      <polyline points="21 15 16 10 5 21"/>
+    </svg>
+  </div>`;
 
   /**
    * Sanitise du HTML CMS : supprime les balises et attributs dangereux.
@@ -268,7 +268,7 @@
     var qs = [];
     for (var k in params) {
       if (params[k] !== undefined && params[k] !== null && params[k] !== '') {
-        qs.push(encodeURIComponent(k) + '=' + encodeURIComponent(params[k]));
+        qs.push(`${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`);
       }
     }
     if (qs.length) url += (url.indexOf('?') > -1 ? '&' : '?') + qs.join('&');
@@ -331,14 +331,14 @@
   function renderSkeleton(count) {
     var html = '';
     for (var i = 0; i < count; i++) {
-      html += '<div class="blog-skeleton">'
-        + '<div class="blog-skeleton__image"></div>'
-        + '<div class="blog-skeleton__body">'
-        +   '<div class="blog-skeleton__line"></div>'
-        +   '<div class="blog-skeleton__line blog-skeleton__line--short"></div>'
-        +   '<div class="blog-skeleton__line blog-skeleton__line--xs"></div>'
-        + '</div>'
-        + '</div>';
+      html += `<div class="blog-skeleton">
+        <div class="blog-skeleton__image"></div>
+        <div class="blog-skeleton__body">
+          <div class="blog-skeleton__line"></div>
+          <div class="blog-skeleton__line blog-skeleton__line--short"></div>
+          <div class="blog-skeleton__line blog-skeleton__line--xs"></div>
+        </div>
+      </div>`;
     }
     return html;
   }
@@ -356,45 +356,36 @@
     var slug = safeField(row, 'slug');
     var link = buildArticleLink(slug, row.id);
 
-    var html = '<a href="' + link + '" class="blog-card anim-fade-in-up">';
+    var imageHtml = img
+      ? `<div class="blog-card__image"><img src="${escapeHtml(img)}" alt="${escapeHtml(title || '')}" loading="lazy"></div>`
+      : `<div class="blog-card__image">${placeholderSvg}</div>`;
 
-    if (img) {
-      html += '<div class="blog-card__image">'
-        + '<img src="' + escapeHtml(img) + '" alt="' + escapeHtml(title || '') + '" loading="lazy">'
-        + '</div>';
-    } else {
-      html += '<div class="blog-card__image">' + placeholderSvg + '</div>';
-    }
-
-    html += '<div class="blog-card__body">';
-
+    var catsHtml = '';
     if (cats.length > 0) {
-      html += '<div class="blog-card__categories">';
+      catsHtml = '<div class="blog-card__categories">';
       for (var i = 0; i < cats.length; i++) {
-        html += '<span class="blog-card__category">' + escapeHtml(cats[i]) + '</span>';
+        catsHtml += `<span class="blog-card__category">${escapeHtml(cats[i])}</span>`;
       }
-      html += '</div>';
-    }
-
-    if (title) {
-      html += '<h3 class="blog-card__title">' + escapeHtml(title) + '</h3>';
-    }
-    if (excerpt) {
-      html += '<p class="blog-card__excerpt">' + escapeHtml(excerpt) + '</p>';
+      catsHtml += '</div>';
     }
 
     var metaParts = [];
-    if (date) metaParts.push('<span class="blog-card__meta-item">' + formatDate(date) + '</span>');
-    if (author) metaParts.push('<span class="blog-card__meta-item">' + escapeHtml(author) + '</span>');
-    if (readTime) metaParts.push('<span class="blog-card__meta-item">' + escapeHtml(String(readTime)) + ' min</span>');
-    if (metaParts.length > 0) {
-      html += '<div class="blog-card__meta">'
-        + metaParts.join('<span class="blog-card__meta-sep">&middot;</span>')
-        + '</div>';
-    }
+    if (date) metaParts.push(`<span class="blog-card__meta-item">${formatDate(date)}</span>`);
+    if (author) metaParts.push(`<span class="blog-card__meta-item">${escapeHtml(author)}</span>`);
+    if (readTime) metaParts.push(`<span class="blog-card__meta-item">${escapeHtml(String(readTime))} min</span>`);
+    var metaHtml = metaParts.length > 0
+      ? `<div class="blog-card__meta">${metaParts.join('<span class="blog-card__meta-sep">&middot;</span>')}</div>`
+      : '';
 
-    html += '</div></a>';
-    return html;
+    return `<a href="${link}" class="blog-card anim-fade-in-up">
+      ${imageHtml}
+      <div class="blog-card__body">
+        ${catsHtml}
+        ${title ? `<h3 class="blog-card__title">${escapeHtml(title)}</h3>` : ''}
+        ${excerpt ? `<p class="blog-card__excerpt">${escapeHtml(excerpt)}</p>` : ''}
+        ${metaHtml}
+      </div>
+    </a>`;
   }
 
   /* ---------- Helpers: DOM ---------- */
@@ -475,10 +466,10 @@
     })();
 
     /* Build DOM */
-    container.innerHTML = ''
-      + '<div class="blog__filters-wrap"></div>'
-      + '<div class="blog__grid">' + renderSkeleton(perPage) + '</div>'
-      + '<div class="blog__load-more"></div>';
+    container.innerHTML = `
+      <div class="blog__filters-wrap"></div>
+      <div class="blog__grid">${renderSkeleton(perPage)}</div>
+      <div class="blog__load-more"></div>`;
 
     filtersWrap = container.querySelector('.blog__filters-wrap');
     gridEl = container.querySelector('.blog__grid');
@@ -538,61 +529,53 @@
 
     /** Suffixe décompte optionnel */
     function countSuffix(fc, counts, key) {
-      return fc.count ? ' <span class="blog__filter-count">(' + counts[key] + ')</span>' : '';
+      return fc.count ? ` <span class="blog__filter-count">(${counts[key]})</span>` : '';
     }
 
     function renderPillsFilter(fc, keys, counts, selected) {
       var isNone = selected.length === 0;
-      var h = '<div class="blog__filters" data-filter-field="' + fc.field + '" data-filter-style="pills">';
-      h += '<button class="blog__filter-tag' + (isNone ? ' blog__filter-tag--active' : '') + '" data-filter-value="">Tous</button>';
+      var h = `<div class="blog__filters" data-filter-field="${fc.field}" data-filter-style="pills">`;
+      h += `<button class="blog__filter-tag${isNone ? ' blog__filter-tag--active' : ''}" data-filter-value="">Tous</button>`;
       for (var i = 0; i < keys.length; i++) {
         var act = selected.indexOf(keys[i]) > -1;
-        h += '<button class="blog__filter-tag' + (act ? ' blog__filter-tag--active' : '')
-          + '" data-filter-value="' + escapeHtml(keys[i]) + '">'
-          + escapeHtml(keys[i]) + countSuffix(fc, counts, keys[i]) + '</button>';
+        h += `<button class="blog__filter-tag${act ? ' blog__filter-tag--active' : ''}" data-filter-value="${escapeHtml(keys[i])}">${escapeHtml(keys[i])}${countSuffix(fc, counts, keys[i])}</button>`;
       }
       return h + '</div>';
     }
 
     function renderSelectFilter(fc, keys, counts, selected) {
       var selValue = selected.length > 0 ? selected[0] : '';
-      var triggerLabel = selValue ? escapeHtml(selValue) + (fc.count ? ' (' + counts[selValue] + ')' : '') : escapeHtml(fc.label) + ' — Tous';
+      var triggerLabel = selValue ? `${escapeHtml(selValue)}${fc.count ? ` (${counts[selValue]})` : ''}` : `${escapeHtml(fc.label)} — Tous`;
       var filledClass = selValue ? ' blog__filter-select-trigger--filled' : '';
-      var h = '<div class="blog__filters blog__filters--select" data-filter-field="' + fc.field + '" data-filter-style="select">';
-      h += '<div class="blog__filter-select">';
-      h += '<div class="blog__filter-select-trigger' + filledClass + '">' + triggerLabel + '</div>';
-      h += '<div class="blog__filter-select-options">';
-      h += '<div class="blog__filter-select-option' + (!selValue ? ' blog__filter-select-option--active' : '') + '" data-value="">Tous</div>';
+      var h = `<div class="blog__filters blog__filters--select" data-filter-field="${fc.field}" data-filter-style="select">
+        <div class="blog__filter-select">
+          <div class="blog__filter-select-trigger${filledClass}">${triggerLabel}</div>
+          <div class="blog__filter-select-options">
+            <div class="blog__filter-select-option${!selValue ? ' blog__filter-select-option--active' : ''}" data-value="">Tous</div>`;
       for (var i = 0; i < keys.length; i++) {
         var act = selected.indexOf(keys[i]) > -1;
-        h += '<div class="blog__filter-select-option' + (act ? ' blog__filter-select-option--active' : '')
-          + '" data-value="' + escapeHtml(keys[i]) + '">'
-          + escapeHtml(keys[i]) + countSuffix(fc, counts, keys[i]) + '</div>';
+        h += `<div class="blog__filter-select-option${act ? ' blog__filter-select-option--active' : ''}" data-value="${escapeHtml(keys[i])}">${escapeHtml(keys[i])}${countSuffix(fc, counts, keys[i])}</div>`;
       }
       h += '</div></div></div>';
       return h;
     }
 
     function renderCheckboxFilter(fc, keys, counts, selected) {
-      var h = '<div class="blog__filters blog__filters--checkboxes" data-filter-field="' + fc.field + '" data-filter-style="checkboxes">';
+      var h = `<div class="blog__filters blog__filters--checkboxes" data-filter-field="${fc.field}" data-filter-style="checkboxes">`;
       for (var i = 0; i < keys.length; i++) {
         var act = selected.indexOf(keys[i]) > -1;
-        h += '<div class="blog__filter-checkbox-option' + (act ? ' blog__filter-checkbox-option--active' : '')
-          + '" data-value="' + escapeHtml(keys[i]) + '">'
-          + escapeHtml(keys[i]) + countSuffix(fc, counts, keys[i]) + '</div>';
+        h += `<div class="blog__filter-checkbox-option${act ? ' blog__filter-checkbox-option--active' : ''}" data-value="${escapeHtml(keys[i])}">${escapeHtml(keys[i])}${countSuffix(fc, counts, keys[i])}</div>`;
       }
       return h + '</div>';
     }
 
     function renderRadioFilter(fc, keys, counts, selected) {
       var isNone = selected.length === 0;
-      var h = '<div class="blog__filters blog__filters--radios" data-filter-field="' + fc.field + '" data-filter-style="radios">';
-      h += '<div class="blog__filter-radio-option' + (isNone ? ' blog__filter-radio-option--active' : '') + '" data-value="">Tous</div>';
+      var h = `<div class="blog__filters blog__filters--radios" data-filter-field="${fc.field}" data-filter-style="radios">`;
+      h += `<div class="blog__filter-radio-option${isNone ? ' blog__filter-radio-option--active' : ''}" data-value="">Tous</div>`;
       for (var i = 0; i < keys.length; i++) {
         var act = selected.indexOf(keys[i]) > -1;
-        h += '<div class="blog__filter-radio-option' + (act ? ' blog__filter-radio-option--active' : '')
-          + '" data-value="' + escapeHtml(keys[i]) + '">'
-          + escapeHtml(keys[i]) + countSuffix(fc, counts, keys[i]) + '</div>';
+        h += `<div class="blog__filter-radio-option${act ? ' blog__filter-radio-option--active' : ''}" data-value="${escapeHtml(keys[i])}">${escapeHtml(keys[i])}${countSuffix(fc, counts, keys[i])}</div>`;
       }
       return h + '</div>';
     }
@@ -600,17 +583,15 @@
     function renderMultiSelectFilter(fc, keys, counts, selected) {
       var triggerLabel = selected.length > 0
         ? selected.join(', ')
-        : escapeHtml(fc.label) + ' — Tous';
+        : `${escapeHtml(fc.label)} — Tous`;
       var filledClass = selected.length > 0 ? ' blog__filter-multi-trigger--filled' : '';
-      var h = '<div class="blog__filters blog__filters--multi-select" data-filter-field="' + fc.field + '" data-filter-style="multi-select">';
-      h += '<div class="blog__filter-multi">';
-      h += '<div class="blog__filter-multi-trigger' + filledClass + '">' + triggerLabel + '</div>';
-      h += '<div class="blog__filter-multi-options">';
+      var h = `<div class="blog__filters blog__filters--multi-select" data-filter-field="${fc.field}" data-filter-style="multi-select">
+        <div class="blog__filter-multi">
+          <div class="blog__filter-multi-trigger${filledClass}">${triggerLabel}</div>
+          <div class="blog__filter-multi-options">`;
       for (var i = 0; i < keys.length; i++) {
         var act = selected.indexOf(keys[i]) > -1;
-        h += '<div class="blog__filter-multi-option' + (act ? ' blog__filter-multi-option--active' : '')
-          + '" data-value="' + escapeHtml(keys[i]) + '">'
-          + escapeHtml(keys[i]) + countSuffix(fc, counts, keys[i]) + '</div>';
+        h += `<div class="blog__filter-multi-option${act ? ' blog__filter-multi-option--active' : ''}" data-value="${escapeHtml(keys[i])}">${escapeHtml(keys[i])}${countSuffix(fc, counts, keys[i])}</div>`;
       }
       h += '</div></div></div>';
       return h;
@@ -851,7 +832,7 @@
 
   /** Helper: icon markup (requires icons.js) */
   function iconHtml(name, size) {
-    return '<span data-icon="' + name + '" data-icon-type="outline" data-icon-size="' + (size || 16) + '" data-icon-animate="no"></span>';
+    return `<span data-icon="${name}" data-icon-type="outline" data-icon-size="${size || 16}" data-icon-animate="no"></span>`;
   }
 
   function renderArticle(container, row) {
@@ -877,7 +858,7 @@
     // Helper: set or create a <meta> tag
     function setMeta(attr, attrValue, content) {
       if (!content) return;
-      var sel = 'meta[' + attr + '="' + attrValue + '"]';
+      var sel = `meta[${attr}="${attrValue}"]`;
       var tag = document.querySelector(sel);
       if (!tag) {
         tag = document.createElement('meta');
@@ -911,24 +892,24 @@
     // Back link — history.back() si navigation interne, sinon fallback config
     var blogPage = config.blogPage || 'blog';
     if (blogPage.charAt(0) !== '/') blogPage = '/' + blogPage;
-    html += '<a href="' + blogPage + '" onclick="if(history.length>1){history.back();return false;}" class="blog-article__back">'
-      + iconHtml('arrow-left', 16)
-      + '<span>Retour au blog</span>'
-      + '</a>';
+    html += `<a href="${blogPage}" onclick="if(history.length>1){history.back();return false;}" class="blog-article__back">
+      ${iconHtml('arrow-left', 16)}
+      <span>Retour au blog</span>
+    </a>`;
 
     // Hero
     if (featuredImg) {
-      html += '<div class="blog-article__hero anim-fade-in">'
-        + '<img src="' + escapeHtml(featuredImg) + '" alt="' + escapeHtml(title || '') + '">'
-        + '</div>';
+      html += `<div class="blog-article__hero anim-fade-in">
+        <img src="${escapeHtml(featuredImg)}" alt="${escapeHtml(title || '')}">
+      </div>`;
     } else {
-      html += '<div class="blog-article__hero blog-article__hero--placeholder anim-fade-in">'
-        + '<svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">'
-        + '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>'
-        + '<circle cx="8.5" cy="8.5" r="1.5"/>'
-        + '<polyline points="21 15 16 10 5 21"/>'
-        + '</svg>'
-        + '</div>';
+      html += `<div class="blog-article__hero blog-article__hero--placeholder anim-fade-in">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </div>`;
     }
 
     // Header
@@ -938,13 +919,13 @@
     if (cats.length > 0) {
       html += '<div class="blog-article__categories anim-fade-in-up">';
       for (var i = 0; i < cats.length; i++) {
-        html += '<span class="blog-article__category">' + escapeHtml(cats[i]) + '</span>';
+        html += `<span class="blog-article__category">${escapeHtml(cats[i])}</span>`;
       }
       html += '</div>';
     }
 
     if (title) {
-      html += '<h1 class="blog-article__title anim-fade-in-up anim--delay-1">' + escapeHtml(title) + '</h1>';
+      html += `<h1 class="blog-article__title anim-fade-in-up anim--delay-1">${escapeHtml(title)}</h1>`;
     }
 
     // Meta with icons
@@ -952,22 +933,22 @@
     if (hasMetaItems) {
       html += '<div class="blog-article__meta anim-fade-in-up anim--delay-2">';
       if (date) {
-        html += '<span class="blog-article__meta-item">'
-          + iconHtml('calendar-days', 16)
-          + '<span>' + formatDate(date) + '</span>'
-          + '</span>';
+        html += `<span class="blog-article__meta-item">
+          ${iconHtml('calendar-days', 16)}
+          <span>${formatDate(date)}</span>
+        </span>`;
       }
       if (author) {
-        html += '<span class="blog-article__meta-item">'
-          + iconHtml('user', 16)
-          + '<span>' + escapeHtml(author) + '</span>'
-          + '</span>';
+        html += `<span class="blog-article__meta-item">
+          ${iconHtml('user', 16)}
+          <span>${escapeHtml(author)}</span>
+        </span>`;
       }
       if (readTime) {
-        html += '<span class="blog-article__meta-item">'
-          + iconHtml('clock', 16)
-          + '<span>' + escapeHtml(String(readTime)) + ' min de lecture</span>'
-          + '</span>';
+        html += `<span class="blog-article__meta-item">
+          ${iconHtml('clock', 16)}
+          <span>${escapeHtml(String(readTime))} min de lecture</span>
+        </span>`;
       }
       html += '</div>';
     }
@@ -976,15 +957,14 @@
 
     // Content (HTML sanitisé depuis Baserow)
     if (content) {
-      html += '<div class="blog-article__content anim-fade-in-up anim--delay-3">' + sanitizeHtml(content) + '</div>';
+      html += `<div class="blog-article__content anim-fade-in-up anim--delay-3">${sanitizeHtml(content)}</div>`;
     }
 
     // Taxonomies with icon
     if (taxonomies.length > 0) {
-      html += '<div class="blog-article__taxonomies">';
-      html += iconHtml('hashtag', 14);
+      html += `<div class="blog-article__taxonomies">${iconHtml('hashtag', 14)}`;
       for (var ti = 0; ti < taxonomies.length; ti++) {
-        html += '<span class="blog-article__taxonomy">' + escapeHtml(taxonomies[ti]) + '</span>';
+        html += `<span class="blog-article__taxonomy">${escapeHtml(taxonomies[ti])}</span>`;
       }
       html += '</div>';
     }
@@ -1007,9 +987,9 @@
     if (galleryUrls.length > 0) {
       html += '<div class="blog-article__gallery">';
       for (var gi = 0; gi < galleryUrls.length; gi++) {
-        html += '<div class="blog-article__gallery-item" data-lightbox-index="' + gi + '">'
-          + '<img src="' + escapeHtml(galleryUrls[gi]) + '" alt="" loading="lazy">'
-          + '</div>';
+        html += `<div class="blog-article__gallery-item" data-lightbox-index="${gi}">
+          <img src="${escapeHtml(galleryUrls[gi])}" alt="" loading="lazy">
+        </div>`;
       }
       html += '</div>';
     }
@@ -1017,22 +997,23 @@
     // Share section
     var pageUrl = encodeURIComponent(window.location.href);
     var pageTitle = encodeURIComponent(title || '');
-    html += '<div class="blog-article__share">';
-    html += '<h3 class="blog-article__share-title">Partager cet article</h3>';
-    html += '<div class="blog-article__share-actions">';
-    html += '<button class="blog-article__share-btn" data-share-copy>'
-      + iconHtml('link', 18)
-      + '<span>Copier le lien</span>'
-      + '</button>';
-    html += '<a href="https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle + '" target="_blank" rel="noopener noreferrer" class="blog-article__share-btn">'
-      + iconHtml('arrow-up-right', 18)
-      + '<span>Twitter / X</span>'
-      + '</a>';
-    html += '<a href="https://www.linkedin.com/sharing/share-offsite/?url=' + pageUrl + '" target="_blank" rel="noopener noreferrer" class="blog-article__share-btn">'
-      + iconHtml('arrow-up-right', 18)
-      + '<span>LinkedIn</span>'
-      + '</a>';
-    html += '</div></div>';
+    html += `<div class="blog-article__share">
+      <h3 class="blog-article__share-title">Partager cet article</h3>
+      <div class="blog-article__share-actions">
+        <button class="blog-article__share-btn" data-share-copy>
+          ${iconHtml('link', 18)}
+          <span>Copier le lien</span>
+        </button>
+        <a href="https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}" target="_blank" rel="noopener noreferrer" class="blog-article__share-btn">
+          ${iconHtml('arrow-up-right', 18)}
+          <span>Twitter / X</span>
+        </a>
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}" target="_blank" rel="noopener noreferrer" class="blog-article__share-btn">
+          ${iconHtml('arrow-up-right', 18)}
+          <span>LinkedIn</span>
+        </a>
+      </div>
+    </div>`;
 
     container.innerHTML = html;
 
@@ -1131,12 +1112,12 @@
 
     lightbox = document.createElement('div');
     lightbox.className = 'blog-lightbox';
-    lightbox.innerHTML = ''
-      + '<div class="blog-lightbox__overlay"></div>'
-      + '<img class="blog-lightbox__image" src="" alt="">'
-      + '<button class="blog-lightbox__close">&times;</button>'
-      + '<button class="blog-lightbox__prev">&lsaquo;</button>'
-      + '<button class="blog-lightbox__next">&rsaquo;</button>';
+    lightbox.innerHTML = `
+      <div class="blog-lightbox__overlay"></div>
+      <img class="blog-lightbox__image" src="" alt="">
+      <button class="blog-lightbox__close">&times;</button>
+      <button class="blog-lightbox__prev">&lsaquo;</button>
+      <button class="blog-lightbox__next">&rsaquo;</button>`;
     document.body.appendChild(lightbox);
 
     var imgEl = lightbox.querySelector('.blog-lightbox__image');
@@ -1205,7 +1186,7 @@
     if (!config.baserow || !config.baserow.tableId) {
       var containers = document.querySelectorAll('[data-blog]');
       for (var i = 0; i < containers.length; i++) {
-        containers[i].innerHTML = '<div class="blog__empty">Blog non configur\u00e9</div>';
+        containers[i].innerHTML = '<div class="blog__empty">Blog non configuré</div>';
       }
       return;
     }
