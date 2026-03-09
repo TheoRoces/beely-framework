@@ -16,7 +16,6 @@ registerComponent('docs-sidebar', function (slots) {
     { href: 'blog.html',      label: 'Blog',           key: 'blog' },
     { href: 'cookies.html',   label: 'Cookies & RGPD', key: 'cookies' },
     { cat: 'Outils' },
-    { href: 'configurateur.html', label: 'Configurateur', key: 'configurateur' },
     { href: 'sitemap.html',    label: 'Sitemap',        key: 'sitemap' },
     { href: 'params.html',     label: 'Param\u00e8tres URL', key: 'params' },
     { href: 'wireframes.html', label: 'Wireframes',     key: 'wireframes' },

@@ -516,6 +516,14 @@
      ===================================================================== */
 
   function init() {
+    // Empêcher le navigateur de restaurer le scroll d'une visite précédente
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     initCopyButtons();
     initTOC();
     initCreatorButtons();
