@@ -23,11 +23,7 @@
     box-sizing: border-box;
   }
 
-  .wf-megamenu-08 .wf-megamenu {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
+  .wf-megamenu-08 .wf-megamenu {}
 
   .wf-megamenu-08 .wf-megamenu__group-title {
     font-size: 0.75rem;
@@ -42,9 +38,7 @@
 
   .wf-megamenu-08 .wf-megamenu__link {
     display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.5rem 0.5rem;
+    align-items: center;padding: 0.5rem 0.5rem;
     color: var(--wf-mm-text);
     text-decoration: none;
     font-size: 0.875rem;
@@ -74,18 +68,14 @@
     padding-top: 1rem;
     border-top: 1px solid var(--wf-mm-border);
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
+    align-items: center;}
 
   .wf-megamenu-08 .wf-megamenu__footer-link {
     color: var(--wf-mm-text-muted);
     text-decoration: none;
     font-size: 0.8125rem;
     display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    transition: color 0.15s ease;
+    align-items: center;transition: color 0.15s ease;
   }
 
   .wf-megamenu-08 .wf-megamenu__footer-link:hover {
@@ -93,24 +83,18 @@
   }
 
   @media (max-width: 700px) {
-    .wf-megamenu-08 .wf-megamenu {
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
+    .wf-megamenu-08 .wf-megamenu {}
   }
 
   @media (max-width: 480px) {
     .wf-megamenu-08 .wf-megamenu {
-      grid-template-columns: 1fr;
-    }
+      }
     .wf-megamenu-08 {
       padding: 1.25rem;
     }
     .wf-megamenu-08 .wf-megamenu__footer {
       flex-direction: column;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
+      align-items: flex-start;}
   }
 </style>
 

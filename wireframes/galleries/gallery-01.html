@@ -5,7 +5,6 @@
   .wf-gallery-01 {
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
     --wf-gallery-01-gap: 1.5rem;
-    --wf-gallery-01-columns: 3;
     --wf-gallery-01-radius: 0.5rem;
     --wf-gallery-01-bg: var(--color-bg);
     --wf-gallery-01-text: var(--color-text);
@@ -50,11 +49,7 @@
     line-height: 1.6;
   }
 
-  .wf-gallery-01__grid {
-    display: grid;
-    grid-template-columns: repeat(var(--wf-gallery-01-columns), 1fr);
-    gap: var(--wf-gallery-01-gap);
-    max-width: 80rem;
+  .wf-gallery-01__grid {max-width: 80rem;
     margin: 0 auto;
   }
 
@@ -94,14 +89,12 @@
 
   @media (max-width: 768px) {
     .wf-gallery-01__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+      }
   }
 
   @media (max-width: 480px) {
     .wf-gallery-01__grid {
-      grid-template-columns: 1fr;
-    }
+      }
   }
 </style>
 
@@ -112,7 +105,7 @@
     <p class="wf-gallery-01__description">Découvrez une selection de nos projets et réalisations à travers cette galerie d'images soigneusement selectionnees.</p>
   </div>
 
-  <div class="wf-gallery-01__grid">
+  <div class="wf-gallery-01__grid grid" data-cols="3" data-gap="md">
     <div class="wf-img">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>
     </div>

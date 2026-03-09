@@ -5,7 +5,6 @@
   .wf-gallery-03 {
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
     --wf-gallery-03-gap: 1rem;
-    --wf-gallery-03-columns: 4;
     --wf-gallery-03-radius: 0.5rem;
     --wf-gallery-03-bg: var(--color-bg);
     --wf-gallery-03-text: var(--color-text);
@@ -51,11 +50,7 @@
     line-height: 1.6;
   }
 
-  .wf-gallery-03__grid {
-    display: grid;
-    grid-template-columns: repeat(var(--wf-gallery-03-columns), 1fr);
-    gap: var(--wf-gallery-03-gap);
-    max-width: 80rem;
+  .wf-gallery-03__grid {max-width: 80rem;
     margin: 0 auto;
   }
 
@@ -104,20 +99,17 @@
 
   @media (max-width: 1024px) {
     .wf-gallery-03__grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+      }
   }
 
   @media (max-width: 768px) {
     .wf-gallery-03__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+      }
   }
 
   @media (max-width: 480px) {
     .wf-gallery-03__grid {
-      grid-template-columns: 1fr;
-    }
+      }
   }
 </style>
 
@@ -128,7 +120,7 @@
     <p class="wf-gallery-03__description">Survolez chaque image pour découvrir l'effet de zoom interactif.</p>
   </div>
 
-  <div class="wf-gallery-03__grid">
+  <div class="wf-gallery-03__grid grid" data-cols="4" data-gap="sm">
     <div class="wf-gallery-03__item">
       <div class="wf-img">
         <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

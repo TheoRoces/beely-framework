@@ -28,9 +28,7 @@
 
   .wf-megamenu-14 .wf-megamenu__profile {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem 2rem;
+    align-items: center;padding: 1.25rem 2rem;
     background: var(--color-bg-alt);
     border-bottom: 1px solid var(--wf-mm-border);
   }
@@ -77,11 +75,7 @@
     white-space: nowrap;
   }
 
-  .wf-megamenu-14 .wf-megamenu {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 1.5rem 2rem;
+  .wf-megamenu-14 .wf-megamenu {padding: 1.5rem 2rem;
   }
 
   .wf-megamenu-14 .wf-megamenu__group-title {
@@ -97,9 +91,7 @@
 
   .wf-megamenu-14 .wf-megamenu__link {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.5rem;
+    align-items: center;padding: 0.4rem 0.5rem;
     color: var(--wf-mm-text);
     text-decoration: none;
     font-size: 0.875rem;
@@ -143,9 +135,7 @@
 
   .wf-megamenu-14 .wf-megamenu__action-btn {
     display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.5rem 1rem;
+    align-items: center;padding: 0.5rem 1rem;
     background: var(--wf-mm-accent);
     color: var(--color-text-on-dark);
     text-decoration: none;
@@ -160,25 +150,19 @@
   }
 
   @media (max-width: 700px) {
-    .wf-megamenu-14 .wf-megamenu {
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      padding: 1.25rem;
+    .wf-megamenu-14 .wf-megamenu {padding: 1.25rem;
     }
   }
 
   @media (max-width: 480px) {
     .wf-megamenu-14 .wf-megamenu {
-      grid-template-columns: 1fr;
-    }
+      }
     .wf-megamenu-14 .wf-megamenu__profile {
       padding: 1rem 1.25rem;
     }
     .wf-megamenu-14 .wf-megamenu__actions {
       padding: 0.75rem 1.25rem;
-      flex-direction: column;
-      gap: 0.75rem;
-      align-items: stretch;
+      flex-direction: column;align-items: stretch;
       text-align: center;
     }
   }
