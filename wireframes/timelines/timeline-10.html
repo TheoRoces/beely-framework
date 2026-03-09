@@ -71,7 +71,7 @@
     bottom: calc(-1 * var(--wf-spacing-lg) + 1.5rem);
     width: 3px;
     background: var(--wf-color-line);
-    border-radius: 2px;
+    border-radius: var(--radius-xs, 2px);
   }
 
   .wf-timeline-10 .wf-timeline__item:last-child::before {
@@ -162,7 +162,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     padding: 0.125rem 0.5rem;
-    border-radius: 999px;
+    border-radius: var(--radius-full, 999px);
     margin-top: 0.5rem;
   }
 
