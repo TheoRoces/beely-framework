@@ -578,6 +578,7 @@
     var gridCSS = '';
     var iconsCSS = '';
     var iconsJS = '';
+    var elementsJS = '';
     var wireframesJS = '';
     var PER_PAGE = 30;
     var visibleCount = PER_PAGE;
@@ -638,9 +639,17 @@
       if (iconsJS) {
         html += '<script>' + iconsJS + '<\/script>';
       }
+      if (elementsJS) {
+        html += '<script>' + elementsJS + '<\/script>';
+      }
       if (interactive && wireframesJS) {
         html += '<script>' + wireframesJS + '<\/script>';
       }
+      /* Call framework init functions after all scripts are loaded */
+      html += '<script>'
+        + 'if(typeof initElements==="function")initElements();'
+        + 'if(typeof initIcons==="function")initIcons();'
+        + '<\/script>';
       html += '<\/body><\/html>';
       return html;
     }
@@ -1043,7 +1052,8 @@
       fetch('../core/css/forms.css').then(function (r) { return r.ok ? r.text() : ''; }),
       fetch('../core/css/grid.css').then(function (r) { return r.ok ? r.text() : ''; }),
       fetch('../core/css/icons.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/js/icons.js').then(function (r) { return r.ok ? r.text() : ''; })
+      fetch('../core/js/icons.js').then(function (r) { return r.ok ? r.text() : ''; }),
+      fetch('../core/js/elements.js').then(function (r) { return r.ok ? r.text() : ''; })
     ]).then(function (results) {
       tokensCSS = stripScripts(results[0]);
       wireframesCSS = stripScripts(results[1]);
@@ -1055,6 +1065,7 @@
       gridCSS = stripScripts(results[7]);
       iconsCSS = stripScripts(results[8]);
       iconsJS = stripScripts(results[9]);
+      elementsJS = stripScripts(results[10]);
       renderCats();
       render();
     }).catch(function () {
