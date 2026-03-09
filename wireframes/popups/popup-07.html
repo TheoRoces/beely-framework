@@ -35,23 +35,6 @@
     overflow: hidden;
   }
 
-  .wf-popup-preview--07 .wf-popup-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: 1px solid var(--popup-border);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--popup-muted);
-    z-index: 1;
-  }
-
   .wf-popup-preview--07 .wf-popup-tabs {
     display: flex;
     border-bottom: 1px solid var(--popup-border);
@@ -85,49 +68,12 @@
     gap: 0.875rem;
   }
 
-  .wf-popup-preview--07 .wf-popup-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-  }
-
-  .wf-popup-preview--07 .wf-popup-label {
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--popup-text);
-  }
-
-  .wf-popup-preview--07 .wf-popup-input {
-    width: 100%;
-    padding: 0.8125rem 1rem;
-    border: 1px solid var(--popup-border);
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    background: var(--popup-input-bg);
-    color: var(--popup-text);
-    box-sizing: border-box;
-  }
-
   .wf-popup-preview--07 .wf-popup-forgot {
     font-size: 0.8125rem;
     color: var(--popup-muted);
     text-align: right;
     text-decoration: underline;
     cursor: pointer;
-  }
-
-  .wf-popup-preview--07 .wf-popup-btn {
-    width: 100%;
-    padding: 0.8125rem 1rem;
-    background: var(--popup-accent);
-    color: var(--popup-accent-text);
-    border: none;
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 0.5rem;
   }
 
   .wf-popup-preview--07 .wf-popup-divider {
@@ -147,19 +93,6 @@
     background: var(--popup-border);
   }
 
-  .wf-popup-preview--07 .wf-popup-btn--outline {
-    width: 100%;
-    padding: 0.8125rem 1rem;
-    background: none;
-    color: var(--popup-text);
-    border: 1px solid var(--popup-border);
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-align: center;
-  }
-
   @media (max-width: 480px) {
     .wf-popup-preview--07 .wf-popup-body {
       padding: 1.5rem;
@@ -169,7 +102,7 @@
 
 <div class="wf-popup-preview wf-popup-preview--07">
   <div class="wf-popup-box">
-    <button class="wf-popup-close" aria-label="Fermer">
+    <button class="popup__close" data-popup-close aria-label="Fermer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <div class="wf-popup-tabs">
@@ -178,19 +111,19 @@
     </div>
     <div class="wf-popup-body">
       <form class="wf-popup-form">
-        <div class="wf-popup-field">
-          <label class="wf-popup-label">Votre email</label>
-          <input type="email" class="wf-popup-input" placeholder="nom@exemple.com" />
+        <div class="form__field">
+          <label class="form__label">Votre email</label>
+          <input type="email" class="form__input" placeholder="nom@exemple.com" />
         </div>
-        <div class="wf-popup-field">
-          <label class="wf-popup-label">Mot de passe</label>
-          <input type="password" class="wf-popup-input" placeholder="••••••••" />
+        <div class="form__field">
+          <label class="form__label">Mot de passe</label>
+          <input type="password" class="form__input" placeholder="••••••••" />
         </div>
         <a class="wf-popup-forgot" href="#">Mot de passe oublie ?</a>
-        <button type="submit" class="wf-popup-btn">Se connecter</button>
+        <button type="submit" class="btn btn--primary">Se connecter</button>
       </form>
       <div class="wf-popup-divider">ou</div>
-      <button class="wf-popup-btn--outline">Continuer avec Google</button>
+      <button class="btn btn--secondary">Continuer avec Google</button>
     </div>
   </div>
 </div>

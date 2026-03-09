@@ -21,40 +21,6 @@
     color: var(--color-text-muted);
     line-height: 1.6;
   }
-  .wf-faq10__item {
-    border-bottom: 1px solid var(--color-border);
-  }
-  .wf-faq10__question {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-sm, 20px) 0;
-    cursor: pointer;
-    gap: var(--space-xs, 12px);
-  }
-  .wf-faq10__question-text {
-    font-size: var(--text-lg, 1.125rem);
-    font-weight: var(--font-semibold, 600);
-    color: var(--color-text);
-  }
-  .wf-faq10__chevron {
-    flex-shrink: 0;
-    color: var(--color-text-muted);
-    transition: transform 0.3s ease;
-  }
-  .wf-faq10__item--open .wf-faq10__chevron {
-    transform: rotate(180deg);
-  }
-  .wf-faq10__answer {
-    display: none;
-    padding-bottom: var(--space-sm, 20px);
-    font-size: var(--text-base, 1rem);
-    color: var(--color-text-muted);
-    line-height: 1.7;
-  }
-  .wf-faq10__item--open .wf-faq10__answer {
-    display: block;
-  }
   .wf-faq10__cta {
     margin-top: var(--space-lg, 56px);
     text-align: center;
@@ -75,22 +41,6 @@
     line-height: 1.6;
     margin-bottom: var(--space-sm, 20px);
   }
-  .wf-faq10__cta-button {
-    display: inline-block;
-    padding: var(--space-xs, 14px) var(--space-md, 32px);
-    background: var(--color-bg-dark);
-    color: var(--white);
-    font-size: var(--text-base, 1rem);
-    font-weight: var(--font-semibold, 600);
-    border: none;
-    border-radius: var(--radius-md, 8px);
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s ease;
-  }
-  .wf-faq10__cta-button:hover {
-    background: var(--color-primary-hover);
-  }
 </style>
 
 <section class="wf-faq10">
@@ -99,51 +49,32 @@
     <p class="wf-faq10__subtitle">Voici les réponses aux questions que nous recevons le plus souvent.</p>
   </div>
 
-  <div class="wf-faq10__list">
-    <div class="wf-faq10__item wf-faq10__item--open">
-      <div class="wf-faq10__question">
-        <span class="wf-faq10__question-text">Quels sont vos délais de livraison ?</span>
-        <span class="wf-faq10__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
-      </div>
-      <div class="wf-faq10__answer">Nos délais varient entre 4 et 8 semaines selon la complexité du projet. Un calendrier precis est fourni des le début pour une visibilité complete sur les échéances.</div>
+  <div class="accordion">
+    <div class="accordion__item accordion__item--active">
+      <div class="accordion__header">Quels sont vos délais de livraison ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Nos délais varient entre 4 et 8 semaines selon la complexité du projet. Un calendrier precis est fourni des le début pour une visibilité complete sur les échéances.</p></div></div>
     </div>
-
-    <div class="wf-faq10__item">
-      <div class="wf-faq10__question">
-        <span class="wf-faq10__question-text">Comment fonctionne votre processus de travail ?</span>
-        <span class="wf-faq10__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
-      </div>
-      <div class="wf-faq10__answer">Notre processus est structure en quatre phases : découverte, conception, développement et lancement. Vous participez activement à chaque étape pour valider les orientations.</div>
+    <div class="accordion__item">
+      <div class="accordion__header">Comment fonctionne votre processus de travail ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Notre processus est structure en quatre phases : découverte, conception, développement et lancement. Vous participez activement à chaque étape pour valider les orientations.</p></div></div>
     </div>
-
-    <div class="wf-faq10__item">
-      <div class="wf-faq10__question">
-        <span class="wf-faq10__question-text">Proposez-vous un support après livraison ?</span>
-        <span class="wf-faq10__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
-      </div>
-      <div class="wf-faq10__answer">Oui, nous proposons un accompagnement complet incluant garantie et maintenance pour assurer la perennite de votre solution dans le temps.</div>
+    <div class="accordion__item">
+      <div class="accordion__header">Proposez-vous un support après livraison ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Oui, nous proposons un accompagnement complet incluant garantie et maintenance pour assurer la perennite de votre solution dans le temps.</p></div></div>
     </div>
-
-    <div class="wf-faq10__item">
-      <div class="wf-faq10__question">
-        <span class="wf-faq10__question-text">Quels sont vos tarifs ?</span>
-        <span class="wf-faq10__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
-      </div>
-      <div class="wf-faq10__answer">Nos tarifs sont personnalisés selon chaque projet. Une première consultation gratuite nous permet d'évaluer vos besoins et de vous fournir un devis adapté.</div>
+    <div class="accordion__item">
+      <div class="accordion__header">Quels sont vos tarifs ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Nos tarifs sont personnalisés selon chaque projet. Une première consultation gratuite nous permet d'évaluer vos besoins et de vous fournir un devis adapté.</p></div></div>
     </div>
-
-    <div class="wf-faq10__item">
-      <div class="wf-faq10__question">
-        <span class="wf-faq10__question-text">Comment demarrer un projet avec vous ?</span>
-        <span class="wf-faq10__chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>
-      </div>
-      <div class="wf-faq10__answer">Contactez-nous via notre formulaire pour planifier un appel découverte. Nous definirons ensemble vos besoins et vous recevrez une feuille de route claire.</div>
+    <div class="accordion__item">
+      <div class="accordion__header">Comment demarrer un projet avec vous ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Contactez-nous via notre formulaire pour planifier un appel découverte. Nous definirons ensemble vos besoins et vous recevrez une feuille de route claire.</p></div></div>
     </div>
   </div>
 
   <div class="wf-faq10__cta">
     <h3 class="wf-faq10__cta-title">Vous avez d'autres questions ?</h3>
-    <p class="wf-faq10__cta-text">Notre équipe est à votre disposition pour répondre a toutes vos interrogations et vous accompagner dans votre projet.</p>
-    <a href="#contact" class="wf-faq10__cta-button">Contactez-nous</a>
+    <p class="wf-faq10__cta-text">Notre équipe est à votre disposition pour répondre à toutes vos interrogations et vous accompagner dans votre projet.</p>
+    <a href="#contact" class="btn btn--primary">Contactez-nous</a>
   </div>
 </section>

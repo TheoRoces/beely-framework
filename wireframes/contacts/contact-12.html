@@ -140,37 +140,6 @@
     gap: 1.125rem;
   }
 
-  .wf-contact-12 .wf-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.125rem;
-  }
-
-  .wf-contact-12 .wf-input,
-  .wf-contact-12 .wf-textarea {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    font-size: 1rem;
-    font-family: inherit;
-    border: 1px solid var(--wf-input-border);
-    border-radius: var(--wf-input-radius);
-    background: var(--wf-input-bg);
-    color: var(--wf-text);
-    outline: none;
-    transition: border-color 0.2s;
-    box-sizing: border-box;
-  }
-
-  .wf-contact-12 .wf-input:focus,
-  .wf-contact-12 .wf-textarea:focus {
-    border-color: var(--wf-accent);
-  }
-
-  .wf-contact-12 .wf-textarea {
-    min-height: 130px;
-    resize: vertical;
-  }
-
   .wf-contact-12 .wf-form-actions {
     display: flex;
     justify-content: space-between;
@@ -178,43 +147,9 @@
     margin-top: 1.5rem;
   }
 
-  .wf-contact-12 .wf-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: inherit;
-    background: var(--wf-btn-bg);
-    color: var(--wf-btn-text);
-    border: none;
-    border-radius: var(--wf-btn-radius);
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .wf-contact-12 .wf-btn:hover {
-    opacity: 0.85;
-  }
-
-  .wf-contact-12 .wf-btn--outline {
-    background: transparent;
-    color: var(--wf-text);
-    border: 1px solid var(--wf-border);
-  }
-
-  .wf-contact-12 .wf-btn--outline:hover {
-    background: var(--wf-input-bg);
-    opacity: 1;
-  }
-
   @media (max-width: 768px) {
     .wf-contact-12 h2 {
       font-size: 2rem;
-    }
-    .wf-contact-12 .wf-row {
-      grid-template-columns: 1fr;
     }
     .wf-contact-12 .wf-step-label {
       display: none;
@@ -249,12 +184,12 @@
       <p>Decrivez votre demande en detail pour que nous puissions vous aider au mieux.</p>
       <form>
         <div class="wf-fields">
-          <input type="text" class="wf-input" placeholder="Sujet" />
-          <textarea class="wf-textarea" placeholder="Votre message"></textarea>
+          <input type="text" class="form__input" placeholder="Sujet" />
+          <textarea class="form__textarea" placeholder="Votre message"></textarea>
         </div>
         <div class="wf-form-actions">
           <button type="button" class="wf-btn wf-btn--outline">Retour</button>
-          <button type="submit" class="wf-btn">Envoyer le message</button>
+          <button type="submit" class="btn btn--primary">Envoyer le message</button>
         </div>
       </form>
     </div>

@@ -1,4 +1,4 @@
-<!-- FAQ-15: FAQ with toggle (+ / -) indicators. Plus/minus symbols instead of chevrons to indicate open/closed state. -->
+<!-- FAQ-15: FAQ with toggle indicators. Accordion with chevron indicators for open/closed state. -->
 <style>
   .wf-faq15 {
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
@@ -21,68 +21,6 @@
     color: var(--color-text-muted);
     line-height: 1.6;
   }
-  .wf-faq15__list {
-    display: flex;
-    flex-direction: column;
-  }
-  .wf-faq15__item {
-    border-bottom: 1px solid var(--color-border);
-  }
-  .wf-faq15__question {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-sm, 22px) 0;
-    cursor: pointer;
-    gap: var(--space-xs, 16px);
-  }
-  .wf-faq15__question-text {
-    font-size: var(--text-lg, 1.125rem);
-    font-weight: var(--font-semibold, 600);
-    color: var(--color-text);
-  }
-  .wf-faq15__toggle {
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 2px solid var(--color-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--text-lg, 1.25rem);
-    font-weight: var(--font-medium, 500);
-    color: var(--color-text-muted);
-    line-height: 1;
-    transition: all 0.2s ease;
-  }
-  .wf-faq15__toggle-plus {
-    display: block;
-  }
-  .wf-faq15__toggle-minus {
-    display: none;
-  }
-  .wf-faq15__item--open .wf-faq15__toggle {
-    border-color: var(--color-text);
-    color: var(--color-text);
-    background: var(--color-neutral-100);
-  }
-  .wf-faq15__item--open .wf-faq15__toggle-plus {
-    display: none;
-  }
-  .wf-faq15__item--open .wf-faq15__toggle-minus {
-    display: block;
-  }
-  .wf-faq15__answer {
-    display: none;
-    padding-bottom: var(--space-sm, 22px);
-    font-size: var(--text-base, 1rem);
-    color: var(--color-text-muted);
-    line-height: 1.7;
-  }
-  .wf-faq15__item--open .wf-faq15__answer {
-    display: block;
-  }
 </style>
 
 <section class="wf-faq15">
@@ -91,60 +29,26 @@
     <p class="wf-faq15__subtitle">Cliquez sur une question pour afficher ou masquer la réponse correspondante.</p>
   </div>
 
-  <div class="wf-faq15__list">
-    <div class="wf-faq15__item wf-faq15__item--open">
-      <div class="wf-faq15__question">
-        <span class="wf-faq15__question-text">Quels sont vos délais de livraison ?</span>
-        <span class="wf-faq15__toggle">
-          <span class="wf-faq15__toggle-plus">+</span>
-          <span class="wf-faq15__toggle-minus">&minus;</span>
-        </span>
-      </div>
-      <div class="wf-faq15__answer">Nos délais de livraison varient selon la complexité du projet. En général, un projet standard est livré entre 4 et 8 semaines. Nous établissons un calendrier détaillé des le début pour assurer une transparence totale.</div>
+  <div class="accordion">
+    <div class="accordion__item accordion__item--active">
+      <div class="accordion__header">Quels sont vos délais de livraison ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Nos délais de livraison varient selon la complexité du projet. En général, un projet standard est livré entre 4 et 8 semaines. Nous établissons un calendrier détaillé des le début pour assurer une transparence totale.</p></div></div>
     </div>
-
-    <div class="wf-faq15__item">
-      <div class="wf-faq15__question">
-        <span class="wf-faq15__question-text">Comment fonctionne votre processus de travail ?</span>
-        <span class="wf-faq15__toggle">
-          <span class="wf-faq15__toggle-plus">+</span>
-          <span class="wf-faq15__toggle-minus">&minus;</span>
-        </span>
-      </div>
-      <div class="wf-faq15__answer">Notre processus comprend quatre phases structurees : découverte et stratégie, conception, développement et lancement. À chaque étape, vous êtes impliqué pour valider et orienter le résultat final.</div>
+    <div class="accordion__item">
+      <div class="accordion__header">Comment fonctionne votre processus de travail ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Notre processus comprend quatre phases structurees : découverte et stratégie, conception, développement et lancement. À chaque étape, vous êtes impliqué pour valider et orienter le résultat final.</p></div></div>
     </div>
-
-    <div class="wf-faq15__item">
-      <div class="wf-faq15__question">
-        <span class="wf-faq15__question-text">Proposez-vous un support après livraison ?</span>
-        <span class="wf-faq15__toggle">
-          <span class="wf-faq15__toggle-plus">+</span>
-          <span class="wf-faq15__toggle-minus">&minus;</span>
-        </span>
-      </div>
-      <div class="wf-faq15__answer">Oui, nous offrons un accompagnement continu après la livraison. Cela inclut une periode de garantie pour les corrections ainsi que des forfaits de maintenance mensuels pour la perennite de votre solution.</div>
+    <div class="accordion__item">
+      <div class="accordion__header">Proposez-vous un support après livraison ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Oui, nous offrons un accompagnement continu après la livraison. Cela inclut une periode de garantie pour les corrections ainsi que des forfaits de maintenance mensuels pour la perennite de votre solution.</p></div></div>
     </div>
-
-    <div class="wf-faq15__item">
-      <div class="wf-faq15__question">
-        <span class="wf-faq15__question-text">Quels sont vos tarifs ?</span>
-        <span class="wf-faq15__toggle">
-          <span class="wf-faq15__toggle-plus">+</span>
-          <span class="wf-faq15__toggle-minus">&minus;</span>
-        </span>
-      </div>
-      <div class="wf-faq15__answer">Nos tarifs dépendent de la nature et de l'envergure du projet. Apres une consultation gratuite, nous vous fournissons un devis personnalisé adapté à votre budget et vos objectifs.</div>
+    <div class="accordion__item">
+      <div class="accordion__header">Quels sont vos tarifs ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>Nos tarifs dépendent de la nature et de l'envergure du projet. Apres une consultation gratuite, nous vous fournissons un devis personnalisé adapté à votre budget et vos objectifs.</p></div></div>
     </div>
-
-    <div class="wf-faq15__item">
-      <div class="wf-faq15__question">
-        <span class="wf-faq15__question-text">Comment demarrer un projet avec vous ?</span>
-        <span class="wf-faq15__toggle">
-          <span class="wf-faq15__toggle-plus">+</span>
-          <span class="wf-faq15__toggle-minus">&minus;</span>
-        </span>
-      </div>
-      <div class="wf-faq15__answer">C'est tres simple : contactez-nous via notre formulaire ou par email pour planifier un appel découverte gratuit. Nous discuterons de vos besoins et vous recevrez une feuille de route claire et actionnable.</div>
+    <div class="accordion__item">
+      <div class="accordion__header">Comment demarrer un projet avec vous ?</div>
+      <div class="accordion__body"><div class="accordion__body-inner"><p>C'est tres simple : contactez-nous via notre formulaire ou par email pour planifier un appel découverte gratuit. Nous discuterons de vos besoins et vous recevrez une feuille de route claire et actionnable.</p></div></div>
     </div>
   </div>
 </section>

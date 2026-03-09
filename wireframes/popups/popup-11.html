@@ -35,23 +35,6 @@
     overflow: hidden;
   }
 
-  .wf-popup-preview--11 .wf-popup-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--popup-bg);
-    border: 1px solid var(--popup-border);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--popup-muted);
-    z-index: 1;
-  }
-
   .wf-popup-preview--11 .wf-popup-visual {
     background: var(--popup-highlight);
     display: flex;
@@ -111,30 +94,6 @@
     gap: 0.75rem;
   }
 
-  .wf-popup-preview--11 .wf-popup-input {
-    width: 100%;
-    padding: 0.8125rem 1rem;
-    border: 1px solid var(--popup-border);
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    background: var(--popup-input-bg);
-    color: var(--popup-text);
-    box-sizing: border-box;
-  }
-
-  .wf-popup-preview--11 .wf-popup-btn {
-    width: 100%;
-    padding: 0.8125rem 1rem;
-    background: var(--popup-accent);
-    color: var(--popup-accent-text);
-    border: none;
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-  }
-
   .wf-popup-preview--11 .wf-popup-skip {
     font-size: 0.8125rem;
     color: var(--popup-muted);
@@ -159,7 +118,7 @@
 
 <div class="wf-popup-preview wf-popup-preview--11">
   <div class="wf-popup-box">
-    <button class="wf-popup-close" aria-label="Fermer">
+    <button class="popup__close" data-popup-close aria-label="Fermer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <div class="wf-popup-visual">
@@ -171,8 +130,8 @@
       <h2 class="wf-popup-title">Avant de partir...</h2>
       <p class="wf-popup-desc">Profitez de 15% de reduction sur votre première commande. Inscrivez-vous maintenant !</p>
       <form class="wf-popup-form">
-        <input type="email" class="wf-popup-input" placeholder="Votre email" />
-        <button type="submit" class="wf-popup-btn">S'inscrire</button>
+        <input type="email" class="form__input" placeholder="Votre email" />
+        <button type="submit" class="btn btn--primary">S'inscrire</button>
       </form>
       <p class="wf-popup-skip">Non merci, je prefere payer plein tarif</p>
     </div>

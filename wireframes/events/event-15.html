@@ -223,48 +223,6 @@
     gap: 0.875rem;
   }
 
-  .wf-event-15__field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-  }
-
-  .wf-event-15__label {
-    font-size: 0.8125rem;
-    font-weight: 500;
-  }
-
-  .wf-event-15__input {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--wf-border);
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    background: var(--wf-input-bg);
-    color: var(--wf-text);
-    font-family: inherit;
-  }
-
-  .wf-event-15__input::placeholder {
-    color: var(--color-text-light, #9ca3af);
-  }
-
-  .wf-event-15__submit {
-    padding: 0.875rem 1.5rem;
-    background: var(--wf-accent);
-    color: var(--color-text-on-dark);
-    border: none;
-    border-radius: var(--radius-lg, 0.75rem);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    margin-top: 0.25rem;
-  }
-
-  .wf-event-15__submit:hover {
-    background: var(--wf-accent-hover);
-  }
-
   .wf-event-15__form-note {
     font-size: 0.75rem;
     color: var(--wf-text-muted);
@@ -381,23 +339,23 @@
         <h3 class="wf-event-15__form-title">S'inscrire au webinaire</h3>
         <p class="wf-event-15__form-subtitle">Recevez le lien de connexion par email après votre inscription.</p>
         <form class="wf-event-15__form">
-          <div class="wf-event-15__field">
-            <label class="wf-event-15__label">Prenom</label>
-            <input type="text" class="wf-event-15__input" placeholder="Jean">
+          <div class="form__field">
+            <label class="form__label">Prenom</label>
+            <input type="text" class="form__input" placeholder="Jean">
           </div>
-          <div class="wf-event-15__field">
-            <label class="wf-event-15__label">Nom</label>
-            <input type="text" class="wf-event-15__input" placeholder="Dupont">
+          <div class="form__field">
+            <label class="form__label">Nom</label>
+            <input type="text" class="form__input" placeholder="Dupont">
           </div>
-          <div class="wf-event-15__field">
-            <label class="wf-event-15__label">Email professionnel</label>
-            <input type="email" class="wf-event-15__input" placeholder="jean@entreprise.com">
+          <div class="form__field">
+            <label class="form__label">Email professionnel</label>
+            <input type="email" class="form__input" placeholder="jean@entreprise.com">
           </div>
-          <div class="wf-event-15__field">
-            <label class="wf-event-15__label">Entreprise</label>
-            <input type="text" class="wf-event-15__input" placeholder="Nom de votre entreprise">
+          <div class="form__field">
+            <label class="form__label">Entreprise</label>
+            <input type="text" class="form__input" placeholder="Nom de votre entreprise">
           </div>
-          <button type="submit" class="wf-event-15__submit">S'inscrire</button>
+          <button type="submit" class="btn btn--primary">S'inscrire</button>
           <p class="wf-event-15__form-note">Un email de confirmation vous sera envoye.</p>
         </form>
       </div>

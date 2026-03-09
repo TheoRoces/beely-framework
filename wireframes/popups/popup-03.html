@@ -34,23 +34,6 @@
     overflow: hidden;
   }
 
-  .wf-popup-preview--03 .wf-popup-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--popup-bg);
-    border: 1px solid var(--popup-border);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--popup-muted);
-    z-index: 1;
-  }
-
   .wf-popup-preview--03 .wf-popup-image {
     background: var(--popup-placeholder);
     display: flex;
@@ -97,20 +80,6 @@
     margin: 0 0 1.5rem 0;
   }
 
-  .wf-popup-preview--03 .wf-popup-btn {
-    display: inline-block;
-    padding: 0.8125rem 1.5rem;
-    background: var(--popup-accent);
-    color: var(--popup-accent-text);
-    border: none;
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    align-self: flex-start;
-  }
-
   @media (max-width: 600px) {
     .wf-popup-preview--03 .wf-popup-box {
       grid-template-columns: 1fr;
@@ -126,7 +95,7 @@
 
 <div class="wf-popup-preview wf-popup-preview--03">
   <div class="wf-popup-box">
-    <button class="wf-popup-close" aria-label="Fermer">
+    <button class="popup__close" data-popup-close aria-label="Fermer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <div class="wf-popup-image">
@@ -136,7 +105,7 @@
       <span class="wf-popup-tag">Decouverte</span>
       <h2 class="wf-popup-title">Explorez notre nouvelle collection</h2>
       <p class="wf-popup-desc">Découvrez des pieces uniques selectionnees avec soin pour vous inspirer au quotidien.</p>
-      <button class="wf-popup-btn">En savoir plus</button>
+      <button class="btn btn--primary">En savoir plus</button>
     </div>
   </div>
 </div>

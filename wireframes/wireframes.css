@@ -259,7 +259,8 @@
   border-radius: 50%;
 }
 
-.wf-icon svg {
+.wf-icon svg,
+.wf-icon [data-icon] {
   width: 24px;
   height: 24px;
 }

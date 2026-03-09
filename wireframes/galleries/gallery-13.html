@@ -1,156 +1,50 @@
 <!-- Gallery 13: Carrousel galerie avec points de navigation -->
-<!-- Section galerie en format carrousel avec indicateurs de pagination (CSS only) -->
 
 <style>
   .wf-gallery-13 {
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
-    --wf-gallery-13-radius: 0.75rem;
-    --wf-gallery-13-bg: var(--color-bg);
-    --wf-gallery-13-text: var(--color-text);
-    --wf-gallery-13-muted: var(--color-text-light);
-    --wf-gallery-13-img-bg: var(--color-border);
-    --wf-gallery-13-padding-x: 5%;
-    --wf-gallery-13-padding-y: 5rem;
-    --wf-gallery-13-dot-size: 0.625rem;
-    --wf-gallery-13-dot-active: var(--color-text);
-    --wf-gallery-13-dot-inactive: var(--color-neutral-300)
+    background-color: var(--color-bg);
+    padding: 5rem 5%;
   }
-
-  .wf-gallery-13 {
-    background-color: var(--wf-gallery-13-bg);
-    padding: var(--wf-gallery-13-padding-y) var(--wf-gallery-13-padding-x);
-  }
-
   .wf-gallery-13__header {
     text-align: center;
     margin-bottom: 3rem;
   }
-
   .wf-gallery-13__tagline {
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--wf-gallery-13-muted);
+    color: var(--color-text-light, #6b7280);
     margin: 0 0 0.75rem 0;
   }
-
   .wf-gallery-13__title {
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: 700;
-    color: var(--wf-gallery-13-text);
+    color: var(--color-text, #1a1a1a);
     margin: 0 0 1rem 0;
     line-height: 1.2;
   }
-
   .wf-gallery-13__description {
     font-size: 1.125rem;
-    color: var(--wf-gallery-13-muted);
+    color: var(--color-text-light, #6b7280);
     margin: 0 auto;
     max-width: 40rem;
     line-height: 1.6;
   }
-
-  .wf-gallery-13__carousel {
-    position: relative;
+  .wf-gallery-13 .slider {
     max-width: 64rem;
     margin: 0 auto;
   }
-
-  .wf-gallery-13__track {
-    display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .wf-gallery-13__track::-webkit-scrollbar {
-    display: none;
-  }
-
-  .wf-gallery-13__slide {
-    flex: 0 0 100%;
-    scroll-snap-align: center;
-  }
-
-  .wf-gallery-13__slide .wf-img {
+  .wf-gallery-13 .slider__slide .wf-img {
     width: 100%;
     aspect-ratio: 16 / 9;
-    background-color: var(--wf-gallery-13-img-bg);
-    border-radius: var(--wf-gallery-13-radius);
+    background-color: var(--color-border, #e5e7eb);
+    border-radius: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-  }
-
-  .wf-gallery-13__arrows {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
-    padding: 0 1rem;
-  }
-
-  .wf-gallery-13__arrow {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid var(--color-border);
-    color: var(--wf-gallery-13-text);
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: auto;
-    transition: background-color 0.2s;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .wf-gallery-13__arrow:hover {
-    background-color: var(--color-bg);
-  }
-
-  .wf-gallery-13__dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .wf-gallery-13__dot {
-    width: var(--wf-gallery-13-dot-size);
-    height: var(--wf-gallery-13-dot-size);
-    border-radius: 50%;
-    background-color: var(--wf-gallery-13-dot-inactive);
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    transition: background-color 0.2s, transform 0.2s;
-  }
-
-  .wf-gallery-13__dot--active {
-    background-color: var(--wf-gallery-13-dot-active);
-    transform: scale(1.3);
-  }
-
-  .wf-gallery-13__dot:hover {
-    background-color: var(--wf-gallery-13-dot-active);
-  }
-
-  @media (max-width: 768px) {
-    .wf-gallery-13__arrows {
-      display: none;
-    }
   }
 </style>
 
@@ -158,49 +52,39 @@
   <div class="wf-gallery-13__header">
     <p class="wf-gallery-13__tagline">Galerie</p>
     <h2 class="wf-gallery-13__title">Nos réalisations en images</h2>
-    <p class="wf-gallery-13__description">Naviguez à travers nos projets en utilisant les fleches ou les points de navigation.</p>
+    <p class="wf-gallery-13__description">Naviguez à travers nos projets en utilisant les flèches ou les points de navigation.</p>
   </div>
 
-  <div class="wf-gallery-13__carousel">
-    <div class="wf-gallery-13__track">
-      <div class="wf-gallery-13__slide">
+  <div class="slider">
+    <div class="slider__track">
+      <div class="slider__slide">
         <div class="wf-img">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
         </div>
       </div>
-      <div class="wf-gallery-13__slide">
+      <div class="slider__slide">
         <div class="wf-img">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
         </div>
       </div>
-      <div class="wf-gallery-13__slide">
+      <div class="slider__slide">
         <div class="wf-img">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
         </div>
       </div>
-      <div class="wf-gallery-13__slide">
+      <div class="slider__slide">
         <div class="wf-img">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
         </div>
       </div>
-      <div class="wf-gallery-13__slide">
+      <div class="slider__slide">
         <div class="wf-img">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
         </div>
       </div>
     </div>
-
-    <div class="wf-gallery-13__arrows">
-      <button class="wf-gallery-13__arrow" aria-label="Precedent">&larr;</button>
-      <button class="wf-gallery-13__arrow" aria-label="Suivant">&rarr;</button>
-    </div>
-  </div>
-
-  <div class="wf-gallery-13__dots">
-    <button class="wf-gallery-13__dot wf-gallery-13__dot--active" aria-label="Image 1"></button>
-    <button class="wf-gallery-13__dot" aria-label="Image 2"></button>
-    <button class="wf-gallery-13__dot" aria-label="Image 3"></button>
-    <button class="wf-gallery-13__dot" aria-label="Image 4"></button>
-    <button class="wf-gallery-13__dot" aria-label="Image 5"></button>
+    <button class="slider__prev" aria-label="Précédent"></button>
+    <button class="slider__next" aria-label="Suivant"></button>
+    <div class="slider__dots"></div>
   </div>
 </section>

@@ -88,52 +88,6 @@
     gap: 1.125rem;
   }
 
-  .wf-contact-05 .wf-input,
-  .wf-contact-05 .wf-textarea {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    font-size: 1rem;
-    font-family: inherit;
-    border: 1px solid var(--wf-input-border);
-    border-radius: var(--wf-input-radius);
-    background: var(--wf-input-bg);
-    color: var(--wf-card-text);
-    outline: none;
-    transition: border-color 0.2s;
-    box-sizing: border-box;
-  }
-
-  .wf-contact-05 .wf-input:focus,
-  .wf-contact-05 .wf-textarea:focus {
-    border-color: var(--wf-accent);
-  }
-
-  .wf-contact-05 .wf-textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-
-  .wf-contact-05 .wf-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: inherit;
-    background: var(--wf-btn-bg);
-    color: var(--wf-btn-text);
-    border: none;
-    border-radius: var(--wf-btn-radius);
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .wf-contact-05 .wf-btn:hover {
-    opacity: 0.85;
-  }
-
   @media (max-width: 768px) {
     .wf-contact-05 .wf-container {
       grid-template-columns: 1fr;
@@ -168,11 +122,11 @@
     <div class="wf-form-card">
       <h3>Envoyez-nous un message</h3>
       <form>
-        <input type="text" class="wf-input" placeholder="Nom complet" />
-        <input type="email" class="wf-input" placeholder="Adresse email" />
-        <input type="tel" class="wf-input" placeholder="Téléphone" />
-        <textarea class="wf-textarea" placeholder="Votre message"></textarea>
-        <button type="submit" class="wf-btn">Envoyer le message</button>
+        <input type="text" class="form__input" placeholder="Nom complet" />
+        <input type="email" class="form__input" placeholder="Adresse email" />
+        <input type="tel" class="form__input" placeholder="Téléphone" />
+        <textarea class="form__textarea" placeholder="Votre message"></textarea>
+        <button type="submit" class="btn btn--primary">Envoyer le message</button>
       </form>
     </div>
   </div>

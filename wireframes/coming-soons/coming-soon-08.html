@@ -107,47 +107,6 @@
     letter-spacing: 0.05em;
   }
 
-  .wf-coming-soon-08 .wf-signup-form {
-    display: flex;
-    gap: 0.75rem;
-    max-width: 400px;
-  }
-
-  .wf-coming-soon-08 .wf-input {
-    flex: 1;
-    padding: 0.875rem 1rem;
-    border: 1px solid var(--wf-border);
-    border-radius: var(--wf-radius);
-    font-size: 1rem;
-    font-family: var(--wf-font);
-    background: var(--color-bg);
-    color: var(--color-text);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .wf-coming-soon-08 .wf-input:focus {
-    border-color: var(--wf-primary);
-  }
-
-  .wf-coming-soon-08 .wf-button {
-    padding: 0.875rem 1.5rem;
-    background-color: var(--wf-primary);
-    color: var(--color-text-on-dark);
-    border: none;
-    border-radius: var(--wf-radius);
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: var(--wf-font);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background-color 0.2s;
-  }
-
-  .wf-coming-soon-08 .wf-button:hover {
-    background-color: var(--wf-primary-hover);
-  }
-
   @media (max-width: 768px) {
     .wf-coming-soon-08 {
       grid-template-columns: 1fr;
@@ -166,9 +125,6 @@
       padding: 0.75rem;
     }
 
-    .wf-coming-soon-08 .wf-signup-form {
-      flex-direction: column;
-    }
   }
 </style>
 
@@ -202,8 +158,8 @@
     </div>
 
     <form class="wf-signup-form">
-      <input type="email" class="wf-input" placeholder="Entrez votre email" />
-      <button type="submit" class="wf-button">Me notifier</button>
+      <input type="email" class="form__input" placeholder="Entrez votre email" />
+      <button type="submit" class="btn btn--primary">Me notifier</button>
     </form>
   </div>
 </section>

@@ -23,22 +23,6 @@
     position: relative;
   }
 
-  .wf-popup-preview--06 .wf-popup-close {
-    position: absolute;
-    top: -48px;
-    right: 0;
-    background: none;
-    border: 1px solid var(--popup-border);
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--popup-muted);
-  }
-
   .wf-popup-preview--06 .wf-popup-video {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -108,7 +92,7 @@
 
 <div class="wf-popup-preview wf-popup-preview--06">
   <div class="wf-popup-box">
-    <button class="wf-popup-close" aria-label="Fermer">
+    <button class="popup__close" data-popup-close aria-label="Fermer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <div class="wf-popup-video">

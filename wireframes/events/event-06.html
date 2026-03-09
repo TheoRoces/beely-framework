@@ -143,54 +143,6 @@
     gap: 1rem;
   }
 
-  .wf-event-06__field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-  }
-
-  .wf-event-06__label {
-    font-size: 0.8125rem;
-    font-weight: 500;
-  }
-
-  .wf-event-06__input {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--wf-border);
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    background: var(--wf-bg);
-    color: var(--wf-text);
-    font-family: inherit;
-  }
-
-  .wf-event-06__input::placeholder {
-    color: var(--color-text-light, #9ca3af);
-  }
-
-  .wf-event-06__row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .wf-event-06__submit {
-    padding: 0.875rem 1.5rem;
-    background: var(--wf-accent);
-    color: var(--color-text-on-dark);
-    border: none;
-    border-radius: var(--radius-lg, 0.75rem);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    margin-top: 0.5rem;
-  }
-
-  .wf-event-06__submit:hover {
-    background: var(--wf-accent-hover);
-  }
-
   .wf-event-06__note {
     font-size: 0.75rem;
     color: var(--wf-text-muted);
@@ -208,9 +160,6 @@
       font-size: 1.5rem;
     }
 
-    .wf-event-06__row {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
 
@@ -266,29 +215,29 @@
         <h3 class="wf-event-06__form-title">Réserver ma place</h3>
         <p class="wf-event-06__form-subtitle">Remplissez le formulaire ci-dessous pour vous inscrire à cet événement.</p>
         <form class="wf-event-06__form">
-          <div class="wf-event-06__row">
-            <div class="wf-event-06__field">
-              <label class="wf-event-06__label">Prenom</label>
-              <input type="text" class="wf-event-06__input" placeholder="Jean">
+          <div class="grid" data-cols="2" data-gap="md">
+            <div class="form__field">
+              <label class="form__label">Prenom</label>
+              <input type="text" class="form__input" placeholder="Jean">
             </div>
-            <div class="wf-event-06__field">
-              <label class="wf-event-06__label">Nom</label>
-              <input type="text" class="wf-event-06__input" placeholder="Dupont">
+            <div class="form__field">
+              <label class="form__label">Nom</label>
+              <input type="text" class="form__input" placeholder="Dupont">
             </div>
           </div>
-          <div class="wf-event-06__field">
-            <label class="wf-event-06__label">Email</label>
-            <input type="email" class="wf-event-06__input" placeholder="jean@exemple.com">
+          <div class="form__field">
+            <label class="form__label">Email</label>
+            <input type="email" class="form__input" placeholder="jean@exemple.com">
           </div>
-          <div class="wf-event-06__field">
-            <label class="wf-event-06__label">Entreprise</label>
-            <input type="text" class="wf-event-06__input" placeholder="Nom de votre entreprise">
+          <div class="form__field">
+            <label class="form__label">Entreprise</label>
+            <input type="text" class="form__input" placeholder="Nom de votre entreprise">
           </div>
-          <div class="wf-event-06__field">
-            <label class="wf-event-06__label">Fonction</label>
-            <input type="text" class="wf-event-06__input" placeholder="Votre poste">
+          <div class="form__field">
+            <label class="form__label">Fonction</label>
+            <input type="text" class="form__input" placeholder="Votre poste">
           </div>
-          <button type="submit" class="wf-event-06__submit">S'inscrire</button>
+          <button type="submit" class="btn btn--primary">S'inscrire</button>
           <p class="wf-event-06__note">En vous inscrivant, vous acceptez nos conditions d'utilisation.</p>
         </form>
       </div>

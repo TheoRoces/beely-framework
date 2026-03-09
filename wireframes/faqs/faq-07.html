@@ -21,11 +21,6 @@
     color: var(--color-text-muted);
     line-height: 1.6;
   }
-  .wf-faq07__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-sm, 24px);
-  }
   .wf-faq07__card {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
@@ -51,15 +46,9 @@
     line-height: 1.7;
   }
   @media (max-width: 960px) {
-    .wf-faq07__grid {
-      grid-template-columns: repeat(2, 1fr);
     }
-  }
   @media (max-width: 600px) {
-    .wf-faq07__grid {
-      grid-template-columns: 1fr;
     }
-  }
 </style>
 
 <section class="wf-faq07">
@@ -68,7 +57,7 @@
     <p class="wf-faq07__subtitle">Les réponses à vos questions les plus fréquentes, presentees de manière claire et accessible.</p>
   </div>
 
-  <div class="wf-faq07__grid">
+  <div class="grid" data-cols="3" data-gap="sm">
     <div class="wf-faq07__card">
       <h3 class="wf-faq07__question">Quels sont vos délais de livraison ?</h3>
       <p class="wf-faq07__answer">Nos délais varient entre 4 et 8 semaines selon la complexité. Un calendrier détaillé est fourni des le début pour garantir une transparence totale sur les échéances.</p>

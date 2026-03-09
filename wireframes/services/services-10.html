@@ -1,99 +1,42 @@
-<!-- Services 10 : CSS-only tab-style service selector with content panels -->
+<!-- Services 10 : Tab-style service selector with content panels -->
 
 <style>
   .wf-services-10 {
-    --wf-bg: var(--color-bg, #ffffff);
-    --wf-text: var(--color-text, #1a1a1a);
-    --wf-text-muted: var(--color-text-light, #6b7280);
-    --wf-accent: var(--color-text, #374151);
-    --wf-border: var(--color-border, #e5e7eb);
-    --wf-icon-bg: var(--color-bg-alt, #f3f4f6);
-    --wf-tab-bg: var(--color-bg-alt, #f9fafb);
-    --wf-placeholder-bg: var(--color-border, #e5e7eb);
-    --wf-section-py: clamp(3rem, 8vw, 6rem);
-    --wf-section-px: clamp(1rem, 5vw, 4rem);
-    --wf-max-width: 1000px;
-
-    background: var(--wf-bg);
-    padding: var(--wf-section-py) var(--wf-section-px);
+    background: var(--color-bg, #ffffff);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 4rem);
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
-    color: var(--wf-text);
+    color: var(--color-text, #1a1a1a);
   }
-
   .wf-services-10__inner {
-    max-width: var(--wf-max-width);
+    max-width: 1000px;
     margin: 0 auto;
   }
-
   .wf-services-10__header {
     text-align: center;
     margin-bottom: clamp(2rem, 5vw, 3rem);
   }
-
   .wf-services-10__tagline {
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--wf-accent);
+    color: var(--color-text, #374151);
     margin: 0 0 0.75rem;
   }
-
   .wf-services-10__title {
     font-size: clamp(1.75rem, 4vw, 2.75rem);
     font-weight: 700;
     margin: 0;
     line-height: 1.2;
   }
-
-  .wf-services-10__tabs {
-    position: relative;
-  }
-
-  .wf-services-10__radio {
-    display: none;
-  }
-
-  .wf-services-10__nav {
-    display: flex;
-    gap: 0;
-    border-bottom: 2px solid var(--wf-border);
-    margin-bottom: 2rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .wf-services-10__tab {
-    padding: 1rem 1.5rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--wf-text-muted);
-    cursor: pointer;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .wf-services-10__tab:hover {
-    color: var(--wf-text);
-  }
-
-  .wf-services-10__panel {
-    display: none;
+  .wf-services-10__panel-grid {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(2rem, 4vw, 3rem);
     align-items: center;
-    animation: wf-services-10-fadeIn 0.3s ease;
   }
-
-  @keyframes wf-services-10-fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
   .wf-services-10__panel-image {
-    background: var(--wf-placeholder-bg);
+    background: var(--color-border, #e5e7eb);
     border-radius: var(--radius-lg, 0.75rem);
     aspect-ratio: 4/3;
     display: flex;
@@ -102,75 +45,40 @@
     color: var(--color-text-light, #9ca3af);
     font-size: 0.875rem;
   }
-
   .wf-services-10__panel-content .wf-icon {
     width: 48px;
     height: 48px;
-    background: var(--wf-icon-bg);
+    background: var(--color-bg-alt, #f3f4f6);
     border-radius: var(--radius-lg, 0.75rem);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--wf-accent);
+    color: var(--color-text, #374151);
     margin-bottom: 1.25rem;
   }
-
-  .wf-services-10__panel-content .wf-icon svg {
-    width: 24px;
-    height: 24px;
-  }
-
   .wf-services-10__panel-title {
     font-size: clamp(1.25rem, 2.5vw, 1.5rem);
     font-weight: 600;
     margin: 0 0 0.75rem;
   }
-
   .wf-services-10__panel-text {
     font-size: 1rem;
-    color: var(--wf-text-muted);
+    color: var(--color-text-light, #6b7280);
     line-height: 1.7;
     margin: 0 0 1.5rem;
   }
-
   .wf-services-10__panel-link {
     font-size: 0.9375rem;
     font-weight: 500;
-    color: var(--wf-accent);
+    color: var(--color-text, #374151);
     text-decoration: none;
   }
-
   .wf-services-10__panel-link:hover {
     text-decoration: underline;
   }
-
-  /* Tab activation via radio buttons */
-  #wf-tab10-1:checked ~ .wf-services-10__nav [for="wf-tab10-1"],
-  #wf-tab10-2:checked ~ .wf-services-10__nav [for="wf-tab10-2"],
-  #wf-tab10-3:checked ~ .wf-services-10__nav [for="wf-tab10-3"],
-  #wf-tab10-4:checked ~ .wf-services-10__nav [for="wf-tab10-4"],
-  #wf-tab10-5:checked ~ .wf-services-10__nav [for="wf-tab10-5"],
-  #wf-tab10-6:checked ~ .wf-services-10__nav [for="wf-tab10-6"] {
-    color: var(--wf-accent);
-    border-bottom-color: var(--wf-accent);
-  }
-
-  #wf-tab10-1:checked ~ .wf-services-10__panels .wf-services-10__panel:nth-child(1),
-  #wf-tab10-2:checked ~ .wf-services-10__panels .wf-services-10__panel:nth-child(2),
-  #wf-tab10-3:checked ~ .wf-services-10__panels .wf-services-10__panel:nth-child(3),
-  #wf-tab10-4:checked ~ .wf-services-10__panels .wf-services-10__panel:nth-child(4),
-  #wf-tab10-5:checked ~ .wf-services-10__panels .wf-services-10__panel:nth-child(5),
-  #wf-tab10-6:checked ~ .wf-services-10__panels .wf-services-10__panel:nth-child(6) {
-    display: grid;
-  }
-
   @media (max-width: 768px) {
-    .wf-services-10__panel {
+    .wf-services-10__panel-grid {
       grid-template-columns: 1fr;
-    }
-    .wf-services-10__tab {
-      padding: 0.75rem 1rem;
-      font-size: 0.8125rem;
     }
   }
 </style>
@@ -182,104 +90,107 @@
       <h2 class="wf-services-10__title">Nos services</h2>
     </header>
 
-    <div class="wf-services-10__tabs">
-      <input type="radio" name="wf-services-10" id="wf-tab10-1" class="wf-services-10__radio" checked>
-      <input type="radio" name="wf-services-10" id="wf-tab10-2" class="wf-services-10__radio">
-      <input type="radio" name="wf-services-10" id="wf-tab10-3" class="wf-services-10__radio">
-      <input type="radio" name="wf-services-10" id="wf-tab10-4" class="wf-services-10__radio">
-      <input type="radio" name="wf-services-10" id="wf-tab10-5" class="wf-services-10__radio">
-      <input type="radio" name="wf-services-10" id="wf-tab10-6" class="wf-services-10__radio">
-
-      <nav class="wf-services-10__nav">
-        <label for="wf-tab10-1" class="wf-services-10__tab">Design UI/UX</label>
-        <label for="wf-tab10-2" class="wf-services-10__tab">Developpement Web</label>
-        <label for="wf-tab10-3" class="wf-services-10__tab">Strategie Digitale</label>
-        <label for="wf-tab10-4" class="wf-services-10__tab">SEO & Analytics</label>
-        <label for="wf-tab10-5" class="wf-services-10__tab">Branding</label>
-        <label for="wf-tab10-6" class="wf-services-10__tab">Applications Mobile</label>
+    <div class="tabs">
+      <nav class="tabs__nav">
+        <button class="tabs__tab" data-tab="design-ui-ux" data-tab-active>Design UI/UX</button>
+        <button class="tabs__tab" data-tab="developpement-web">Développement Web</button>
+        <button class="tabs__tab" data-tab="strategie-digitale">Stratégie Digitale</button>
+        <button class="tabs__tab" data-tab="seo-analytics">SEO & Analytics</button>
+        <button class="tabs__tab" data-tab="branding">Branding</button>
+        <button class="tabs__tab" data-tab="applications-mobile">Applications Mobile</button>
       </nav>
 
-      <div class="wf-services-10__panels">
-        <div class="wf-services-10__panel">
+      <div class="tabs__panel" data-tab-panel="design-ui-ux">
+        <div class="wf-services-10__panel-grid">
           <div class="wf-services-10__panel-image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
           <div class="wf-services-10__panel-content">
             <div class="wf-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>
             </div>
             <h3 class="wf-services-10__panel-title">Design UI/UX</h3>
-            <p class="wf-services-10__panel-text">Nous creons des interfaces intuitives et élégantes qui maximisent l'engagement utilisateur.</p>
+            <p class="wf-services-10__panel-text">Nous créons des interfaces intuitives et élégantes qui maximisent l'engagement utilisateur.</p>
             <a href="#" class="wf-services-10__panel-link">En savoir plus &rarr;</a>
           </div>
         </div>
+      </div>
 
-        <div class="wf-services-10__panel">
+      <div class="tabs__panel" data-tab-panel="developpement-web">
+        <div class="wf-services-10__panel-grid">
           <div class="wf-services-10__panel-image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
           <div class="wf-services-10__panel-content">
             <div class="wf-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>
             </div>
-            <h3 class="wf-services-10__panel-title">Developpement Web</h3>
-            <p class="wf-services-10__panel-text">Solutions techniques performantes et evolutives pour accompagner votre croissance digitale.</p>
+            <h3 class="wf-services-10__panel-title">Développement Web</h3>
+            <p class="wf-services-10__panel-text">Solutions techniques performantes et évolutives pour accompagner votre croissance digitale.</p>
             <a href="#" class="wf-services-10__panel-link">En savoir plus &rarr;</a>
           </div>
         </div>
+      </div>
 
-        <div class="wf-services-10__panel">
+      <div class="tabs__panel" data-tab-panel="strategie-digitale">
+        <div class="wf-services-10__panel-grid">
           <div class="wf-services-10__panel-image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
           <div class="wf-services-10__panel-content">
             <div class="wf-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>
             </div>
-            <h3 class="wf-services-10__panel-title">Strategie Digitale</h3>
-            <p class="wf-services-10__panel-text">Analyses approfondies et recommandations strategiques pour optimiser votre présence en ligne.</p>
+            <h3 class="wf-services-10__panel-title">Stratégie Digitale</h3>
+            <p class="wf-services-10__panel-text">Analyses approfondies et recommandations stratégiques pour optimiser votre présence en ligne.</p>
             <a href="#" class="wf-services-10__panel-link">En savoir plus &rarr;</a>
           </div>
         </div>
+      </div>
 
-        <div class="wf-services-10__panel">
+      <div class="tabs__panel" data-tab-panel="seo-analytics">
+        <div class="wf-services-10__panel-grid">
           <div class="wf-services-10__panel-image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
           <div class="wf-services-10__panel-content">
             <div class="wf-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>
             </div>
             <h3 class="wf-services-10__panel-title">SEO & Analytics</h3>
-            <p class="wf-services-10__panel-text">Campagnes creatives et ciblees qui renforcent votre notoriété et fidelisent vos clients.</p>
+            <p class="wf-services-10__panel-text">Campagnes créatives et ciblées qui renforcent votre notoriété et fidélisent vos clients.</p>
             <a href="#" class="wf-services-10__panel-link">En savoir plus &rarr;</a>
           </div>
         </div>
+      </div>
 
-        <div class="wf-services-10__panel">
+      <div class="tabs__panel" data-tab-panel="branding">
+        <div class="wf-services-10__panel-grid">
           <div class="wf-services-10__panel-image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
           <div class="wf-services-10__panel-content">
             <div class="wf-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>
             </div>
             <h3 class="wf-services-10__panel-title">Branding</h3>
-            <p class="wf-services-10__panel-text">Identites visuelles memorables et coherentes qui refletent les valeurs de votre marque.</p>
+            <p class="wf-services-10__panel-text">Identités visuelles mémorables et cohérentes qui reflètent les valeurs de votre marque.</p>
             <a href="#" class="wf-services-10__panel-link">En savoir plus &rarr;</a>
           </div>
         </div>
+      </div>
 
-        <div class="wf-services-10__panel">
+      <div class="tabs__panel" data-tab-panel="applications-mobile">
+        <div class="wf-services-10__panel-grid">
           <div class="wf-services-10__panel-image">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
           <div class="wf-services-10__panel-content">
             <div class="wf-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>
             </div>
             <h3 class="wf-services-10__panel-title">Applications Mobile</h3>
-            <p class="wf-services-10__panel-text">Applications mobiles modernes et reactives pour toucher vos utilisateurs ou qu'ils soient.</p>
+            <p class="wf-services-10__panel-text">Applications mobiles modernes et réactives pour toucher vos utilisateurs où qu'ils soient.</p>
             <a href="#" class="wf-services-10__panel-link">En savoir plus &rarr;</a>
           </div>
         </div>

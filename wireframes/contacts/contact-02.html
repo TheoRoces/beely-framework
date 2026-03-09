@@ -45,64 +45,9 @@
     text-align: left;
   }
 
-  .wf-contact-02 .wf-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-
-  .wf-contact-02 .wf-input,
-  .wf-contact-02 .wf-textarea {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    font-size: 1rem;
-    font-family: inherit;
-    border: 1px solid var(--wf-input-border);
-    border-radius: var(--wf-input-radius);
-    background: var(--wf-input-bg);
-    color: var(--wf-text);
-    outline: none;
-    transition: border-color 0.2s;
-    box-sizing: border-box;
-  }
-
-  .wf-contact-02 .wf-input:focus,
-  .wf-contact-02 .wf-textarea:focus {
-    border-color: var(--wf-accent);
-  }
-
-  .wf-contact-02 .wf-textarea {
-    min-height: 160px;
-    resize: vertical;
-  }
-
-  .wf-contact-02 .wf-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: inherit;
-    background: var(--wf-btn-bg);
-    color: var(--wf-btn-text);
-    border: none;
-    border-radius: var(--wf-btn-radius);
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .wf-contact-02 .wf-btn:hover {
-    opacity: 0.85;
-  }
-
   @media (max-width: 768px) {
     .wf-contact-02 h2 {
       font-size: 2rem;
-    }
-    .wf-contact-02 .wf-row {
-      grid-template-columns: 1fr;
     }
   }
 </style>
@@ -112,13 +57,13 @@
     <h2>Contactez-nous</h2>
     <p class="wf-subtitle">Envoyez-nous un message et nous vous repondrons dans les plus brefs délais.</p>
     <form>
-      <div class="wf-row">
-        <input type="text" class="wf-input" placeholder="Nom complet" />
-        <input type="email" class="wf-input" placeholder="Adresse email" />
+      <div class="grid" data-cols="2" data-gap="md">
+        <input type="text" class="form__input" placeholder="Nom complet" />
+        <input type="email" class="form__input" placeholder="Adresse email" />
       </div>
-      <input type="text" class="wf-input" placeholder="Sujet" />
-      <textarea class="wf-textarea" placeholder="Votre message"></textarea>
-      <button type="submit" class="wf-btn">Envoyer le message</button>
+      <input type="text" class="form__input" placeholder="Sujet" />
+      <textarea class="form__textarea" placeholder="Votre message"></textarea>
+      <button type="submit" class="btn btn--primary">Envoyer le message</button>
     </form>
   </div>
 </section>

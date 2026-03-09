@@ -48,49 +48,6 @@
     margin: 0 0 2.5rem;
   }
 
-  .wf-error-02__search {
-    display: flex;
-    width: 100%;
-    max-width: 28rem;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .wf-error-02__input {
-    flex: 1;
-    padding: 0.875rem 1rem;
-    font-size: 1rem;
-    font-family: var(--wf-font);
-    border: 1px solid var(--wf-input-border);
-    border-radius: var(--radius-md, 0.5rem);
-    background-color: var(--wf-input-bg);
-    color: var(--wf-text);
-    outline: none;
-    transition: border-color 0.2s ease;
-  }
-
-  .wf-error-02__input:focus {
-    border-color: var(--wf-input-focus);
-  }
-
-  .wf-error-02__search-btn {
-    padding: 0.875rem 1.5rem;
-    background-color: var(--wf-primary);
-    color: var(--color-text-on-dark);
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: var(--wf-font);
-    border: none;
-    border-radius: var(--radius-md, 0.5rem);
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .wf-error-02__search-btn:hover {
-    background-color: var(--wf-primary-hover);
-  }
-
   .wf-error-02__link {
     font-size: 0.9375rem;
     color: var(--wf-text-muted);
@@ -105,9 +62,6 @@
   }
 
   @media (max-width: 480px) {
-    .wf-error-02__search {
-      flex-direction: column;
-    }
   }
 </style>
 
@@ -116,8 +70,8 @@
   <h1 class="wf-error-02__title">Page introuvable</h1>
   <p class="wf-error-02__text">La page que vous cherchez n'existe pas ou a ete deplacee. Essayez une recherche pour trouver ce que vous cherchez.</p>
   <form class="wf-error-02__search" action="#" method="get">
-    <input type="text" class="wf-error-02__input" name="q" placeholder="Rechercher sur le site..." />
-    <button type="submit" class="wf-error-02__search-btn">Rechercher</button>
+    <input type="text" class="form__input" name="q" placeholder="Rechercher sur le site..." />
+    <button type="submit" class="btn btn--primary">Rechercher</button>
   </form>
   <a href="#" class="wf-error-02__link">Retour a l'accueil</a>
 </section>

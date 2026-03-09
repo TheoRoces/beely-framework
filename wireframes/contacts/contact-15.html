@@ -75,52 +75,6 @@
     gap: 1.125rem;
   }
 
-  .wf-contact-15 .wf-input,
-  .wf-contact-15 .wf-textarea {
-    width: 100%;
-    padding: 0.875rem 1rem;
-    font-size: 1rem;
-    font-family: inherit;
-    border: 1px solid var(--wf-input-border);
-    border-radius: var(--wf-input-radius);
-    background: var(--wf-input-bg);
-    color: var(--wf-text);
-    outline: none;
-    transition: border-color 0.2s;
-    box-sizing: border-box;
-  }
-
-  .wf-contact-15 .wf-input:focus,
-  .wf-contact-15 .wf-textarea:focus {
-    border-color: var(--wf-accent);
-  }
-
-  .wf-contact-15 .wf-textarea {
-    min-height: 130px;
-    resize: vertical;
-  }
-
-  .wf-contact-15 .wf-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.875rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: inherit;
-    background: var(--wf-btn-bg);
-    color: var(--wf-btn-text);
-    border: none;
-    border-radius: var(--wf-btn-radius);
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .wf-contact-15 .wf-btn:hover {
-    opacity: 0.85;
-  }
-
   .wf-contact-15 .wf-card-footer {
     text-align: center;
     margin-top: 1.5rem;
@@ -162,12 +116,12 @@
         <p class="wf-subtitle">Envoyez-nous un message et nous vous repondrons rapidement.</p>
       </div>
       <form>
-        <input type="text" class="wf-input" placeholder="Nom complet" />
-        <input type="email" class="wf-input" placeholder="Adresse email" />
-        <input type="tel" class="wf-input" placeholder="Téléphone" />
-        <input type="text" class="wf-input" placeholder="Sujet" />
-        <textarea class="wf-textarea" placeholder="Votre message"></textarea>
-        <button type="submit" class="wf-btn">Envoyer le message</button>
+        <input type="text" class="form__input" placeholder="Nom complet" />
+        <input type="email" class="form__input" placeholder="Adresse email" />
+        <input type="tel" class="form__input" placeholder="Téléphone" />
+        <input type="text" class="form__input" placeholder="Sujet" />
+        <textarea class="form__textarea" placeholder="Votre message"></textarea>
+        <button type="submit" class="btn btn--primary">Envoyer le message</button>
       </form>
       <div class="wf-card-footer">
         <p>Vous pouvez aussi nous contacter a <a href="mailto:contact@monsite.fr">contact@monsite.fr</a> ou au <a href="tel:+33123456789">+33 1 23 45 67 89</a></p>

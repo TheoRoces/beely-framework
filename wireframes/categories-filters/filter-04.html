@@ -1,134 +1,60 @@
 <!-- filter-04.html — Tab-style filters + content area -->
 <style>
   .wf-filter-04 {
-    --wf-bg: var(--color-bg, #ffffff);
-    --wf-text: var(--color-text, #1a1a1a);
-    --wf-muted: var(--color-text-light, #6b7280);
-    --wf-border: var(--color-border, #e5e7eb);
-    --wf-accent: var(--color-text, #1a1a1a);
-    --wf-card-bg: var(--color-bg-alt, #f9fafb);
-    --wf-radius: 0.5rem;
-    --wf-radius-full: 9999px;
-    --wf-gap: 1.5rem;
-    --wf-section-py: 5rem;
-
-    background: var(--wf-bg);
-    color: var(--wf-text);
-    padding: var(--wf-section-py) 5%;
+    background: var(--color-bg, #ffffff);
+    color: var(--color-text, #1a1a1a);
+    padding: 5rem 5%;
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
   }
-
   .wf-filter-04__header {
     text-align: center;
     margin-bottom: 2.5rem;
   }
-
   .wf-filter-04__title {
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: 700;
     margin: 0 0 0.5rem;
   }
-
   .wf-filter-04__subtitle {
-    color: var(--wf-muted);
+    color: var(--color-text-light, #6b7280);
     font-size: 1.125rem;
     margin: 0;
   }
-
-  .wf-filter-04__tabs {
-    display: flex;
-    border-bottom: 2px solid var(--wf-border);
-    gap: 0;
-    margin-bottom: 2.5rem;
-    overflow-x: auto;
-  }
-
-  .wf-filter-04 .wf-filter__btn {
-    display: inline-block;
-    padding: 0.875rem 1.5rem;
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--wf-muted);
-    text-decoration: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-  }
-
-  .wf-filter-04 .wf-filter__btn:hover {
-    color: var(--wf-text);
-  }
-
-  .wf-filter-04 .wf-filter__btn--active {
-    color: var(--wf-accent);
-    border-bottom-color: var(--wf-accent);
-    font-weight: 600;
-  }
-
-  .wf-filter-04__content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-gap);
-  }
-
   .wf-filter-04 .wf-card {
-    background: var(--wf-card-bg);
-    border-radius: var(--wf-radius);
+    background: var(--color-bg-alt, #f9fafb);
+    border-radius: 0.5rem;
     overflow: hidden;
-    border: 1px solid var(--wf-border);
+    border: 1px solid var(--color-border, #e5e7eb);
   }
-
   .wf-filter-04 .wf-img {
     width: 100%;
     aspect-ratio: 16 / 10;
-    background: var(--wf-border);
+    background: var(--color-border, #e5e7eb);
     display: block;
   }
-
   .wf-filter-04 .wf-card__body {
     padding: 1.25rem;
   }
-
   .wf-filter-04 .wf-badge {
     display: inline-block;
     padding: 0.2rem 0.625rem;
-    border-radius: var(--wf-radius-full);
-    background: var(--wf-border);
-    color: var(--wf-muted);
+    border-radius: 9999px;
+    background: var(--color-border, #e5e7eb);
+    color: var(--color-text-light, #6b7280);
     font-size: 0.75rem;
     font-weight: 500;
     margin-bottom: 0.75rem;
   }
-
   .wf-filter-04 .wf-card__title {
     font-size: 1.125rem;
     font-weight: 600;
     margin: 0 0 0.5rem;
   }
-
   .wf-filter-04 .wf-card__desc {
-    color: var(--wf-muted);
+    color: var(--color-text-light, #6b7280);
     font-size: 0.875rem;
     margin: 0;
     line-height: 1.5;
-  }
-
-  @media (max-width: 768px) {
-    .wf-filter-04__content {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-filter-04__content {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 </style>
 
@@ -138,74 +64,78 @@
     <p class="wf-filter-04__subtitle">12 articles disponibles</p>
   </div>
 
-  <nav class="wf-filter-04__tabs">
-    <a href="#" class="wf-filter__btn wf-filter__btn--active">Tous</a>
-    <a href="#" class="wf-filter__btn">Design</a>
-    <a href="#" class="wf-filter__btn">Developpement</a>
-    <a href="#" class="wf-filter__btn">Marketing</a>
-    <a href="#" class="wf-filter__btn">Strategie</a>
-    <a href="#" class="wf-filter__btn">E-commerce</a>
-  </nav>
+  <div class="tabs">
+    <nav class="tabs__nav">
+      <button class="tabs__tab" data-tab="tous" data-tab-active>Tous</button>
+      <button class="tabs__tab" data-tab="design">Design</button>
+      <button class="tabs__tab" data-tab="developpement">Développement</button>
+      <button class="tabs__tab" data-tab="marketing">Marketing</button>
+      <button class="tabs__tab" data-tab="strategie">Stratégie</button>
+      <button class="tabs__tab" data-tab="e-commerce">E-commerce</button>
+    </nav>
 
-  <div class="wf-filter-04__content">
-    <div class="wf-card">
-      <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-      <div class="wf-card__body">
-        <span class="wf-badge">Design</span>
-        <h3 class="wf-card__title">Les tendances UI de 2026</h3>
-        <p class="wf-card__desc">Découvrez les dernières tendances en matière de design d'interface.</p>
-      </div>
-    </div>
-    <div class="wf-card">
-      <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-      <div class="wf-card__body">
-        <span class="wf-badge">Developpement</span>
-        <h3 class="wf-card__title">Guide API REST</h3>
-        <p class="wf-card__desc">Comment construire une API REST performante et sécurisée.</p>
-      </div>
-    </div>
-    <div class="wf-card">
-      <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-      <div class="wf-card__body">
-        <span class="wf-badge">Marketing</span>
-        <h3 class="wf-card__title">SEO en 2026</h3>
-        <p class="wf-card__desc">Les stratégies SEO qui fonctionnent reellement cette année.</p>
-      </div>
-    </div>
-    <div class="wf-card">
-      <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-      <div class="wf-card__body">
-        <span class="wf-badge">Strategie</span>
-        <h3 class="wf-card__title">Transformation digitale</h3>
-        <p class="wf-card__desc">Accompagner la transformation digitale de votre entreprise.</p>
-      </div>
-    </div>
-    <div class="wf-card">
-      <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-      <div class="wf-card__body">
-        <span class="wf-badge">E-commerce</span>
-        <h3 class="wf-card__title">Optimiser son tunnel</h3>
-        <p class="wf-card__desc">Reduire l'abandon de panier avec un tunnel optimisé.</p>
-      </div>
-    </div>
-    <div class="wf-card">
-      <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-      <div class="wf-card__body">
-        <span class="wf-badge">Design</span>
-        <h3 class="wf-card__title">Design systems</h3>
-        <p class="wf-card__desc">Pourquoi chaque équipe a besoin d'un design system.</p>
+    <div class="tabs__panel" data-tab-panel="tous">
+      <div class="grid" data-cols="3" data-gap="md">
+        <div class="wf-card">
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+          <div class="wf-card__body">
+            <span class="wf-badge">Design</span>
+            <h3 class="wf-card__title">Les tendances UI de 2026</h3>
+            <p class="wf-card__desc">Découvrez les dernières tendances en matière de design d'interface.</p>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+          <div class="wf-card__body">
+            <span class="wf-badge">Développement</span>
+            <h3 class="wf-card__title">Guide API REST</h3>
+            <p class="wf-card__desc">Comment construire une API REST performante et sécurisée.</p>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+          <div class="wf-card__body">
+            <span class="wf-badge">Marketing</span>
+            <h3 class="wf-card__title">SEO en 2026</h3>
+            <p class="wf-card__desc">Les stratégies SEO qui fonctionnent réellement cette année.</p>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+          <div class="wf-card__body">
+            <span class="wf-badge">Stratégie</span>
+            <h3 class="wf-card__title">Transformation digitale</h3>
+            <p class="wf-card__desc">Accompagner la transformation digitale de votre entreprise.</p>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+          <div class="wf-card__body">
+            <span class="wf-badge">E-commerce</span>
+            <h3 class="wf-card__title">Optimiser son tunnel</h3>
+            <p class="wf-card__desc">Réduire l'abandon de panier avec un tunnel optimisé.</p>
+          </div>
+        </div>
+        <div class="wf-card">
+          <div class="wf-img">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+          </div>
+          <div class="wf-card__body">
+            <span class="wf-badge">Design</span>
+            <h3 class="wf-card__title">Design systems</h3>
+            <p class="wf-card__desc">Pourquoi chaque équipe a besoin d'un design system.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

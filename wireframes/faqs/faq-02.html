@@ -21,11 +21,6 @@
     color: var(--color-text-muted);
     line-height: 1.6;
   }
-  .wf-faq02__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md, 40px);
-  }
   .wf-faq02__item {
     padding-bottom: var(--space-sm, 20px);
   }
@@ -41,10 +36,7 @@
     line-height: 1.7;
   }
   @media (max-width: 768px) {
-    .wf-faq02__grid {
-      grid-template-columns: 1fr;
     }
-  }
 </style>
 
 <section class="wf-faq02">
@@ -53,7 +45,7 @@
     <p class="wf-faq02__subtitle">Tout ce que vous devez savoir sur nos services et notre approche.</p>
   </div>
 
-  <div class="wf-faq02__grid">
+  <div class="grid" data-cols="2" data-gap="lg">
     <div class="wf-faq02__item">
       <h3 class="wf-faq02__question">Quels sont vos délais de livraison ?</h3>
       <p class="wf-faq02__answer">Nos délais de livraison varient selon la complexité du projet. En général, un projet standard est livré entre 4 et 8 semaines. Nous établissons un calendrier détaillé des le début de la collaboration.</p>

@@ -47,56 +47,8 @@
     line-height: 1.6;
   }
 
-  .wf-coming-soon-03 .wf-signup-form {
-    display: flex;
-    gap: 0;
-    width: 100%;
-    max-width: 440px;
-    border: 1px solid var(--wf-border);
-  }
-
-  .wf-coming-soon-03 .wf-input {
-    flex: 1;
-    padding: 1rem 1.25rem;
-    border: none;
-    font-size: 1rem;
-    font-family: var(--wf-font);
-    background: transparent;
-    outline: none;
-  }
-
-  .wf-coming-soon-03 .wf-button {
-    padding: 1rem 2rem;
-    background-color: var(--wf-primary);
-    color: var(--color-text-on-dark);
-    border: none;
-    font-size: 0.875rem;
-    font-weight: 600;
-    font-family: var(--wf-font);
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    transition: background-color 0.2s;
-    white-space: nowrap;
-  }
-
-  .wf-coming-soon-03 .wf-button:hover {
-    background-color: var(--wf-primary-hover);
-  }
-
   @media (max-width: 600px) {
-    .wf-coming-soon-03 .wf-signup-form {
-      flex-direction: column;
-      border: none;
-    }
 
-    .wf-coming-soon-03 .wf-input {
-      border: 1px solid var(--wf-border);
-    }
-
-    .wf-coming-soon-03 .wf-button {
-      padding: 1rem;
-    }
   }
 </style>
 
@@ -105,7 +57,7 @@
   <p class="wf-subheading">Entrez votre email pour etre notifie</p>
 
   <form class="wf-signup-form">
-    <input type="email" class="wf-input" placeholder="votre@email.com" />
-    <button type="submit" class="wf-button">Me notifier</button>
+    <input type="email" class="form__input" placeholder="votre@email.com" />
+    <button type="submit" class="btn btn--primary">Me notifier</button>
   </form>
 </section>

@@ -1,152 +1,65 @@
 <!-- Gallery 08: Galerie avec onglets de filtrage par catégorie -->
-<!-- Section galerie avec navigation par catégories (wireframe statique, pas de JS) -->
 
 <style>
   .wf-gallery-08 {
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
-    --wf-gallery-08-gap: 1.5rem;
-    --wf-gallery-08-radius: 0.5rem;
-    --wf-gallery-08-bg: var(--color-bg);
-    --wf-gallery-08-text: var(--color-text);
-    --wf-gallery-08-muted: var(--color-text-light);
-    --wf-gallery-08-img-bg: var(--color-border);
-    --wf-gallery-08-padding-x: 5%;
-    --wf-gallery-08-padding-y: 5rem;
-    --wf-gallery-08-accent: var(--color-text);
-    --wf-gallery-08-tab-bg: var(--color-neutral-100)
+    background-color: var(--color-bg);
+    padding: 5rem 5%;
   }
-
-  .wf-gallery-08 {
-    background-color: var(--wf-gallery-08-bg);
-    padding: var(--wf-gallery-08-padding-y) var(--wf-gallery-08-padding-x);
-  }
-
   .wf-gallery-08__header {
     text-align: center;
     margin-bottom: 2rem;
   }
-
   .wf-gallery-08__tagline {
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--wf-gallery-08-muted);
+    color: var(--color-text-light, #6b7280);
     margin: 0 0 0.75rem 0;
   }
-
   .wf-gallery-08__title {
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: 700;
-    color: var(--wf-gallery-08-text);
+    color: var(--color-text, #1a1a1a);
     margin: 0 0 1rem 0;
     line-height: 1.2;
   }
-
   .wf-gallery-08__description {
     font-size: 1.125rem;
-    color: var(--wf-gallery-08-muted);
+    color: var(--color-text-light, #6b7280);
     margin: 0 auto;
     max-width: 40rem;
     line-height: 1.6;
   }
-
-  .wf-gallery-08__tabs {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .wf-gallery-08__tab {
-    padding: 0.625rem 1.5rem;
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--wf-gallery-08-muted);
-    background-color: var(--wf-gallery-08-tab-bg);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-  }
-
-  .wf-gallery-08__tab:hover {
-    color: var(--wf-gallery-08-text);
-    background-color: var(--color-neutral-200);
-  }
-
-  .wf-gallery-08__tab--active {
-    background-color: var(--wf-gallery-08-accent);
-    color: var(--color-text-on-dark);
-  }
-
-  .wf-gallery-08__tab--active:hover {
-    background-color: var(--wf-gallery-08-accent);
-    color: var(--color-text-on-dark);
-  }
-
   .wf-gallery-08__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-gallery-08-gap);
+    gap: 1.5rem;
     max-width: 80rem;
     margin: 0 auto;
   }
-
   .wf-gallery-08__grid .wf-img {
     aspect-ratio: 4 / 3;
-    background-color: var(--wf-gallery-08-img-bg);
-    border-radius: var(--wf-gallery-08-radius);
+    background-color: var(--color-border, #e5e7eb);
+    border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
-
   .wf-gallery-08__cta {
     text-align: center;
     margin-top: 3rem;
   }
-
-  .wf-gallery-08__btn {
-    display: inline-block;
-    padding: 0.875rem 2rem;
-    border: 2px solid var(--wf-gallery-08-text);
-    border-radius: var(--wf-gallery-08-radius);
-    color: var(--wf-gallery-08-text);
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background-color 0.2s, color 0.2s;
-    cursor: pointer;
-    background: none;
-  }
-
-  .wf-gallery-08__btn:hover {
-    background-color: var(--wf-gallery-08-text);
-    color: var(--wf-gallery-08-bg);
-  }
-
   @media (max-width: 768px) {
     .wf-gallery-08__grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-
   @media (max-width: 480px) {
     .wf-gallery-08__grid {
       grid-template-columns: 1fr;
-    }
-
-    .wf-gallery-08__tabs {
-      gap: 0.375rem;
-    }
-
-    .wf-gallery-08__tab {
-      padding: 0.5rem 1rem;
-      font-size: 0.8125rem;
     }
   }
 </style>
@@ -155,39 +68,43 @@
   <div class="wf-gallery-08__header">
     <p class="wf-gallery-08__tagline">Galerie</p>
     <h2 class="wf-gallery-08__title">Nos réalisations en images</h2>
-    <p class="wf-gallery-08__description">Filtrez par catégorie pour explorer nos differents types de réalisations.</p>
+    <p class="wf-gallery-08__description">Filtrez par catégorie pour explorer nos différents types de réalisations.</p>
   </div>
 
-  <div class="wf-gallery-08__tabs">
-    <button class="wf-gallery-08__tab wf-gallery-08__tab--active">Tout</button>
-    <button class="wf-gallery-08__tab">Architecture</button>
-    <button class="wf-gallery-08__tab">Interieur</button>
-    <button class="wf-gallery-08__tab">Paysage</button>
-    <button class="wf-gallery-08__tab">Renovation</button>
-  </div>
+  <div class="tabs">
+    <nav class="tabs__nav">
+      <button class="tabs__tab" data-tab="tout" data-tab-active>Tout</button>
+      <button class="tabs__tab" data-tab="architecture">Architecture</button>
+      <button class="tabs__tab" data-tab="interieur">Intérieur</button>
+      <button class="tabs__tab" data-tab="paysage">Paysage</button>
+      <button class="tabs__tab" data-tab="renovation">Rénovation</button>
+    </nav>
 
-  <div class="wf-gallery-08__grid">
-    <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-    <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-    <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-    <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-    <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-    <div class="wf-img">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
-    </div>
-  </div>
+    <div class="tabs__panel" data-tab-panel="tout">
+      <div class="wf-gallery-08__grid">
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+        <div class="wf-img">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="48" height="48" opacity="0.3"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg>
+        </div>
+      </div>
 
-  <div class="wf-gallery-08__cta">
-    <a href="#" class="wf-gallery-08__btn">Voir plus</a>
+      <div class="wf-gallery-08__cta">
+        <a href="#" class="btn btn--secondary">Voir plus</a>
+      </div>
+    </div>
   </div>
 </section>

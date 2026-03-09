@@ -32,22 +32,6 @@
     box-shadow: var(--shadow-xl);
   }
 
-  .wf-popup-preview--02 .wf-popup-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: 1px solid var(--popup-border);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--popup-muted);
-  }
-
   .wf-popup-preview--02 .wf-popup-icon {
     width: 40px;
     height: 40px;
@@ -81,17 +65,6 @@
     gap: 0.75rem;
   }
 
-  .wf-popup-preview--02 .wf-popup-btn {
-    flex: 1;
-    padding: 0.8125rem 1.25rem;
-    border-radius: var(--radius-md, 0.5rem);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    border: none;
-  }
-
   .wf-popup-preview--02 .wf-popup-btn--primary {
     background: var(--popup-accent);
     color: var(--popup-accent-text);
@@ -112,15 +85,15 @@
 
 <div class="wf-popup-preview wf-popup-preview--02">
   <div class="wf-popup-box">
-    <button class="wf-popup-close" aria-label="Fermer">
+    <button class="popup__close" data-popup-close aria-label="Fermer">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <div class="wf-popup-icon">🍪</div>
     <h2 class="wf-popup-title">Accepter les cookies</h2>
     <p class="wf-popup-desc">Nous utilisons des cookies pour améliorer votre expérience de navigation et analyser le trafic du site. En savoir plus dans notre <a href="#">politique de confidentialite</a>.</p>
     <div class="wf-popup-actions">
-      <button class="wf-popup-btn wf-popup-btn--primary">Accepter</button>
-      <button class="wf-popup-btn wf-popup-btn--secondary">Refuser</button>
+      <button class="btn btn--primary">Accepter</button>
+      <button class="btn btn--secondary">Refuser</button>
     </div>
   </div>
 </div>

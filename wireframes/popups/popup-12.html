@@ -19,23 +19,6 @@
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
   }
 
-  .wf-popup-preview--12 .wf-popup-close {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    background: none;
-    border: 1px solid var(--popup-border);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--popup-muted);
-    z-index: 2;
-  }
-
   .wf-popup-preview--12 .wf-popup-box {
     max-width: var(--popup-max-width);
     width: 100%;
@@ -126,7 +109,7 @@
 </style>
 
 <div class="wf-popup-preview wf-popup-preview--12">
-  <button class="wf-popup-close" aria-label="Fermer">
+  <button class="popup__close" data-popup-close aria-label="Fermer">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
   </button>
   <div class="wf-popup-box">

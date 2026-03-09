@@ -152,25 +152,6 @@
     margin-top: var(--wf-space-2xl);
   }
 
-  .wf-blog-15__load-more {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--wf-space-xs);
-    padding: 0.875rem 2rem;
-    background: var(--wf-btn-bg);
-    color: var(--wf-btn-text);
-    border: none;
-    border-radius: var(--wf-radius-full);
-    font-size: 0.9375rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-
-  .wf-blog-15__load-more:hover {
-    background: var(--wf-btn-hover);
-  }
-
   .wf-blog-15__count {
     font-size: 0.875rem;
     color: var(--wf-text-muted);
@@ -313,9 +294,9 @@
     </div>
 
     <div class="wf-blog-15__footer">
-      <button class="wf-blog-15__load-more">
+      <button class="btn btn--secondary">
         Charger plus d'articles
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12a.5.5 0 01-.354-.146l-5-5a.5.5 0 01.708-.708L8 10.793l4.646-4.647a.5.5 0 01.708.708l-5 5A.5.5 0 018 12z"/></svg>
+        <span data-icon="chevron-up" data-icon-type="outline" data-icon-size="16"></span>
       </button>
       <p class="wf-blog-15__count">Affichage de 6 articles sur 24</p>
     </div>
