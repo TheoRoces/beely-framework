@@ -54,11 +54,7 @@
     margin-inline: auto;
   }
 
-  .wf-event-07__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
+  
 
   .wf-event-07__card {
     background: var(--wf-card-bg);
@@ -149,15 +145,11 @@
   }
 
   @media (max-width: 1024px) {
-    .wf-event-07__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 
   @media (max-width: 640px) {
-    .wf-event-07__grid {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-event-07__title {
       font-size: 1.75rem;
@@ -173,7 +165,7 @@
       <p class="wf-event-07__subtitle">Rejoignez notre communauté lors de nos prochains événements exclusifs.</p>
     </div>
 
-    <div class="wf-event-07__grid">
+    <div class="wf-event-07__grid grid" data-cols="3" data-gap="md">
       <!-- Card 1 -->
       <div class="wf-event-07__card">
         <span class="wf-event-07__card-date">

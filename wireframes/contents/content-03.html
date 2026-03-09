@@ -51,11 +51,7 @@
     margin: 0;
   }
 
-  .wf-content-03__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
+  
 
   .wf-content-03__card {
     text-align: center;
@@ -91,10 +87,7 @@
     .wf-content-03 {
       --wf-section-padding: 3rem 1.25rem;
     }
-    .wf-content-03__grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
+    
     .wf-content-03__title {
       font-size: 1.875rem;
     }
@@ -111,7 +104,7 @@
         des résultats concrets et durables.
       </p>
     </div>
-    <div class="wf-content-03__grid">
+    <div class="wf-content-03__grid grid" data-cols="3" data-gap="lg">
       <div class="wf-content-03__card">
         <div class="wf-content-03__icon">
           <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>

@@ -51,9 +51,6 @@
   }
 
   .wf-gallery-10__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--wf-gallery-10-gap);
     max-width: 64rem;
     margin: 0 auto;
   }
@@ -110,9 +107,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-gallery-10__grid {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-gallery-10__col:nth-child(2) {
       padding-top: 0;
@@ -127,7 +122,7 @@
     <p class="wf-gallery-10__description">Une disposition decalee pour un rendu elegant et dynamique.</p>
   </div>
 
-  <div class="wf-gallery-10__grid">
+  <div class="wf-gallery-10__grid grid" data-cols="2" data-gap="md">
     <div class="wf-gallery-10__col">
       <div class="wf-img">
         <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

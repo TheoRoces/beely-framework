@@ -21,11 +21,7 @@
     margin: 0 auto;
   }
 
-  .wf-event-06__layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+  .wf-event-06__layout {align-items: start;
   }
 
   .wf-event-06__tag {
@@ -151,10 +147,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-event-06__layout {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+    
 
     .wf-event-06__title {
       font-size: 1.5rem;
@@ -165,7 +158,7 @@
 
 <section class="wf-event-06">
   <div class="wf-event-06__container">
-    <div class="wf-event-06__layout">
+    <div class="wf-event-06__layout grid" data-cols="2" data-gap="md">
       <!-- Left: Event details -->
       <div class="wf-event-06__details-side">
         <span class="wf-event-06__tag">Événement</span>

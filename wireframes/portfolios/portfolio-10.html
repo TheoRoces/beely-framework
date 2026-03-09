@@ -9,8 +9,7 @@
     --wf-img-bg: var(--color-neutral-100, #f3f4f6);
     --wf-border: var(--color-border, #e5e7eb);
     --wf-radius: 0.75rem;
-    --wf-gap: 1.5rem;
-    padding: 5rem 1.5rem;
+    --wf-padding: 5rem 1.5rem;
     background: var(--wf-bg);
     color: var(--wf-text);
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
@@ -44,10 +43,7 @@
   .wf-portfolio-10 .wf-portfolio-10__grid {
     max-width: 72rem;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
-    gap: var(--wf-gap);
   }
   .wf-portfolio-10 .wf-card {
     border-radius: var(--wf-radius);
@@ -96,9 +92,6 @@
     line-height: 1.5;
   }
   .wf-portfolio-10 .wf-card__metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
     padding-top: 1.25rem;
     border-top: 1px solid var(--wf-border);
   }
@@ -115,23 +108,23 @@
     letter-spacing: 0.03em;
   }
   @media (max-width: 768px) {
-    .wf-portfolio-10 .wf-portfolio-10__grid { grid-template-columns: 1fr; }
+    .wf-portfolio-10 
     .wf-portfolio-10 .wf-portfolio-10__title { font-size: 1.75rem; }
     .wf-portfolio-10 { padding: 3rem 1rem; }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-portfolio-10 .wf-portfolio-10__grid { grid-template-columns: repeat(2, 1fr); }
+    .wf-portfolio-10 
   }
 </style>
 
-<section class="wf-portfolio-10">
+<section class="wf-portfolio-10 grid" data-cols="3" data-gap="md">
   <div class="wf-portfolio-10__header">
     <div class="wf-portfolio-10__subtitle">Études de cas</div>
     <h2 class="wf-portfolio-10__title">Projets recents</h2>
     <p class="wf-portfolio-10__desc">Des résultats concrets pour chaque projet, mesures par des indicateurs de performance cles.</p>
   </div>
 
-  <div class="wf-portfolio-10__grid">
+  <div class="wf-portfolio-10__grid grid" data-cols="3" data-gap="md">
     <div class="wf-card">
       <div class="wf-img">
         <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>
@@ -140,7 +133,7 @@
         <span class="wf-badge">Web Design</span>
         <h3 class="wf-card__title">Refonte TechVision</h3>
         <p class="wf-card__text">Redesign complet avec approche mobile-first et design system modulaire.</p>
-        <div class="wf-card__metrics">
+        <div class="wf-card__metrics grid" data-cols="3" data-gap="sm">
           <div>
             <span class="wf-card__metric-value">+145%</span>
             <span class="wf-card__metric-label">Trafic</span>

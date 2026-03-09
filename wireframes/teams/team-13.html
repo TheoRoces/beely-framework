@@ -22,11 +22,7 @@
     color: var(--color-text-light, #6b7280);
     margin: 0;
   }
-  .wf-team-13__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-spacing-lg, 3rem);
-  }
+  
   .wf-team-13__member {
     text-align: center;
   }
@@ -59,11 +55,11 @@
     line-height: 1.6;
   }
   @media (max-width: 768px) {
-    .wf-team-13__grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    
     .wf-team-13__avatar { width: 8rem; height: 8rem; }
   }
   @media (max-width: 480px) {
-    .wf-team-13__grid { grid-template-columns: 1fr; max-width: 22rem; margin: 0 auto; }
+    .wf-team-13__grid { max-width: 22rem; margin: 0 auto; }
     .wf-team-13__title { font-size: 2rem; }
   }
 </style>
@@ -73,7 +69,7 @@
     <h2 class="wf-team-13__title">Notre équipe</h2>
     <p class="wf-team-13__subtitle">Les talents derriere le projet</p>
   </header>
-  <div class="wf-team-13__grid">
+  <div class="wf-team-13__grid grid" data-cols="3" data-gap="xl">
     <div class="wf-team-13__member">
       <div class="wf-team-13__avatar wf-avatar--xl">
         <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>

@@ -30,11 +30,7 @@
     margin: 0;
   }
 
-  .wf-cta-13__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-6, 2rem);
-  }
+  
 
   .wf-cta-13__card {
     padding: var(--space-8, 2.5rem);
@@ -110,9 +106,7 @@
   }
 
   @media (min-width: 768px) {
-    .wf-cta-13__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
 
     .wf-cta-13__heading {
       font-size: var(--text-4xl, 3rem);
@@ -126,7 +120,7 @@
       <h2 class="wf-cta-13__heading">Choisissez votre parcours</h2>
       <p class="wf-cta-13__subheading">Deux approches adaptees à vos besoins.</p>
     </div>
-    <div class="wf-cta-13__grid">
+    <div class="wf-cta-13__grid grid" data-cols="1" data-gap="lg">
       <div class="wf-cta-13__card wf-cta-13__card--a">
         <div class="wf-cta-13__card-icon">
           <span data-icon="rocket-launch" data-icon-type="outline" data-icon-size="24"></span>

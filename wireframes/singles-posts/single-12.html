@@ -117,11 +117,7 @@
     text-align: center;
   }
 
-  .wf-single-12__related-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
+  
 
   .wf-single-12__related-card {
     background-color: var(--wf-color-bg);
@@ -172,9 +168,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-single-12__related-grid {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-single-12 {
       --wf-font-title: 1.875rem;
@@ -220,7 +214,7 @@
     <div class="wf-single-12__related-inner">
       <h2 class="wf-single-12__related-title">Articles similaires</h2>
 
-      <div class="wf-single-12__related-grid">
+      <div class="wf-single-12__related-grid grid" data-cols="3" data-gap="md">
         <div class="wf-single-12__related-card">
           <div class="wf-single-12__related-card-image"><span>Image 400 × 240</span></div>
           <div class="wf-single-12__related-card-body">

@@ -20,11 +20,7 @@
 
   .wf-content-11__container {
     max-width: var(--wf-max-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
-    align-items: center;
+    margin: 0 auto;align-items: center;
   }
 
   .wf-content-11__label {
@@ -110,9 +106,7 @@
     .wf-content-11 {
       --wf-section-padding: 3rem 1.25rem;
     }
-    .wf-content-11__container {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-content-11__title {
       font-size: 1.75rem;
     }
@@ -120,7 +114,7 @@
 </style>
 
 <section class="wf-content-11">
-  <div class="wf-content-11__container">
+  <div class="wf-content-11__container grid" data-cols="2" data-gap="md">
     <div class="wf-content-11__body">
       <p class="wf-content-11__label">Nos compétences</p>
       <h2 class="wf-content-11__title">Des services complets pour votre réussite digitale</h2>

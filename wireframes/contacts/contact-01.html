@@ -2,8 +2,7 @@
 <style>
   .wf-contact-01 {
     --wf-section-padding: 5rem 1.5rem;
-    --wf-gap: 4rem;
-    --wf-bg: var(--color-bg);
+    --wf---wf-bg: var(--color-bg);
     --wf-text: var(--color-text);
     --wf-text-muted: var(--color-text-light);
     --wf-border: var(--color-border);
@@ -24,9 +23,6 @@
   .wf-contact-01 .wf-container {
     max-width: 1200px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
     align-items: start;
   }
 
@@ -85,18 +81,15 @@
   }
 
   @media (max-width: 768px) {
-    .wf-contact-01 .wf-container {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
+    .wf-contact-01 
     .wf-contact-01 .wf-info-side h2 {
       font-size: 2rem;
     }
   }
 </style>
 
-<section class="wf-contact-01">
-  <div class="wf-container">
+<section class="wf-contact-01 grid" data-cols="2" data-gap="md">
+  <div class="wf-container grid" data-cols="2" data-gap="md">
     <div class="wf-info-side">
       <h2>Contactez-nous</h2>
       <p>Envoyez-nous un message et nous vous repondrons dans les plus brefs délais.</p>

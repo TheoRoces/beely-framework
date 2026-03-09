@@ -8,11 +8,7 @@
 
   .wf-cta-07__container {
     max-width: var(--container-max, 72rem);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-8, 3rem);
-    align-items: center;
+    margin: 0 auto;align-items: center;
   }
 
   .wf-cta-07__content {
@@ -60,9 +56,7 @@
   }
 
   @media (min-width: 768px) {
-    .wf-cta-07__container {
-      grid-template-columns: 1fr 1fr;
-    }
+    
 
     .wf-cta-07__content {
       order: 1;
@@ -79,7 +73,7 @@
 </style>
 
 <section class="wf-cta-07">
-  <div class="wf-cta-07__container">
+  <div class="wf-cta-07__container grid" data-cols="1" data-gap="xl">
     <div class="wf-cta-07__content">
       <p class="wf-cta-07__tagline">Notre expertise</p>
       <h2 class="wf-cta-07__heading">Lancez votre projet des aujourd'hui</h2>

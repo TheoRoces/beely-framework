@@ -2,8 +2,7 @@
 <style>
   .wf-contact-08 {
     --wf-section-padding: 5rem 1.5rem;
-    --wf-gap: 4rem;
-    --wf-bg: var(--color-bg);
+    --wf---wf-bg: var(--color-bg);
     --wf-text: var(--color-text);
     --wf-text-muted: var(--color-text-light);
     --wf-border: var(--color-border);
@@ -45,9 +44,6 @@
   }
 
   .wf-contact-08 .wf-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
     align-items: start;
   }
 
@@ -98,23 +94,20 @@
   }
 
   @media (max-width: 768px) {
-    .wf-contact-08 .wf-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
+    .wf-contact-08 
     .wf-contact-08 h2 {
       font-size: 2rem;
     }
   }
 </style>
 
-<section class="wf-contact-08">
+<section class="wf-contact-08 grid" data-cols="2" data-gap="md">
   <div class="wf-container">
     <div class="wf-header">
       <h2>Contactez-nous</h2>
       <p class="wf-subtitle">Consultez nos questions fréquentes ou envoyez-nous un message.</p>
     </div>
-    <div class="wf-grid">
+    <div class="wf-grid grid" data-cols="2" data-gap="md">
       <div class="wf-form-side">
         <h3>Envoyez-nous un message</h3>
         <form>

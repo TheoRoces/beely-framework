@@ -93,11 +93,7 @@
     min-height: 6rem;
   }
 
-  .wf-error-14__row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
+  
 
   .wf-error-14__actions {
     display: flex;
@@ -139,9 +135,7 @@
   }
 
   @media (max-width: 480px) {
-    .wf-error-14__row {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -153,7 +147,7 @@
   </div>
 
   <form class="wf-error-14__form" action="#" method="post">
-    <div class="wf-error-14__row">
+    <div class="wf-error-14__row grid" data-cols="2" data-gap="sm">
       <div class="wf-error-14__form-group">
         <label class="wf-error-14__label" for="wf14-name">Nom</label>
         <input type="text" id="wf14-name" name="name" class="form__input" placeholder="Votre nom" />

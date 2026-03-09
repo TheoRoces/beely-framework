@@ -20,11 +20,7 @@
   color: var(--color-text-muted, #6b7280);
   margin: 0;
 }
-.wf-testimonials-12 .wf-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6, 1.5rem);
-}
+.wf-testimonials-12 
 .wf-testimonials-12 .wf-card {
   border-radius: var(--radius-lg, 12px);
   overflow: hidden;
@@ -89,16 +85,16 @@
   color: var(--color-text-muted, #6b7280);
 }
 @media (max-width: 768px) {
-  .wf-testimonials-12 .wf-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .wf-testimonials-12 .wf-grid { max-width: 480px; margin: 0 auto; }
 }
 </style>
 
-<section class="wf-testimonials-12">
+<section class="wf-testimonials-12 grid" data-cols="3" data-gap="md">
   <div class="wf-section-header">
     <h2>Témoignages vidéo</h2>
     <p>Écoutez directement ce que nos clients ont à dire.</p>
   </div>
-  <div class="wf-grid">
+  <div class="wf-grid grid" data-cols="3" data-gap="md">
     <div class="wf-card">
       <div class="wf-vidéo-thumb">
         <div class="wf-play-btn">

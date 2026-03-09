@@ -162,11 +162,7 @@
     margin-top: 1.5rem;
   }
 
-  .wf-filter-13__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--wf-gap);
-  }
+  
 
   .wf-filter-13 .wf-card {
     background: var(--wf-card-bg);
@@ -217,9 +213,7 @@
     .wf-filter-13__sidebar {
       position: static;
     }
-    .wf-filter-13__grid {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -285,7 +279,7 @@
       <button class="wf-filter-13__apply">Appliquer les filtres</button>
     </aside>
 
-    <div class="wf-filter-13__grid">
+    <div class="wf-filter-13__grid grid" data-cols="2" data-gap="md">
       <div class="wf-card">
         <div class="wf-img">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

@@ -37,10 +37,7 @@
     margin: 0 auto;
   }
   .wf-portfolio-04__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
-    gap: 1.5rem;
   }
   .wf-portfolio-04 .wf-card {
     border-radius: 0.75rem;
@@ -84,12 +81,12 @@
     border-radius: 9999px;
   }
   @media (max-width: 768px) {
-    .wf-portfolio-04__grid { grid-template-columns: 1fr; }
+    
     .wf-portfolio-04__title { font-size: 1.75rem; }
     .wf-portfolio-04 { padding: 3rem 1rem; }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-portfolio-04__grid { grid-template-columns: repeat(2, 1fr); }
+    
   }
 </style>
 
@@ -110,7 +107,7 @@
     </nav>
 
     <div class="tabs__panel" data-tab-panel="tous">
-      <div class="wf-portfolio-04__grid">
+      <div class="wf-portfolio-04__grid grid" data-cols="3" data-gap="md">
         <div class="wf-card">
           <div class="wf-img">
             <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

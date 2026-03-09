@@ -30,11 +30,7 @@
     letter-spacing: 0.05em;
   }
 
-  .wf-event-03__layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
+  .wf-event-03__layout {align-items: center;
   }
 
   .wf-event-03__image {
@@ -168,10 +164,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-event-03__layout {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+    
 
     .wf-event-03__title {
       font-size: 1.5rem;
@@ -190,7 +183,7 @@
 <section class="wf-event-03">
   <div class="wf-event-03__container">
     <span class="wf-event-03__tag">Événement vedette</span>
-    <div class="wf-event-03__layout">
+    <div class="wf-event-03__layout grid" data-cols="2" data-gap="xl">
       <div class="wf-event-03__image">
         <span data-icon="calendar" data-icon-type="outline" data-icon-size="24"></span>
       </div>

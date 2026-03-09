@@ -24,11 +24,7 @@
   color: rgba(255,255,255,0.6);
   margin: 0;
 }
-.wf-testimonials-07 .wf-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6, 1.5rem);
-}
+.wf-testimonials-07 
 .wf-testimonials-07 .wf-card {
   background: var(--color-bg, #ffffff);
   border-radius: var(--radius-lg, 12px);
@@ -76,17 +72,17 @@
   color: var(--color-text-muted, #6b7280);
 }
 @media (max-width: 768px) {
-  .wf-testimonials-07 .wf-grid { grid-template-columns: 1fr; }
+  .wf-testimonials-07 
 }
 </style>
 
-<section class="wf-testimonials-07">
+<section class="wf-testimonials-07 grid" data-cols="3" data-gap="md">
   <div class="wf-container">
     <div class="wf-section-header">
       <h2>Nos clients temoignent</h2>
       <p>Découvrez pourquoi ils nous font confiance.</p>
     </div>
-    <div class="wf-grid">
+    <div class="wf-grid grid" data-cols="3" data-gap="md">
       <div class="wf-card">
         <div class="wf-stars">
           <span data-icon="star" data-icon-type="solid" data-icon-size="16"></span>

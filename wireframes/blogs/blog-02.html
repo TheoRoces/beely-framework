@@ -48,11 +48,7 @@
     margin: 0;
   }
 
-  .wf-blog-02__layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-space-xl);
-    align-items: stretch;
+  .wf-blog-02__layout {align-items: stretch;
   }
 
   .wf-blog-02 .wf-card {
@@ -152,9 +148,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-blog-02__layout {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-blog-02 .wf-card--featured {
       grid-row: auto;
     }
@@ -171,7 +165,7 @@
       <h2 class="wf-blog-02__title">Derniers articles</h2>
     </div>
 
-    <div class="wf-blog-02__layout">
+    <div class="wf-blog-02__layout grid" data-cols="2" data-gap="md">
       <!-- Featured Post -->
       <article class="wf-card wf-card--featured">
         <div class="wf-img" role="img" aria-label="Illustration article vedette">

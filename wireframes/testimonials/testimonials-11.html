@@ -15,11 +15,7 @@
   color: var(--color-text, #1a1a1a);
   margin: 0;
 }
-.wf-testimonials-11 .wf-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-10, 2.5rem);
-}
+.wf-testimonials-11 
 .wf-testimonials-11 .wf-item {
   text-align: center;
   position: relative;
@@ -61,15 +57,15 @@
   color: var(--color-text-muted, #6b7280);
 }
 @media (max-width: 768px) {
-  .wf-testimonials-11 .wf-grid { grid-template-columns: 1fr; }
+  .wf-testimonials-11 
 }
 </style>
 
-<section class="wf-testimonials-11">
+<section class="wf-testimonials-11 grid" data-cols="3" data-gap="none">
   <div class="wf-section-header">
     <h2>Paroles de clients</h2>
   </div>
-  <div class="wf-grid">
+  <div class="wf-grid grid" data-cols="3" data-gap="xl">
     <div class="wf-item">
       <p class="wf-quote">"Un service exceptionnel qui a transforme notre présence en ligne. Les résultats ont depasse toutes nos attentes."</p>
       <div class="wf-divider"></div>

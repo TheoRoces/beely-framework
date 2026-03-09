@@ -66,9 +66,6 @@
   }
 
   .wf-coming-soon-11 .wf-features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
     width: 100%;
     max-width: 800px;
     margin-bottom: 3rem;
@@ -116,21 +113,20 @@
 
   @media (max-width: 768px) {
     .wf-coming-soon-11 .wf-features {
-      grid-template-columns: 1fr;
       max-width: 400px;
     }
 
   }
 </style>
 
-<section class="wf-coming-soon-11">
+<section class="wf-coming-soon-11 grid" data-cols="3" data-gap="md">
   <div class="wf-header">
     <span class="wf-badge">Bientot disponible</span>
     <h1 class="wf-heading">Nous preparons quelque chose d'exceptionnel</h1>
     <p class="wf-subheading">Découvrez les fonctionnalites qui vous attendent lors de notre lancement.</p>
   </div>
 
-  <div class="wf-features">
+  <div class="wf-features grid" data-cols="3" data-gap="md">
     <div class="wf-feature">
       <div class="wf-feature-icon"></div>
       <h3 class="wf-feature-title">Design moderne</h3>

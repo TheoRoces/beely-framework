@@ -14,8 +14,6 @@
     --wf-font: var(--font-body);
 
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     background-color: var(--wf-bg);
     color: var(--wf-text);
     font-family: var(--wf-font);
@@ -118,9 +116,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-coming-soon-12 {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-coming-soon-12 .wf-vidéo {
       min-height: 300px;
@@ -132,7 +128,7 @@
   }
 </style>
 
-<section class="wf-coming-soon-12">
+<section class="wf-coming-soon-12 grid" data-cols="2" data-gap="md">
   <div class="wf-vidéo">
     <div class="wf-play-button">
       <div class="wf-play-triangle"></div>

@@ -97,11 +97,7 @@
     line-height: 1.5;
   }
 
-  .wf-megamenu-12 .wf-megamenu__detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.25rem;
-  }
+  .wf-megamenu-12 
 
   .wf-megamenu-12 .wf-megamenu__link {
     display: flex;
@@ -167,16 +163,14 @@
     .wf-megamenu-12 .wf-megamenu__sidebar-icon {
       display: none;
     }
-    .wf-megamenu-12 .wf-megamenu__detail-grid {
-      grid-template-columns: 1fr;
-    }
+    .wf-megamenu-12 
     .wf-megamenu-12 .wf-megamenu__detail {
       padding: 1.25rem;
     }
   }
 </style>
 
-<div class="wf-megamenu-12">
+<div class="wf-megamenu-12 grid" data-cols="2" data-gap="xs">
   <nav class="wf-megamenu" aria-label="Menu principal">
     <div class="wf-megamenu__sidebar">
       <h4 class="wf-megamenu__sidebar-label">Catégories</h4>
@@ -200,7 +194,7 @@
     <div class="wf-megamenu__detail">
       <h3 class="wf-megamenu__group-title">Produits</h3>
       <p class="wf-megamenu__detail-desc">Explorez nos solutions techniques pour créer des expériences digitales exceptionnelles.</p>
-      <div class="wf-megamenu__detail-grid">
+      <div class="wf-megamenu__detail-grid grid" data-cols="2" data-gap="xs">
         <a href="#" class="wf-megamenu__link">
           <span class="wf-icon"><span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span></span>
           Design UI/UX

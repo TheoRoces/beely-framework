@@ -86,11 +86,7 @@
     margin: 0 0 1rem 0;
   }
 
-  .wf-megamenu-04 .wf-megamenu__content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.25rem;
-  }
+  .wf-megamenu-04 
 
   .wf-megamenu-04 .wf-megamenu__link {
     display: flex;
@@ -138,13 +134,11 @@
     .wf-megamenu-04 .wf-megamenu__tab-chevron {
       display: none;
     }
-    .wf-megamenu-04 .wf-megamenu__content-grid {
-      grid-template-columns: 1fr;
-    }
+    .wf-megamenu-04 
   }
 </style>
 
-<div class="wf-megamenu-04">
+<div class="wf-megamenu-04 grid" data-cols="2" data-gap="xs">
   <nav class="wf-megamenu" aria-label="Menu principal">
     <div class="wf-megamenu__tabs" role="tablist">
       <a href="#" class="wf-megamenu__tab wf-megamenu__tab--active" role="tab" aria-selected="true">
@@ -166,7 +160,7 @@
     </div>
     <div class="wf-megamenu__content" role="tabpanel">
       <h3 class="wf-megamenu__group-title">Produits</h3>
-      <div class="wf-megamenu__content-grid">
+      <div class="wf-megamenu__content-grid grid" data-cols="2" data-gap="xs">
         <a href="#" class="wf-megamenu__link">
           <span class="wf-icon"><span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span></span>
           Design UI/UX

@@ -18,11 +18,7 @@
 
   .wf-content-06__container {
     max-width: var(--wf-max-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
-    align-items: center;
+    margin: 0 auto;align-items: center;
   }
 
   .wf-content-06__image {
@@ -103,9 +99,7 @@
     .wf-content-06 {
       --wf-section-padding: 3rem 1.25rem;
     }
-    .wf-content-06__container {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-content-06__title {
       font-size: 1.75rem;
     }
@@ -113,7 +107,7 @@
 </style>
 
 <section class="wf-content-06">
-  <div class="wf-content-06__container">
+  <div class="wf-content-06__container grid" data-cols="2" data-gap="md">
     <div class="wf-content-06__media">
       <img src="https://placehold.co/800x600/e5e7eb/999?text=Image" alt="Nos avantages" class="wf-content-06__image" />
     </div>

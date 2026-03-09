@@ -22,11 +22,7 @@
     color: var(--color-text-light, #6b7280);
     margin: 0;
   }
-  .wf-team-14__founder {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-spacing-lg, 3rem);
-    align-items: center;
+  .wf-team-14__founder {align-items: center;
     margin-bottom: var(--wf-spacing-xl, 4rem);
   }
   .wf-team-14__founder-photo {
@@ -91,11 +87,7 @@
     margin: 0 0 1.5rem;
     text-align: center;
   }
-  .wf-team-14__grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--wf-spacing-md, 1.5rem);
-  }
+  
   .wf-team-14__member {
     text-align: center;
   }
@@ -122,12 +114,12 @@
     margin: 0;
   }
   @media (max-width: 768px) {
-    .wf-team-14__founder { grid-template-columns: 1fr; }
-    .wf-team-14__grid { grid-template-columns: repeat(3, 1fr); }
+    
+    
     .wf-team-14__title { font-size: 2rem; }
   }
   @media (max-width: 480px) {
-    .wf-team-14__grid { grid-template-columns: repeat(2, 1fr); }
+    
     .wf-team-14__founder-quote { font-size: 1.25rem; }
   }
 </style>
@@ -138,7 +130,7 @@
     <p class="wf-team-14__subtitle">Les talents derriere le projet</p>
   </header>
 
-  <div class="wf-team-14__founder">
+  <div class="wf-team-14__founder grid" data-cols="2" data-gap="xl">
     <div class="wf-team-14__founder-photo wf-img--portrait">
       <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>
     </div>
@@ -153,7 +145,7 @@
   <hr class="wf-team-14__divider">
   <p class="wf-team-14__team-label">L'équipe</p>
 
-  <div class="wf-team-14__grid">
+  <div class="wf-team-14__grid grid" data-cols="5" data-gap="md">
     <div class="wf-team-14__member">
       <div class="wf-team-14__photo wf-img--square">
         <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>

@@ -50,10 +50,7 @@
   }
 
   .wf-gallery-04__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: var(--wf-gallery-04-gap);
     max-width: 80rem;
     margin: 0 auto;
   }
@@ -99,7 +96,6 @@
 
   @media (max-width: 768px) {
     .wf-gallery-04__grid {
-      grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto;
     }
 
@@ -114,9 +110,7 @@
   }
 
   @media (max-width: 480px) {
-    .wf-gallery-04__grid {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-gallery-04__grid .wf-img--large {
       grid-column: 1;
@@ -131,7 +125,7 @@
     <p class="wf-gallery-04__description">Une disposition bento moderne mettant en avant une image principale accompagnee de vignettes.</p>
   </div>
 
-  <div class="wf-gallery-04__grid">
+  <div class="wf-gallery-04__grid grid" data-cols="4" data-gap="md">
     <div class="wf-img wf-img--large">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>
     </div>

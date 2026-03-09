@@ -10,8 +10,6 @@
     --wf-illust-border: var(--color-border, #e5e7eb);
     --wf-font: var(--font-body);
 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     min-height: 100vh;
     background-color: var(--wf-bg);
     font-family: var(--wf-font);
@@ -94,7 +92,6 @@
 
   @media (max-width: 768px) {
     .wf-error-10 {
-      grid-template-columns: 1fr;
       grid-template-rows: auto 1fr;
     }
 
@@ -110,7 +107,7 @@
   }
 </style>
 
-<section class="wf-error-10">
+<section class="wf-error-10 grid" data-cols="2" data-gap="md">
   <div class="wf-error-10__left">
     <div class="wf-error-10__illust">
       <span class="wf-error-10__illust-text">[Illustration 404]</span>

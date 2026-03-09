@@ -73,11 +73,7 @@
     color: var(--color-text-light, #6b7280);
     font-size: 0.75rem;
   }
-  .wf-filter-12__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
+  
   .wf-filter-12 .wf-card {
     background: var(--color-bg-alt, #f9fafb);
     border-radius: 0.5rem;
@@ -121,9 +117,7 @@
     .wf-filter-12__sidebar {
       position: static;
     }
-    .wf-filter-12__grid {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -210,7 +204,7 @@
       </div>
     </aside>
 
-    <div class="wf-filter-12__grid">
+    <div class="wf-filter-12__grid grid" data-cols="2" data-gap="md">
       <div class="wf-card">
         <div class="wf-img">
           <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

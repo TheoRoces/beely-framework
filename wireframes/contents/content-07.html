@@ -42,11 +42,7 @@
     margin: 0;
   }
 
-  .wf-content-07__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-  }
+  
 
   .wf-content-07__stat {
     text-align: center;
@@ -80,9 +76,7 @@
   }
 
   @media (max-width: 900px) {
-    .wf-content-07__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
     .wf-content-07__stat {
       border-right: none;
       border-bottom: 1px solid var(--wf-border);
@@ -99,9 +93,7 @@
     .wf-content-07 {
       --wf-section-padding: 3rem 1.25rem;
     }
-    .wf-content-07__grid {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-content-07__stat {
       border-right: none;
     }
@@ -123,7 +115,7 @@
       <p class="wf-content-07__label">Nos chiffres</p>
       <h2 class="wf-content-07__title">Les résultats parlent d'eux-memes</h2>
     </div>
-    <div class="wf-content-07__grid">
+    <div class="wf-content-07__grid grid" data-cols="4" data-gap="md">
       <div class="wf-content-07__stat">
         <p class="wf-content-07__value">200+</p>
         <h3 class="wf-content-07__stat-label">Clients accompagnes</h3>

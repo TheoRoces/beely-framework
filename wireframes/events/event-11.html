@@ -121,11 +121,7 @@
     margin: 0 auto;
   }
 
-  .wf-event-11__details-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
+  
 
   .wf-event-11__detail-card {
     text-align: center;
@@ -187,7 +183,6 @@
     }
 
     .wf-event-11__details-grid {
-      grid-template-columns: 1fr;
       max-width: 400px;
       margin-inline: auto;
     }
@@ -231,7 +226,7 @@
   <!-- Details below -->
   <div class="wf-event-11__details">
     <div class="wf-event-11__details-container">
-      <div class="wf-event-11__details-grid">
+      <div class="wf-event-11__details-grid grid" data-cols="3" data-gap="lg">
         <div class="wf-event-11__detail-card">
           <div class="wf-event-11__detail-icon">
             <span data-icon="calendar" data-icon-type="outline" data-icon-size="24"></span>

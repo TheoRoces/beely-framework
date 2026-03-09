@@ -50,11 +50,7 @@
   }
 
   .wf-gallery-12__mosaic {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: var(--wf-gallery-12-gap);
-    max-width: 80rem;
+    grid-template-rows: 1fr 1fr 1fr;max-width: 80rem;
     margin: 0 auto;
   }
 
@@ -134,7 +130,6 @@
 
   @media (max-width: 768px) {
     .wf-gallery-12__mosaic {
-      grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto;
     }
 
@@ -151,9 +146,7 @@
   }
 
   @media (max-width: 480px) {
-    .wf-gallery-12__mosaic {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -164,7 +157,7 @@
     <p class="wf-gallery-12__description">Une mosaique dynamique avec des images de proportions variees pour un rendu unique.</p>
   </div>
 
-  <div class="wf-gallery-12__mosaic">
+  <div class="wf-gallery-12__mosaic grid" data-cols="4" data-gap="md">
     <div class="wf-img">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>
     </div>

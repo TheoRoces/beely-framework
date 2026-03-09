@@ -62,9 +62,6 @@
   }
 
   .wf-coming-soon-06 .wf-countdown {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
     margin-bottom: 2.5rem;
     width: 100%;
     max-width: 520px;
@@ -134,20 +131,18 @@
   }
 
   @media (max-width: 600px) {
-    .wf-coming-soon-06 .wf-countdown {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .wf-coming-soon-06 
 
   }
 </style>
 
-<section class="wf-coming-soon-06">
+<section class="wf-coming-soon-06 grid" data-cols="4" data-gap="sm">
   <span class="wf-badge">Bientot disponible</span>
 
   <h1 class="wf-heading">Nous preparons quelque chose d'exceptionnel</h1>
   <p class="wf-subheading">Soyez les premiers informes de notre lancement. Inscrivez-vous à notre newsletter.</p>
 
-  <div class="wf-countdown">
+  <div class="wf-countdown grid" data-cols="4" data-gap="sm">
     <div class="wf-countdown-item">
       <span class="wf-countdown-value">12</span>
       <span class="wf-countdown-label">Jours</span>

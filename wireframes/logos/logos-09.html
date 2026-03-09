@@ -16,9 +16,6 @@
   }
 
   .wf-logos-09__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
     max-width: 720px;
     margin: 0 auto;
     background-color: var(--color-border, #e5e7eb);
@@ -54,15 +51,13 @@
   }
 
   @media (max-width: 480px) {
-    .wf-logos-09__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
 <section class="wf-logos-09">
   <p class="wf-logos-09__title">Ils nous font confiance</p>
-  <div class="wf-logos-09__grid">
+  <div class="wf-logos-09__grid grid" data-cols="3" data-gap="xs">
     <div class="wf-logos-09__cell">
       <div class="wf-logo"><svg width="120" height="32" viewBox="0 0 120 32" fill="currentColor" opacity="0.7"><rect width="120" height="32" rx="4"/></svg></div>
     </div>

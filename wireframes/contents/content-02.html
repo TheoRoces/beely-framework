@@ -18,11 +18,7 @@
 
   .wf-content-02__container {
     max-width: var(--wf-max-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
-    align-items: center;
+    margin: 0 auto;align-items: center;
   }
 
   .wf-content-02__image {
@@ -97,9 +93,7 @@
     .wf-content-02 {
       --wf-section-padding: 3rem 1.25rem;
     }
-    .wf-content-02__container {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-content-02__media {
       order: -1;
     }
@@ -110,7 +104,7 @@
 </style>
 
 <section class="wf-content-02">
-  <div class="wf-content-02__container">
+  <div class="wf-content-02__container grid" data-cols="2" data-gap="md">
     <div class="wf-content-02__media">
       <div class="wf-content-02__image" role="img" aria-label="Notre histoire">
         <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

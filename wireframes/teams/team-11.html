@@ -38,11 +38,7 @@
     padding-bottom: 0.75rem;
     border-bottom: 2px solid var(--color-border, #e5e7eb);
   }
-  .wf-team-11__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-spacing-md, 2rem);
-  }
+  
   .wf-team-11__member {
     text-align: center;
   }
@@ -69,10 +65,10 @@
     margin: 0;
   }
   @media (max-width: 768px) {
-    .wf-team-11__grid { grid-template-columns: repeat(2, 1fr); }
+    
   }
   @media (max-width: 480px) {
-    .wf-team-11__grid { grid-template-columns: 1fr; max-width: 18rem; margin: 0 auto; }
+    .wf-team-11__grid { max-width: 18rem; margin: 0 auto; }
     .wf-team-11__title { font-size: 2rem; }
   }
 </style>
@@ -85,7 +81,7 @@
 
   <div class="wf-team-11__department">
     <h3 class="wf-team-11__dept-label">Direction</h3>
-    <div class="wf-team-11__grid">
+    <div class="wf-team-11__grid grid" data-cols="3" data-gap="lg">
       <div class="wf-team-11__member">
         <div class="wf-team-11__photo wf-img--square">
           <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>

@@ -20,11 +20,7 @@
 
   .wf-content-08__container {
     max-width: var(--wf-max-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
-    align-items: center;
+    margin: 0 auto;align-items: center;
   }
 
   .wf-content-08__label {
@@ -104,9 +100,7 @@
     .wf-content-08 {
       --wf-section-padding: 3rem 1.25rem;
     }
-    .wf-content-08__container {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-content-08__title {
       font-size: 1.75rem;
     }
@@ -114,7 +108,7 @@
 </style>
 
 <section class="wf-content-08">
-  <div class="wf-content-08__container">
+  <div class="wf-content-08__container grid" data-cols="2" data-gap="md">
     <div class="wf-content-08__body">
       <p class="wf-content-08__label">Pourquoi nous choisir</p>
       <h2 class="wf-content-08__title">Tout ce dont vous avez besoin pour reussir</h2>

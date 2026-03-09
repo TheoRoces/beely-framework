@@ -21,11 +21,7 @@
   color: var(--color-text-muted, #6b7280);
   margin: 0;
 }
-.wf-testimonials-01 .wf-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6, 1.5rem);
-}
+.wf-testimonials-01 
 .wf-testimonials-01 .wf-card {
   background: var(--color-surface, #ffffff);
   border: 1px solid var(--color-border, #e5e7eb);
@@ -72,18 +68,16 @@
   color: var(--color-text-muted, #6b7280);
 }
 @media (max-width: 768px) {
-  .wf-testimonials-01 .wf-grid {
-    grid-template-columns: 1fr;
-  }
+  .wf-testimonials-01 
 }
 </style>
 
-<section class="wf-testimonials-01">
+<section class="wf-testimonials-01 grid" data-cols="3" data-gap="md">
   <div class="wf-section-header">
     <h2>Ce que nos clients disent</h2>
     <p>Découvrez les témoignages de ceux qui nous ont fait confiance.</p>
   </div>
-  <div class="wf-grid">
+  <div class="wf-grid grid" data-cols="3" data-gap="md">
     <!-- Card 1 -->
     <div class="wf-card">
       <div class="wf-stars">

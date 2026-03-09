@@ -51,9 +51,6 @@
   }
 
   .wf-gallery-15__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-gallery-15-gap);
     max-width: 80rem;
     margin: 0 auto;
   }
@@ -124,15 +121,11 @@
   }
 
   @media (max-width: 768px) {
-    .wf-gallery-15__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 
   @media (max-width: 480px) {
-    .wf-gallery-15__grid {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -143,7 +136,7 @@
     <p class="wf-gallery-15__description">Une galerie élégante sur fond sombre pour mettre vos images en valeur.</p>
   </div>
 
-  <div class="wf-gallery-15__grid">
+  <div class="wf-gallery-15__grid grid" data-cols="3" data-gap="md">
     <div class="wf-gallery-15__item">
       <div class="wf-img">
         <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

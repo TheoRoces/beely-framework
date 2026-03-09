@@ -106,11 +106,7 @@
     color: var(--wf-color-meta);
   }
 
-  .wf-single-14__post-nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-top: var(--wf-spacing-lg);
+  .wf-single-14__post-nav {margin-top: var(--wf-spacing-lg);
     padding-top: var(--wf-spacing-md);
     border-top: 2px solid var(--wf-color-border);
   }
@@ -147,9 +143,7 @@
       --wf-font-title: 1.875rem;
     }
 
-    .wf-single-14__post-nav {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-single-14__post-nav-item--next {
       text-align: left;
@@ -194,7 +188,7 @@
     <span class="wf-single-14__tag">UI/UX</span>
   </div>
 
-  <nav class="wf-single-14__post-nav">
+  <nav class="wf-single-14__post-nav grid" data-cols="2" data-gap="sm">
     <div class="wf-single-14__post-nav-item">
       <p class="wf-single-14__post-nav-label">Article précédent</p>
       <p class="wf-single-14__post-nav-title">Guide complet du design system en entreprise</p>

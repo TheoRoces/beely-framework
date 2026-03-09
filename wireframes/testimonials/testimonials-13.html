@@ -49,11 +49,7 @@
   font-size: 0.8125rem;
   color: var(--color-text-muted, #6b7280);
 }
-.wf-testimonials-13 .wf-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6, 1.5rem);
-}
+.wf-testimonials-13 
 .wf-testimonials-13 .wf-card {
   background: var(--color-surface, #ffffff);
   border: 1px solid var(--color-border, #e5e7eb);
@@ -105,12 +101,12 @@
   margin-top: auto;
 }
 @media (max-width: 768px) {
-  .wf-testimonials-13 .wf-grid { grid-template-columns: 1fr; }
+  .wf-testimonials-13 
   .wf-testimonials-13 .wf-top { flex-direction: column; align-items: flex-start; }
 }
 </style>
 
-<section class="wf-testimonials-13">
+<section class="wf-testimonials-13 grid" data-cols="3" data-gap="md">
   <div class="wf-top">
     <h2>Avis clients</h2>
     <div class="wf-rating-summary">
@@ -127,7 +123,7 @@
       </div>
     </div>
   </div>
-  <div class="wf-grid">
+  <div class="wf-grid grid" data-cols="3" data-gap="md">
     <div class="wf-card">
       <div class="wf-stars">
         <span data-icon="star" data-icon-type="solid" data-icon-size="16"></span>

@@ -72,11 +72,7 @@
     color: var(--wf-accent);
   }
 
-  .wf-event-13__tiers {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    align-items: start;
+  .wf-event-13__tiers {align-items: start;
   }
 
   .wf-event-13__tier {
@@ -227,7 +223,6 @@
 
   @media (max-width: 1024px) {
     .wf-event-13__tiers {
-      grid-template-columns: 1fr;
       max-width: 400px;
       margin-inline: auto;
     }
@@ -260,7 +255,7 @@
       </div>
     </div>
 
-    <div class="wf-event-13__tiers">
+    <div class="wf-event-13__tiers grid" data-cols="3" data-gap="md">
       <!-- Tier 1: Standard -->
       <div class="wf-event-13__tier">
         <h3 class="wf-event-13__tier-name">Standard</h3>

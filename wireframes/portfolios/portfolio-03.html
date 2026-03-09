@@ -8,8 +8,7 @@
     --wf-card-bg: var(--color-bg-alt, #f9fafb);
     --wf-border: var(--color-border, #e5e7eb);
     --wf-radius: 0.75rem;
-    --wf-gap: 1.5rem;
-    padding: 5rem 1.5rem;
+    --wf-padding: 5rem 1.5rem;
     background: var(--wf-bg);
     color: var(--wf-text);
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
@@ -41,10 +40,7 @@
   .wf-portfolio-03 .wf-portfolio-03__layout {
     max-width: 72rem;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    gap: var(--wf-gap);
   }
   .wf-portfolio-03 .wf-card--featured {
     border-radius: var(--wf-radius);
@@ -79,10 +75,7 @@
     line-height: 1.5;
   }
   .wf-portfolio-03 .wf-portfolio-03__thumbs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-auto-rows: 1fr;
-    gap: var(--wf-gap);
     align-content: space-between;
   }
   .wf-portfolio-03 .wf-card--thumb {
@@ -121,7 +114,7 @@
     border-radius: var(--radius-full, 9999px);
   }
   @media (max-width: 768px) {
-    .wf-portfolio-03 .wf-portfolio-03__layout { grid-template-columns: 1fr; }
+    .wf-portfolio-03 
     .wf-portfolio-03 .wf-card--featured { grid-row: auto; }
     .wf-portfolio-03 .wf-portfolio-03__thumbs { grid-row: auto; }
     .wf-portfolio-03 .wf-portfolio-03__title { font-size: 1.75rem; }
@@ -129,14 +122,14 @@
   }
 </style>
 
-<section class="wf-portfolio-03">
+<section class="wf-portfolio-03 grid" data-cols="2" data-gap="md">
   <div class="wf-portfolio-03__header">
     <div class="wf-portfolio-03__subtitle">Portfolio</div>
     <h2 class="wf-portfolio-03__title">Nos réalisations</h2>
     <p class="wf-portfolio-03__desc">Notre projet phare et une selection de travaux recents qui illustrent notre savoir-faire.</p>
   </div>
 
-  <div class="wf-portfolio-03__layout">
+  <div class="wf-portfolio-03__layout grid" data-cols="2" data-gap="md">
     <div class="wf-card wf-card--featured">
       <div class="wf-img">
         <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>
@@ -148,7 +141,7 @@
       </div>
     </div>
 
-    <div class="wf-portfolio-03__thumbs">
+    <div class="wf-portfolio-03__thumbs grid" data-cols="2" data-gap="md">
       <div class="wf-card wf-card--thumb">
         <div class="wf-img">
           <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

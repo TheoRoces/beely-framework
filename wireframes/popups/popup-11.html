@@ -30,8 +30,6 @@
     width: 100%;
     position: relative;
     box-shadow: var(--shadow-xl);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     overflow: hidden;
   }
 
@@ -104,9 +102,7 @@
   }
 
   @media (max-width: 600px) {
-    .wf-popup-preview--11 .wf-popup-box {
-      grid-template-columns: 1fr;
-    }
+    .wf-popup-preview--11 
     .wf-popup-preview--11 .wf-popup-visual {
       padding: 1.5rem;
     }
@@ -116,8 +112,8 @@
   }
 </style>
 
-<div class="wf-popup-preview wf-popup-preview--11">
-  <div class="wf-popup-box">
+<div class="wf-popup-preview wf-popup-preview--11 grid" data-cols="2" data-gap="md">
+  <div class="wf-popup-box grid" data-cols="2" data-gap="md">
     <button class="popup__close" data-popup-close aria-label="Fermer">
       <span data-icon="x-mark" data-icon-type="outline" data-icon-size="24"></span>
     </button>

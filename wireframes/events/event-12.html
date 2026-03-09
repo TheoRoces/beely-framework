@@ -81,11 +81,7 @@
     margin-bottom: 3rem;
   }
 
-  .wf-event-12__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
+  
 
   .wf-event-12__card {
     display: flex;
@@ -196,9 +192,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-event-12__grid {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-event-12__title {
       font-size: 1.75rem;
@@ -219,7 +213,7 @@
         Événements à venir
         <span class="wf-event-12__badge wf-event-12__badge--upcoming">3 événements</span>
       </h3>
-      <div class="wf-event-12__grid">
+      <div class="wf-event-12__grid grid" data-cols="2" data-gap="md">
         <div class="wf-event-12__card">
           <div class="wf-event-12__card-date">
             <span class="wf-event-12__card-day">15</span>

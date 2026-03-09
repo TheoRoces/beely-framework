@@ -51,9 +51,6 @@
   }
 
   .wf-gallery-09__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-gallery-09-gap);
     max-width: 80rem;
     margin: 0 auto;
   }
@@ -163,15 +160,11 @@
   }
 
   @media (max-width: 768px) {
-    .wf-gallery-09__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 
   @media (max-width: 480px) {
-    .wf-gallery-09__grid {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -182,7 +175,7 @@
     <p class="wf-gallery-09__description">Cliquez sur une image pour l'agrandir dans une vue lightbox.</p>
   </div>
 
-  <div class="wf-gallery-09__grid">
+  <div class="wf-gallery-09__grid grid" data-cols="3" data-gap="md">
     <div class="wf-gallery-09__item">
       <div class="wf-img">
         <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

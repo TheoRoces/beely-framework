@@ -49,10 +49,7 @@
   }
 
   .wf-services-12__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr 1fr;
-    gap: 1.25rem;
   }
 
   .wf-services-12__card {
@@ -116,9 +113,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-services-12__grid {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-services-12__card--wide,
     .wf-services-12__card--tall {
       grid-column: span 1;
@@ -127,9 +122,7 @@
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-services-12__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
@@ -140,7 +133,7 @@
       <h2 class="wf-services-12__title">Nos services</h2>
     </header>
 
-    <div class="wf-services-12__grid">
+    <div class="wf-services-12__grid grid" data-cols="4" data-gap="md">
       <!-- Row 1: wide card + 2 regular -->
       <div class="wf-services-12__card wf-services-12__card--wide wf-services-12__card--bg1">
         <div>

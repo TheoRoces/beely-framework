@@ -2,8 +2,7 @@
 <style>
   .wf-contact-10 {
     --wf-section-padding: 5rem 1.5rem;
-    --wf-gap: 3rem;
-    --wf-bg: var(--color-bg);
+    --wf---wf-bg: var(--color-bg);
     --wf-text: var(--color-text);
     --wf-text-muted: var(--color-text-light);
     --wf-border: var(--color-border);
@@ -46,9 +45,6 @@
   }
 
   .wf-contact-10 .wf-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
     align-items: start;
   }
 
@@ -140,9 +136,6 @@
   }
 
   .wf-contact-10 .wf-time-slots {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
     margin-top: 1.5rem;
   }
 
@@ -164,22 +157,20 @@
   }
 
   @media (max-width: 768px) {
-    .wf-contact-10 .wf-grid {
-      grid-template-columns: 1fr;
-    }
+    .wf-contact-10 
     .wf-contact-10 h2 {
       font-size: 2rem;
     }
   }
 </style>
 
-<section class="wf-contact-10">
+<section class="wf-contact-10 grid" data-cols="2" data-gap="md">
   <div class="wf-container">
     <div class="wf-header">
       <h2>Réservez un rendez-vous</h2>
       <p class="wf-subtitle">Choisissez un creneau et remplissez vos informations pour planifier un rendez-vous.</p>
     </div>
-    <div class="wf-grid">
+    <div class="wf-grid grid" data-cols="2" data-gap="md">
       <div class="wf-form-side">
         <h3>Vos informations</h3>
         <form>
@@ -239,7 +230,7 @@
             <span class="wf-cal-day">20</span>
             <span class="wf-cal-day">21</span>
           </div>
-          <div class="wf-time-slots">
+          <div class="wf-time-slots grid" data-cols="3" data-gap="xs">
             <span class="wf-time-slot">09:00</span>
             <span class="wf-time-slot wf-time-slot--active">10:00</span>
             <span class="wf-time-slot">11:00</span>

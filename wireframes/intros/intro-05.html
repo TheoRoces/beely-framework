@@ -54,18 +54,12 @@
     margin: 0;
   }
 
-  .wf-intro-05__stats {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    border-top: 1px solid var(--wf-border-color);
+  .wf-intro-05__stats {border-top: 1px solid var(--wf-border-color);
     padding-top: 2.5rem;
   }
 
   @media (min-width: 640px) {
-    .wf-intro-05__stats {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    
   }
 
   .wf-intro-05__stat {
@@ -100,7 +94,7 @@
       <h2 class="wf-intro-05__title">Des résultats concrets, un engagement durable</h2>
       <p class="wf-intro-05__text">Depuis 2015, nous accompagnons les entreprises dans leur transformation digitale. Notre équipe pluridisciplinaire combine expertise technique et vision strategique.</p>
     </div>
-    <div class="wf-intro-05__stats">
+    <div class="wf-intro-05__stats grid" data-cols="1" data-gap="lg">
       <div class="wf-intro-05__stat">
         <p class="wf-intro-05__stat-value">10+</p>
         <p class="wf-intro-05__stat-label">Annees d'expérience</p>

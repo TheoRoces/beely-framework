@@ -51,11 +51,7 @@
     background: var(--wf-featured-bg);
     color: var(--wf-featured-text);
     border-radius: var(--radius-xl, 1rem);
-    padding: clamp(2rem, 4vw, 3.5rem);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 4vw, 3rem);
-    align-items: center;
+    padding: clamp(2rem, 4vw, 3.5rem);align-items: center;
     margin-bottom: 1.5rem;
   }
 
@@ -112,11 +108,7 @@
     font-size: 0.875rem;
   }
 
-  .wf-services-09__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
+  
 
   .wf-services-09__card {
     background: var(--wf-card-bg);
@@ -151,18 +143,12 @@
   }
 
   @media (max-width: 768px) {
-    .wf-services-09__featured {
-      grid-template-columns: 1fr;
-    }
-    .wf-services-09__grid {
-      grid-template-columns: 1fr;
-    }
+    
+    
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-services-09__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
@@ -173,7 +159,7 @@
       <h2 class="wf-services-09__title">Nos services</h2>
     </header>
 
-    <div class="wf-services-09__featured">
+    <div class="wf-services-09__featured grid" data-cols="2" data-gap="lg">
       <div>
         <div class="wf-icon">
           <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>
@@ -187,7 +173,7 @@
     </div>
     </div>
 
-    <div class="wf-services-09__grid">
+    <div class="wf-services-09__grid grid" data-cols="3" data-gap="md">
       <div class="wf-services-09__card">
         <div class="wf-icon">
           <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>

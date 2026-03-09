@@ -22,11 +22,7 @@
     color: var(--color-text-light, #6b7280);
     margin: 0;
   }
-  .wf-team-12__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--wf-spacing-md, 1.5rem);
-  }
+  
   .wf-team-12__card {
     display: flex;
     gap: 1.25rem;
@@ -75,7 +71,7 @@
     color: var(--color-text, #111);
   }
   @media (max-width: 768px) {
-    .wf-team-12__grid { grid-template-columns: 1fr; }
+    
   }
   @media (max-width: 480px) {
     .wf-team-12__title { font-size: 2rem; }
@@ -87,7 +83,7 @@
     <h2 class="wf-team-12__title">Notre équipe</h2>
     <p class="wf-team-12__subtitle">Les talents derriere le projet</p>
   </header>
-  <div class="wf-team-12__grid">
+  <div class="wf-team-12__grid grid" data-cols="2" data-gap="md">
     <article class="wf-team-12__card">
       <div class="wf-team-12__photo wf-img--square">
         <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>

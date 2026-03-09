@@ -95,11 +95,7 @@
     background: var(--wf-color-dot-active);
   }
 
-  .wf-steps-09__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-  }
+  
 
   .wf-steps-09__step {
     text-align: center;
@@ -134,8 +130,6 @@
       display: none;
     }
     .wf-steps-09__grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
       max-width: 480px;
       margin-inline: auto;
     }
@@ -162,7 +156,7 @@
         <div class="wf-steps-09__dot"></div>
       </div>
     </div>
-    <div class="wf-steps-09__grid">
+    <div class="wf-steps-09__grid grid" data-cols="4" data-gap="lg">
       <div class="wf-steps-09__step">
         <div class="wf-step__number">Etape 1</div>
         <h3 class="wf-steps-09__step-title">Decouverte</h3>

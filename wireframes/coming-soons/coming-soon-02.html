@@ -13,8 +13,6 @@
     --wf-font: var(--font-body);
 
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     background-color: var(--wf-bg);
     color: var(--wf-text);
     font-family: var(--wf-font);
@@ -108,9 +106,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-coming-soon-02 {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-coming-soon-02 .wf-image {
       min-height: 300px;
@@ -129,7 +125,7 @@
   }
 </style>
 
-<section class="wf-coming-soon-02">
+<section class="wf-coming-soon-02 grid" data-cols="2" data-gap="md">
   <div class="wf-content">
     <span class="wf-label">Bientot disponible</span>
     <h1 class="wf-heading">Nous preparons quelque chose d'exceptionnel</h1>

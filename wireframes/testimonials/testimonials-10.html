@@ -35,11 +35,7 @@
   max-width: 600px;
   margin: 0 auto;
 }
-.wf-testimonials-10 .wf-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-8, 2rem);
-}
+.wf-testimonials-10 
 .wf-testimonials-10 .wf-card {
   text-align: center;
   display: flex;
@@ -78,17 +74,17 @@
   color: var(--color-text-muted, #6b7280);
 }
 @media (max-width: 768px) {
-  .wf-testimonials-10 .wf-grid { grid-template-columns: 1fr; }
+  .wf-testimonials-10 
 }
 </style>
 
-<section class="wf-testimonials-10">
+<section class="wf-testimonials-10 grid" data-cols="3" data-gap="lg">
   <div class="wf-section-header">
     <div class="wf-eyebrow">Témoignages</div>
     <h2>Ce que disent nos clients</h2>
     <p>Découvrez les retours de nos partenaires les plus fideles.</p>
   </div>
-  <div class="wf-grid">
+  <div class="wf-grid grid" data-cols="3" data-gap="lg">
     <div class="wf-card">
       <div class="wf-avatar">
         <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>

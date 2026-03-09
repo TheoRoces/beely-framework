@@ -18,18 +18,11 @@
 
   .wf-intro-04__container {
     max-width: var(--wf-max-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
+    margin: 0 auto;align-items: center;
   }
 
   @media (min-width: 768px) {
-    .wf-intro-04__container {
-      grid-template-columns: auto 1fr;
-      gap: 4rem;
-    }
+    
   }
 
   .wf-intro-04__year {
@@ -87,7 +80,7 @@
 </style>
 
 <section class="wf-intro-04">
-  <div class="wf-intro-04__container">
+  <div class="wf-intro-04__container grid" data-cols="1" data-gap="lg">
     <p class="wf-intro-04__year">2015</p>
     <div class="wf-intro-04__content">
       <p class="wf-intro-04__label">Notre histoire</p>

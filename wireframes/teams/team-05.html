@@ -22,11 +22,7 @@
     color: var(--color-text-light, #6b7280);
     margin: 0;
   }
-  .wf-team-05__featured {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-spacing-lg, 3rem);
-    align-items: center;
+  .wf-team-05__featured {align-items: center;
     margin-bottom: var(--wf-spacing-xl, 4rem);
     padding: var(--wf-spacing-md, 2rem);
     background: var(--color-bg-alt, #f3f4f6);
@@ -59,11 +55,7 @@
     margin: 0;
     line-height: 1.6;
   }
-  .wf-team-05__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--wf-spacing-md, 2rem);
-  }
+  
   .wf-team-05__member {
     text-align: center;
   }
@@ -90,12 +82,12 @@
     margin: 0;
   }
   @media (max-width: 768px) {
-    .wf-team-05__featured { grid-template-columns: 1fr; }
-    .wf-team-05__grid { grid-template-columns: repeat(2, 1fr); }
+    
+    
     .wf-team-05__title { font-size: 2rem; }
   }
   @media (max-width: 480px) {
-    .wf-team-05__grid { grid-template-columns: 1fr; max-width: 18rem; margin: 0 auto; }
+    .wf-team-05__grid { max-width: 18rem; margin: 0 auto; }
   }
 </style>
 
@@ -105,7 +97,7 @@
     <p class="wf-team-05__subtitle">Les talents derriere le projet</p>
   </header>
 
-  <div class="wf-team-05__featured">
+  <div class="wf-team-05__featured grid" data-cols="2" data-gap="xl">
     <div class="wf-team-05__featured-photo wf-img--portrait">
       <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>
     </div>
@@ -116,7 +108,7 @@
     </div>
   </div>
 
-  <div class="wf-team-05__grid">
+  <div class="wf-team-05__grid grid" data-cols="4" data-gap="lg">
     <div class="wf-team-05__member">
       <div class="wf-team-05__photo wf-img--square">
         <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>

@@ -30,9 +30,6 @@
     line-height: 1.2;
   }
   .wf-services-10__panel-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(2rem, 4vw, 3rem);
     align-items: center;
   }
   .wf-services-10__panel-image {
@@ -77,9 +74,7 @@
     text-decoration: underline;
   }
   @media (max-width: 768px) {
-    .wf-services-10__panel-grid {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -101,7 +96,7 @@
       </nav>
 
       <div class="tabs__panel" data-tab-panel="design-ui-ux">
-        <div class="wf-services-10__panel-grid">
+        <div class="wf-services-10__panel-grid grid" data-cols="2" data-gap="md">
           <div class="wf-services-10__panel-image">
             <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>
           </div>

@@ -14,8 +14,6 @@
     --wf-font: var(--font-body);
 
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     background-color: var(--wf-bg);
     color: var(--wf-text);
     font-family: var(--wf-font);
@@ -108,9 +106,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-coming-soon-08 {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-coming-soon-08 .wf-image {
       min-height: 280px;
@@ -128,7 +124,7 @@
   }
 </style>
 
-<section class="wf-coming-soon-08">
+<section class="wf-coming-soon-08 grid" data-cols="2" data-gap="md">
   <div class="wf-image">
     <div class="wf-image-placeholder"></div>
   </div>

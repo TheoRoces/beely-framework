@@ -26,9 +26,6 @@
   }
 
   .wf-steps-15__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
     align-items: start;
   }
 
@@ -129,10 +126,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-steps-15__grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
+    
     .wf-steps-15__intro {
       position: static;
     }
@@ -141,7 +135,7 @@
 
 <section class="wf-steps-15">
   <div class="wf-steps-15__container">
-    <div class="wf-steps-15__grid">
+    <div class="wf-steps-15__grid grid" data-cols="2" data-gap="xl">
       <div class="wf-steps-15__intro">
         <p class="wf-steps-15__tagline">Comment ca marche</p>
         <h2 class="wf-steps-15__title">Notre processus</h2>

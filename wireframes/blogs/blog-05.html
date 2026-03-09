@@ -51,8 +51,6 @@
 
   /* Hero card */
   .wf-blog-05 .wf-card--hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     border: 1px solid var(--wf-border);
     border-radius: var(--wf-radius);
     overflow: hidden;
@@ -84,11 +82,7 @@
   }
 
   /* Grid cards */
-  .wf-blog-05__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--wf-space-lg);
-  }
+  
 
   .wf-blog-05 .wf-card {
     border: 1px solid var(--wf-border);
@@ -170,29 +164,23 @@
   }
 
   @media (max-width: 1024px) {
-    .wf-blog-05__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 
   @media (max-width: 768px) {
-    .wf-blog-05 .wf-card--hero {
-      grid-template-columns: 1fr;
-    }
+    .wf-blog-05 
     .wf-blog-05 .wf-card--hero .wf-img {
       min-height: 200px;
       aspect-ratio: 16 / 9;
     }
-    .wf-blog-05__grid {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-blog-05__title {
       font-size: 1.75rem;
     }
   }
 </style>
 
-<section class="wf-blog-05">
+<section class="wf-blog-05 grid" data-cols="2" data-gap="md">
   <div class="wf-blog-05__container">
     <div class="wf-blog-05__header">
       <p class="wf-blog-05__tagline">Notre blog</p>
@@ -200,7 +188,7 @@
     </div>
 
     <!-- Hero post -->
-    <article class="wf-card wf-card--hero">
+    <article class="wf-card wf-card--hero grid" data-cols="2" data-gap="md">
       <div class="wf-img" role="img" aria-label="Illustration article vedette">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>
     </div>
@@ -219,7 +207,7 @@
     </article>
 
     <!-- Grid of 4 -->
-    <div class="wf-blog-05__grid">
+    <div class="wf-blog-05__grid grid" data-cols="4" data-gap="lg">
       <article class="wf-card">
         <div class="wf-img" role="img" aria-label="Illustration article">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

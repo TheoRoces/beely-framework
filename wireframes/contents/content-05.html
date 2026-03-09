@@ -51,11 +51,7 @@
     margin: 2rem auto;
   }
 
-  .wf-content-05__columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
-  }
+  
 
   .wf-content-05__col-title {
     font-size: 1.25rem;
@@ -78,9 +74,7 @@
     .wf-content-05 {
       --wf-section-padding: 3rem 1.25rem;
     }
-    .wf-content-05__columns {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-content-05__title {
       font-size: 1.875rem;
     }
@@ -94,7 +88,7 @@
       <h2 class="wf-content-05__title">Deux decennies d'innovation et d'engagement</h2>
     </div>
     <hr class="wf-content-05__divider" />
-    <div class="wf-content-05__columns">
+    <div class="wf-content-05__columns grid" data-cols="2" data-gap="md">
       <div class="wf-content-05__col">
         <h3 class="wf-content-05__col-title">Notre mission</h3>
         <p class="wf-content-05__text">

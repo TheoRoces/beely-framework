@@ -43,11 +43,7 @@
     margin: 0;
   }
 
-  .wf-content-09__row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-gap);
-    align-items: center;
+  .wf-content-09__row {align-items: center;
     margin-bottom: 4rem;
   }
 
@@ -100,7 +96,6 @@
       --wf-section-padding: 3rem 1.25rem;
     }
     .wf-content-09__row {
-      grid-template-columns: 1fr;
       margin-bottom: 3rem;
     }
     .wf-content-09__row--reverse .wf-content-09__media {
@@ -126,7 +121,7 @@
     </div>
 
     <!-- Rangee 1 : image gauche, texte droite -->
-    <div class="wf-content-09__row">
+    <div class="wf-content-09__row grid" data-cols="2" data-gap="md">
       <div class="wf-content-09__media">
         <img src="https://placehold.co/700x470/e5e7eb/999?text=Etape+1" alt="Decouverte" class="wf-content-09__image" />
       </div>

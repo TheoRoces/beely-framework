@@ -8,8 +8,7 @@
     --wf-accent: var(--color-text, #374151);
     --wf-card-bg: var(--color-bg-alt, #f9fafb);
     --wf-radius: 0.75rem;
-    --wf-gap: 1.5rem;
-    padding: 5rem 1.5rem;
+    --wf-padding: 5rem 1.5rem;
     background: var(--wf-bg);
     color: var(--wf-text);
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
@@ -43,10 +42,7 @@
   .wf-portfolio-01 .wf-portfolio-01__masonry {
     max-width: 72rem;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
-    gap: var(--wf-gap);
   }
   .wf-portfolio-01 .wf-card {
     border-radius: var(--wf-radius);
@@ -84,23 +80,23 @@
     border-radius: var(--radius-full, 9999px);
   }
   @media (max-width: 768px) {
-    .wf-portfolio-01 .wf-portfolio-01__masonry { grid-template-columns: 1fr; }
+    .wf-portfolio-01 
     .wf-portfolio-01 .wf-portfolio-01__title { font-size: 1.75rem; }
     .wf-portfolio-01 { padding: 3rem 1rem; }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-portfolio-01 .wf-portfolio-01__masonry { grid-template-columns: repeat(2, 1fr); }
+    .wf-portfolio-01 
   }
 </style>
 
-<section class="wf-portfolio-01">
+<section class="wf-portfolio-01 grid" data-cols="3" data-gap="md">
   <div class="wf-portfolio-01__header">
     <div class="wf-portfolio-01__subtitle">Portfolio</div>
     <h2 class="wf-portfolio-01__title">Nos réalisations</h2>
     <p class="wf-portfolio-01__desc">Découvrez une selection de nos projets les plus recents et les plus impactants.</p>
   </div>
 
-  <div class="wf-portfolio-01__masonry">
+  <div class="wf-portfolio-01__masonry grid" data-cols="3" data-gap="md">
     <!-- Column items with varying heights for masonry effect -->
     <div class="wf-card">
       <div class="wf-img">

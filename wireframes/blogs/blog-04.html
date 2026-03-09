@@ -79,11 +79,7 @@
     color: var(--wf-pill-active-text);
   }
 
-  .wf-blog-04__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--wf-space-xl);
-  }
+  
 
   .wf-blog-04 .wf-card {
     border: 1px solid var(--wf-border);
@@ -166,9 +162,7 @@
   }
 
   @media (max-width: 640px) {
-    .wf-blog-04__grid {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-blog-04__title {
       font-size: 1.75rem;
     }
@@ -190,7 +184,7 @@
       <span class="wf-blog-04__pill">Stratégie</span>
     </div>
 
-    <div class="wf-blog-04__grid">
+    <div class="wf-blog-04__grid grid" data-cols="2" data-gap="xl">
       <article class="wf-card">
         <div class="wf-img" role="img" aria-label="Illustration article">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

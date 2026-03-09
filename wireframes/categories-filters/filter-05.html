@@ -108,11 +108,7 @@
     color: var(--wf-text);
   }
 
-  .wf-filter-05__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-gap);
-  }
+  
 
   .wf-filter-05 .wf-card {
     background: var(--wf-card-bg);
@@ -157,15 +153,11 @@
   }
 
   @media (max-width: 768px) {
-    .wf-filter-05__grid {
-      grid-template-columns: 1fr;
-    }
+    
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-filter-05__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
@@ -190,7 +182,7 @@
     <span class="wf-filter-05__results-count">Resultats : <strong>24 projets</strong></span>
   </div>
 
-  <div class="wf-filter-05__grid">
+  <div class="wf-filter-05__grid grid" data-cols="3" data-gap="md">
     <div class="wf-card">
       <div class="wf-img">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

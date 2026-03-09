@@ -50,11 +50,7 @@
     color: var(--wf-color-text);
   }
 
-  .wf-steps-08__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
+  
 
   .wf-steps-08__card {
     background: var(--wf-color-card-bg);
@@ -93,15 +89,11 @@
   }
 
   @media (max-width: 900px) {
-    .wf-steps-08__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 
   @media (max-width: 500px) {
-    .wf-steps-08__grid {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -111,7 +103,7 @@
       <p class="wf-steps-08__tagline">Comment ca marche</p>
       <h2 class="wf-steps-08__title">Notre processus</h2>
     </header>
-    <div class="wf-steps-08__grid">
+    <div class="wf-steps-08__grid grid" data-cols="4" data-gap="md">
       <div class="wf-steps-08__card">
         <div class="wf-step__number">1</div>
         <h3 class="wf-steps-08__step-title">Decouverte</h3>

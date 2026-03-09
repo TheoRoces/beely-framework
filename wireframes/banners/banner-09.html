@@ -29,8 +29,6 @@
   .wf-banner-09__inner {
     max-width: 80rem;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     min-height: 14rem;
   }
 
@@ -142,7 +140,6 @@
 
   @media (max-width: 48rem) {
     .wf-banner-09__inner {
-      grid-template-columns: 1fr;
       min-height: auto;
     }
 
@@ -159,7 +156,7 @@
 </style>
 
 <div class="wf-banner-09">
-  <div class="wf-banner-09__inner">
+  <div class="wf-banner-09__inner grid" data-cols="2" data-gap="md">
     <div class="wf-banner-09__content">
       <span class="wf-banner-09__eyebrow">Nouveau</span>
       <h2 class="wf-banner-09__title">Découvrez notre offre de lancement !</h2>

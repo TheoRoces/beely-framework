@@ -35,9 +35,6 @@
   }
 
   .wf-filter-06__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-gap);
     max-width: 900px;
     margin: 0 auto;
   }
@@ -90,9 +87,7 @@
   }
 
   @media (max-width: 640px) {
-    .wf-filter-06__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
@@ -102,7 +97,7 @@
     <p class="wf-filter-06__subtitle">Explorez nos projets par domaine d'expertise</p>
   </div>
 
-  <div class="wf-filter-06__grid">
+  <div class="wf-filter-06__grid grid" data-cols="3" data-gap="md">
     <a href="#" class="wf-card">
       <div class="wf-filter-06__icon">
         <span data-icon="funnel" data-icon-type="outline" data-icon-size="24"></span>

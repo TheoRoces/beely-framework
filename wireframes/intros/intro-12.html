@@ -49,17 +49,10 @@
     letter-spacing: -0.02em;
   }
 
-  .wf-intro-12__columns {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+  
 
   @media (min-width: 768px) {
-    .wf-intro-12__columns {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
+    
   }
 
   .wf-intro-12__card {
@@ -111,7 +104,7 @@
       <span class="wf-intro-12__eyebrow">Ce qui nous definit</span>
       <h2 class="wf-intro-12__title">Notre mission, notre vision, nos valeurs</h2>
     </div>
-    <div class="wf-intro-12__columns">
+    <div class="wf-intro-12__columns grid" data-cols="1" data-gap="md">
       <div class="wf-intro-12__card">
         <p class="wf-intro-12__card-number">01</p>
         <h3 class="wf-intro-12__card-title">Notre mission</h3>

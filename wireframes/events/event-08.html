@@ -80,11 +80,7 @@
     text-align: center;
   }
 
-  .wf-event-08__speakers {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
+  .wf-event-08__speakers {margin-bottom: 2.5rem;
   }
 
   .wf-event-08__speaker {
@@ -157,14 +153,11 @@
   }
 
   @media (max-width: 1024px) {
-    .wf-event-08__speakers {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 
   @media (max-width: 640px) {
     .wf-event-08__speakers {
-      grid-template-columns: 1fr;
       max-width: 320px;
       margin-inline: auto;
       margin-bottom: 2.5rem;
@@ -198,7 +191,7 @@
       </div>
     </div>
 
-    <h3 class="wf-event-08__speakers-label">Nos intervenants</h3>
+    <h3 class="wf-event-08__speakers grid-label" data-cols="4" data-gap="md">Nos intervenants</h3>
 
     <div class="wf-event-08__speakers">
       <div class="wf-event-08__speaker">

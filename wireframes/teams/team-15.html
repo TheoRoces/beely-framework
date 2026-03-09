@@ -22,11 +22,7 @@
     color: var(--color-text-light, #6b7280);
     margin: 0;
   }
-  .wf-team-15__stats-bar {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    padding: 2rem;
+  .wf-team-15__stats-bar {padding: 2rem;
     background: var(--color-bg-alt, #f3f4f6);
     border-radius: var(--wf-radius-lg, 0.75rem);
     margin-bottom: var(--wf-spacing-xl, 4rem);
@@ -44,11 +40,7 @@
     color: var(--color-text-light, #6b7280);
     margin: 0;
   }
-  .wf-team-15__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-spacing-md, 2rem);
-  }
+  
   .wf-team-15__card {
     background: var(--color-bg, #fff);
     border: 1px solid var(--color-border, #e5e7eb);
@@ -98,13 +90,13 @@
     margin: 0.25rem 0 0;
   }
   @media (max-width: 768px) {
-    .wf-team-15__grid { grid-template-columns: repeat(2, 1fr); }
-    .wf-team-15__stats-bar { grid-template-columns: repeat(2, 1fr); }
+    
+    
   }
   @media (max-width: 480px) {
-    .wf-team-15__grid { grid-template-columns: 1fr; max-width: 22rem; margin: 0 auto; }
+    .wf-team-15__grid { max-width: 22rem; margin: 0 auto; }
     .wf-team-15__title { font-size: 2rem; }
-    .wf-team-15__stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    
   }
 </style>
 
@@ -114,7 +106,7 @@
     <p class="wf-team-15__subtitle">Les talents derriere le projet</p>
   </header>
 
-  <div class="wf-team-15__stats-bar">
+  <div class="wf-team-15__stats-bar grid" data-cols="4" data-gap="sm">
     <div>
       <p class="wf-team-15__stat-value">50+</p>
       <p class="wf-team-15__stat-label">Annees d'expérience</p>
@@ -133,7 +125,7 @@
     </div>
   </div>
 
-  <div class="wf-team-15__grid">
+  <div class="wf-team-15__grid grid" data-cols="3" data-gap="lg">
     <article class="wf-team-15__card">
       <div class="wf-team-15__photo wf-img--square">
         <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>

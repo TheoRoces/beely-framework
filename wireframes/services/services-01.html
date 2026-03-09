@@ -54,11 +54,7 @@
     line-height: 1.6;
   }
 
-  .wf-services-01__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
+  
 
   .wf-services-01__card {
     background: var(--wf-card-bg);
@@ -99,16 +95,11 @@
   }
 
   @media (max-width: 768px) {
-    .wf-services-01__grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
+    
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-services-01__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
@@ -120,7 +111,7 @@
       <p class="wf-services-01__subtitle">Des solutions completes pour propulser votre présence numérique et atteindre vos objectifs.</p>
     </header>
 
-    <div class="wf-services-01__grid">
+    <div class="wf-services-01__grid grid" data-cols="3" data-gap="md">
       <div class="wf-services-01__card">
         <div class="wf-icon">
           <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>

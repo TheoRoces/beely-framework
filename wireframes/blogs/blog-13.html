@@ -111,11 +111,7 @@
   }
 
   /* Grid cards */
-  .wf-blog-13__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-space-xl);
-  }
+  
 
   .wf-blog-13 .wf-card {
     border: 1px solid var(--wf-border);
@@ -198,10 +194,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-blog-13__grid {
-      grid-template-columns: 1fr;
-      gap: var(--wf-space-lg);
-    }
+    
     .wf-blog-13 .wf-card--hero .wf-img {
       aspect-ratio: 16 / 10;
     }
@@ -217,9 +210,7 @@
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-blog-13__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
@@ -250,7 +241,7 @@
     </article>
 
     <!-- Grid -->
-    <div class="wf-blog-13__grid">
+    <div class="wf-blog-13__grid grid" data-cols="3" data-gap="xl">
       <article class="wf-card">
         <div class="wf-img" role="img" aria-label="Illustration article">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

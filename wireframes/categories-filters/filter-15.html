@@ -37,9 +37,6 @@
   }
 
   .wf-filter-15__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--wf-gap);
     max-width: 900px;
     margin: 0 auto;
   }
@@ -109,15 +106,11 @@
   }
 
   @media (max-width: 640px) {
-    .wf-filter-15__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 
   @media (min-width: 641px) and (max-width: 900px) {
-    .wf-filter-15__grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    
   }
 </style>
 
@@ -127,7 +120,7 @@
     <p class="wf-filter-15__subtitle">Explorez nos 24 projets par domaine</p>
   </div>
 
-  <div class="wf-filter-15__grid">
+  <div class="wf-filter-15__grid grid" data-cols="4" data-gap="md">
     <!-- Row 1 -->
     <a href="#" class="wf-card wf-card--active">
       <div class="wf-filter-15__icon">

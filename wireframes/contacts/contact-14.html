@@ -52,9 +52,6 @@
   }
 
   .wf-contact-14 .wf-team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
     margin-bottom: 2.5rem;
   }
 
@@ -115,22 +112,18 @@
   }
 
   @media (max-width: 768px) {
-    .wf-contact-14 .wf-team-grid {
-      grid-template-columns: 1fr 1fr;
-    }
+    .wf-contact-14 
     .wf-contact-14 h2 {
       font-size: 2rem;
     }
   }
 
   @media (max-width: 480px) {
-    .wf-contact-14 .wf-team-grid {
-      grid-template-columns: 1fr;
-    }
+    .wf-contact-14 
   }
 </style>
 
-<section class="wf-contact-14">
+<section class="wf-contact-14 grid" data-cols="4" data-gap="sm">
   <div class="wf-container">
     <div class="wf-header">
       <h2>Contactez-nous</h2>
@@ -138,7 +131,7 @@
     </div>
 
     <p class="wf-team-label">Qui souhaitez-vous contacter ?</p>
-    <div class="wf-team-grid">
+    <div class="wf-team-grid grid" data-cols="4" data-gap="sm">
       <div class="wf-team-card wf-team-card--selected">
         <div class="wf-avatar">MC</div>
         <h4>Marie Curie</h4>

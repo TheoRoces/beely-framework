@@ -67,9 +67,6 @@
   }
 
   .wf-coming-soon-09 .wf-countdown {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
     margin-bottom: 2rem;
   }
 
@@ -111,21 +108,19 @@
   }
 
   @media (max-width: 480px) {
-    .wf-coming-soon-09 .wf-countdown {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .wf-coming-soon-09 
 
   }
 </style>
 
-<section class="wf-coming-soon-09">
+<section class="wf-coming-soon-09 grid" data-cols="4" data-gap="sm">
   <div class="wf-card">
     <div class="wf-logo"></div>
 
     <h1 class="wf-heading">Bientot disponible</h1>
     <p class="wf-subheading">Nous preparons quelque chose d'exceptionnel. Soyez les premiers informes.</p>
 
-    <div class="wf-countdown">
+    <div class="wf-countdown grid" data-cols="4" data-gap="sm">
       <div class="wf-countdown-item">
         <span class="wf-countdown-value">12</span>
         <span class="wf-countdown-label">Jours</span>

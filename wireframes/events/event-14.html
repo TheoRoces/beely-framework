@@ -50,11 +50,7 @@
     margin-inline: auto;
   }
 
-  .wf-event-14__layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
+  .wf-event-14__layout {align-items: start;
   }
 
   .wf-event-14__map {
@@ -214,10 +210,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-event-14__layout {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+    
 
     .wf-event-14__title {
       font-size: 1.75rem;
@@ -237,7 +230,7 @@
       <p class="wf-event-14__subtitle">Toutes les informations pratiques pour rejoindre notre événement.</p>
     </div>
 
-    <div class="wf-event-14__layout">
+    <div class="wf-event-14__layout grid" data-cols="2" data-gap="xl">
       <!-- Map placeholder -->
       <div class="wf-event-14__map">
         <div class="wf-event-14__map-icon">

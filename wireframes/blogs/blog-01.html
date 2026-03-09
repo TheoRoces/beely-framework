@@ -57,11 +57,7 @@
     line-height: 1.6;
   }
 
-  .wf-blog-01__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-space-xl);
-  }
+  
 
   .wf-blog-01 .wf-card {
     border: 1px solid var(--wf-border);
@@ -144,19 +140,14 @@
   }
 
   @media (max-width: 768px) {
-    .wf-blog-01__grid {
-      grid-template-columns: 1fr;
-      gap: var(--wf-space-lg);
-    }
+    
     .wf-blog-01__title {
       font-size: 1.75rem;
     }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-blog-01__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
@@ -168,7 +159,7 @@
       <p class="wf-blog-01__subtitle">Explorez nos dernières reflexions sur le design, le développement et la stratégie digitale.</p>
     </div>
 
-    <div class="wf-blog-01__grid">
+    <div class="wf-blog-01__grid grid" data-cols="3" data-gap="xl">
       <!-- Card 1 -->
       <article class="wf-card">
         <div class="wf-img" role="img" aria-label="Illustration article">

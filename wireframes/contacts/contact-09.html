@@ -46,9 +46,6 @@
   }
 
   .wf-contact-09 .wf-offices {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
     margin-bottom: 3.5rem;
   }
 
@@ -109,23 +106,21 @@
   }
 
   @media (max-width: 768px) {
-    .wf-contact-09 .wf-offices {
-      grid-template-columns: 1fr;
-    }
+    .wf-contact-09 
     .wf-contact-09 h2 {
       font-size: 2rem;
     }
   }
 </style>
 
-<section class="wf-contact-09">
+<section class="wf-contact-09 grid" data-cols="3" data-gap="md">
   <div class="wf-container">
     <div class="wf-header">
       <h2>Nos bureaux</h2>
       <p class="wf-subtitle">Retrouvez-nous dans nos différents bureaux en France.</p>
     </div>
 
-    <div class="wf-offices">
+    <div class="wf-offices grid" data-cols="3" data-gap="md">
       <div class="wf-office-card">
         <h3>Paris (Siège)</h3>
         <div class="wf-office-info">

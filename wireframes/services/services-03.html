@@ -72,11 +72,7 @@
     opacity: 0.9;
   }
 
-  .wf-services-03__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-  }
+  
 
   .wf-services-03__card {
     background: var(--wf-card-bg);
@@ -117,9 +113,7 @@
     .wf-services-03__left {
       position: static;
     }
-    .wf-services-03__grid {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -132,7 +126,7 @@
       <a href="#" class="wf-services-03__cta">Découvrir nos services</a>
     </div>
 
-    <div class="wf-services-03__grid">
+    <div class="wf-services-03__grid grid" data-cols="2" data-gap="md">
       <div class="wf-services-03__card">
         <div class="wf-icon">
           <span data-icon="sparkles" data-icon-type="outline" data-icon-size="24"></span>

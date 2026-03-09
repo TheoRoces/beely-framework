@@ -55,17 +55,10 @@
     margin: 0;
   }
 
-  .wf-intro-09__badges {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+  
 
   @media (min-width: 640px) {
-    .wf-intro-09__badges {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
+    
   }
 
   .wf-intro-09__badge {
@@ -120,7 +113,7 @@
       <h2 class="wf-intro-09__title">Les piliers de notre réussite</h2>
       <p class="wf-intro-09__subtitle">Depuis 2015, nous accompagnons les entreprises dans leur transformation digitale, guides par trois valeurs fondamentales.</p>
     </div>
-    <div class="wf-intro-09__badges">
+    <div class="wf-intro-09__badges grid" data-cols="1" data-gap="md">
       <div class="wf-intro-09__badge">
         <div class="wf-intro-09__badge-icon">
           <span data-icon="chart-bar" data-icon-type="outline" data-icon-size="24"></span>

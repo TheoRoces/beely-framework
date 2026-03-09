@@ -22,11 +22,7 @@
     color: var(--color-text-light, #6b7280);
     margin: 0;
   }
-  .wf-team-09__member {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--wf-spacing-lg, 3rem);
-    align-items: center;
+  .wf-team-09__member {align-items: center;
     margin-bottom: var(--wf-spacing-xl, 4rem);
   }
   .wf-team-09__member:last-child {
@@ -72,7 +68,7 @@
     margin: 0 0 var(--wf-spacing-xl, 4rem);
   }
   @media (max-width: 768px) {
-    .wf-team-09__member { grid-template-columns: 1fr; gap: 1.5rem; }
+    
     .wf-team-09__member:nth-child(even) .wf-team-09__photo-wrap { order: 0; }
     .wf-team-09__member:nth-child(even) .wf-team-09__content { order: 0; }
     .wf-team-09__title { font-size: 2rem; }
@@ -86,7 +82,7 @@
     <p class="wf-team-09__subtitle">Les talents derriere le projet</p>
   </header>
 
-  <div class="wf-team-09__member">
+  <div class="wf-team-09__member grid" data-cols="2" data-gap="xl">
     <div class="wf-team-09__photo-wrap">
       <div class="wf-team-09__photo wf-img--square">
         <span data-icon="user" data-icon-type="outline" data-icon-size="24"></span>

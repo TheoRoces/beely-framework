@@ -46,9 +46,6 @@
   }
 
   .wf-contact-03 .wf-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
     margin-bottom: 3rem;
   }
 
@@ -91,23 +88,21 @@
   }
 
   @media (max-width: 768px) {
-    .wf-contact-03 .wf-cards {
-      grid-template-columns: 1fr;
-    }
+    .wf-contact-03 
     .wf-contact-03 h2 {
       font-size: 2rem;
     }
   }
 </style>
 
-<section class="wf-contact-03">
+<section class="wf-contact-03 grid" data-cols="3" data-gap="md">
   <div class="wf-container">
     <div class="wf-header">
       <h2>Contactez-nous</h2>
       <p class="wf-subtitle">Envoyez-nous un message et nous vous repondrons dans les plus brefs délais.</p>
     </div>
 
-    <div class="wf-cards">
+    <div class="wf-cards grid" data-cols="3" data-gap="md">
       <div class="wf-card">
         <span data-icon="envelope" data-icon-type="outline" data-icon-size="24"></span>
         <h3>Email</h3>

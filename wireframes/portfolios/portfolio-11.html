@@ -9,8 +9,7 @@
     --wf-card-bg-alt: var(--color-neutral-200, #e8edf5);
     --wf-border: var(--color-border, #e5e7eb);
     --wf-radius: 0.75rem;
-    --wf-gap: 1.5rem;
-    padding: 5rem 1.5rem;
+    --wf-padding: 5rem 1.5rem;
     background: var(--wf-bg);
     color: var(--wf-text);
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
@@ -74,10 +73,7 @@
     padding: 0.25rem 0.75rem;
     border-radius: var(--radius-full, 9999px);
   }
-  .wf-portfolio-11 .wf-portfolio-11__split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+  .wf-portfolio-11 
   .wf-portfolio-11 .wf-portfolio-11__before,
   .wf-portfolio-11 .wf-portfolio-11__after {
     position: relative;
@@ -122,14 +118,14 @@
     position: relative;
   }
   @media (max-width: 768px) {
-    .wf-portfolio-11 .wf-portfolio-11__split { grid-template-columns: 1fr; }
+    .wf-portfolio-11 
     .wf-portfolio-11 .wf-portfolio-11__title { font-size: 1.75rem; }
     .wf-portfolio-11 .wf-portfolio-11__project-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     .wf-portfolio-11 { padding: 3rem 1rem; }
   }
 </style>
 
-<section class="wf-portfolio-11">
+<section class="wf-portfolio-11 grid" data-cols="2" data-gap="md">
   <div class="wf-portfolio-11__header">
     <div class="wf-portfolio-11__subtitle">Portfolio</div>
     <h2 class="wf-portfolio-11__title">Avant / Apres</h2>
@@ -142,7 +138,7 @@
         <h3 class="wf-portfolio-11__project-name">Refonte TechVision</h3>
         <span class="wf-badge">Web Design</span>
       </div>
-      <div class="wf-portfolio-11__split">
+      <div class="wf-portfolio-11__split grid" data-cols="2" data-gap="md">
         <div class="wf-portfolio-11__before">
           <span class="wf-portfolio-11__label wf-portfolio-11__label--before">Avant</span>
           <div class="wf-img">

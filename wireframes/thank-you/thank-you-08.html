@@ -12,8 +12,6 @@
     --wf-font: var(--font-body);
 
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     background-color: var(--wf-bg);
     font-family: var(--wf-font);
     color: var(--wf-text);
@@ -102,9 +100,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-thank-you-08 {
-      grid-template-columns: 1fr;
-    }
+    
 
     .wf-thank-you-08__left {
       min-height: 40vh;
@@ -125,7 +121,7 @@
   }
 </style>
 
-<section class="wf-thank-you-08">
+<section class="wf-thank-you-08 grid" data-cols="2" data-gap="md">
   <div class="wf-thank-you-08__left">
     <div class="wf-thank-you-08__illustration">
       <span data-icon="check-circle" data-icon-type="outline" data-icon-size="24"></span>

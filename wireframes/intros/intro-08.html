@@ -17,17 +17,10 @@
 
   .wf-intro-08__container {
     max-width: var(--wf-max-width);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
+    margin: 0 auto;}
 
   @media (min-width: 768px) {
-    .wf-intro-08__container {
-      grid-template-columns: 2fr 3fr;
-      gap: 5rem;
-    }
+    
   }
 
   .wf-intro-08__left {
@@ -86,7 +79,7 @@
 </style>
 
 <section class="wf-intro-08">
-  <div class="wf-intro-08__container">
+  <div class="wf-intro-08__container grid" data-cols="1" data-gap="xl">
     <div class="wf-intro-08__left">
       <p class="wf-intro-08__eyebrow">À propos de nous</p>
       <h2 class="wf-intro-08__title">Notre vision pour un avenir numérique</h2>

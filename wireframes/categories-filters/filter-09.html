@@ -107,11 +107,7 @@
   }
 
   /* Grid view (default shown) */
-  .wf-filter-09__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--wf-gap);
-  }
+  
 
   .wf-filter-09 .wf-card {
     background: var(--wf-card-bg);
@@ -156,9 +152,7 @@
   }
 
   @media (max-width: 768px) {
-    .wf-filter-09__grid {
-      grid-template-columns: 1fr;
-    }
+    
     .wf-filter-09__toolbar {
       flex-direction: column;
       align-items: flex-start;
@@ -166,9 +160,7 @@
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-filter-09__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    
   }
 </style>
 
@@ -198,7 +190,7 @@
     </div>
   </div>
 
-  <div class="wf-filter-09__grid">
+  <div class="wf-filter-09__grid grid" data-cols="3" data-gap="md">
     <div class="wf-card">
       <div class="wf-img">
       <span data-icon="photo" data-icon-type="outline" data-icon-size="48" style="opacity:0.3"></span>

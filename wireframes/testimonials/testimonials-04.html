@@ -3,11 +3,7 @@
 .wf-testimonials-04 {
   padding: var(--space-16, 4rem) var(--space-4, 1rem);
   max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-10, 2.5rem);
-  align-items: start;
+  margin: 0 auto;align-items: start;
 }
 .wf-testimonials-04 .wf-featured {
   background: var(--color-bg-dark, #374151);
@@ -109,16 +105,14 @@
   color: var(--color-text-muted, #6b7280);
 }
 @media (max-width: 768px) {
-  .wf-testimonials-04 {
-    grid-template-columns: 1fr;
-  }
+  
   .wf-testimonials-04 .wf-featured {
     position: static;
   }
 }
 </style>
 
-<section class="wf-testimonials-04">
+<section class="wf-testimonials-04 grid" data-cols="2" data-gap="none">
   <div class="wf-featured">
     <div class="wf-quote-mark">&ldquo;</div>
     <div class="wf-stars">

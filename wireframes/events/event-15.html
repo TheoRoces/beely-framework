@@ -94,11 +94,7 @@
     margin: 0 0 1rem;
   }
 
-  .wf-event-15__speakers {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
+  
 
   .wf-event-15__speaker {
     display: flex;
@@ -245,9 +241,7 @@
       font-size: 1.75rem;
     }
 
-    .wf-event-15__speakers {
-      grid-template-columns: 1fr;
-    }
+    
   }
 </style>
 
@@ -279,7 +273,7 @@
         <!-- Speakers -->
         <div>
           <h3 class="wf-event-15__section-title">Nos intervenants</h3>
-          <div class="wf-event-15__speakers">
+          <div class="wf-event-15__speakers grid" data-cols="2" data-gap="sm">
             <div class="wf-event-15__speaker">
               <div class="wf-event-15__speaker-avatar">ML</div>
               <div>

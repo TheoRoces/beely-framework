@@ -9,8 +9,7 @@
     --wf-img-bg: var(--color-neutral-100, #f3f4f6);
     --wf-border: var(--color-border, #e5e7eb);
     --wf-radius: 0.75rem;
-    --wf-gap: 1.5rem;
-    padding: 5rem 1.5rem;
+    --wf-padding: 5rem 1.5rem;
     background: var(--wf-bg);
     color: var(--wf-text);
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
@@ -60,10 +59,7 @@
   .wf-portfolio-14 .wf-portfolio-14__grid {
     max-width: 72rem;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
-    gap: var(--wf-gap);
   }
   .wf-portfolio-14 .wf-card {
     border-radius: var(--wf-radius);
@@ -140,17 +136,17 @@
     color: var(--color-text-on-dark);
   }
   @media (max-width: 768px) {
-    .wf-portfolio-14 .wf-portfolio-14__grid { grid-template-columns: 1fr; }
+    .wf-portfolio-14 
     .wf-portfolio-14 .wf-portfolio-14__header { flex-direction: column; align-items: flex-start; }
     .wf-portfolio-14 .wf-portfolio-14__title { font-size: 1.75rem; }
     .wf-portfolio-14 { padding: 3rem 1rem; }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
-    .wf-portfolio-14 .wf-portfolio-14__grid { grid-template-columns: repeat(2, 1fr); }
+    .wf-portfolio-14 
   }
 </style>
 
-<section class="wf-portfolio-14">
+<section class="wf-portfolio-14 grid" data-cols="3" data-gap="md">
   <div class="wf-portfolio-14__header">
     <div>
       <div class="wf-portfolio-14__subtitle">Portfolio</div>
@@ -160,7 +156,7 @@
     <a href="#" class="wf-portfolio-14__view-all">Voir tous les projets &rarr;</a>
   </div>
 
-  <div class="wf-portfolio-14__grid">
+  <div class="wf-portfolio-14__grid grid" data-cols="3" data-gap="md">
     <a href="#" class="wf-card">
       <div class="wf-img">
         <span class="wf-badge">Web Design</span>
