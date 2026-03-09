@@ -109,6 +109,9 @@
 
     if (!btn) return;
 
+    /* Skip framework .tabs components — handled by elements.js initTabs() */
+    if (btn.closest('.tabs')) return;
+
     /* Find the active class for this button */
     var btnCls = btn.className || '';
     var btnClasses = btnCls.split(/\s+/);

@@ -3,6 +3,13 @@
    Utilise les tokens du design system (tokens.css)
    ========================================================================== */
 
+/* Override base.css `svg { display: block }` for SVGs inside
+   wireframe flex containers (icons, placeholders, avatars, stars, logos).
+   Block SVGs break flex centering — inline restores natural behavior. */
+[class*="wf-"] svg {
+  display: inline;
+}
+
 /* ---------- Section wrapper ---------- */
 
 .wf-section {
@@ -229,7 +236,8 @@
 .wf-avatar--lg { width: 64px; height: 64px; }
 .wf-avatar--xl { width: 96px; height: 96px; }
 
-.wf-avatar svg {
+.wf-avatar svg,
+.wf-avatar [data-icon] {
   width: 50%;
   height: 50%;
   color: var(--color-text-light);
@@ -306,7 +314,8 @@
   color: var(--color-text-light);
 }
 
-.wf-stars svg {
+.wf-stars svg,
+.wf-stars [data-icon] {
   width: 16px;
   height: 16px;
   fill: currentColor;

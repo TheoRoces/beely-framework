@@ -550,16 +550,8 @@
     ];
 
     /* Minimal reset + link disabling (injected into every iframe) */
-    var IFRAME_CSS = '*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }'
-      + 'body { font-family: var(--font-body, system-ui, -apple-system, sans-serif); color: var(--color-text, #1a1a1a); background: var(--color-bg, #fff); line-height: 1.5; }'
-      + 'img, svg { max-width: 100%; height: auto; }'
-      + 'a[href] { pointer-events: none !important; cursor: default !important; }'
-      + '.btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-size: 0.9375rem; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; font-family: inherit; }'
-      + '.btn--primary { background: var(--color-primary, #2563eb); color: #fff; border-color: var(--color-primary, #2563eb); }'
-      + '.btn--primary:hover { background: var(--color-primary-dark, #1d4ed8); border-color: var(--color-primary-dark, #1d4ed8); }'
-      + '.btn--secondary { background: transparent; color: var(--color-text, #374151); border-color: var(--color-border, #d1d5db); }'
-      + '.btn:focus-visible, button:focus-visible { outline: 2px solid var(--color-primary, #2563eb); outline-offset: 2px; }'
-      + 'input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--color-primary, #2563eb); outline-offset: 1px; }';
+    /* Only add minimal overrides — base.css already handles reset, buttons, forms */
+    var IFRAME_CSS = 'a[href] { pointer-events: none !important; cursor: default !important; }';
 
     /* ==== State ==== */
 
