@@ -431,7 +431,7 @@
 
     // Bouton créateur d'animations (sparkles icon)
     var animBtn = document.createElement('a');
-    animBtn.href = 'animations.html#animation-creator';
+    animBtn.href = 'animations.html#animationCreator';
     animBtn.className = 'header__creator-btn';
     animBtn.setAttribute('aria-label', 'Créateur d\'animations');
     animBtn.setAttribute('title', 'Créateur d\'animations');
@@ -439,7 +439,7 @@
 
     // Bouton créateur de grilles (grid/table icon)
     var gridBtn = document.createElement('a');
-    gridBtn.href = 'grid.html#grid-creator';
+    gridBtn.href = 'grid.html#gridCreator';
     gridBtn.className = 'header__creator-btn';
     gridBtn.setAttribute('aria-label', 'Créateur de grilles');
     gridBtn.setAttribute('title', 'Créateur de grilles');
