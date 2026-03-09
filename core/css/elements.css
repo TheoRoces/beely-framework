@@ -272,6 +272,7 @@
   font-weight: var(--font-weight-medium);
   text-align: left;
   background: var(--color-bg);
+  cursor: pointer;
   transition: background-color var(--transition-fast);
 }
 

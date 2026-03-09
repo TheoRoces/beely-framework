@@ -549,9 +549,8 @@
       { id: 'thank-you',          label: 'Thank You',    prefix: 'thank-you',   n: 15 }
     ];
 
-    /* Minimal reset + link disabling (injected into every iframe) */
-    /* Only add minimal overrides — base.css already handles reset, buttons, forms */
-    var IFRAME_CSS = 'a[href] { pointer-events: none !important; cursor: default !important; }';
+    /* Minimal overrides injected into every iframe */
+    var IFRAME_CSS = 'a[href]{pointer-events:none!important;cursor:default!important;}';
 
     /* ==== State ==== */
 
@@ -561,17 +560,6 @@
     var query = '';
     var modalCode = '';
     var currentBp = 1440;
-    var tokensCSS = '';
-    var wireframesCSS = '';
-    var baseCSS = '';
-    var elementsCSS = '';
-    var animationsCSS = '';
-    var formsCSS = '';
-    var gridCSS = '';
-    var iconsCSS = '';
-    var iconsJS = '';
-    var elementsJS = '';
-    var wireframesJS = '';
     var PER_PAGE = 30;
     var visibleCount = PER_PAGE;
 
@@ -615,29 +603,26 @@
 
     function buildSrcdoc(code, interactive) {
       var theme = currentTheme();
-      /* Base href allows relative fetches (icons.js → assets/icons/) inside srcdoc iframes */
+      /* Base href allows external stylesheets and scripts to resolve inside srcdoc */
       var baseHref = location.href.replace(/docs\/[^/]*$/, '');
-      var html = '<!DOCTYPE html><html data-theme="' + theme + '"><head><base href="' + baseHref + '"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-        + '<style>' + tokensCSS + '<\/style>'
-        + '<style>' + baseCSS + '<\/style>'
-        + '<style>' + elementsCSS + '<\/style>'
-        + '<style>' + formsCSS + '<\/style>'
-        + '<style>' + gridCSS + '<\/style>'
-        + '<style>' + iconsCSS + '<\/style>'
-        + '<style>' + animationsCSS + '<\/style>'
-        + '<style>' + wireframesCSS + '<\/style>'
+      var html = '<!DOCTYPE html><html data-theme="' + theme + '"><head>'
+        + '<base href="' + baseHref + '">'
+        + '<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+        + '<link rel="stylesheet" href="core/css/tokens.css">'
+        + '<link rel="stylesheet" href="core/css/base.css">'
+        + '<link rel="stylesheet" href="core/css/elements.css">'
+        + '<link rel="stylesheet" href="core/css/forms.css">'
+        + '<link rel="stylesheet" href="core/css/grid.css">'
+        + '<link rel="stylesheet" href="core/css/icons.css">'
+        + '<link rel="stylesheet" href="core/css/animations.css">'
+        + '<link rel="stylesheet" href="wireframes/wireframes.css">'
         + '<style>' + IFRAME_CSS + '<\/style>'
-        + '<\/head><body>' + code;
-      if (iconsJS) {
-        html += '<script>' + iconsJS + '<\/script>';
+        + '<\/head><body>' + code
+        + '<script src="core/js/icons.js"><\/script>'
+        + '<script src="core/js/elements.js"><\/script>';
+      if (interactive) {
+        html += '<script src="wireframes/wireframes.js"><\/script>';
       }
-      if (elementsJS) {
-        html += '<script>' + elementsJS + '<\/script>';
-      }
-      if (interactive && wireframesJS) {
-        html += '<script>' + wireframesJS + '<\/script>';
-      }
-      /* Call framework init functions after all scripts are loaded */
       html += '<script>'
         + 'if(typeof initElements==="function")initElements();'
         + 'if(typeof initIcons==="function")initIcons();'
@@ -651,7 +636,7 @@
          Live Server injects hot-reload scripts inside SVG elements in HTML
          responses, breaking the DOM. The last injection may be truncated
          (no closing script tag), so we handle that case separately. */
-      var marker = '<!-- Code injected by live-server';
+      var marker = '<' + '!-- Code injected by live-server';
       var idx;
       while ((idx = html.indexOf(marker)) > -1) {
         var end = html.indexOf('<\/script>', idx);
@@ -1032,38 +1017,10 @@
       }
     }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-    /* ==== Init : fetch CSS then render ==== */
+    /* ==== Init ==== */
 
-    Promise.all([
-      fetch('../core/css/tokens.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../wireframes/wireframes.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/css/base.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/css/elements.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/css/animations.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../wireframes/wireframes.js').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/css/forms.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/css/grid.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/css/icons.css').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/js/icons.js').then(function (r) { return r.ok ? r.text() : ''; }),
-      fetch('../core/js/elements.js').then(function (r) { return r.ok ? r.text() : ''; })
-    ]).then(function (results) {
-      tokensCSS = stripScripts(results[0]);
-      wireframesCSS = stripScripts(results[1]);
-      baseCSS = stripScripts(results[2]);
-      elementsCSS = stripScripts(results[3]);
-      animationsCSS = stripScripts(results[4]);
-      wireframesJS = stripScripts(results[5]);
-      formsCSS = stripScripts(results[6]);
-      gridCSS = stripScripts(results[7]);
-      iconsCSS = stripScripts(results[8]);
-      iconsJS = stripScripts(results[9]);
-      elementsJS = stripScripts(results[10]);
-      renderCats();
-      render();
-    }).catch(function () {
-      renderCats();
-      render();
-    });
+    renderCats();
+    render();
 
   });
   </script>
