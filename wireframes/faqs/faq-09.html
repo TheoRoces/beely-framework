@@ -1,4 +1,4 @@
-<!-- FAQ-09: FAQ with side navigation. Category links on the left, FAQ content on the right. -->
+<!-- FAQ-09: FAQ with side tab navigation. Category tabs on the left, FAQ content on the right. -->
 <style>
   .wf-faq09 {
     font-family: var(--font-body, system-ui, -apple-system, sans-serif);
@@ -21,40 +21,31 @@
     color: var(--color-text-muted);
     line-height: 1.6;
   }
-  .wf-faq09__layout {
+  /* Override tabs layout to be side-by-side */
+  .wf-faq09 .tabs {
     display: grid;
     grid-template-columns: 220px 1fr;
     gap: var(--space-lg, 48px);
     align-items: start;
   }
-  .wf-faq09__nav {
-    position: sticky;
-    top: var(--space-md, 40px);
-    display: flex;
+  .wf-faq09 .tabs__nav {
     flex-direction: column;
     gap: var(--space-3xs, 4px);
+    overflow-x: visible;
+    position: sticky;
+    top: var(--space-md, 40px);
   }
-  .wf-faq09__nav-link {
-    display: block;
+  .wf-faq09 .tabs__tab {
+    text-align: left;
     padding: var(--space-2xs, 10px) var(--space-xs, 14px);
-    font-size: var(--text-sm, 0.875rem);
-    font-weight: var(--font-medium, 500);
-    color: var(--color-text-muted);
-    text-decoration: none;
     border-radius: var(--radius-sm, 6px);
-    transition: background 0.2s ease, color 0.2s ease;
+    border-bottom: none;
   }
-  .wf-faq09__nav-link:hover,
-  .wf-faq09__nav-link--active {
+  .wf-faq09 .tabs__tab--active {
     background: var(--color-surface);
     color: var(--color-text);
     font-weight: var(--font-semibold, 600);
-  }
-  .wf-faq09__section {
-    margin-bottom: var(--space-lg, 40px);
-  }
-  .wf-faq09__section:last-child {
-    margin-bottom: 0;
+    border-bottom: none;
   }
   .wf-faq09__section-title {
     font-size: var(--text-xl, 1.25rem);
@@ -63,11 +54,11 @@
     margin-bottom: var(--space-sm, 16px);
   }
   @media (max-width: 768px) {
-    .wf-faq09__layout {
+    .wf-faq09 .tabs {
       grid-template-columns: 1fr;
       gap: var(--space-md, 24px);
     }
-    .wf-faq09__nav {
+    .wf-faq09 .tabs__nav {
       position: static;
       flex-direction: row;
       flex-wrap: wrap;
@@ -82,87 +73,49 @@
     <p class="wf-faq09__subtitle">Naviguez par catégorie pour trouver rapidement les réponses à vos questions.</p>
   </div>
 
-  <div class="wf-faq09__layout">
-    <nav class="wf-faq09__nav">
-      <a href="#general" class="wf-faq09__nav-link wf-faq09__nav-link--active" data-nav="general">Général</a>
-      <a href="#tarifs" class="wf-faq09__nav-link" data-nav="tarifs">Tarifs</a>
-      <a href="#support" class="wf-faq09__nav-link" data-nav="support">Support</a>
-    </nav>
+  <div class="tabs">
+    <div class="tabs__nav">
+      <button class="tabs__tab tabs__tab--active" data-tab="general" data-tab-active>Général</button>
+      <button class="tabs__tab" data-tab="tarifs">Tarifs</button>
+      <button class="tabs__tab" data-tab="support">Support</button>
+    </div>
 
-    <div class="wf-faq09__content">
-      <div class="wf-faq09__section" id="general">
-        <h3 class="wf-faq09__section-title">Général</h3>
-        <div class="accordion">
-          <div class="accordion__item accordion__item--active">
-            <div class="accordion__header">Comment fonctionne votre processus de travail ?</div>
-            <div class="accordion__body"><div class="accordion__body-inner"><p>Notre processus se déroule en quatre phases : découverte, conception, développement et lancement. Vous êtes impliqué à chaque étape pour valider et orienter le projet.</p></div></div>
-          </div>
-          <div class="accordion__item">
-            <div class="accordion__header">Comment démarrer un projet avec vous ?</div>
-            <div class="accordion__body"><div class="accordion__body-inner"><p>Contactez-nous pour un appel découverte gratuit. Nous discuterons de vos besoins et vous proposerons une feuille de route adaptée à votre projet.</p></div></div>
-          </div>
+    <div class="tabs__panel tabs__panel--active" data-tab-panel="general">
+      <h3 class="wf-faq09__section-title">Général</h3>
+      <div class="accordion">
+        <div class="accordion__item accordion__item--active">
+          <div class="accordion__header">Comment fonctionne votre processus de travail ?</div>
+          <div class="accordion__body"><div class="accordion__body-inner"><p>Notre processus se déroule en quatre phases : découverte, conception, développement et lancement. Vous êtes impliqué à chaque étape pour valider et orienter le projet.</p></div></div>
+        </div>
+        <div class="accordion__item">
+          <div class="accordion__header">Comment démarrer un projet avec vous ?</div>
+          <div class="accordion__body"><div class="accordion__body-inner"><p>Contactez-nous pour un appel découverte gratuit. Nous discuterons de vos besoins et vous proposerons une feuille de route adaptée à votre projet.</p></div></div>
         </div>
       </div>
+    </div>
 
-      <div class="wf-faq09__section" id="tarifs">
-        <h3 class="wf-faq09__section-title">Tarifs</h3>
-        <div class="accordion">
-          <div class="accordion__item">
-            <div class="accordion__header">Quels sont vos tarifs ?</div>
-            <div class="accordion__body"><div class="accordion__body-inner"><p>Nos tarifs dépendent de la nature et de l'envergure de chaque projet. Une consultation gratuite est proposée pour établir un devis sur mesure.</p></div></div>
-          </div>
-          <div class="accordion__item">
-            <div class="accordion__header">Quels sont vos délais de livraison ?</div>
-            <div class="accordion__body"><div class="accordion__body-inner"><p>Un projet standard est livré entre 4 et 8 semaines. Les projets plus complexes peuvent nécessiter un calendrier adapté, communiqué dès le départ.</p></div></div>
-          </div>
+    <div class="tabs__panel" data-tab-panel="tarifs">
+      <h3 class="wf-faq09__section-title">Tarifs</h3>
+      <div class="accordion">
+        <div class="accordion__item">
+          <div class="accordion__header">Quels sont vos tarifs ?</div>
+          <div class="accordion__body"><div class="accordion__body-inner"><p>Nos tarifs dépendent de la nature et de l'envergure de chaque projet. Une consultation gratuite est proposée pour établir un devis sur mesure.</p></div></div>
+        </div>
+        <div class="accordion__item">
+          <div class="accordion__header">Quels sont vos délais de livraison ?</div>
+          <div class="accordion__body"><div class="accordion__body-inner"><p>Un projet standard est livré entre 4 et 8 semaines. Les projets plus complexes peuvent nécessiter un calendrier adapté, communiqué dès le départ.</p></div></div>
         </div>
       </div>
+    </div>
 
-      <div class="wf-faq09__section" id="support">
-        <h3 class="wf-faq09__section-title">Support</h3>
-        <div class="accordion">
-          <div class="accordion__item">
-            <div class="accordion__header">Proposez-vous un support après livraison ?</div>
-            <div class="accordion__body"><div class="accordion__body-inner"><p>Oui, nous proposons un support continu incluant une période de garantie et des forfaits de maintenance mensuels pour assurer la pérennité de votre solution.</p></div></div>
-          </div>
+    <div class="tabs__panel" data-tab-panel="support">
+      <h3 class="wf-faq09__section-title">Support</h3>
+      <div class="accordion">
+        <div class="accordion__item">
+          <div class="accordion__header">Proposez-vous un support après livraison ?</div>
+          <div class="accordion__body"><div class="accordion__body-inner"><p>Oui, nous proposons un support continu incluant une période de garantie et des forfaits de maintenance mensuels pour assurer la pérennité de votre solution.</p></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
-
-<script>
-(function() {
-  var nav = document.querySelector('.wf-faq09__nav');
-  if (!nav) return;
-  var links = nav.querySelectorAll('.wf-faq09__nav-link');
-  var sections = document.querySelectorAll('.wf-faq09__section');
-
-  // Click handler
-  links.forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      var id = this.getAttribute('data-nav');
-      var target = document.getElementById(id);
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      links.forEach(function(l) { l.classList.remove('wf-faq09__nav-link--active'); });
-      this.classList.add('wf-faq09__nav-link--active');
-    });
-  });
-
-  // Scroll spy
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        var id = entry.target.id;
-        links.forEach(function(l) {
-          l.classList.toggle('wf-faq09__nav-link--active', l.getAttribute('data-nav') === id);
-        });
-      }
-    });
-  }, { rootMargin: '-20% 0px -60% 0px' });
-
-  sections.forEach(function(s) { observer.observe(s); });
-})();
-</script>
