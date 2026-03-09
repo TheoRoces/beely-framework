@@ -5,3 +5,4 @@ node_modules/
 .env
 .deploy.env
 sitemap.xml
+wireframes/wireframes-data.json

@@ -62,8 +62,7 @@
       'draw': 'anim-svg-draw',
       'draw-fade': 'anim-svg-draw-fade',
       'fade': 'anim-svg-fade',
-      'fade-up': 'anim-svg-fade-up',
-      'fill': 'anim-svg-fill'
+      'fade-up': 'anim-svg-fade-up'
     };
     return map[animValue] || '';
   }

@@ -29,7 +29,13 @@
   <style>
     .icons-toolbar { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-6); align-items: center; }
     .icons-toolbar input { flex: 1; min-width: 200px; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-base); background: var(--color-bg); color: var(--color-text); }
-    .icons-toolbar select { padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); background: var(--color-bg); color: var(--color-text); }
+    /* Custom selects compacts (inline) */
+    .icons-toolbar .form__select,
+    .icons-anim-bar .form__select { width: auto; min-width: 130px; }
+    .icons-toolbar .form__select-trigger,
+    .icons-anim-bar .form__select-trigger { padding: var(--space-2) var(--space-3); font-size: var(--text-sm); }
+    .icons-toolbar .form__select-option,
+    .icons-anim-bar .form__select-option { padding: var(--space-2) var(--space-3); font-size: var(--text-sm); }
     .icons-count { font-size: var(--text-sm); color: var(--color-text-light); }
     .icons-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-3); }
     .icon-card { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-4) var(--space-2); border: 1px solid var(--color-border); border-radius: var(--radius-md); cursor: pointer; transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast); background: var(--color-bg); }
@@ -37,11 +43,25 @@
     .icon-card__name { font-size: 10px; color: var(--color-text-light); text-align: center; word-break: break-all; line-height: 1.3; }
     .icon-card--copied { background: var(--color-primary); border-color: var(--color-primary); }
     .icon-card--copied .icon-card__name { color: var(--color-text-inverse); }
-    .icon-card--copied .icon svg [stroke] { stroke: var(--color-text-inverse); }
-    .icon-card--copied .icon svg [fill]:not([fill="none"]) { fill: var(--color-text-inverse); }
+    .icon-card--copied svg [stroke]:not([stroke="none"]) { stroke: var(--color-text-inverse); }
+    .icon-card--copied svg [fill]:not([fill="none"]) { fill: var(--color-text-inverse); }
     .copy-toggle { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
     .copy-toggle__btn { padding: var(--space-1) var(--space-3); font-size: var(--text-sm); background: var(--color-bg); color: var(--color-text-light); border: none; cursor: pointer; transition: background var(--transition-fast), color var(--transition-fast); }
     .copy-toggle__btn--active { background: var(--color-primary); color: var(--color-text-inverse); }
+
+    /* Animation configurator */
+    .icons-anim-bar { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; margin-bottom: var(--space-4); padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg-alt, var(--color-bg)); }
+    .icons-anim-bar__label { font-size: var(--text-sm); font-weight: 600; color: var(--color-text); white-space: nowrap; }
+    .icons-anim-bar__replay { display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-1) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--text-sm); background: var(--color-bg); color: var(--color-text); cursor: pointer; transition: border-color var(--transition-fast), background var(--transition-fast); }
+    .icons-anim-bar__replay:hover { border-color: var(--color-primary); background: var(--color-primary-light, rgba(99,102,241,0.08)); color: var(--color-text); }
+    [data-theme="dark"] .icons-anim-bar__replay:hover { background: rgba(99,102,241,0.15); }
+    .icons-anim-bar__replay svg { width: 16px; height: 16px; }
+    .icons-anim-bar__preview { margin-left: auto; display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-4); border: 1px dashed var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); min-width: 80px; justify-content: center; }
+    .icons-anim-bar__hint { font-size: var(--text-xs); color: var(--color-text-light); }
+
+    /* Désactiver le scale hover du framework sur cette page */
+    .icon-card .icon--animated { transition: none; }
+    .icon-card:hover .icon--animated { transform: none; }
   </style>
 </head>
 <body>
@@ -81,7 +101,7 @@
           <tr><td><code>data-icon-type</code></td><td><code>outline</code> | <code>solid</code></td><td>Style (d&eacute;faut : <code>outline</code>)</td></tr>
           <tr><td><code>data-icon-size</code></td><td>Nombre en px</td><td>Taille (d&eacute;faut : <code>24</code>)</td></tr>
           <tr><td><code>data-icon-color</code></td><td>Couleur CSS</td><td>Couleur (d&eacute;faut : <code>currentColor</code>)</td></tr>
-          <tr><td><code>data-icon-animate</code></td><td><code>draw-fade</code> | <code>draw</code> | <code>fade-up</code> | <code>no</code></td><td>Animation SVG au scroll (d&eacute;faut : aucune)</td></tr>
+          <tr><td><code>data-icon-animate</code></td><td><code>draw-fade</code> | <code>draw</code> | <code>fade-up</code> | <code>fade</code> | <code>no</code></td><td>Animation SVG au scroll (d&eacute;faut : aucune)</td></tr>
         </table>
 
         <h3>Animation</h3>
@@ -92,7 +112,6 @@
           <tr><td><code>draw</code></td><td>Dessin progressif seul</td><td>Ic&ocirc;nes outline</td></tr>
           <tr><td><code>fade-up</code></td><td>Fondu + mont&eacute;e (d&eacute;faut solid)</td><td>Ic&ocirc;nes solid</td></tr>
           <tr><td><code>fade</code></td><td>Fondu simple</td><td>Tous types</td></tr>
-          <tr><td><code>fill</code></td><td>Remplissage progressif</td><td>Ic&ocirc;nes solid</td></tr>
           <tr><td><code>no</code></td><td>Aucune animation</td><td>—</td></tr>
         </table>
         <p>En plus, un l&eacute;ger <code>scale(1.15)</code> s'applique au survol du parent (<code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>).</p>
@@ -117,15 +136,36 @@
 
         <div class="icons-toolbar">
           <input type="text" id="icon-search" placeholder="Rechercher une ic&ocirc;ne...">
-          <select id="icon-type-filter">
-            <option value="outline">Outline</option>
-            <option value="solid">Solid</option>
-          </select>
+          <div class="form__select" id="icon-type-filter" data-name="icon-type">
+            <div class="form__select-trigger form__select-trigger--filled">Outline</div>
+            <div class="form__select-options">
+              <div class="form__select-option form__select-option--active" data-value="outline">Outline</div>
+              <div class="form__select-option" data-value="solid">Solid</div>
+            </div>
+          </div>
           <div class="copy-toggle">
             <button class="copy-toggle__btn copy-toggle__btn--active" data-copy-mode="snippet">Snippet</button>
             <button class="copy-toggle__btn" data-copy-mode="svg">SVG</button>
           </div>
           <span class="icons-count" id="icon-count"></span>
+        </div>
+
+        <div class="icons-anim-bar" id="icons-anim-bar">
+          <span class="icons-anim-bar__label">Animation</span>
+          <div class="form__select" id="icon-anim-select" data-name="icon-anim">
+            <div class="form__select-trigger form__select-trigger--filled">Aucune</div>
+            <div class="form__select-options">
+              <div class="form__select-option form__select-option--active" data-value="no">Aucune</div>
+            </div>
+          </div>
+          <button class="icons-anim-bar__replay" id="icon-anim-replay" title="Rejouer l'animation">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Rejouer
+          </button>
+          <div class="icons-anim-bar__preview">
+            <span data-icon="heart" id="icon-anim-preview" data-icon-size="32" data-icon-animate="no"></span>
+          </div>
+          <span class="icons-anim-bar__hint">Survolez une ic&ocirc;ne pour pr&eacute;visualiser &bull; Le snippet copi&eacute; inclura l'animation</span>
         </div>
 
         <div class="icons-grid" id="icons-grid"></div>
@@ -136,11 +176,65 @@
 
           var grid = document.getElementById('icons-grid');
           var search = document.getElementById('icon-search');
-          var typeFilter = document.getElementById('icon-type-filter');
+          var typeFilterEl = document.getElementById('icon-type-filter');
           var countEl = document.getElementById('icon-count');
-          var copyMode = 'snippet'; // 'snippet' ou 'svg'
+          var animSelectEl = document.getElementById('icon-anim-select');
+          var replayBtn = document.getElementById('icon-anim-replay');
+          var previewEl = document.getElementById('icon-anim-preview');
+          var copyMode = 'snippet';
 
-          // Toggle copie Snippet / SVG
+          /* Helpers pour lire la valeur des custom selects */
+          function getTypeValue() {
+            var h = typeFilterEl.querySelector('input[type="hidden"]');
+            return (h && h.value) ? h.value : 'outline';
+          }
+          function getAnimValue() {
+            var h = animSelectEl.querySelector('input[type="hidden"]');
+            return (h && h.value) ? h.value : 'no';
+          }
+
+          /* Animations par type d'icône */
+          var OUTLINE_ANIMS = [
+            { value: 'draw-fade', label: 'Draw + Fade' },
+            { value: 'draw', label: 'Draw' }
+          ];
+          var SOLID_ANIMS = [
+            { value: 'fade-up', label: 'Fade Up' },
+            { value: 'fade', label: 'Fade' }
+          ];
+
+          /* Mettre à jour les options du select animation selon le type */
+          function updateAnimOptions() {
+            var type = getTypeValue();
+            var anims = (type === 'solid') ? SOLID_ANIMS : OUTLINE_ANIMS;
+            var prev = getAnimValue();
+            /* Reconstruire les options */
+            var optsHtml = '<div class="form__select-option form__select-option--active" data-value="no">Aucune</div>';
+            for (var i = 0; i < anims.length; i++) {
+              optsHtml += '<div class="form__select-option" data-value="' + anims[i].value + '">' + anims[i].label + '</div>';
+            }
+            var optsEl = animSelectEl.querySelector('.form__select-options');
+            optsEl.innerHTML = optsHtml;
+            /* Rétablir la valeur précédente si elle existe encore */
+            var found = optsEl.querySelector('[data-value="' + prev + '"]');
+            if (found) {
+              optsEl.querySelector('.form__select-option--active').classList.remove('form__select-option--active');
+              found.classList.add('form__select-option--active');
+              var trigger = animSelectEl.querySelector('.form__select-trigger');
+              trigger.textContent = found.textContent;
+              var hidden = animSelectEl.querySelector('input[type="hidden"]');
+              if (hidden) hidden.value = prev;
+            } else {
+              /* Reset à "Aucune" */
+              var trigger = animSelectEl.querySelector('.form__select-trigger');
+              trigger.textContent = 'Aucune';
+              trigger.classList.add('form__select-trigger--filled');
+              var hidden = animSelectEl.querySelector('input[type="hidden"]');
+              if (hidden) hidden.value = 'no';
+            }
+          }
+
+          /* Toggle copie Snippet / SVG */
           var toggleBtns = document.querySelectorAll('[data-copy-mode]');
           for (var t = 0; t < toggleBtns.length; t++) {
             toggleBtns[t].addEventListener('click', function () {
@@ -152,13 +246,85 @@
             });
           }
 
-          function escapeHtml(str) {
-            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+          function getSelectedAnim() {
+            return getAnimValue();
           }
+
+          /* ============================================================
+             Approche : on utilise le système natif du framework.
+             - data-icon-animate sur le <span> → icons.js ajoute les classes anim-svg-*
+             - initAnimations() → IntersectionObserver ajoute anim--visible
+             - Pour rejouer : retirer anim--visible, reflow, re-ajouter
+             ============================================================ */
+
+          /* Rejouer l'animation sur un conteneur (carte ou preview) */
+          function replayShapes(container) {
+            var shapes = container.querySelectorAll('[class*="anim-svg-"]');
+            if (!shapes.length) return;
+            /* 1. Couper transitions → retirer visible = saut instantané à l'état initial */
+            for (var i = 0; i < shapes.length; i++) {
+              shapes[i].style.transition = 'none';
+              shapes[i].classList.remove('anim--visible');
+            }
+            /* 2. Forcer le browser à peindre l'état initial */
+            void container.offsetHeight;
+            /* 3. Rétablir transitions + relancer */
+            requestAnimationFrame(function () {
+              for (var j = 0; j < shapes.length; j++) {
+                shapes[j].style.transition = '';
+                shapes[j].classList.add('anim--visible');
+              }
+            });
+          }
+
+          /* Rejouer toutes les animations visibles */
+          function replayAnimations() {
+            var cards = grid.querySelectorAll('.icon-card');
+            for (var i = 0; i < cards.length; i++) {
+              replayShapes(cards[i]);
+            }
+            replayShapes(previewEl.parentNode);
+          }
+
+          /* Re-render la preview icône */
+          function updatePreview() {
+            var anim = getSelectedAnim();
+            var type = getTypeValue();
+            var animVal = (anim && anim !== 'no') ? anim : 'no';
+            previewEl.setAttribute('data-icon-type', type);
+            previewEl.setAttribute('data-icon-animate', animVal);
+            /* Supprimer le SVG pour forcer le re-render */
+            var svg = previewEl.querySelector('svg');
+            if (svg) svg.remove();
+            previewEl.classList.remove('icon-wrapper');
+            var wrap = previewEl.parentNode;
+            if (window.initIcons) window.initIcons(wrap);
+            /* Attendre le chargement SVG, puis déclencher l'animation */
+            if (animVal !== 'no') {
+              setTimeout(function () {
+                var shapes = wrap.querySelectorAll('[class*="anim-svg-"]');
+                for (var i = 0; i < shapes.length; i++) {
+                  shapes[i].classList.add('anim--visible');
+                }
+              }, 150);
+            }
+          }
+
+          /* Hover : rejouer l'animation uniquement à l'entrée dans la card */
+          grid.addEventListener('mouseover', function (e) {
+            var card = e.target.closest('.icon-card');
+            if (!card) return;
+            var from = e.relatedTarget;
+            /* Ignorer si on vient d'un enfant de la même card */
+            if (from && card.contains(from)) return;
+            replayShapes(card);
+          });
 
           function render() {
             var query = search.value.toLowerCase().trim();
-            var type = typeFilter.value;
+            var type = getTypeValue();
+            var anim = getSelectedAnim();
+            var animVal = (anim && anim !== 'no') ? anim : 'no';
             var html = '';
             var count = 0;
 
@@ -167,7 +333,7 @@
               if (query && name.indexOf(query) === -1) continue;
               count++;
               html += '<div class="icon-card" data-icon-name="' + name + '" title="Copier : ' + name + '">';
-              html += '<span data-icon="' + name + '" data-icon-type="' + type + '" data-icon-size="28" data-icon-animate="no"></span>';
+              html += '<span data-icon="' + name + '" data-icon-type="' + type + '" data-icon-size="28" data-icon-animate="' + animVal + '"></span>';
               html += '<span class="icon-card__name">' + name + '</span>';
               html += '</div>';
             }
@@ -175,8 +341,18 @@
             grid.innerHTML = html;
             countEl.textContent = count + ' ic\u00f4ne' + (count > 1 ? 's' : '');
 
-            // Re-init icons pour les nouveaux éléments
+            /* Le framework render les SVG + ajoute les classes d'animation */
             if (window.initIcons) window.initIcons(grid);
+
+            /* Attendre le chargement des SVG, puis déclencher les animations */
+            if (animVal !== 'no') {
+              setTimeout(function () {
+                var shapes = grid.querySelectorAll('[class*="anim-svg-"]');
+                for (var s = 0; s < shapes.length; s++) {
+                  shapes[s].classList.add('anim--visible');
+                }
+              }, 200);
+            }
           }
 
           function copyToClipboard(text, card) {
@@ -192,35 +368,50 @@
             }
             card.classList.add('icon-card--copied');
             setTimeout(function () { card.classList.remove('icon-card--copied'); }, 600);
-            if (window.showToast) window.showToast('Copié !', 'success', 2000);
+            if (window.showToast) window.showToast('Copi\u00e9 !', 'success', 2000);
           }
 
-          // Copier au clic
+          /* Copier au clic */
           grid.addEventListener('click', function (e) {
             var card = e.target.closest('.icon-card');
             if (!card) return;
             var name = card.getAttribute('data-icon-name');
             if (!name) return;
-            var type = typeFilter.value;
+            var type = getTypeValue();
+            var anim = getSelectedAnim();
 
             if (copyMode === 'svg') {
-              // Copier le SVG brut
               if (window.fetchIconSvg) {
                 window.fetchIconSvg(type, name, function (svgStr) {
                   copyToClipboard(svgStr.trim(), card);
                 });
               }
             } else {
-              // Copier le snippet data-icon
-              var tag = '<span data-icon="' + name + '" data-icon-type="' + type + '"></span>';
+              var tag = '<span data-icon="' + name + '" data-icon-type="' + type + '"';
+              if (anim && anim !== 'no') {
+                tag += ' data-icon-animate="' + anim + '"';
+              }
+              tag += '><\/span>';
               copyToClipboard(tag, card);
             }
           });
 
+          /* Events */
           search.addEventListener('input', render);
-          typeFilter.addEventListener('change', render);
+          typeFilterEl.addEventListener('change', function () {
+            updateAnimOptions();
+            render();
+            updatePreview();
+          });
+          animSelectEl.addEventListener('change', function () { render(); updatePreview(); });
+          replayBtn.addEventListener('click', replayAnimations);
 
+          /* Init custom selects puis render */
+          if (window.initForms) window.initForms(document.querySelector('.icons-toolbar'));
+          if (window.initForms) window.initForms(document.querySelector('.icons-anim-bar'));
+          updateAnimOptions();
           render();
+          updatePreview();
         })();
         </script>
 

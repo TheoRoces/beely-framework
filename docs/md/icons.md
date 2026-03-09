@@ -25,7 +25,7 @@ Ajoutez l'attribut `data-icon` sur n'importe quel élément :
 | `data-icon-type` | `outline` \| `solid` | Style (défaut : `outline`) |
 | `data-icon-size` | Nombre en px | Taille (défaut : `24`) |
 | `data-icon-color` | Couleur CSS | Couleur (défaut : `currentColor`) |
-| `data-icon-animate` | `draw-fade` \| `draw` \| `fade-up` \| `no` | Animation SVG au scroll (défaut : aucune) |
+| `data-icon-animate` | `draw-fade` \| `draw` \| `fade-up` \| `fade` \| `no` | Animation SVG au scroll (défaut : aucune) |
 
 ### Animation
 
@@ -37,7 +37,6 @@ Par défaut, les icônes sont statiques. Ajoutez `data-icon-animate` pour active
 | `draw` | Dessin progressif seul | Icônes outline |
 | `fade-up` | Fondu + montée (défaut solid) | Icônes solid |
 | `fade` | Fondu simple | Tous types |
-| `fill` | Remplissage progressif | Icônes solid |
 | `no` | Aucune animation | — |
 
 En plus, un léger `scale(1.15)` s'applique au survol du parent (`<a>`, `<button>`).
@@ -65,7 +64,30 @@ En plus, un léger `scale(1.15)` s'applique au survol du parent (`<a>`, `<button
 
 ## Toutes les icônes
 
-La page HTML contient une galerie interactive avec recherche, filtre outline/solid, et copie au clic (snippet ou SVG brut).
+La page HTML contient une galerie interactive avec :
+
+- **Recherche** : filtrage en temps réel par nom
+- **Filtre outline/solid** : bascule entre les deux styles
+- **Copie au clic** : snippet `data-icon` ou SVG brut selon le mode choisi
+- **Configurateur d'animation** : sélecteur d'animation SVG avec preview en live et bouton "Rejouer". L'animation choisie est automatiquement incluse dans le snippet copié (`data-icon-animate="..."`)
+
+### Animations disponibles dans le configurateur
+
+Les animations proposées s'adaptent automatiquement au type d'icône sélectionné :
+
+**Outline** (animations de tracé) :
+
+| Animation | Effet |
+|---|---|
+| Draw + Fade | Dessin progressif du tracé + fondu |
+| Draw | Dessin progressif du tracé seul |
+
+**Solid** (animations d'opacité) :
+
+| Animation | Effet |
+|---|---|
+| Fade Up | Fondu + montée |
+| Fade | Fondu simple |
 
 Liste complète des 324 icônes disponibles :
 

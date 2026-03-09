@@ -9,6 +9,24 @@
 3. Collez le snippet directement dans votre page HTML -- il est autonome (styles inclus).
 4. Personnalisez les textes, images et couleurs via les variables CSS du wireframe ou vos propres `tokens.css`.
 
+## Développement local (Live Server)
+
+Les wireframes sont servis via un bundle JSON (`wireframes-data.json`) pour contourner un [bug connu de Live Server](https://github.com/ritwickdey/vscode-live-server/issues/684) qui injecte du code dans les réponses HTML et corrompt les SVG dans les iframes.
+
+**Générer le bundle :**
+
+```bash
+node wireframes/build-data.js
+```
+
+**Mode watch** (régénère automatiquement quand un wireframe est modifié) :
+
+```bash
+node wireframes/build-data.js --watch
+```
+
+Le fichier `wireframes-data.json` est auto-généré, non versionné (`.gitignore`) et non déployé (`.rsync-exclude`). En production (sans Live Server), les wireframes sont chargés directement en HTML via `fetch()`.
+
 ## Outils de la page
 
 - **Recherche** : filtrage en temps réel par nom de wireframe
