@@ -29,8 +29,14 @@ registerComponent('header', function (slots) {
             <span class="header__theme-icon header__theme-icon--sun" data-icon="sun" data-icon-type="outline" data-icon-size="18"></span>
             <span class="header__theme-icon header__theme-icon--moon" data-icon="moon" data-icon-type="outline" data-icon-size="18"></span>
           </button>
+          <button class="header__burger" data-header-toggle aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+            <span class="header__burger-line"></span>
+          </button>
         </div>
         ${slots.cta ? `<div class="header__cta">${slots.cta}</div>` : ''}
       </div>
+      <div class="header__overlay" data-header-overlay></div>
     </header>`;
 });

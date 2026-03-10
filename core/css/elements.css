@@ -630,6 +630,127 @@
   transform: rotate(0deg);
 }
 
+/* Burger button (hidden on desktop) */
+.header__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.header__burger:hover {
+  border-color: var(--color-text-light);
+}
+
+.header__burger-line {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Burger → X animation */
+.header--open .header__burger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.header--open .header__burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.header--open .header__burger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Overlay */
+.header__overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.header--open .header__overlay {
+  display: block;
+  opacity: 1;
+}
+
+/* CTA in header */
+.header__cta {
+  flex-shrink: 0;
+}
+
+/* ---- Mobile header (≤ 991px) ---- */
+@media (max-width: 991px) {
+  .header__burger {
+    display: flex;
+  }
+
+  .header__nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 85vw);
+    height: 100vh;
+    height: 100dvh;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-bg);
+    border-left: 1px solid var(--color-border);
+    z-index: 999;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .header--open .header__nav {
+    transform: translateX(0);
+  }
+
+  .header__nav a {
+    display: block;
+    padding: var(--space-3) 0;
+    font-size: var(--text-base);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header__nav a:last-child {
+    border-bottom: none;
+  }
+
+  /* Hide search button label + kbd on mobile */
+  .header__search-label,
+  .header__search-kbd {
+    display: none;
+  }
+
+  .header__search {
+    max-width: none;
+    padding: var(--space-2);
+  }
+
+  /* Hide CTA on mobile (nav could include it) */
+  .header__cta {
+    display: none;
+  }
+}
+
 /* Footer */
 .footer {
   padding: var(--space-8) 0;

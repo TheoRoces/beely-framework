@@ -17,6 +17,7 @@
     initAccordions(root);
     initTabs(root);
     initSliders(root);
+    initHeaderMobile();
   };
 
   /* ==========================================================================
@@ -649,5 +650,69 @@
     // Init
     goTo(0);
     startAutoplay();
+  }
+
+  /* ==========================================================================
+     HEADER MOBILE — Burger toggle + overlay
+     ========================================================================== */
+
+  function initHeaderMobile() {
+    var header = document.querySelector('.header');
+    if (!header) return;
+
+    var burger = header.querySelector('[data-header-toggle]');
+    var overlay = header.querySelector('[data-header-overlay]');
+    if (!burger) return;
+
+    function openMenu() {
+      header.classList.add('header--open');
+      burger.setAttribute('aria-expanded', 'true');
+      burger.setAttribute('aria-label', 'Fermer le menu');
+      lockScroll();
+    }
+
+    function closeMenu() {
+      header.classList.remove('header--open');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.setAttribute('aria-label', 'Ouvrir le menu');
+      unlockScroll();
+    }
+
+    burger.addEventListener('click', function () {
+      if (header.classList.contains('header--open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    if (overlay) {
+      overlay.addEventListener('click', closeMenu);
+    }
+
+    // Fermer avec Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('header--open')) {
+        closeMenu();
+        burger.focus();
+      }
+    });
+
+    // Fermer au clic sur un lien nav
+    var nav = header.querySelector('.header__nav');
+    if (nav) {
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) {
+          closeMenu();
+        }
+      });
+    }
+
+    // Fermer si on redimensionne au-dessus du breakpoint
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 991 && header.classList.contains('header--open')) {
+        closeMenu();
+      }
+    });
   }
 })();
