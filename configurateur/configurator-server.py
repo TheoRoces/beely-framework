@@ -20,8 +20,12 @@ import subprocess
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 PORT = 5555
-# ROOT = répertoire parent du builder (la racine du projet)
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# ROOT = racine du projet (cwd au lancement, car le script est lancé via
+# `python3 configurateur/configurator-server.py` depuis la racine).
+# On ne peut PAS utiliser __file__ car `configurateur/` est un symlink vers
+# `.framework/configurateur/` — Python résout le symlink et __file__ pointe
+# dans .framework/, ce qui fausse le calcul du parent.
+ROOT = os.getcwd()
 
 # Origines autorisées pour CORS (localhost uniquement)
 ALLOWED_ORIGINS_PREFIX = (
