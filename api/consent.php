@@ -124,7 +124,7 @@ $fp = fopen($csvFile, 'a');
 if (!$fp) {
     http_response_code(500);
     header('Content-Type: application/json');
-    echo json_encode(['error' => 'Impossible d\'ecrire le fichier de consentement']);
+    echo json_encode(['error' => 'Impossible d\'écrire le fichier de consentement']);
     exit;
 }
 

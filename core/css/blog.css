@@ -891,7 +891,7 @@
 
 .blog-article__share-btn:hover {
   background: var(--color-primary);
-  color: var(--color-primary-contrast, #fff);
+  color: var(--color-text-inverse);
   border-color: var(--color-primary);
 }
 

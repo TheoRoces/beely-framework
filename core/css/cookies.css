@@ -25,9 +25,6 @@
 .cookies__inner {
   max-width: var(--container-max);
   margin: 0 auto;
-}
-
-.cookies__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
