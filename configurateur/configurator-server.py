@@ -1016,7 +1016,7 @@ class BuilderHandler(SimpleHTTPRequestHandler):
 
     def _handle_framework_info(self):
         fw_dir = os.path.join(ROOT, '.framework')
-        if not os.path.isdir(os.path.join(fw_dir, '.git')):
+        if not os.path.exists(os.path.join(fw_dir, '.git')):
             return self._json(404, {'error': 'Submodule .framework introuvable'})
         try:
             # Version courante (tag le plus proche)
@@ -1053,7 +1053,7 @@ class BuilderHandler(SimpleHTTPRequestHandler):
 
     def _handle_framework_versions(self):
         fw_dir = os.path.join(ROOT, '.framework')
-        if not os.path.isdir(os.path.join(fw_dir, '.git')):
+        if not os.path.exists(os.path.join(fw_dir, '.git')):
             return self._json(404, {'error': 'Submodule .framework introuvable'})
         try:
             # Fetch les derniers tags
@@ -1093,7 +1093,7 @@ class BuilderHandler(SimpleHTTPRequestHandler):
         if not version or not re.match(r'^[a-zA-Z0-9._\-]+$', version):
             return self._json(400, {'error': 'Version invalide'})
         fw_dir = os.path.join(ROOT, '.framework')
-        if not os.path.isdir(os.path.join(fw_dir, '.git')):
+        if not os.path.exists(os.path.join(fw_dir, '.git')):
             return self._json(404, {'error': 'Submodule .framework introuvable'})
         try:
             result = subprocess.run(
@@ -1129,7 +1129,7 @@ class BuilderHandler(SimpleHTTPRequestHandler):
         # 1. Submodule .framework existe
         fw_dir = os.path.join(ROOT, '.framework')
         check('Submodule .framework',
-              os.path.isdir(os.path.join(fw_dir, '.git')),
+              os.path.exists(os.path.join(fw_dir, '.git')),
               'Dossier .framework/ avec historique Git')
 
         # 2. Symlinks framework
