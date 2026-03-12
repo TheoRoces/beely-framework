@@ -169,22 +169,37 @@
         btnOk.disabled = true;
         btnOk.style.opacity = '0.6';
 
-        // Tenter d'ouvrir le configurateur — poll toutes les 500ms pendant 8s
+        // Ouvrir un onglet immédiatement (dans le contexte du clic, sinon popup bloqué)
+        var tab = window.open('about:blank', '_blank');
+
+        // Poll toutes les 500ms pendant 8s pour détecter le serveur
         var attempts = 0;
         var maxAttempts = 16;
+        var stopped = false;
         var poll = setInterval(function () {
+          if (stopped) return;
           attempts++;
           fetch(BUILDER_URL + '/api/framework-info', { method: 'POST' })
             .then(function (r) {
-              if (r.ok) {
+              if (r.ok && !stopped) {
+                stopped = true;
                 clearInterval(poll);
+                serverRunning = true;
+                btn.style.color = 'var(--color-primary,#2563eb)';
+                btn.style.borderColor = 'var(--color-primary,#2563eb)';
                 close();
-                window.open(BUILDER_URL + '/configurateur/', '_blank');
+                // Rediriger l'onglet pré-ouvert
+                if (tab && !tab.closed) {
+                  tab.location.href = BUILDER_URL + '/configurateur/';
+                }
               }
             })
             .catch(function () {
-              if (attempts >= maxAttempts) {
+              if (attempts >= maxAttempts && !stopped) {
+                stopped = true;
                 clearInterval(poll);
+                // Fermer l'onglet vide si le serveur ne répond pas
+                if (tab && !tab.closed) tab.close();
                 msg.textContent = 'Le serveur ne répond pas. Lancez la commande ci-dessus dans votre terminal.';
                 msg.style.color = 'var(--color-error,#dc2626)';
                 btnOk.textContent = 'Démarrer';

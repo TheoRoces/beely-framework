@@ -24,16 +24,10 @@ PORT = 5555
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Origines autorisées pour CORS (localhost uniquement)
-ALLOWED_ORIGINS = {
-    'http://localhost:5555',
-    'http://127.0.0.1:5555',
-    'http://localhost:5500',
-    'http://127.0.0.1:5500',
-    'http://localhost:5501',
-    'http://127.0.0.1:5501',
-    'http://localhost:5502',
-    'http://127.0.0.1:5502',
-}
+ALLOWED_ORIGINS_PREFIX = (
+    'http://localhost:',
+    'http://127.0.0.1:',
+)
 
 # Fichiers autorisés en écriture directe (configurateur)
 ALLOWED_CFG_FILES = {'config-site.js', '.env', '.deploy.env', '.htpasswd'}
@@ -1293,9 +1287,9 @@ class BuilderHandler(SimpleHTTPRequestHandler):
         return json.loads(self.rfile.read(length))
 
     def _get_cors_origin(self):
-        """Retourne l'origine autorisée ou None."""
+        """Retourne l'origine autorisée ou None (tout localhost autorisé)."""
         origin = self.headers.get('Origin', '')
-        if origin in ALLOWED_ORIGINS:
+        if origin and any(origin.startswith(p) for p in ALLOWED_ORIGINS_PREFIX):
             return origin
         return None
 
