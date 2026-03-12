@@ -526,6 +526,9 @@
       var changed = false;
       var totalUpdatedPages = 0;
 
+      // Sauvegarder l'ancien path pour retrouver l'entrée dans mediaFiles
+      var originalPath = mediaEditFile.path;
+
       if (newName !== mediaEditFile.name) {
         try {
           var resp = await BuilderAPI.mediaRename(mediaEditFile.path, newName);
@@ -539,10 +542,14 @@
         }
       }
 
+      // Chercher le dossier actuel via l'ancien path (avant renommage)
       var currentFolder = '';
       for (var i = 0; i < mediaFiles.length; i++) {
-        if (mediaFiles[i].path === mediaEditFile.path) {
+        if (mediaFiles[i].path === originalPath) {
           currentFolder = mediaFiles[i].folder || '';
+          // Mettre à jour mediaFiles avec le nouveau path/name
+          mediaFiles[i].path = mediaEditFile.path;
+          mediaFiles[i].name = mediaEditFile.name;
           break;
         }
       }
@@ -550,6 +557,14 @@
         try {
           var resp = await BuilderAPI.mediaMove(mediaEditFile.path, newFolder);
           if (resp.path) mediaEditFile.path = resp.path;
+          // Mettre à jour le folder dans mediaFiles
+          for (var j = 0; j < mediaFiles.length; j++) {
+            if (mediaFiles[j].path === mediaEditFile.path || mediaFiles[j].name === mediaEditFile.name) {
+              mediaFiles[j].path = mediaEditFile.path;
+              mediaFiles[j].folder = newFolder;
+              break;
+            }
+          }
           totalUpdatedPages += (resp.updatedPages || 0);
           changed = true;
         } catch (err) {
