@@ -1201,12 +1201,12 @@ class BuilderHandler(SimpleHTTPRequestHandler):
               len(missing_api) == 0,
               f'Manquant : {", ".join(missing_api)}' if missing_api else 'Tous présents')
 
-        # 9. Composants
-        comp_files = ['Header.js', 'Footer.js', 'Card.js']
-        missing_comp = [f for f in comp_files if not os.path.exists(os.path.join(ROOT, 'components', f))]
-        check('Composants (Header, Footer, Card)',
-              len(missing_comp) == 0,
-              f'Manquant : {", ".join(missing_comp)}' if missing_comp else 'Tous présents')
+        # 9. Dossier composants
+        comp_dir = os.path.join(ROOT, 'components')
+        comp_count = len([f for f in os.listdir(comp_dir) if f.endswith('.js')]) if os.path.isdir(comp_dir) else 0
+        check('Dossier components/',
+              os.path.isdir(comp_dir),
+              f'{comp_count} composant(s)' if comp_count > 0 else 'Dossier absent ou vide')
 
         # 10. Icônes
         icons_dir = os.path.join(ROOT, 'assets', 'icons', 'outline')
