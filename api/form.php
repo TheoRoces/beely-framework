@@ -94,6 +94,7 @@ curl_setopt_array($ch, [
     CURLOPT_TIMEOUT        => 10,
     CURLOPT_SSL_VERIFYPEER => true,
     CURLOPT_SSL_VERIFYHOST => 2,
+    CURLOPT_PROTOCOLS      => CURLPROTO_HTTPS | CURLPROTO_HTTP,
 ]);
 
 $response = curl_exec($ch);

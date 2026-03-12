@@ -7,6 +7,15 @@
 (function () {
   'use strict';
 
+  /* ---------- Utilitaire partagé : escapeHtml ---------- */
+  if (!window.escapeHtml) {
+    window.escapeHtml = function(str) {
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    };
+  }
+
   var cfg = window.SITE_CONFIG;
   if (!cfg) return;
 
@@ -120,14 +129,18 @@
       btnCopy.addEventListener('mouseenter', function () { btnCopy.style.color = 'var(--color-text,#111)'; });
       btnCopy.addEventListener('mouseleave', function () { btnCopy.style.color = 'var(--color-text-light,#6b7280)'; });
       btnCopy.addEventListener('click', function () {
-        navigator.clipboard.writeText(cmdText).then(function () {
-          btnCopy.textContent = 'Copié !';
-          btnCopy.style.color = 'var(--color-success,#16a34a)';
-          setTimeout(function () {
-            btnCopy.textContent = 'Copier';
-            btnCopy.style.color = 'var(--color-text-light,#6b7280)';
-          }, 1500);
-        });
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(cmdText).then(function () {
+            btnCopy.textContent = 'Copié !';
+            btnCopy.style.color = 'var(--color-success,#16a34a)';
+            setTimeout(function () {
+              btnCopy.textContent = 'Copier';
+              btnCopy.style.color = 'var(--color-text-light,#6b7280)';
+            }, 1500);
+          }).catch(function () {
+            /* Fallback silencieux si clipboard échoue */
+          });
+        }
       });
 
       codeWrap.appendChild(code);

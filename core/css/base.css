@@ -177,15 +177,3 @@ ol {
   mask-position: center;
 }
 
-/* ---------- Legal pages ---------- */
-
-.legal-disclaimer {
-  background-color: var(--disclaimer-bg);
-  color: var(--disclaimer-text);
-  padding: var(--space-4);
-  border: 1px solid var(--disclaimer-border);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--space-6);
-  font-size: var(--text-sm);
-  line-height: 1.5;
-}

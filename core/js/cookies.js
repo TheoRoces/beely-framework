@@ -234,11 +234,7 @@
 
   var currentBanner = null;
 
-  function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  }
+  var escapeHtml = window.escapeHtml || function(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 
   function buildCategoryToggles(consent) {
     var html = '<div class="cookies__categories">';

@@ -80,6 +80,8 @@
   function openPopup(popup) {
     popup.__previousFocus = document.activeElement;
     popup.classList.add('popup--active');
+    popup.setAttribute('role', 'dialog');
+    popup.setAttribute('aria-modal', 'true');
     openPopups.push(popup);
     lockScroll();
 
@@ -107,6 +109,8 @@
 
   function closePopup(popup) {
     popup.classList.remove('popup--active');
+    popup.removeAttribute('role');
+    popup.removeAttribute('aria-modal');
     var idx = openPopups.indexOf(popup);
     if (idx > -1) openPopups.splice(idx, 1);
     unlockScroll();
@@ -432,6 +436,13 @@
     var total = slides.length;
     var maxIndex = Math.max(0, total - perView);
     var autoplayTimer = null;
+
+    // Aria-label sur chaque slide
+    slides.forEach(function (slide, i) {
+      slide.setAttribute('aria-label', 'Slide ' + (i + 1) + ' sur ' + total);
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'diapositive');
+    });
 
     // Générer les dots
     if (dotsContainer && showDots) {

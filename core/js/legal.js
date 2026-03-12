@@ -77,11 +77,7 @@
     return (val !== undefined && val !== null) ? String(val) : '';
   }
 
-  function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  }
+  var escapeHtml = window.escapeHtml || function(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 
   /* ---------- Injection des data-legal ---------- */
 

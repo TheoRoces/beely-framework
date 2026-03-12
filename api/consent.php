@@ -85,8 +85,11 @@ if (!$data || !isset($data['consent']) || !isset($data['timestamp'])) {
     exit;
 }
 
+/* --- Valider les catégories de consentement --- */
+$allowedCategories = ['functional', 'analytics', 'marketing', 'necessary', 'preferences'];
+$consent = array_intersect_key($data['consent'], array_flip($allowedCategories));
+
 /* --- Preparer la ligne CSV --- */
-$consent   = $data['consent'];
 $timestamp = $data['timestamp'];
 $url       = isset($data['url']) ? $data['url'] : '';
 $userAgent = isset($data['user_agent']) ? $data['user_agent'] : '';

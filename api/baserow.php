@@ -100,7 +100,8 @@ curl_setopt_array($ch, [
         'Content-Type: application/json'
     ],
     CURLOPT_TIMEOUT => 15,
-    CURLOPT_FOLLOWLOCATION => false
+    CURLOPT_FOLLOWLOCATION => false,
+    CURLOPT_PROTOCOLS => CURLPROTO_HTTPS | CURLPROTO_HTTP,
 ]);
 
 $response = curl_exec($ch);

@@ -7,12 +7,7 @@
 (function () {
   'use strict';
 
-  function escapeHtml(str) {
-    if (!str) return '';
-    var div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
+  var escapeHtml = window.escapeHtml || function(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 
   /* =====================================================================
      TOASTS
@@ -88,6 +83,7 @@
 
       var trigger = select.querySelector('.form__select-trigger');
       var options = select.querySelector('.form__select-options');
+      if (!trigger || !options) return;
       var name = select.getAttribute('data-name');
       var placeholder = trigger.textContent;
 
@@ -212,6 +208,7 @@
       var input = el.querySelector('.form__number-input');
       var minBtn = el.querySelector('.form__number-minus');
       var plusBtn = el.querySelector('.form__number-plus');
+      if (!input || !minBtn || !plusBtn) return;
       var min = parseFloat(input.getAttribute('min')) || 0;
       var max = parseFloat(input.getAttribute('max')) || 999999;
       var step = parseFloat(input.getAttribute('step')) || 1;
@@ -240,6 +237,7 @@
 
       var trigger = el.querySelector('.form__multiselect-trigger');
       var options = el.querySelector('.form__multiselect-options');
+      if (!trigger || !options) return;
       var name = el.getAttribute('data-name');
       var placeholder = trigger.getAttribute('data-placeholder') || trigger.textContent;
       var selected = [];

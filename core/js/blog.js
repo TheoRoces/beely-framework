@@ -114,12 +114,7 @@
     }
   }
 
-  function escapeHtml(str) {
-    if (!str) return '';
-    var div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
+  var escapeHtml = window.escapeHtml || function(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
 
   /** SVG placeholder pour les images manquantes (icône photo neutre) */
   var placeholderSvg = `<div class="blog-card__placeholder">
@@ -253,6 +248,10 @@
       } else {
         callback(new Error('HTTP ' + req.status), null);
       }
+    };
+    req.timeout = 15000; // 15 secondes, aligné sur le timeout du proxy PHP
+    req.ontimeout = function () {
+      callback(new Error('Timeout'), null);
     };
     req.onerror = function () {
       callback(new Error('Erreur réseau'), null);
@@ -475,31 +474,7 @@
     gridEl = container.querySelector('.blog__grid');
     loadMoreEl = container.querySelector('.blog__load-more');
 
-    /* ---------- Fetch ALL rows (pagination récursive, filtrage client-side) ---------- */
-
-    function fetchAllRows(callback) {
-      var result = [];
-      var tableId = config.baserow.tableId;
-      function fetchPage(page) {
-        var url = buildUrl('/api/database/rows/table/' + tableId + '/', {
-          user_field_names: 'true',
-          page: page,
-          size: 200,
-          order_by: '-date'
-        });
-        xhr(url, function (err, data) {
-          if (err) return callback(err, []);
-          var rows = (data && data.results) || [];
-          for (var i = 0; i < rows.length; i++) {
-            var status = getStatus(rows[i]);
-            if (!status || status !== 'draft') result.push(rows[i]);
-          }
-          if (data && data.next) fetchPage(page + 1);
-          else callback(null, result);
-        });
-      }
-      fetchPage(1);
-    }
+    /* fetchAllRows supprimé — utilise fetchPublishedRows (même logique, scope parent) */
 
     /* ---------- Client-side filtering ---------- */
 
@@ -782,7 +757,7 @@
 
     /* ---------- Go ---------- */
 
-    fetchAllRows(function (err, rows) {
+    fetchPublishedRows(function (err, rows) {
       if (err) {
         gridEl.innerHTML = '<div class="blog__empty">Erreur de chargement</div>';
         return;
