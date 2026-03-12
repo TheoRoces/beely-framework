@@ -121,7 +121,13 @@ function generateSitemapXML(urls) {
  * Génère robots.txt
  */
 function generateRobotsTxt() {
-  return 'User-agent: *\nAllow: /\n\nSitemap: ' + BASE_URL + '/sitemap.xml\n';
+  return 'User-agent: *\nAllow: /\n' +
+    'Disallow: /components/\n' +
+    'Disallow: /core/\n' +
+    'Disallow: /api/\n' +
+    'Disallow: /assets/\n' +
+    'Disallow: /snippets/\n' +
+    '\nSitemap: ' + BASE_URL + '/sitemap.xml\n';
 }
 
 function escapeXml(str) {

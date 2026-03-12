@@ -27,7 +27,7 @@ beely-framework/
 ├── core/css/          # 10 fichiers CSS (tokens, reset, grid, components, forms, elements, animations, blog, cookies, icons)
 ├── core/js/           # 11 fichiers JS (site, components, grid, forms, elements, animations, blog, cookies, icons, darkmode, params)
 ├── api/               # PHP : baserow.php, consent.php, form.php, rate-limit.php
-├── components/        # Header, Footer, Card, Docs Sidebar
+├── snippets/components/ # Exemples de composants (Header, Footer, Card) — copiés dans le projet par setup.sh
 ├── configurateur/     # Configurateur visuel (ex beely-builder, fusionné dans le framework)
 ├── snippets/          # Fragments HTML prêts à copier
 ├── assets/            # Icônes Heroicons (324), images
@@ -46,7 +46,7 @@ beely-framework/
 
 | Fichier / Dossier | GitHub (git) | Serveur (rsync) | Notes |
 |---|:---:|:---:|---|
-| `core/`, `components/`, `assets/`, `api/`, `snippets/` | ✅ | ✅ | Framework core, déployé via symlinks |
+| `core/`, `assets/`, `api/`, `snippets/` | ✅ | ✅ | Framework core, déployé via symlinks |
 | `configurateur/` | ✅ | ❌ | Outil local, exclu du déploiement |
 | `docs/`, `wireframes/` | ❌ | ✅* | *Uniquement sur framework.beely.studio |
 | `config-site.js` | ✅ | ✅ | Config client spécifique |

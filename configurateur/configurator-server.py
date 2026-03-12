@@ -1137,7 +1137,7 @@ class BuilderHandler(SimpleHTTPRequestHandler):
               'Dossier .framework/ avec historique Git')
 
         # 2. Symlinks framework
-        expected_symlinks = ['core', 'components', 'assets', 'api', 'snippets', 'configurateur']
+        expected_symlinks = ['core', 'assets', 'api', 'snippets', 'configurateur']
         for name in expected_symlinks:
             link_path = os.path.join(ROOT, name)
             is_ok = os.path.islink(link_path) and os.path.exists(link_path)
