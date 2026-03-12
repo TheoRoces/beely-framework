@@ -148,12 +148,63 @@
     return div.innerHTML;
   }
 
+  /* ---------- Sitemap & robots.txt ---------- */
+  var sitemapUrlInput = document.getElementById('sitemapUrl');
+  var sitemapResultEl = document.getElementById('sitemapResult');
+
+  async function prefillSitemapUrl() {
+    if (!sitemapUrlInput) return;
+    try {
+      var config = await BuilderAPI.deployConfig();
+      if (config.prodUrl) {
+        sitemapUrlInput.value = config.prodUrl;
+      }
+    } catch (e) { /* silencer */ }
+  }
+
+  async function generateSitemap() {
+    if (!sitemapUrlInput || !sitemapResultEl) return;
+    var url = sitemapUrlInput.value.trim();
+    if (!url) {
+      BuilderApp.showToast('Entrez l\'URL du site', 'error');
+      sitemapUrlInput.focus();
+      return;
+    }
+    sitemapResultEl.innerHTML = '<div class="bld-fw__loading">Génération en cours...</div>';
+    try {
+      var data = await BuilderAPI.generateSitemap(url);
+      if (data.ok) {
+        var html = '<div class="bld-fw__sitemap-success">';
+        html += '<span class="bld-fw__health-icon bld-fw__health-item--ok">✓</span> ';
+        html += '<strong>' + data.urlCount + ' URLs</strong> dans sitemap.xml';
+        if (data.robotsExists) html += ' — robots.txt généré';
+        html += '</div>';
+        sitemapResultEl.innerHTML = html;
+        BuilderApp.showToast('Sitemap généré (' + data.urlCount + ' URLs)', 'success');
+      } else {
+        sitemapResultEl.innerHTML = '<div class="bld-fw__error">Erreur : ' + esc(data.error) + '</div>';
+      }
+    } catch (e) {
+      sitemapResultEl.innerHTML = '<div class="bld-fw__error">Erreur : ' + esc(e.message) + '</div>';
+    }
+  }
+
   /* ---------- Events ---------- */
   var btnRefresh = document.getElementById('btnFwRefresh');
   if (btnRefresh) btnRefresh.addEventListener('click', loadVersions);
 
   var btnHealth = document.getElementById('btnHealthCheck');
   if (btnHealth) btnHealth.addEventListener('click', runHealthCheck);
+
+  var btnSitemap = document.getElementById('btnGenerateSitemap');
+  if (btnSitemap) btnSitemap.addEventListener('click', generateSitemap);
+
+  // Permettre de lancer avec Entrée dans l'input
+  if (sitemapUrlInput) {
+    sitemapUrlInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') generateSitemap();
+    });
+  }
 
   /* ---------- API publique ---------- */
   window.BuilderFramework = {
@@ -163,6 +214,7 @@
         loadInfo();
         loadVersions();
         runHealthCheck();
+        prefillSitemapUrl();
       }
     }
   };

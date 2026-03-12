@@ -323,6 +323,8 @@ class BuilderHandler(SimpleHTTPRequestHandler):
             self._handle_framework_update(body)
         elif path == '/api/health-check':
             self._handle_health_check()
+        elif path == '/api/generate-sitemap':
+            self._handle_generate_sitemap(body)
 
         else:
             self.send_error(404)
@@ -1222,6 +1224,59 @@ class BuilderHandler(SimpleHTTPRequestHandler):
             'ok': True, 'checks': checks,
             'total': total, 'passed': passed, 'failed': total - passed
         })
+
+    # ═══════════════════════════════════════════════════════
+    #  SITEMAP & ROBOTS.TXT
+    # ═══════════════════════════════════════════════════════
+
+    def _handle_generate_sitemap(self, body):
+        """Exécute generate-sitemap.js avec l'URL fournie."""
+        url = (body.get('url') or '').strip()
+        if not url:
+            return self._json(400, {'error': 'URL manquante'})
+        # Validation basique de l'URL
+        if not url.startswith('http://') and not url.startswith('https://'):
+            return self._json(400, {'error': 'L\'URL doit commencer par http:// ou https://'})
+
+        script = os.path.join(ROOT, 'generate-sitemap.js')
+        if not os.path.exists(script):
+            return self._json(404, {'error': 'generate-sitemap.js introuvable à la racine du projet'})
+
+        try:
+            result = subprocess.run(
+                ['node', script, url],
+                capture_output=True, text=True, cwd=ROOT, timeout=15
+            )
+            if result.returncode != 0:
+                error = result.stderr.strip() or result.stdout.strip() or 'Erreur inconnue'
+                return self._json(500, {'error': error})
+
+            # Lire les fichiers générés pour confirmer
+            sitemap_path = os.path.join(ROOT, 'sitemap.xml')
+            robots_path = os.path.join(ROOT, 'robots.txt')
+            sitemap_exists = os.path.exists(sitemap_path)
+            robots_exists = os.path.exists(robots_path)
+
+            # Compter les URLs dans le sitemap
+            url_count = 0
+            if sitemap_exists:
+                with open(sitemap_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    url_count = content.count('<url>')
+
+            self._json(200, {
+                'ok': True,
+                'output': result.stdout.strip(),
+                'urlCount': url_count,
+                'sitemapExists': sitemap_exists,
+                'robotsExists': robots_exists
+            })
+        except subprocess.TimeoutExpired:
+            self._json(504, {'error': 'Timeout (15s)'})
+        except FileNotFoundError:
+            self._json(500, {'error': 'Node.js non trouvé. Installez Node.js pour générer le sitemap.'})
+        except Exception as e:
+            self._json(500, {'error': str(e)})
 
     # ═══════════════════════════════════════════════════════
     #  UTILITAIRES

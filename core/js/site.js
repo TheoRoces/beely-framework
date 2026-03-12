@@ -136,7 +136,7 @@
       var disclaimer = document.createElement('p');
       disclaimer.style.cssText =
         'margin:0 0 20px;font-size:11px;line-height:1.4;' +
-        'color:var(--color-text-lighter,#9ca3af);';
+        'color:var(--color-text-light,#6b7280);';
       disclaimer.textContent = 'Ouvrez un terminal à la racine de votre projet et collez cette commande. Le serveur doit rester ouvert pendant l\'utilisation du configurateur.';
 
       var actions = document.createElement('div');

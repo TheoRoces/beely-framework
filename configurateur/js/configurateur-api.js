@@ -61,6 +61,7 @@
     frameworkInfo: function () { return post('/api/framework-info'); },
     frameworkVersions: function () { return post('/api/framework-versions'); },
     frameworkUpdate: function (version) { return post('/api/framework-update', { version: version }); },
-    healthCheck: function () { return post('/api/health-check'); }
+    healthCheck: function () { return post('/api/health-check'); },
+    generateSitemap: function (url) { return post('/api/generate-sitemap', { url: url }); }
   };
 })();
