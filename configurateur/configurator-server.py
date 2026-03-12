@@ -1180,10 +1180,10 @@ class BuilderHandler(SimpleHTTPRequestHandler):
               'Page d\'erreur personnalisée')
 
         # 7. Core framework files
-        core_css = ['tokens.css', 'base.css', 'grid.css', 'components.css', 'forms.css',
-                    'elements.css', 'animations.css', 'blog.css', 'cookies.css', 'icons.css']
-        core_js = ['site.js', 'components.js', 'grid.js', 'forms.js', 'elements.js',
-                   'animations.js', 'blog.js', 'cookies.js', 'icons.js', 'darkmode.js', 'params.js']
+        core_css = ['tokens.css', 'base.css', 'grid.css', 'forms.css',
+                    'elements.css', 'animations.css', 'blog.css', 'cookies.css', 'icons.css', 'legal.css']
+        core_js = ['site.js', 'components.js', 'forms.js', 'elements.js',
+                   'animations.js', 'blog.js', 'cookies.js', 'icons.js', 'darkmode.js', 'params.js', 'legal.js']
 
         missing_css = [f for f in core_css if not os.path.exists(os.path.join(ROOT, 'core', 'css', f))]
         missing_js = [f for f in core_js if not os.path.exists(os.path.join(ROOT, 'core', 'js', f))]
