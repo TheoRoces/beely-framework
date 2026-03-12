@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /components/
+Disallow: /core/
+Disallow: /api/
+Disallow: /assets/
+Disallow: /snippets/
 
 Sitemap: https://framework.beely.studio/sitemap.xml

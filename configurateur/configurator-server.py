@@ -783,7 +783,17 @@ class BuilderHandler(SimpleHTTPRequestHandler):
             return self._json(400, {'error': 'Chemin invalide'})
         if not os.path.exists(filepath):
             return self._json(404, {'error': 'Fichier introuvable'})
-        os.remove(filepath)
+        if os.path.isdir(filepath):
+            if os.listdir(filepath):
+                return self._json(400, {'error': 'Le dossier n\'est pas vide'})
+            os.rmdir(filepath)
+        else:
+            os.remove(filepath)
+            # Nettoyer les métadonnées orphelines
+            meta = _load_media_meta()
+            if path_str in meta:
+                del meta[path_str]
+                _save_media_meta(meta)
         self._json(200, {'ok': True})
 
     def _handle_media_rename(self, body):
@@ -1137,12 +1147,29 @@ class BuilderHandler(SimpleHTTPRequestHandler):
               'Dossier .framework/ avec historique Git')
 
         # 2. Symlinks framework
-        expected_symlinks = ['core', 'assets', 'api', 'snippets', 'configurateur']
+        expected_symlinks = ['core', 'api', 'snippets', 'configurateur']
         for name in expected_symlinks:
             link_path = os.path.join(ROOT, name)
             is_ok = os.path.islink(link_path) and os.path.exists(link_path)
             detail = 'Symlink OK' if is_ok else ('Manquant' if not os.path.islink(link_path) else 'Lien cassé')
             check(f'Symlink {name}/', is_ok, detail)
+
+        # 2b. Dossier assets/ (réel, avec sous-symlinks icons/ et fonts/)
+        assets_dir = os.path.join(ROOT, 'assets')
+        assets_ok = os.path.isdir(assets_dir) and not os.path.islink(assets_dir)
+        icons_link = os.path.islink(os.path.join(assets_dir, 'icons'))
+        fonts_link = os.path.islink(os.path.join(assets_dir, 'fonts'))
+        images_dir = os.path.isdir(os.path.join(assets_dir, 'images'))
+        detail = 'Dossier projet'
+        if not assets_ok:
+            detail = 'Manquant ou symlink (devrait être un dossier réel)'
+        elif not icons_link or not fonts_link:
+            detail = 'icons/ ou fonts/ non liés au framework'
+        elif not images_dir:
+            detail = 'images/ manquant'
+        else:
+            detail = 'OK (icons + fonts → framework, images → projet)'
+        check('Dossier assets/', assets_ok and icons_link and fonts_link and images_dir, detail)
 
         # 3. Fichiers config essentiels
         essential_files = {
@@ -1316,7 +1343,7 @@ class BuilderHandler(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def log_message(self, format, *args):
-        req = args[0] if args else ''
+        req = str(args[0]) if args else ''
         if 'POST' in req:
             # Extraire le path pour un log lisible
             path = req.split(' ')[1] if ' ' in req else req
