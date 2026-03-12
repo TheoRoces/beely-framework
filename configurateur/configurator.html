@@ -4,6 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Configurateur — Site System</title>
+<script src="/config-site.js"></script>
+<script>
+// Injecter le favicon depuis la config (avant le rendu)
+(function() {
+  var cfg = window.SITE_CONFIG || {};
+  if (cfg.favicon) {
+    var link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = cfg.favicon;
+    document.head.appendChild(link);
+  }
+})();
+</script>
 <script src="/core/js/darkmode.js"></script>
 <link rel="stylesheet" href="/core/css/tokens.css">
 <link rel="stylesheet" href="/core/css/base.css">
@@ -12,6 +25,12 @@
 /* ========== CONFIGURATOR LAYOUT ========== */
 
 html { scroll-padding-top: 5rem; }
+
+/* Logo dark mode swap */
+.header__logo img { height: 22px; width: auto; }
+.header__logo-dark { display: none; }
+[data-theme="dark"] .header__logo-light { display: none; }
+[data-theme="dark"] .header__logo-dark { display: block; }
 
 .cfg-layout {
   display: grid;
@@ -198,6 +217,63 @@ html { scroll-padding-top: 5rem; }
   max-width: 160px;
 }
 
+/* ========== FAVICON UPLOAD ========== */
+
+.cfg-favicon-row {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.cfg-favicon-row input[type="text"] {
+  flex: 1;
+}
+
+.cfg-favicon-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.cfg-favicon-upload-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--primary-t-5);
+}
+
+.cfg-favicon-preview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.cfg-favicon-preview img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.cfg-favicon-preview span {
+  font-size: var(--text-sm);
+  color: var(--color-text-light);
+}
+
 /* ========== CODE PREVIEW (same as docs) ========== */
 
 .cfg-preview {
@@ -360,7 +436,8 @@ html { scroll-padding-top: 5rem; }
 <header class="header" id="cfgHeader" style="position: sticky; top: 0; z-index: 100;">
   <div class="container header__inner">
     <a href="/configurateur/configurator.html" class="header__logo">
-      <span class="header__logo-text">SiteSystem</span>
+      <img class="header__logo-light" src="/assets/images/logos/logo-beely-light.svg" alt="Beely" height="22">
+      <img class="header__logo-dark" src="/assets/images/logos/logo-beely-dark.svg" alt="Beely" height="22">
     </a>
     <nav class="header__nav"></nav>
     <div class="header__actions">
@@ -424,9 +501,21 @@ html { scroll-padding-top: 5rem; }
             <label>Nom du site</label>
             <input type="text" data-key="site.name" placeholder="Mon Site">
           </div>
-          <div class="cfg-field">
+          <div class="cfg-field cfg-field--full">
             <label>Favicon</label>
-            <input type="text" data-key="site.favicon" placeholder="/favicon.ico">
+            <div class="cfg-favicon-row">
+              <input type="text" data-key="site.favicon" placeholder="/favicon.ico" id="favicon-path-input">
+              <button type="button" class="cfg-favicon-upload-btn" id="favicon-upload-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Uploader
+              </button>
+              <input type="file" id="favicon-file-input" accept=".ico,.png,.svg" hidden>
+            </div>
+            <div class="cfg-favicon-preview" id="favicon-preview" style="display:none;">
+              <img id="favicon-preview-img" alt="Favicon preview">
+              <span id="favicon-preview-info"></span>
+            </div>
+            <small class="cfg-hint" style="margin-bottom:0;">Formats : .ico, .png, .svg &mdash; Max 512&times;512px, 100 Ko</small>
           </div>
         </div>
 
@@ -1426,6 +1515,142 @@ html { scroll-padding-top: 5rem; }
     }
     updatePreviews();
   }
+
+  /* ---------- Favicon upload ---------- */
+  var faviconBtn = document.getElementById('favicon-upload-btn');
+  var faviconFileInput = document.getElementById('favicon-file-input');
+  var faviconPathInput = document.getElementById('favicon-path-input');
+  var faviconPreview = document.getElementById('favicon-preview');
+  var faviconPreviewImg = document.getElementById('favicon-preview-img');
+  var faviconPreviewInfo = document.getElementById('favicon-preview-info');
+
+  var FAVICON_ALLOWED_EXT = ['.ico', '.png', '.svg'];
+  var FAVICON_MAX_SIZE = 100 * 1024; // 100 Ko
+  var FAVICON_MAX_DIM = 512;
+
+  // Mettre à jour le favicon dans l'onglet quand le champ texte change
+  faviconPathInput.addEventListener('input', function () {
+    var val = faviconPathInput.value.trim();
+    applyFaviconToTab(val || null);
+  });
+
+  faviconBtn.addEventListener('click', function () {
+    if (!serverAvailable) {
+      showToast('Serveur non connecté — lancez configurator-server.py');
+      return;
+    }
+    faviconFileInput.value = '';
+    faviconFileInput.click();
+  });
+
+  faviconFileInput.addEventListener('change', function () {
+    var file = faviconFileInput.files[0];
+    if (!file) return;
+
+    // Vérifier l'extension
+    var ext = '.' + file.name.split('.').pop().toLowerCase();
+    if (FAVICON_ALLOWED_EXT.indexOf(ext) === -1) {
+      showToast('Format non autorisé. Utilisez .ico, .png ou .svg');
+      return;
+    }
+
+    // Vérifier le poids
+    if (file.size > FAVICON_MAX_SIZE) {
+      showToast('Fichier trop lourd (' + Math.round(file.size / 1024) + ' Ko). Max 100 Ko');
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var dataUrl = e.target.result;
+      var b64 = dataUrl.split(',')[1];
+
+      // Pour SVG, pas de vérification dimensions — uploader directement
+      if (ext === '.svg') {
+        uploadFavicon(file.name, b64, ext, null, null);
+        return;
+      }
+
+      // Pour PNG/ICO, vérifier les dimensions via un Image
+      var img = new Image();
+      img.onload = function () {
+        if (img.width > FAVICON_MAX_DIM || img.height > FAVICON_MAX_DIM) {
+          showToast('Dimensions trop grandes (' + img.width + '×' + img.height + '). Max ' + FAVICON_MAX_DIM + '×' + FAVICON_MAX_DIM + 'px');
+          return;
+        }
+        uploadFavicon(file.name, b64, ext, img.width, img.height);
+      };
+      img.onerror = function () {
+        // ICO files may not load as Image — upload anyway
+        if (ext === '.ico') {
+          uploadFavicon(file.name, b64, ext, null, null);
+        } else {
+          showToast('Impossible de lire l\'image');
+        }
+      };
+      img.src = dataUrl;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  async function uploadFavicon(filename, b64Data, ext, width, height) {
+    try {
+      var resp = await fetch(API_BASE + '/api/favicon-upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename: filename, data: b64Data })
+      });
+      var data = await resp.json();
+      if (!resp.ok) {
+        showToast(data.error || 'Erreur upload favicon');
+        return;
+      }
+
+      // Mettre à jour le champ path
+      faviconPathInput.value = '/' + data.filename;
+      setNestedValue(state, 'site.favicon', '/' + data.filename);
+      saveState();
+      updatePreviews();
+      scheduleAutoSave();
+
+      // Afficher le preview
+      faviconPreviewImg.src = '/' + data.filename + '?t=' + Date.now();
+      var info = data.filename;
+      if (width && height) info += ' — ' + width + '×' + height + 'px';
+      info += ' — ' + Math.round(data.size / 1024) + ' Ko';
+      faviconPreviewInfo.textContent = info;
+      faviconPreview.style.display = 'flex';
+
+      applyFaviconToTab('/' + data.filename);
+      showToast('Favicon uploadé → /' + data.filename);
+    } catch (e) {
+      showToast('Erreur : ' + e.message);
+    }
+  }
+
+  // Injecter le favicon dans l'onglet du navigateur
+  function applyFaviconToTab(href) {
+    var existing = document.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
+    if (existing) existing.remove();
+    if (!href) return;
+    var link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = href + '?t=' + Date.now();
+    document.head.appendChild(link);
+  }
+
+  // Afficher le preview au chargement si un favicon existe déjà
+  function initFaviconPreview() {
+    var currentPath = getNestedValue(state, 'site.favicon');
+    if (currentPath) {
+      faviconPreviewImg.src = currentPath + '?t=' + Date.now();
+      faviconPreviewImg.onerror = function () { faviconPreview.style.display = 'none'; };
+      faviconPreviewInfo.textContent = currentPath;
+      faviconPreview.style.display = 'flex';
+      applyFaviconToTab(currentPath);
+    }
+  }
+  initFaviconPreview();
 
   /* ---------- Init ---------- */
   detectServer();

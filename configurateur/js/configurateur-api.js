@@ -44,6 +44,7 @@
     mediaRename: function (path, newName) { return post('/api/media-rename', { path: path, newName: newName }); },
     mediaMkdir: function (name, parent) { return post('/api/media-mkdir', { name: name, parent: parent || '' }); },
     mediaMove: function (path, folder) { return post('/api/media-move', { path: path, folder: folder || '' }); },
+    mediaRenameFolder: function (path, newName) { return post('/api/media-rename-folder', { path: path, newName: newName }); },
     mediaUsage: function (path) { return post('/api/media-usage', { path: path }); },
     mediaMeta: function (path) { return post('/api/media-meta', { path: path }); },
     mediaMetaSave: function (path, alt) { return post('/api/media-meta-save', { path: path, alt: alt }); },

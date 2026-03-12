@@ -23,8 +23,8 @@
   <header class="bld-topbar">
     <div class="bld-topbar__left">
       <div class="bld-topbar__logo">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Site System
+        <img class="bld-topbar__logo-light" src="/assets/images/logos/logo-beely-light.svg" alt="Beely" height="20">
+        <img class="bld-topbar__logo-dark" src="/assets/images/logos/logo-beely-dark.svg" alt="Beely" height="20">
       </div>
       <span class="bld-topbar__sep"></span>
       <span class="bld-topbar__site-name" id="siteName">Mon Site</span>
@@ -230,6 +230,10 @@
         </div>
         <div class="bld-lib__toolbar">
           <input type="text" class="bld-field__input" id="libMediaSearch" placeholder="Rechercher..." style="flex: 1;">
+          <button class="bld-btn bld-btn--sm" id="btnMediaViewToggle" title="Basculer grille / liste">
+            <svg id="mediaViewIconGrid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14" style="display:none;"><path d="M3.75 5.25h16.5M3.75 12h16.5M3.75 18.75h16.5"/></svg>
+            <svg id="mediaViewIconList" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z"/></svg>
+          </button>
           <button class="bld-btn bld-btn--sm" id="btnMediaMkdir" title="Nouveau dossier">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/></svg>
             Dossier

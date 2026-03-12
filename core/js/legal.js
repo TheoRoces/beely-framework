@@ -43,21 +43,21 @@
     },
     fbPixel: {
       name: 'Facebook Pixel',
-      purpose: 'Publicite ciblee et conversions',
+      purpose: 'Publicité ciblée et conversions',
       cookies: '_fbp, _fbc, fr',
       duration: '90 jours (_fbp), 90 jours (fr)',
       provider: 'Meta Platforms Inc.'
     },
     linkedin: {
       name: 'LinkedIn Insight Tag',
-      purpose: 'Publicite et analytics B2B',
+      purpose: 'Publicité et analytics B2B',
       cookies: '_li*, li_sugr, bcookie, lidc',
       duration: '2 ans (bcookie), 24h (lidc)',
       provider: 'LinkedIn Corporation'
     },
     tiktok: {
       name: 'TikTok Pixel',
-      purpose: 'Publicite et conversions',
+      purpose: 'Publicité et conversions',
       cookies: '_ttp, _tt_enable_cookie, tt_*',
       duration: '13 mois (_ttp)',
       provider: 'TikTok Inc.'
@@ -66,7 +66,7 @@
 
   /* ---------- Helpers ---------- */
 
-  /** Resout un chemin (ex: "hosting.name") dans un objet */
+  /** Résout un chemin (ex: "hosting.name") dans un objet */
   function resolve(obj, path) {
     var parts = path.split('.');
     var val = obj;

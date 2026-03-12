@@ -212,8 +212,9 @@
   function xhr(url, callback) {
     var req = new XMLHttpRequest();
     var proxyUrl = (!isLocal && config.proxyUrl) ? config.proxyUrl : '';
-    var token = config.baserow.token || '';
-    var baserowBase = (config.baserow.url || 'https://api.baserow.io').replace(/\/+$/, '');
+    var br = config.baserow || {};
+    var token = br.token || '';
+    var baserowBase = (br.url || 'https://api.baserow.io').replace(/\/+$/, '');
     var finalUrl;
     var useDirectApi = false;
 

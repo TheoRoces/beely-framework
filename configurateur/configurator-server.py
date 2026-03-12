@@ -289,6 +289,8 @@ class BuilderHandler(SimpleHTTPRequestHandler):
             self._handle_media_rename(body)
         elif path == '/api/media-mkdir':
             self._handle_media_mkdir(body)
+        elif path == '/api/media-rename-folder':
+            self._handle_media_rename_folder(body)
         elif path == '/api/media-move':
             self._handle_media_move(body)
         elif path == '/api/media-usage':
@@ -297,6 +299,10 @@ class BuilderHandler(SimpleHTTPRequestHandler):
             self._handle_media_meta(body)
         elif path == '/api/media-meta-save':
             self._handle_media_meta_save(body)
+
+        # ── Favicon ──
+        elif path == '/api/favicon-upload':
+            self._handle_favicon_upload(body)
 
         # ── Registre pages.json ──
         elif path == '/api/registry-read':
@@ -750,7 +756,7 @@ class BuilderHandler(SimpleHTTPRequestHandler):
             return self._json(400, {'error': 'Dossier invalide'})
         # Décoder le base64
         try:
-            file_data = base64.b64decode(data_b64)
+            file_data = base64.b64decode(data_b64, validate=True)
         except Exception:
             return self._json(400, {'error': 'Données base64 invalides'})
         if len(file_data) > self.MAX_UPLOAD_SIZE:
@@ -842,6 +848,35 @@ class BuilderHandler(SimpleHTTPRequestHandler):
         os.makedirs(target, exist_ok=True)
         self._json(200, {'ok': True, 'folder': folder_name})
 
+    def _handle_media_rename_folder(self, body):
+        """Renommer un dossier dans assets/images/ et mettre à jour les références."""
+        old_folder = body.get('path', '')
+        new_name = body.get('newName', '')
+        if not old_folder or not old_folder.startswith('assets/images/') or not new_name:
+            return self._json(400, {'error': 'Paramètres invalides'})
+        if '/' in new_name or '\\' in new_name or '..' in new_name:
+            return self._json(400, {'error': 'Nom de dossier invalide'})
+        old_dirpath = safe_path(old_folder)
+        if not old_dirpath or not os.path.isdir(old_dirpath):
+            return self._json(404, {'error': 'Dossier introuvable'})
+        new_dirpath = os.path.join(os.path.dirname(old_dirpath), new_name)
+        if os.path.exists(new_dirpath):
+            return self._json(400, {'error': 'Un dossier avec ce nom existe déjà'})
+        # Collecter tous les fichiers avant le renommage pour mettre à jour les références
+        old_files = []
+        for dirpath, _, filenames in os.walk(old_dirpath):
+            for fname in filenames:
+                fpath = os.path.join(dirpath, fname)
+                old_files.append(os.path.relpath(fpath, ROOT).replace('\\', '/'))
+        os.rename(old_dirpath, new_dirpath)
+        new_rel = os.path.relpath(new_dirpath, ROOT).replace('\\', '/')
+        # Mettre à jour les références de chaque fichier du dossier
+        total_updated = 0
+        for old_rel in old_files:
+            new_file_rel = old_rel.replace(old_folder, new_rel, 1)
+            total_updated += _update_media_references(old_rel, new_file_rel)
+        self._json(200, {'ok': True, 'path': new_rel, 'name': new_name, 'updatedPages': total_updated})
+
     def _handle_media_move(self, body):
         """Déplacer un fichier vers un autre dossier."""
         file_path = body.get('path', '')
@@ -914,6 +949,47 @@ class BuilderHandler(SimpleHTTPRequestHandler):
         _save_media_meta(meta)
         _propagate_alt_text(media_path, alt_text)
         self._json(200, {'ok': True})
+
+    # ═══════════════════════════════════════════════════════
+    #  FAVICON UPLOAD (racine du projet)
+    # ═══════════════════════════════════════════════════════
+
+    FAVICON_ALLOWED_EXT = {'.ico', '.png', '.svg'}
+    FAVICON_MAX_SIZE = 100 * 1024  # 100 Ko
+
+    def _handle_favicon_upload(self, body):
+        filename = body.get('filename', '')
+        data_b64 = body.get('data', '')
+        if not filename or not data_b64:
+            return self._json(400, {'error': 'Paramètres manquants (filename, data)'})
+
+        # Valider l'extension
+        ext = os.path.splitext(filename)[1].lower()
+        if ext not in self.FAVICON_ALLOWED_EXT:
+            return self._json(400, {'error': 'Format non autorisé. Utilisez .ico, .png ou .svg'})
+
+        # Sécurité : pas de traversal
+        if '/' in filename or '\\' in filename or '..' in filename:
+            return self._json(400, {'error': 'Nom de fichier invalide'})
+
+        # Décoder le base64
+        try:
+            file_data = base64.b64decode(data_b64, validate=True)
+        except Exception:
+            return self._json(400, {'error': 'Données base64 invalides'})
+
+        # Vérifier le poids
+        if len(file_data) > self.FAVICON_MAX_SIZE:
+            return self._json(400, {'error': f'Fichier trop volumineux ({len(file_data) // 1024} Ko). Max 100 Ko'})
+
+        # Nommer le fichier : toujours "favicon.ext"
+        out_filename = 'favicon' + ext
+        filepath = os.path.join(ROOT, out_filename)
+
+        with open(filepath, 'wb') as f:
+            f.write(file_data)
+
+        self._json(200, {'ok': True, 'filename': out_filename, 'size': len(file_data)})
 
     # ═══════════════════════════════════════════════════════
     #  REGISTRE (data/pages.json)

@@ -192,6 +192,7 @@
   var mediaFiles = null;
   var mediaFolders = [];
   var mediaCurrentFolder = ''; // dossier courant ('' = racine)
+  var mediaViewMode = 'grid'; // 'grid' ou 'list'
 
   async function loadMediaData() {
     try {
@@ -262,6 +263,17 @@
       if (searchInput) {
         searchInput.addEventListener('input', function () {
           filterMedia(searchInput.value.toLowerCase());
+        });
+      }
+
+      // Toggle grille / liste
+      var viewToggleBtn = document.getElementById('btnMediaViewToggle');
+      if (viewToggleBtn) {
+        viewToggleBtn.addEventListener('click', function () {
+          mediaViewMode = mediaViewMode === 'grid' ? 'list' : 'grid';
+          document.getElementById('mediaViewIconGrid').style.display = mediaViewMode === 'grid' ? 'none' : '';
+          document.getElementById('mediaViewIconList').style.display = mediaViewMode === 'grid' ? '' : 'none';
+          renderMediaGrid(document.getElementById('libMediaContent'));
         });
       }
 
@@ -358,12 +370,17 @@
       return;
     }
 
-    html += '<div class="bld-media-grid">';
+    var gridClass = 'bld-media-grid' + (mediaViewMode === 'list' ? ' bld-media-grid--list' : '');
+    html += '<div class="' + gridClass + '">';
 
     // Sous-dossiers
     subfolders.forEach(function (folder) {
       var folderName = folder.split('/').pop();
       html += '<div class="bld-media-grid__folder" data-media-nav="' + escapeHtml(folder) + '" title="' + escapeHtml(folderName) + '">'
+        + '<div class="bld-media-grid__hover-actions">'
+        + '<button class="bld-media-grid__hover-btn" data-rename-folder="' + escapeHtml(folder) + '" title="Renommer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/></svg></button>'
+        + '<button class="bld-media-grid__hover-btn bld-media-grid__hover-btn--danger" data-delete-folder="' + escapeHtml(folder) + '" title="Supprimer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></button>'
+        + '</div>'
         + '<svg class="bld-media-grid__folder-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/></svg>'
         + '<span class="bld-media-grid__folder-name">' + escapeHtml(folderName) + '</span>'
         + '</div>';
@@ -374,14 +391,14 @@
       var sizeStr = formatFileSize(file.size);
       var typeStr = getFileType(file.name);
       html += '<div class="bld-media-grid__item" data-media-name="' + escapeHtml(file.name) + '" data-media-path="' + escapeHtml(file.path) + '" data-media-size="' + file.size + '">'
+        + '<div class="bld-media-grid__hover-actions">'
+        + '<button class="bld-media-grid__hover-btn" data-copy-media-path="/' + escapeHtml(file.path) + '" title="Copier le chemin"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"/></svg></button>'
+        + '<button class="bld-media-grid__hover-btn bld-media-grid__hover-btn--danger" data-delete-media="' + escapeHtml(file.path) + '" title="Supprimer"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg></button>'
+        + '</div>'
         + '<img src="/' + escapeHtml(file.path) + '" alt="' + escapeHtml(file.name) + '" loading="lazy">'
         + '<span class="bld-media-grid__name">' + escapeHtml(file.name) + '</span>'
-        + '<div class="bld-media-grid__actions">'
-        + '<span style="font-size:10px;color:var(--color-text-light);">' + sizeStr + ' · ' + typeStr + '</span>'
-        + '<div style="display:flex;gap:4px;">'
-        + '<button class="bld-btn bld-btn--sm" data-copy-media-path="/' + escapeHtml(file.path) + '" title="Copier le chemin">Copier</button>'
-        + '<button class="bld-btn bld-btn--sm bld-btn--danger" data-delete-media="' + escapeHtml(file.path) + '" title="Supprimer">&times;</button>'
-        + '</div></div></div>';
+        + '<span class="bld-media-grid__meta">' + sizeStr + ' · ' + typeStr + '</span>'
+        + '</div>';
     });
 
     html += '</div>';
@@ -412,7 +429,7 @@
       });
     });
 
-    // Supprimer
+    // Supprimer fichier
     container.querySelectorAll('[data-delete-media]').forEach(function (btn) {
       btn.addEventListener('click', async function (e) {
         e.stopPropagation();
@@ -427,6 +444,54 @@
           try {
             await BuilderAPI.mediaDelete(path);
             BuilderApp.showToast('Image supprimée', 'success');
+            refreshMediaGrid();
+          } catch (err) {
+            BuilderApp.showToast('Erreur : ' + err.message, 'error');
+          }
+        }
+      });
+    });
+
+    // Renommer dossier
+    container.querySelectorAll('[data-rename-folder]').forEach(function (btn) {
+      btn.addEventListener('click', async function (e) {
+        e.stopPropagation();
+        var folderPath = btn.getAttribute('data-rename-folder');
+        var currentName = folderPath.split('/').pop();
+        var newName = await BuilderModal.prompt({
+          title: 'Renommer le dossier',
+          message: 'Nouveau nom :',
+          value: currentName,
+          confirmText: 'Renommer'
+        });
+        if (newName && newName !== currentName) {
+          try {
+            await BuilderAPI.mediaRenameFolder(folderPath, newName);
+            BuilderApp.showToast('Dossier renommé', 'success');
+            refreshMediaGrid();
+          } catch (err) {
+            BuilderApp.showToast('Erreur : ' + err.message, 'error');
+          }
+        }
+      });
+    });
+
+    // Supprimer dossier
+    container.querySelectorAll('[data-delete-folder]').forEach(function (btn) {
+      btn.addEventListener('click', async function (e) {
+        e.stopPropagation();
+        var folderPath = btn.getAttribute('data-delete-folder');
+        var folderName = folderPath.split('/').pop();
+        var ok = await BuilderModal.confirm({
+          title: 'Supprimer le dossier',
+          message: 'Supprimer le dossier « ' + folderName + ' » ? Il doit être vide.',
+          confirmText: 'Supprimer',
+          variant: 'danger-fill'
+        });
+        if (ok) {
+          try {
+            await BuilderAPI.mediaDelete(folderPath);
+            BuilderApp.showToast('Dossier supprimé', 'success');
             refreshMediaGrid();
           } catch (err) {
             BuilderApp.showToast('Erreur : ' + err.message, 'error');
