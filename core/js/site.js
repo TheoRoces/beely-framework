@@ -95,13 +95,49 @@
       msg.style.cssText = 'margin:0 0 16px;font-size:14px;color:var(--color-text-light,#6b7280);line-height:1.5;';
       msg.textContent = 'Le serveur du configurateur n\'est pas lancé. Voulez-vous le démarrer ?';
 
-      var code = document.createElement('code');
-      code.textContent = 'python3 configurateur/configurator-server.py';
-      code.style.cssText =
-        'display:block;padding:8px 12px;margin:0 0 20px;font-size:12px;' +
+      var cmdText = 'python3 configurateur/configurator-server.py';
+
+      var codeWrap = document.createElement('div');
+      codeWrap.style.cssText =
+        'display:flex;align-items:center;gap:0;margin:0 0 8px;' +
         'background:var(--color-bg-alt,#f3f4f6);border:1px solid var(--color-border,#e5e7eb);' +
-        'border-radius:var(--radius-md,8px);font-family:var(--font-mono,monospace);' +
-        'color:var(--color-text,#111);';
+        'border-radius:var(--radius-md,8px);overflow:hidden;';
+
+      var code = document.createElement('code');
+      code.textContent = cmdText;
+      code.style.cssText =
+        'flex:1;padding:8px 12px;font-size:12px;' +
+        'font-family:var(--font-mono,monospace);' +
+        'color:var(--color-text,#111);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+
+      var btnCopy = document.createElement('button');
+      btnCopy.textContent = 'Copier';
+      btnCopy.style.cssText =
+        'flex-shrink:0;padding:6px 10px;font-size:11px;font-weight:500;' +
+        'border:none;border-left:1px solid var(--color-border,#e5e7eb);' +
+        'background:transparent;color:var(--color-text-light,#6b7280);' +
+        'cursor:pointer;transition:color 0.15s ease;';
+      btnCopy.addEventListener('mouseenter', function () { btnCopy.style.color = 'var(--color-text,#111)'; });
+      btnCopy.addEventListener('mouseleave', function () { btnCopy.style.color = 'var(--color-text-light,#6b7280)'; });
+      btnCopy.addEventListener('click', function () {
+        navigator.clipboard.writeText(cmdText).then(function () {
+          btnCopy.textContent = 'Copié !';
+          btnCopy.style.color = 'var(--color-success,#16a34a)';
+          setTimeout(function () {
+            btnCopy.textContent = 'Copier';
+            btnCopy.style.color = 'var(--color-text-light,#6b7280)';
+          }, 1500);
+        });
+      });
+
+      codeWrap.appendChild(code);
+      codeWrap.appendChild(btnCopy);
+
+      var disclaimer = document.createElement('p');
+      disclaimer.style.cssText =
+        'margin:0 0 20px;font-size:11px;line-height:1.4;' +
+        'color:var(--color-text-lighter,#9ca3af);';
+      disclaimer.textContent = 'Ouvrez un terminal à la racine de votre projet et collez cette commande. Le serveur doit rester ouvert pendant l\'utilisation du configurateur.';
 
       var actions = document.createElement('div');
       actions.style.cssText = 'display:flex;gap:8px;justify-content:flex-end;';
@@ -163,7 +199,8 @@
       actions.appendChild(btnOk);
       modal.appendChild(title);
       modal.appendChild(msg);
-      modal.appendChild(code);
+      modal.appendChild(codeWrap);
+      modal.appendChild(disclaimer);
       modal.appendChild(actions);
       overlay.appendChild(modal);
 
