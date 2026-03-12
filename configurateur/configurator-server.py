@@ -314,6 +314,16 @@ class BuilderHandler(SimpleHTTPRequestHandler):
         elif path == '/api/deploy-config':
             self._handle_deploy_config()
 
+        # ── Framework ──
+        elif path == '/api/framework-info':
+            self._handle_framework_info()
+        elif path == '/api/framework-versions':
+            self._handle_framework_versions()
+        elif path == '/api/framework-update':
+            self._handle_framework_update(body)
+        elif path == '/api/health-check':
+            self._handle_health_check()
+
         else:
             self.send_error(404)
 
@@ -1003,6 +1013,215 @@ class BuilderHandler(SimpleHTTPRequestHandler):
                     elif key == 'PREPROD_URL' and val:
                         config['preprodUrl'] = val
         self._json(200, {'ok': True, **config})
+
+    # ═══════════════════════════════════════════════════════
+    #  FRAMEWORK — Version management
+    # ═══════════════════════════════════════════════════════
+
+    def _handle_framework_info(self):
+        fw_dir = os.path.join(ROOT, '.framework')
+        if not os.path.isdir(os.path.join(fw_dir, '.git')):
+            return self._json(404, {'error': 'Submodule .framework introuvable'})
+        try:
+            # Version courante (tag le plus proche)
+            tag = subprocess.run(
+                ['git', 'describe', '--tags', '--always'],
+                capture_output=True, text=True, cwd=fw_dir
+            ).stdout.strip()
+            # Commit hash
+            commit = subprocess.run(
+                ['git', 'rev-parse', '--short', 'HEAD'],
+                capture_output=True, text=True, cwd=fw_dir
+            ).stdout.strip()
+            # Branche
+            branch = subprocess.run(
+                ['git', 'branch', '--show-current'],
+                capture_output=True, text=True, cwd=fw_dir
+            ).stdout.strip()
+            # Date du dernier commit
+            date = subprocess.run(
+                ['git', 'log', '-1', '--format=%ci'],
+                capture_output=True, text=True, cwd=fw_dir
+            ).stdout.strip()
+            # Remote URL
+            remote = subprocess.run(
+                ['git', 'remote', 'get-url', 'origin'],
+                capture_output=True, text=True, cwd=fw_dir
+            ).stdout.strip()
+            self._json(200, {
+                'ok': True, 'version': tag, 'commit': commit,
+                'branch': branch, 'date': date, 'remote': remote
+            })
+        except Exception as e:
+            self._json(500, {'error': str(e)})
+
+    def _handle_framework_versions(self):
+        fw_dir = os.path.join(ROOT, '.framework')
+        if not os.path.isdir(os.path.join(fw_dir, '.git')):
+            return self._json(404, {'error': 'Submodule .framework introuvable'})
+        try:
+            # Fetch les derniers tags
+            subprocess.run(
+                ['git', 'fetch', '--tags', '--force'],
+                capture_output=True, text=True, timeout=30, cwd=fw_dir
+            )
+            # Lister les tags avec date
+            result = subprocess.run(
+                ['git', 'tag', '-l', '--sort=-v:refname',
+                 '--format=%(refname:short)\t%(creatordate:short)\t%(subject)'],
+                capture_output=True, text=True, cwd=fw_dir
+            )
+            versions = []
+            for line in result.stdout.strip().split('\n'):
+                if not line.strip():
+                    continue
+                parts = line.split('\t', 2)
+                versions.append({
+                    'tag': parts[0],
+                    'date': parts[1] if len(parts) > 1 else '',
+                    'message': parts[2] if len(parts) > 2 else ''
+                })
+            # Commit actuel
+            current = subprocess.run(
+                ['git', 'describe', '--tags', '--always'],
+                capture_output=True, text=True, cwd=fw_dir
+            ).stdout.strip()
+            self._json(200, {'ok': True, 'versions': versions, 'current': current})
+        except subprocess.TimeoutExpired:
+            self._json(504, {'error': 'Fetch timeout (30s)'})
+        except Exception as e:
+            self._json(500, {'error': str(e)})
+
+    def _handle_framework_update(self, body):
+        version = body.get('version', '')
+        if not version or not re.match(r'^[a-zA-Z0-9._\-]+$', version):
+            return self._json(400, {'error': 'Version invalide'})
+        fw_dir = os.path.join(ROOT, '.framework')
+        if not os.path.isdir(os.path.join(fw_dir, '.git')):
+            return self._json(404, {'error': 'Submodule .framework introuvable'})
+        try:
+            result = subprocess.run(
+                ['git', 'checkout', version],
+                capture_output=True, text=True, timeout=30, cwd=fw_dir
+            )
+            if result.returncode != 0:
+                return self._json(400, {
+                    'error': f'Impossible de basculer sur {version}',
+                    'output': result.stderr
+                })
+            # Version après checkout
+            new_ver = subprocess.run(
+                ['git', 'describe', '--tags', '--always'],
+                capture_output=True, text=True, cwd=fw_dir
+            ).stdout.strip()
+            self._json(200, {'ok': True, 'version': new_ver, 'output': result.stdout + result.stderr})
+        except subprocess.TimeoutExpired:
+            self._json(504, {'error': 'Checkout timeout (30s)'})
+        except Exception as e:
+            self._json(500, {'error': str(e)})
+
+    # ═══════════════════════════════════════════════════════
+    #  HEALTH CHECK — Vérification du projet
+    # ═══════════════════════════════════════════════════════
+
+    def _handle_health_check(self):
+        checks = []
+
+        def check(name, ok, detail=''):
+            checks.append({'name': name, 'ok': ok, 'detail': detail})
+
+        # 1. Submodule .framework existe
+        fw_dir = os.path.join(ROOT, '.framework')
+        check('Submodule .framework',
+              os.path.isdir(os.path.join(fw_dir, '.git')),
+              'Dossier .framework/ avec historique Git')
+
+        # 2. Symlinks framework
+        expected_symlinks = ['core', 'components', 'assets', 'api', 'snippets', 'configurateur']
+        for name in expected_symlinks:
+            link_path = os.path.join(ROOT, name)
+            is_ok = os.path.islink(link_path) and os.path.exists(link_path)
+            detail = 'Symlink OK' if is_ok else ('Manquant' if not os.path.islink(link_path) else 'Lien cassé')
+            check(f'Symlink {name}/', is_ok, detail)
+
+        # 3. Fichiers config essentiels
+        essential_files = {
+            'config-site.js': 'Configuration client',
+            '.htaccess': 'Configuration Apache / sécurité',
+            'deploy.sh': 'Script de déploiement',
+            'setup.sh': 'Script d\'initialisation',
+            '.gitignore': 'Fichiers exclus de Git',
+            '.rsync-exclude': 'Fichiers exclus du déploiement',
+        }
+        for filename, desc in essential_files.items():
+            filepath = os.path.join(ROOT, filename)
+            check(f'{filename}', os.path.exists(filepath), desc)
+
+        # 4. Fichiers secrets
+        env_path = os.path.join(ROOT, '.env')
+        has_env = os.path.exists(env_path)
+        check('.env (secrets API)', has_env,
+              'Présent' if has_env else 'Manquant — copiez .env.example et remplissez les valeurs')
+
+        deploy_env_path = os.path.join(ROOT, '.deploy.env')
+        has_deploy_env = os.path.exists(deploy_env_path)
+        check('.deploy.env (config SSH)', has_deploy_env,
+              'Présent' if has_deploy_env else 'Manquant — copiez .deploy.env.example pour le déploiement')
+
+        # 5. Dossier pages/ avec au moins index.html
+        pages_dir = os.path.join(ROOT, PAGES_DIR)
+        has_pages = os.path.isdir(pages_dir)
+        has_index = os.path.exists(os.path.join(pages_dir, 'index.html'))
+        check('pages/index.html', has_pages and has_index,
+              'Page d\'accueil' if has_index else 'Manquant')
+
+        # 6. 404.html
+        check('404.html', os.path.exists(os.path.join(ROOT, '404.html')),
+              'Page d\'erreur personnalisée')
+
+        # 7. Core framework files
+        core_css = ['tokens.css', 'base.css', 'grid.css', 'components.css', 'forms.css',
+                    'elements.css', 'animations.css', 'blog.css', 'cookies.css', 'icons.css']
+        core_js = ['site.js', 'components.js', 'grid.js', 'forms.js', 'elements.js',
+                   'animations.js', 'blog.js', 'cookies.js', 'icons.js', 'darkmode.js', 'params.js']
+
+        missing_css = [f for f in core_css if not os.path.exists(os.path.join(ROOT, 'core', 'css', f))]
+        missing_js = [f for f in core_js if not os.path.exists(os.path.join(ROOT, 'core', 'js', f))]
+        check('Core CSS (10 fichiers)',
+              len(missing_css) == 0,
+              f'Manquant : {", ".join(missing_css)}' if missing_css else 'Tous présents')
+        check('Core JS (11 fichiers)',
+              len(missing_js) == 0,
+              f'Manquant : {", ".join(missing_js)}' if missing_js else 'Tous présents')
+
+        # 8. API PHP
+        api_files = ['baserow.php', 'consent.php', 'form.php', 'rate-limit.php']
+        missing_api = [f for f in api_files if not os.path.exists(os.path.join(ROOT, 'api', f))]
+        check('API PHP (4 fichiers)',
+              len(missing_api) == 0,
+              f'Manquant : {", ".join(missing_api)}' if missing_api else 'Tous présents')
+
+        # 9. Composants
+        comp_files = ['Header.js', 'Footer.js', 'Card.js']
+        missing_comp = [f for f in comp_files if not os.path.exists(os.path.join(ROOT, 'components', f))]
+        check('Composants (Header, Footer, Card)',
+              len(missing_comp) == 0,
+              f'Manquant : {", ".join(missing_comp)}' if missing_comp else 'Tous présents')
+
+        # 10. Icônes
+        icons_dir = os.path.join(ROOT, 'assets', 'icons', 'outline')
+        icon_count = len([f for f in os.listdir(icons_dir) if f.endswith('.svg')]) if os.path.isdir(icons_dir) else 0
+        check(f'Icônes ({icon_count} SVG)',
+              icon_count > 300,
+              f'{icon_count} icônes outline' if icon_count > 0 else 'Dossier icons/ manquant')
+
+        # Résumé
+        total = len(checks)
+        passed = sum(1 for c in checks if c['ok'])
+        self._json(200, {
+            'ok': True, 'checks': checks,
+            'total': total, 'passed': passed, 'failed': total - passed
+        })
 
     # ═══════════════════════════════════════════════════════
     #  UTILITAIRES

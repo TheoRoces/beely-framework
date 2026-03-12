@@ -77,6 +77,14 @@
       </button>
     </div>
 
+    <div class="bld-sidebar__section">
+      <div class="bld-sidebar__label">Maintenance</div>
+      <button class="bld-sidebar__link" data-panel="framework">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+        Framework
+      </button>
+    </div>
+
     <div class="bld-sidebar__spacer"></div>
 
     <div class="bld-sidebar__footer">
@@ -240,6 +248,47 @@
       </div>
     </div>
 
+    <!-- ────── FRAMEWORK ────── -->
+    <div class="bld-panel" data-panel-id="framework">
+      <div class="bld-fw">
+        <div class="bld-fw__header">
+          <h1 class="bld-fw__title">Framework</h1>
+          <p class="bld-fw__subtitle">Version, mises à jour et diagnostic du projet.</p>
+        </div>
+
+        <!-- Info version courante -->
+        <div class="bld-fw__current" id="fwCurrent">
+          <div class="bld-fw__current-loading">Chargement...</div>
+        </div>
+
+        <!-- Versions disponibles -->
+        <div class="bld-fw__section">
+          <div class="bld-fw__section-header">
+            <h2>Versions disponibles</h2>
+            <button class="bld-btn bld-btn--sm" id="btnFwRefresh">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+              Rafraîchir
+            </button>
+          </div>
+          <div class="bld-fw__versions" id="fwVersions">
+            <div class="bld-fw__empty">Cliquez sur Rafraîchir pour charger les versions.</div>
+          </div>
+        </div>
+
+        <!-- Health Check -->
+        <div class="bld-fw__section">
+          <div class="bld-fw__section-header">
+            <h2>Diagnostic du projet</h2>
+            <button class="bld-btn bld-btn--sm" id="btnHealthCheck">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Lancer le diagnostic
+            </button>
+          </div>
+          <div class="bld-fw__health" id="fwHealth"></div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -315,6 +364,7 @@
 <script src="js/configurateur-publish.js"></script>
 <script src="js/configurateur-library.js"></script>
 <script src="js/configurateur-config.js"></script>
+<script src="js/configurateur-framework.js"></script>
 
 </body>
 </html>

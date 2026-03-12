@@ -55,6 +55,12 @@
     // ── Déploiement ──
     deploy: function (target) { return post('/api/deploy', { target: target }); },
     gitPush: function (message) { return post('/api/git-push', { message: message }); },
-    deployConfig: function () { return post('/api/deploy-config'); }
+    deployConfig: function () { return post('/api/deploy-config'); },
+
+    // ── Framework ──
+    frameworkInfo: function () { return post('/api/framework-info'); },
+    frameworkVersions: function () { return post('/api/framework-versions'); },
+    frameworkUpdate: function (version) { return post('/api/framework-update', { version: version }); },
+    healthCheck: function () { return post('/api/health-check'); }
   };
 })();
