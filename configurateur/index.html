@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Configurateur &mdash; Site System</title>
+  <link rel="icon" href="/favicon.png">
   <script src="/core/js/darkmode.js"></script>
   <link rel="stylesheet" href="/core/css/tokens.css">
   <link rel="stylesheet" href="/core/css/base.css">
+  <link rel="stylesheet" href="/core/css/forms.css">
+  <link rel="stylesheet" href="/core/css/elements.css">
+  <link rel="stylesheet" href="/core/css/components.css">
   <link rel="stylesheet" href="configurateur.css">
 </head>
 <body>
@@ -70,6 +74,14 @@
       <button class="bld-sidebar__link" data-panel="lib-media">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         Médiathèque
+      </button>
+    </div>
+
+    <div class="bld-sidebar__section">
+      <div class="bld-sidebar__label">Ressources</div>
+      <button class="bld-sidebar__link" data-panel="styleguide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Guide de style
       </button>
       <button class="bld-sidebar__link" data-panel="lib-icons">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
@@ -252,6 +264,17 @@
       </div>
     </div>
 
+    <!-- ────── GUIDE DE STYLE ────── -->
+    <div class="bld-panel" data-panel-id="styleguide">
+      <div class="bld-styleguide" id="styleguide">
+        <div class="bld-lib__header">
+          <h1 class="bld-lib__title">Guide de style</h1>
+          <p class="bld-lib__subtitle">Couleurs, typographie, espacements et composants du projet.</p>
+        </div>
+        <div class="bld-styleguide__content" id="styleguideContent"></div>
+      </div>
+    </div>
+
     <!-- ────── FRAMEWORK ────── -->
     <div class="bld-panel" data-panel-id="framework">
       <div class="bld-fw">
@@ -379,6 +402,8 @@
 </div>
 
 <!-- Scripts -->
+<script src="/core/js/forms.js"></script>
+<script src="/core/js/elements.js"></script>
 <script src="js/configurateur-modal.js"></script>
 <script src="js/configurateur-api.js"></script>
 <script src="js/configurateur-app.js"></script>
@@ -387,6 +412,7 @@
 <script src="js/configurateur-library.js"></script>
 <script src="js/configurateur-config.js"></script>
 <script src="js/configurateur-framework.js"></script>
+<script src="js/configurateur-styleguide.js"></script>
 
 </body>
 </html>

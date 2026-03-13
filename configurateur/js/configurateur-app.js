@@ -47,6 +47,9 @@
     if (panelId.indexOf('lib-') === 0 && window.BuilderLibrary) {
       window.BuilderLibrary.refresh(panelId);
     }
+    if (panelId === 'styleguide' && window.BuilderStyleguide) {
+      window.BuilderStyleguide.refresh();
+    }
     if (panelId === 'framework' && window.BuilderFramework) {
       window.BuilderFramework.refresh();
     }
@@ -62,7 +65,7 @@
   // Lire le hash au chargement — activer visuellement le panel (sidebar + affichage)
   // mais NE PAS appeler les callbacks (refresh) avant que init() ait chargé les données
   var initialHash = window.location.hash.replace('#', '') || 'dashboard';
-  var validPanels = ['dashboard', 'pages', 'configurator', 'lib-icons', 'lib-media', 'framework'];
+  var validPanels = ['dashboard', 'pages', 'configurator', 'lib-icons', 'lib-media', 'styleguide', 'framework'];
   var initialPanel = validPanels.indexOf(initialHash) !== -1 ? initialHash : 'dashboard';
 
   // Activation visuelle immédiate (sans callbacks)
