@@ -192,7 +192,7 @@
   var mediaFiles = null;
   var mediaFolders = [];
   var mediaCurrentFolder = ''; // dossier courant ('' = racine)
-  var mediaViewMode = 'grid'; // 'grid' ou 'list'
+  var mediaViewMode = localStorage.getItem('bld-media-view') || 'grid'; // 'grid' ou 'list'
 
   async function loadMediaData() {
     try {
@@ -269,10 +269,17 @@
       // Toggle grille / liste
       var viewToggleBtn = document.getElementById('btnMediaViewToggle');
       if (viewToggleBtn) {
+        // Synchroniser l'icône au chargement
+        var iconGrid = document.getElementById('mediaViewIconGrid');
+        var iconList = document.getElementById('mediaViewIconList');
+        if (iconGrid) iconGrid.style.display = mediaViewMode === 'grid' ? 'none' : '';
+        if (iconList) iconList.style.display = mediaViewMode === 'grid' ? '' : 'none';
+
         viewToggleBtn.addEventListener('click', function () {
           mediaViewMode = mediaViewMode === 'grid' ? 'list' : 'grid';
-          document.getElementById('mediaViewIconGrid').style.display = mediaViewMode === 'grid' ? 'none' : '';
-          document.getElementById('mediaViewIconList').style.display = mediaViewMode === 'grid' ? '' : 'none';
+          localStorage.setItem('bld-media-view', mediaViewMode);
+          if (iconGrid) iconGrid.style.display = mediaViewMode === 'grid' ? 'none' : '';
+          if (iconList) iconList.style.display = mediaViewMode === 'grid' ? '' : 'none';
           renderMediaGrid(document.getElementById('libMediaContent'));
         });
       }
